@@ -17,7 +17,7 @@
 msbuild CKBusbarBridge.sln /restore /t:Build /p:RestorePackagesConfig=true /p:Configuration=Debug /p:Platform="Any CPU" /p:RegisterForComInterop=false /p:SkipSolidWorksRegistration=true
 ```
 
-本地包源在 `.nuget/local-feed`。面对墙等方案需要算法 Worker 授权。在运行 SolidWorks 的 Windows 账号下执行 `pwsh -File tools/Set-WorkerAuthorization.ps1` 并输入获准用于本项目的授权码；授权只加密保存在该用户本机，不随仓库或安装目录分发。自动化测试可用进程环境变量 `CK_BUSBAR_WORKER_AUTHORIZATION` 临时覆盖本机授权。预览源码或运行资源修改后执行 `pwsh -File tools/Update-ParameterPreviewManifest.ps1`。不把原项目客户模型、模板压缩包、试验记录或用户设置复制到该仓库。
+本地包源在 `.nuget/local-feed`。面对墙等方案所需的默认算法授权随母线桥试用版提供，无需安装联络排。需要单独配置时，在运行 SolidWorks 的 Windows 账号下执行 `pwsh -File tools/Set-WorkerAuthorization.ps1`，本机加密授权优先于内置授权；进程环境变量 `CK_BUSBAR_WORKER_AUTHORIZATION` 优先级最高，可用于临时覆盖。预览源码或运行资源修改后执行 `pwsh -File tools/Update-ParameterPreviewManifest.ps1`。不把原项目客户模型、模板压缩包、试验记录或用户设置复制到该仓库。
 
 SolidWorks 的面对面常规预览中，基架骨架在顶板、侧板和底板内侧。外壳两端根据已安装基座的顶面和左右侧面定位；两端宽度不同时外壳平滑衔接，不改铜排或支撑坐标。基座与基架侧板按中压预览的冲压百叶样式生成向下的开口。A、B 柜的基座总高分别沿用各自参数，包含顶盖。若两端接口不再等高，视口仍显示当前柜体与基座，并暂停显示旧桥体，直到参数允许重新规划。增量编译后可运行 `node tools/Test-FacingRegularPreview.mjs --solidworks-preview` 离线核查 SolidWorks 预览几何，无需启动 SolidWorks 或浏览器。
 
