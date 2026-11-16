@@ -57,7 +57,7 @@ namespace CKBusbarBridge.viewmodels
             SelectProjectPathCommand = DelegateCommand.GetDelegateCommand(_ => SelectProjectPath());
 
             // 初始化“生成”命令，供界面按钮绑定调用。
-            GenerateCommand = DelegateCommand.GetDelegateCommand(_ => UiFeedback.Error("实体生成暂未开发。", "川开母线桥"));
+            GenerateCommand = DelegateCommand.GetDelegateCommand(_ => UiFeedback.Error("实体生成暂未开发。", "母线桥项目"));
         }
 
         /// <summary>

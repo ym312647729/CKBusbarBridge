@@ -48,6 +48,8 @@ namespace CKBusbarBridge.Drivers
             var existing = _documents.FirstOrDefault(document => document.IsBound && ReferenceEquals(document.Document, model));
             if (existing != null) return existing;
             var marker = BridgeParameterDraftDocument.ReadProperty(model, BridgeParameterDraftDocument.IdentityProperty);
+            if (string.IsNullOrWhiteSpace(marker))
+                marker = BridgeParameterDraftDocument.ReadProperty(model, BridgeParameterDraftDocument.LegacyIdentityProperty);
             if (string.IsNullOrWhiteSpace(marker)) return null;
             RequireEmptyAssembly(model);
             var restored = BridgeParameterDraftDocument.Restore(_application, model, marker);
@@ -174,7 +176,7 @@ namespace CKBusbarBridge.Drivers
         internal static void RequireEmptyAssembly(IModelDoc2 document)
         {
             if (!(document is AssemblyDoc assembly) || assembly.GetComponentCount(false) != 0)
-                throw new InvalidOperationException("川开试用草稿必须使用空总装，不能写入已安装实体的装配体。");
+                throw new InvalidOperationException("本项目参数草稿必须使用空总装，不能写入已安装实体的装配体。");
         }
         internal static void ActivateAssembly(ISldWorks application, IModelDoc2 assembly)
         {
@@ -211,7 +213,9 @@ namespace CKBusbarBridge.Drivers
 
     internal sealed class BridgeParameterDraftDocument : IBridgeDesignPreviewSession
     {
-        internal const string IdentityProperty = "川开母线桥参数草稿身份";
+        internal const string IdentityProperty = "母线桥项目参数草稿身份";
+        // 读取旧文档的属性键；新文档统一写入与客户无关的名称。
+        internal const string LegacyIdentityProperty = "\u5DDD\u5F00母线桥参数草稿身份";
         private readonly ISldWorks _application;
         private readonly Dispatcher _dispatcher = Dispatcher.CurrentDispatcher;
         private readonly BridgeGeometryRuntime _runtime = new BridgeGeometryRuntime();

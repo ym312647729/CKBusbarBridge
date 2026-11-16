@@ -10,6 +10,7 @@ using CKBusbarBridge.Drivers;
 using CKBusbarBridge.Models;
 using CKBusbarBridge.viewmodels;
 using CKBusbarBridgePreview;
+using RD.UI.Wpf.Controls;
 
 namespace CKBusbarBridge.views
 {
@@ -23,7 +24,7 @@ namespace CKBusbarBridge.views
         private readonly Action<BridgeParameterDraftDocument> _next;
         private readonly bool _resetScenario;
         private readonly BridgeParameterDraftDocument _expectedDraft;
-        private Button _confirm;
+        private RDButton _confirm;
         private TextBlock _status;
         private ScrollViewer _statusScroll;
         private DispatcherOperation _previewOperation;
@@ -65,7 +66,7 @@ namespace CKBusbarBridge.views
             _statusScroll = new ScrollViewer { Content = _status, MaxHeight = 80, Margin = new Thickness(8, 0, 8, 8),
                 HorizontalScrollBarVisibility = ScrollBarVisibility.Disabled, VerticalScrollBarVisibility = ScrollBarVisibility.Auto };
             footer.Children.Add(_statusScroll);
-            _confirm = new Button
+            _confirm = new RDButton
             {
                 Content = "确定参数，下一步", Style = buttonStyle, Height = 36, MinWidth = 148,
                 Padding = new Thickness(16, 0, 16, 0), Margin = new Thickness(0, 2, 0, 2),
@@ -84,7 +85,7 @@ namespace CKBusbarBridge.views
         {
             var badge = (Border)_window.FindName("CabinetScenarioBadge");
             var choices = new StackPanel { Orientation = Orientation.Horizontal, VerticalAlignment = VerticalAlignment.Center };
-            var scenarioPicker = new ComboBox { Height = 28, MinWidth = 105, SelectedValuePath = "Tag", ToolTip = "选择柜体设计场景" };
+            var scenarioPicker = new RDComboBox { Height = 28, MinWidth = 105, SelectedValuePath = "Tag", ToolTip = "选择柜体设计场景" };
             foreach (var scenario in new[] { DesignScenarioId.FaceToFace, DesignScenarioId.SideToSide, DesignScenarioId.FaceToWall })
                 scenarioPicker.Items.Add(new ComboBoxItem { Tag = scenario, Content = DesignScenarioDefaults.GetDisplayName(scenario) });
             scenarioPicker.SelectedValue = _scenario;
@@ -98,7 +99,7 @@ namespace CKBusbarBridge.views
             };
             if (_scenario == DesignScenarioId.FaceToWall)
             {
-                var orientationPicker = new ComboBox { Height = 28, MinWidth = 94, Margin = new Thickness(8, 0, 0, 0), SelectedValuePath = "Tag" };
+                var orientationPicker = new RDComboBox { Height = 28, MinWidth = 94, Margin = new Thickness(8, 0, 0, 0), SelectedValuePath = "Tag" };
                 orientationPicker.Items.Add(new ComboBoxItem { Tag = FaceToWallCabinetOrientation.CabinetFrontToWall, Content = "柜前向墙" });
                 orientationPicker.Items.Add(new ComboBoxItem { Tag = FaceToWallCabinetOrientation.CabinetRearToWall, Content = "柜后向墙" });
                 orientationPicker.SelectedValue = _orientation;
@@ -212,7 +213,7 @@ namespace CKBusbarBridge.views
             if (_closing) return;
             args.Cancel = true;
             if (_saving || _changingScenario) return;
-            var answer = MessageBox.Show(_window, "是否保存柜体参数和草稿记录？", "退出柜体设计", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+            var answer = UiFeedback.Show(_window, "是否保存柜体参数和草稿记录？", "退出柜体设计", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
             if (answer == MessageBoxResult.Cancel) return;
             if (answer == MessageBoxResult.Yes) { await SaveAndClose(false); return; }
             try

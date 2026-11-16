@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 // associated with an assembly.
 //
 [assembly: AssemblyTitle("CKBusbarBridge")]
-[assembly: AssemblyDescription("川开中压母线桥预览试用版")]
+[assembly: AssemblyDescription("中压母线桥项目预览试用版")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("CKBusbarBridge")]

@@ -31,6 +31,7 @@
   <ItemGroup>
     <Compile Include="AboutInformation.cs" />
     <Compile Include="AboutWindow.cs" />
+    <Compile Include="RightSidePanelLayout.cs" />
     <Compile Include="ReleaseNotesDocument.cs" />
     <Compile Include="DimensionHighlightVisibilityConverter.cs" />
     <Compile Include="UniversalInsulatorLayout.cs" />
@@ -125,10 +126,6 @@
     <Compile Include="FaceToWallMinimumSpanPlanning.cs" />
     <Compile Include="FaceToWallSpanPlanning.cs" />
     <Compile Include="BusbarBridgeDesignWindowVM.WallSpan.cs" />
-    <Compile Include="..\CKBusbarBridge\views\SmallCornerWindowResources.xaml.cs">
-      <Link>views\SmallCornerWindowResources.xaml.cs</Link>
-      <DependentUpon>SmallCornerWindowResources.xaml</DependentUpon>
-    </Compile>
     <Compile Include="..\CKBusbarBridge\models\CabinetOpeningElevationValidator.cs"><Link>models\CabinetOpeningElevationValidator.cs</Link></Compile>
     <Compile Include="..\CKBusbarBridge\Drivers\CabinetDriverStartupContext.cs"><Link>Drivers\CabinetDriverStartupContext.cs</Link></Compile>
     <Compile Include="..\CKBusbarBridge\Drivers\CabinetDriverStartupContextResolver.cs"><Link>Drivers\CabinetDriverStartupContextResolver.cs</Link></Compile>
@@ -339,9 +336,6 @@
     <Compile Include="..\CKBusbarBridge\viewmodels\BusbarSchemeSelectionWindowVM.cs">
       <Link>viewmodels\BusbarSchemeSelectionWindowVM.cs</Link>
     </Compile>
-    <Compile Include="..\CKBusbarBridge\views\BusbarBridgeJointPreviewControl.cs">
-      <Link>views\BusbarBridgeJointPreviewControl.cs</Link>
-    </Compile>
     <Compile Include="..\CKBusbarBridge\views\BusbarSchemeSelectionWindow.xaml.cs">
       <Link>views\BusbarSchemeSelectionWindow.xaml.cs</Link>
       <DependentUpon>BusbarSchemeSelectionWindow.xaml</DependentUpon>
@@ -381,11 +375,6 @@
     </Page>
     <Page Include="..\CKBusbarBridge\views\BusbarAlgorithmSchemeView.xaml">
       <Link>views\BusbarAlgorithmSchemeView.xaml</Link>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="..\CKBusbarBridge\views\SmallCornerWindowResources.xaml">
-      <Link>views\SmallCornerWindowResources.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

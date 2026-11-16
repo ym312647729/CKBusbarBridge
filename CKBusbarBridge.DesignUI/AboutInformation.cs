@@ -8,7 +8,7 @@ namespace CKBusbarBridge
     /// <summary>版本来自已加载的宿主，说明来自同一安装目录；不依赖当前工作目录。</summary>
     public sealed class AboutInformation
     {
-        public const string ProductName = "川开中压母线桥 · 试用版";
+        public const string ProductName = "中压母线桥项目 · 试用版";
         public const string ReleaseNotesFileName = "版本更新文档.md";
 
         private AboutInformation(string version, string notes, string message, Exception error = null)

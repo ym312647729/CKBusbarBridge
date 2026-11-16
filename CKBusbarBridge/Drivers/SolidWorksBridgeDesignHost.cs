@@ -45,7 +45,7 @@ namespace CKBusbarBridge.Drivers
         public IBridgeDesignPreviewSession CreatePreviewSession()
         {
             var draft = BridgeParameterDraftDocuments.For(_app).Active;
-            return new PreviewLease(draft ?? throw new InvalidOperationException("请先打开川开参数草稿。"));
+            return new PreviewLease(draft ?? throw new InvalidOperationException("请先打开本项目参数草稿。"));
         }
         public BridgeDesignSample RestoreSavedDraft(BridgeUpstreamSnapshot upstream, BridgeDesignSample fresh)
             => ActiveDraft()?.RestoreRecipe(upstream);
@@ -101,7 +101,7 @@ namespace CKBusbarBridge.Drivers
             public BridgeUpstreamSnapshot Read()
             {
                 var draft = BridgeParameterDraftDocuments.For(_owner._app).Active;
-                if (draft == null) throw new InvalidOperationException("请先打开川开参数草稿。");
+                if (draft == null) throw new InvalidOperationException("请先打开本项目参数草稿。");
                 if (!draft.Session.IsReady) throw new InvalidOperationException(draft.Session.Failure ?? "参数草稿正在计算，请稍候。");
                 return draft.Session.Upstream;
             }

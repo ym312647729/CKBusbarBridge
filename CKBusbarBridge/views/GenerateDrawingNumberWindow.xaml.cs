@@ -8,13 +8,14 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using CKBusbarBridge.viewmodels;
+using RD.UI.Wpf.Controls;
 
 namespace CKBusbarBridge.views
 {
     /// <summary>
     /// 生成图号：录入合同号、图号及设计/校对/审核/批准等信息的窗口。
     /// </summary>
-    public partial class GenerateDrawingNumberWindow : Window
+    public partial class GenerateDrawingNumberWindow : RDWindow
     {
         private readonly Dictionary<TextBox, string> _validationErrors = new Dictionary<TextBox, string>();
 
@@ -68,6 +69,7 @@ namespace CKBusbarBridge.views
         public GenerateDrawingNumberWindow()
         {
             InitializeComponent();
+            RightSidePanelLayout.Apply(this, 480d);
             DataObject.AddPastingHandler(ContractNumberTextBox, ContractNumber_Pasting);
             DataObject.AddPastingHandler(DrawingNumberTextBox, DrawingNumber_Pasting);
             DataObject.AddPastingHandler(DesignerTextBox, DigitField_Pasting);

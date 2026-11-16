@@ -134,6 +134,10 @@
       <HintPath>..\packages\HandyControl.3.5.1\lib\net48\HandyControl.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="RD.UI.Wpf">
+      <HintPath>..\packages\RD.UI.Wpf.1.7.4\lib\net462\RD.UI.Wpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.WebView2.Core, Version=1.0.4129.50, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Web.WebView2.1.0.4129.50\lib\net462\Microsoft.Web.WebView2.Core.dll</HintPath>
@@ -420,15 +424,17 @@
       <DependentUpon>SideToSideCabinetDriverWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="views\DrawingNumberDialogLauncher.cs" />
+    <Compile Include="views\CompactParameterGridLayout.cs" />
     <Compile Include="views\ProjectRootFolderDialog.cs" />
+    <Compile Include="views\CopperDrawingOptionsWindow.cs" />
+    <Compile Include="views\CopperDrawingWindow.cs" />
+    <Compile Include="views\OpenHoleLibraryWindow.cs" />
+    <Compile Include="views\OpenHoleItemEditorWindow.cs" />
     <Compile Include="views\GenerateDrawingNumberWindow.xaml.cs">
       <DependentUpon>GenerateDrawingNumberWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="views\FaceToWallCabinetDriverWindow.xaml.cs">
       <DependentUpon>FaceToWallCabinetDriverWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="views\SmallCornerWindowResources.xaml.cs">
-      <DependentUpon>SmallCornerWindowResources.xaml</DependentUpon>
     </Compile>
     <EmbeddedResource Include="icons\mainicon_20.png" />
     <EmbeddedResource Include="icons\mainicon_32.png" />
@@ -458,10 +464,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="views\FaceToWallCabinetDriverWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="views\SmallCornerWindowResources.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

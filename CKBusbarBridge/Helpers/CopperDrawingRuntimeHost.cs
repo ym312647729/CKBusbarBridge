@@ -2,6 +2,10 @@ using System;
 using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
+using System.Windows;
+using CKBusbarBridge.views;
+using CKBusbarBridgePreview;
+using SolidWorks.Interop.sldworks;
 
 namespace CKBusbarBridge.Helpers
 {
@@ -12,7 +16,7 @@ namespace CKBusbarBridge.Helpers
     {
         private string _addinDirectory;
         private string _runtimeDirectory;
-        private Form _drawingWindow;
+        private Window _drawingWindow;
         private bool _assemblyResolverRegistered;
 
         public override object InitializeLifetimeService()
@@ -22,7 +26,7 @@ namespace CKBusbarBridge.Helpers
 
         public bool IsWindowOpen()
         {
-            return _drawingWindow != null && !_drawingWindow.IsDisposed;
+            return _drawingWindow != null;
         }
 
         public void ShowWindow(
@@ -120,11 +124,13 @@ namespace CKBusbarBridge.Helpers
                 throw new InvalidOperationException("铜排图纸窗口创建失败。");
             }
 
-            _drawingWindow = createdDrawingWindow;
-            createdDrawingWindow.FormClosed += OnDrawingWindowClosed;
-            createdDrawingWindow.Show();
-            createdDrawingWindow.Activate();
-            createdDrawingWindow.BringToFront();
+            var drawingWindow = new CopperDrawingWindow(createdDrawingWindow,
+                (ISldWorks)solidWorksApplication);
+            UiFeedback.AssignWindowOwner(drawingWindow);
+            _drawingWindow = drawingWindow;
+            drawingWindow.Closed += OnDrawingWindowClosed;
+            drawingWindow.Show();
+            drawingWindow.Activate();
         }
 
         public void ActivateWindow()
@@ -136,7 +142,6 @@ namespace CKBusbarBridge.Helpers
 
             _drawingWindow.Show();
             _drawingWindow.Activate();
-            _drawingWindow.BringToFront();
         }
 
         public void CloseWindow()
@@ -147,9 +152,9 @@ namespace CKBusbarBridge.Helpers
                 return;
             }
 
-            Form drawingWindowToClose = _drawingWindow;
+            Window drawingWindowToClose = _drawingWindow;
             _drawingWindow = null;
-            drawingWindowToClose.FormClosed -= OnDrawingWindowClosed;
+            drawingWindowToClose.Closed -= OnDrawingWindowClosed;
             drawingWindowToClose.Close();
         }
 
@@ -218,7 +223,7 @@ namespace CKBusbarBridge.Helpers
 
         private void OnDrawingWindowClosed(
             object closedWindowSender,
-            FormClosedEventArgs closedWindowEventArgs)
+            EventArgs closedWindowEventArgs)
         {
             if (ReferenceEquals(_drawingWindow, closedWindowSender))
             {

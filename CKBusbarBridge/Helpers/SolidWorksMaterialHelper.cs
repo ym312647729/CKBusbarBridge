@@ -44,7 +44,7 @@ namespace CKBusbarBridge.Helpers
 
         /// <summary>
         /// 优先根据 SolidWorks「系统选项 - 文件位置 - 材质数据库」解析铜排材质文件（out1.sldmat），
-        /// 未配置时再查找插件随包的大全材质库；整个过程不修改 SolidWorks 的材质库设置。
+        /// 未配置时再查找插件附带的材质库；整个过程不修改 SolidWorks 的材质库设置。
         /// </summary>
         public static bool TryResolveBusbarMaterialDatabasePath(ISldWorks swApp, out string databasePath, out string errorMessage)
         {
@@ -66,7 +66,7 @@ namespace CKBusbarBridge.Helpers
 
             if (TryFindBundledBusbarMaterialDatabase(out databasePath))
             {
-                Logger.Info("SolidWorks 未配置铜排材质库目录，已使用插件随包大全材质库：{0}", databasePath);
+                Logger.Info("SolidWorks 未配置铜排材质库目录，已使用插件附带的材质库：{0}", databasePath);
                 return true;
             }
 
@@ -112,7 +112,7 @@ namespace CKBusbarBridge.Helpers
         }
 
         /// <summary>
-        /// 查找插件随包的大全材质库。这里仅读取已部署文件，不修改 SolidWorks 的材质库配置。
+        /// 查找插件附带的材质库。这里仅读取已部署文件，不修改 SolidWorks 的材质库配置。
         /// </summary>
         private static bool TryFindBundledBusbarMaterialDatabase(out string databasePath)
         {

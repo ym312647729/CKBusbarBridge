@@ -1,4 +1,5 @@
 using SolidWorks.Interop.swconst;
+using RD.UI.Wpf.Controls;
 using System;
 using System.Threading.Tasks;
 using System.Windows;
@@ -74,12 +75,12 @@ namespace CKBusbarBridgePreview
 
         public static void Warning(string message, string title = "警告")
         {
-            Show(message, title, MessageBoxButton.OK, MessageBoxImage.Warning);
+            FeedbackRuntime.NotifyToast(message, title, RDMessageBoxKind.Warning);
         }
 
         public static void Error(string message, string title = "错误")
         {
-            Show(message, title, MessageBoxButton.OK, MessageBoxImage.Error);
+            FeedbackRuntime.NotifyToast(message, title, RDMessageBoxKind.Error);
         }
 
         // 兼容现有 WPF 调用的参数，统一在这里决定通知/警告/错误/确认的呈现方式。
@@ -96,10 +97,11 @@ namespace CKBusbarBridgePreview
             MessageBoxImage icon = MessageBoxImage.Information,
             MessageBoxResult defaultResult = MessageBoxResult.None)
         {
-            if (buttons == MessageBoxButton.OK &&
-                (icon == MessageBoxImage.Information || icon == MessageBoxImage.None))
+            if (buttons == MessageBoxButton.OK)
             {
-                Information(message, title);
+                if (icon == MessageBoxImage.Warning) Warning(message, title);
+                else if (icon == MessageBoxImage.Error) Error(message, title);
+                else Information(message, title);
                 return MessageBoxResult.OK;
             }
 

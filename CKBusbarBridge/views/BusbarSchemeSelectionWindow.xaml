@@ -1,13 +1,13 @@
-﻿<Window x:Class="CKBusbarBridge.views.BusbarSchemeSelectionWindow"
+<rd:RDWindow x:Class="CKBusbarBridge.views.BusbarSchemeSelectionWindow"
  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
- xmlns:local="clr-namespace:CKBusbarBridge.views" Title="面对墙 · 方案生成与选择" Width="720" Height="740"
+ xmlns:local="clr-namespace:CKBusbarBridge.views" xmlns:rd="clr-namespace:RD.UI.Wpf.Controls;assembly=RD.UI.Wpf" Title="面对墙 · 方案生成与选择" Width="720" Height="740"
  MinWidth="600" MinHeight="480" WindowStartupLocation="CenterOwner" FontFamily="Microsoft YaHei" Background="#F7F8FA" PreviewKeyDown="Window_PreviewKeyDown">
- <Grid Margin="12">
+ <rd:RDWindow.Resources><ResourceDictionary Source="pack://application:,,,/RD.UI.Wpf;component/Themes/Generic.xaml" /></rd:RDWindow.Resources><Grid Margin="12">
   <Grid.RowDefinitions><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
   <local:BusbarAlgorithmSchemeView x:Name="SchemePanel" WebPreviewVisibilityChanged="PreviewChanged" SchemeDoubleClick="SchemeDoubleClick"/>
   <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,12,0,0">
-   <Button Content="使用选中方案" IsEnabled="{Binding CanAccept}" Click="Accept_Click" Padding="18,8" Margin="4,0"/>
-   <Button Content="取消" Click="Cancel_Click" Padding="18,8" Margin="4,0"/>
+   <rd:RDButton Content="使用选中方案" IsEnabled="{Binding CanAccept}" Click="Accept_Click" Padding="18,8" Margin="4,0"/>
+   <rd:RDButton Content="取消" Click="Cancel_Click" Padding="18,8" Margin="4,0"/>
   </StackPanel>
  </Grid>
-</Window>
+</rd:RDWindow>

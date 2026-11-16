@@ -3,13 +3,13 @@ $ErrorActionPreference = 'Stop'
 $root = Split-Path -Parent $PSScriptRoot
 $allowedSource = @(
     'CKBusbarBridge.DesignUI/PreviewAssets/EmptyAssembly.asmdot',
-    'CKBusbarBridge/CopperDrawing/Runtime/templates/Drawings/川开A3 - 中压模板.drwdot',
-    'CKBusbarBridge/CopperDrawing/Runtime/templates/Drawings/川开A3.drwdot'
+    'CKBusbarBridge/CopperDrawing/Runtime/templates/Drawings/母线桥A3 - 中压模板.drwdot',
+    'CKBusbarBridge/CopperDrawing/Runtime/templates/Drawings/母线桥A3.drwdot'
 )
 $allowedOutput = @(
     'PreviewAssets/EmptyAssembly.asmdot',
-    'templates/Drawings/川开A3 - 中压模板.drwdot',
-    'templates/Drawings/川开A3.drwdot'
+    'templates/Drawings/母线桥A3 - 中压模板.drwdot',
+    'templates/Drawings/母线桥A3.drwdot'
 )
 function Assert-CadFiles([string]$base, [string[]]$allowed, [bool]$source) {
     $files = Get-ChildItem -LiteralPath $base -Recurse -File | ForEach-Object {

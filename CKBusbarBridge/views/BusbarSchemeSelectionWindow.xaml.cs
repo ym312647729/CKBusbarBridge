@@ -5,10 +5,11 @@ using System.Windows;
 using System.Windows.Input;
 using CKBusbarBridge.viewmodels;
 using CKBusbarBridgePreview;
+using RD.UI.Wpf.Controls;
 
 namespace CKBusbarBridge.views
 {
-    public partial class BusbarSchemeSelectionWindow : Window
+    public partial class BusbarSchemeSelectionWindow : RDWindow
     {
         private readonly BusbarSchemeSelectionWindowVM _model;
         private BusbarWebPreviewWindow _preview;
@@ -23,13 +24,13 @@ namespace CKBusbarBridge.views
             _viewportPreview = viewportPreview;
             if (viewportPreview != null)
             {
-                Title = "面对墙 · 方案列表（SolidWorks视口预览）"; MinWidth = 420; Width = 480;
+                Title = "面对墙 · 方案列表（SolidWorks视口预览）";
                 SchemePanel.WebPreviewToggle.Visibility = Visibility.Collapsed;
                 model.UseSolidWorksViewportPreview = true;
             }
             model.SelectedSchemeChanged += SelectionChanged; model.PreviewRequested += PreviewRequested;
             Loaded += SelectionChanged; Closed += WindowClosed;
-            Width = Math.Min(Width, SystemParameters.WorkArea.Width); Height = Math.Min(Height, SystemParameters.WorkArea.Height);
+            RightSidePanelLayout.Apply(this);
         }
         private async void SelectionChanged(object sender, EventArgs e) { await RefreshPreviewAsync(); }
         private async void PreviewRequested(object sender, EventArgs e)

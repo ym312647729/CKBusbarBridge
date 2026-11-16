@@ -13,11 +13,12 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
+using RD.UI.Wpf.Controls;
 
 namespace CKBusbarBridge.views
 {
     /// <summary>母排设置窗口拥有的非模态 Web 三维方案预览窗。</summary>
-    public partial class BusbarWebPreviewWindow : Window
+    public partial class BusbarWebPreviewWindow : RDWindow
     {
         private const double PreviewWindowGap = 12d;
         private const double PreviewViewportHeightOffset = 140d;
@@ -33,6 +34,7 @@ namespace CKBusbarBridge.views
         private bool _isPreviewWindowSizeAdjustmentActive;
         private bool _isPreviewWindowStateRestorationActive;
         private readonly bool _allowUserClose;
+        private RDProgressToast _loadingToast;
 
         public BusbarWebPreviewWindow(Window ownerWindow)
             : this(ownerWindow, false)
@@ -279,18 +281,26 @@ namespace CKBusbarBridge.views
 
         private void SetLoadingState(bool isLoading, string loadingText)
         {
-            PreviewLoadingPanel.Visibility = isLoading
-                ? Visibility.Visible
-                : Visibility.Collapsed;
+            if (isLoading)
+            {
+                if (_loadingToast == null) _loadingToast = RDToast.BeginProgress("母排方案预览");
+                _loadingToast.Report(new RDToastProgress { Stage = loadingText ?? "正在准备三维预览" });
+            }
+            else if (_loadingToast != null)
+            {
+                _loadingToast.Finish();
+                _loadingToast = null;
+            }
             if (!string.IsNullOrWhiteSpace(loadingText))
             {
-                PreviewLoadingTextBlock.Text = loadingText;
                 PreviewStatusTextBlock.Text = loadingText;
             }
         }
 
         protected override void OnClosing(CancelEventArgs eventArguments)
         {
+            _loadingToast?.Finish();
+            _loadingToast = null;
             if (!_isOwnerWindowCloseRequested && !_allowUserClose)
             {
                 eventArguments.Cancel = true;

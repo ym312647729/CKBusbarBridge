@@ -33,7 +33,7 @@ namespace CKBusbarBridge
         private CabinetDraftWindowWorkflow _cabinetDraftWorkflow;
         private AboutWindow _aboutWindow;
         private BridgeDesignWindowController _bridgeDesignController;
-        private FrmOpenHoleLibSetting _openHoleLibSettingWindow;
+        private OpenHoleLibraryWindow _openHoleLibSettingWindow;
         private AppDomain _copperDrawingRuntimeDomain;
         private CopperDrawingRuntimeHost _copperDrawingRuntimeHost;
 
@@ -64,7 +64,7 @@ namespace CKBusbarBridge
             {
                 iSwApp = (ISldWorks)application;
                 if (!iSwApp.SetAddinCallbackInfo2(0, this, cookie))
-                    throw new InvalidOperationException("未能向 SolidWorks 登记川开命令回调。");
+                    throw new InvalidOperationException("未能向 SolidWorks 登记本项目命令回调。");
                 UiFeedback.InitializePresentation();
                 _commands = iSwApp.GetCommandManager(cookie);
                 RegisterCommands();
@@ -73,7 +73,7 @@ namespace CKBusbarBridge
             }
             catch (Exception error)
             {
-                Logger.Error(error, "加载川开母线桥插件失败。");
+                Logger.Error(error, "加载母线桥项目插件失败。");
                 DisconnectFromSW();
                 return false;
             }
@@ -87,15 +87,15 @@ namespace CKBusbarBridge
                 try { action(); }
                 catch (Exception error) { success = false; Logger.Error(error, operation); }
             }
-            Release("关闭川开柜体草稿窗口", () => _cabinetDraftWorkflow?.CloseWithoutPrompt());
-            Release("关闭川开桥体草稿窗口", () => _bridgeDesignController?.CloseForAddinShutdown());
-            Release("关闭川开关于窗口", () => _aboutWindow?.Close());
-            Release("关闭川开设置窗口", () => _openHoleLibSettingWindow?.Close());
-            Release("释放川开铜排图纸运行域", ReleaseCopperDrawingRuntime);
-            if (iSwApp != null) Release("释放川开预览", () => BridgeParameterDraftDocuments.Release(iSwApp));
-            Release("卸载川开命令", () => _commands?.RemoveCommandGroup(CommandGroupId));
-            Release("释放川开命令图标", () => _bitmaps?.Dispose());
-            Release("关闭川开消息提示", () => { UiFeedback.PrepareForShutdown(); UiFeedback.ShutdownPresentation(); });
+            Release("关闭本项目柜体草稿窗口", () => _cabinetDraftWorkflow?.CloseWithoutPrompt());
+            Release("关闭本项目桥体草稿窗口", () => _bridgeDesignController?.CloseForAddinShutdown());
+            Release("关闭本项目关于窗口", () => _aboutWindow?.Close());
+            Release("关闭本项目设置窗口", () => _openHoleLibSettingWindow?.Close());
+            Release("释放本项目铜排图纸运行域", ReleaseCopperDrawingRuntime);
+            if (iSwApp != null) Release("释放本项目预览", () => BridgeParameterDraftDocuments.Release(iSwApp));
+            Release("卸载本项目命令", () => _commands?.RemoveCommandGroup(CommandGroupId));
+            Release("释放本项目命令图标", () => _bitmaps?.Dispose());
+            Release("关闭本项目消息提示", () => { UiFeedback.PrepareForShutdown(); UiFeedback.ShutdownPresentation(); });
             _commands = null; iSwApp = null;
             AppDomain.CurrentDomain.AssemblyResolve -= CurrentDomain_AssemblyResolve;
             return success;
@@ -106,7 +106,7 @@ namespace CKBusbarBridge
             var status = 0;
             var group = _commands.CreateCommandGroup2(CommandGroupId, AboutInformation.ProductName,
                 AboutInformation.ProductName, "", -1, false, ref status)
-                ?? throw new InvalidOperationException("无法建立川开母线桥命令组：" + status);
+                ?? throw new InvalidOperationException("无法建立母线桥项目命令组：" + status);
             var sizes = new[] { 20, 32, 40, 64, 96, 128 };
             var assembly = typeof(SwAddin).Assembly;
             _bitmaps = new BitmapHandler();
@@ -124,10 +124,10 @@ namespace CKBusbarBridge
                 Add("开孔库设置", 8, nameof(ShowOpenHoleLibSettingWindow), nameof(EnableOpenHoleLibSettingWindow), 5),
                 Add("关于", 9, nameof(ShowAboutWindow), nameof(EnableAboutWindow), 6)
             };
-            if (indexes.Any(index => index < 0)) throw new InvalidOperationException("川开母线桥命令未全部登记。");
+            if (indexes.Any(index => index < 0)) throw new InvalidOperationException("母线桥项目命令未全部登记。");
             group.HasMenu = true;
             group.HasToolbar = true;
-            if (!group.Activate()) throw new InvalidOperationException("川开母线桥命令组激活失败。");
+            if (!group.Activate()) throw new InvalidOperationException("母线桥项目命令组激活失败。");
             foreach (var type in new[] { swDocumentTypes_e.swDocASSEMBLY, swDocumentTypes_e.swDocPART, swDocumentTypes_e.swDocDRAWING })
             {
                 var tab = _commands.GetCommandTab((int)type, AboutInformation.ProductName);
@@ -266,16 +266,6 @@ namespace CKBusbarBridge
             if (previous == null && BridgeParameterDraftDocuments.For(iSwApp).Active is BridgeParameterDraftDocument activeDraft)
                 ((CKBusbarBridge.viewmodels.ICabinetDraftWorkflow)window.DataContext).RestoreDraftInputs(activeDraft);
             UiFeedback.AssignWindowOwner(window);
-            if (previous != null)
-            {
-                var bounds = _cabinetDriverWindow.RestoreBounds;
-                if (!bounds.IsEmpty)
-                {
-                    window.WindowStartupLocation = WindowStartupLocation.Manual;
-                    window.Left = bounds.Left; window.Top = bounds.Top;
-                    window.Width = bounds.Width; window.Height = bounds.Height;
-                }
-            }
             window.Closed += (sender, args) =>
             {
                 if (!ReferenceEquals(_cabinetDriverWindow, window)) return;
@@ -315,8 +305,8 @@ namespace CKBusbarBridge
             }
             catch (Exception error)
             {
-                Logger.Error(error, "无法打开川开预览草稿。");
-                UiFeedback.Error(error.Message, "川开母线桥");
+                Logger.Error(error, "无法打开本项目预览草稿。");
+                UiFeedback.Error(error.Message, "母线桥项目");
             }
         }
 
@@ -528,8 +518,7 @@ namespace CKBusbarBridge
             {
                 // 可选：首次启动 V1→V2 转换
                 OpenHoleLocationHelper.AutoConvertBusbarMatingFaceOpenHoleInfoToV2();
-                if (_openHoleLibSettingWindow != null &&
-                    !_openHoleLibSettingWindow.IsDisposed)
+                if (_openHoleLibSettingWindow != null)
                 {
                     _openHoleLibSettingWindow.Show();
                     _openHoleLibSettingWindow.Activate();
@@ -537,10 +526,10 @@ namespace CKBusbarBridge
                 }
 
                 var createdOpenHoleLibSettingWindow =
-                    new FrmOpenHoleLibSetting();
+                    new OpenHoleLibraryWindow();
                 _openHoleLibSettingWindow =
                     createdOpenHoleLibSettingWindow;
-                createdOpenHoleLibSettingWindow.FormClosed +=
+                createdOpenHoleLibSettingWindow.Closed +=
                     (closedWindowSender, closedWindowEventArgs) =>
                     {
                         if (ReferenceEquals(
@@ -550,6 +539,7 @@ namespace CKBusbarBridge
                             _openHoleLibSettingWindow = null;
                         }
                     };
+                UiFeedback.AssignWindowOwner(createdOpenHoleLibSettingWindow);
                 createdOpenHoleLibSettingWindow.Show();
                 createdOpenHoleLibSettingWindow.Activate();
             }

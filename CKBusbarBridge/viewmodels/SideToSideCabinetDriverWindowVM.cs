@@ -36,7 +36,7 @@ namespace CKBusbarBridge.viewmodels
             ScenarioDisplayName = DesignScenarioDefaults.GetDisplayName(DesignScenarioId.SideToSide);
             _projectPath = Parameters.ProjectPath;
             SelectProjectPathCommand = DelegateCommand.GetDelegateCommand(_ => SelectProjectPath());
-            GenerateCommand = DelegateCommand.GetDelegateCommand(_ => UiFeedback.Error("实体生成暂未开发。", "川开母线桥"));
+            GenerateCommand = DelegateCommand.GetDelegateCommand(_ => UiFeedback.Error("实体生成暂未开发。", "母线桥项目"));
         }
 
         public string ScenarioDisplayName { get; }

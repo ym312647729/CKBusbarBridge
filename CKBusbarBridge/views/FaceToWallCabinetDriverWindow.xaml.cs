@@ -4,19 +4,19 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 using CKBusbarBridge.Models;
 using CKBusbarBridge.Helpers;
 using CKBusbarBridge.viewmodels;
 using SolidWorks.Interop.sldworks;
+using RD.UI.Wpf.Controls;
 
 namespace CKBusbarBridge.views
 {
     /// <summary>
     /// 面对墙场景的柜体驱动窗口。
     /// </summary>
-    public partial class FaceToWallCabinetDriverWindow : Window
+    public partial class FaceToWallCabinetDriverWindow : RDWindow
     {
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
         /// <summary>
@@ -27,6 +27,8 @@ namespace CKBusbarBridge.views
             FaceToWallCabinetOrientation cabinetOrientation)
         {
             InitializeComponent();
+            RightSidePanelLayout.Apply(this);
+            CompactParameterGridLayout.Apply(this);
             var viewModel = new FaceToWallCabinetDriverWindowVM(
                 swApp,
                 cabinetOrientation);
@@ -51,37 +53,6 @@ namespace CKBusbarBridge.views
             UpdateExtensionBaseVisibility("Back");
         }
 
-        private void DimensionTextBox_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
-        {
-            var textBox = sender as TextBox;
-            var dimensionName = textBox == null ? null : textBox.Tag as string;
-            var viewModel = DataContext as FaceToWallCabinetDriverWindowVM;
-            if (viewModel == null)
-            {
-                return;
-            }
-
-            if (!viewModel.ActivateDimensionHighlight(dimensionName, PreviewImage.Tag as string))
-            {
-                Dispatcher.BeginInvoke(
-                    DispatcherPriority.Loaded,
-                    new Action(() =>
-                    {
-                        if (viewModel.ActivateDimensionHighlight(
-                            dimensionName,
-                            PreviewImage.Tag as string))
-                        {
-                            UpdateDimensionHighlightLayout();
-                        }
-                    }));
-                return;
-            }
-
-            UpdateDimensionHighlightLayout();
-            Dispatcher.BeginInvoke(
-                DispatcherPriority.Loaded,
-                new Action(UpdateDimensionHighlightLayout));
-        }
 
         private void ParameterTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -109,31 +80,6 @@ namespace CKBusbarBridge.views
             }
         }
 
-        private void PreviewImage_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            UpdateDimensionHighlightLayout();
-        }
-
-        private void UpdateDimensionHighlightLayout()
-        {
-            var viewModel = DataContext as FaceToWallCabinetDriverWindowVM;
-            var bitmapSource = PreviewImage == null ? null : PreviewImage.Source as BitmapSource;
-            if (viewModel == null || bitmapSource == null || DimensionHighlightCanvas == null)
-            {
-                return;
-            }
-
-            var imageOrigin = PreviewImage.TranslatePoint(
-                new Point(0, 0),
-                DimensionHighlightCanvas);
-            viewModel.UpdateDimensionHighlightLayout(
-                imageOrigin.X,
-                imageOrigin.Y,
-                PreviewImage.ActualWidth,
-                PreviewImage.ActualHeight,
-                bitmapSource.PixelWidth,
-                bitmapSource.PixelHeight);
-        }
 
         private void BaseHeightTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {

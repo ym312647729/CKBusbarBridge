@@ -1,21 +1,19 @@
-<Window Style="{DynamicResource SmallCornerWindowStyle}" x:Class="CKBusbarBridge.views.FrameDriverWindow"
+<rd:RDWindow x:Class="CKBusbarBridge.views.FrameDriverWindow"
  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
  xmlns:local="clr-namespace:CKBusbarBridge.views"
- Title="川开母线桥设计（试用）" Width="1520" Height="850" MinWidth="880" MinHeight="580"
- WindowState="Maximized" WindowStartupLocation="CenterScreen" FontFamily="Microsoft YaHei" FontSize="12" Background="#F0F4F8"
+ xmlns:rd="clr-namespace:RD.UI.Wpf.Controls;assembly=RD.UI.Wpf"
+ Title="母线桥设计（试用）" WindowKey="FrameDriverWindow" IsPlacementPersistenceEnabled="False" UseLayoutRounding="True" Width="360" Height="700" MinWidth="320" MinHeight="320"
+ WindowStartupLocation="Manual" FontFamily="Microsoft YaHei UI" FontSize="13"
  Closing="Window_Closing" Closed="Window_Closed">
- <Window.Resources>
+ <rd:RDWindow.Resources>
   <ResourceDictionary>
    <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/CKBusbarBridge.DesignUI;component/views/SmallCornerWindowResources.xaml" />
-    <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml"/>
-    <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/RD.UI.Wpf;component/Themes/Generic.xaml" />
    </ResourceDictionary.MergedDictionaries>
    <BooleanToVisibilityConverter x:Key="FrameSelectionVisibility"/>
    <local:BridgeObjectListValueConverter x:Key="ObjectListValueConverter"/>
    <SolidColorBrush x:Key="BridgeSurfaceBrush" Color="#FFFFFF"/>
    <SolidColorBrush x:Key="BridgeIssueBrush" Color="#E1251B"/>
-   <SolidColorBrush x:Key="BridgePreviewBackgroundBrush" Color="{x:Static local:BusbarBridgeJointPreviewControl.PreviewBackgroundColor}"/>
    <SolidColorBrush x:Key="BridgePanelBorderBrush" Color="#B9C4D2"/>
    <SolidColorBrush x:Key="BridgeToolbarBorderBrush" Color="#D5DFEA"/>
    <SolidColorBrush x:Key="BridgeGridBorderBrush" Color="#9EACBD"/>
@@ -23,28 +21,6 @@
    <SolidColorBrush x:Key="BridgeMutedBrush" Color="#50667F"/>
    <SolidColorBrush x:Key="BridgeSelectedBrush" Color="#E8F1FF"/>
 
-   <!-- 沿用通用控件交互，设计页采用原型的紧凑尺寸和蓝灰细边。 -->
-   <Style x:Key="BridgeButtonStyle" TargetType="Button" BasedOn="{StaticResource ButtonDefault}">
-    <Setter Property="Padding" Value="8,2"/><Setter Property="Margin" Value="2,1"/><Setter Property="MinHeight" Value="26"/>
-    <Setter Property="Background" Value="{StaticResource BridgeSurfaceBrush}"/>
-    <Setter Property="BorderBrush" Value="#C9D6E6"/>
-    <Setter Property="ToolTipService.ShowOnDisabled" Value="True"/>
-   </Style>
-   <Style TargetType="Button" BasedOn="{StaticResource BridgeButtonStyle}"/>
-   <Style x:Key="BridgeTextBoxStyle" TargetType="TextBox" BasedOn="{StaticResource TextBoxBaseStyle}">
-    <Setter Property="MinHeight" Value="24"/><Setter Property="Padding" Value="6,0"/><Setter Property="Margin" Value="0,1"/>
-    <Setter Property="BorderBrush" Value="#C9D6E6"/>
-   </Style>
-   <Style TargetType="TextBox" BasedOn="{StaticResource BridgeTextBoxStyle}"/>
-   <Style x:Key="BridgeComboBoxStyle" TargetType="ComboBox" BasedOn="{StaticResource ComboBoxBaseStyle}">
-    <Setter Property="MinHeight" Value="24"/><Setter Property="Padding" Value="6,0"/><Setter Property="Margin" Value="2,1"/>
-    <Setter Property="BorderBrush" Value="#C9D6E6"/>
-   </Style>
-   <Style TargetType="ComboBox" BasedOn="{StaticResource BridgeComboBoxStyle}"/>
-   <Style x:Key="BridgeCheckBoxStyle" TargetType="CheckBox" BasedOn="{StaticResource CheckBoxBaseStyle}">
-    <Setter Property="HorizontalAlignment" Value="Left"/><Setter Property="VerticalAlignment" Value="Center"/>
-   </Style>
-   <Style TargetType="CheckBox" BasedOn="{StaticResource BridgeCheckBoxStyle}"/>
    <Style x:Key="BridgeObjectRowStyle" TargetType="DataGridRow" BasedOn="{StaticResource {x:Type DataGridRow}}">
     <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
     <Setter Property="BorderThickness" Value="0"/><Setter Property="BorderBrush" Value="Transparent"/>
@@ -106,7 +82,7 @@
     <Setter Property="Foreground" Value="{StaticResource BridgeMutedBrush}"/>
     <Setter Property="Margin" Value="3,0"/><Setter Property="TextTrimming" Value="None"/>
    </Style>
-   <Style x:Key="BridgeDataGridStyle" TargetType="DataGrid" BasedOn="{StaticResource DataGridBaseStyle}">
+   <Style x:Key="BridgeDataGridStyle" TargetType="rd:RDDataGrid" BasedOn="{StaticResource {x:Type rd:RDDataGrid}}">
     <Setter Property="RowStyle" Value="{StaticResource BridgeObjectRowStyle}"/>
     <Setter Property="CellStyle" Value="{StaticResource BridgeObjectCellStyle}"/>
     <Setter Property="ColumnHeaderStyle" Value="{StaticResource BridgeColumnHeaderStyle}"/>
@@ -126,15 +102,15 @@
     <Setter Property="HeadersVisibility" Value="Column"/><Setter Property="RowHeight" Value="28"/>
     <Setter Property="ColumnHeaderHeight" Value="32"/><Setter Property="BorderBrush" Value="{StaticResource BridgeGridBorderBrush}"/>
    </Style>
-   <Style TargetType="DataGrid" BasedOn="{StaticResource BridgeDataGridStyle}"/>
-   <Style x:Key="BridgeTabControlStyle" TargetType="TabControl" BasedOn="{StaticResource TabControlInLine}">
+   <Style TargetType="rd:RDDataGrid" BasedOn="{StaticResource BridgeDataGridStyle}"/>
+   <Style x:Key="BridgeTabControlStyle" TargetType="rd:RDTabControl" BasedOn="{StaticResource {x:Type rd:RDTabControl}}">
     <Setter Property="Background" Value="{StaticResource BridgeSurfaceBrush}"/><Setter Property="BorderThickness" Value="0"/>
    </Style>
-   <Style TargetType="TabControl" BasedOn="{StaticResource BridgeTabControlStyle}"/>
-   <Style TargetType="TabItem" BasedOn="{StaticResource TabItemInLine}"><Setter Property="Padding" Value="10,5"/></Style>
-   <Style x:Key="BridgeObjectContentStyle" TargetType="TabControl" BasedOn="{StaticResource BridgeTabControlStyle}">
+   <Style TargetType="rd:RDTabControl" BasedOn="{StaticResource BridgeTabControlStyle}"/>
+   <Style TargetType="TabItem"><Setter Property="Padding" Value="10,5"/></Style>
+   <Style x:Key="BridgeObjectContentStyle" TargetType="rd:RDTabControl" BasedOn="{StaticResource BridgeTabControlStyle}">
     <Setter Property="IsTabStop" Value="False"/>
-    <Setter Property="Template"><Setter.Value><ControlTemplate TargetType="TabControl">
+    <Setter Property="Template"><Setter.Value><ControlTemplate TargetType="rd:RDTabControl">
      <ContentPresenter x:Name="PART_SelectedContentHost" ContentSource="SelectedContent"/>
     </ControlTemplate></Setter.Value></Setter>
    </Style>
@@ -210,112 +186,26 @@
 
    <!-- 带事件的模板独立声明，Style仅引用资源，避免MC4007事件连接限制。 -->
    <DataTemplate x:Key="BridgeNumericFieldTemplate">
-    <TextBox Text="{Binding Text, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding IsReadOnly}"
+    <rd:RDInput Text="{Binding Text, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding IsReadOnly}"
      KeyDown="Field_KeyDown" LostKeyboardFocus="Field_LostKeyboardFocus" ToolTip="Enter/失焦提交，Esc取消；定位为距基架模型起始端的距离，小数使用点。">
-     <TextBox.Style><Style TargetType="TextBox" BasedOn="{StaticResource BridgeTextBoxStyle}"><Style.Triggers>
+     <rd:RDInput.Style><Style TargetType="rd:RDInput"><Style.Triggers>
       <DataTrigger Binding="{Binding IsReadOnly}" Value="True">
        <Setter Property="IsEnabled" Value="False"/><Setter Property="Focusable" Value="False"/><Setter Property="IsTabStop" Value="False"/>
        <Setter Property="Background" Value="#F5F5F5"/><Setter Property="Foreground" Value="#8C8C8C"/><Setter Property="BorderBrush" Value="#D9D9D9"/>
       </DataTrigger>
-     </Style.Triggers></Style></TextBox.Style>
-    </TextBox>
+     </Style.Triggers></Style></rd:RDInput.Style>
+    </rd:RDInput>
    </DataTemplate>
    <DataTemplate x:Key="BridgeChoiceFieldTemplate">
-    <ComboBox ItemsSource="{Binding Choices}" SelectedItem="{Binding Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+    <rd:RDComboBox ItemsSource="{Binding Choices}" SelectedItem="{Binding Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
      SelectionChanged="FieldChoice_SelectionChanged" KeyDown="Field_KeyDown" LostKeyboardFocus="Field_LostKeyboardFocus">
-     <ComboBox.Style><Style TargetType="ComboBox" BasedOn="{StaticResource BridgeComboBoxStyle}"><Style.Triggers>
+     <rd:RDComboBox.Style><Style TargetType="rd:RDComboBox"><Style.Triggers>
       <DataTrigger Binding="{Binding IsReadOnly}" Value="True"><Setter Property="IsEnabled" Value="False"/><Setter Property="Focusable" Value="False"/><Setter Property="IsTabStop" Value="False"/></DataTrigger>
-     </Style.Triggers></Style></ComboBox.Style>
-    </ComboBox>
-   </DataTemplate>
-   <!-- 仅实物编辑模式加载二维预览。 -->
-   <DataTemplate x:Key="PhysicalPreviewTemplate">
-  <Grid x:Name="PreviewPane" Grid.RowSpan="3" Grid.Column="0" IsEnabled="{Binding IsEditingEnabled}">
-   <Border Style="{StaticResource BridgeCardStyle}" ClipToBounds="True"><DockPanel>
-    <Border DockPanel.Dock="Top" Style="{StaticResource BridgeToolbarBorderStyle}" MinHeight="36" Padding="8,3"><DockPanel>
-     <TextBlock DockPanel.Dock="Left" Text="二维预览" Style="{StaticResource BridgePanelHeading}" Margin="0,0,6,0"/>
-     <Button x:Name="DetachPreviewButton" DockPanel.Dock="Right" VerticalAlignment="Top" Content="拖出窗口 ↗" ToolTip="在独立窗口同时显示前视和俯视" Click="DetachPreview_Click"/>
-     <WrapPanel HorizontalAlignment="Right">
-     <Button Content="适应全部" Click="FitAll_Click"/><Button Content="定位选中" Click="FitSelected_Click"/>
-     <Button Content="3D预览" IsEnabled="{Binding CanNativePreview}" Click="Preview3D_Click" ToolTip="在SolidWorks总装中显示完整草稿：铜排、基架及绝缘子；仅显示临时实体"/>
-     <Button Content="清除3D预览" Click="Clear3D_Click" ToolTip="清除临时实体并恢复本次预览改变的组件显示，保留二维草稿"/>
-    </WrapPanel></DockPanel></Border>
-    <Border DockPanel.Dock="Top" Style="{StaticResource BridgeToolbarBorderStyle}" Padding="7,3"><WrapPanel>
-     <CheckBox IsChecked="{Binding ShowFrames}" Margin="3,1,8,1" AutomationProperties.Name="基架/基座"><StackPanel Orientation="Horizontal">
-      <Rectangle Width="8" Height="8" RadiusX="1" RadiusY="1" Fill="#54778F" Margin="0,0,3,0"/><TextBlock Text="基架/基座"/>
-     </StackPanel></CheckBox>
-     <CheckBox IsChecked="{Binding ShowInsulators}" Margin="3,1,8,1" AutomationProperties.Name="绝缘子"><StackPanel Orientation="Horizontal">
-      <Ellipse Width="8" Height="8" Fill="#8852B0" Margin="0,0,3,0"/><TextBlock Text="绝缘子"/>
-     </StackPanel></CheckBox>
-     <CheckBox IsChecked="{Binding ShowBusbars}" Margin="3,1,8,1" AutomationProperties.Name="铜排"><StackPanel Orientation="Horizontal">
-      <Rectangle Width="8" Height="8" RadiusX="1" RadiusY="1" Fill="#C46A24" Margin="0,0,3,0"/><TextBlock Text="铜排"/>
-     </StackPanel></CheckBox>
-     <CheckBox Content="柜体/墙体/套管" IsChecked="{Binding ShowReferences}" Margin="3,1,8,1"/>
-     <TextBlock Text="相别显示" Margin="5,1" VerticalAlignment="Center"/><ComboBox ItemsSource="{Binding Phases}" SelectedItem="{Binding PhaseFilter}" Width="62"/>
-     <Button Content="选择方案（Web预览）" Click="SelectWallScheme_Click" IsEnabled="{Binding CanSwitchWallSolution}"
-      Visibility="{Binding HasWallSolutions, Converter={StaticResource FrameSelectionVisibility}}" Margin="4,2"/>
-    </WrapPanel></Border>
-    <Border DockPanel.Dock="Bottom" Padding="8,4" BorderThickness="0,1,0,0" BorderBrush="{StaticResource BridgeToolbarBorderBrush}">
-     <StackPanel>
-      <TextBlock Text="点击节号或基架定位参数；点击铜排选择段排；接缝可沿桥向拖动；滚轮缩放" TextWrapping="Wrap" Foreground="{StaticResource BridgeMutedBrush}"/>
-      <TextBlock Text="{Binding NativePreviewStatus}" TextWrapping="Wrap" Foreground="#9B5700">
-       <TextBlock.Style><Style TargetType="TextBlock"><Style.Triggers>
-        <Trigger Property="Text" Value=""><Setter Property="Visibility" Value="Collapsed"/></Trigger>
-       </Style.Triggers></Style></TextBlock.Style>
-      </TextBlock>
-     </StackPanel>
-    </Border>
-    <Grid Background="#F1F5F9">
-     <Grid Margin="7,7">
-      <Grid.RowDefinitions><RowDefinition Height="*" MinHeight="120"/><RowDefinition Height="7"/><RowDefinition Height="*" MinHeight="120"/></Grid.RowDefinitions>
-      <Border Style="{StaticResource BridgePreviewViewFrame}"><DockPanel>
-       <Border DockPanel.Dock="Top" Style="{StaticResource BridgePreviewViewHeading}">
-        <TextBlock Text="俯视图" FontWeight="SemiBold" ToolTip="总装X–Z平面：X向右，Z向下"/>
-       </Border>
-       <ContentControl x:Name="TopPreviewHost" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
-      </DockPanel></Border>
-      <GridSplitter Grid.Row="1" Height="7" HorizontalAlignment="Stretch" ResizeDirection="Rows" ResizeBehavior="PreviousAndNext"
-                    Style="{StaticResource BridgeSplitterStyle}"/>
-      <Border Grid.Row="2" Style="{StaticResource BridgePreviewViewFrame}"><DockPanel>
-       <Border DockPanel.Dock="Top" Style="{StaticResource BridgePreviewViewHeading}">
-        <TextBlock Text="正视图（侧视）" FontWeight="SemiBold" ToolTip="总装X–Y平面：X向右，Y向上"/>
-       </Border>
-       <local:BusbarBridgeJointPreviewControl x:Name="JointPreview"/>
-      </DockPanel></Border>
-     </Grid>
-     <Border x:Name="ReadLoadingShade" Background="{StaticResource BridgePreviewBackgroundBrush}" Cursor="Wait" Visibility="Collapsed" AutomationProperties.Name="正在读取装配体并准备设计预览"/>
-     <Border Background="{StaticResource BridgePreviewBackgroundBrush}" Cursor="Wait" AutomationProperties.Name="正在规划母线桥方案">
-      <Border.Style><Style TargetType="Border"><Setter Property="Visibility" Value="Collapsed"/>
-       <Style.Triggers><DataTrigger Binding="{Binding PlanningBusy}" Value="True"><Setter Property="Visibility" Value="Visible"/></DataTrigger></Style.Triggers>
-      </Style></Border.Style>
-      <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" MaxWidth="460" Margin="20">
-       <Control Width="40" Height="40" HorizontalAlignment="Center" Margin="0,0,0,14">
-        <Control.Template><ControlTemplate TargetType="Control">
-         <Grid><Ellipse Stroke="#C3CDDB" StrokeThickness="3" Margin="3"/>
-          <Path Stroke="#2873CB" StrokeThickness="3" StrokeStartLineCap="Round" StrokeEndLineCap="Round"
-           Data="M 20,3 A 17,17 0 1 1 3,20" RenderTransformOrigin="0.5,0.5">
-           <Path.RenderTransform><RotateTransform x:Name="PlanningSpinnerRotation"/></Path.RenderTransform>
-          </Path>
-         </Grid>
-         <ControlTemplate.Triggers><Trigger Property="IsVisible" Value="True">
-          <Trigger.EnterActions><BeginStoryboard x:Name="PlanningSpinnerAnimation"><Storyboard>
-           <DoubleAnimation Storyboard.TargetName="PlanningSpinnerRotation" Storyboard.TargetProperty="Angle"
-            From="0" To="360" Duration="0:0:1" RepeatBehavior="Forever"/>
-          </Storyboard></BeginStoryboard></Trigger.EnterActions>
-          <Trigger.ExitActions><RemoveStoryboard BeginStoryboardName="PlanningSpinnerAnimation"/></Trigger.ExitActions>
-         </Trigger></ControlTemplate.Triggers>
-        </ControlTemplate></Control.Template>
-       </Control>
-       <TextBlock Text="正在规划方案…" HorizontalAlignment="Center" FontWeight="Bold" FontSize="15" Margin="0,0,0,8"/>
-       <TextBlock Text="{Binding Message}" TextWrapping="Wrap" TextAlignment="Center" Foreground="#59697E"/>
-      </StackPanel>
-     </Border>
-    </Grid>
-   </DockPanel></Border>
-  </Grid>
+     </Style.Triggers></Style></rd:RDComboBox.Style>
+    </rd:RDComboBox>
    </DataTemplate>
   </ResourceDictionary>
- </Window.Resources>
+ </rd:RDWindow.Resources>
  <Grid IsEnabled="{Binding IsEditingEnabled}" UseLayoutRounding="True" TextElement.Foreground="#1F2937">
  <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
  <Border Background="#EDF4FC" BorderBrush="{StaticResource BridgeToolbarBorderBrush}" BorderThickness="0,1,0,1" Padding="18,6">
@@ -339,16 +229,16 @@
          IsEnabled="{Binding IsEditingEnabled}">
   <StackPanel>
    <WrapPanel>
-    <CheckBox Content="铜排" IsChecked="{Binding ShowBusbars}" Margin="4"/><CheckBox Content="基架/基座" IsChecked="{Binding ShowFrames}" Margin="4"/>
-    <CheckBox Content="绝缘子" IsChecked="{Binding ShowInsulators}" Margin="4"/><CheckBox Content="柜体/墙体/套管" IsChecked="{Binding ShowReferences}" Margin="4"/>
-    <ComboBox ItemsSource="{Binding Phases}" SelectedItem="{Binding PhaseFilter}" Width="65"/>
-    <CheckBox Content="柜体/基座尺寸" IsChecked="{Binding ShowCabinetDimensions}" Margin="12,4,4,4" ToolTip="勾选后显示柜体界面的全部尺寸；不勾选时只显示选中柜体或基座的尺寸。"/>
+    <rd:RDCheckBox Content="铜排" IsChecked="{Binding ShowBusbars}" Margin="4"/><rd:RDCheckBox Content="基架/基座" IsChecked="{Binding ShowFrames}" Margin="4"/>
+    <rd:RDCheckBox Content="绝缘子" IsChecked="{Binding ShowInsulators}" Margin="4"/><rd:RDCheckBox Content="柜体/墙体/套管" IsChecked="{Binding ShowReferences}" Margin="4"/>
+    <rd:RDComboBox ItemsSource="{Binding Phases}" SelectedItem="{Binding PhaseFilter}" Width="65"/>
+    <rd:RDCheckBox Content="柜体/基座尺寸" IsChecked="{Binding ShowCabinetDimensions}" Margin="12,4,4,4" ToolTip="勾选后显示柜体界面的全部尺寸；不勾选时只显示选中柜体或基座的尺寸。"/>
    </WrapPanel>
    <WrapPanel>
-    <Button Content="整体" Tag="All" Click="DraftView_Click"/><Button Content="定位选中" Tag="Selected" Click="DraftView_Click"/>
-    <Button Content="俯视" Tag="Top" Click="DraftView_Click"/><Button Content="前视" Tag="Front" Click="DraftView_Click"/><Button Content="等轴测" Tag="Isometric" Click="DraftView_Click"/>
-    <Button Content="选择方案" Click="SelectWallScheme_Click" IsEnabled="{Binding CanSwitchWallSolution}" Visibility="{Binding HasWallSolutions, Converter={StaticResource FrameSelectionVisibility}}"/>
-    <ComboBox ItemsSource="{Binding ViewportReferences}" DisplayMemberPath="DisplayName"
+    <rd:RDButton Content="整体" Tag="All" Click="DraftView_Click"/><rd:RDButton Content="定位选中" Tag="Selected" Click="DraftView_Click"/>
+    <rd:RDButton Content="俯视" Tag="Top" Click="DraftView_Click"/><rd:RDButton Content="前视" Tag="Front" Click="DraftView_Click"/><rd:RDButton Content="等轴测" Tag="Isometric" Click="DraftView_Click"/>
+    <rd:RDButton Content="选择方案" Click="SelectWallScheme_Click" IsEnabled="{Binding CanSwitchWallSolution}" Visibility="{Binding HasWallSolutions, Converter={StaticResource FrameSelectionVisibility}}"/>
+    <rd:RDComboBox ItemsSource="{Binding ViewportReferences}" DisplayMemberPath="DisplayName"
               SelectedItem="{Binding SelectedViewportReference, Mode=TwoWay}" MaxWidth="220"
               ToolTip="选择柜体、基座或墙等参考对象"
               Visibility="{Binding HasViewportReferences, Converter={StaticResource FrameSelectionVisibility}}"/>
@@ -367,9 +257,6 @@
           Background="Transparent" MinHeight="36" Margin="1,1,1,0" Padding="10,4">
    <TextBlock Text="设计参数" Style="{StaticResource BridgePanelHeading}"/>
   </Border>
-  <ContentControl x:Name="PhysicalPreviewContent" Grid.RowSpan="3" Grid.Column="0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
-  <GridSplitter x:Name="PreviewColumnSplitter" Grid.RowSpan="3" Grid.Column="1" Width="7" HorizontalAlignment="Stretch" ResizeDirection="Columns"
-                ResizeBehavior="PreviousAndNext" Style="{StaticResource BridgeSplitterStyle}"/>
   <GridSplitter Grid.Row="1" Grid.Column="3" Width="10" HorizontalAlignment="Stretch" ResizeDirection="Columns"
                 ResizeBehavior="PreviousAndNext" Style="{StaticResource BridgeSplitterStyle}"/>
   <Border Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="3" Margin="1,0,1,1" ClipToBounds="True">
@@ -396,33 +283,33 @@
       </Style></ScrollViewer.Style>
       <StackPanel Orientation="Horizontal">
       <StackPanel.Resources>
-       <Style TargetType="Button" BasedOn="{StaticResource BridgeButtonStyle}">
+       <Style TargetType="rd:RDButton">
         <Setter Property="MinHeight" Value="26"/><Setter Property="Margin" Value="2,1"/><Setter Property="Padding" Value="8,2"/>
        </Style>
       </StackPanel.Resources>
-      <Button Content="新增基架" Command="{Binding AddFrameCommand}"/>
-      <Button Content="删除选中基架" Command="{Binding DeleteFrameCommand}"/>
-      <Button Content="向前换位" Command="{Binding MoveFramePreviousCommand}" ToolTipService.ShowOnDisabled="True" ToolTip="交换相邻普通基架并保持连接及各自长度；特殊段基架不可换位，仅本节模式可用"/>
-      <Button Content="向后换位" Command="{Binding MoveFrameNextCommand}" ToolTipService.ShowOnDisabled="True" ToolTip="交换相邻普通基架并保持连接及各自长度；特殊段基架不可换位，仅本节模式可用"/>
-      <Button Content="设置同源" Command="{Binding SetFramesSameSourceCommand}" ToolTip="Ctrl选中多个参数一致的基架，统一使用编号较小的基架名称"/>
-      <Button Content="在基架内增加绝缘子" Command="{Binding AddInsulatorCommand}" ToolTip="仅在选中基架内增加一套三相绝缘子及支架，每节最多3套；可撤销。"
+      <rd:RDButton Content="新增基架" Command="{Binding AddFrameCommand}"/>
+      <rd:RDButton Content="删除选中基架" Command="{Binding DeleteFrameCommand}"/>
+      <rd:RDButton Content="向前换位" Command="{Binding MoveFramePreviousCommand}" ToolTipService.ShowOnDisabled="True" ToolTip="交换相邻普通基架并保持连接及各自长度；特殊段基架不可换位，仅本节模式可用"/>
+      <rd:RDButton Content="向后换位" Command="{Binding MoveFrameNextCommand}" ToolTipService.ShowOnDisabled="True" ToolTip="交换相邻普通基架并保持连接及各自长度；特殊段基架不可换位，仅本节模式可用"/>
+      <rd:RDButton Content="设置同源" Command="{Binding SetFramesSameSourceCommand}" ToolTip="Ctrl选中多个参数一致的基架，统一使用编号较小的基架名称"/>
+      <rd:RDButton Content="在基架内增加绝缘子" Command="{Binding AddInsulatorCommand}" ToolTip="仅在选中基架内增加一套三相绝缘子及支架，每节最多3套；可撤销。"
               Visibility="{Binding ShowFrameActions, Converter={StaticResource FrameSelectionVisibility}}"/>
-      <Button Content="锁定长度 / 解锁" ToolTip="基架只锁定长度，允许随连续安装链平移" Command="{Binding LockCommand}"
+      <rd:RDButton Content="锁定长度 / 解锁" ToolTip="基架只锁定长度，允许随连续安装链平移" Command="{Binding LockCommand}"
               Visibility="{Binding ShowFrameActions, Converter={StaticResource FrameSelectionVisibility}}"/>
-      <Button Content="恢复当前推荐" Command="{Binding RestoreCommand}"
+      <rd:RDButton Content="恢复当前推荐" Command="{Binding RestoreCommand}"
               Visibility="{Binding ShowFrameActions, Converter={StaticResource FrameSelectionVisibility}}"/>
       </StackPanel>
      </ScrollViewer>
      <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled"
                    Visibility="{Binding ShowFrameActions, Converter={StaticResource FrameSelectionVisibility}}">
       <StackPanel Orientation="Horizontal" Margin="2,2">
-       <CheckBox x:Name="FrameScopeToggle" Content="同源基架同步修改" IsChecked="{Binding SameSource}" IsEnabled="{Binding CanChangeScope}" Margin="0,0,18,0"
+       <rd:RDCheckBox x:Name="FrameScopeToggle" Content="同源基架同步修改" IsChecked="{Binding SameSource}" IsEnabled="{Binding CanChangeScope}" Margin="0,0,18,0"
                  ToolTip="同步修改未锁定的同源基架，长度补偿沿连续链进行。大偏移拐角长度始终按结构组同步，不受本勾选或独立更改影响。"/>
-       <CheckBox Content="独立更改" IsChecked="{Binding IndependentFrameChange}" Margin="0,0,22,0"
+       <rd:RDCheckBox Content="独立更改" IsChecked="{Binding IndependentFrameChange}" Margin="0,0,22,0"
                  ToolTip="普通基架仅修改当前节，不自动补架。大偏移拐角长度始终按结构组同步并由两侧补偿。"/>
        <TextBlock Text="{Binding SelectedFrameObject.Width, StringFormat='宽度：{0:F1} mm'}" VerticalAlignment="Center" Margin="0,0,14,0"/>
        <TextBlock Text="{Binding SelectedFrameObject.Height, StringFormat='高度：{0:F1} mm'}" VerticalAlignment="Center" Margin="0,0,14,0"/>
-       <ComboBox ItemsSource="{Binding FrameLengthAnchors}" SelectedItem="{Binding FrameLengthAnchor}"
+       <rd:RDComboBox ItemsSource="{Binding FrameLengthAnchors}" SelectedItem="{Binding FrameLengthAnchor}"
                  IsEnabled="{Binding CanChooseFrameLengthAnchor}" MinHeight="26" Margin="0"
                  ToolTip="普通基架选择固定端；大偏移拐角固定整组中心"/>
       </StackPanel>
@@ -432,11 +319,11 @@
       <DataTrigger Binding="{Binding ShowFrameActions}" Value="True"><Setter Property="Visibility" Value="Collapsed"/></DataTrigger>
      </Style.Triggers></Style></TextBlock.Style>
     </TextBlock>
-     <DataGrid ItemsSource="{Binding Fields}" MaxHeight="121" RowHeight="30" ColumnHeaderHeight="28" CanUserSortColumns="False" Margin="0,3,0,0">
-     <DataGrid.Style><Style TargetType="DataGrid" BasedOn="{StaticResource BridgeDataGridStyle}"><Style.Triggers>
+     <rd:RDDataGrid ItemsSource="{Binding Fields}" MaxHeight="121" RowHeight="30" ColumnHeaderHeight="28" CanUserSortColumns="False" Margin="0,3,0,0">
+     <rd:RDDataGrid.Style><Style TargetType="rd:RDDataGrid" BasedOn="{StaticResource BridgeDataGridStyle}"><Style.Triggers>
       <DataTrigger Binding="{Binding Fields.Count}" Value="0"><Setter Property="Visibility" Value="Collapsed"/></DataTrigger>
-     </Style.Triggers></Style></DataGrid.Style>
-     <DataGrid.Columns>
+     </Style.Triggers></Style></rd:RDDataGrid.Style>
+     <rd:RDDataGrid.Columns>
       <DataGridTextColumn Header="参数" Binding="{Binding Label}" Width="2*" MinWidth="105"/>
       <DataGridTextColumn Header="推荐值" Binding="{Binding RecommendedText}" Width="*" MinWidth="62"/>
       <DataGridTemplateColumn Header="当前值" Width="*" MinWidth="95"><DataGridTemplateColumn.CellTemplate><DataTemplate>
@@ -460,20 +347,20 @@
       <DataGridTemplateColumn Header="提示 / 操作" Width="2*" MinWidth="80">
        <DataGridTemplateColumn.CellTemplate><DataTemplate>
         <DockPanel>
-         <Button DockPanel.Dock="Right" Content="删除此套" Command="{Binding RemoveInsulatorCommand}"
+         <rd:RDButton DockPanel.Dock="Right" Content="删除此套" Command="{Binding RemoveInsulatorCommand}"
                  Visibility="{Binding HasInsulatorRemoveAction, Converter={StaticResource FrameSelectionVisibility}}"
                  ToolTip="仅删除本基架中的这套绝缘子，可撤销"/>
          <TextBlock Text="{Binding Error}" ToolTip="{Binding Error}" Style="{StaticResource BridgeListCellText}"/>
         </DockPanel>
        </DataTemplate></DataGridTemplateColumn.CellTemplate>
       </DataGridTemplateColumn>
-     </DataGrid.Columns>
-    </DataGrid>
+     </rd:RDDataGrid.Columns>
+    </rd:RDDataGrid>
     <WrapPanel Visibility="{Binding ShowCopperSectionActions, Converter={StaticResource FrameSelectionVisibility}}">
-     <Button Content="增加断点" Command="{Binding AddBreakpointCommand}" ToolTip="在选中普通段排的中间增加ABC三相联动断点；特殊段排禁止增加，可撤销。"/>
+     <rd:RDButton Content="增加断点" Command="{Binding AddBreakpointCommand}" ToolTip="在选中普通段排的中间增加ABC三相联动断点；特殊段排禁止增加，可撤销。"/>
     </WrapPanel>
     <WrapPanel Visibility="{Binding ShowBreakpointActions, Converter={StaticResource FrameSelectionVisibility}}">
-     <Button Content="移除断点" Command="{Binding RemoveBreakpointCommand}" ToolTip="将前后普通段排合为一段；合并后超过3000 mm或涉及特殊段、固定接口时禁止移除，可撤销。"/>
+     <rd:RDButton Content="移除断点" Command="{Binding RemoveBreakpointCommand}" ToolTip="将前后普通段排合为一段；合并后超过3000 mm或涉及特殊段、固定接口时禁止移除，可撤销。"/>
     </WrapPanel>
    </StackPanel></Expander></Border>
   <Border Grid.Row="1" Grid.Column="2" Margin="12,4,0,10" ClipToBounds="True">
@@ -483,9 +370,9 @@
     </Border>
     <DockPanel Margin="0,2,0,0">
       <TextBlock DockPanel.Dock="Top" Text="段排 · ABC三相联动" Style="{StaticResource BridgeListContext}" ToolTip="长度含搭接；点断点数值查看末端断点，右键断点列可查看起端"/>
-      <DataGrid x:Name="CopperSectionGrid" ItemsSource="{Binding CopperRows}" IsSynchronizedWithCurrentItem="False"
+      <rd:RDDataGrid x:Name="CopperSectionGrid" ItemsSource="{Binding CopperRows}" IsSynchronizedWithCurrentItem="False"
                 SelectionChanged="CopperSectionGrid_SelectionChanged">
-       <DataGrid.Columns>
+       <rd:RDDataGrid.Columns>
         <DataGridTextColumn Header="序号" Binding="{Binding Index, StringFormat=D2}" Width="54" MinWidth="54"
                             CellStyle="{StaticResource BridgeFirstCellStyle}" ElementStyle="{StaticResource BridgeSequenceCellText}"/>
         <DataGridTemplateColumn Header="铜排名称" Width="*" MinWidth="68" SortMemberPath="Name">
@@ -537,8 +424,8 @@
           </Grid>
          </DataTemplate></DataGridTemplateColumn.CellTemplate>
         </DataGridTemplateColumn>
-       </DataGrid.Columns>
-      </DataGrid>
+       </rd:RDDataGrid.Columns>
+      </rd:RDDataGrid>
     </DockPanel>
    </DockPanel>
   </Border>
@@ -546,14 +433,14 @@
    <DockPanel>
     <Border DockPanel.Dock="Top" Style="{StaticResource BridgeListHeadingBar}">
      <DockPanel>
-      <Button DockPanel.Dock="Right" Tag="{Binding ElementName=SupportObjectTabs}" Click="ToggleObjectListView_Click" Margin="4,1,0,2">
-       <Button.Style><Style TargetType="Button" BasedOn="{StaticResource BridgeButtonStyle}">
+      <rd:RDButton DockPanel.Dock="Right" Tag="{Binding ElementName=SupportObjectTabs}" Click="ToggleObjectListView_Click" Margin="4,1,0,2">
+       <rd:RDButton.Style><Style TargetType="rd:RDButton">
         <Setter Property="Content" Value="吊架"/>
         <Style.Triggers><DataTrigger Binding="{Binding SupportTabIndex}" Value="1">
          <Setter Property="Content" Value="基架"/>
         </DataTrigger></Style.Triggers>
-       </Style></Button.Style>
-      </Button>
+       </Style></rd:RDButton.Style>
+      </rd:RDButton>
       <TextBlock Margin="1,0,0,0" VerticalAlignment="Center" FontSize="14" FontWeight="SemiBold">
        <TextBlock.Style><Style TargetType="TextBlock">
         <Setter Property="Text" Value="基架"/>
@@ -564,7 +451,7 @@
       </TextBlock>
      </DockPanel>
     </Border>
-   <TabControl x:Name="SupportObjectTabs" Style="{StaticResource BridgeObjectContentStyle}"
+   <rd:RDTabControl x:Name="SupportObjectTabs" Style="{StaticResource BridgeObjectContentStyle}"
                SelectedIndex="{Binding SupportTabIndex, Mode=OneWay}" SelectionChanged="SupportTabs_SelectionChanged" AutomationProperties.Name="基架 / 吊架对象列表">
    <TabItem Header="基架"><DockPanel Margin="0,2,0,0">
      <TextBlock DockPanel.Dock="Top" Text="{Binding FrameSelectionSummary}" Style="{StaticResource BridgeListContext}"
@@ -574,8 +461,8 @@
        <Trigger Property="Text" Value=""><Setter Property="Visibility" Value="Collapsed"/></Trigger>
       </Style.Triggers></Style></TextBlock.Style>
      </TextBlock>
-     <DataGrid x:Name="FrameGrid" SelectionMode="Extended" SelectionChanged="FrameGrid_SelectionChanged" Sorting="FrameGrid_Sorting">
-      <DataGrid.Columns>
+     <rd:RDDataGrid x:Name="FrameGrid" SelectionMode="Extended" SelectionChanged="FrameGrid_SelectionChanged" Sorting="FrameGrid_Sorting">
+      <rd:RDDataGrid.Columns>
        <DataGridTextColumn Header="序号" Binding="{Binding FramePositionIndex, StringFormat=D2}" Width="54" MinWidth="54"
                            CellStyle="{StaticResource BridgeFirstCellStyle}" ElementStyle="{StaticResource BridgeSequenceCellText}"/>
        <DataGridTemplateColumn Header="基架名称" Width="*" MinWidth="108" MaxWidth="240" CanUserSort="False"><DataGridTemplateColumn.CellTemplate><DataTemplate>
@@ -588,13 +475,13 @@
        <DataGridTemplateColumn x:Name="FrameLockedColumn" Width="46" CanUserResize="False" CanUserSort="False">
         <DataGridTemplateColumn.Header><TextBlock Text="锁定" ToolTip="显示基架长度锁定状态；通过下方操作按钮修改"/></DataGridTemplateColumn.Header>
         <DataGridTemplateColumn.CellTemplate><DataTemplate>
-         <CheckBox HorizontalAlignment="Center" IsHitTestVisible="False" Focusable="False" IsTabStop="False"
+         <rd:RDCheckBox HorizontalAlignment="Center" IsHitTestVisible="False" Focusable="False" IsTabStop="False"
                    AutomationProperties.Name="基架长度锁定状态">
-          <CheckBox.IsChecked><MultiBinding Converter="{StaticResource ObjectListValueConverter}" ConverterParameter="Locked" Mode="OneWay">
+          <rd:RDCheckBox.IsChecked><MultiBinding Converter="{StaticResource ObjectListValueConverter}" ConverterParameter="Locked" Mode="OneWay">
            <Binding Path="Frame"/><Binding Path="DataContext" RelativeSource="{RelativeSource AncestorType=DataGrid}"/>
            <Binding Path="DataContext.Editor.Revision" RelativeSource="{RelativeSource AncestorType=DataGrid}"/>
-          </MultiBinding></CheckBox.IsChecked>
-         </CheckBox>
+          </MultiBinding></rd:RDCheckBox.IsChecked>
+         </rd:RDCheckBox>
         </DataTemplate></DataGridTemplateColumn.CellTemplate>
        </DataGridTemplateColumn>
        <DataGridTemplateColumn Header="关系" Width="68" CanUserResize="False" CanUserSort="False">
@@ -616,25 +503,25 @@
          </DockPanel>
         </DataTemplate></DataGridTemplateColumn.CellTemplate>
        </DataGridTemplateColumn>
-      </DataGrid.Columns>
-     </DataGrid>
+      </rd:RDDataGrid.Columns>
+     </rd:RDDataGrid>
    </DockPanel></TabItem>
    <TabItem Header="吊架"><DockPanel Margin="0,4,0,0">
     <StackPanel DockPanel.Dock="Top">
      <WrapPanel>
       <StackPanel Orientation="Horizontal" Visibility="{Binding HasWholeHangerCount, Converter={StaticResource FrameSelectionVisibility}}">
        <TextBlock Text="整段（套）" VerticalAlignment="Center" Margin="3"/>
-       <TextBox Width="44" Text="{Binding HangerCountText, UpdateSourceTrigger=PropertyChanged}" KeyDown="HangerCount_KeyDown"/>
+       <rd:RDInput Width="44" Text="{Binding HangerCountText, UpdateSourceTrigger=PropertyChanged}" KeyDown="HangerCount_KeyDown"/>
       </StackPanel>
       <WrapPanel Visibility="{Binding HasHangerSections, Converter={StaticResource FrameSelectionVisibility}}">
        <StackPanel Orientation="Horizontal"><TextBlock Text="前段（套）" Margin="3" VerticalAlignment="Center"/>
-        <TextBox Width="42" Text="{Binding BeforeOffsetHangerCount, UpdateSourceTrigger=PropertyChanged}" KeyDown="HangerCount_KeyDown"/></StackPanel>
+        <rd:RDInput Width="42" Text="{Binding BeforeOffsetHangerCount, UpdateSourceTrigger=PropertyChanged}" KeyDown="HangerCount_KeyDown"/></StackPanel>
        <StackPanel Orientation="Horizontal"><TextBlock Text="中间段（套）" Margin="3" VerticalAlignment="Center"/>
-        <TextBox Width="42" Text="{Binding AcrossOffsetHangerCount, UpdateSourceTrigger=PropertyChanged}" KeyDown="HangerCount_KeyDown"/></StackPanel>
+        <rd:RDInput Width="42" Text="{Binding AcrossOffsetHangerCount, UpdateSourceTrigger=PropertyChanged}" KeyDown="HangerCount_KeyDown"/></StackPanel>
        <StackPanel Orientation="Horizontal"><TextBlock Text="后段（套）" Margin="3" VerticalAlignment="Center"/>
-        <TextBox Width="42" Text="{Binding AfterOffsetHangerCount, UpdateSourceTrigger=PropertyChanged}" KeyDown="HangerCount_KeyDown"/></StackPanel>
+        <rd:RDInput Width="42" Text="{Binding AfterOffsetHangerCount, UpdateSourceTrigger=PropertyChanged}" KeyDown="HangerCount_KeyDown"/></StackPanel>
       </WrapPanel>
-      <Button Content="应用数量" Click="ApplyHangerCount_Click"/>
+      <rd:RDButton Content="应用数量" Click="ApplyHangerCount_Click"/>
       <TextBlock Text="{Binding HangerCountSummary}" VerticalAlignment="Center" Margin="3" Foreground="{StaticResource BridgeMutedBrush}"/>
      </WrapPanel>
      <TextBlock Text="{Binding HangerCountError}" Foreground="#BD3333" TextWrapping="Wrap" Margin="3,0"/>
@@ -642,16 +529,16 @@
      <TextBlock Text="减量时勾选要移除的吊架，再应用数量；设为 0 套将清空对应区段。"
                 TextWrapping="Wrap" Foreground="#9B5700" Margin="3,3"
                 Visibility="{Binding IsReducingHangers, Converter={StaticResource FrameSelectionVisibility}}"/>
-     <Button Content="确认当前首节起始边" HorizontalAlignment="Left" Click="ConfirmHangerStart_Click"
+     <rd:RDButton Content="确认当前首节起始边" HorizontalAlignment="Left" Click="ConfirmHangerStart_Click"
              Visibility="{Binding CanConfirmHangerStart, Converter={StaticResource FrameSelectionVisibility}}"/>
     </StackPanel>
-    <DataGrid x:Name="HangerGrid" ItemsSource="{Binding HangerRows}" SelectedValuePath="Id" RowHeight="38"
+    <rd:RDDataGrid x:Name="HangerGrid" ItemsSource="{Binding HangerRows}" SelectedValuePath="Id" RowHeight="38"
               SelectedValue="{Binding SelectedHangerId, Mode=TwoWay}" CanUserSortColumns="False">
-     <DataGrid.Columns>
+     <rd:RDDataGrid.Columns>
       <DataGridTextColumn Header="编号" Binding="{Binding Name}" Width="58" CellStyle="{StaticResource BridgeFirstCellStyle}"/>
       <DataGridTextColumn x:Name="HangerSectionColumn" Header="区段" Binding="{Binding SectionLabel}" Width="58" Visibility="Collapsed"/>
       <DataGridTemplateColumn Header="中心线距离 mm" Width="110"><DataGridTemplateColumn.CellTemplate><DataTemplate>
-       <TextBox Text="{Binding DistanceText, UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding Problem}"
+       <rd:RDInput Text="{Binding DistanceText, UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding Problem}"
                 KeyDown="HangerDistance_KeyDown" LostKeyboardFocus="HangerDistance_LostKeyboardFocus"/>
       </DataTemplate></DataGridTemplateColumn.CellTemplate></DataGridTemplateColumn>
       <DataGridTemplateColumn Header="所在基架" Width="*" MinWidth="105"><DataGridTemplateColumn.CellTemplate><DataTemplate>
@@ -661,7 +548,7 @@
           <DataTrigger Binding="{Binding CanChooseFrame}" Value="True"><Setter Property="Visibility" Value="Collapsed"/></DataTrigger>
          </Style.Triggers></Style></TextBlock.Style>
         </TextBlock>
-        <ComboBox ItemsSource="{Binding Candidates}" DisplayMemberPath="DisplayName" SelectedValuePath="Id"
+        <rd:RDComboBox ItemsSource="{Binding Candidates}" DisplayMemberPath="DisplayName" SelectedValuePath="Id"
                   SelectedValue="{Binding CandidateId, Mode=OneWay}" SelectionChanged="HangerFrame_SelectionChanged"
                   Visibility="{Binding CanChooseFrame, Converter={StaticResource FrameSelectionVisibility}}"/>
        </Grid>
@@ -670,25 +557,18 @@
        <TextBlock Text="{Binding Status}" ToolTip="{Binding Problem}" TextTrimming="CharacterEllipsis" VerticalAlignment="Center"/>
       </DataTemplate></DataGridTemplateColumn.CellTemplate></DataGridTemplateColumn>
       <DataGridTemplateColumn x:Name="HangerRemoveColumn" Header="移除" Width="50" Visibility="Collapsed"><DataGridTemplateColumn.CellTemplate><DataTemplate>
-       <CheckBox IsChecked="{Binding Remove}" HorizontalAlignment="Center"/>
+       <rd:RDCheckBox IsChecked="{Binding Remove}" HorizontalAlignment="Center"/>
       </DataTemplate></DataGridTemplateColumn.CellTemplate></DataGridTemplateColumn>
-     </DataGrid.Columns>
-    </DataGrid>
+     </rd:RDDataGrid.Columns>
+    </rd:RDDataGrid>
    </DockPanel></TabItem>
-   </TabControl>
+   </rd:RDTabControl>
    </DockPanel>
   </Border>
  </Grid>
  </ScrollViewer>
  <!-- 提示与操作区固定在滚动区域外，长明细和小窗口都不能挤走按钮。 -->
  <StackPanel Grid.Row="3" IsEnabled="{Binding IsEnabled, ElementName=LayoutScroll}" Margin="10,6,10,10">
-  <Border x:Name="DraftProgressStatus" Visibility="Collapsed" Background="#FFF4D5" Padding="8" Margin="0,0,0,6">
-   <StackPanel>
-    <TextBlock x:Name="DraftReadStatus" Visibility="Collapsed" Text="正在读取参数草稿…"/>
-    <ProgressBar Height="3" IsIndeterminate="True" Margin="0,3"/>
-    <TextBlock Text="{Binding Message}" TextWrapping="Wrap"/>
-   </StackPanel>
-  </Border>
   <Border Margin="0,0,0,4" Padding="5,0">
    <Border.Style><Style TargetType="Border" BasedOn="{StaticResource BridgeCardStyle}">
     <Setter Property="Visibility" Value="Collapsed"/>
@@ -699,40 +579,36 @@
     <ItemsControl x:Name="GenerationIssueList" ItemsSource="{Binding GenerationBlockingIssues}" AlternationCount="2147483647">
      <ItemsControl.ItemsPanel><ItemsPanelTemplate><StackPanel Orientation="Horizontal"/></ItemsPanelTemplate></ItemsControl.ItemsPanel>
      <ItemsControl.ItemTemplate><DataTemplate>
-      <Button MinHeight="24" Margin="0" Padding="3,1" BorderThickness="0" Click="LocateGenerationIssue_Click"
+      <rd:RDButton MinHeight="24" Margin="0" Padding="3,1" BorderThickness="0" Click="LocateGenerationIssue_Click"
               Foreground="{StaticResource BridgeIssueBrush}">
-       <Button.Content><MultiBinding Converter="{StaticResource ObjectListValueConverter}" ConverterParameter="NumberedIssue" Mode="OneWay">
+       <rd:RDButton.Content><MultiBinding Converter="{StaticResource ObjectListValueConverter}" ConverterParameter="NumberedIssue" Mode="OneWay">
         <Binding Path="(ItemsControl.AlternationIndex)" RelativeSource="{RelativeSource AncestorType=ContentPresenter}"/>
         <Binding Path="Message"/>
-       </MultiBinding></Button.Content>
-       <Button.ToolTip><ToolTip MaxWidth="600" DataContext="{Binding PlacementTarget.DataContext, RelativeSource={RelativeSource Self}}">
+       </MultiBinding></rd:RDButton.Content>
+       <rd:RDButton.ToolTip><ToolTip MaxWidth="600" DataContext="{Binding PlacementTarget.DataContext, RelativeSource={RelativeSource Self}}">
         <StackPanel>
          <TextBlock Text="{Binding Message}" TextWrapping="Wrap"/>
          <TextBlock Text="点击定位到预览中的问题对象或红色区域" Margin="0,4,0,0" Foreground="{StaticResource BridgeMutedBrush}"/>
         </StackPanel>
-       </ToolTip></Button.ToolTip>
-      </Button>
+       </ToolTip></rd:RDButton.ToolTip>
+      </rd:RDButton>
      </DataTemplate></ItemsControl.ItemTemplate>
     </ItemsControl>
    </ScrollViewer>
   </Border>
   <Border x:Name="DesignActions" Style="{StaticResource BridgeCardStyle}" Padding="8,4"><DockPanel>
-   <StackPanel x:Name="DetachedPreviewActions" DockPanel.Dock="Left" Orientation="Horizontal" Visibility="Collapsed">
-    <Button Content="找回预览窗口 ↗" Click="DetachPreview_Click"/>
-    <Button Content="停靠预览" Click="DockPreview_Click"/>
-   </StackPanel>
    <WrapPanel DockPanel.Dock="Bottom" Margin="0,2,0,0">
-    <Button x:Name="DraftPreviousButton" Content="上一步" Visibility="Collapsed" Click="DraftPrevious_Click"
+    <rd:RDButton x:Name="DraftPreviousButton" Content="上一步" Visibility="Collapsed" Click="DraftPrevious_Click"
             IsEnabled="{Binding IsEditingEnabled}"/>
-    <Button Content="重读并规划" IsEnabled="{Binding HasUpstreamReader}" Click="ReloadUpstream_Click"
+    <rd:RDButton Content="重读并规划" IsEnabled="{Binding HasUpstreamReader}" Click="ReloadUpstream_Click"
             ToolTipService.ShowOnDisabled="True" ToolTip="以当前SolidWorks总装重新读取并规划，替换当前草稿、锁定及未生成的吊架修改"/>
-    <Button Content="撤销" Command="{Binding UndoCommand}" ToolTipService.ShowOnDisabled="True"
+    <rd:RDButton Content="撤销" Command="{Binding UndoCommand}" ToolTipService.ShowOnDisabled="True"
             ToolTip="撤销上一步草稿修改；没有可撤销操作或输入尚未提交时不可用"/>
-    <Button Content="重做" Command="{Binding RedoCommand}" ToolTipService.ShowOnDisabled="True"
+    <rd:RDButton Content="重做" Command="{Binding RedoCommand}" ToolTipService.ShowOnDisabled="True"
             ToolTip="恢复刚撤销的草稿修改；没有可重做操作或输入尚未提交时不可用"/>
-    <Button Content="修复贯通" Command="{Binding RepairCommand}" ToolTipService.ShowOnDisabled="True"
+    <rd:RDButton Content="修复贯通" Command="{Binding RepairCommand}" ToolTipService.ShowOnDisabled="True"
             ToolTip="按当前柜端接口修复铜排和基架；自动解除冲突支撑的人工定位并重新规划，保留未受影响的人工调整及锁定。先更新预览，可撤销；生成后才写入模型"/>
-   <Button x:Name="GenerateModelButton" Content="生成正式模型" Click="GenerateUnavailable_Click" IsEnabled="{Binding IsEditingEnabled}" ToolTipService.ShowOnDisabled="True"
+   <rd:RDButton x:Name="GenerateModelButton" Content="生成正式模型" Click="GenerateUnavailable_Click" IsEnabled="{Binding IsEditingEnabled}" ToolTipService.ShowOnDisabled="True"
            ToolTip="试用版暂未开放实体生成"/>
    </WrapPanel>
    <TextBlock x:Name="DesignStatus" Margin="8,0,4,0" VerticalAlignment="Center" TextAlignment="Right" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis"
@@ -764,13 +640,6 @@
    </Style></TextBlock.Style>
    </TextBlock>
   </DockPanel></Border>
-  <StackPanel HorizontalAlignment="Right" Margin="8,4,8,0" MaxWidth="360">
-   <StackPanel.Style><Style TargetType="StackPanel"><Setter Property="Visibility" Value="Collapsed"/>
-    <Style.Triggers><DataTrigger Binding="{Binding GenerationBusy}" Value="True"><Setter Property="Visibility" Value="Visible"/></DataTrigger></Style.Triggers>
-   </Style></StackPanel.Style>
-   <TextBlock Text="{Binding Message}" TextWrapping="Wrap" Margin="0,0,0,4"/>
-   <ProgressBar Height="6" Width="240" IsIndeterminate="True" HorizontalAlignment="Right"/>
-  </StackPanel>
  </StackPanel>
  </Grid>
-</Window>
+</rd:RDWindow>
