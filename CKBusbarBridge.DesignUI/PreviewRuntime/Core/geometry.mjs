@@ -142,7 +142,16 @@ export function listParameters(template,configurationName){
   return [...values.values()];
 }
 export async function evaluateTemplate(kernel,template,configurationName,overrides={},settings={},loadTemplate,ancestry=[]){
-  const result=await evaluateTemplateCore(kernel,template,configurationName,overrides,settings,loadTemplate,ancestry);
+  let result=await evaluateTemplateCore(kernel,template,configurationName,overrides,settings,loadTemplate,ancestry);
+  try{
+    const replacement=settings.fixedPartTemplate?.(kernel,template,configurationName,result);
+    if(replacement){
+      result.solids.forEach(solid=>solid.delete());
+      result={...result,...replacement,parameters:result.parameters,parameterMs:result.parameterMs};
+      if(settings.captureLocalMeshes)result.solidSources=result.solidSources.map((source,index)=>
+        ({...source,transform:[...identityMatrix],localMesh:solidToMesh(result.solids[index])}));
+    }
+  }catch(error){result.solids.forEach(solid=>solid.delete());throw error;}
   if(settings.captureLocalMeshes&&!result.solidSources){
     try{result.solidSources=result.solids.map((solid,bodyIndex)=>({path:template.source.path,configuration:configurationName,sha256:template.source.sha256,
       bodyIndex,componentChain:[],transform:[...identityMatrix],localMesh:solidToMesh(solid),
@@ -196,7 +205,7 @@ async function evaluateTemplateCore(kernel,template,configurationName,overrides=
       for(const key of Object.keys(geometryTimings))geometryTimings[key]+=result.geometryTimings?.[key]??0;
       deferred.push(...(result.deferred??[]));
       schematic.push(...(result.schematic??[]));
-      try{if(physicalScope||state.visible)for(const [bodyIndex,solid]of result.solids.entries()){const placement=swMatrix(component.transform);solids.push(solid.transform(placement));const childSource=result.solidSources?.[bodyIndex]??{path:childTemplate.source.path,configuration:component.configuration,sha256:childTemplate.source.sha256,bodyIndex,componentChain:[]};solidSources.push({...childSource,appearanceRole:component.previewRole??childSource.appearanceRole,transform:multiplyMatrix(placement,childSource.transform??identityMatrix),componentChain:[component.name,...childSource.componentChain]});}}
+      try{if(physicalScope||state.visible)for(const [bodyIndex,solid]of result.solids.entries()){const placement=swMatrix(component.transform);solids.push(solid.transform(placement));const childSource=result.solidSources?.[bodyIndex]??{path:childTemplate.source.path,configuration:component.configuration,sha256:childTemplate.source.sha256,bodyIndex,componentChain:[]};solidSources.push({...childSource,appearanceRole:childSource.partName?childSource.appearanceRole:component.previewRole??childSource.appearanceRole,transform:multiplyMatrix(placement,childSource.transform??identityMatrix),componentChain:[component.name,...childSource.componentChain]});}}
       finally{result.solids.forEach(solid=>solid.delete());}
     }}catch(error){solids.forEach(solid=>solid.delete());throw error;}
     const mass=componentMassTotals(componentMass),nativeIncludeHidden=configuration.validation?.massPropertyEvidence?.nativeIncludeHidden;

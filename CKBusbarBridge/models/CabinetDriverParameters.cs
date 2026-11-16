@@ -23,6 +23,32 @@ namespace CKBusbarBridge.Models
         internal const string PropertyName = "绝缘距离";
         internal const double DefaultMillimetres = 125d;
 
+        private static string SettingsPath => System.IO.Path.Combine(
+            System.Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData),
+            "CKBusbarBridge", "clearance-mm.txt");
+
+        internal static double ConfiguredMillimetres
+        {
+            get
+            {
+                try
+                {
+                    return System.IO.File.Exists(SettingsPath)
+                        ? ParseOrDefault(System.IO.File.ReadAllText(SettingsPath), out _)
+                        : DefaultMillimetres;
+                }
+                catch (System.IO.IOException) { return DefaultMillimetres; }
+                catch (UnauthorizedAccessException) { return DefaultMillimetres; }
+            }
+        }
+
+        internal static void SaveDefault(double millimetres)
+        {
+            var value = Format(millimetres);
+            System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(SettingsPath));
+            System.IO.File.WriteAllText(SettingsPath, value, new System.Text.UTF8Encoding(false));
+        }
+
         internal static bool TryParse(string text, out double millimetres)
         {
             return double.TryParse(text, NumberStyles.Float, CultureInfo.InvariantCulture,
@@ -363,7 +389,7 @@ namespace CKBusbarBridge.Models
         }
 
         /// <summary>中间铜排的净绝缘距离（mm）。</summary>
-        private double _insulationDistance = InsulationDistanceMetadata.DefaultMillimetres;
+        private double _insulationDistance = InsulationDistanceMetadata.ConfiguredMillimetres;
         public double InsulationDistance
         {
             get => _insulationDistance;

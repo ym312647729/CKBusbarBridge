@@ -650,7 +650,7 @@ namespace CKBusbarBridge.Models
         }
 
         /// <summary>中间铜排的净绝缘距离（mm）。</summary>
-        private double _insulationDistance = InsulationDistanceMetadata.DefaultMillimetres;
+        private double _insulationDistance = InsulationDistanceMetadata.ConfiguredMillimetres;
         public double InsulationDistance
         {
             get => _insulationDistance;

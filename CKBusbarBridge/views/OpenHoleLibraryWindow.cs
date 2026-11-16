@@ -1,6 +1,7 @@
 using BusbarTools.DataModel;
 using BusbarTools.Shared;
 using CKBusbarBridgePreview;
+using CKBusbarBridge.Models;
 using Microsoft.Win32;
 using OpenHoleLib.Controls;
 using RD.UI.Wpf.Controls;
@@ -32,7 +33,7 @@ namespace CKBusbarBridge.views
             {
                 Source = new Uri("pack://application:,,,/RD.UI.Wpf;component/Themes/Generic.xaml")
             });
-            Title = "开孔库设置";
+            Title = "项目设置";
             FontFamily = new FontFamily("Microsoft YaHei UI");
             FontSize = 13;
             Background = Brushes.White;
@@ -51,6 +52,22 @@ namespace CKBusbarBridge.views
             });
 
             var filters = new StackPanel();
+            var clearanceInput = new RDInput { Text = InsulationDistanceMetadata.Format(InsulationDistanceMetadata.ConfiguredMillimetres) };
+            filters.Children.Add(CreateField("新草稿默认绝缘净距 (mm)", clearanceInput));
+            filters.Children.Add(ActionButton("保存绝缘设置", (sender, args) =>
+            {
+                if (!InsulationDistanceMetadata.TryParse(clearanceInput.Text, out var clearance))
+                {
+                    UiFeedback.Warning("绝缘净距必须为有限正数。", Title);
+                    return;
+                }
+                try
+                {
+                    InsulationDistanceMetadata.SaveDefault(clearance);
+                    UiFeedback.Success("默认绝缘净距已保存，新建草稿时生效。", Title);
+                }
+                catch (Exception error) { UiFeedback.Error(error.Message, Title); }
+            }));
             filters.Children.Add(CreateField("主排宽度", _mainWidthFilter));
             filters.Children.Add(CreateField("搭接排宽度", _linkWidthFilter));
             filters.Children.Add(CreateField("搭接方向", _directionFilter));

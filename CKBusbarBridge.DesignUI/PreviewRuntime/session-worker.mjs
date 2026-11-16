@@ -14,12 +14,15 @@ import {objectDimensionBinding,prepareBusinessDimensionEdit} from './Core/busine
 import {transformPoint} from './Core/geometry.mjs';
 import packageManifest from './runtime-manifest.json' with {type:'json'};
 import {createKernelFromModule} from './Web/src/kernel.js';
+import {measureFixedStructureClearance} from './Core/fixed-structure-clearance.mjs';
+import {fixedHangerDatumDefinition,hangerTemplatePath} from './Core/hanger-installation.mjs';
 
 const calculatorVersion=packageManifest.calculatorVersion+':'+packageManifest.packageSha256;
 const definitions=new Map(),shapeCache=new Map();let shapeBytes=0;
 let roofCache;
 const maxShapeBytes=192*1024*1024;
 async function read(path){
+  if(path===hangerTemplatePath)return fixedHangerDatumDefinition();
   if(!path||path.includes('..')||path.includes(':')||path.startsWith('/'))throw new Error('模板相对身份无效：'+path);
   if(!definitions.has(path)){
     const pending=(async()=>{const response=await fetch('./templates/'+path+'.virtual.json');if(!response.ok)throw new Error('离线模板定义缺失：'+path);const definition=await response.json();if(definition.source?.path!==path)throw new Error('缓存定义身份不匹配：'+path);return definition;})();
@@ -61,7 +64,7 @@ function inputs(request){
     let value=at(request.parameters,path);
     if(value===undefined)throw new Error('原界面参数快照缺失字段：'+path);
     // Newtonsoft serializes enums as names; cached UI contracts use their original names.
-    if(typeof initial==='number')value=Math.fround(value);
+    if(typeof initial==='number'&&path!=='General.InsulationDistance')value=Math.fround(value);
     if(typeof initial==='string'&&typeof value!=='string')value=String(value);
     record.values[path]=value;
   }
@@ -110,7 +113,14 @@ async function prepare(request){
   const installed=structurePreviewPlacements(project,results);
   if(installed.diagnostics.length)throw new Error(installed.diagnostics.map(row=>row.message).join('；'));
   for(const assignment of installed.assignments)project.objects.find(row=>row.id===assignment.objectId).transform=assignment.transform;
+  const regularBridge=request.bridge&&project.scenario==='face-to-face'&&project.frameDesign?.plans.length&&
+    project.frameDesign.plans.every(frame=>frame.model.templateIdentity==='Regular024');
+  const clearance=(request.checkClearance===true||regularBridge)&&request.bridge
+    ?measureFixedStructureClearance(await upstreamKernel,project.objects,results,
+      project.cabinetInputs[project.scenario].values['General.InsulationDistance']):null;
   const instances=[],interactionInstances=[],warnings=[],dimensions=[];
+  if(clearance&&!clearance.passed)warnings.push('绝缘净距不满足 '+clearance.requiredMm+
+    ' mm：相间 '+clearance.phases.minimumMm.toFixed(2)+' mm，母线对金属 '+clearance.grounded.minimumMm.toFixed(2)+' mm');
   const contourObjects=new Set();
   let solidTriangles=triangleTotal();
   for(const object of [...project.objects].sort((left,right)=>results.get(right.id).preview.triangleCount-results.get(left.id).preview.triangleCount)){
@@ -140,7 +150,7 @@ async function prepare(request){
         edges:parameter.annotationEdges.map(edge=>edge.map(point=>transformPoint(point,pose).map(Math.fround)))});
     }
   }
-  return {project,upstream,instances,interactionInstances,dimensions,warning:warnings.join('；')};
+  return {project,upstream,instances,interactionInstances,dimensions,clearance,warning:warnings.join('；')};
 }
 // Only real crease/boundary edges are emitted, never triangulation diagonals.
 function contour(mesh){

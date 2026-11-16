@@ -121,7 +121,7 @@ namespace CKBusbarBridge
                 Add("母线桥设计", 1, nameof(ShowFrameDriverWindow), nameof(EnableFrameDriverWindow), 2),
                 Add("出工程图", 4, nameof(ShowExportDrawingWindow), nameof(EnableExportDrawingWindow), 3),
                 Add("铜排出图", 5, nameof(ShowCopperDrawingWindow), nameof(EnableCopperDrawingWindow), 4),
-                Add("开孔库设置", 8, nameof(ShowOpenHoleLibSettingWindow), nameof(EnableOpenHoleLibSettingWindow), 5),
+                Add("项目设置", 8, nameof(ShowOpenHoleLibSettingWindow), nameof(EnableOpenHoleLibSettingWindow), 5),
                 Add("关于", 9, nameof(ShowAboutWindow), nameof(EnableAboutWindow), 6)
             };
             if (indexes.Any(index => index < 0)) throw new InvalidOperationException("母线桥项目命令未全部登记。");

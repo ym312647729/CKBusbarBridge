@@ -3,11 +3,13 @@ import {evaluateTemplate} from './geometry.mjs';
 import {evaluateCopperObject} from './original-copper.mjs';
 import {deriveStructureAssembly} from './structure-assembly.mjs';
 import {inspectCopperLap} from './copper-lap.mjs';
-import {deriveHangerAssembly} from './hanger-assembly.mjs';
+import {hangerTemplate} from './fixed-structure-templates.mjs';
+import {hangerRules} from './hanger-planning.mjs';
+import {deriveFixedStructureDatums,generateFromFixedDatums,hasFixedStructureDatums} from './fixed-structure-datums.mjs';
 import {deriveCabinetScene} from './cabinet-scene.mjs';
 import {appendFixedCabinetCopper} from './cabinet-fixed-copper.mjs';
 import {evaluateInsulatorDraftPreview,evaluateInsulatorDesign} from './insulator-preview.mjs';
-import {hangerTemplateReference} from './hanger-installation.mjs';
+import {fixedHangerDatumDefinition,hangerTemplateReference} from './hanger-installation.mjs';
 import {clearanceVersionFor,validateMinimumGap,clearanceInputSignature} from './clearance-state.mjs';
 
 // Bounding boxes only reject disjoint search ranges. Actual overlap and distance use
@@ -54,17 +56,23 @@ async function checkPhysicalClearance(kernel,project,readSource,minimumGapMm,cat
       try{
         if(Object.keys(object.suppression??{}).length)throw new DefinitionError('对象压缩修改尚无可验证的物理实体求解');
         if(['free-copper','original-copper'].includes(object.kind))result=evaluateCopperObject(kernel,object,settings);
+        else if(object.hangerDimensions){
+          const current=hangerTemplateReference(fixedHangerDatumDefinition(),object.configuration),saved=object.hangerBinding?.templateReference;
+          if(JSON.stringify(current)!==JSON.stringify(saved))throw new DefinitionError('吊杆安装坐标系记录不符');
+          result=hangerTemplate(kernel,object.hangerDimensions.width,
+            object.hangerDimensions.angleLength+hangerRules.fixedHeight,current.localTransform);
+        }
         else{
-        let template=await readSource(object.templatePath),loader=readSource,fixedCopper=null;
+        let template=await readSource(object.templatePath),loader=readSource,fixedCopper=null,fixedDatums=null;
         if(template.source.sha256!==object.sourceSha256)throw new DefinitionError('物理检查的模板来源记录不符');
         if(object.cabinetBinding){const derived=await deriveCabinetScene(template,object.configuration,object.cabinetBinding.scenario,object.cabinetSceneInput,readSource);template=derived.template;loader=derived.loadTemplate;fixedCopper=derived.fixedCopper;}
-        if(object.frameBinding||object.baseBinding){const input=object.structurePlanInput,derived=await deriveStructureAssembly(template,object.configuration,input.globalVariables,readSource,{rootDimensions:input.rootDimensions,businessDrive:input.businessDrive});template=derived.template;loader=derived.loadTemplate;blockers.push({objectId:object.id,message:object.name+'为结构示意，净距结果仅供预览参考'});}
-        if(object.hangerDimensions){
-          const current=hangerTemplateReference(template,object.configuration),saved=object.hangerBinding?.templateReference;
-          if(JSON.stringify(current)!==JSON.stringify(saved))throw new DefinitionError('吊杆原始安装坐标系记录不符');
-          const derived=await deriveHangerAssembly(template,object.configuration,{'宽度':object.hangerDimensions.width,'角钢高度':object.hangerDimensions.angleLength},readSource);template=derived.template;loader=derived.loadTemplate;
+        if(object.frameBinding||object.baseBinding){
+          const input=object.structurePlanInput;
+          if(hasFixedStructureDatums(object.templatePath))fixedDatums=await deriveFixedStructureDatums(template,object.configuration,input,readSource);
+          else{const derived=await deriveStructureAssembly(template,object.configuration,input.globalVariables,readSource,{rootDimensions:input.rootDimensions,businessDrive:input.businessDrive});template=derived.template;loader=derived.loadTemplate;}
+          blockers.push({objectId:object.id,message:object.name+'为结构示意，净距结果仅供预览参考'});
         }
-        result=object.structureSupportBinding?await evaluateInsulatorDesign(kernel,object.insulatorPlanInput,readSource,settings):object.insulatorBinding?await evaluateInsulatorDraftPreview(kernel,object.insulatorPlanInput,readSource,settings):await evaluateTemplate(kernel,template,object.configuration,object.parameters,settings,loader);
+        result=fixedDatums?generateFromFixedDatums(kernel,fixedDatums):object.structureSupportBinding?await evaluateInsulatorDesign(kernel,object.insulatorPlanInput,readSource,settings):object.insulatorBinding?await evaluateInsulatorDraftPreview(kernel,object.insulatorPlanInput,readSource,settings):await evaluateTemplate(kernel,template,object.configuration,object.parameters,settings,loader);
         if(fixedCopper)appendFixedCabinetCopper(kernel,result,fixedCopper,settings);
         }
         if(result.deferred?.length)blockers.push({objectId:object.id,message:object.name+'包含暂缓零件，检查只覆盖已构造实体'});

@@ -15,7 +15,7 @@ import {baseInstallationDimensions,buildStructureInstallation} from './structure
 import {exportCopperDesign} from './original-copper.mjs';
 import {evaluateStructureInstallation} from './structure-installation-preview.mjs';
 import {deriveCabinetScene} from './cabinet-scene.mjs';
-import {hangerTemplatePath} from './hanger-installation.mjs';
+import {fixedHangerDatumDefinition,hangerTemplatePath} from './hanger-installation.mjs';
 import {memoizeDefinition} from './definition-memo.mjs';
 
 export const designExportSchema='dq-bridge-design/1';
@@ -86,7 +86,7 @@ export async function buildDesignExport(input,{readTemplate,createdAt=new Date()
   const hangerModels=new Map(),hangerPlacements=[];
   for(const object of project.objects.filter(object=>object.hangerBinding)){
     const dimensions=object.hangerDimensions,key=JSON.stringify([dimensions.width,dimensions.angleLength]);
-    if(!hangerModels.has(key)){const template=await read(hangerTemplatePath),drives=await planAssemblyDimensionDrives(template,object.configuration,{'宽度':dimensions.width,'角钢高度':dimensions.angleLength},read);hangerModels.set(key,{modelId:'hanger-model:'+(hangerModels.size+1),templatePath:hangerTemplatePath,sourceSha256:template.source.sha256,configuration:object.configuration,widthMm:dimensions.width,angleLengthMm:dimensions.angleLength,...drives});}
+    if(!hangerModels.has(key)){const template=fixedHangerDatumDefinition();hangerModels.set(key,{modelId:'hanger-model:'+(hangerModels.size+1),templatePath:hangerTemplatePath,sourceSha256:template.source.sha256,configuration:object.configuration,widthMm:dimensions.width,angleLengthMm:dimensions.angleLength,generation:'fixed-hanger-template'});}
     hangerPlacements.push({objectId:object.id,modelId:hangerModels.get(key).modelId,frameObjectId:object.hangerBinding.frameId,transform:structuredClone(object.transform),templateReference:structuredClone(object.hangerBinding.templateReference)});
   }
   const hangers={models:[...hangerModels.values()],placements:hangerPlacements};

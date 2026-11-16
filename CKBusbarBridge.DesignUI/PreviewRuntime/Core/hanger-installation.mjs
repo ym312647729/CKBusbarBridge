@@ -4,6 +4,17 @@ import {swMatrix,inverseRigidMatrix,multiplyMatrix} from './geometry.mjs';
 import {validateInstallationMatrix} from './installation-pose.mjs';
 export const hangerTemplatePath='模板/吊杆模板/5GX.000.001.SLDASM';
 
+// Keep only the stable mating identity and datum. No prior hanger geometry is
+// shipped or needed to generate the removable bridge hanger.
+export function fixedHangerDatumDefinition(){
+  return {source:{path:hangerTemplatePath,sha256:'84cbf7e9c8af879de2f8849beacd6942f74a132e77853e1ad676f375fde46dde'},
+    configurations:[{name:'默认',components:[],equations:[],features:[{
+      id:'aEIAAAEAAAD//v8AAAAAAFMAAAA=',type:'CoordSys',name:hangerRules.coordinateName,
+      suppressed:false,parents:[],dimensions:[],definition:{properties:{Transform:{
+        transform:[0,0,1,0,1,0,-1,0,0,.409250601821806,-1.8360843804528,.576066208618256,1,0,0,0]
+      }}}}]}]};
+}
+
 export function hangerTemplateReference(template,configurationName){
   if(template.source.path!==hangerTemplatePath)throw new DefinitionError('吊杆安装未选择原始业务模板');
   const configuration=template.configurations.find(row=>row.name===configurationName),coordinates=configuration?.features.filter(row=>row.type==='CoordSys'&&row.name===hangerRules.coordinateName&&!row.suppressed);
