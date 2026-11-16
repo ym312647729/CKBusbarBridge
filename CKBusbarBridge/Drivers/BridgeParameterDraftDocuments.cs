@@ -538,6 +538,7 @@ namespace CKBusbarBridge.Drivers
             if (_disposed || Session.Generating || Session.RecoveryBlocked) return;
             if (_computing) { _queued = true; return; }
             _computing = true; var requestedRevision = Session.Revision; var requestedId = Session.Id;
+            BridgeMeshFrame cabinetOnlyFrame = null;
             try
             {
                 while (true)
@@ -549,6 +550,7 @@ namespace CKBusbarBridge.Drivers
                             throw new InvalidOperationException("参数预览总装中出现真实组件，请移除后再继续草稿计算。");
                         _queued = false; var revision = Session.Revision; var id = Session.Id;
                         requestedRevision = revision; requestedId = id;
+                        cabinetOnlyFrame = null;
                         var request = new JObject { ["sessionId"] = id.ToString("D"), ["revision"] = revision, ["scenario"] = Session.Scenario,
                             ["orientation"] = _orientation, ["modelName"] = Document.GetTitle(), ["parameters"] = Session.Parameters(), ["bridge"] = _parametersDirty ? null : _bridgeGeometry,
                             ["settings"] = new JObject { ["arcSegments"] = _viewport.Appearance.CircleSegments, ["complexArcSegments"] = _viewport.Appearance.CircleSegments,
@@ -574,6 +576,7 @@ namespace CKBusbarBridge.Drivers
                         if (_parametersDirty && _editor?.Editor.CurrentSample != null && _previousUpstream != null)
                         {
                             if (_editor.HasPendingInput) { _timer.Start(); return false; }
+                            if (Session.Scenario == "face-to-face") cabinetOnlyFrame = frame;
                             var recommendation = _recommendRequested;
                             UpdateEditor(upstream, logicalUpstream); _parametersDirty = false; _recommendRequested = false;
                             _bridgeGeometry = ExportBridgeGeometry(_editor.Editor, upstream);
@@ -583,6 +586,7 @@ namespace CKBusbarBridge.Drivers
                         }
                         if (_parametersDirty && _editor == null && !string.IsNullOrWhiteSpace(_recipe))
                         {
+                            if (Session.Scenario == "face-to-face") cabinetOnlyFrame = frame;
                             if (_previousUpstream == null) throw new InvalidOperationException("桥体草稿缺少原参数接口基线。");
                             var offlineEditor = new BusbarBridgeDraftEditor(); offlineEditor.Load(RestoreRecipe(_previousUpstream));
                             var planner = new BridgeCabinetPlanBuilder(authorization: CKBusbarBridge.Services.BusbarWorkerAuthorization.Resolve);
@@ -613,10 +617,21 @@ namespace CKBusbarBridge.Drivers
                 {
                     if (_disposed) return;
                     if (requestedId != Session.Id || requestedRevision != Session.Revision) { _queued = true; return; }
+                    // A/B base heights can be valid locally even when their new
+                    // openings cannot share a horizontal bridge. Publish the
+                    // new cabinets without reusing the old bridge mesh.
+                    var cabinetsRefreshed = Session.RetainCabinetPreview(cabinetOnlyFrame);
+                    if (cabinetsRefreshed)
+                    {
+                        _parametersDirty = true;
+                        _cabinetDimensions = Array.Empty<BridgePreviewDimension>();
+                        _viewport.Install(cabinetOnlyFrame);
+                        _viewport.Dimensions(_cabinetDimensions);
+                    }
                     Session.Reject(requestedId, requestedRevision, error);
                     FaceToWallPreviewTrace.Error("母线桥离线参数预览失败", error);
-                    if (_editor != null) { _editor.GenerationBlocked = true; _editor.Message = "参数预览未完成：" + error.Message; }
-                    // Parameter edits keep the last frame and report failure to the panel/read caller.
+                    if (_editor != null) { _editor.GenerationBlocked = true;
+                        _editor.Message = (cabinetsRefreshed ? "柜体和基座已更新，桥体待重算：" : "参数预览未完成：") + error.Message; }
                 }).Task.ConfigureAwait(false);
             }
             finally

@@ -86,6 +86,14 @@ namespace CKBusbarBridge.Prototype
             Frame = frame; ReadyRevision = revision; Failure = null; Ready?.Invoke(this, EventArgs.Empty); return true;
         }
 
+        internal bool RetainCabinetPreview(BridgeMeshFrame frame)
+        {
+            if (frame == null || frame.SessionId != Id || frame.Revision != Revision || Generating || IsReady) return false;
+            // Display only. Replanning still uses the last valid upstream and recipe.
+            Frame = frame;
+            return true;
+        }
+
         internal void Reject(Guid sessionId, long revision, Exception failure)
         {
             if (sessionId != Id || revision != Revision) return;

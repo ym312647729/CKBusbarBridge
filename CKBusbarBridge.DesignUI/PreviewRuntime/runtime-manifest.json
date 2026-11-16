@@ -1,7 +1,7 @@
 {
   "schema": "dq-preview-runtime-manifest/1",
   "calculatorVersion": "dq-sw-mesh/1",
-  "packageSha256": "9f3767d0bc42e280a62743476b78460b16f69ae40f05e1535589db55ee077ff7",
+  "packageSha256": "188319442e10d292419ddf8cb2e662c7fd3e22482c8790c4cb0448bed2ef3605",
   "reference": {
     "project": "CKBusbarBridgeVirtualDesigner",
     "commit": "511d64b1248e1c26bf27430e9016fecdc5e9ce5f",
@@ -1815,7 +1815,7 @@
     },
     {
       "path": "CKBusbarBridge.DesignUI/Preview/BridgeDesignSession.cs",
-      "sha256": "11950dd6446368ac541f5a463b281d502a5c431b71bc09bc9a297453a965e836"
+      "sha256": "9379012d766278e906425d218d4d41721b69c045eb60f19303f29088f8ff99fc"
     },
     {
       "path": "CKBusbarBridge.DesignUI/Preview/BridgeDimensionHover.cs",
@@ -1947,7 +1947,7 @@
     },
     {
       "path": "CKBusbarBridge/Drivers/BridgeParameterDraftDocuments.cs",
-      "sha256": "e351bcf49d6a7002bdfe00e5e2ebb1c768c56a8cecd01029d3efc3a042ce4d73"
+      "sha256": "82fb9e59bbbd55cfeb1e7c62f581f9d8c6a396eab842b2b9d5fa70a7015aacf8"
     },
     {
       "path": "CKBusbarBridge/Drivers/BridgeParameterDraftGeometry.cs",
