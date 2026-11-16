@@ -47,7 +47,8 @@ self.onmessage=async event=>{
       const waitStart=performance.now(),kernel=await kernelReady,kernelWaitMs=performance.now()-waitStart,evaluationStart=performance.now();result=evaluateCopperObject(kernel,object,settings);result=cutCopperPreviewHoles(kernel,result,object,settings);
       const evaluationMs=performance.now()-evaluationStart,meshStart=performance.now(),meshes=result.solids.map((solid,index)=>{
         const source=result.solidSources?.[index];
-        return source?.localMesh?{...source.localMesh,partSource:{...source,localMesh:undefined}}:previewMeshCache.convert(solid);
+        const mesh=source?.localMesh?{...source.localMesh,partSource:{...source,localMesh:undefined}}:previewMeshCache.convert(solid);
+        return result.bendEdges?.length?{...mesh,bendEdges:result.bendEdges}:mesh;
       }),meshMs=performance.now()-meshStart,triangleCount=meshes.reduce((sum,m)=>sum+m.triangleCount,0),overBudget=triangleCount>(settings.objectTriangleBudget??80000);
       const transfers=meshes.flatMap(mesh=>[mesh.positions.buffer,mesh.indices.buffer,mesh.patches.quads.buffer,mesh.patches.triangles.buffer]);
       self.postMessage({revision,requestId,purpose,objectId:object.id,signature,ok:true,finishedAt:performance.timeOrigin+performance.now(),meshes,parameters:result.parameters,interfaces:[],interfaceDiagnostics:[],roofPlanes:{complete:false,planes:[],diagnostics:[]},derivedGeometry:result.derivedGeometry,preview:{...result.preview,triangleCount},previewDisplayMode:overBudget?'outline':'solid',qualityWarning:overBudget?'铜排超过预览预算，保留完整轮廓':null,schematic:[],deferred:[],metrics:{readMs:0,driveMs:0,parameterMs:0,kernelWaitMs,kernelCompilationMs,definitionReads:[],cutFeatureMs:result.geometryTimings.cutFeatureMs,constructionFeatureMs:result.geometryTimings.otherFeatureMs,evaluationAndHolesMs:evaluationMs,meshMs,meshCache:meshCacheMetrics(),interfaceReadMs:0,workerMs:performance.now()-started,triangleCount}},transfers);

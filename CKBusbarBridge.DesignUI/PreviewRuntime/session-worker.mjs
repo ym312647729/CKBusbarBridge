@@ -118,7 +118,7 @@ async function prepare(request){
   const clearance=(request.checkClearance===true||regularBridge)&&request.bridge
     ?measureFixedStructureClearance(await upstreamKernel,project.objects,results,
       project.cabinetInputs[project.scenario].values['General.InsulationDistance']):null;
-  const instances=[],interactionInstances=[],warnings=[],dimensions=[];
+  const instances=[],interactionInstances=[],warnings=[],dimensions=[],web=request.renderer==='webgl';
   if(clearance&&!clearance.passed)warnings.push('绝缘净距不满足 '+clearance.requiredMm+
     ' mm：相间 '+clearance.phases.minimumMm.toFixed(2)+' mm，母线对金属 '+clearance.grounded.minimumMm.toFixed(2)+' mm');
   if(clearance?.assembly.count)warnings.push('检测到 '+clearance.assembly.count+' 处实体装配干涉：'+
@@ -133,14 +133,16 @@ async function prepare(request){
   for(const object of project.objects){
     const result=results.get(object.id),pose=multiplyMatrix(inverseRigidMatrix(nativeSceneToPreview),object.transform);
     const outline=contourObjects.has(object.id),known=request.knownShapes??{};
-    instances.push(...meshInstances(object,result,pose,known,outline));if(result.qualityWarning)warnings.push(result.qualityWarning);
-    let interaction=result;
-    if(result.preview?.complexFeatureCount&&!outline){
-      const candidate=await evaluate(object,{...project.settings,complexArcSegments:12,chordToleranceMm:project.settings.chordToleranceMm*4,
-        objectTriangleBudget:Math.max(1,Math.floor(project.settings.objectTriangleBudget/4))});
-      if(candidate.preview.topologySignature===result.preview.topologySignature&&candidate.preview.triangleCount<result.preview.triangleCount)interaction=candidate;
+    instances.push(...meshInstances(object,result,pose,known,outline,web));if(result.qualityWarning)warnings.push(result.qualityWarning);
+    if(!web){
+      let interaction=result;
+      if(result.preview?.complexFeatureCount&&!outline){
+        const candidate=await evaluate(object,{...project.settings,complexArcSegments:12,chordToleranceMm:project.settings.chordToleranceMm*4,
+          objectTriangleBudget:Math.max(1,Math.floor(project.settings.objectTriangleBudget/4))});
+        if(candidate.preview.topologySignature===result.preview.topologySignature&&candidate.preview.triangleCount<result.preview.triangleCount)interaction=candidate;
+      }
+      interactionInstances.push(...meshInstances(object,interaction,pose,known,outline,false));
     }
-    interactionInstances.push(...meshInstances(object,interaction,pose,known,outline));
     for(const parameter of result.parameters??[]){
       const binding=objectDimensionBinding(project,object.id,parameter.name);
       if(binding?.kind!=='cabinet'||!Number.isFinite(parameter.value)||!parameter.annotationEdges?.length)continue;
@@ -178,10 +180,19 @@ function contour(mesh){
   const groups=new Map();for(const edge of shared.values()){const key=root(edge);if(!groups.has(key))groups.set(key,[]);groups.get(key).push(...edge.normals);}
   return [...shared.values()].filter(edge=>{const normals=groups.get(root(edge));return normals.length===1||normals.some(normal=>normal.reduce((sum,value,index)=>sum+value*normals[0][index],0)<Math.cos(Math.PI/6));}).flatMap(edge=>[edge.a,edge.b]);
 }
-function meshInstances(object,result,pose,known,outline=false){
+function meshInstances(object,result,pose,known,outline,web){
   return result.meshes.map((mesh,index)=>{
     const source=mesh.partSource??{},installed=source.transform?multiplyMatrix(pose,source.transform):pose;
-    const geometry={positions:Array.from(mesh.positions,Math.fround),quads:Array.from(mesh.patches.quads),triangles:Array.from(mesh.patches.triangles),edgePositions:Array.from(mesh.outlinePositions??mesh.positions,Math.fround),edges:contour(mesh)};
+    const edgePositions=Array.from(mesh.outlinePositions??mesh.positions,Math.fround),edges=contour(mesh);
+    for(const [first,second] of mesh.bendEdges??[]){
+      const start=edgePositions.length/3;
+      edgePositions.push(...first.map(Math.fround),...second.map(Math.fround));edges.push(start,start+1);
+    }
+    // WebGL uses the closed triangulation that already resolves shared edges.
+    // Re-splitting the OpenGL quads here would reintroduce cracks at hole patches.
+    const faces=web?{triangles:Array.from(mesh.indices)}:
+      {quads:Array.from(mesh.patches.quads),triangles:Array.from(mesh.patches.triangles)};
+    const geometry={positions:Array.from(mesh.positions,Math.fround),...faces,edgePositions,edges};
     // GPU shape inputs are body-local and verified in full. Parent component pose and appearance are independent instances.
     const signature=JSON.stringify([calculatorVersion,source.path,source.configuration,source.sha256,source.shapeInputSignature,geometry]),key=hash(signature);
     const shape=known[key]===signature?{}:geometry;

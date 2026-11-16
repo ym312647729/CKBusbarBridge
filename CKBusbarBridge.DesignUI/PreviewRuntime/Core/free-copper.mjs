@@ -107,7 +107,13 @@ export function evaluateFreeCopper(kernel,object,settings={}){
     }
     const solid=combined;combined=null;
     const sectionEdges=plan.segments.flatMap(segment=>[segment.start,segment.end].map(center=>ring(center,segment.width,segment.thickness,plan.data)));
+    // A tangent transition is intentional drawing geometry, unlike the seams
+    // between sampled arc strips. The crease-angle filter cannot infer it.
+    const bendEdges=plan.corners.flatMap(corner=>[
+      ring(corner.entry,corner.width,corner.thickness,plan.data),
+      ring(corner.exit,rotate(corner.width,corner.axis,corner.angle),rotate(corner.thickness,corner.axis,corner.angle),plan.data)
+    ].flatMap(section=>section.map((point,index)=>[point,section[(index+1)%4]])));
     const parameters=[['widthMm','排宽'],['thicknessMm','板厚'],['flatRadiusMm','平弯内半径'],['edgeRadiusMm','立弯内半径']].map(([name,label])=>({name,label,value:plan.data[name],editable:true,annotationEdges:name==='widthMm'?sectionEdges.flatMap(r=>[[r[0],r[1]],[r[2],r[3]]]):name==='thicknessMm'?sectionEdges.flatMap(r=>[[r[1],r[2]],[r[3],r[0]]]):[]}));
-    return {solids:[solid],parameters,parameterMs:0,geometryTimings:{otherFeatureMs:constructionMs,cutFeatureMs:performance.now()-cutStarted},preview:{complexFeatureCount:0,canSimplify:false,coarsened:false,arcSegments,maximumChordErrorMm},derivedGeometry:{kind:'free-copper',version:freeCopperVersion,pathConvention:'矩形截面中心线，毫米；平弯沿板厚，立弯沿排宽；不隐式投影或扭转路径',developedLengthMm:plan.developedLengthMm,bends:plan.corners.map(c=>({pathPointIndex:c.index,kind:c.kind,innerRadiusMm:c.innerRadiusMm,internalAngleDegrees:c.internalAngleDegrees})),holes:plan.holes.length,analyticVolumeWithoutHolesMm3:plan.developedLengthMm*plan.data.widthMm*plan.data.thicknessMm,discreteVolumeMm3:solid.volume(),maximumChordErrorMm}};
+    return {solids:[solid],bendEdges,parameters,parameterMs:0,geometryTimings:{otherFeatureMs:constructionMs,cutFeatureMs:performance.now()-cutStarted},preview:{complexFeatureCount:0,canSimplify:false,coarsened:false,arcSegments,maximumChordErrorMm},derivedGeometry:{kind:'free-copper',version:freeCopperVersion,pathConvention:'矩形截面中心线，毫米；平弯沿板厚，立弯沿排宽；不隐式投影或扭转路径',developedLengthMm:plan.developedLengthMm,bends:plan.corners.map(c=>({pathPointIndex:c.index,kind:c.kind,innerRadiusMm:c.innerRadiusMm,internalAngleDegrees:c.internalAngleDegrees})),holes:plan.holes.length,analyticVolumeWithoutHolesMm3:plan.developedLengthMm*plan.data.widthMm*plan.data.thicknessMm,discreteVolumeMm3:solid.volume(),maximumChordErrorMm}};
   }finally{combined?.delete();parts.forEach(part=>part.delete());cutters.forEach(part=>part.delete());}
 }

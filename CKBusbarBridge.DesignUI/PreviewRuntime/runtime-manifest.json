@@ -1,7 +1,7 @@
 {
   "schema": "dq-preview-runtime-manifest/1",
   "calculatorVersion": "dq-sw-mesh/1",
-  "packageSha256": "cfaca4bcb82fcd06737cd95ba764ce7f9dcccbb80c503fa5194e52a7cbc52402",
+  "packageSha256": "468a572e1c05121971e93535602cdefadbb53ebc14f866b8c37fc27e6ff3032a",
   "reference": {
     "project": "CKBusbarBridgeVirtualDesigner",
     "commit": "511d64b1248e1c26bf27430e9016fecdc5e9ce5f",
@@ -209,7 +209,7 @@
     },
     {
       "path": "Core/free-copper.mjs",
-      "sha256": "9129fbb125f63f9538daf0e5378807f281aebf2012e3ea1dfd471a5d10032659"
+      "sha256": "9ad82dc7fb93b1e3b17a901bc956c829592ac1930873226254c597311924aab7"
     },
     {
       "path": "Core/geometry.mjs",
@@ -473,7 +473,7 @@
     },
     {
       "path": "session-worker.mjs",
-      "sha256": "fbeef6f6057c2246e166d9d82a3731c29d91d0d0598e1f8bfb5e3a9d19bf060e"
+      "sha256": "eb8643a6050516350567da1d88b417fef5635bacddbf76ad8af008b987a922eb"
     },
     {
       "path": "templates/模板/侧对侧模板/柜内伸出排/A柜内伸出排-A-A柜后.SLDPRT.virtual.json",
@@ -1605,7 +1605,7 @@
     },
     {
       "path": "Web/src/geometry-worker.js",
-      "sha256": "a07b8d6b78d57bf6367afabcf4bb8416faa6bcdab67bee0150a46c164963915c"
+      "sha256": "aec0227920eeb07ebb52d93a838fdc6dd120e4c9701c128a436b02930c074eaa"
     },
     {
       "path": "Web/src/kernel.js",

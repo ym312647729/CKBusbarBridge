@@ -60,7 +60,7 @@ async function api(path,body){
 function calculate(revision,parameters,bridge){
   const requestId=crypto.randomUUID();
   return new Promise((resolve,reject)=>{
-    pending.set(requestId,{resolve,reject});worker.postMessage({requestId,sessionId,revision,scenario,modelName:'面对面常规虚拟测试',parameters,bridge,checkClearance:!!bridge});
+    pending.set(requestId,{resolve,reject});worker.postMessage({requestId,sessionId,revision,scenario,modelName:'面对面常规虚拟测试',parameters,bridge,checkClearance:!!bridge,renderer:'webgl'});
   });
 }
 worker.onmessage=({data})=>{
@@ -122,7 +122,12 @@ const lamp=new THREE.DirectionalLight(0xffffff,2.15);lamp.position.set(2,-4,7);s
 const world=new THREE.Group();scene.add(world);
 const ray=new THREE.Raycaster();
 const colors={cabinet:0xa6b3bf,'cabinet-trim':0x486571,base:0x8199a8,frame:0x648295,cover:0xbac7ce,bracket:0x92a9b3,hanger:0x8096a1,insulator:0xb86d51,pad:0x9fa9b0,beam:0xb6c2c9,roof:0xcbd4da};
-const phaseColors={A:0xd3a944,B:0x498f78,C:0xbc6a51};
+const phaseColors={A:0xf2c71f,B:0x30a645,C:0xd63026};
+const copperOpacity=.85;
+const faceOffset={polygonOffset:true,polygonOffsetFactor:1,polygonOffsetUnits:1};
+// Write the nearest copper surface before blending. A folded bar can project
+// onto itself; blending two of its faces creates misleading triangle shadows.
+const copperDepth=new THREE.MeshBasicMaterial({colorWrite:false,transparent:true,depthWrite:true,...faceOffset});
 const categoryNames={cabinet:'柜体',base:'基座',raisedBase:'增高基座',frame:'基架',cover:'盖板',copper:'母线',insulator:'绝缘支撑',hanger:'吊架',reference:'环境参照'};
 const layers=new Map(),hidden=new Set(),modelGroups=new Map();let isolateId=null;
 const toPoint=point=>[point[0]/1000,-point[2]/1000,point[1]/1000];
@@ -156,20 +161,20 @@ function fit(direction=view){
   camera.zoom=1;camera.far=Math.max(120,radius*6+10);camera.lookAt(center);controls.target.copy(center);
   viewHeight=Math.max(.12,2.15*radius*Math.max(1,stage.clientHeight/Math.max(1,stage.clientWidth)));draw();
 }
-function meshGeometry(item){
-  const indices=item.triangles.slice();
-  for(let index=0;index<item.quads.length;index+=4){
-    const [a,b,c,d]=item.quads.slice(index,index+4);indices.push(a,b,c,a,c,d);
-  }
+function meshGeometry(item,copper){
   const geometry=new THREE.BufferGeometry();
-  geometry.setAttribute('position',new THREE.Float32BufferAttribute(item.positions,3));geometry.setIndex(indices);geometry.computeVertexNormals();return geometry;
+  geometry.setAttribute('position',new THREE.Float32BufferAttribute(item.positions,3));geometry.setIndex(item.triangles);
+  if(!copper)geometry.computeVertexNormals();
+  return geometry;
 }
 function lineGeometry(item){
   const positions=[];for(const index of item.edges)positions.push(...item.edgePositions.slice(index*3,index*3+3));
   const geometry=new THREE.BufferGeometry();geometry.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));return geometry;
 }
 function setScene(result){
-  for(const child of world.children){child.traverse(node=>{node.geometry?.dispose();node.material?.dispose();});}
+  for(const child of world.children)child.traverse(node=>{
+    if(node.material!==copperDepth){node.geometry?.dispose();node.material?.dispose();}
+  });
   world.clear();layers.clear();
   const objectLabels=new Map(result.project.objects.filter(object=>!object.cabinetBinding).map(object=>[object.id,object.name]));
   for(const item of result.instances){
@@ -181,11 +186,19 @@ function setScene(result){
       layers.set(id,{id,name,category:cover?'cover':reference?'reference':item.category,parts:[]});
       if(reference&&!displayed)hidden.add(id);
     }
-    const color=phaseColors[item.phase]??colors[item.partSource?.previewMaterial]??colors[item.appearanceRole]??colors[item.category]??0x98a6b1;
-    const face=new THREE.Mesh(meshGeometry(item),new THREE.MeshStandardMaterial({color,metalness:.28,roughness:.66,polygonOffset:true,polygonOffsetFactor:1,polygonOffsetUnits:1}));
-    const edge=new THREE.LineSegments(lineGeometry(item),new THREE.LineBasicMaterial({color:0x38516a,transparent:true,opacity:.65}));
+    const copper=item.category==='copper';
+    const color=copper?(phaseColors[item.phase]??0xb86e3b):
+      colors[item.partSource?.previewMaterial]??colors[item.appearanceRole]??colors[item.category]??0x98a6b1;
+    const face=new THREE.Mesh(meshGeometry(item,copper),new THREE.MeshStandardMaterial({
+      color,metalness:.28,roughness:.66,flatShading:copper,transparent:copper,opacity:copper?copperOpacity:1,
+      depthWrite:!copper,...faceOffset
+    }));
+    const edge=new THREE.LineSegments(lineGeometry(item),new THREE.LineBasicMaterial({color:0x38516a,transparent:true,opacity:.65,depthWrite:false}));
+    const depth=copper?new THREE.Mesh(face.geometry,copperDepth):null;
+    face.renderOrder=copper?1:0;edge.renderOrder=2;
     const node=new THREE.Group();node.matrixAutoUpdate=false;node.matrix.multiplyMatrices(swToWeb,new THREE.Matrix4().fromArray(item.transform));
-    face.userData.modelId=id;node.add(face,edge);world.add(node);layers.get(id).parts.push({node,face,edge,item});
+    face.userData.modelId=id;node.add(face,edge);if(depth)node.add(depth);
+    world.add(node);layers.get(id).parts.push({node,face,edge,depth,item});
   }
   // The instance matrix is assigned directly, so resolve it before measuring the scene.
   world.updateMatrixWorld(true);
@@ -236,8 +249,10 @@ function visibility(){
     toggle.indeterminate=!toggle.checked&&groupRows.some(layer=>isShown(layer.id));
     for(const {id,parts,controls} of groupRows){
       const shown=isShown(id);
-      for(const {node,face,edge,item} of parts){
-        node.visible=shown;face.visible=mode!=='outline'&&!item.outlineOnly;edge.visible=mode!=='solid'||item.outlineOnly;
+      for(const {node,face,edge,depth,item} of parts){
+        node.visible=shown;face.visible=!item.outlineOnly&&(!depth||mode!=='outline');
+        face.material.colorWrite=mode!=='outline';if(depth)depth.visible=!item.outlineOnly;
+        edge.visible=mode!=='solid'||item.outlineOnly;
         face.material.emissive.setHex(id===selected?0x244064:0);
       }
       controls.box.checked=shown;

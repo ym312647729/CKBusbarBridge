@@ -9,6 +9,18 @@ import {Worker,parentPort,workerData} from 'node:worker_threads';
 const runtime=new URL('../CKBusbarBridge.DesignUI/PreviewRuntime/',import.meta.url);
 const launcher=fileURLToPath(new URL('../CKBusbarBridge.WebTest/bin/Debug/net48/CKBusbarBridge.WebTest.exe',import.meta.url));
 
+function assertClosedTriangles({displayName,positions,triangles}){
+  assert.ok(triangles.length>=12*3&&triangles.length%3===0,displayName);
+  const edges=new Map();
+  for(let index=0;index<triangles.length;index+=3)for(let corner=0;corner<3;corner++){
+    const from=triangles[index+corner],to=triangles[index+(corner+1)%3];
+    assert.ok(from!==to&&from>=0&&from<positions.length/3,displayName);
+    const key=from<to?from+':'+to:to+':'+from,pair=edges.get(key)??[0,0];
+    pair[from<to?0:1]++;edges.set(key,pair);
+  }
+  assert.ok([...edges.values()].every(([forward,reverse])=>forward===1&&reverse===1),displayName+' 三角面边界未闭合');
+}
+
 if(workerData){
   const moduleUrl=new URL(workerData.moduleUrl);
   globalThis.fetch=async relative=>{
@@ -60,9 +72,9 @@ if(workerData){
         target[keys.at(-1)]=value;
       }
       const request={sessionId:'facing-regular',revision:caseIndex+1,scenario,modelName:'面对面常规回归',parameters};
-      const calculate=(stage,bridge)=>{
+      const calculate=(stage,bridge,renderer)=>{
         const requestId=caseIndex+':'+stage;
-        return receive(row=>row.requestId===requestId,()=>session.postMessage({...request,requestId,bridge}));
+        return receive(row=>row.requestId===requestId,()=>session.postMessage({...request,requestId,bridge,renderer}));
       };
       const draft=await calculate('cabinet');
       await writeFile(requestFile,JSON.stringify(draft.upstream),'utf8');
@@ -85,6 +97,18 @@ if(workerData){
       assert.equal(clearance.requiredMm,125);
       assert.ok(clearance.passed,JSON.stringify(clearance));
       assert.ok(Math.min(clearance.phases.minimumMm,clearance.grounded.minimumMm)>=125-1e-5);
+      if(caseIndex===0){
+        const web=await calculate('webgl',bridge,'webgl');
+        assert.equal(web.interactionInstances.length,0);
+        assert.equal(web.instances.length,instances.length);
+        const copper=web.instances.filter(row=>row.category==='copper');
+        assert.ok(copper.some(row=>row.triangles.length===36&&row.edges.length===24),'直排应为六个矩形面和十二条外棱');
+        assert.ok(copper.some(row=>row.triangles.length>36),'应保留真实开孔或折弯的三角网格');
+        for(const part of copper)assertClosedTriangles(part);
+        const nativeCopper=instances.filter(row=>row.category==='copper');
+        assert.deepEqual(copper.map(row=>[row.edgePositions,row.edges]),nativeCopper.map(row=>[row.edgePositions,row.edges]));
+        console.log('WebGL 与 OpenGL 铜排共用边线；'+copper.length+' 根铜排的 WebGL 三角面闭合。');
+      }
       console.log(`${title}：${clearance.assembly.solids} 个实体，干涉 ${clearance.assembly.count} 处，`+
         `相间 ${clearance.phases.minimumMm.toFixed(2)} mm，母线对金属 ${clearance.grounded.minimumMm.toFixed(2)} mm`);
     }
