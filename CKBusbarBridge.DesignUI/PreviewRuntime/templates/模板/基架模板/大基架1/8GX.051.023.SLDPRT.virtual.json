@@ -1,0 +1,5122 @@
+{
+  "schemaVersion": "dq-virtual-template/1",
+  "captureRevision": 5,
+  "kind": "source-feature-definition",
+  "source": {
+    "path": "模板/基架模板/大基架1/8GX.051.023.SLDPRT",
+    "sha256": "019ecc385f0a5f5d47745ce4e1d5e635f5b84132c37c718b0e004b73e438dfa5",
+    "units": "metre-radian",
+    "solidWorksVersion": "32.0.1"
+  },
+  "configurations": [
+    {
+      "name": "默认",
+      "equations": [
+        {
+          "index": 0,
+          "expression": "\"D4@草图48\"=(\"D1@草图1\"-50)/4",
+          "disabled": false,
+          "value": 327.5,
+          "globalVariable": false,
+          "readStatusIndex": 0,
+          "rawIndexedDisabled": false,
+          "disabledStateSource": "GetDisabledEquationCount=0"
+        },
+        {
+          "index": 1,
+          "expression": "\"L\"= \"D1@草图1\"",
+          "disabled": false,
+          "value": 1360,
+          "globalVariable": true,
+          "readStatusIndex": 1,
+          "rawIndexedDisabled": true,
+          "disabledStateSource": "GetDisabledEquationCount=0"
+        },
+        {
+          "index": 2,
+          "expression": "\"D1@草图40\" = IIF ( \"L\" < 501 , \"L\" / 2 , IIF ( \"L\" < 801 , \"L\" / 3 , \"L\" / 4 ) )",
+          "disabled": false,
+          "value": 340,
+          "globalVariable": false,
+          "readStatusIndex": 2,
+          "rawIndexedDisabled": true,
+          "disabledStateSource": "GetDisabledEquationCount=0"
+        },
+        {
+          "index": 3,
+          "expression": "\"D2@阵列(线性)4\" = IIF ( \"L\" < 501 , 1 , IIF ( \"L\" < 801 , 2 , 3 ) )",
+          "disabled": false,
+          "value": 3,
+          "globalVariable": false,
+          "readStatusIndex": 3,
+          "rawIndexedDisabled": true,
+          "disabledStateSource": "GetDisabledEquationCount=0"
+        },
+        {
+          "index": 4,
+          "expression": "\"D4@阵列(线性)4\"=\"D1@草图40\"",
+          "disabled": false,
+          "value": 340,
+          "globalVariable": false,
+          "readStatusIndex": 4,
+          "rawIndexedDisabled": true,
+          "disabledStateSource": "GetDisabledEquationCount=0"
+        },
+        {
+          "index": 5,
+          "expression": "\"D1@阵列(线性)4\"= int ( \"D2@草图1\" / 80 - 1 )",
+          "disabled": false,
+          "value": 9,
+          "globalVariable": false,
+          "readStatusIndex": 5,
+          "rawIndexedDisabled": true,
+          "disabledStateSource": "GetDisabledEquationCount=0"
+        }
+      ],
+      "features": [
+        {
+          "id": "aEIAACQAAAD//v8AAAAAAI8EAAA=",
+          "name": "配置备注",
+          "type": "ConfigCommentsFolder",
+          "parent": null,
+          "suppressed": false,
+          "parents": [],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAAAAAAAD//v8AAAAAAA==",
+          "name": "Favorites",
+          "type": "FavoriteFolder",
+          "parent": null,
+          "suppressed": false,
+          "parents": [],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAACQAAAD//v8AAAAAAAcAAAA=",
+          "name": "设计活页夹",
+          "type": "DocsFolder",
+          "parent": null,
+          "suppressed": false,
+          "parents": [],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAABUAAAD//v8AAAAAAAEAAAA=",
+          "name": "注解",
+          "type": "DetailCabinet",
+          "parent": null,
+          "suppressed": false,
+          "parents": [],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAACQAAAD//v8AAAAAAEQAAAA=",
+          "name": "Notes",
+          "type": "NotesAreaFtrFolder",
+          "parent": "注解",
+          "suppressed": false,
+          "parents": [],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAACAAAAD//v8AAAAAAMsAAAA=",
+          "name": "Notes Area",
+          "type": "AnnotationViewFeat",
+          "parent": "注解",
+          "suppressed": false,
+          "parents": [],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAACQAAAD//v8AAAAAAEUAAAA=",
+          "name": "Notes1___EndTag___",
+          "type": "FtrFolder",
+          "parent": "注解",
+          "suppressed": false,
+          "parents": [],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAABQAAAD//v8AAAAAAAkAAAA=",
+          "name": "实体",
+          "type": "SolidBodyFolder",
+          "parent": null,
+          "suppressed": false,
+          "parents": [],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAABQAAAD//v8AAAAAANEDAAA=",
+          "name": "切割清单项目1",
+          "type": "CutListFolder",
+          "parent": "实体",
+          "suppressed": false,
+          "parents": [],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAABQAAAD//v8AAAAAAAoAAAA=",
+          "name": "曲面实体",
+          "type": "SurfaceBodyFolder",
+          "parent": null,
+          "suppressed": false,
+          "parents": [],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAACQAAAD//v8AAAAAAAgAAAA=",
+          "name": "备注",
+          "type": "CommentsFolder",
+          "parent": null,
+          "suppressed": false,
+          "parents": [],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAABYAAAD//v8AAAAAAD0AAAA=",
+          "name": "方程式",
+          "type": "EqnFolder",
+          "parent": null,
+          "suppressed": false,
+          "parents": [],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAAAEAAAD//v8AAAAAAAIAAAA=",
+          "name": "前视基准面",
+          "type": "RefPlane",
+          "parent": null,
+          "suppressed": false,
+          "parents": [],
+          "dimensions": [],
+          "sketch": null,
+          "definition": {
+            "interfaceName": "IRefPlaneFeatureData",
+            "properties": {
+              "Type": 10,
+              "AutoSize": false,
+              "Angle": 0,
+              "Distance": 0,
+              "ReverseDirection": false,
+              "OriginOnCurve": false,
+              "Selections": null,
+              "ProjectionType": 0,
+              "UseNormalPlane": false,
+              "SolutionIndex": 0,
+              "Type2": 10,
+              "UpdatePlane": false,
+              "constraintReferences": [
+                {
+                  "reference": null,
+                  "constraint": 0,
+                  "angleOrDistance": 0,
+                  "reversedDirection": false
+                },
+                {
+                  "reference": null,
+                  "constraint": 0,
+                  "angleOrDistance": 0,
+                  "reversedDirection": false
+                },
+                {
+                  "reference": null,
+                  "constraint": 0,
+                  "angleOrDistance": 0,
+                  "reversedDirection": false
+                }
+              ]
+            }
+          },
+          "diagnostics": [
+            "IRefPlaneFeatureData.AccessSelections returned false"
+          ],
+          "referenceGeometry": {
+            "id": "aEIAAAEAAAD//v8AAAAAAAIAAAA=",
+            "feature": "前视基准面",
+            "referencePlaneTransform": [
+              1,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "id": "aEIAAAEAAAD//v8AAAAAAAMAAAA=",
+          "name": "上视基准面",
+          "type": "RefPlane",
+          "parent": null,
+          "suppressed": false,
+          "parents": [],
+          "dimensions": [],
+          "sketch": null,
+          "definition": {
+            "interfaceName": "IRefPlaneFeatureData",
+            "properties": {
+              "Type": 10,
+              "AutoSize": false,
+              "Angle": 0,
+              "Distance": 0,
+              "ReverseDirection": false,
+              "OriginOnCurve": false,
+              "Selections": null,
+              "ProjectionType": 0,
+              "UseNormalPlane": false,
+              "SolutionIndex": 0,
+              "Type2": 10,
+              "UpdatePlane": false,
+              "constraintReferences": [
+                {
+                  "reference": null,
+                  "constraint": 0,
+                  "angleOrDistance": 0,
+                  "reversedDirection": false
+                },
+                {
+                  "reference": null,
+                  "constraint": 0,
+                  "angleOrDistance": 0,
+                  "reversedDirection": false
+                },
+                {
+                  "reference": null,
+                  "constraint": 0,
+                  "angleOrDistance": 0,
+                  "reversedDirection": false
+                }
+              ]
+            }
+          },
+          "diagnostics": [
+            "IRefPlaneFeatureData.AccessSelections returned false"
+          ],
+          "referenceGeometry": {
+            "id": "aEIAAAEAAAD//v8AAAAAAAMAAAA=",
+            "feature": "上视基准面",
+            "referencePlaneTransform": [
+              1,
+              0,
+              0,
+              0,
+              0,
+              -1,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "id": "aEIAAAEAAAD//v8AAAAAAAQAAAA=",
+          "name": "右视基准面",
+          "type": "RefPlane",
+          "parent": null,
+          "suppressed": false,
+          "parents": [],
+          "dimensions": [],
+          "sketch": null,
+          "definition": {
+            "interfaceName": "IRefPlaneFeatureData",
+            "properties": {
+              "Type": 10,
+              "AutoSize": false,
+              "Angle": 0,
+              "Distance": 0,
+              "ReverseDirection": false,
+              "OriginOnCurve": false,
+              "Selections": null,
+              "ProjectionType": 0,
+              "UseNormalPlane": false,
+              "SolutionIndex": 0,
+              "Type2": 10,
+              "UpdatePlane": false,
+              "constraintReferences": [
+                {
+                  "reference": null,
+                  "constraint": 0,
+                  "angleOrDistance": 0,
+                  "reversedDirection": false
+                },
+                {
+                  "reference": null,
+                  "constraint": 0,
+                  "angleOrDistance": 0,
+                  "reversedDirection": false
+                },
+                {
+                  "reference": null,
+                  "constraint": 0,
+                  "angleOrDistance": 0,
+                  "reversedDirection": false
+                }
+              ]
+            }
+          },
+          "diagnostics": [
+            "IRefPlaneFeatureData.AccessSelections returned false"
+          ],
+          "referenceGeometry": {
+            "id": "aEIAAAEAAAD//v8AAAAAAAQAAAA=",
+            "feature": "右视基准面",
+            "referencePlaneTransform": [
+              0,
+              0,
+              -1,
+              0,
+              1,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "id": "aEIAAAEAAAD//v8AAAAAAAUAAAA=",
+          "name": "原点",
+          "type": "OriginProfileFeature",
+          "parent": null,
+          "suppressed": false,
+          "parents": [
+            "前视基准面"
+          ],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAAAEAAAD//v8AAAAAAJcAAAA=",
+          "name": "草图1",
+          "type": "ProfileFeature",
+          "parent": null,
+          "suppressed": false,
+          "parents": [
+            "前视基准面",
+            "原点"
+          ],
+          "dimensions": [
+            {
+              "id": null,
+              "name": "D1@草图1@8GX.051.023.Part",
+              "value": 1.36,
+              "dimensionType": 0,
+              "readOnly": true,
+              "drivenState": 1,
+              "annotation": [
+                -0.06282128690479183,
+                0.4943322881601642,
+                0.0001
+              ]
+            },
+            {
+              "id": null,
+              "name": "D2@草图1@8GX.051.023.Part",
+              "value": 0.83,
+              "dimensionType": 0,
+              "readOnly": true,
+              "drivenState": 1,
+              "annotation": [
+                -0.7814409822818802,
+                0.07395532460963598,
+                0.0001
+              ]
+            }
+          ],
+          "sketch": {
+            "modelToSketch": [
+              1,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0
+            ],
+            "constrainedStatus": 3,
+            "points": [
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAJcAAAD//wEADQBzZ1BvaW50SGFuZGxlAAD/////AAAAAA==",
+                "coordinates": [
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAJcAAAD//wEADQBzZ1BvaW50SGFuZGxlAQD/////AAAAAA==",
+                "coordinates": [
+                  0.6799999999999999,
+                  -0.4149999999999999,
+                  0
+                ]
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAJcAAAD//wEADQBzZ1BvaW50SGFuZGxlAgD/////AAAAAA==",
+                "coordinates": [
+                  -0.68,
+                  0.41500000000000004,
+                  0
+                ]
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAJcAAAD//wEADQBzZ1BvaW50SGFuZGxlAwD/////AAAAAA==",
+                "coordinates": [
+                  -0.6799999999999999,
+                  -0.4149999999999999,
+                  0
+                ]
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAJcAAAD//wEADQBzZ1BvaW50SGFuZGxlBAD/////AAAAAA==",
+                "coordinates": [
+                  0.68,
+                  0.41500000000000004,
+                  0
+                ]
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAJcAAAD//wEADQBzZ1BvaW50SGFuZGxlDQD/////AAAAAA==",
+                "coordinates": [
+                  0,
+                  2.220446049250313e-16,
+                  0
+                ]
+              }
+            ],
+            "segments": [
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAJcAAAD//wEADABzZ0xpbmVIYW5kbGUBAP////8AAAAA",
+                "name": "直线1",
+                "type": 0,
+                "construction": false,
+                "geometry": {
+                  "start": [
+                    -0.68,
+                    0.41500000000000004,
+                    0
+                  ],
+                  "end": [
+                    0.68,
+                    0.41500000000000004,
+                    0
+                  ]
+                }
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAJcAAAD//wEADABzZ0xpbmVIYW5kbGUCAP////8AAAAA",
+                "name": "直线2",
+                "type": 0,
+                "construction": false,
+                "geometry": {
+                  "start": [
+                    -0.68,
+                    0.41500000000000004,
+                    0
+                  ],
+                  "end": [
+                    -0.6799999999999999,
+                    -0.4149999999999999,
+                    0
+                  ]
+                }
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAJcAAAD//wEADABzZ0xpbmVIYW5kbGUDAP////8AAAAA",
+                "name": "直线3",
+                "type": 0,
+                "construction": false,
+                "geometry": {
+                  "start": [
+                    -0.6799999999999999,
+                    -0.4149999999999999,
+                    0
+                  ],
+                  "end": [
+                    0.6799999999999999,
+                    -0.4149999999999999,
+                    0
+                  ]
+                }
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAJcAAAD//wEADABzZ0xpbmVIYW5kbGUEAP////8AAAAA",
+                "name": "直线4",
+                "type": 0,
+                "construction": false,
+                "geometry": {
+                  "start": [
+                    0.68,
+                    0.41500000000000004,
+                    0
+                  ],
+                  "end": [
+                    0.6799999999999999,
+                    -0.4149999999999999,
+                    0
+                  ]
+                }
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAJcAAAD//wEADABzZ0xpbmVIYW5kbGUFAP////8AAAAA",
+                "name": "直线5",
+                "type": 0,
+                "construction": true,
+                "geometry": {
+                  "start": [
+                    -0.68,
+                    0.41500000000000004,
+                    0
+                  ],
+                  "end": [
+                    0.6799999999999999,
+                    -0.4149999999999999,
+                    0
+                  ]
+                }
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAJcAAAD//wEADABzZ0xpbmVIYW5kbGUGAP////8AAAAA",
+                "name": "直线6",
+                "type": 0,
+                "construction": true,
+                "geometry": {
+                  "start": [
+                    -0.6799999999999999,
+                    -0.4149999999999999,
+                    0
+                  ],
+                  "end": [
+                    0.68,
+                    0.41500000000000004,
+                    0
+                  ]
+                }
+              }
+            ],
+            "relations": [
+              {
+                "type": 9,
+                "suppressed": false,
+                "dimension": null,
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAJcAAAD//wEADQBzZ1BvaW50SGFuZGxlAAD/////AAAAAA==",
+                    "point": [
+                      0,
+                      0,
+                      0
+                    ]
+                  },
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAJcAAAD//wEADABzZ0xpbmVIYW5kbGUFAP////8AAAAA",
+                    "segment": "直线5"
+                  }
+                ]
+              },
+              {
+                "type": 9,
+                "suppressed": false,
+                "dimension": null,
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAJcAAAD//wEADQBzZ1BvaW50SGFuZGxlAAD/////AAAAAA==",
+                    "point": [
+                      0,
+                      0,
+                      0
+                    ]
+                  },
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAJcAAAD//wEADABzZ0xpbmVIYW5kbGUGAP////8AAAAA",
+                    "segment": "直线6"
+                  }
+                ]
+              },
+              {
+                "type": 9,
+                "suppressed": false,
+                "dimension": null,
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAAUAAAD//wEADQBzZ1BvaW50SGFuZGxlAAD/////AAAAAA==",
+                    "point": [
+                      0,
+                      0,
+                      0
+                    ]
+                  },
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAJcAAAD//wEADQBzZ1BvaW50SGFuZGxlAAD/////AAAAAA==",
+                    "point": [
+                      0,
+                      0,
+                      0
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": 12,
+                "suppressed": false,
+                "dimension": null,
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAJcAAAD//wEADQBzZ1BvaW50SGFuZGxlDQD/////AAAAAA==",
+                    "point": [
+                      0,
+                      2.220446049250313e-16,
+                      0
+                    ]
+                  },
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAJcAAAD//wEADABzZ0xpbmVIYW5kbGUFAP////8AAAAA",
+                    "segment": "直线5"
+                  }
+                ]
+              },
+              {
+                "type": 5,
+                "suppressed": false,
+                "dimension": null,
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAJcAAAD//wEADABzZ0xpbmVIYW5kbGUCAP////8AAAAA",
+                    "segment": "直线2"
+                  }
+                ]
+              },
+              {
+                "type": 4,
+                "suppressed": false,
+                "dimension": null,
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAJcAAAD//wEADABzZ0xpbmVIYW5kbGUBAP////8AAAAA",
+                    "segment": "直线1"
+                  }
+                ]
+              },
+              {
+                "type": 5,
+                "suppressed": false,
+                "dimension": null,
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAJcAAAD//wEADABzZ0xpbmVIYW5kbGUEAP////8AAAAA",
+                    "segment": "直线4"
+                  }
+                ]
+              },
+              {
+                "type": 4,
+                "suppressed": false,
+                "dimension": null,
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAJcAAAD//wEADABzZ0xpbmVIYW5kbGUDAP////8AAAAA",
+                    "segment": "直线3"
+                  }
+                ]
+              },
+              {
+                "type": 1,
+                "suppressed": false,
+                "dimension": {
+                  "name": "D1@草图1@8GX.051.023.Part",
+                  "value": 1.36,
+                  "drivenState": 1
+                },
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAJcAAAD//wEADQBzZ1BvaW50SGFuZGxlAgD/////AAAAAA==",
+                    "point": [
+                      -0.68,
+                      0.41500000000000004,
+                      0
+                    ]
+                  },
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAJcAAAD//wEADQBzZ1BvaW50SGFuZGxlBAD/////AAAAAA==",
+                    "point": [
+                      0.68,
+                      0.41500000000000004,
+                      0
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": 1,
+                "suppressed": false,
+                "dimension": {
+                  "name": "D2@草图1@8GX.051.023.Part",
+                  "value": 0.83,
+                  "drivenState": 1
+                },
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAJcAAAD//wEADQBzZ1BvaW50SGFuZGxlAgD/////AAAAAA==",
+                    "point": [
+                      -0.68,
+                      0.41500000000000004,
+                      0
+                    ]
+                  },
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAJcAAAD//wEADQBzZ1BvaW50SGFuZGxlAwD/////AAAAAA==",
+                    "point": [
+                      -0.6799999999999999,
+                      -0.4149999999999999,
+                      0
+                    ]
+                  }
+                ]
+              }
+            ],
+            "contours": [
+              {
+                "closed": true,
+                "segments": [
+                  "aEIAAAYAAAD//v8AAAAAAJcAAAD//wEADABzZ0xpbmVIYW5kbGUBAP////8AAAAA",
+                  "aEIAAAYAAAD//v8AAAAAAJcAAAD//wEADABzZ0xpbmVIYW5kbGUEAP////8AAAAA",
+                  "aEIAAAYAAAD//v8AAAAAAJcAAAD//wEADABzZ0xpbmVIYW5kbGUDAP////8AAAAA",
+                  "aEIAAAYAAAD//v8AAAAAAJcAAAD//wEADABzZ0xpbmVIYW5kbGUCAP////8AAAAA"
+                ]
+              }
+            ]
+          },
+          "definition": null,
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAAAEAAAD//v8AAAAAAFcBAAA=",
+          "name": "钣金12",
+          "type": "SheetMetal",
+          "parent": null,
+          "suppressed": false,
+          "parents": [
+            "钣金"
+          ],
+          "dimensions": [],
+          "sketch": null,
+          "definition": {
+            "interfaceName": "ISheetMetalFeatureData",
+            "properties": {
+              "BendRadius": 0.0015,
+              "Thickness": 0.0015,
+              "FixedReference": null,
+              "BendAllowanceType": 2,
+              "BendTableFile": null,
+              "KFactor": 0.445,
+              "BendAllowance": 0,
+              "UseAutoRelief": true,
+              "AutoReliefType": 1,
+              "ReliefRatio": 0.5,
+              "UseMaterialSheetMetalParameters": false
+            }
+          },
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAAAEAAAD//v8AAAAAAGEBAAA=",
+          "name": "基体-法兰3",
+          "type": "SMBaseFlange",
+          "parent": null,
+          "suppressed": false,
+          "parents": [
+            "钣金",
+            "钣金12",
+            "草图1",
+            "前视基准面"
+          ],
+          "dimensions": [
+            {
+              "id": null,
+              "name": "D1@草图1@8GX.051.023.Part",
+              "value": 1.36,
+              "dimensionType": 0,
+              "readOnly": true,
+              "drivenState": 1,
+              "annotation": [
+                -0.06282128690479183,
+                0.4943322881601642,
+                0.0001
+              ]
+            },
+            {
+              "id": null,
+              "name": "D2@草图1@8GX.051.023.Part",
+              "value": 0.83,
+              "dimensionType": 0,
+              "readOnly": true,
+              "drivenState": 1,
+              "annotation": [
+                -0.7814409822818802,
+                0.07395532460963598,
+                0.0001
+              ]
+            }
+          ],
+          "sketch": null,
+          "definition": {
+            "interfaceName": "IBaseFlangeFeatureData",
+            "properties": {
+              "OffsetDirections": 1,
+              "D1OffsetType": 1,
+              "D2OffsetType": 1,
+              "D1OffsetReference": null,
+              "D2OffsetReference": null,
+              "D1OffsetDistance": 0.02,
+              "D2OffsetDistance": 0.001,
+              "Thickness": 0.0015,
+              "ReverseThickness": true,
+              "BendRadius": 0.0015,
+              "ReverseDirection": true,
+              "D1ReverseOffset": false,
+              "D2ReverseOffset": true,
+              "UseGaugeTable": false,
+              "GaugeTablePath": "",
+              "ThicknessTableName": null,
+              "TableThickness": 0,
+              "OverrideThickness": false,
+              "TableRadius": 0,
+              "OverrideRadius": false,
+              "KFactor": 0.445,
+              "OverrideKFactor": false,
+              "TableKFactor": 0,
+              "UseMaterialSheetMetalParameters": false,
+              "UseDefaultBendAllowance": false,
+              "OverrideDefaultSheetMetalParameters": false,
+              "UseDefaultBendRelief": true,
+              "ReliefType": 1,
+              "UseReliefRatio": true,
+              "ReliefRatio": 0.5,
+              "ReliefWidth": 0.00075,
+              "ReliefDepth": 0.00075,
+              "D1EndConditionType": 1,
+              "D1EndConditionDistance": 0.02,
+              "D1EndConditionReference": null,
+              "D2EndConditionType": 1,
+              "D2EndConditionDistance": 0.001,
+              "D2EndConditionReference": null,
+              "SymmetricThickness": false
+            }
+          },
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAAAEAAAD//v8AAAAAAOgDAAA=",
+          "name": "百叶窗100-13-5板厚2mm5",
+          "type": "FormToolInstance",
+          "parent": null,
+          "suppressed": false,
+          "parents": [
+            "钣金12",
+            "基体-法兰3",
+            "草图40"
+          ],
+          "dimensions": [
+            {
+              "id": null,
+              "name": "D1@草图41@8GX.051.023.Part",
+              "value": 3.1415926535992136,
+              "dimensionType": 1,
+              "readOnly": false,
+              "drivenState": 2,
+              "annotation": [
+                -0.5524282442490444,
+                -0.4729576673933222,
+                0.0016
+              ]
+            },
+            {
+              "id": null,
+              "name": "D2@草图40@8GX.051.023.Part",
+              "value": 0.08,
+              "dimensionType": 0,
+              "readOnly": false,
+              "drivenState": 2,
+              "annotation": [
+                -0.3503065536466377,
+                -0.3832862434696689,
+                0.0016
+              ]
+            },
+            {
+              "id": null,
+              "name": "D1@草图40@8GX.051.023.Part",
+              "value": 0.34,
+              "dimensionType": 0,
+              "readOnly": false,
+              "drivenState": 1,
+              "annotation": [
+                -0.6538656313986054,
+                -0.5138846818546943,
+                0.0016
+              ]
+            }
+          ],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": [],
+          "representation": {
+            "mode": "schematic",
+            "policyId": "louver-schematic-approved-20261102",
+            "accuracy": "schematic-only",
+            "userInstruction": "百叶窗这个，你按照模型做个示意就行，这个不用一比一。"
+          },
+          "schematicDefinition": {
+            "kind": "raised-louver",
+            "footprintSketchId": "aEIAAAEAAAD//v8AAAAAAOcDAAA=",
+            "footprintSketchName": "草图41",
+            "placementSource": "source-profile-modelToSketch",
+            "heightMm": 5,
+            "materialThicknessMm": 2,
+            "nominalParameterSource": "source-feature-name",
+            "sourceFeatureName": "百叶窗100-13-5板厚2mm5"
+          }
+        },
+        {
+          "id": "aEIAAAEAAAD//v8AAAAAAOADAAA=",
+          "name": "草图40",
+          "type": "ProfileFeature",
+          "parent": "百叶窗100-13-5板厚2mm5",
+          "suppressed": false,
+          "parents": [
+            "基体-法兰3"
+          ],
+          "dimensions": [
+            {
+              "id": null,
+              "name": "D2@草图40@8GX.051.023.Part",
+              "value": 0.08,
+              "dimensionType": 0,
+              "readOnly": false,
+              "drivenState": 2,
+              "annotation": [
+                -0.3503065536466377,
+                -0.3832862434696689,
+                0.0016
+              ]
+            },
+            {
+              "id": null,
+              "name": "D1@草图40@8GX.051.023.Part",
+              "value": 0.34,
+              "dimensionType": 0,
+              "readOnly": false,
+              "drivenState": 1,
+              "annotation": [
+                -0.6538656313986054,
+                -0.5138846818546943,
+                0.0016
+              ]
+            }
+          ],
+          "sketch": {
+            "modelToSketch": [
+              1,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              1,
+              0.21262826733391194,
+              0.1380957631564783,
+              -0.0015,
+              1,
+              0,
+              0,
+              0
+            ],
+            "constrainedStatus": 3,
+            "points": [
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAOADAAD//wEADQBzZ1BvaW50SGFuZGxlAAD/////AAAAAA==",
+                "coordinates": [
+                  -0.1273717326660881,
+                  -0.1969042368435216,
+                  0
+                ]
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAOADAAD//wEADQBzZ1BvaW50SGFuZGxlAQD/////AAAAAA==",
+                "coordinates": [
+                  -0.1273717326660881,
+                  -0.1969042368435216,
+                  0
+                ]
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAOADAAD//wEADQBzZ1BvaW50SGFuZGxlAgD/////AAAAAA==",
+                "coordinates": [
+                  -0.11216136773417959,
+                  -0.1969042368435216,
+                  0
+                ]
+              }
+            ],
+            "segments": [
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAOADAAD//wEADABzZ0xpbmVIYW5kbGUAAP////8AAAAA",
+                "name": "直线1",
+                "type": 0,
+                "construction": true,
+                "geometry": {
+                  "start": [
+                    -0.1273717326660881,
+                    -0.1969042368435216,
+                    0
+                  ],
+                  "end": [
+                    -0.11216136773417959,
+                    -0.1969042368435216,
+                    0
+                  ]
+                }
+              }
+            ],
+            "relations": [
+              {
+                "type": 9,
+                "suppressed": false,
+                "dimension": null,
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAOADAAD//wEADQBzZ1BvaW50SGFuZGxlAQD/////AAAAAA==",
+                    "point": [
+                      -0.1273717326660881,
+                      -0.1969042368435216,
+                      0
+                    ]
+                  },
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAOADAAD//wEADQBzZ1BvaW50SGFuZGxlAAD/////AAAAAA==",
+                    "point": [
+                      -0.1273717326660881,
+                      -0.1969042368435216,
+                      0
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": 4,
+                "suppressed": false,
+                "dimension": null,
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAOADAAD//wEADABzZ0xpbmVIYW5kbGUAAP////8AAAAA",
+                    "segment": "直线1"
+                  }
+                ]
+              },
+              {
+                "type": 1,
+                "suppressed": false,
+                "dimension": {
+                  "name": "D2@草图40@8GX.051.023.Part",
+                  "value": 0.08,
+                  "drivenState": 2
+                },
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAOADAAD//wEADABzZ0xpbmVIYW5kbGUAAP////8AAAAA",
+                    "segment": "直线1"
+                  },
+                  {
+                    "id": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRWRnZVJlZl9jAQAAAAAAAAAEAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFABtb0VuZEZhY2VTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/TUYAOgBcAFIARABcAEQAUQBCAHUAcwBiAGEAcgBCAHIAaQBkAGcAZQBWAGkAcgB0AHUAYQBsAEQAZQBzAGkAZwBuAGUAcgBcAHQAZQBtAHAAbABhAHQAZQBzAFwAIWp/Z1wA+le2ZyFqf2dcACdZ+le2ZzEAXAA4AEcAWAAuADAANQAxAC4AMAAyADMALgBTAEwARABQAFIAVAAJgP/+/ws4AEcAWAAuADAANQAxAC4AMAAyADMAAgAAeJsTZv/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAABQAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAGEBAACRoRRmAQAAAAAAAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAABYAIAGEBAACRoRRmBAAAAAyAAAAFgAgAYQEAAJGhFGYCAAAADIAAAAWACABhAQAAkaEUZgMAAAAAAAAAAAAAAGhCAAAAAAAA",
+                    "definitionReference": true,
+                    "lineParameters": [
+                      -0.6799999999999999,
+                      -0.4149999999999999,
+                      0.0015,
+                      1,
+                      0,
+                      0
+                    ],
+                    "circleParameters": null,
+                    "start": [
+                      -0.6799999999999999,
+                      -0.4149999999999999,
+                      0.0015
+                    ],
+                    "end": [
+                      0.6799999999999999,
+                      -0.4149999999999999,
+                      0.0015
+                    ],
+                    "adjacentFaces": [
+                      {
+                        "id": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAIAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFABtb0VuZEZhY2VTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/TUYAOgBcAFIARABcAEQAUQBCAHUAcwBiAGEAcgBCAHIAaQBkAGcAZQBWAGkAcgB0AHUAYQBsAEQAZQBzAGkAZwBuAGUAcgBcAHQAZQBtAHAAbABhAHQAZQBzAFwAIWp/Z1wA+le2ZyFqf2dcACdZ+le2ZzEAXAA4AEcAWAAuADAANQAxAC4AMAAyADMALgBTAEwARABQAFIAVAAJgP/+/ws4AEcAWAAuADAANQAxAC4AMAAyADMAAgAAeJsTZv/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAABQAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAGEBAACRoRRmAQAAAAAAAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAABYAIAGEBAACRoRRmAwAAAP//AQATAG1vVW5CZW5kU3VyZklkUmVwX2MAAAWACAAcBQAA84ogZgAAAAAAAAAADIAAAAWACABhAQAAkaEUZgIAAAAMgAAABYAIAGEBAACRoRRmBAAAAAAAAAAAAAAAAABoQgAAAAAAAAAAAAA=",
+                        "definitionReference": true,
+                        "planeParameters": [
+                          0,
+                          0,
+                          1,
+                          0,
+                          0,
+                          0.0015
+                        ],
+                        "sense": false
+                      },
+                      {
+                        "id": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAIAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/TUYAOgBcAFIARABcAEQAUQBCAHUAcwBiAGEAcgBCAHIAaQBkAGcAZQBWAGkAcgB0AHUAYQBsAEQAZQBzAGkAZwBuAGUAcgBcAHQAZQBtAHAAbABhAHQAZQBzAFwAIWp/Z1wA+le2ZyFqf2dcACdZ+le2ZzEAXAA4AEcAWAAuADAANQAxAC4AMAAyADMALgBTAEwARABQAFIAVAAJgP/+/ws4AEcAWAAuADAANQAxAC4AMAAyADMAAgAAeJsTZv/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAABQAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAGEBAACRoRRmBAAAAP//AQAUAG1vRW5kRmFjZVN1cmZJZFJlcF9jAAAFgAgAYQEAAJGhFGYAAAAAAAAAAAOAAAAFgAgAYQEAAJGhFGYDAAAADIAAAAWACABhAQAAkaEUZgEAAAAAAAAAA4AAAAWACABhAQAAkaEUZgIAAAAAAAAAAAAAAAAAaEIAAAAAAAAAAAAA",
+                        "definitionReference": true,
+                        "planeParameters": [
+                          0,
+                          1,
+                          0,
+                          -0.6799999999999999,
+                          -0.4149999999999999,
+                          0.0015
+                        ],
+                        "sense": true
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": 1,
+                "suppressed": false,
+                "dimension": {
+                  "name": "D1@草图40@8GX.051.023.Part",
+                  "value": 0.34,
+                  "drivenState": 1
+                },
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAOADAAD//wEADQBzZ1BvaW50SGFuZGxlAAD/////AAAAAA==",
+                    "point": [
+                      -0.1273717326660881,
+                      -0.1969042368435216,
+                      0
+                    ]
+                  },
+                  {
+                    "id": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRWRnZVJlZl9jAQAAAAAAAAAEAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFABtb0VuZEZhY2VTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/TUYAOgBcAFIARABcAEQAUQBCAHUAcwBiAGEAcgBCAHIAaQBkAGcAZQBWAGkAcgB0AHUAYQBsAEQAZQBzAGkAZwBuAGUAcgBcAHQAZQBtAHAAbABhAHQAZQBzAFwAIWp/Z1wA+le2ZyFqf2dcACdZ+le2ZzEAXAA4AEcAWAAuADAANQAxAC4AMAAyADMALgBTAEwARABQAFIAVAAJgP/+/ws4AEcAWAAuADAANQAxAC4AMAAyADMAAgAAeJsTZv/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAABQAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAGEBAACRoRRmAQAAAAAAAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAABYAIAGEBAACRoRRmAgAAAP//AQATAG1vVW5CZW5kU3VyZklkUmVwX2MAAAWACAAcBQAA84ogZgAAAAAAAAAADIAAAAWACABhAQAAkaEUZgQAAAAAAAAAAAAAAGhCAAAAAAAA",
+                    "definitionReference": true,
+                    "lineParameters": [
+                      -0.68,
+                      0.41500000000000004,
+                      0.0015,
+                      1.33761810195802e-16,
+                      -1,
+                      0
+                    ],
+                    "circleParameters": null,
+                    "start": [
+                      -0.68,
+                      0.41200000000000003,
+                      0.0015
+                    ],
+                    "end": [
+                      -0.6799999999999999,
+                      -0.4149999999999999,
+                      0.0015
+                    ],
+                    "adjacentFaces": [
+                      {
+                        "id": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAIAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFABtb0VuZEZhY2VTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/TUYAOgBcAFIARABcAEQAUQBCAHUAcwBiAGEAcgBCAHIAaQBkAGcAZQBWAGkAcgB0AHUAYQBsAEQAZQBzAGkAZwBuAGUAcgBcAHQAZQBtAHAAbABhAHQAZQBzAFwAIWp/Z1wA+le2ZyFqf2dcACdZ+le2ZzEAXAA4AEcAWAAuADAANQAxAC4AMAAyADMALgBTAEwARABQAFIAVAAJgP/+/ws4AEcAWAAuADAANQAxAC4AMAAyADMAAgAAeJsTZv/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAABQAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAGEBAACRoRRmAQAAAAAAAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAABYAIAGEBAACRoRRmAwAAAP//AQATAG1vVW5CZW5kU3VyZklkUmVwX2MAAAWACAAcBQAA84ogZgAAAAAAAAAADIAAAAWACABhAQAAkaEUZgIAAAAMgAAABYAIAGEBAACRoRRmBAAAAAAAAAAAAAAAAABoQgAAAAAAAAAAAAA=",
+                        "definitionReference": true,
+                        "planeParameters": [
+                          0,
+                          0,
+                          1,
+                          0,
+                          0,
+                          0.0015
+                        ],
+                        "sense": false
+                      },
+                      {
+                        "id": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAIAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/TUYAOgBcAFIARABcAEQAUQBCAHUAcwBiAGEAcgBCAHIAaQBkAGcAZQBWAGkAcgB0AHUAYQBsAEQAZQBzAGkAZwBuAGUAcgBcAHQAZQBtAHAAbABhAHQAZQBzAFwAIWp/Z1wA+le2ZyFqf2dcACdZ+le2ZzEAXAA4AEcAWAAuADAANQAxAC4AMAAyADMALgBTAEwARABQAFIAVAAJgP/+/ws4AEcAWAAuADAANQAxAC4AMAAyADMAAgAAeJsTZv/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAABQAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAGEBAACRoRRmAgAAAP//AQAUAG1vQmVuZEVuZFN1cmZJZFJlcF9jAAAFgAgAHAUAAPOKIGYCAAAAAAAAAP//AQAUAG1vRW5kRmFjZVN1cmZJZFJlcF9jAAAFgAgAYQEAAJGhFGYAAAAAAAAAAAOAAAAFgAgAYQEAAJGhFGYEAAAAD4AAAAWACABhAQAAkaEUZgEAAAAAAAAAAAAAAAAAAAAAAGhCAAAAAAAAAAAAAA==",
+                        "definitionReference": true,
+                        "planeParameters": [
+                          1,
+                          1.33761810195802e-16,
+                          0,
+                          -0.68,
+                          0.41500000000000004,
+                          0.0015
+                        ],
+                        "sense": true
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "contours": []
+          },
+          "definition": null,
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAAAEAAAD//v8AAAAAAOcDAAA=",
+          "name": "草图41",
+          "type": "ProfileFeature",
+          "parent": "百叶窗100-13-5板厚2mm5",
+          "suppressed": false,
+          "parents": [
+            "基体-法兰3",
+            "草图40"
+          ],
+          "dimensions": [
+            {
+              "id": null,
+              "name": "D1@草图41@8GX.051.023.Part",
+              "value": 3.1415926535992136,
+              "dimensionType": 1,
+              "readOnly": false,
+              "drivenState": 2,
+              "annotation": [
+                -0.5524282442490444,
+                -0.4729576673933222,
+                0.0016
+              ]
+            }
+          ],
+          "sketch": {
+            "modelToSketch": [
+              -1,
+              0,
+              0,
+              0,
+              -1,
+              0,
+              0,
+              0,
+              1,
+              -0.34,
+              -0.3349999999999999,
+              -0.0015,
+              1,
+              0,
+              0,
+              0
+            ],
+            "constrainedStatus": 3,
+            "points": [
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAOcDAAD//wEADQBzZ1BvaW50SGFuZGxlAAD/////AAAAAA==",
+                "coordinates": [
+                  0.03699999999485626,
+                  0.006500000029278634,
+                  0
+                ]
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAOcDAAD//wEADQBzZ1BvaW50SGFuZGxlAQD/////AAAAAA==",
+                "coordinates": [
+                  -0.03700000000514375,
+                  0.006499999970721364,
+                  0
+                ]
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAOcDAAD//wEADQBzZ1BvaW50SGFuZGxlAgD/////AAAAAA==",
+                "coordinates": [
+                  -0.03699999999485626,
+                  -0.006500000029278636,
+                  0
+                ]
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAOcDAAD//wEADQBzZ1BvaW50SGFuZGxlAwD/////AAAAAA==",
+                "coordinates": [
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAOcDAAD//wEADQBzZ1BvaW50SGFuZGxlBAD/////AAAAAA==",
+                "coordinates": [
+                  -0.049999999994856256,
+                  -0.006500000039565779,
+                  0
+                ]
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAOcDAAD//wEADQBzZ1BvaW50SGFuZGxlBQD/////AAAAAA==",
+                "coordinates": [
+                  0.05000000000514375,
+                  -0.0064999999604342185,
+                  0
+                ]
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAOcDAAD//wEADQBzZ1BvaW50SGFuZGxlBgD/////AAAAAA==",
+                "coordinates": [
+                  0.03700000000514375,
+                  -0.0064999999707213655,
+                  0
+                ]
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAOcDAAD//wEADQBzZ1BvaW50SGFuZGxlBwD/////AAAAAA==",
+                "coordinates": [
+                  0.025210364931908466,
+                  1.994934631673846e-11,
+                  0
+                ]
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAOcDAAD//wEADQBzZ1BvaW50SGFuZGxlCAD/////AAAAAA==",
+                "coordinates": [
+                  -3.989869263347692e-11,
+                  0.05042072986381693,
+                  0
+                ]
+              }
+            ],
+            "segments": [
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAOcDAAD//wEACwBzZ0FyY0hhbmRsZQAA/////wAAAAA=",
+                "name": "圆弧3",
+                "type": 1,
+                "construction": false,
+                "geometry": {
+                  "start": [
+                    -0.03700000000514375,
+                    0.006499999970721364,
+                    0
+                  ],
+                  "end": [
+                    -0.049999999994856256,
+                    -0.006500000039565779,
+                    0
+                  ],
+                  "center": [
+                    -0.03699999999485626,
+                    -0.006500000029278636,
+                    0
+                  ],
+                  "radius": 0.013,
+                  "rotation": 1,
+                  "normal": [
+                    0,
+                    0,
+                    1
+                  ]
+                }
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAOcDAAD//wEACwBzZ0FyY0hhbmRsZQEA/////wAAAAA=",
+                "name": "圆弧4",
+                "type": 1,
+                "construction": false,
+                "geometry": {
+                  "start": [
+                    0.05000000000514375,
+                    -0.0064999999604342185,
+                    0
+                  ],
+                  "end": [
+                    0.03699999999485626,
+                    0.006500000029278634,
+                    0
+                  ],
+                  "center": [
+                    0.03700000000514375,
+                    -0.0064999999707213655,
+                    0
+                  ],
+                  "radius": 0.012999999999999998,
+                  "rotation": 1,
+                  "normal": [
+                    0,
+                    0,
+                    1
+                  ]
+                }
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAOcDAAD//wEADABzZ0xpbmVIYW5kbGUAAP////8AAAAA",
+                "name": "直线3",
+                "type": 0,
+                "construction": false,
+                "geometry": {
+                  "start": [
+                    0.03699999999485626,
+                    0.006500000029278634,
+                    0
+                  ],
+                  "end": [
+                    -0.03700000000514375,
+                    0.006499999970721364,
+                    0
+                  ]
+                }
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAOcDAAD//wEADABzZ0xpbmVIYW5kbGUBAP////8AAAAA",
+                "name": "直线4",
+                "type": 0,
+                "construction": false,
+                "geometry": {
+                  "start": [
+                    -0.049999999994856256,
+                    -0.006500000039565779,
+                    0
+                  ],
+                  "end": [
+                    0.05000000000514375,
+                    -0.0064999999604342185,
+                    0
+                  ]
+                }
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAOcDAAD//wEADABzZ0xpbmVIYW5kbGUCAP////8AAAAA",
+                "name": "直线5",
+                "type": 0,
+                "construction": true,
+                "geometry": {
+                  "start": [
+                    0,
+                    0,
+                    0
+                  ],
+                  "end": [
+                    0.025210364931908466,
+                    1.994934631673846e-11,
+                    0
+                  ]
+                }
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAOcDAAD//wEADABzZ0xpbmVIYW5kbGUDAP////8AAAAA",
+                "name": "直线6",
+                "type": 0,
+                "construction": true,
+                "geometry": {
+                  "start": [
+                    0,
+                    0,
+                    0
+                  ],
+                  "end": [
+                    -3.989869263347692e-11,
+                    0.05042072986381693,
+                    0
+                  ]
+                }
+              }
+            ],
+            "relations": [
+              {
+                "type": 17,
+                "suppressed": false,
+                "dimension": null,
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAOcDAAD//wEADQBzZ1BvaW50SGFuZGxlAwD/////AAAAAA==",
+                    "point": [
+                      0,
+                      0,
+                      0
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": 2,
+                "suppressed": false,
+                "dimension": {
+                  "name": "D1@草图41@8GX.051.023.Part",
+                  "value": 3.1415926535992136,
+                  "drivenState": 2
+                },
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAOADAAD//wEADABzZ0xpbmVIYW5kbGUAAP////8AAAAA",
+                    "segment": "直线1"
+                  },
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAOcDAAD//wEADABzZ0xpbmVIYW5kbGUCAP////8AAAAA",
+                    "segment": "直线5"
+                  }
+                ]
+              }
+            ],
+            "contours": [
+              {
+                "closed": true,
+                "segments": [
+                  "aEIAAAYAAAD//v8AAAAAAOcDAAD//wEACwBzZ0FyY0hhbmRsZQAA/////wAAAAA=",
+                  "aEIAAAYAAAD//v8AAAAAAOcDAAD//wEADABzZ0xpbmVIYW5kbGUBAP////8AAAAA",
+                  "aEIAAAYAAAD//v8AAAAAAOcDAAD//wEACwBzZ0FyY0hhbmRsZQEA/////wAAAAA=",
+                  "aEIAAAYAAAD//v8AAAAAAOcDAAD//wEADABzZ0xpbmVIYW5kbGUAAP////8AAAAA"
+                ]
+              }
+            ]
+          },
+          "definition": null,
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAAAEAAAD//v8AAAAAAIsEAAA=",
+          "name": "阵列(线性)4",
+          "type": "LPattern",
+          "parent": null,
+          "suppressed": false,
+          "parents": [
+            "百叶窗100-13-5板厚2mm5",
+            "基体-法兰3"
+          ],
+          "dimensions": [
+            {
+              "id": null,
+              "name": "D4@阵列(线性)4@8GX.051.023.Part",
+              "value": 0.34,
+              "dimensionType": 0,
+              "readOnly": false,
+              "drivenState": 1,
+              "annotation": [
+                -0.17,
+                -0.3350999999999999,
+                0.0015
+              ]
+            },
+            {
+              "id": null,
+              "name": "D2@阵列(线性)4@8GX.051.023.Part",
+              "value": 3,
+              "dimensionType": 2,
+              "readOnly": false,
+              "drivenState": 1,
+              "annotation": [
+                -0.33239481753404576,
+                -0.3349999999999999,
+                0.0016
+              ]
+            },
+            {
+              "id": null,
+              "name": "D3@阵列(线性)4@8GX.051.023.Part",
+              "value": 0.08,
+              "dimensionType": 0,
+              "readOnly": false,
+              "drivenState": 2,
+              "annotation": [
+                -0.33990000000000004,
+                -0.2949999999999998,
+                0.0015000000000000002
+              ]
+            },
+            {
+              "id": null,
+              "name": "D1@阵列(线性)4@8GX.051.023.Part",
+              "value": 9,
+              "dimensionType": 2,
+              "readOnly": false,
+              "drivenState": 1,
+              "annotation": [
+                -0.33239481753404576,
+                -0.3349999999999999,
+                0.0016
+              ]
+            }
+          ],
+          "sketch": null,
+          "definition": {
+            "interfaceName": "ILinearPatternFeatureData",
+            "properties": {
+              "D1Axis": {
+                "id": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRWRnZVJlZl9jAQAAAAAAAAAEAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFABtb0VuZEZhY2VTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/TUYAOgBcAFIARABcAEQAUQBCAHUAcwBiAGEAcgBCAHIAaQBkAGcAZQBWAGkAcgB0AHUAYQBsAEQAZQBzAGkAZwBuAGUAcgBcAHQAZQBtAHAAbABhAHQAZQBzAFwAIWp/Z1wA+le2ZyFqf2dcACdZ+le2ZzEAXAA4AEcAWAAuADAANQAxAC4AMAAyADMALgBTAEwARABQAFIAVAAJgP/+/ws4AEcAWAAuADAANQAxAC4AMAAyADMAAgAAeJsTZv/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAABQAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAGEBAACRoRRmAQAAAAAAAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAABYAIAGEBAACRoRRmAgAAAAyAAAAFgAgAYQEAAJGhFGYBAAAADIAAAAWACABhAQAAkaEUZgQAAAAAAAAAAAAAAGhCAAAAAAAA",
+                "definitionReference": true,
+                "lineParameters": [
+                  -0.68,
+                  0.41500000000000004,
+                  0.0015,
+                  1.33761810195802e-16,
+                  -1,
+                  0
+                ],
+                "circleParameters": null,
+                "start": [
+                  -0.68,
+                  0.41500000000000004,
+                  0.0015
+                ],
+                "end": [
+                  -0.6799999999999999,
+                  -0.4149999999999999,
+                  0.0015
+                ],
+                "adjacentFaces": [
+                  {
+                    "id": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAIAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFABtb0VuZEZhY2VTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/TUYAOgBcAFIARABcAEQAUQBCAHUAcwBiAGEAcgBCAHIAaQBkAGcAZQBWAGkAcgB0AHUAYQBsAEQAZQBzAGkAZwBuAGUAcgBcAHQAZQBtAHAAbABhAHQAZQBzAFwAIWp/Z1wA+le2ZyFqf2dcACdZ+le2ZzEAXAA4AEcAWAAuADAANQAxAC4AMAAyADMALgBTAEwARABQAFIAVAAJgP/+/ws4AEcAWAAuADAANQAxAC4AMAAyADMAAgAAeJsTZv/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAABQAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAGEBAACRoRRmAQAAAAAAAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAABYAIAGEBAACRoRRmAwAAAAyAAAAFgAgAYQEAAJGhFGYBAAAADIAAAAWACABhAQAAkaEUZgIAAAAMgAAABYAIAGEBAACRoRRmBAAAAAAAAAAAAAAAAABoQgAAAAAAAAAAAAA=",
+                    "definitionReference": true,
+                    "planeParameters": [
+                      0,
+                      0,
+                      1,
+                      0,
+                      0,
+                      0.0015
+                    ],
+                    "sense": false
+                  },
+                  {
+                    "id": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAIAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/TUYAOgBcAFIARABcAEQAUQBCAHUAcwBiAGEAcgBCAHIAaQBkAGcAZQBWAGkAcgB0AHUAYQBsAEQAZQBzAGkAZwBuAGUAcgBcAHQAZQBtAHAAbABhAHQAZQBzAFwAIWp/Z1wA+le2ZyFqf2dcACdZ+le2ZzEAXAA4AEcAWAAuADAANQAxAC4AMAAyADMALgBTAEwARABQAFIAVAAJgP/+/ws4AEcAWAAuADAANQAxAC4AMAAyADMAAgAAeJsTZv/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAABQAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAGEBAACRoRRmAgAAAP//AQAUAG1vRW5kRmFjZVN1cmZJZFJlcF9jAAAFgAgAYQEAAJGhFGYAAAAAAAAAAAOAAAAFgAgAYQEAAJGhFGYEAAAADIAAAAWACABhAQAAkaEUZgEAAAAAAAAAA4AAAAWACABhAQAAkaEUZgEAAAAAAAAAAAAAAAAAaEIAAAAAAAAAAAAA",
+                    "definitionReference": true,
+                    "planeParameters": [
+                      1,
+                      1.33761810195802e-16,
+                      0,
+                      -0.68,
+                      0.41500000000000004,
+                      0.0015
+                    ],
+                    "sense": true
+                  }
+                ]
+              },
+              "D2Axis": {
+                "id": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRWRnZVJlZl9jAQAAAAAAAAAEAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFABtb0VuZEZhY2VTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/TUYAOgBcAFIARABcAEQAUQBCAHUAcwBiAGEAcgBCAHIAaQBkAGcAZQBWAGkAcgB0AHUAYQBsAEQAZQBzAGkAZwBuAGUAcgBcAHQAZQBtAHAAbABhAHQAZQBzAFwAIWp/Z1wA+le2ZyFqf2dcACdZ+le2ZzEAXAA4AEcAWAAuADAANQAxAC4AMAAyADMALgBTAEwARABQAFIAVAAJgP/+/ws4AEcAWAAuADAANQAxAC4AMAAyADMAAgAAeJsTZv/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAABQAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAGEBAACRoRRmAQAAAAAAAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAABYAIAGEBAACRoRRmBAAAAAyAAAAFgAgAYQEAAJGhFGYCAAAADIAAAAWACABhAQAAkaEUZgMAAAAAAAAAAAAAAGhCAAAAAAAA",
+                "definitionReference": true,
+                "lineParameters": [
+                  -0.6799999999999999,
+                  -0.4149999999999999,
+                  0.0015,
+                  1,
+                  0,
+                  0
+                ],
+                "circleParameters": null,
+                "start": [
+                  -0.6799999999999999,
+                  -0.4149999999999999,
+                  0.0015
+                ],
+                "end": [
+                  0.6799999999999999,
+                  -0.4149999999999999,
+                  0.0015
+                ],
+                "adjacentFaces": [
+                  {
+                    "id": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAIAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFABtb0VuZEZhY2VTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/TUYAOgBcAFIARABcAEQAUQBCAHUAcwBiAGEAcgBCAHIAaQBkAGcAZQBWAGkAcgB0AHUAYQBsAEQAZQBzAGkAZwBuAGUAcgBcAHQAZQBtAHAAbABhAHQAZQBzAFwAIWp/Z1wA+le2ZyFqf2dcACdZ+le2ZzEAXAA4AEcAWAAuADAANQAxAC4AMAAyADMALgBTAEwARABQAFIAVAAJgP/+/ws4AEcAWAAuADAANQAxAC4AMAAyADMAAgAAeJsTZv/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAABQAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAGEBAACRoRRmAQAAAAAAAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAABYAIAGEBAACRoRRmAwAAAAyAAAAFgAgAYQEAAJGhFGYBAAAADIAAAAWACABhAQAAkaEUZgIAAAAMgAAABYAIAGEBAACRoRRmBAAAAAAAAAAAAAAAAABoQgAAAAAAAAAAAAA=",
+                    "definitionReference": true,
+                    "planeParameters": [
+                      0,
+                      0,
+                      1,
+                      0,
+                      0,
+                      0.0015
+                    ],
+                    "sense": false
+                  },
+                  {
+                    "id": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAIAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/TUYAOgBcAFIARABcAEQAUQBCAHUAcwBiAGEAcgBCAHIAaQBkAGcAZQBWAGkAcgB0AHUAYQBsAEQAZQBzAGkAZwBuAGUAcgBcAHQAZQBtAHAAbABhAHQAZQBzAFwAIWp/Z1wA+le2ZyFqf2dcACdZ+le2ZzEAXAA4AEcAWAAuADAANQAxAC4AMAAyADMALgBTAEwARABQAFIAVAAJgP/+/ws4AEcAWAAuADAANQAxAC4AMAAyADMAAgAAeJsTZv/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAABQAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAGEBAACRoRRmBAAAAP//AQAUAG1vRW5kRmFjZVN1cmZJZFJlcF9jAAAFgAgAYQEAAJGhFGYAAAAAAAAAAAOAAAAFgAgAYQEAAJGhFGYDAAAADIAAAAWACABhAQAAkaEUZgEAAAAAAAAAA4AAAAWACABhAQAAkaEUZgIAAAAAAAAAAAAAAAAAaEIAAAAAAAAAAAAA",
+                    "definitionReference": true,
+                    "planeParameters": [
+                      0,
+                      1,
+                      0,
+                      -0.6799999999999999,
+                      -0.4149999999999999,
+                      0.0015
+                    ],
+                    "sense": true
+                  }
+                ]
+              },
+              "D1ReverseDirection": true,
+              "D2ReverseDirection": false,
+              "D1Spacing": 0.08,
+              "D2Spacing": 0.34,
+              "D1TotalInstances": 9,
+              "D2TotalInstances": 3,
+              "VarySketch": false,
+              "GeometryPattern": false,
+              "PatternFeatureArray": [
+                {
+                  "id": "aEIAAAEAAAD//v8AAAAAAOgDAAA=",
+                  "feature": "百叶窗100-13-5板厚2mm5"
+                }
+              ],
+              "SkippedItemArray": [],
+              "PatternFaceArray": [],
+              "D2PatternSeedOnly": false,
+              "PatternBodyArray": null,
+              "PropagateVisualProperty": true,
+              "PatternElement": 0,
+              "BodyPattern": false,
+              "D1EndCondition": 0,
+              "D1EndReference": null,
+              "D1EndRefOffset": 0,
+              "D1EndRefReverseOffset": false,
+              "D1EndUseSeedReference": false,
+              "D1EndSeedReference": null,
+              "D1EndUseSpacing": false,
+              "D2EndCondition": 0,
+              "D2EndReference": null,
+              "D2EndRefOffset": 0,
+              "D2EndRefReverseOffset": false,
+              "D2EndUseSeedReference": false,
+              "D2EndSeedReference": null,
+              "D2EndUseSpacing": false,
+              "FeatureScope": true,
+              "FeatureScopeBodies": [
+                {
+                  "id": "aEIAAAQAAAD//v8AAAAAAAEAAABwAAAA",
+                  "referenceOnly": true
+                }
+              ],
+              "AutoSelect": false,
+              "InstancesToVary": false,
+              "StructureSystemToPatternArray": [],
+              "instanceTransforms": [
+                [
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  0.34,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  0.68,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  -1.070094481566416e-17,
+                  0.08,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  0.34,
+                  0.08,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  0.68,
+                  0.08,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  -2.140188963132832e-17,
+                  0.16,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  0.34,
+                  0.16,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  0.68,
+                  0.16,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  -3.2102834446992477e-17,
+                  0.24,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  0.33999999999999997,
+                  0.24,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  0.68,
+                  0.24,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  -4.280377926265664e-17,
+                  0.32,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  0.33999999999999997,
+                  0.32,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  0.68,
+                  0.32,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  -5.35047240783208e-17,
+                  0.4,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  0.33999999999999997,
+                  0.4,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  0.68,
+                  0.4,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  -6.420566889398495e-17,
+                  0.48,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  0.33999999999999997,
+                  0.48,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  0.6799999999999999,
+                  0.48,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  -7.490661370964914e-17,
+                  0.56,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  0.33999999999999997,
+                  0.56,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  0.6799999999999999,
+                  0.56,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  -8.560755852531328e-17,
+                  0.64,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  0.3399999999999999,
+                  0.64,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0,
+                  1,
+                  0.6799999999999999,
+                  0.64,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0
+                ]
+              ]
+            }
+          },
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAAAEAAAD//v8AAAAAABYFAAA=",
+          "name": "边线-法兰1",
+          "type": "EdgeFlange",
+          "parent": null,
+          "suppressed": false,
+          "parents": [
+            "钣金",
+            "钣金12",
+            "基体-法兰3",
+            "草图44"
+          ],
+          "dimensions": [
+            {
+              "id": null,
+              "name": "D7@边线-法兰1@8GX.051.023.Part",
+              "value": 0.046,
+              "dimensionType": 0,
+              "readOnly": false,
+              "drivenState": 2,
+              "annotation": [
+                0.7800000000000001,
+                0.41415000000000013,
+                0.023
+              ]
+            },
+            {
+              "id": null,
+              "name": "D4@边线折弯1@8GX.051.023.Part",
+              "value": 1.5707963267949,
+              "dimensionType": 1,
+              "readOnly": false,
+              "drivenState": 2,
+              "annotation": [
+                -0.6801,
+                0.41500000000000004,
+                5.594483210025203e-17
+              ]
+            }
+          ],
+          "sketch": null,
+          "definition": {
+            "interfaceName": "IEdgeFlangeFeatureData",
+            "properties": {
+              "Edge": {
+                "id": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRWRnZVJlZl9jAQAAAAAAAAAEAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/TUYAOgBcAFIARABcAEQAUQBCAHUAcwBiAGEAcgBCAHIAaQBkAGcAZQBWAGkAcgB0AHUAYQBsAEQAZQBzAGkAZwBuAGUAcgBcAHQAZQBtAHAAbABhAHQAZQBzAFwAIWp/Z1wA+le2ZyFqf2dcACdZ+le2ZzEAXAA4AEcAWAAuADAANQAxAC4AMAAyADMALgBTAEwARABQAFIAVAAJgP/+/ws4AEcAWAAuADAANQAxAC4AMAAyADMAAgAAeJsTZv/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAABQAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAGEBAACRoRRmAQAAAP//AQAUAG1vRW5kRmFjZVN1cmZJZFJlcF9jAAAFgAgAYQEAAJGhFGYAAAAAAAAAAAOAAAAFgAgAYQEAAJGhFGYDAAAAA4AAAAWACABhAQAAkaEUZgIAAAAAAAAAAAAAAGhCAAAAAAAA",
+                "definitionReference": true,
+                "lineParameters": [
+                  -0.68,
+                  0.41500000000000004,
+                  0,
+                  -1,
+                  0,
+                  0
+                ],
+                "circleParameters": null,
+                "start": [
+                  0.68,
+                  0.41500000000000004,
+                  0
+                ],
+                "end": [
+                  -0.68,
+                  0.41500000000000004,
+                  0
+                ],
+                "adjacentFaces": [
+                  {
+                    "id": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAIAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/TUYAOgBcAFIARABcAEQAUQBCAHUAcwBiAGEAcgBCAHIAaQBkAGcAZQBWAGkAcgB0AHUAYQBsAEQAZQBzAGkAZwBuAGUAcgBcAHQAZQBtAHAAbABhAHQAZQBzAFwAIWp/Z1wA+le2ZyFqf2dcACdZ+le2ZzEAXAA4AEcAWAAuADAANQAxAC4AMAAyADMALgBTAEwARABQAFIAVAAJgP/+/ws4AEcAWAAuADAANQAxAC4AMAAyADMAAgAAeJsTZv/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAABQAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAGEBAACRoRRmAQAAAP//AQAUAG1vRW5kRmFjZVN1cmZJZFJlcF9jAAAFgAgAYQEAAJGhFGYAAAAAAAAAAAOAAAAFgAgAYQEAAJGhFGYCAAAADIAAAAWACABhAQAAkaEUZgEAAAAAAAAAA4AAAAWACABhAQAAkaEUZgMAAAAAAAAAAAAAAAAAaEIAAAAAAAAAAAAA",
+                    "definitionReference": true,
+                    "planeParameters": [
+                      0,
+                      -1,
+                      0,
+                      -0.68,
+                      0.41500000000000004,
+                      0.0015
+                    ],
+                    "sense": true
+                  },
+                  {
+                    "id": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAIAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFABtb0VuZEZhY2VTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/TUYAOgBcAFIARABcAEQAUQBCAHUAcwBiAGEAcgBCAHIAaQBkAGcAZQBWAGkAcgB0AHUAYQBsAEQAZQBzAGkAZwBuAGUAcgBcAHQAZQBtAHAAbABhAHQAZQBzAFwAIWp/Z1wA+le2ZyFqf2dcACdZ+le2ZzEAXAA4AEcAWAAuADAANQAxAC4AMAAyADMALgBTAEwARABQAFIAVAAJgP/+/ws4AEcAWAAuADAANQAxAC4AMAAyADMAAgAAeJsTZv/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAABQAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAGEBAACRoRRmAAAAAAAAAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAABYAIAGEBAACRoRRmAwAAAAyAAAAFgAgAYQEAAJGhFGYEAAAADIAAAAWACABhAQAAkaEUZgIAAAAMgAAABYAIAGEBAACRoRRmAQAAAAAAAAAAAAAAAABoQgAAAAAAAAAAAAA=",
+                    "definitionReference": true,
+                    "planeParameters": [
+                      0,
+                      0,
+                      1,
+                      0,
+                      0,
+                      0
+                    ],
+                    "sense": true
+                  }
+                ]
+              },
+              "UseDefaultBendRadius": true,
+              "BendRadius": 0.0015,
+              "BendAngle": 1.5707963267949,
+              "OffsetType": 1,
+              "OffsetReference": null,
+              "ReverseOffset": true,
+              "OffsetDistance": 0.046,
+              "OffsetDimType": 1,
+              "PositionType": 1,
+              "UsePositionTrimSideBends": false,
+              "UsePositionOffset": false,
+              "PositionOffsetType": 1,
+              "PositionOffsetReference": null,
+              "PositionOffsetDistance": 0.01,
+              "ReversePositionOffset": false,
+              "AutoReliefType": 1,
+              "UseReliefRatio": true,
+              "ReliefRatio": 0.5,
+              "ReliefWidth": 0.00075,
+              "ReliefDepth": 0.00075,
+              "ReliefTearType": 1,
+              "UseDefaultBendAllowance": true,
+              "UseDefaultBendRelief": true,
+              "Edges": [
+                {
+                  "id": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRWRnZVJlZl9jAQAAAAAAAAAEAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/TUYAOgBcAFIARABcAEQAUQBCAHUAcwBiAGEAcgBCAHIAaQBkAGcAZQBWAGkAcgB0AHUAYQBsAEQAZQBzAGkAZwBuAGUAcgBcAHQAZQBtAHAAbABhAHQAZQBzAFwAIWp/Z1wA+le2ZyFqf2dcACdZ+le2ZzEAXAA4AEcAWAAuADAANQAxAC4AMAAyADMALgBTAEwARABQAFIAVAAJgP/+/ws4AEcAWAAuADAANQAxAC4AMAAyADMAAgAAeJsTZv/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAABQAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAGEBAACRoRRmAQAAAP//AQAUAG1vRW5kRmFjZVN1cmZJZFJlcF9jAAAFgAgAYQEAAJGhFGYAAAAAAAAAAAOAAAAFgAgAYQEAAJGhFGYDAAAAA4AAAAWACABhAQAAkaEUZgIAAAAAAAAAAAAAAGhCAAAAAAAA",
+                  "definitionReference": true,
+                  "lineParameters": [
+                    -0.68,
+                    0.41500000000000004,
+                    0,
+                    -1,
+                    0,
+                    0
+                  ],
+                  "circleParameters": null,
+                  "start": [
+                    0.68,
+                    0.41500000000000004,
+                    0
+                  ],
+                  "end": [
+                    -0.68,
+                    0.41500000000000004,
+                    0
+                  ],
+                  "adjacentFaces": [
+                    {
+                      "id": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAIAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/TUYAOgBcAFIARABcAEQAUQBCAHUAcwBiAGEAcgBCAHIAaQBkAGcAZQBWAGkAcgB0AHUAYQBsAEQAZQBzAGkAZwBuAGUAcgBcAHQAZQBtAHAAbABhAHQAZQBzAFwAIWp/Z1wA+le2ZyFqf2dcACdZ+le2ZzEAXAA4AEcAWAAuADAANQAxAC4AMAAyADMALgBTAEwARABQAFIAVAAJgP/+/ws4AEcAWAAuADAANQAxAC4AMAAyADMAAgAAeJsTZv/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAABQAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAGEBAACRoRRmAQAAAP//AQAUAG1vRW5kRmFjZVN1cmZJZFJlcF9jAAAFgAgAYQEAAJGhFGYAAAAAAAAAAAOAAAAFgAgAYQEAAJGhFGYCAAAADIAAAAWACABhAQAAkaEUZgEAAAAAAAAAA4AAAAWACABhAQAAkaEUZgMAAAAAAAAAAAAAAAAAaEIAAAAAAAAAAAAA",
+                      "definitionReference": true,
+                      "planeParameters": [
+                        0,
+                        -1,
+                        0,
+                        -0.68,
+                        0.41500000000000004,
+                        0.0015
+                      ],
+                      "sense": true
+                    },
+                    {
+                      "id": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAIAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFABtb0VuZEZhY2VTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/TUYAOgBcAFIARABcAEQAUQBCAHUAcwBiAGEAcgBCAHIAaQBkAGcAZQBWAGkAcgB0AHUAYQBsAEQAZQBzAGkAZwBuAGUAcgBcAHQAZQBtAHAAbABhAHQAZQBzAFwAIWp/Z1wA+le2ZyFqf2dcACdZ+le2ZzEAXAA4AEcAWAAuADAANQAxAC4AMAAyADMALgBTAEwARABQAFIAVAAJgP/+/ws4AEcAWAAuADAANQAxAC4AMAAyADMAAgAAeJsTZv/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAABQAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAGEBAACRoRRmAAAAAAAAAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAABYAIAGEBAACRoRRmAwAAAAyAAAAFgAgAYQEAAJGhFGYEAAAADIAAAAWACABhAQAAkaEUZgIAAAAMgAAABYAIAGEBAACRoRRmAQAAAAAAAAAAAAAAAABoQgAAAAAAAAAAAAA=",
+                      "definitionReference": true,
+                      "planeParameters": [
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0
+                      ],
+                      "sense": true
+                    }
+                  ]
+                }
+              ],
+              "GapDistance": 0.001,
+              "AngleReference": null,
+              "LockAngle": true,
+              "PerpendicularToFace": false,
+              "NormalToFlangePlane": true,
+              "customBendAllowance": {
+                "Type": 2,
+                "BendTableFile": null,
+                "KFactor": 0.445,
+                "BendAllowance": 0,
+                "BendDeduction": 0
+              }
+            }
+          },
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAAAEAAAD//v8AAAAAABAFAAA=",
+          "name": "草图44",
+          "type": "ProfileFeature",
+          "parent": "边线-法兰1",
+          "suppressed": false,
+          "parents": [
+            "基体-法兰3"
+          ],
+          "dimensions": [],
+          "sketch": {
+            "modelToSketch": [
+              1,
+              0,
+              0,
+              0,
+              3.4914813388431334e-15,
+              -1,
+              0,
+              1,
+              3.4914813388431334e-15,
+              0,
+              -0.001500000000001449,
+              0.41500000000000004,
+              1,
+              0,
+              0,
+              0
+            ],
+            "constrainedStatus": 2,
+            "points": [
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAABAFAAD//wEADQBzZ1BvaW50SGFuZGxlAAD/////AAAAAA==",
+                "coordinates": [
+                  0.68,
+                  0,
+                  0
+                ]
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAABAFAAD//wEADQBzZ1BvaW50SGFuZGxlAQD/////AAAAAA==",
+                "coordinates": [
+                  -0.68,
+                  0,
+                  0
+                ]
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAABAFAAD//wEADQBzZ1BvaW50SGFuZGxlAgD/////AAAAAA==",
+                "coordinates": [
+                  -0.68,
+                  0.044500000000000005,
+                  0
+                ]
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAABAFAAD//wEADQBzZ1BvaW50SGFuZGxlAwD/////AAAAAA==",
+                "coordinates": [
+                  0.6800000000000002,
+                  0.044500000000000005,
+                  0
+                ]
+              }
+            ],
+            "segments": [
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAABAFAAD//wEADABzZ0xpbmVIYW5kbGUCAP////8AAAAA",
+                "name": "直线3",
+                "type": 0,
+                "construction": false,
+                "geometry": {
+                  "start": [
+                    -0.68,
+                    0,
+                    0
+                  ],
+                  "end": [
+                    -0.68,
+                    0.044500000000000005,
+                    0
+                  ]
+                }
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAABAFAAD//wEADABzZ0xpbmVIYW5kbGUDAP////8AAAAA",
+                "name": "直线4",
+                "type": 0,
+                "construction": false,
+                "geometry": {
+                  "start": [
+                    -0.68,
+                    0.044500000000000005,
+                    0
+                  ],
+                  "end": [
+                    0.6800000000000002,
+                    0.044500000000000005,
+                    0
+                  ]
+                }
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAABAFAAD//wEADABzZ0xpbmVIYW5kbGUEAP////8AAAAA",
+                "name": "直线5",
+                "type": 0,
+                "construction": false,
+                "geometry": {
+                  "start": [
+                    0.6800000000000002,
+                    0.044500000000000005,
+                    0
+                  ],
+                  "end": [
+                    0.68,
+                    0,
+                    0
+                  ]
+                }
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAABAFAAD//wEADABzZ0xpbmVIYW5kbGUGAP////8AAAAA",
+                "name": "直线7",
+                "type": 0,
+                "construction": false,
+                "geometry": {
+                  "start": [
+                    0.68,
+                    0,
+                    0
+                  ],
+                  "end": [
+                    -0.68,
+                    0,
+                    0
+                  ]
+                }
+              }
+            ],
+            "relations": [
+              {
+                "type": 32,
+                "suppressed": false,
+                "dimension": null,
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAABAFAAD//wEADABzZ0xpbmVIYW5kbGUFAP////8AAAAA",
+                    "segment": "直线6"
+                  },
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAABAFAAD//wEADABzZ0xpbmVIYW5kbGUGAP////8AAAAA",
+                    "segment": "直线7"
+                  }
+                ]
+              },
+              {
+                "type": 5,
+                "suppressed": false,
+                "dimension": null,
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAABAFAAD//wEADABzZ0xpbmVIYW5kbGUCAP////8AAAAA",
+                    "segment": "直线3"
+                  }
+                ]
+              },
+              {
+                "type": 4,
+                "suppressed": false,
+                "dimension": null,
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAABAFAAD//wEADABzZ0xpbmVIYW5kbGUDAP////8AAAAA",
+                    "segment": "直线4"
+                  }
+                ]
+              },
+              {
+                "type": 5,
+                "suppressed": false,
+                "dimension": null,
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAABAFAAD//wEADABzZ0xpbmVIYW5kbGUEAP////8AAAAA",
+                    "segment": "直线5"
+                  }
+                ]
+              }
+            ],
+            "contours": [
+              {
+                "closed": true,
+                "segments": [
+                  "aEIAAAYAAAD//v8AAAAAABAFAAD//wEADABzZ0xpbmVIYW5kbGUCAP////8AAAAA",
+                  "aEIAAAYAAAD//v8AAAAAABAFAAD//wEADABzZ0xpbmVIYW5kbGUDAP////8AAAAA",
+                  "aEIAAAYAAAD//v8AAAAAABAFAAD//wEADABzZ0xpbmVIYW5kbGUEAP////8AAAAA",
+                  "aEIAAAYAAAD//v8AAAAAABAFAAD//wEADABzZ0xpbmVIYW5kbGUGAP////8AAAAA"
+                ]
+              }
+            ]
+          },
+          "definition": null,
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAAAEAAAD//v8AAAAAABwFAAA=",
+          "name": "边线折弯1",
+          "type": "OneBend",
+          "parent": "边线-法兰1",
+          "suppressed": false,
+          "parents": [
+            "边线-法兰1"
+          ],
+          "dimensions": [
+            {
+              "id": null,
+              "name": "D7@边线-法兰1@8GX.051.023.Part",
+              "value": 0.046,
+              "dimensionType": 0,
+              "readOnly": false,
+              "drivenState": 2,
+              "annotation": [
+                0.7800000000000001,
+                0.41415000000000013,
+                0.023
+              ]
+            },
+            {
+              "id": null,
+              "name": "D4@边线折弯1@8GX.051.023.Part",
+              "value": 1.5707963267949,
+              "dimensionType": 1,
+              "readOnly": false,
+              "drivenState": 2,
+              "annotation": [
+                -0.6801,
+                0.41500000000000004,
+                5.594483210025203e-17
+              ]
+            }
+          ],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAAAEAAAD//v8AAAAAAEEFAAA=",
+          "name": "边线-法兰2",
+          "type": "EdgeFlange",
+          "parent": null,
+          "suppressed": false,
+          "parents": [
+            "钣金",
+            "钣金12",
+            "基体-法兰3",
+            "草图47",
+            "边线-法兰1"
+          ],
+          "dimensions": [
+            {
+              "id": null,
+              "name": "D7@边线-法兰2@8GX.051.023.Part",
+              "value": 0.035,
+              "dimensionType": 0,
+              "readOnly": false,
+              "drivenState": 2,
+              "annotation": [
+                0.7270000000000001,
+                0.3975000000000002,
+                0.045150000000000245
+              ]
+            },
+            {
+              "id": null,
+              "name": "D4@边线折弯2@8GX.051.023.Part",
+              "value": 1.5707963267949,
+              "dimensionType": 1,
+              "readOnly": false,
+              "drivenState": 2,
+              "annotation": [
+                -0.6381000000000001,
+                0.4150000000000005,
+                0.04600000000000001
+              ]
+            },
+            {
+              "id": null,
+              "name": "D1@草图47@8GX.051.023.Part",
+              "value": 0.042,
+              "dimensionType": 0,
+              "readOnly": false,
+              "drivenState": 2,
+              "annotation": [
+                0.6690388312172215,
+                0.39747760006906896,
+                0.04590000000000012
+              ]
+            },
+            {
+              "id": null,
+              "name": "D2@草图47@8GX.051.023.Part",
+              "value": 0.042,
+              "dimensionType": 0,
+              "readOnly": false,
+              "drivenState": 2,
+              "annotation": [
+                -0.6778408461976502,
+                0.36211420950502776,
+                0.04590000000000038
+              ]
+            }
+          ],
+          "sketch": null,
+          "definition": {
+            "interfaceName": "IEdgeFlangeFeatureData",
+            "properties": {
+              "Edge": {
+                "id": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRWRnZVJlZl9jAQAAAAAAAAAEAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFABtb1JhZGlhdGVTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/TUYAOgBcAFIARABcAEQAUQBCAHUAcwBiAGEAcgBCAHIAaQBkAGcAZQBWAGkAcgB0AHUAYQBsAEQAZQBzAGkAZwBuAGUAcgBcAHQAZQBtAHAAbABhAHQAZQBzAFwAIWp/Z1wA+le2ZyFqf2dcACdZ+le2ZzEAXAA4AEcAWAAuADAANQAxAC4AMAAyADMALgBTAEwARABQAFIAVAAJgP/+/ws4AEcAWAAuADAANQAxAC4AMAAyADMAAgAAeJsTZv/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAABQAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAABYFAADziiBmAwAAAAAAAAD//wEAFABtb0VuZEZhY2VTdXJmSWRSZXBfYwAABYAIABYFAADziiBmAQAAAAAAAAADgAAABYAIABYFAADziiBmBAAAAAAAAAADgAAABYAIABYFAADziiBmAgAAAAAAAAAAAAAAAAAAAGhCAAAAAAAA",
+                "definitionReference": true,
+                "lineParameters": [
+                  -0.68,
+                  0.4150000000000002,
+                  0.046,
+                  -1,
+                  0,
+                  0
+                ],
+                "circleParameters": null,
+                "start": [
+                  0.6800000000000002,
+                  0.4150000000000002,
+                  0.046
+                ],
+                "end": [
+                  -0.68,
+                  0.4150000000000002,
+                  0.046
+                ],
+                "adjacentFaces": [
+                  {
+                    "id": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAIAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFABtb1JhZGlhdGVTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/TUYAOgBcAFIARABcAEQAUQBCAHUAcwBiAGEAcgBCAHIAaQBkAGcAZQBWAGkAcgB0AHUAYQBsAEQAZQBzAGkAZwBuAGUAcgBcAHQAZQBtAHAAbABhAHQAZQBzAFwAIWp/Z1wA+le2ZyFqf2dcACdZ+le2ZzEAXAA4AEcAWAAuADAANQAxAC4AMAAyADMALgBTAEwARABQAFIAVAAJgP/+/ws4AEcAWAAuADAANQAxAC4AMAAyADMAAgAAeJsTZv/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAABQAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAABYFAADziiBmAwAAAAAAAAD//wEAFABtb0VuZEZhY2VTdXJmSWRSZXBfYwAABYAIABYFAADziiBmAAAAAAAAAAADgAAABYAIABYFAADziiBmBAAAAAAAAAAMgAAABYAIABYFAADziiBmAQAAAAAAAAADgAAABYAIABYFAADziiBmAgAAAAAAAAAAAAAAAAAAAAAAaEIAAAAAAAAAAAAA",
+                    "definitionReference": true,
+                    "planeParameters": [
+                      0,
+                      3.4914813388431334e-15,
+                      1,
+                      -0.68,
+                      0.4150000000000002,
+                      0.046
+                    ],
+                    "sense": false
+                  },
+                  {
+                    "id": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAIAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFABtb0VuZEZhY2VTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/TUYAOgBcAFIARABcAEQAUQBCAHUAcwBiAGEAcgBCAHIAaQBkAGcAZQBWAGkAcgB0AHUAYQBsAEQAZQBzAGkAZwBuAGUAcgBcAHQAZQBtAHAAbABhAHQAZQBzAFwAIWp/Z1wA+le2ZyFqf2dcACdZ+le2ZzEAXAA4AEcAWAAuADAANQAxAC4AMAAyADMALgBTAEwARABQAFIAVAAJgP/+/ws4AEcAWAAuADAANQAxAC4AMAAyADMAAgAAeJsTZv/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAABQAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAABYFAADziiBmAQAAAAAAAAD//wEAFABtb1JhZGlhdGVTdXJmSWRSZXBfYwAABYAIABYFAADziiBmBAAAAAAAAAD//wEAEwBtb1VuQmVuZFN1cmZJZFJlcF9jAAAFgAgAHAUAAPOKIGYBAAAAAAAAAAyAAAAFgAgAFgUAAPOKIGYCAAAAAAAAAAyAAAAFgAgAFgUAAPOKIGYDAAAAAAAAAAAAAAAAAAAAAABoQgAAAAAAAAAAAAA=",
+                    "definitionReference": true,
+                    "planeParameters": [
+                      0,
+                      1,
+                      -3.742324802107269e-15,
+                      0,
+                      0.41500000000000004,
+                      -1.5583020148827813e-15
+                    ],
+                    "sense": false
+                  }
+                ]
+              },
+              "UseDefaultBendRadius": true,
+              "BendRadius": 0.0015,
+              "BendAngle": 1.5707963267949,
+              "OffsetType": 1,
+              "OffsetReference": null,
+              "ReverseOffset": true,
+              "OffsetDistance": 0.035,
+              "OffsetDimType": 1,
+              "PositionType": 1,
+              "UsePositionTrimSideBends": false,
+              "UsePositionOffset": false,
+              "PositionOffsetType": 1,
+              "PositionOffsetReference": null,
+              "PositionOffsetDistance": 0.01,
+              "ReversePositionOffset": false,
+              "AutoReliefType": 1,
+              "UseReliefRatio": true,
+              "ReliefRatio": 0.5,
+              "ReliefWidth": 0.00075,
+              "ReliefDepth": 0.00075,
+              "ReliefTearType": 1,
+              "UseDefaultBendAllowance": true,
+              "UseDefaultBendRelief": true,
+              "Edges": [
+                {
+                  "id": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRWRnZVJlZl9jAQAAAAAAAAAEAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFABtb1JhZGlhdGVTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/TUYAOgBcAFIARABcAEQAUQBCAHUAcwBiAGEAcgBCAHIAaQBkAGcAZQBWAGkAcgB0AHUAYQBsAEQAZQBzAGkAZwBuAGUAcgBcAHQAZQBtAHAAbABhAHQAZQBzAFwAIWp/Z1wA+le2ZyFqf2dcACdZ+le2ZzEAXAA4AEcAWAAuADAANQAxAC4AMAAyADMALgBTAEwARABQAFIAVAAJgP/+/ws4AEcAWAAuADAANQAxAC4AMAAyADMAAgAAeJsTZv/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAABQAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAABYFAADziiBmAwAAAAAAAAD//wEAFABtb0VuZEZhY2VTdXJmSWRSZXBfYwAABYAIABYFAADziiBmAQAAAAAAAAADgAAABYAIABYFAADziiBmBAAAAAAAAAADgAAABYAIABYFAADziiBmAgAAAAAAAAAAAAAAAAAAAGhCAAAAAAAA",
+                  "definitionReference": true,
+                  "lineParameters": [
+                    -0.68,
+                    0.4150000000000002,
+                    0.046,
+                    -1,
+                    0,
+                    0
+                  ],
+                  "circleParameters": null,
+                  "start": [
+                    0.6800000000000002,
+                    0.4150000000000002,
+                    0.046
+                  ],
+                  "end": [
+                    -0.68,
+                    0.4150000000000002,
+                    0.046
+                  ],
+                  "adjacentFaces": [
+                    {
+                      "id": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAIAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFABtb1JhZGlhdGVTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/TUYAOgBcAFIARABcAEQAUQBCAHUAcwBiAGEAcgBCAHIAaQBkAGcAZQBWAGkAcgB0AHUAYQBsAEQAZQBzAGkAZwBuAGUAcgBcAHQAZQBtAHAAbABhAHQAZQBzAFwAIWp/Z1wA+le2ZyFqf2dcACdZ+le2ZzEAXAA4AEcAWAAuADAANQAxAC4AMAAyADMALgBTAEwARABQAFIAVAAJgP/+/ws4AEcAWAAuADAANQAxAC4AMAAyADMAAgAAeJsTZv/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAABQAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAABYFAADziiBmAwAAAAAAAAD//wEAFABtb0VuZEZhY2VTdXJmSWRSZXBfYwAABYAIABYFAADziiBmAAAAAAAAAAADgAAABYAIABYFAADziiBmBAAAAAAAAAAMgAAABYAIABYFAADziiBmAQAAAAAAAAADgAAABYAIABYFAADziiBmAgAAAAAAAAAAAAAAAAAAAAAAaEIAAAAAAAAAAAAA",
+                      "definitionReference": true,
+                      "planeParameters": [
+                        0,
+                        3.4914813388431334e-15,
+                        1,
+                        -0.68,
+                        0.4150000000000002,
+                        0.046
+                      ],
+                      "sense": false
+                    },
+                    {
+                      "id": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAIAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFABtb0VuZEZhY2VTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/TUYAOgBcAFIARABcAEQAUQBCAHUAcwBiAGEAcgBCAHIAaQBkAGcAZQBWAGkAcgB0AHUAYQBsAEQAZQBzAGkAZwBuAGUAcgBcAHQAZQBtAHAAbABhAHQAZQBzAFwAIWp/Z1wA+le2ZyFqf2dcACdZ+le2ZzEAXAA4AEcAWAAuADAANQAxAC4AMAAyADMALgBTAEwARABQAFIAVAAJgP/+/ws4AEcAWAAuADAANQAxAC4AMAAyADMAAgAAeJsTZv/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAABQAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAABYFAADziiBmAQAAAAAAAAD//wEAFABtb1JhZGlhdGVTdXJmSWRSZXBfYwAABYAIABYFAADziiBmBAAAAAAAAAD//wEAEwBtb1VuQmVuZFN1cmZJZFJlcF9jAAAFgAgAHAUAAPOKIGYBAAAAAAAAAAyAAAAFgAgAFgUAAPOKIGYCAAAAAAAAAAyAAAAFgAgAFgUAAPOKIGYDAAAAAAAAAAAAAAAAAAAAAABoQgAAAAAAAAAAAAA=",
+                      "definitionReference": true,
+                      "planeParameters": [
+                        0,
+                        1,
+                        -3.742324802107269e-15,
+                        0,
+                        0.41500000000000004,
+                        -1.5583020148827813e-15
+                      ],
+                      "sense": false
+                    }
+                  ]
+                }
+              ],
+              "GapDistance": 0.001,
+              "AngleReference": null,
+              "LockAngle": true,
+              "PerpendicularToFace": false,
+              "NormalToFlangePlane": true,
+              "customBendAllowance": {
+                "Type": 2,
+                "BendTableFile": null,
+                "KFactor": 0.445,
+                "BendAllowance": 0,
+                "BendDeduction": 0
+              }
+            }
+          },
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAAAEAAAD//v8AAAAAADUFAAA=",
+          "name": "草图47",
+          "type": "ProfileFeature",
+          "parent": "边线-法兰2",
+          "suppressed": false,
+          "parents": [
+            "边线-法兰1"
+          ],
+          "dimensions": [
+            {
+              "id": null,
+              "name": "D1@草图47@8GX.051.023.Part",
+              "value": 0.042,
+              "dimensionType": 0,
+              "readOnly": false,
+              "drivenState": 2,
+              "annotation": [
+                0.6690388312172215,
+                0.39747760006906896,
+                0.04590000000000012
+              ]
+            },
+            {
+              "id": null,
+              "name": "D2@草图47@8GX.051.023.Part",
+              "value": 0.042,
+              "dimensionType": 0,
+              "readOnly": false,
+              "drivenState": 2,
+              "annotation": [
+                -0.6778408461976502,
+                0.36211420950502776,
+                0.04590000000000038
+              ]
+            }
+          ],
+          "sketch": {
+            "modelToSketch": [
+              1,
+              0,
+              0,
+              0,
+              -1,
+              -7.233806140950401e-15,
+              0,
+              7.233806140950401e-15,
+              -1,
+              0,
+              0.41349999999999987,
+              0.046000000000003,
+              1,
+              0,
+              0,
+              0
+            ],
+            "constrainedStatus": 2,
+            "points": [
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAADUFAAD//wEADQBzZ1BvaW50SGFuZGxlAAD/////AAAAAA==",
+                "coordinates": [
+                  0.6380000000000001,
+                  -7.715274834628333e-18,
+                  0
+                ]
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAADUFAAD//wEADQBzZ1BvaW50SGFuZGxlAQD/////AAAAAA==",
+                "coordinates": [
+                  -0.6380000000000001,
+                  -2.4211267219143185e-16,
+                  0
+                ]
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAADUFAAD//wEADQBzZ1BvaW50SGFuZGxlAgD/////AAAAAA==",
+                "coordinates": [
+                  -0.638,
+                  0.03350000000000001,
+                  0
+                ]
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAADUFAAD//wEADQBzZ1BvaW50SGFuZGxlAwD/////AAAAAA==",
+                "coordinates": [
+                  0.6380000000000001,
+                  0.03350000000000001,
+                  0
+                ]
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAADUFAAD//wEADQBzZ1BvaW50SGFuZGxlBAD/////AAAAAA==",
+                "coordinates": [
+                  -0.68,
+                  0,
+                  0
+                ]
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAADUFAAD//wEADQBzZ1BvaW50SGFuZGxlBQD/////AAAAAA==",
+                "coordinates": [
+                  0.6800000000000002,
+                  0,
+                  0
+                ]
+              }
+            ],
+            "segments": [
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAADUFAAD//wEADABzZ0xpbmVIYW5kbGUCAP////8AAAAA",
+                "name": "直线3",
+                "type": 0,
+                "construction": false,
+                "geometry": {
+                  "start": [
+                    -0.6380000000000001,
+                    -2.4211267219143185e-16,
+                    0
+                  ],
+                  "end": [
+                    -0.638,
+                    0.03350000000000001,
+                    0
+                  ]
+                }
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAADUFAAD//wEADABzZ0xpbmVIYW5kbGUDAP////8AAAAA",
+                "name": "直线4",
+                "type": 0,
+                "construction": false,
+                "geometry": {
+                  "start": [
+                    -0.638,
+                    0.03350000000000001,
+                    0
+                  ],
+                  "end": [
+                    0.6380000000000001,
+                    0.03350000000000001,
+                    0
+                  ]
+                }
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAADUFAAD//wEADABzZ0xpbmVIYW5kbGUEAP////8AAAAA",
+                "name": "直线5",
+                "type": 0,
+                "construction": false,
+                "geometry": {
+                  "start": [
+                    0.6380000000000001,
+                    0.03350000000000001,
+                    0
+                  ],
+                  "end": [
+                    0.6380000000000001,
+                    -7.715274834628333e-18,
+                    0
+                  ]
+                }
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAADUFAAD//wEADABzZ0xpbmVIYW5kbGUGAP////8AAAAA",
+                "name": "直线7",
+                "type": 0,
+                "construction": false,
+                "geometry": {
+                  "start": [
+                    0.6380000000000001,
+                    -7.715274834628333e-18,
+                    0
+                  ],
+                  "end": [
+                    -0.6380000000000001,
+                    -2.4211267219143185e-16,
+                    0
+                  ]
+                }
+              }
+            ],
+            "relations": [
+              {
+                "type": 32,
+                "suppressed": false,
+                "dimension": null,
+                "entities": [
+                  {
+                    "id": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRWRnZVJlZl9jAQAAAAAAAAAEAAAAAAIAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFABtb0VuZEZhY2VTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/TUYAOgBcAFIARABcAEQAUQBCAHUAcwBiAGEAcgBCAHIAaQBkAGcAZQBWAGkAcgB0AHUAYQBsAEQAZQBzAGkAZwBuAGUAcgBcAHQAZQBtAHAAbABhAHQAZQBzAFwAIWp/Z1wA+le2ZyFqf2dcACdZ+le2ZzEAXAA4AEcAWAAuADAANQAxAC4AMAAyADMALgBTAEwARABQAFIAVAAJgP/+/ws4AEcAWAAuADAANQAxAC4AMAAyADMAAgAAeJsTZv/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAABQAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAABYFAADziiBmAAAAAAAAAAD//wEAFABtb1JhZGlhdGVTdXJmSWRSZXBfYwAABYAIABYFAADziiBmAwAAAAAAAAAMgAAABYAIABYFAADziiBmBAAAAAAAAAD//wEAEwBtb1VuQmVuZFN1cmZJZFJlcF9jAAAFgAgARwUAAHyLIGYGAAAA7gMAAAAAAAAAAAAAaEIAAAAAAAA=",
+                    "definitionReference": true,
+                    "lineParameters": [
+                      0,
+                      0.4135000000000002,
+                      0.046000000000000006,
+                      -1,
+                      0,
+                      0
+                    ],
+                    "circleParameters": null,
+                    "start": [
+                      0.6800000000000002,
+                      0.4135000000000002,
+                      0.046000000000000006
+                    ],
+                    "end": [
+                      0.63875,
+                      0.4135000000000002,
+                      0.046000000000000006
+                    ],
+                    "adjacentFaces": [
+                      {
+                        "id": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAOAAAAAAIAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFABtb0VuZEZhY2VTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/TUYAOgBcAFIARABcAEQAUQBCAHUAcwBiAGEAcgBCAHIAaQBkAGcAZQBWAGkAcgB0AHUAYQBsAEQAZQBzAGkAZwBuAGUAcgBcAHQAZQBtAHAAbABhAHQAZQBzAFwAIWp/Z1wA+le2ZyFqf2dcACdZ+le2ZzEAXAA4AEcAWAAuADAANQAxAC4AMAAyADMALgBTAEwARABQAFIAVAAJgP/+/ws4AEcAWAAuADAANQAxAC4AMAAyADMAAgAAeJsTZv/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAABQAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAABYFAADziiBmAAAAAAAAAAD//wEAEwBtb1VuQmVuZFN1cmZJZFJlcF9jAAAFgAgARwUAAHyLIGYGAAAA7QMAAP//AQAUAG1vUmFkaWF0ZVN1cmZJZFJlcF9jAAAFgAgAFgUAAPOKIGYDAAAAAAAAAA+AAAAFgAgAFgUAAPOKIGYCAAAAAAAAAAyAAAAFgAgAHAUAAPOKIGYAAAAAAAAAAA+AAAAFgAgAFgUAAPOKIGYEAAAAAAAAAA+AAAAFgAgAFgUAAPOKIGYDAAAAAAAAAAyAAAAFgAgARwUAAHyLIGYGAAAA7gMAAAyAAAAFgAgARwUAAHyLIGYGAAAA7AMAAAyAAAAFgAgARwUAAHyLIGYGAAAA6gMAAAyAAAAFgAgARwUAAHyLIGYAAAAAAAAAAAyAAAAFgAgARwUAAHyLIGYGAAAA6QMAAAyAAAAFgAgARwUAAHyLIGYGAAAA6wMAAAAAAAAAAAAAAABoQgAAAAAAAAAAAAA=",
+                        "definitionReference": true,
+                        "planeParameters": [
+                          0,
+                          1,
+                          -3.742324802107269e-15,
+                          0,
+                          0.41350000000000003,
+                          -1.5530647928745166e-15
+                        ],
+                        "sense": true
+                      },
+                      {
+                        "id": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFABtb1JhZGlhdGVTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/TUYAOgBcAFIARABcAEQAUQBCAHUAcwBiAGEAcgBCAHIAaQBkAGcAZQBWAGkAcgB0AHUAYQBsAEQAZQBzAGkAZwBuAGUAcgBcAHQAZQBtAHAAbABhAHQAZQBzAFwAIWp/Z1wA+le2ZyFqf2dcACdZ+le2ZzEAXAA4AEcAWAAuADAANQAxAC4AMAAyADMALgBTAEwARABQAFIAVAAJgP/+/ws4AEcAWAAuADAANQAxAC4AMAAyADMAAgAAeJsTZv/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAABQAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAABYFAADziiBmAwAAAAAAAAD//wEAFABtb0VuZEZhY2VTdXJmSWRSZXBfYwAABYAIABYFAADziiBmAQAAAAAAAAD//wEAEwBtb1VuQmVuZFN1cmZJZFJlcF9jAAAFgAgARwUAAHyLIGYGAAAA7gMAAAyAAAAFgAgAFgUAAPOKIGYAAAAAAAAAAAOAAAAFgAgAFgUAAPOKIGYEAAAAAAAAAAAAAAAAAAAAAABoQgAAAAAAAAAAAAA=",
+                        "definitionReference": true,
+                        "planeParameters": [
+                          0,
+                          3.4914813388431334e-15,
+                          1,
+                          -0.68,
+                          0.4150000000000002,
+                          0.046
+                        ],
+                        "sense": false
+                      }
+                    ]
+                  },
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAADUFAAD//wEADABzZ0xpbmVIYW5kbGUGAP////8AAAAA",
+                    "segment": "直线7"
+                  }
+                ]
+              },
+              {
+                "type": 5,
+                "suppressed": false,
+                "dimension": null,
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAADUFAAD//wEADABzZ0xpbmVIYW5kbGUCAP////8AAAAA",
+                    "segment": "直线3"
+                  }
+                ]
+              },
+              {
+                "type": 4,
+                "suppressed": false,
+                "dimension": null,
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAADUFAAD//wEADABzZ0xpbmVIYW5kbGUDAP////8AAAAA",
+                    "segment": "直线4"
+                  }
+                ]
+              },
+              {
+                "type": 5,
+                "suppressed": false,
+                "dimension": null,
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAADUFAAD//wEADABzZ0xpbmVIYW5kbGUEAP////8AAAAA",
+                    "segment": "直线5"
+                  }
+                ]
+              },
+              {
+                "type": 1,
+                "suppressed": false,
+                "dimension": {
+                  "name": "D1@草图47@8GX.051.023.Part",
+                  "value": 0.042,
+                  "drivenState": 2
+                },
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAADUFAAD//wEADABzZ0xpbmVIYW5kbGUEAP////8AAAAA",
+                    "segment": "直线5"
+                  },
+                  {
+                    "id": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRWRnZVJlZl9jAQAAAAAAAAAEAAAAAAIAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFABtb1JhZGlhdGVTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/TUYAOgBcAFIARABcAEQAUQBCAHUAcwBiAGEAcgBCAHIAaQBkAGcAZQBWAGkAcgB0AHUAYQBsAEQAZQBzAGkAZwBuAGUAcgBcAHQAZQBtAHAAbABhAHQAZQBzAFwAIWp/Z1wA+le2ZyFqf2dcACdZ+le2ZzEAXAA4AEcAWAAuADAANQAxAC4AMAAyADMALgBTAEwARABQAFIAVAAJgP/+/ws4AEcAWAAuADAANQAxAC4AMAAyADMAAgAAeJsTZv/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAABQAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAABYFAADziiBmBAAAAAAAAAADgAAABYAIABYFAADziiBmAwAAAAAAAAD//wEAFABtb0VuZEZhY2VTdXJmSWRSZXBfYwAABYAIABYFAADziiBmAQAAAAAAAAAOgAAABYAIABYFAADziiBmAAAAAAAAAAAAAAAAAAAAAGhCAAAAAAAA",
+                    "definitionReference": true,
+                    "lineParameters": [
+                      0.6800000000000002,
+                      0.4150000000000002,
+                      0.046,
+                      1.401298464324817e-45,
+                      -1,
+                      3.4914813388431334e-15
+                    ],
+                    "circleParameters": null,
+                    "start": [
+                      0.6800000000000002,
+                      0.4150000000000002,
+                      0.046
+                    ],
+                    "end": [
+                      0.6800000000000002,
+                      0.4135000000000002,
+                      0.046000000000000006
+                    ],
+                    "adjacentFaces": [
+                      {
+                        "id": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAIAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFABtb1JhZGlhdGVTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/TUYAOgBcAFIARABcAEQAUQBCAHUAcwBiAGEAcgBCAHIAaQBkAGcAZQBWAGkAcgB0AHUAYQBsAEQAZQBzAGkAZwBuAGUAcgBcAHQAZQBtAHAAbABhAHQAZQBzAFwAIWp/Z1wA+le2ZyFqf2dcACdZ+le2ZzEAXAA4AEcAWAAuADAANQAxAC4AMAAyADMALgBTAEwARABQAFIAVAAJgP/+/ws4AEcAWAAuADAANQAxAC4AMAAyADMAAgAAeJsTZv/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAABQAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAABYFAADziiBmBAAAAAAAAAD//wEAFABtb0VuZEZhY2VTdXJmSWRSZXBfYwAABYAIABYFAADziiBmAAAAAAAAAAD//wEAFABtb0JlbmRFbmRTdXJmSWRSZXBfYwAABYAIABwFAADziiBmAQAAAAAAAAAMgAAABYAIABYFAADziiBmAQAAAAAAAAADgAAABYAIABYFAADziiBmAwAAAAAAAAAAAAAAAAAAAAAAaEIAAAAAAAAAAAAA",
+                        "definitionReference": true,
+                        "planeParameters": [
+                          1,
+                          -8.710838140298233e-30,
+                          -2.494883201404846e-15,
+                          0.6800000000000002,
+                          0.4150000000000002,
+                          0.046
+                        ],
+                        "sense": false
+                      },
+                      {
+                        "id": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFABtb1JhZGlhdGVTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/TUYAOgBcAFIARABcAEQAUQBCAHUAcwBiAGEAcgBCAHIAaQBkAGcAZQBWAGkAcgB0AHUAYQBsAEQAZQBzAGkAZwBuAGUAcgBcAHQAZQBtAHAAbABhAHQAZQBzAFwAIWp/Z1wA+le2ZyFqf2dcACdZ+le2ZzEAXAA4AEcAWAAuADAANQAxAC4AMAAyADMALgBTAEwARABQAFIAVAAJgP/+/ws4AEcAWAAuADAANQAxAC4AMAAyADMAAgAAeJsTZv/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAABQAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAABYFAADziiBmAwAAAAAAAAD//wEAFABtb0VuZEZhY2VTdXJmSWRSZXBfYwAABYAIABYFAADziiBmAQAAAAAAAAD//wEAEwBtb1VuQmVuZFN1cmZJZFJlcF9jAAAFgAgARwUAAHyLIGYGAAAA7gMAAAyAAAAFgAgAFgUAAPOKIGYAAAAAAAAAAAOAAAAFgAgAFgUAAPOKIGYEAAAAAAAAAAAAAAAAAAAAAABoQgAAAAAAAAAAAAA=",
+                        "definitionReference": true,
+                        "planeParameters": [
+                          0,
+                          3.4914813388431334e-15,
+                          1,
+                          -0.68,
+                          0.4150000000000002,
+                          0.046
+                        ],
+                        "sense": false
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": 1,
+                "suppressed": false,
+                "dimension": {
+                  "name": "D2@草图47@8GX.051.023.Part",
+                  "value": 0.042,
+                  "drivenState": 2
+                },
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAADUFAAD//wEADABzZ0xpbmVIYW5kbGUCAP////8AAAAA",
+                    "segment": "直线3"
+                  },
+                  {
+                    "id": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRWRnZVJlZl9jAQAAAAAAAAAEAAAAAAIAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFABtb1JhZGlhdGVTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/TUYAOgBcAFIARABcAEQAUQBCAHUAcwBiAGEAcgBCAHIAaQBkAGcAZQBWAGkAcgB0AHUAYQBsAEQAZQBzAGkAZwBuAGUAcgBcAHQAZQBtAHAAbABhAHQAZQBzAFwAIWp/Z1wA+le2ZyFqf2dcACdZ+le2ZzEAXAA4AEcAWAAuADAANQAxAC4AMAAyADMALgBTAEwARABQAFIAVAAJgP/+/ws4AEcAWAAuADAANQAxAC4AMAAyADMAAgAAeJsTZv/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAABQAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAABYFAADziiBmAwAAAAAAAAADgAAABYAIABYFAADziiBmAgAAAAAAAAD//wEAFABtb0VuZEZhY2VTdXJmSWRSZXBfYwAABYAIABYFAADziiBmAQAAAAAAAAAOgAAABYAIABYFAADziiBmAAAAAAAAAAAAAAAAAAAAAGhCAAAAAAAA",
+                    "definitionReference": true,
+                    "lineParameters": [
+                      -0.68,
+                      0.4150000000000002,
+                      0.046,
+                      0,
+                      -1,
+                      3.4914813388431334e-15
+                    ],
+                    "circleParameters": null,
+                    "start": [
+                      -0.68,
+                      0.4150000000000002,
+                      0.046
+                    ],
+                    "end": [
+                      -0.68,
+                      0.4135000000000002,
+                      0.046000000000000006
+                    ],
+                    "adjacentFaces": [
+                      {
+                        "id": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFABtb1JhZGlhdGVTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/TUYAOgBcAFIARABcAEQAUQBCAHUAcwBiAGEAcgBCAHIAaQBkAGcAZQBWAGkAcgB0AHUAYQBsAEQAZQBzAGkAZwBuAGUAcgBcAHQAZQBtAHAAbABhAHQAZQBzAFwAIWp/Z1wA+le2ZyFqf2dcACdZ+le2ZzEAXAA4AEcAWAAuADAANQAxAC4AMAAyADMALgBTAEwARABQAFIAVAAJgP/+/ws4AEcAWAAuADAANQAxAC4AMAAyADMAAgAAeJsTZv/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAABQAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAABYFAADziiBmAwAAAAAAAAD//wEAFABtb0VuZEZhY2VTdXJmSWRSZXBfYwAABYAIABYFAADziiBmAAAAAAAAAAD//wEAEwBtb1VuQmVuZFN1cmZJZFJlcF9jAAAFgAgARwUAAHyLIGYGAAAA7QMAAAyAAAAFgAgAFgUAAPOKIGYBAAAAAAAAAAOAAAAFgAgAFgUAAPOKIGYCAAAAAAAAAAAAAAAAAAAAAABoQgAAAAAAAAAAAAA=",
+                        "definitionReference": true,
+                        "planeParameters": [
+                          0,
+                          3.4914813388431334e-15,
+                          1,
+                          -0.68,
+                          0.4150000000000002,
+                          0.046
+                        ],
+                        "sense": false
+                      },
+                      {
+                        "id": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAIAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFABtb1JhZGlhdGVTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/TUYAOgBcAFIARABcAEQAUQBCAHUAcwBiAGEAcgBCAHIAaQBkAGcAZQBWAGkAcgB0AHUAYQBsAEQAZQBzAGkAZwBuAGUAcgBcAHQAZQBtAHAAbABhAHQAZQBzAFwAIWp/Z1wA+le2ZyFqf2dcACdZ+le2ZzEAXAA4AEcAWAAuADAANQAxAC4AMAAyADMALgBTAEwARABQAFIAVAAJgP/+/ws4AEcAWAAuADAANQAxAC4AMAAyADMAAgAAeJsTZv/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAABQAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAABYFAADziiBmAgAAAAAAAAD//wEAFABtb0VuZEZhY2VTdXJmSWRSZXBfYwAABYAIABYFAADziiBmAQAAAAAAAAD//wEAFABtb0JlbmRFbmRTdXJmSWRSZXBfYwAABYAIABwFAADziiBmAgAAAAAAAAAMgAAABYAIABYFAADziiBmAAAAAAAAAAADgAAABYAIABYFAADziiBmAwAAAAAAAAAAAAAAAAAAAAAAaEIAAAAAAAAAAAAA",
+                        "definitionReference": true,
+                        "planeParameters": [
+                          -1,
+                          0,
+                          0,
+                          -0.68,
+                          0.41500000000000004,
+                          0.0014999999999999948
+                        ],
+                        "sense": false
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "contours": [
+              {
+                "closed": true,
+                "segments": [
+                  "aEIAAAYAAAD//v8AAAAAADUFAAD//wEADABzZ0xpbmVIYW5kbGUCAP////8AAAAA",
+                  "aEIAAAYAAAD//v8AAAAAADUFAAD//wEADABzZ0xpbmVIYW5kbGUDAP////8AAAAA",
+                  "aEIAAAYAAAD//v8AAAAAADUFAAD//wEADABzZ0xpbmVIYW5kbGUEAP////8AAAAA",
+                  "aEIAAAYAAAD//v8AAAAAADUFAAD//wEADABzZ0xpbmVIYW5kbGUGAP////8AAAAA"
+                ]
+              }
+            ]
+          },
+          "definition": null,
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAAAEAAAD//v8AAAAAAEcFAAA=",
+          "name": "边线折弯2",
+          "type": "OneBend",
+          "parent": "边线-法兰2",
+          "suppressed": false,
+          "parents": [
+            "边线-法兰2"
+          ],
+          "dimensions": [
+            {
+              "id": null,
+              "name": "D7@边线-法兰2@8GX.051.023.Part",
+              "value": 0.035,
+              "dimensionType": 0,
+              "readOnly": false,
+              "drivenState": 2,
+              "annotation": [
+                0.7270000000000001,
+                0.3975000000000002,
+                0.045150000000000245
+              ]
+            },
+            {
+              "id": null,
+              "name": "D4@边线折弯2@8GX.051.023.Part",
+              "value": 1.5707963267949,
+              "dimensionType": 1,
+              "readOnly": false,
+              "drivenState": 2,
+              "annotation": [
+                -0.6381000000000001,
+                0.4150000000000005,
+                0.04600000000000001
+              ]
+            },
+            {
+              "id": null,
+              "name": "D1@草图47@8GX.051.023.Part",
+              "value": 0.042,
+              "dimensionType": 0,
+              "readOnly": false,
+              "drivenState": 2,
+              "annotation": [
+                0.6690388312172215,
+                0.39747760006906896,
+                0.04590000000000012
+              ]
+            },
+            {
+              "id": null,
+              "name": "D2@草图47@8GX.051.023.Part",
+              "value": 0.042,
+              "dimensionType": 0,
+              "readOnly": false,
+              "drivenState": 2,
+              "annotation": [
+                -0.6778408461976502,
+                0.36211420950502776,
+                0.04590000000000038
+              ]
+            }
+          ],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAAAEAAAD//v8AAAAAAEoFAAA=",
+          "name": "草图48",
+          "type": "ProfileFeature",
+          "parent": null,
+          "suppressed": false,
+          "parents": [
+            "基体-法兰3",
+            "原点"
+          ],
+          "dimensions": [
+            {
+              "id": null,
+              "name": "D1@草图48@8GX.051.023.Part",
+              "value": 0.012,
+              "dimensionType": 0,
+              "readOnly": false,
+              "drivenState": 2,
+              "annotation": [
+                -0.7197963989895004,
+                -0.4097821101712906,
+                0.0016
+              ]
+            },
+            {
+              "id": null,
+              "name": "D2@草图48@8GX.051.023.Part",
+              "value": 0.025,
+              "dimensionType": 0,
+              "readOnly": false,
+              "drivenState": 2,
+              "annotation": [
+                -0.6733590998148603,
+                -0.4539017064023919,
+                0.0016
+              ]
+            },
+            {
+              "id": null,
+              "name": "D3@草图48@8GX.051.023.Part",
+              "value": 0.012000000000000012,
+              "dimensionType": 0,
+              "readOnly": false,
+              "drivenState": 2,
+              "annotation": [
+                -0.02661610187946184,
+                -0.40616502262778653,
+                0.0016
+              ]
+            },
+            {
+              "id": null,
+              "name": "D4@草图48@8GX.051.023.Part",
+              "value": 0.3275,
+              "dimensionType": 0,
+              "readOnly": false,
+              "drivenState": 1,
+              "annotation": [
+                -0.16404354416443304,
+                -0.47546867537730214,
+                0.0016
+              ]
+            },
+            {
+              "id": null,
+              "name": "D5@草图48@8GX.051.023.Part",
+              "value": 0.0052,
+              "dimensionType": 0,
+              "readOnly": false,
+              "drivenState": 2,
+              "annotation": [
+                -0.6418460635221949,
+                -0.4079996449578903,
+                0.0016
+              ]
+            },
+            {
+              "id": null,
+              "name": "D6@草图48@8GX.051.023.Part",
+              "value": 0.005199999999999974,
+              "dimensionType": 0,
+              "readOnly": false,
+              "drivenState": 2,
+              "annotation": [
+                -0.4258474490716694,
+                -0.4584885440422348,
+                0.0016
+              ]
+            },
+            {
+              "id": null,
+              "name": "D7@草图48@8GX.051.023.Part",
+              "value": 0.0051999999999999946,
+              "dimensionType": 0,
+              "readOnly": false,
+              "drivenState": 2,
+              "annotation": [
+                0.010239959903266649,
+                -0.40768264367246687,
+                0.0016
+              ]
+            }
+          ],
+          "sketch": {
+            "modelToSketch": [
+              1,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              -0.0015,
+              1,
+              0,
+              0,
+              0
+            ],
+            "constrainedStatus": 3,
+            "points": [
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEADQBzZ1BvaW50SGFuZGxlAAD/////AAAAAA==",
+                "coordinates": [
+                  -0.655,
+                  -0.4029999999999999,
+                  0
+                ]
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEADQBzZ1BvaW50SGFuZGxlBQD/////AAAAAA==",
+                "coordinates": [
+                  1.1102230246251565e-16,
+                  -0.4029999999999999,
+                  0
+                ]
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEADQBzZ1BvaW50SGFuZGxlBgD/////AAAAAA==",
+                "coordinates": [
+                  -0.655,
+                  -0.4029999999999999,
+                  0
+                ]
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEADQBzZ1BvaW50SGFuZGxlCAD/////AAAAAA==",
+                "coordinates": [
+                  0,
+                  -0.6268796526906435,
+                  0
+                ]
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEADQBzZ1BvaW50SGFuZGxlCQD/////AAAAAA==",
+                "coordinates": [
+                  0,
+                  0.6268796526906435,
+                  0
+                ]
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEADQBzZ1BvaW50SGFuZGxlCwD/////AAAAAA==",
+                "coordinates": [
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEADQBzZ1BvaW50SGFuZGxlDQD/////AAAAAA==",
+                "coordinates": [
+                  1.1102230246251565e-16,
+                  -0.4029999999999999,
+                  0
+                ]
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEADQBzZ1BvaW50SGFuZGxlDwD/////AAAAAA==",
+                "coordinates": [
+                  -0.3274999999999999,
+                  -0.4029999999999999,
+                  0
+                ]
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEADQBzZ1BvaW50SGFuZGxlEAD/////AAAAAA==",
+                "coordinates": [
+                  0.5991043603295483,
+                  -0.4029999999999997,
+                  0
+                ]
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEADQBzZ1BvaW50SGFuZGxlEQD/////AAAAAA==",
+                "coordinates": [
+                  -0.5991043603295481,
+                  -0.4029999999999999,
+                  0
+                ]
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEADQBzZ1BvaW50SGFuZGxlEgD/////AAAAAA==",
+                "coordinates": [
+                  1.1102230246251565e-16,
+                  -0.4029999999999999,
+                  0
+                ]
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEADQBzZ1BvaW50SGFuZGxlEwD/////AAAAAA==",
+                "coordinates": [
+                  -0.3274999999999999,
+                  -0.4029999999999999,
+                  0
+                ]
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEADQBzZ1BvaW50SGFuZGxlFQD/////AAAAAA==",
+                "coordinates": [
+                  0.3275000000000001,
+                  -0.40299999999999986,
+                  0
+                ]
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEADQBzZ1BvaW50SGFuZGxlFwD/////AAAAAA==",
+                "coordinates": [
+                  0.6550000000000002,
+                  -0.40299999999999975,
+                  0
+                ]
+              }
+            ],
+            "segments": [
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEACwBzZ0FyY0hhbmRsZQAA/////wAAAAA=",
+                "name": "圆弧1",
+                "type": 1,
+                "construction": false,
+                "geometry": {
+                  "start": [
+                    -0.6525136076344961,
+                    -0.4022398335677208,
+                    0
+                  ],
+                  "end": [
+                    -0.6525136076344961,
+                    -0.4022398335677208,
+                    0
+                  ],
+                  "center": [
+                    -0.655,
+                    -0.4029999999999999,
+                    0
+                  ],
+                  "radius": 0.0026000000000000667,
+                  "rotation": 1,
+                  "normal": [
+                    0,
+                    0,
+                    1
+                  ]
+                }
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEACwBzZ0FyY0hhbmRsZQEA/////wAAAAA=",
+                "name": "圆弧2",
+                "type": 1,
+                "construction": false,
+                "geometry": {
+                  "start": [
+                    0.0024863923655039926,
+                    -0.4022398335677208,
+                    0
+                  ],
+                  "end": [
+                    0.0024863923655039926,
+                    -0.4022398335677208,
+                    0
+                  ],
+                  "center": [
+                    1.1102230246251565e-16,
+                    -0.4029999999999999,
+                    0
+                  ],
+                  "radius": 0.0025999999999999877,
+                  "rotation": 1,
+                  "normal": [
+                    0,
+                    0,
+                    1
+                  ]
+                }
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEACwBzZ0FyY0hhbmRsZQIA/////wAAAAA=",
+                "name": "圆弧3",
+                "type": 1,
+                "construction": false,
+                "geometry": {
+                  "start": [
+                    -0.32501360763449594,
+                    -0.40223983356772075,
+                    0
+                  ],
+                  "end": [
+                    -0.32501360763449594,
+                    -0.40223983356772075,
+                    0
+                  ],
+                  "center": [
+                    -0.3274999999999999,
+                    -0.4029999999999999,
+                    0
+                  ],
+                  "radius": 0.002600000000000083,
+                  "rotation": 1,
+                  "normal": [
+                    0,
+                    0,
+                    1
+                  ]
+                }
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEACwBzZ0FyY0hhbmRsZQMA/////wAAAAA=",
+                "name": "圆弧4",
+                "type": 1,
+                "construction": false,
+                "geometry": {
+                  "start": [
+                    0.3299863923655041,
+                    -0.4022398335677207,
+                    0
+                  ],
+                  "end": [
+                    0.3299863923655041,
+                    -0.4022398335677207,
+                    0
+                  ],
+                  "center": [
+                    0.3275000000000001,
+                    -0.40299999999999986,
+                    0
+                  ],
+                  "radius": 0.002600000000000083,
+                  "rotation": -1,
+                  "normal": [
+                    0,
+                    0,
+                    -1
+                  ]
+                }
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEACwBzZ0FyY0hhbmRsZQQA/////wAAAAA=",
+                "name": "圆弧5",
+                "type": 1,
+                "construction": false,
+                "geometry": {
+                  "start": [
+                    0.6574863923655042,
+                    -0.40223983356772064,
+                    0
+                  ],
+                  "end": [
+                    0.6574863923655042,
+                    -0.40223983356772064,
+                    0
+                  ],
+                  "center": [
+                    0.6550000000000002,
+                    -0.40299999999999975,
+                    0
+                  ],
+                  "radius": 0.0026000000000000667,
+                  "rotation": -1,
+                  "normal": [
+                    0,
+                    0,
+                    -1
+                  ]
+                }
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEADABzZ0xpbmVIYW5kbGUDAP////8AAAAA",
+                "name": "直线4",
+                "type": 0,
+                "construction": true,
+                "geometry": {
+                  "start": [
+                    0,
+                    0.6268796526906435,
+                    0
+                  ],
+                  "end": [
+                    0,
+                    -0.6268796526906435,
+                    0
+                  ]
+                }
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEADABzZ0xpbmVIYW5kbGUEAP////8AAAAA",
+                "name": "直线6",
+                "type": 0,
+                "construction": true,
+                "geometry": {
+                  "start": [
+                    -0.5991043603295481,
+                    -0.4029999999999999,
+                    0
+                  ],
+                  "end": [
+                    0.5991043603295483,
+                    -0.4029999999999997,
+                    0
+                  ]
+                }
+              }
+            ],
+            "relations": [
+              {
+                "type": 9,
+                "suppressed": false,
+                "dimension": null,
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEADQBzZ1BvaW50SGFuZGxlAAD/////AAAAAA==",
+                    "point": [
+                      -0.655,
+                      -0.4029999999999999,
+                      0
+                    ]
+                  },
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEADQBzZ1BvaW50SGFuZGxlBgD/////AAAAAA==",
+                    "point": [
+                      -0.655,
+                      -0.4029999999999999,
+                      0
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": 12,
+                "suppressed": false,
+                "dimension": null,
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEADQBzZ1BvaW50SGFuZGxlCwD/////AAAAAA==",
+                    "point": [
+                      0,
+                      0,
+                      0
+                    ]
+                  },
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEADABzZ0xpbmVIYW5kbGUDAP////8AAAAA",
+                    "segment": "直线4"
+                  }
+                ]
+              },
+              {
+                "type": 9,
+                "suppressed": false,
+                "dimension": null,
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAAUAAAD//wEADQBzZ1BvaW50SGFuZGxlAAD/////AAAAAA==",
+                    "point": [
+                      0,
+                      0,
+                      0
+                    ]
+                  },
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEADQBzZ1BvaW50SGFuZGxlCwD/////AAAAAA==",
+                    "point": [
+                      0,
+                      0,
+                      0
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": 9,
+                "suppressed": false,
+                "dimension": null,
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEADABzZ0xpbmVIYW5kbGUDAP////8AAAAA",
+                    "segment": "直线4"
+                  },
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEADQBzZ1BvaW50SGFuZGxlBQD/////AAAAAA==",
+                    "point": [
+                      1.1102230246251565e-16,
+                      -0.4029999999999999,
+                      0
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": 9,
+                "suppressed": false,
+                "dimension": null,
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEADQBzZ1BvaW50SGFuZGxlBQD/////AAAAAA==",
+                    "point": [
+                      1.1102230246251565e-16,
+                      -0.4029999999999999,
+                      0
+                    ]
+                  },
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEADQBzZ1BvaW50SGFuZGxlDQD/////AAAAAA==",
+                    "point": [
+                      1.1102230246251565e-16,
+                      -0.4029999999999999,
+                      0
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": 12,
+                "suppressed": false,
+                "dimension": null,
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEADQBzZ1BvaW50SGFuZGxlEgD/////AAAAAA==",
+                    "point": [
+                      1.1102230246251565e-16,
+                      -0.4029999999999999,
+                      0
+                    ]
+                  },
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEADABzZ0xpbmVIYW5kbGUEAP////8AAAAA",
+                    "segment": "直线6"
+                  }
+                ]
+              },
+              {
+                "type": 9,
+                "suppressed": false,
+                "dimension": null,
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEADQBzZ1BvaW50SGFuZGxlEgD/////AAAAAA==",
+                    "point": [
+                      1.1102230246251565e-16,
+                      -0.4029999999999999,
+                      0
+                    ]
+                  },
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEADQBzZ1BvaW50SGFuZGxlDQD/////AAAAAA==",
+                    "point": [
+                      1.1102230246251565e-16,
+                      -0.4029999999999999,
+                      0
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": 9,
+                "suppressed": false,
+                "dimension": null,
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEADABzZ0xpbmVIYW5kbGUEAP////8AAAAA",
+                    "segment": "直线6"
+                  },
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEADQBzZ1BvaW50SGFuZGxlDwD/////AAAAAA==",
+                    "point": [
+                      -0.3274999999999999,
+                      -0.4029999999999999,
+                      0
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": 9,
+                "suppressed": false,
+                "dimension": null,
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEADQBzZ1BvaW50SGFuZGxlDwD/////AAAAAA==",
+                    "point": [
+                      -0.3274999999999999,
+                      -0.4029999999999999,
+                      0
+                    ]
+                  },
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEADQBzZ1BvaW50SGFuZGxlEwD/////AAAAAA==",
+                    "point": [
+                      -0.3274999999999999,
+                      -0.4029999999999999,
+                      0
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": 11,
+                "suppressed": false,
+                "dimension": null,
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEADQBzZ1BvaW50SGFuZGxlEwD/////AAAAAA==",
+                    "point": [
+                      -0.3274999999999999,
+                      -0.4029999999999999,
+                      0
+                    ]
+                  },
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEADQBzZ1BvaW50SGFuZGxlFQD/////AAAAAA==",
+                    "point": [
+                      0.3275000000000001,
+                      -0.40299999999999986,
+                      0
+                    ]
+                  },
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEADABzZ0xpbmVIYW5kbGUDAP////8AAAAA",
+                    "segment": "直线4"
+                  }
+                ]
+              },
+              {
+                "type": 11,
+                "suppressed": false,
+                "dimension": null,
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEACwBzZ0FyY0hhbmRsZQIA/////wAAAAA=",
+                    "segment": "圆弧3"
+                  },
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEACwBzZ0FyY0hhbmRsZQMA/////wAAAAA=",
+                    "segment": "圆弧4"
+                  },
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEADABzZ0xpbmVIYW5kbGUDAP////8AAAAA",
+                    "segment": "直线4"
+                  }
+                ]
+              },
+              {
+                "type": 11,
+                "suppressed": false,
+                "dimension": null,
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEADQBzZ1BvaW50SGFuZGxlBgD/////AAAAAA==",
+                    "point": [
+                      -0.655,
+                      -0.4029999999999999,
+                      0
+                    ]
+                  },
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEADQBzZ1BvaW50SGFuZGxlFwD/////AAAAAA==",
+                    "point": [
+                      0.6550000000000002,
+                      -0.40299999999999975,
+                      0
+                    ]
+                  },
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEADABzZ0xpbmVIYW5kbGUDAP////8AAAAA",
+                    "segment": "直线4"
+                  }
+                ]
+              },
+              {
+                "type": 11,
+                "suppressed": false,
+                "dimension": null,
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEACwBzZ0FyY0hhbmRsZQAA/////wAAAAA=",
+                    "segment": "圆弧1"
+                  },
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEACwBzZ0FyY0hhbmRsZQQA/////wAAAAA=",
+                    "segment": "圆弧5"
+                  },
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEADABzZ0xpbmVIYW5kbGUDAP////8AAAAA",
+                    "segment": "直线4"
+                  }
+                ]
+              },
+              {
+                "type": 5,
+                "suppressed": false,
+                "dimension": null,
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEADABzZ0xpbmVIYW5kbGUDAP////8AAAAA",
+                    "segment": "直线4"
+                  }
+                ]
+              },
+              {
+                "type": 4,
+                "suppressed": false,
+                "dimension": null,
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEADABzZ0xpbmVIYW5kbGUEAP////8AAAAA",
+                    "segment": "直线6"
+                  }
+                ]
+              },
+              {
+                "type": 1,
+                "suppressed": false,
+                "dimension": {
+                  "name": "D1@草图48@8GX.051.023.Part",
+                  "value": 0.012,
+                  "drivenState": 2
+                },
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEADQBzZ1BvaW50SGFuZGxlAAD/////AAAAAA==",
+                    "point": [
+                      -0.655,
+                      -0.4029999999999999,
+                      0
+                    ]
+                  },
+                  {
+                    "id": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRWRnZVJlZl9jAQAAAAAAAAAEAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFABtb0VuZEZhY2VTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/TUYAOgBcAFIARABcAEQAUQBCAHUAcwBiAGEAcgBCAHIAaQBkAGcAZQBWAGkAcgB0AHUAYQBsAEQAZQBzAGkAZwBuAGUAcgBcAHQAZQBtAHAAbABhAHQAZQBzAFwAIWp/Z1wA+le2ZyFqf2dcACdZ+le2ZzEAXAA4AEcAWAAuADAANQAxAC4AMAAyADMALgBTAEwARABQAFIAVAAJgP/+/ws4AEcAWAAuADAANQAxAC4AMAAyADMAAgAAeJsTZv/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAABQAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAGEBAACRoRRmAQAAAAAAAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAABYAIAGEBAACRoRRmBAAAAAyAAAAFgAgAYQEAAJGhFGYCAAAADIAAAAWACABhAQAAkaEUZgMAAAAAAAAAAAAAAGhCAAAAAAAA",
+                    "definitionReference": true,
+                    "lineParameters": [
+                      -0.6799999999999999,
+                      -0.4149999999999999,
+                      0.0015,
+                      1,
+                      0,
+                      0
+                    ],
+                    "circleParameters": null,
+                    "start": [
+                      -0.6799999999999999,
+                      -0.4149999999999999,
+                      0.0015
+                    ],
+                    "end": [
+                      0.6799999999999999,
+                      -0.4149999999999999,
+                      0.0015
+                    ],
+                    "adjacentFaces": [
+                      {
+                        "id": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAIAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFABtb0VuZEZhY2VTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/TUYAOgBcAFIARABcAEQAUQBCAHUAcwBiAGEAcgBCAHIAaQBkAGcAZQBWAGkAcgB0AHUAYQBsAEQAZQBzAGkAZwBuAGUAcgBcAHQAZQBtAHAAbABhAHQAZQBzAFwAIWp/Z1wA+le2ZyFqf2dcACdZ+le2ZzEAXAA4AEcAWAAuADAANQAxAC4AMAAyADMALgBTAEwARABQAFIAVAAJgP/+/ws4AEcAWAAuADAANQAxAC4AMAAyADMAAgAAeJsTZv/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAABQAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAGEBAACRoRRmAQAAAAAAAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAABYAIAGEBAACRoRRmAwAAAP//AQATAG1vVW5CZW5kU3VyZklkUmVwX2MAAAWACAAcBQAA84ogZgAAAAAAAAAADIAAAAWACABhAQAAkaEUZgIAAAAMgAAABYAIAGEBAACRoRRmBAAAAAAAAAAAAAAAAABoQgAAAAAAAAAAAAA=",
+                        "definitionReference": true,
+                        "planeParameters": [
+                          0,
+                          0,
+                          1,
+                          0,
+                          0,
+                          0.0015
+                        ],
+                        "sense": false
+                      },
+                      {
+                        "id": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAIAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/TUYAOgBcAFIARABcAEQAUQBCAHUAcwBiAGEAcgBCAHIAaQBkAGcAZQBWAGkAcgB0AHUAYQBsAEQAZQBzAGkAZwBuAGUAcgBcAHQAZQBtAHAAbABhAHQAZQBzAFwAIWp/Z1wA+le2ZyFqf2dcACdZ+le2ZzEAXAA4AEcAWAAuADAANQAxAC4AMAAyADMALgBTAEwARABQAFIAVAAJgP/+/ws4AEcAWAAuADAANQAxAC4AMAAyADMAAgAAeJsTZv/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAABQAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAGEBAACRoRRmBAAAAP//AQAUAG1vRW5kRmFjZVN1cmZJZFJlcF9jAAAFgAgAYQEAAJGhFGYAAAAAAAAAAAOAAAAFgAgAYQEAAJGhFGYDAAAADIAAAAWACABhAQAAkaEUZgEAAAAAAAAAA4AAAAWACABhAQAAkaEUZgIAAAAAAAAAAAAAAAAAaEIAAAAAAAAAAAAA",
+                        "definitionReference": true,
+                        "planeParameters": [
+                          0,
+                          1,
+                          0,
+                          -0.6799999999999999,
+                          -0.4149999999999999,
+                          0.0015
+                        ],
+                        "sense": true
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": 1,
+                "suppressed": false,
+                "dimension": {
+                  "name": "D2@草图48@8GX.051.023.Part",
+                  "value": 0.025,
+                  "drivenState": 2
+                },
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEADQBzZ1BvaW50SGFuZGxlAAD/////AAAAAA==",
+                    "point": [
+                      -0.655,
+                      -0.4029999999999999,
+                      0
+                    ]
+                  },
+                  {
+                    "id": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRWRnZVJlZl9jAQAAAAAAAAAEAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFABtb0VuZEZhY2VTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/TUYAOgBcAFIARABcAEQAUQBCAHUAcwBiAGEAcgBCAHIAaQBkAGcAZQBWAGkAcgB0AHUAYQBsAEQAZQBzAGkAZwBuAGUAcgBcAHQAZQBtAHAAbABhAHQAZQBzAFwAIWp/Z1wA+le2ZyFqf2dcACdZ+le2ZzEAXAA4AEcAWAAuADAANQAxAC4AMAAyADMALgBTAEwARABQAFIAVAAJgP/+/ws4AEcAWAAuADAANQAxAC4AMAAyADMAAgAAeJsTZv/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAABQAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAGEBAACRoRRmAQAAAAAAAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAABYAIAGEBAACRoRRmAgAAAP//AQATAG1vVW5CZW5kU3VyZklkUmVwX2MAAAWACAAcBQAA84ogZgAAAAAAAAAADIAAAAWACABhAQAAkaEUZgQAAAAAAAAAAAAAAGhCAAAAAAAA",
+                    "definitionReference": true,
+                    "lineParameters": [
+                      -0.68,
+                      0.41500000000000004,
+                      0.0015,
+                      1.33761810195802e-16,
+                      -1,
+                      0
+                    ],
+                    "circleParameters": null,
+                    "start": [
+                      -0.68,
+                      0.41200000000000003,
+                      0.0015
+                    ],
+                    "end": [
+                      -0.6799999999999999,
+                      -0.4149999999999999,
+                      0.0015
+                    ],
+                    "adjacentFaces": [
+                      {
+                        "id": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAIAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFABtb0VuZEZhY2VTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/TUYAOgBcAFIARABcAEQAUQBCAHUAcwBiAGEAcgBCAHIAaQBkAGcAZQBWAGkAcgB0AHUAYQBsAEQAZQBzAGkAZwBuAGUAcgBcAHQAZQBtAHAAbABhAHQAZQBzAFwAIWp/Z1wA+le2ZyFqf2dcACdZ+le2ZzEAXAA4AEcAWAAuADAANQAxAC4AMAAyADMALgBTAEwARABQAFIAVAAJgP/+/ws4AEcAWAAuADAANQAxAC4AMAAyADMAAgAAeJsTZv/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAABQAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAGEBAACRoRRmAQAAAAAAAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAABYAIAGEBAACRoRRmAwAAAP//AQATAG1vVW5CZW5kU3VyZklkUmVwX2MAAAWACAAcBQAA84ogZgAAAAAAAAAADIAAAAWACABhAQAAkaEUZgIAAAAMgAAABYAIAGEBAACRoRRmBAAAAAAAAAAAAAAAAABoQgAAAAAAAAAAAAA=",
+                        "definitionReference": true,
+                        "planeParameters": [
+                          0,
+                          0,
+                          1,
+                          0,
+                          0,
+                          0.0015
+                        ],
+                        "sense": false
+                      },
+                      {
+                        "id": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAIAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/TUYAOgBcAFIARABcAEQAUQBCAHUAcwBiAGEAcgBCAHIAaQBkAGcAZQBWAGkAcgB0AHUAYQBsAEQAZQBzAGkAZwBuAGUAcgBcAHQAZQBtAHAAbABhAHQAZQBzAFwAIWp/Z1wA+le2ZyFqf2dcACdZ+le2ZzEAXAA4AEcAWAAuADAANQAxAC4AMAAyADMALgBTAEwARABQAFIAVAAJgP/+/ws4AEcAWAAuADAANQAxAC4AMAAyADMAAgAAeJsTZv/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAABQAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAGEBAACRoRRmAgAAAP//AQAUAG1vQmVuZEVuZFN1cmZJZFJlcF9jAAAFgAgAHAUAAPOKIGYCAAAAAAAAAP//AQAUAG1vRW5kRmFjZVN1cmZJZFJlcF9jAAAFgAgAYQEAAJGhFGYAAAAAAAAAAAOAAAAFgAgAYQEAAJGhFGYEAAAAD4AAAAWACABhAQAAkaEUZgEAAAAAAAAAAAAAAAAAAAAAAGhCAAAAAAAAAAAAAA==",
+                        "definitionReference": true,
+                        "planeParameters": [
+                          1,
+                          1.33761810195802e-16,
+                          0,
+                          -0.68,
+                          0.41500000000000004,
+                          0.0015
+                        ],
+                        "sense": true
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": 1,
+                "suppressed": false,
+                "dimension": {
+                  "name": "D3@草图48@8GX.051.023.Part",
+                  "value": 0.012000000000000012,
+                  "drivenState": 2
+                },
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEADQBzZ1BvaW50SGFuZGxlBQD/////AAAAAA==",
+                    "point": [
+                      1.1102230246251565e-16,
+                      -0.4029999999999999,
+                      0
+                    ]
+                  },
+                  {
+                    "id": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRWRnZVJlZl9jAQAAAAAAAAAEAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFABtb0VuZEZhY2VTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/TUYAOgBcAFIARABcAEQAUQBCAHUAcwBiAGEAcgBCAHIAaQBkAGcAZQBWAGkAcgB0AHUAYQBsAEQAZQBzAGkAZwBuAGUAcgBcAHQAZQBtAHAAbABhAHQAZQBzAFwAIWp/Z1wA+le2ZyFqf2dcACdZ+le2ZzEAXAA4AEcAWAAuADAANQAxAC4AMAAyADMALgBTAEwARABQAFIAVAAJgP/+/ws4AEcAWAAuADAANQAxAC4AMAAyADMAAgAAeJsTZv/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAABQAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAGEBAACRoRRmAQAAAAAAAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAABYAIAGEBAACRoRRmBAAAAAyAAAAFgAgAYQEAAJGhFGYCAAAADIAAAAWACABhAQAAkaEUZgMAAAAAAAAAAAAAAGhCAAAAAAAA",
+                    "definitionReference": true,
+                    "lineParameters": [
+                      -0.6799999999999999,
+                      -0.4149999999999999,
+                      0.0015,
+                      1,
+                      0,
+                      0
+                    ],
+                    "circleParameters": null,
+                    "start": [
+                      -0.6799999999999999,
+                      -0.4149999999999999,
+                      0.0015
+                    ],
+                    "end": [
+                      0.6799999999999999,
+                      -0.4149999999999999,
+                      0.0015
+                    ],
+                    "adjacentFaces": [
+                      {
+                        "id": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAIAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFABtb0VuZEZhY2VTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/TUYAOgBcAFIARABcAEQAUQBCAHUAcwBiAGEAcgBCAHIAaQBkAGcAZQBWAGkAcgB0AHUAYQBsAEQAZQBzAGkAZwBuAGUAcgBcAHQAZQBtAHAAbABhAHQAZQBzAFwAIWp/Z1wA+le2ZyFqf2dcACdZ+le2ZzEAXAA4AEcAWAAuADAANQAxAC4AMAAyADMALgBTAEwARABQAFIAVAAJgP/+/ws4AEcAWAAuADAANQAxAC4AMAAyADMAAgAAeJsTZv/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAABQAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAGEBAACRoRRmAQAAAAAAAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAABYAIAGEBAACRoRRmAwAAAP//AQATAG1vVW5CZW5kU3VyZklkUmVwX2MAAAWACAAcBQAA84ogZgAAAAAAAAAADIAAAAWACABhAQAAkaEUZgIAAAAMgAAABYAIAGEBAACRoRRmBAAAAAAAAAAAAAAAAABoQgAAAAAAAAAAAAA=",
+                        "definitionReference": true,
+                        "planeParameters": [
+                          0,
+                          0,
+                          1,
+                          0,
+                          0,
+                          0.0015
+                        ],
+                        "sense": false
+                      },
+                      {
+                        "id": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAIAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/TUYAOgBcAFIARABcAEQAUQBCAHUAcwBiAGEAcgBCAHIAaQBkAGcAZQBWAGkAcgB0AHUAYQBsAEQAZQBzAGkAZwBuAGUAcgBcAHQAZQBtAHAAbABhAHQAZQBzAFwAIWp/Z1wA+le2ZyFqf2dcACdZ+le2ZzEAXAA4AEcAWAAuADAANQAxAC4AMAAyADMALgBTAEwARABQAFIAVAAJgP/+/ws4AEcAWAAuADAANQAxAC4AMAAyADMAAgAAeJsTZv/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAABQAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAGEBAACRoRRmBAAAAP//AQAUAG1vRW5kRmFjZVN1cmZJZFJlcF9jAAAFgAgAYQEAAJGhFGYAAAAAAAAAAAOAAAAFgAgAYQEAAJGhFGYDAAAADIAAAAWACABhAQAAkaEUZgEAAAAAAAAAA4AAAAWACABhAQAAkaEUZgIAAAAAAAAAAAAAAAAAaEIAAAAAAAAAAAAA",
+                        "definitionReference": true,
+                        "planeParameters": [
+                          0,
+                          1,
+                          0,
+                          -0.6799999999999999,
+                          -0.4149999999999999,
+                          0.0015
+                        ],
+                        "sense": true
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": 1,
+                "suppressed": false,
+                "dimension": {
+                  "name": "D4@草图48@8GX.051.023.Part",
+                  "value": 0.3275,
+                  "drivenState": 1
+                },
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEADQBzZ1BvaW50SGFuZGxlDwD/////AAAAAA==",
+                    "point": [
+                      -0.3274999999999999,
+                      -0.4029999999999999,
+                      0
+                    ]
+                  },
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEADQBzZ1BvaW50SGFuZGxlBQD/////AAAAAA==",
+                    "point": [
+                      1.1102230246251565e-16,
+                      -0.4029999999999999,
+                      0
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": 15,
+                "suppressed": false,
+                "dimension": {
+                  "name": "D5@草图48@8GX.051.023.Part",
+                  "value": 0.0052,
+                  "drivenState": 2
+                },
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEACwBzZ0FyY0hhbmRsZQAA/////wAAAAA=",
+                    "segment": "圆弧1"
+                  }
+                ]
+              },
+              {
+                "type": 15,
+                "suppressed": false,
+                "dimension": {
+                  "name": "D6@草图48@8GX.051.023.Part",
+                  "value": 0.005199999999999974,
+                  "drivenState": 2
+                },
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEACwBzZ0FyY0hhbmRsZQIA/////wAAAAA=",
+                    "segment": "圆弧3"
+                  }
+                ]
+              },
+              {
+                "type": 15,
+                "suppressed": false,
+                "dimension": {
+                  "name": "D7@草图48@8GX.051.023.Part",
+                  "value": 0.0051999999999999946,
+                  "drivenState": 2
+                },
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEACwBzZ0FyY0hhbmRsZQEA/////wAAAAA=",
+                    "segment": "圆弧2"
+                  }
+                ]
+              }
+            ],
+            "contours": [
+              {
+                "closed": true,
+                "segments": [
+                  "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEACwBzZ0FyY0hhbmRsZQAA/////wAAAAA="
+                ]
+              },
+              {
+                "closed": true,
+                "segments": [
+                  "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEACwBzZ0FyY0hhbmRsZQEA/////wAAAAA="
+                ]
+              },
+              {
+                "closed": true,
+                "segments": [
+                  "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEACwBzZ0FyY0hhbmRsZQIA/////wAAAAA="
+                ]
+              },
+              {
+                "closed": true,
+                "segments": [
+                  "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEACwBzZ0FyY0hhbmRsZQMA/////wAAAAA="
+                ]
+              },
+              {
+                "closed": true,
+                "segments": [
+                  "aEIAAAYAAAD//v8AAAAAAEoFAAD//wEACwBzZ0FyY0hhbmRsZQQA/////wAAAAA="
+                ]
+              }
+            ]
+          },
+          "definition": null,
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAAAEAAAD//v8AAAAAAGQFAAA=",
+          "name": "切除-拉伸1",
+          "type": "Cut",
+          "parent": null,
+          "suppressed": true,
+          "parents": [
+            "草图48",
+            "基体-法兰3",
+            "原点"
+          ],
+          "dimensions": [
+            {
+              "id": null,
+              "name": "D1@草图48@8GX.051.023.Part",
+              "value": 0.012,
+              "dimensionType": 0,
+              "readOnly": false,
+              "drivenState": 2,
+              "annotation": [
+                -0.7197963989895004,
+                -0.4097821101712906,
+                0.0016
+              ]
+            },
+            {
+              "id": null,
+              "name": "D2@草图48@8GX.051.023.Part",
+              "value": 0.025,
+              "dimensionType": 0,
+              "readOnly": false,
+              "drivenState": 2,
+              "annotation": [
+                -0.6733590998148603,
+                -0.4539017064023919,
+                0.0016
+              ]
+            },
+            {
+              "id": null,
+              "name": "D3@草图48@8GX.051.023.Part",
+              "value": 0.012000000000000012,
+              "dimensionType": 0,
+              "readOnly": false,
+              "drivenState": 2,
+              "annotation": [
+                -0.02661610187946184,
+                -0.40616502262778653,
+                0.0016
+              ]
+            },
+            {
+              "id": null,
+              "name": "D4@草图48@8GX.051.023.Part",
+              "value": 0.3275,
+              "dimensionType": 0,
+              "readOnly": false,
+              "drivenState": 1,
+              "annotation": [
+                -0.16404354416443304,
+                -0.47546867537730214,
+                0.0016
+              ]
+            },
+            {
+              "id": null,
+              "name": "D5@草图48@8GX.051.023.Part",
+              "value": 0.0052,
+              "dimensionType": 0,
+              "readOnly": false,
+              "drivenState": 2,
+              "annotation": [
+                -0.6418460635221949,
+                -0.4079996449578903,
+                0.0016
+              ]
+            },
+            {
+              "id": null,
+              "name": "D6@草图48@8GX.051.023.Part",
+              "value": 0.005199999999999974,
+              "dimensionType": 0,
+              "readOnly": false,
+              "drivenState": 2,
+              "annotation": [
+                -0.4258474490716694,
+                -0.4584885440422348,
+                0.0016
+              ]
+            },
+            {
+              "id": null,
+              "name": "D7@草图48@8GX.051.023.Part",
+              "value": 0.0051999999999999946,
+              "dimensionType": 0,
+              "readOnly": false,
+              "drivenState": 2,
+              "annotation": [
+                0.010239959903266649,
+                -0.40768264367246687,
+                0.0016
+              ]
+            }
+          ],
+          "sketch": null,
+          "definition": {
+            "interfaceName": "IExtrudeFeatureData2",
+            "properties": {
+              "ReverseDirection": false,
+              "BothDirections": false,
+              "FlipSideToCut": false,
+              "ThinWallType": -1,
+              "CapEnds": false,
+              "CapThickness": 0,
+              "Merge": true,
+              "FeatureScope": true,
+              "AutoSelect": false,
+              "FeatureScopeBodies": null,
+              "Contours": null,
+              "FromType": 0,
+              "FromOffsetDistance": 0,
+              "FromOffsetReverse": false,
+              "LinkToThickness": false,
+              "AssemblyFeatureScope": true,
+              "AutoSelectComponents": true,
+              "PropagateFeatureToParts": false,
+              "NormalCut": true,
+              "OptimizeGeometry": true,
+              "forwardDepth": 0,
+              "reverseDepth": 0,
+              "forwardEndCondition": 1,
+              "reverseEndCondition": 1,
+              "isThin": false,
+              "forwardWallThickness": 0,
+              "reverseWallThickness": 0,
+              "forwardEndReference": null,
+              "reverseEndReference": null,
+              "forwardEndReferenceType": -1,
+              "reverseEndReferenceType": -1,
+              "forwardDraftEnabled": false,
+              "reverseDraftEnabled": false,
+              "forwardDraftOutward": false,
+              "reverseDraftOutward": false,
+              "forwardDraftAngle": 0,
+              "reverseDraftAngle": 0,
+              "forwardReverseOffset": false,
+              "reverseReverseOffset": false,
+              "forwardTranslateSurface": false,
+              "reverseTranslateSurface": false,
+              "fromEntity": null,
+              "fromEntityType": 0,
+              "directionReferenceMode": -1,
+              "directionReferences": [
+                {
+                  "reference": null,
+                  "type": -1
+                },
+                {
+                  "reference": null,
+                  "type": -1
+                }
+              ],
+              "autoFilletCorners": false,
+              "autoFilletRadius": 0
+            }
+          },
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAAAEAAAD//v8AAAAAAGABAAA=",
+          "name": "平板型式12",
+          "type": "FlatPattern",
+          "parent": null,
+          "suppressed": true,
+          "parents": [
+            "钣金",
+            "钣金12",
+            "基体-法兰3",
+            "草图41"
+          ],
+          "dimensions": [],
+          "sketch": null,
+          "definition": {
+            "interfaceName": "IFlatPatternFeatureData",
+            "properties": {
+              "FixedFace": null,
+              "MergeFace": true,
+              "CornerTreatment": true,
+              "CornerTrimReliefType": 0,
+              "CornerTrimReliefDistance": 0.005,
+              "BreakCornerType": 0,
+              "BreakCornerRadius": 0.005,
+              "CornerTrimRatioToThickness": 0.005,
+              "UseRatioToThickness": false,
+              "SimplifyBends": false,
+              "ExcludedFaces": null,
+              "FixedFace2": {
+                "id": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAIAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFABtb0VuZEZhY2VTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/TUYAOgBcAFIARABcAEQAUQBCAHUAcwBiAGEAcgBCAHIAaQBkAGcAZQBWAGkAcgB0AHUAYQBsAEQAZQBzAGkAZwBuAGUAcgBcAHQAZQBtAHAAbABhAHQAZQBzAFwAIWp/Z1wA+le2ZyFqf2dcACdZ+le2ZzEAXAA4AEcAWAAuADAANQAxAC4AMAAyADMALgBTAEwARABQAFIAVAAJgP/+/ws4AEcAWAAuADAANQAxAC4AMAAyADMAAgAAeJsTZv/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAABQAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAEEFAAB8iyBmAQAAAAAAAAD//wEAFABtb1JhZGlhdGVTdXJmSWRSZXBfYwAABYAIAEEFAAB8iyBmBAAAAAAAAAD//wEAEwBtb1VuQmVuZFN1cmZJZFJlcF9jAAAFgAgARwUAAHyLIGYBAAAAAAAAAAyAAAAFgAgAQQUAAHyLIGYCAAAAAAAAAAyAAAAFgAgAQQUAAHyLIGYDAAAAAAAAAAAAAAAAAAAAAABoQgAAAAAAAAAAAAA=",
+                "definitionReference": true,
+                "planeParameters": [
+                  1.261545839209334e-30,
+                  7.249590645873169e-15,
+                  1,
+                  5.803110860363315e-32,
+                  3.387183917184523e-16,
+                  0.046000000000003004
+                ],
+                "sense": false
+              },
+              "ShowSlitInCornerRelief": true
+            }
+          },
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAAAEAAAD//v8AAAAAAF4BAAA=",
+          "name": "折弯-线6",
+          "type": "ProfileFeature",
+          "parent": "平板型式12",
+          "suppressed": false,
+          "parents": [],
+          "dimensions": [],
+          "sketch": {
+            "modelToSketch": [
+              1,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              1,
+              -5.803110860363315e-32,
+              -3.3348116971018757e-16,
+              -0.046000000000003004,
+              1,
+              0,
+              0,
+              0
+            ],
+            "constrainedStatus": 2,
+            "points": [
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAF4BAAD//wEADQBzZ1BvaW50SGFuZGxlAAD/////AAAAAA==",
+                "coordinates": [
+                  0.6800000000000002,
+                  0.45710705155749176,
+                  0
+                ]
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAF4BAAD//wEADQBzZ1BvaW50SGFuZGxlAQD/////AAAAAA==",
+                "coordinates": [
+                  -0.68,
+                  0.457107051557492,
+                  0
+                ]
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAF4BAAD//wEADQBzZ1BvaW50SGFuZGxlAgD/////AAAAAA==",
+                "coordinates": [
+                  0.6380000000000001,
+                  0.41370235051916404,
+                  0
+                ]
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAF4BAAD//wEADQBzZ1BvaW50SGFuZGxlAwD/////AAAAAA==",
+                "coordinates": [
+                  -0.638,
+                  0.41370235051916404,
+                  0
+                ]
+              }
+            ],
+            "segments": [
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAF4BAAD//wEADABzZ0xpbmVIYW5kbGUBAP////8AAAAA",
+                "name": "直线6",
+                "type": 0,
+                "construction": true,
+                "geometry": {
+                  "start": [
+                    0.6800000000000002,
+                    0.45710705155749176,
+                    0
+                  ],
+                  "end": [
+                    -0.68,
+                    0.457107051557492,
+                    0
+                  ]
+                }
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAF4BAAD//wEADABzZ0xpbmVIYW5kbGUDAP////8AAAAA",
+                "name": "直线8",
+                "type": 0,
+                "construction": true,
+                "geometry": {
+                  "start": [
+                    0.6380000000000001,
+                    0.41370235051916404,
+                    0
+                  ],
+                  "end": [
+                    -0.638,
+                    0.41370235051916404,
+                    0
+                  ]
+                }
+              }
+            ],
+            "relations": [],
+            "contours": []
+          },
+          "definition": null,
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAAAEAAAD//v8AAAAAAF8BAAA=",
+          "name": "边界框6",
+          "type": "ProfileFeature",
+          "parent": "平板型式12",
+          "suppressed": true,
+          "parents": [],
+          "dimensions": [],
+          "sketch": {
+            "modelToSketch": [
+              1,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              1,
+              -5.803110860363315e-32,
+              -3.387183917184523e-16,
+              -0.046000000000003004,
+              1,
+              0,
+              0,
+              0
+            ],
+            "constrainedStatus": 2,
+            "points": [
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAF8BAAD//wEADQBzZ1BvaW50SGFuZGxlAAD/////AAAAAA==",
+                "coordinates": [
+                  0.6800000000000002,
+                  0.37999999999999984,
+                  -2.7547408798511697e-15
+                ]
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAF8BAAD//wEADQBzZ1BvaW50SGFuZGxlAQD/////AAAAAA==",
+                "coordinates": [
+                  -0.68,
+                  0.37999999999999984,
+                  -2.7547408798511697e-15
+                ]
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAF8BAAD//wEADQBzZ1BvaW50SGFuZGxlAgD/////AAAAAA==",
+                "coordinates": [
+                  0.6800000000000002,
+                  1.285809402076656,
+                  -9.318934512947408e-15
+                ]
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAF8BAAD//wEADQBzZ1BvaW50SGFuZGxlAwD/////AAAAAA==",
+                "coordinates": [
+                  -0.68,
+                  1.285809402076656,
+                  -9.318934512947408e-15
+                ]
+              }
+            ],
+            "segments": [
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAF8BAAD//wEADABzZ0xpbmVIYW5kbGUAAP////8AAAAA",
+                "name": "直线1",
+                "type": 0,
+                "construction": true,
+                "geometry": {
+                  "start": [
+                    0.6800000000000002,
+                    0.37999999999999984,
+                    -2.7547408798511697e-15
+                  ],
+                  "end": [
+                    -0.68,
+                    0.37999999999999984,
+                    -2.7547408798511697e-15
+                  ]
+                }
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAF8BAAD//wEADABzZ0xpbmVIYW5kbGUBAP////8AAAAA",
+                "name": "直线2",
+                "type": 0,
+                "construction": true,
+                "geometry": {
+                  "start": [
+                    0.6800000000000002,
+                    1.285809402076656,
+                    -9.318934512947408e-15
+                  ],
+                  "end": [
+                    -0.68,
+                    1.285809402076656,
+                    -9.318934512947408e-15
+                  ]
+                }
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAF8BAAD//wEADABzZ0xpbmVIYW5kbGUCAP////8AAAAA",
+                "name": "直线3",
+                "type": 0,
+                "construction": true,
+                "geometry": {
+                  "start": [
+                    0.6800000000000002,
+                    0.37999999999999984,
+                    -2.7547408798511697e-15
+                  ],
+                  "end": [
+                    0.6800000000000002,
+                    1.285809402076656,
+                    -9.318934512947408e-15
+                  ]
+                }
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAF8BAAD//wEADABzZ0xpbmVIYW5kbGUDAP////8AAAAA",
+                "name": "直线4",
+                "type": 0,
+                "construction": true,
+                "geometry": {
+                  "start": [
+                    -0.68,
+                    0.37999999999999984,
+                    -2.7547408798511697e-15
+                  ],
+                  "end": [
+                    -0.68,
+                    1.285809402076656,
+                    -9.318934512947408e-15
+                  ]
+                }
+              }
+            ],
+            "relations": [],
+            "contours": []
+          },
+          "definition": null,
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAAAEAAAD//v8AAAAAAB4FAAA=",
+          "name": "展平-<边线折弯1>1",
+          "type": "UiBend",
+          "parent": "平板型式12",
+          "suppressed": false,
+          "parents": [
+            "边线折弯1"
+          ],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAAAEAAAD//v8AAAAAAEkFAAA=",
+          "name": "展平-<边线折弯2>1",
+          "type": "UiBend",
+          "parent": "平板型式12",
+          "suppressed": false,
+          "parents": [
+            "边线折弯2"
+          ],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": []
+        }
+      ],
+      "components": [],
+      "validation": {
+        "volumeMm3": 1849619.8821342862,
+        "surfaceAreaMm2": 2481040.4723846046,
+        "purpose": "validation-only-never-geometry-input"
+      },
+      "supplementalCapture": {
+        "revision": 3,
+        "referenceGeometry": true,
+        "mateFeatureBindings": true,
+        "embeddedComponents": true,
+        "featureTypes": [
+          "CoordSys",
+          "CornerFeat",
+          "FlatPattern",
+          "MirrorCompFeat",
+          "RefAxis",
+          "RefPlane",
+          "SheetMetal"
+        ]
+      },
+      "methodParameterCapture": {
+        "revision": 4,
+        "featureTypes": [
+          "Boss",
+          "Chamfer",
+          "Cut",
+          "EdgeFlange",
+          "Extrusion",
+          "RevCut",
+          "Revolution"
+        ]
+      },
+      "equationEvidence": {
+        "disabledCount": 0,
+        "equations": [
+          {
+            "index": 0,
+            "expression": "\"D4@草图48\"=(\"D1@草图1\"-50)/4",
+            "disabled": false,
+            "value": 327.5,
+            "globalVariable": false,
+            "readStatusIndex": 0
+          },
+          {
+            "index": 1,
+            "expression": "\"L\"= \"D1@草图1\"",
+            "disabled": true,
+            "value": 1360,
+            "globalVariable": true,
+            "readStatusIndex": 1
+          },
+          {
+            "index": 2,
+            "expression": "\"D1@草图40\" = IIF ( \"L\" < 501 , \"L\" / 2 , IIF ( \"L\" < 801 , \"L\" / 3 , \"L\" / 4 ) )",
+            "disabled": true,
+            "value": 340,
+            "globalVariable": false,
+            "readStatusIndex": 2
+          },
+          {
+            "index": 3,
+            "expression": "\"D2@阵列(线性)4\" = IIF ( \"L\" < 501 , 1 , IIF ( \"L\" < 801 , 2 , 3 ) )",
+            "disabled": true,
+            "value": 3,
+            "globalVariable": false,
+            "readStatusIndex": 3
+          },
+          {
+            "index": 4,
+            "expression": "\"D4@阵列(线性)4\"=\"D1@草图40\"",
+            "disabled": true,
+            "value": 340,
+            "globalVariable": false,
+            "readStatusIndex": 4
+          },
+          {
+            "index": 5,
+            "expression": "\"D1@阵列(线性)4\"= int ( \"D2@草图1\" / 80 - 1 )",
+            "disabled": true,
+            "value": 9,
+            "globalVariable": false,
+            "readStatusIndex": 5
+          }
+        ]
+      },
+      "selectionEvidenceCapture": {
+        "revision": 5,
+        "featureTypes": [
+          "MirrorPattern",
+          "MirrorSolid",
+          "RevCut",
+          "Revolution"
+        ]
+      }
+    }
+  ],
+  "representation": null,
+  "completion": "captured-uncompiled",
+  "containsMesh": false,
+  "containsBrepSnapshot": false
+}

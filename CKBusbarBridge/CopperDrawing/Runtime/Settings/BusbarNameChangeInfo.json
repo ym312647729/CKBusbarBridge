@@ -1,0 +1,42 @@
+[
+  {
+    "BusbarName": "触头引出",
+    "DepartmentName": "低压",
+    "IsSelected": true
+  },
+  {
+    "BusbarName": "框1上触头",
+    "DepartmentName": "高压",
+    "IsSelected": false
+  },
+  {
+    "BusbarName": "水平排(单)",
+    "DepartmentName": "低压",
+    "IsSelected": false
+  },
+  {
+    "BusbarName": "短接",
+    "DepartmentName": "高压",
+    "IsSelected": false
+  },
+  {
+    "BusbarName": "双电源进线",
+    "DepartmentName": "低压",
+    "IsSelected": false
+  },
+  {
+    "BusbarName": "C型铜排",
+    "DepartmentName": "低压",
+    "IsSelected": false
+  },
+  {
+    "BusbarName": "立弯铜排",
+    "DepartmentName": "低压",
+    "IsSelected": false
+  },
+  {
+    "BusbarName": "立弯铜排",
+    "DepartmentName": "高压",
+    "IsSelected": false
+  }
+]

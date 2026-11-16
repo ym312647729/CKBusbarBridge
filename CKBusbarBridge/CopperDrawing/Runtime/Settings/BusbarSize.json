@@ -1,0 +1,1028 @@
+[
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "15*3",
+    "BusIntensity": "205",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "20*3",
+    "BusIntensity": "270",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "20*4",
+    "BusIntensity": "280",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "20*5",
+    "BusIntensity": "300",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "20*6",
+    "BusIntensity": "300",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "25*3",
+    "BusIntensity": "325",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "25*4",
+    "BusIntensity": "350",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "25*5",
+    "BusIntensity": "380",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "25*6",
+    "BusIntensity": "380",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "25*8",
+    "BusIntensity": "380",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "30*3",
+    "BusIntensity": "390",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "30*4",
+    "BusIntensity": "420",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "30*5",
+    "BusIntensity": "450",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "30*6",
+    "BusIntensity": "480",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "30*8",
+    "BusIntensity": "540",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "30*10",
+    "BusIntensity": "640",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "40*3",
+    "BusIntensity": "1250",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "40*4",
+    "BusIntensity": "560",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "40*5",
+    "BusIntensity": "600",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "40*6",
+    "BusIntensity": "640",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "40*8",
+    "BusIntensity": "1120",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "40*10",
+    "BusIntensity": "800",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "45*6",
+    "BusIntensity": "1080",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "45*8",
+    "BusIntensity": "1080",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "45*10",
+    "BusIntensity": "1080",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "50*2",
+    "BusIntensity": "0",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "50*3",
+    "BusIntensity": "1080",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "50*4",
+    "BusIntensity": "700",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "50*5",
+    "BusIntensity": "750",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "50*6",
+    "BusIntensity": "800",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "50*8",
+    "BusIntensity": "900",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "50*10",
+    "BusIntensity": "1000",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "50*12",
+    "BusIntensity": "1250",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "60*2",
+    "BusIntensity": "1080",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "60*3",
+    "BusIntensity": "1080",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "60*4",
+    "BusIntensity": "840",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "60*5",
+    "BusIntensity": "900",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "60*6",
+    "BusIntensity": "990",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "60*8",
+    "BusIntensity": "1080",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "60*10",
+    "BusIntensity": "1300",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "60*12",
+    "BusIntensity": "1300",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "60*15",
+    "BusIntensity": "1300",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "63*10",
+    "BusIntensity": "0",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "65*5",
+    "BusIntensity": "0",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "65*6",
+    "BusIntensity": "0",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "65*10",
+    "BusIntensity": "0",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "67*10",
+    "BusIntensity": "0",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "80*2",
+    "BusIntensity": "1000",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "80*3",
+    "BusIntensity": "1770",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "80*4",
+    "BusIntensity": "1120",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "80*5",
+    "BusIntensity": "1250",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "80*6",
+    "BusIntensity": "1440",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "80*8",
+    "BusIntensity": "1650",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "80*10",
+    "BusIntensity": "1855",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "80*12",
+    "BusIntensity": "1855",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "80*15",
+    "BusIntensity": "1855",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "80*20",
+    "BusIntensity": "1250",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "85*3",
+    "BusIntensity": "1855",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "85*5",
+    "BusIntensity": "1300",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "90*3",
+    "BusIntensity": "1855",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "90*5",
+    "BusIntensity": "1000",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "90*10",
+    "BusIntensity": "1000",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "100*2",
+    "BusIntensity": "2340",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "100*3",
+    "BusIntensity": "1650",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "100*4",
+    "BusIntensity": "1000",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "100*5",
+    "BusIntensity": "1080",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "100*6",
+    "BusIntensity": "1770",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "100*6.35",
+    "BusIntensity": "1770",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "100*7",
+    "BusIntensity": "1000",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "100*8",
+    "BusIntensity": "2030",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "100*8.5",
+    "BusIntensity": "2030",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "100*10",
+    "BusIntensity": "2260",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "100*12",
+    "BusIntensity": "2030",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "105*4",
+    "BusIntensity": "1000",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "105*5",
+    "BusIntensity": "1000",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "110*5",
+    "BusIntensity": "1120",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "110*10",
+    "BusIntensity": "2260",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "115*3",
+    "BusIntensity": "1000",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "115*5",
+    "BusIntensity": "1855",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "120*2",
+    "BusIntensity": "1000",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "120*3",
+    "BusIntensity": "1300",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "120*5",
+    "BusIntensity": "1080",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "120*6",
+    "BusIntensity": "1080",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "120*8",
+    "BusIntensity": "2340",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "120*10",
+    "BusIntensity": "2580",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "120*12",
+    "BusIntensity": "2580",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "120*15",
+    "BusIntensity": "2580",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "125*2",
+    "BusIntensity": "1080",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "125*3",
+    "BusIntensity": "1080",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "125*4",
+    "BusIntensity": "1000",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "125*5",
+    "BusIntensity": "1080",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "125*8",
+    "BusIntensity": "1650",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "125*10",
+    "BusIntensity": "2650",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "130*5",
+    "BusIntensity": "1650",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "130*8",
+    "BusIntensity": "1000",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "130*10",
+    "BusIntensity": "1000",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "135*5",
+    "BusIntensity": "1120",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "140*5",
+    "BusIntensity": "1000",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "150*3",
+    "BusIntensity": "1000",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "150*5",
+    "BusIntensity": "1300",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "150*10",
+    "BusIntensity": "1000",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "150*12",
+    "BusIntensity": "1000",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "150*15",
+    "BusIntensity": "1000",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "155*3",
+    "BusIntensity": "1250",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "155*5",
+    "BusIntensity": "2030",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "170*3",
+    "BusIntensity": "1080",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "180*5",
+    "BusIntensity": "2030",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "180*10",
+    "BusIntensity": "2580",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "185*5",
+    "BusIntensity": "1000",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  //{
+  //  "Id": 0,
+  //  "BusMaterial": "TMY",
+  //  "BusSize": "200*5",
+  //  "BusIntensity": "1000",
+  //  "BusTemperature": "35℃",
+  //  "Quantity": "1",
+  //  "Comment": "圆角 镀锡"
+  //},
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "200*5",
+    "BusIntensity": "2030",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "205*10",
+    "BusIntensity": "2030",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "210*2",
+    "BusIntensity": "270",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  },
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "210*3",
+    "BusIntensity": "2030",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  }
+]

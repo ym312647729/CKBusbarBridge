@@ -1,0 +1,9 @@
+{
+  "BreakType": 2,
+  "OffsetToBaseDim": 300.0,
+  "CutAreaLength": 50,
+  "BridgeSide": false,
+  "BridgeLength": 0.0,
+  "FyingSurfaceLength": 130.0,
+  "FyingSurfaceRightLength": 110.0
+}

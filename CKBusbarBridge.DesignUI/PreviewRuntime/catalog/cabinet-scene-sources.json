@@ -1,0 +1,25 @@
+{
+  "source": "existing-once-verified-sidecar-metadata",
+  "models": [
+    {
+      "path": "模板/面对面模板/柜体装配.SLDASM",
+      "sha256": "39e6e7b4610e2cb58da91f30245a8941fd410ed4a500a9bf30e3d5d2c0755715",
+      "configuration": "默认"
+    },
+    {
+      "path": "模板/侧对侧模板/柜体装配.SLDASM",
+      "sha256": "8952154e724299f8392a5046fb5bd27a3b7c636a6eaf89a213a109e3fc73e1e4",
+      "configuration": "默认"
+    },
+    {
+      "path": "模板/面对墙模板(柜前向墙)/面对墙柜体装配.SLDASM",
+      "sha256": "f5ddda96b1295283497b9a132b3386c266e76ee5517198385e77f4f474c52254",
+      "configuration": "默认"
+    },
+    {
+      "path": "模板/面对墙模板(柜后向墙)/面对墙柜体装配.SLDASM",
+      "sha256": "276c1b34d420d051cff26b12c5cd7f9c8a1b0410e73c7422da9502a3e34f38c5",
+      "configuration": "默认"
+    }
+  ]
+}

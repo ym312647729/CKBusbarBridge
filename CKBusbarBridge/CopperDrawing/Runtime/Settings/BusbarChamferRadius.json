@@ -1,0 +1,128 @@
+[
+    {
+        "BusbarThickness": 2.0,
+        "BusbarWidth": 0.0,
+        "radius": 5.0,
+        "ChamferLength": 5.0,
+        "IsThickness": true
+    },
+    {
+        "BusbarThickness": 3.0,
+        "BusbarWidth": 0.0,
+        "radius": 5.0,
+        "ChamferLength": 5.0,
+        "IsThickness": true
+    },
+    {
+        "BusbarThickness": 4.0,
+        "BusbarWidth": 0.0,
+        "radius": 5.0,
+        "ChamferLength": 5.0,
+        "IsThickness": true
+    },
+    {
+        "BusbarThickness": 5.0,
+        "BusbarWidth": 0.0,
+        "radius": 5.0,
+        "ChamferLength": 5.0,
+        "IsThickness": true
+    },
+    {
+        "BusbarThickness": 6.0,
+        "BusbarWidth": 0.0,
+        "radius": 10.0,
+        "ChamferLength": 10.0,
+        "IsThickness": true
+    },
+    {
+        "BusbarThickness": 6.5,
+        "BusbarWidth": 0.0,
+        "radius": 10.0,
+        "ChamferLength": 10.0,
+        "IsThickness": true
+    },
+    {
+        "BusbarThickness": 8.0,
+        "BusbarWidth": 0.0,
+        "radius": 12.0,
+        "ChamferLength": 12.0,
+        "IsThickness": true
+    },
+    {
+        "BusbarThickness": 10.0,
+        "BusbarWidth": 0.0,
+        "radius": 12.0,
+        "ChamferLength": 12.0,
+        "IsThickness": true
+    },
+    {
+        "BusbarThickness": 12.0,
+        "BusbarWidth": 0.0,
+        "radius": 12.0,
+        "ChamferLength": 12.0,
+        "IsThickness": true
+    },
+    {
+        "BusbarThickness": 13.0,
+        "BusbarWidth": 0.0,
+        "radius": 12.0,
+        "ChamferLength": 12.0,
+        "IsThickness": true
+    },
+    {
+        "BusbarThickness": 0.0,
+        "BusbarWidth": 30.0,
+        "radius": 5.0,
+        "ChamferLength": 5.0,
+        "IsThickness": false
+    },
+    {
+        "BusbarThickness": 0.0,
+        "BusbarWidth": 40.0,
+        "radius": 5.0,
+        "ChamferLength": 5.0,
+        "IsThickness": false
+    },
+    {
+        "BusbarThickness": 0.0,
+        "BusbarWidth": 60.0,
+        "radius": 5.0,
+        "ChamferLength": 5.0,
+        "IsThickness": false
+    },
+    {
+        "BusbarThickness": 0.0,
+        "BusbarWidth": 80.0,
+        "radius": 5.0,
+        "ChamferLength": 5.0,
+        "IsThickness": false
+    },
+    {
+        "BusbarThickness": 0.0,
+        "BusbarWidth": 100.0,
+        "radius": 10.0,
+        "ChamferLength": 10.0,
+        "IsThickness": false
+    },
+    {
+        "BusbarThickness": 0.0,
+        "BusbarWidth": 120.0,
+        "radius": 10.0,
+        "ChamferLength": 10.0,
+        "IsThickness": false
+    },
+    {
+        "BusbarThickness": 0.0,
+        "BusbarWidth": 125.0,
+        "radius": 10.0,
+        "ChamferLength": 10.0,
+        "IsThickness": false
+    },
+    {
+        "BusbarThickness": 0.0,
+        "BusbarWidth": 150.0,
+        "radius": 10.0,
+        "ChamferLength": 10.0,
+        "IsThickness": false
+    }
+]

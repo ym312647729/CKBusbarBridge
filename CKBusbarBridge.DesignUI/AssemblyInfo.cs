@@ -1,0 +1,8 @@
+﻿using System.Reflection;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+[assembly: AssemblyTitle("CKBusbarBridge.DesignUI")]
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: ComVisible(false)]
+[assembly: InternalsVisibleTo("CKBusbarBridge")]
+[assembly: InternalsVisibleTo("UnitTestProject1")]

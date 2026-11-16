@@ -1,0 +1,378 @@
+{
+  "LeftBaseDimSizeDefine": [
+    {
+      "Id": "0",
+      "SizeName": "Length",
+      "SizeDefine": [
+        {
+          "Name": "D2@草图1@8GX.051.004.SLDPRT",
+          "DisplayName": "挡板长",
+          "BaseValue": 500.0,
+          "Scale": 1.0,
+          "Func": "",
+          "IsScaleReplace": true
+        },
+        {
+          "Name": "D2@草图1@8GX.051.A004.SLDPRT",
+          "DisplayName": "挡板长",
+          "BaseValue": 500.0,
+          "Scale": 1.0,
+          "Func": "",
+          "IsScaleReplace": true
+        },
+        {
+          "Name": "D1@草图1@8GX.160.003.SLDPRT",
+          "DisplayName": "挡板长",
+          "BaseValue": 454.5,
+          "Scale": 1.0,
+          "Func": "",
+          "IsScaleReplace": true
+        },
+        {
+          "Name": "D1@草图1@8GX.160.001.SLDPRT",
+          "DisplayName": "挡板长",
+          "BaseValue": 454.5,
+          "Scale": 1.0,
+          "Func": "",
+          "IsScaleReplace": true
+        },
+        {
+          "Name": "D1@草图1@8GX.160.201.SLDPRT",
+          "DisplayName": "挡板长",
+          "BaseValue": 454.5,
+          "Scale": 1.0,
+          "Func": "",
+          "IsScaleReplace": true
+        },
+        {
+          "Name": "D1@草图1@8GX.160.203.SLDPRT",
+          "DisplayName": "挡板长",
+          "BaseValue": 454.5,
+          "Scale": 1.0,
+          "Func": "",
+          "IsScaleReplace": true
+        },
+        {
+          "Name": "D1@草图1@8GX.017.202.SLDPRT",
+          "DisplayName": "挡板长",
+          "BaseValue": 498,
+          "Scale": 1.0,
+          "Func": "",
+          "IsScaleReplace": true
+        }
+      ]
+    },
+    {
+      "Id": "1",
+      "SizeName": "Width",
+      "SizeDefine": [
+        {
+          "Name": "D1@草图1@8GX.055.001.SLDPRT",
+          "DisplayName": "挡板宽",
+          "BaseValue": 708.0,
+          "Scale": 1.0,
+          "Func": "",
+          "IsScaleReplace": true
+        },
+        {
+          "Name": "D1@草图1@8GX.160.004.SLDPRT",
+          "DisplayName": "挡板宽",
+          "BaseValue": 717.0,
+          "Scale": 1.0,
+          "Func": "",
+          "IsScaleReplace": true
+        },
+        {
+          "Name": "D1@草图1@8GX.160.006.SLDPRT",
+          "DisplayName": "挡板宽",
+          "BaseValue": 717.0,
+          "Scale": 1.0,
+          "Func": "",
+          "IsScaleReplace": true
+        },
+        {
+          "Name": "D1@草图1@8GX.160.116.SLDPRT",
+          "DisplayName": "挡板宽",
+          "BaseValue": 717.0,
+          "Scale": 1.0,
+          "Func": "",
+          "IsScaleReplace": true
+        },
+        {
+          "Name": "D1@草图1@8GX.160.026.SLDPRT",
+          "DisplayName": "挡板宽",
+          "BaseValue": 788.0,
+          "Scale": 1.0,
+          "Func": "",
+          "IsScaleReplace": true
+        },
+        {
+          "Name": "D1@草图1@8GX.017.004.SLDPRT",
+          "DisplayName": "挡板宽",
+          "BaseValue": 798.0,
+          "Scale": 1.0,
+          "Func": "",
+          "IsScaleReplace": true
+        },
+        {
+          "Name": "D2@草图1@8GX.017.202.SLDPRT",
+          "DisplayName": "挡板宽",
+          "BaseValue": 798.0,
+          "Scale": 1.0,
+          "Func": "",
+          "IsScaleReplace": true
+        }
+      ]
+    },
+    {
+      "Id": "2",
+      "SizeName": "Height",
+      "SizeDefine": [
+        {
+          "Name": "D2@草图1@8GX.055.001.SLDPRT",
+          "DisplayName": "挡板高",
+          "BaseValue": 1000.0,
+          "Scale": 1.0,
+          "Func": "",
+          "IsScaleReplace": true
+        },
+        {
+          "Name": "D1@草图1@8GX.051.004.SLDPRT",
+          "DisplayName": "挡板高",
+          "BaseValue": 1000,
+          "Scale": 1.0,
+          "Func": "",
+          "IsScaleReplace": true
+        },
+        {
+          "Name": "D1@草图1@8GX.051.A004.SLDPRT",
+          "DisplayName": "挡板高",
+          "BaseValue": 1000,
+          "Scale": 1.0,
+          "Func": "",
+          "IsScaleReplace": true
+        },
+        {
+          "Name": "D1@草图1@8GX.160.008.SLDPRT",
+          "DisplayName": "挡板高",
+          "BaseValue": 1000,
+          "Scale": 1.0,
+          "Func": "",
+          "IsScaleReplace": true
+        },
+        {
+          "Name": "D1@草图1@8GX.160.A008.SLDPRT",
+          "DisplayName": "挡板高",
+          "BaseValue": 1000,
+          "Scale": 1.0,
+          "Func": "",
+          "IsScaleReplace": true
+        },
+        {
+          "Name": "D1@草图1@8GX.160.002.SLDPRT",
+          "DisplayName": "挡板高",
+          "BaseValue": 1000,
+          "Scale": 1.0,
+          "Func": "",
+          "IsScaleReplace": true
+        },
+        {
+          "Name": "D2@草图1@8GX.017.004.SLDPRT",
+          "DisplayName": "挡板高",
+          "BaseValue": 498,
+          "Scale": 1.0,
+          "Func": "",
+          "IsScaleReplace": true
+        }
+      ]
+    }
+  ],
+  "RightBaseDimSizeDefine": [
+    {
+      "Id": "0",
+      "SizeName": "Length",
+      "SizeDefine": [
+        {
+          "Name": "D2@草图1@8GX.051.004-右.SLDPRT",
+          "DisplayName": "挡板长",
+          "BaseValue": 530.0,
+          "Scale": 1.0,
+          "Func": "",
+          "IsScaleReplace": true
+        },
+        {
+          "Name": "D2@草图1@8GX.051.A04-右.SLDPRT",
+          "DisplayName": "挡板长",
+          "BaseValue": 530.0,
+          "Scale": 1.0,
+          "Func": "",
+          "IsScaleReplace": true
+        },
+        {
+          "Name": "D1@草图1@8GX.160.003-右.SLDPRT",
+          "DisplayName": "挡板长",
+          "BaseValue": 484.5,
+          "Scale": 1.0,
+          "Func": "",
+          "IsScaleReplace": true
+        },
+        {
+          "Name": "D1@草图1@8GX.160.001-右.SLDPRT",
+          "DisplayName": "挡板长",
+          "BaseValue": 484.5,
+          "Scale": 1.0,
+          "Func": "",
+          "IsScaleReplace": true
+        },
+        {
+          "Name": "D1@草图1@8GX.160.201-右.SLDPRT",
+          "DisplayName": "挡板长",
+          "BaseValue": 484.5,
+          "Scale": 1.0,
+          "Func": "",
+          "IsScaleReplace": true
+        },
+        {
+          "Name": "D1@草图1@8GX.160.203-右.SLDPRT",
+          "DisplayName": "挡板长",
+          "BaseValue": 484.5,
+          "Scale": 1.0,
+          "Func": "",
+          "IsScaleReplace": true
+        },
+        {
+          "Name": "D1@草图1@8GX.017.202-右.SLDPRT",
+          "DisplayName": "挡板长",
+          "BaseValue": 528,
+          "Scale": 1.0,
+          "Func": "",
+          "IsScaleReplace": true
+        }
+      ]
+    },
+    {
+      "Id": "1",
+      "SizeName": "Width",
+      "SizeDefine": [
+        {
+          "Name": "D1@草图1@8GX.055.001.SLDPRT",
+          "DisplayName": "挡板宽",
+          "BaseValue": 708.0,
+          "Scale": 1.0,
+          "Func": "",
+          "IsScaleReplace": true
+        },
+        {
+          "Name": "D1@草图1@8GX.160.004.SLDPRT",
+          "DisplayName": "挡板宽",
+          "BaseValue": 717.0,
+          "Scale": 1.0,
+          "Func": "",
+          "IsScaleReplace": true
+        },
+        {
+          "Name": "D1@草图1@8GX.160.006.SLDPRT",
+          "DisplayName": "挡板宽",
+          "BaseValue": 717.0,
+          "Scale": 1.0,
+          "Func": "",
+          "IsScaleReplace": true
+        },
+        {
+          "Name": "D1@草图1@8GX.160.116.SLDPRT",
+          "DisplayName": "挡板宽",
+          "BaseValue": 717.0,
+          "Scale": 1.0,
+          "Func": "",
+          "IsScaleReplace": true
+        },
+        {
+          "Name": "D1@草图1@8GX.160.026.SLDPRT",
+          "DisplayName": "挡板宽",
+          "BaseValue": 788.0,
+          "Scale": 1.0,
+          "Func": "",
+          "IsScaleReplace": true
+        },
+        {
+          "Name": "D1@草图1@8GX.017.004.SLDPRT",
+          "DisplayName": "挡板宽",
+          "BaseValue": 798.0,
+          "Scale": 1.0,
+          "Func": "",
+          "IsScaleReplace": true
+        },
+        {
+          "Name": "D2@草图1@8GX.017.202.SLDPRT",
+          "DisplayName": "挡板宽",
+          "BaseValue": 798.0,
+          "Scale": 1.0,
+          "Func": "",
+          "IsScaleReplace": true
+        }
+      ]
+    },
+    {
+      "Id": "2",
+      "SizeName": "Height",
+      "SizeDefine": [
+        {
+          "Name": "D2@草图1@8GX.055.001.SLDPRT",
+          "DisplayName": "挡板高",
+          "BaseValue": 1000.0,
+          "Scale": 1.0,
+          "Func": "",
+          "IsScaleReplace": true
+        },
+        {
+          "Name": "D1@草图1@8GX.051.004-右.SLDPRT",
+          "DisplayName": "挡板高",
+          "BaseValue": 1000,
+          "Scale": 1.0,
+          "Func": "",
+          "IsScaleReplace": true
+        },
+        {
+          "Name": "D1@草图1@8GX.051.A04-右.SLDPRT",
+          "DisplayName": "挡板高",
+          "BaseValue": 1000,
+          "Scale": 1.0,
+          "Func": "",
+          "IsScaleReplace": true
+        },
+        {
+          "Name": "D1@草图1@8GX.160.008.SLDPRT",
+          "DisplayName": "挡板高",
+          "BaseValue": 1000,
+          "Scale": 1.0,
+          "Func": "",
+          "IsScaleReplace": true
+        },
+        {
+          "Name": "D1@草图1@8GX.160.A008.SLDPRT",
+          "DisplayName": "挡板高",
+          "BaseValue": 1000,
+          "Scale": 1.0,
+          "Func": "",
+          "IsScaleReplace": true
+        },
+        {
+          "Name": "D1@草图1@8GX.160.002.SLDPRT",
+          "DisplayName": "挡板高",
+          "BaseValue": 1000,
+          "Scale": 1.0,
+          "Func": "",
+          "IsScaleReplace": true
+        },
+        {
+          "Name": "D2@草图1@8GX.017.004.SLDPRT",
+          "DisplayName": "挡板高",
+          "BaseValue": 498,
+          "Scale": 1.0,
+          "Func": "",
+          "IsScaleReplace": true
+        }
+      ]
+    }
+  ]
+}

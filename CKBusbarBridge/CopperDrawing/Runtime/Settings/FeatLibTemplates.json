@@ -1,0 +1,430 @@
+{
+    "EndPointReverse": [
+        "SPC_L2"
+    ],
+    "FeatLibDefaultDimNames": [
+        {
+            "FeatureLibOpeningHoleType": "圆孔",
+            "FeatureLibOpeningHoleCount": "1",
+            "FeatLibDimNameAndValues": [
+                {
+                    "Name": "D3",
+                    "DisplayName": "孔直径",
+                    "DefaultValue": 10.0,
+                    "DefaultValueReadOnly": "false"
+                },
+                {
+                    "Name": "CC",
+                    "DisplayName": "距参考边线",
+                    "DefaultValue": 30.0,
+                    "DefaultValueReadOnly": "false"
+                }
+            ],
+            "Favorites": []
+        },
+        {
+            "FeatureLibOpeningHoleType": "圆孔",
+            "FeatureLibOpeningHoleCount": "2",
+            "FeatLibDimNameAndValues": [
+                {
+                    "Name": "AA",
+                    "DisplayName": "垂直间距-不可编辑",
+                    "DefaultValue": 0.0,
+                    "DefaultValueReadOnly": "true"
+                },
+                {
+                    "Name": "BB",
+                    "DisplayName": "水平间距-距中线",
+                    "DefaultValue": 30.0,
+                    "DefaultValueReadOnly": "false"
+                },
+                {
+                    "Name": "D3",
+                    "DisplayName": "孔直径",
+                    "DefaultValue": 10.0,
+                    "DefaultValueReadOnly": "false"
+                },
+                {
+                    "Name": "CC",
+                    "DisplayName": "距参考边线",
+                    "DefaultValue": 30.0,
+                    "DefaultValueReadOnly": "false"
+                }
+            ],
+            "Favorites": []
+        },
+        {
+            "FeatureLibOpeningHoleType": "圆孔",
+            "FeatureLibOpeningHoleCount": "2-斜",
+            "FeatLibDimNameAndValues": [
+                {
+                    "Name": "AA",
+                    "DisplayName": "垂直间距-距中线",
+                    "DefaultValue": 30.0,
+                    "DefaultValueReadOnly": "false"
+                },
+                {
+                    "Name": "BB",
+                    "DisplayName": "水平间距-距中线",
+                    "DefaultValue": 30.0,
+                    "DefaultValueReadOnly": "false"
+                },
+                {
+                    "Name": "D3",
+                    "DisplayName": "孔直径",
+                    "DefaultValue": 10.0,
+                    "DefaultValueReadOnly": "false"
+                },
+                {
+                    "Name": "CC",
+                    "DisplayName": "距参考边线",
+                    "DefaultValue": 30.0,
+                    "DefaultValueReadOnly": "false"
+                }
+            ],
+            "Favorites": []
+        },
+        {
+            "FeatureLibOpeningHoleType": "圆孔",
+            "FeatureLibOpeningHoleCount": "4",
+            "FeatLibDimNameAndValues": [
+                {
+                    "Name": "AA",
+                    "DisplayName": "垂直间距",
+                    "DefaultValue": 30.0,
+                    "DefaultValueReadOnly": "false"
+                },
+                {
+                    "Name": "BB",
+                    "DisplayName": "水平间距",
+                    "DefaultValue": 30.0,
+                    "DefaultValueReadOnly": "false"
+                },
+
+                {
+                    "Name": "D3",
+                    "DisplayName": "孔直径",
+                    "DefaultValue": 10.0,
+                    "DefaultValueReadOnly": "false"
+                },
+                {
+                    "Name": "CC",
+                    "DisplayName": "距参考边线",
+                    "DefaultValue": 30.0,
+                    "DefaultValueReadOnly": "false"
+                }
+            ],
+            "Favorites": [
+                {
+                    "Id": "1",
+                    "FavoritesName": "测试收藏",
+                    "FeatLibDimNameAndValues": [
+                        {
+                            "Name": "AA",
+                            "DisplayName": "垂直间距",
+                            "DefaultValue": 25.0,
+                            "DefaultValueReadOnly": "false"
+                        },
+                        {
+                            "Name": "BB",
+                            "DisplayName": "水平间距",
+                            "DefaultValue": 25.0,
+                            "DefaultValueReadOnly": "false"
+                        },
+
+                        {
+                            "Name": "D3",
+                            "DisplayName": "孔直径",
+                            "DefaultValue": 9.0,
+                            "DefaultValueReadOnly": "false"
+                        },
+                        {
+                            "Name": "CC",
+                            "DisplayName": "距参考边线",
+                            "DefaultValue": 25.0,
+                            "DefaultValueReadOnly": "false"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "FeatureLibOpeningHoleType": "圆孔",
+            "FeatureLibOpeningHoleCount": "6",
+            "FeatLibDimNameAndValues": [
+                {
+                    "Name": "AA",
+                    "DisplayName": "垂直间距",
+                    "DefaultValue": 30.0,
+                    "DefaultValueReadOnly": "false"
+                },
+                {
+                    "Name": "BB",
+                    "DisplayName": "水平间距",
+                    "DefaultValue": 30.0,
+                    "DefaultValueReadOnly": "false"
+                },
+                {
+                    "Name": "D3",
+                    "DisplayName": "孔直径",
+                    "DefaultValue": 10.0,
+                    "DefaultValueReadOnly": "false"
+                },
+                {
+                    "Name": "CC",
+                    "DisplayName": "距参考边线",
+                    "DefaultValue": 30.0,
+                    "DefaultValueReadOnly": "false"
+                }
+            ],
+            "Favorites": []
+        },
+        {
+            "FeatureLibOpeningHoleType": "圆孔",
+            "FeatureLibOpeningHoleCount": "9",
+            "FeatLibDimNameAndValues": [
+                {
+                    "Name": "AA",
+                    "DisplayName": "垂直间距",
+                    "DefaultValue": 30.0,
+                    "DefaultValueReadOnly": "false"
+                },
+                {
+                    "Name": "BB",
+                    "DisplayName": "水平间距",
+                    "DefaultValue": 30.0,
+                    "DefaultValueReadOnly": "false"
+                },
+                {
+                    "Name": "D3",
+                    "DisplayName": "孔直径",
+                    "DefaultValue": 10.0,
+                    "DefaultValueReadOnly": "false"
+                },
+                {
+                    "Name": "CC",
+                    "DisplayName": "距参考边线",
+                    "DefaultValue": 30.0,
+                    "DefaultValueReadOnly": "false"
+                }
+            ],
+            "Favorites": []
+        },
+        {
+            "FeatureLibOpeningHoleType": "腰孔",
+            "FeatureLibOpeningHoleCount": "1",
+            "FeatLibDimNameAndValues": [
+                {
+                    "Name": "CC",
+                    "DisplayName": "距参考边线",
+                    "DefaultValue": 20.0,
+                    "DefaultValueReadOnly": "false"
+                },
+                {
+                    "Name": "D3",
+                    "DisplayName": "孔半径",
+                    "DefaultValue": 6.0,
+                    "DefaultValueReadOnly": "false"
+                },
+                {
+                    "Name": "D2",
+                    "DisplayName": "腰长",
+                    //"DefaultValue": 5.0,
+                    "DefaultValue": 17.0,
+                    "DefaultValueReadOnly": "false"
+                }
+            ],
+            "Favorites": []
+        },
+        {
+            "FeatureLibOpeningHoleType": "腰孔",
+            "FeatureLibOpeningHoleCount": "2",
+            "FeatLibDimNameAndValues": [
+                {
+                    "Name": "AA",
+                    "DisplayName": "垂直间距-不可编辑",
+                    "DefaultValue": 0.0,
+                    "DefaultValueReadOnly": "true"
+                },
+                {
+                    "Name": "BB",
+                    "DisplayName": "水平间距-距中线",
+                    "DefaultValue": 20.0,
+                    "DefaultValueReadOnly": "false"
+                },
+                {
+                    "Name": "CC",
+                    "DisplayName": "距参考边线",
+                    "DefaultValue": 20.0,
+                    "DefaultValueReadOnly": "false"
+                },
+                {
+                    "Name": "D3",
+                    "DisplayName": "孔半径",
+                    "DefaultValue": 6.0,
+                    "DefaultValueReadOnly": "false"
+                },
+                {
+                    "Name": "D2",
+                    "DisplayName": "腰长",
+                    //"DefaultValue": 5.0,
+                    "DefaultValue": 17.0,
+                    "DefaultValueReadOnly": "false"
+                }
+            ],
+            "Favorites": []
+        },
+        {
+            "FeatureLibOpeningHoleType": "腰孔",
+            "FeatureLibOpeningHoleCount": "2-斜",
+            "FeatLibDimNameAndValues": [
+                {
+                    "Name": "AA",
+                    "DisplayName": "垂直间距-距中线",
+                    "DefaultValue": 20.0,
+                    "DefaultValueReadOnly": "false"
+                },
+                {
+                    "Name": "BB",
+                    "DisplayName": "水平间距-距中线",
+                    "DefaultValue": 20.0,
+                    "DefaultValueReadOnly": "false"
+                },
+                {
+                    "Name": "CC",
+                    "DisplayName": "距参考边线",
+                    "DefaultValue": 20.0,
+                    "DefaultValueReadOnly": "false"
+                },
+                {
+                    "Name": "D3",
+                    "DisplayName": "孔半径",
+                    "DefaultValue": 6.0,
+                    "DefaultValueReadOnly": "false"
+                },
+                {
+                    "Name": "D2",
+                    "DisplayName": "腰长",
+                    //"DefaultValue": 5.0,
+                    "DefaultValue": 17.0,
+                    "DefaultValueReadOnly": "false"
+                }
+            ],
+            "Favorites": []
+        },
+        {
+            "FeatureLibOpeningHoleType": "腰孔",
+            "FeatureLibOpeningHoleCount": "4",
+            "FeatLibDimNameAndValues": [
+                {
+                    "Name": "AA",
+                    "DisplayName": "垂直间距",
+                    "DefaultValue": 20.0,
+                    "DefaultValueReadOnly": "false"
+                },
+                {
+                    "Name": "BB",
+                    "DisplayName": "水平间距",
+                    "DefaultValue": 20.0,
+                    "DefaultValueReadOnly": "false"
+                },
+                {
+                    "Name": "CC",
+                    "DisplayName": "距参考边线",
+                    "DefaultValue": 20.0,
+                    "DefaultValueReadOnly": "false"
+                },
+                {
+                    "Name": "D3",
+                    "DisplayName": "孔半径",
+                    "DefaultValue": 6.0,
+                    "DefaultValueReadOnly": "false"
+                },
+                {
+                    "Name": "D2",
+                    "DisplayName": "腰长",
+                    //"DefaultValue": 5.0,
+                    "DefaultValue": 17.0,
+                    "DefaultValueReadOnly": "false"
+                }
+            ],
+            "Favorites": []
+        },
+        {
+            "FeatureLibOpeningHoleType": "腰孔",
+            "FeatureLibOpeningHoleCount": "6",
+            "FeatLibDimNameAndValues": [
+                {
+                    "Name": "AA",
+                    "DisplayName": "垂直间距",
+                    "DefaultValue": 20.0,
+                    "DefaultValueReadOnly": "false"
+                },
+                {
+                    "Name": "BB",
+                    "DisplayName": "水平间距",
+                    "DefaultValue": 20.0,
+                    "DefaultValueReadOnly": "false"
+                },
+                {
+                    "Name": "CC",
+                    "DisplayName": "距参考边线",
+                    "DefaultValue": 20.0,
+                    "DefaultValueReadOnly": "false"
+                },
+                {
+                    "Name": "D3",
+                    "DisplayName": "孔半径",
+                    "DefaultValue": 6.0,
+                    "DefaultValueReadOnly": "false"
+                },
+                {
+                    "Name": "D2",
+                    "DisplayName": "腰长",
+                    //"DefaultValue": 5.0,
+                    "DefaultValue": 17.0,
+                    "DefaultValueReadOnly": "false"
+                }
+            ],
+            "Favorites": []
+        },
+        {
+            "FeatureLibOpeningHoleType": "腰孔",
+            "FeatureLibOpeningHoleCount": "9",
+            "FeatLibDimNameAndValues": [
+                {
+                    "Name": "AA",
+                    "DisplayName": "垂直间距",
+                    "DefaultValue": 20.0,
+                    "DefaultValueReadOnly": "false"
+                },
+                {
+                    "Name": "BB",
+                    "DisplayName": "水平间距",
+                    "DefaultValue": 20.0,
+                    "DefaultValueReadOnly": "false"
+                },
+                {
+                    "Name": "CC",
+                    "DisplayName": "距参考边线",
+                    "DefaultValue": 20.0,
+                    "DefaultValueReadOnly": "false"
+                },
+                {
+                    "Name": "D3",
+                    "DisplayName": "孔半径",
+                    "DefaultValue": 6.0,
+                    "DefaultValueReadOnly": "false"
+                },
+                {
+                    "Name": "D2",
+                    "DisplayName": "腰长",
+                    //"DefaultValue": 5.0,
+                    "DefaultValue": 17.0,
+                    "DefaultValueReadOnly": "false"
+                }
+            ],
+            "Favorites": []
+        }
+    ]
+}

@@ -1,0 +1,1037 @@
+{
+  "schemaVersion": "dq-virtual-template/1",
+  "captureRevision": 4,
+  "kind": "source-feature-definition",
+  "source": {
+    "path": "模板/面对面模板/柜体/梁.SLDPRT",
+    "sha256": "d57d6f1b3f240ccf54668158fa2ed0b1b0482e3c5ccc5c12c9bc5c15a972f28b",
+    "units": "metre-radian",
+    "solidWorksVersion": "32.0.1"
+  },
+  "configurations": [
+    {
+      "name": "默认",
+      "equations": [],
+      "features": [
+        {
+          "id": "aEIAAAAAAAD//v8AAAAAAA==",
+          "name": "Favorites",
+          "type": "FavoriteFolder",
+          "parent": null,
+          "suppressed": false,
+          "parents": [],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAACQAAAD//v8AAAAAAAcAAAA=",
+          "name": "设计活页夹",
+          "type": "DocsFolder",
+          "parent": null,
+          "suppressed": false,
+          "parents": [],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAABUAAAD//v8AAAAAAAEAAAA=",
+          "name": "注解",
+          "type": "DetailCabinet",
+          "parent": null,
+          "suppressed": false,
+          "parents": [],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAACQAAAD//v8AAAAAAEQAAAA=",
+          "name": "Notes",
+          "type": "NotesAreaFtrFolder",
+          "parent": "注解",
+          "suppressed": false,
+          "parents": [],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAACAAAAD//v8AAAAAAMsAAAA=",
+          "name": "Notes Area",
+          "type": "AnnotationViewFeat",
+          "parent": "注解",
+          "suppressed": false,
+          "parents": [],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAACQAAAD//v8AAAAAAEUAAAA=",
+          "name": "Notes1___EndTag___",
+          "type": "FtrFolder",
+          "parent": "注解",
+          "suppressed": false,
+          "parents": [],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAABQAAAD//v8AAAAAAAkAAAA=",
+          "name": "实体",
+          "type": "SolidBodyFolder",
+          "parent": null,
+          "suppressed": false,
+          "parents": [],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAABQAAAD//v8AAAAAAAoAAAA=",
+          "name": "曲面实体",
+          "type": "SurfaceBodyFolder",
+          "parent": null,
+          "suppressed": false,
+          "parents": [],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAACQAAAD//v8AAAAAAAgAAAA=",
+          "name": "备注",
+          "type": "CommentsFolder",
+          "parent": null,
+          "suppressed": false,
+          "parents": [],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAABYAAAD//v8AAAAAAD0AAAA=",
+          "name": "方程式",
+          "type": "EqnFolder",
+          "parent": null,
+          "suppressed": false,
+          "parents": [],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAAAEAAAD//v8AAAAAAAIAAAA=",
+          "name": "前视基准面",
+          "type": "RefPlane",
+          "parent": null,
+          "suppressed": false,
+          "parents": [],
+          "dimensions": [],
+          "sketch": null,
+          "definition": {
+            "interfaceName": "IRefPlaneFeatureData",
+            "properties": {
+              "Type": 10,
+              "AutoSize": true,
+              "Angle": 0,
+              "Distance": 0,
+              "ReverseDirection": false,
+              "OriginOnCurve": false,
+              "Selections": null,
+              "ProjectionType": 0,
+              "UseNormalPlane": false,
+              "SolutionIndex": 0,
+              "Type2": 10,
+              "UpdatePlane": false,
+              "constraintReferences": [
+                {
+                  "reference": null,
+                  "constraint": 0,
+                  "angleOrDistance": 0,
+                  "reversedDirection": false
+                },
+                {
+                  "reference": null,
+                  "constraint": 0,
+                  "angleOrDistance": 0,
+                  "reversedDirection": false
+                },
+                {
+                  "reference": null,
+                  "constraint": 0,
+                  "angleOrDistance": 0,
+                  "reversedDirection": false
+                }
+              ]
+            }
+          },
+          "diagnostics": [
+            "IRefPlaneFeatureData.AccessSelections returned false"
+          ],
+          "referenceGeometry": {
+            "id": "aEIAAAEAAAD//v8AAAAAAAIAAAA=",
+            "feature": "前视基准面",
+            "referencePlaneTransform": [
+              1,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "id": "aEIAAAEAAAD//v8AAAAAAAMAAAA=",
+          "name": "上视基准面",
+          "type": "RefPlane",
+          "parent": null,
+          "suppressed": false,
+          "parents": [],
+          "dimensions": [],
+          "sketch": null,
+          "definition": {
+            "interfaceName": "IRefPlaneFeatureData",
+            "properties": {
+              "Type": 10,
+              "AutoSize": true,
+              "Angle": 0,
+              "Distance": 0,
+              "ReverseDirection": false,
+              "OriginOnCurve": false,
+              "Selections": null,
+              "ProjectionType": 0,
+              "UseNormalPlane": false,
+              "SolutionIndex": 0,
+              "Type2": 10,
+              "UpdatePlane": false,
+              "constraintReferences": [
+                {
+                  "reference": null,
+                  "constraint": 0,
+                  "angleOrDistance": 0,
+                  "reversedDirection": false
+                },
+                {
+                  "reference": null,
+                  "constraint": 0,
+                  "angleOrDistance": 0,
+                  "reversedDirection": false
+                },
+                {
+                  "reference": null,
+                  "constraint": 0,
+                  "angleOrDistance": 0,
+                  "reversedDirection": false
+                }
+              ]
+            }
+          },
+          "diagnostics": [
+            "IRefPlaneFeatureData.AccessSelections returned false"
+          ],
+          "referenceGeometry": {
+            "id": "aEIAAAEAAAD//v8AAAAAAAMAAAA=",
+            "feature": "上视基准面",
+            "referencePlaneTransform": [
+              1,
+              0,
+              0,
+              0,
+              0,
+              -1,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "id": "aEIAAAEAAAD//v8AAAAAAAQAAAA=",
+          "name": "右视基准面",
+          "type": "RefPlane",
+          "parent": null,
+          "suppressed": false,
+          "parents": [],
+          "dimensions": [],
+          "sketch": null,
+          "definition": {
+            "interfaceName": "IRefPlaneFeatureData",
+            "properties": {
+              "Type": 10,
+              "AutoSize": true,
+              "Angle": 0,
+              "Distance": 0,
+              "ReverseDirection": false,
+              "OriginOnCurve": false,
+              "Selections": null,
+              "ProjectionType": 0,
+              "UseNormalPlane": false,
+              "SolutionIndex": 0,
+              "Type2": 10,
+              "UpdatePlane": false,
+              "constraintReferences": [
+                {
+                  "reference": null,
+                  "constraint": 0,
+                  "angleOrDistance": 0,
+                  "reversedDirection": false
+                },
+                {
+                  "reference": null,
+                  "constraint": 0,
+                  "angleOrDistance": 0,
+                  "reversedDirection": false
+                },
+                {
+                  "reference": null,
+                  "constraint": 0,
+                  "angleOrDistance": 0,
+                  "reversedDirection": false
+                }
+              ]
+            }
+          },
+          "diagnostics": [
+            "IRefPlaneFeatureData.AccessSelections returned false"
+          ],
+          "referenceGeometry": {
+            "id": "aEIAAAEAAAD//v8AAAAAAAQAAAA=",
+            "feature": "右视基准面",
+            "referencePlaneTransform": [
+              -0,
+              -0,
+              -1,
+              0,
+              1,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "id": "aEIAAAEAAAD//v8AAAAAAAUAAAA=",
+          "name": "原点",
+          "type": "OriginProfileFeature",
+          "parent": null,
+          "suppressed": false,
+          "parents": [
+            "前视基准面"
+          ],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAAAEAAAD//v8AAAAAAEcAAAA=",
+          "name": "草图1",
+          "type": "ProfileFeature",
+          "parent": null,
+          "suppressed": false,
+          "parents": [
+            "前视基准面",
+            "原点"
+          ],
+          "dimensions": [
+            {
+              "id": null,
+              "name": "D1@草图1@梁.Part",
+              "value": 4,
+              "dimensionType": 0,
+              "readOnly": false,
+              "drivenState": 2,
+              "annotation": [
+                1.29447388342165,
+                0.3801665404996215,
+                0.0001
+              ]
+            },
+            {
+              "id": null,
+              "name": "D2@草图1@梁.Part",
+              "value": 0.4,
+              "dimensionType": 0,
+              "readOnly": false,
+              "drivenState": 2,
+              "annotation": [
+                2.2607662303647174,
+                -0.06555582633311614,
+                0.0001
+              ]
+            }
+          ],
+          "sketch": {
+            "modelToSketch": [
+              1,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0
+            ],
+            "constrainedStatus": 3,
+            "points": [
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAEcAAAD//wEADQBzZ1BvaW50SGFuZGxlAAD/////AAAAAA==",
+                "coordinates": [
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAEcAAAD//wEADQBzZ1BvaW50SGFuZGxlAQD/////AAAAAA==",
+                "coordinates": [
+                  2,
+                  0.2,
+                  0
+                ]
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAEcAAAD//wEADQBzZ1BvaW50SGFuZGxlAgD/////AAAAAA==",
+                "coordinates": [
+                  -2,
+                  -0.2,
+                  0
+                ]
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAEcAAAD//wEADQBzZ1BvaW50SGFuZGxlAwD/////AAAAAA==",
+                "coordinates": [
+                  -2,
+                  0.2,
+                  0
+                ]
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAEcAAAD//wEADQBzZ1BvaW50SGFuZGxlpAD/////AAAAAA==",
+                "coordinates": [
+                  2,
+                  -0.2,
+                  0
+                ]
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAEcAAAD//wEADQBzZ1BvaW50SGFuZGxlpQD/////AAAAAA==",
+                "coordinates": [
+                  -2,
+                  0,
+                  0
+                ]
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAEcAAAD//wEADQBzZ1BvaW50SGFuZGxlpgD/////AAAAAA==",
+                "coordinates": [
+                  0,
+                  -0.2,
+                  0
+                ]
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAEcAAAD//wEADQBzZ1BvaW50SGFuZGxlpwD/////AAAAAA==",
+                "coordinates": [
+                  2,
+                  4.898587196589413E-16,
+                  0
+                ]
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAEcAAAD//wEADQBzZ1BvaW50SGFuZGxlqAD/////AAAAAA==",
+                "coordinates": [
+                  0,
+                  0.2,
+                  0
+                ]
+              }
+            ],
+            "segments": [
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAEcAAAD//wEADABzZ0xpbmVIYW5kbGUBAP////8AAAAA",
+                "name": "直线1",
+                "type": 0,
+                "construction": false,
+                "geometry": {
+                  "start": [
+                    -2,
+                    -0.2,
+                    0
+                  ],
+                  "end": [
+                    2,
+                    -0.2,
+                    0
+                  ]
+                }
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAEcAAAD//wEADABzZ0xpbmVIYW5kbGUCAP////8AAAAA",
+                "name": "直线2",
+                "type": 0,
+                "construction": false,
+                "geometry": {
+                  "start": [
+                    -2,
+                    -0.2,
+                    0
+                  ],
+                  "end": [
+                    -2,
+                    0.2,
+                    0
+                  ]
+                }
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAEcAAAD//wEADABzZ0xpbmVIYW5kbGUDAP////8AAAAA",
+                "name": "直线3",
+                "type": 0,
+                "construction": false,
+                "geometry": {
+                  "start": [
+                    -2,
+                    0.2,
+                    0
+                  ],
+                  "end": [
+                    2,
+                    0.2,
+                    0
+                  ]
+                }
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAEcAAAD//wEADABzZ0xpbmVIYW5kbGUEAP////8AAAAA",
+                "name": "直线4",
+                "type": 0,
+                "construction": false,
+                "geometry": {
+                  "start": [
+                    2,
+                    -0.2,
+                    0
+                  ],
+                  "end": [
+                    2,
+                    0.2,
+                    0
+                  ]
+                }
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAEcAAAD//wEADABzZ0xpbmVIYW5kbGUFAP////8AAAAA",
+                "name": "直线5",
+                "type": 0,
+                "construction": true,
+                "geometry": {
+                  "start": [
+                    0,
+                    0.2,
+                    0
+                  ],
+                  "end": [
+                    0,
+                    -0.2,
+                    0
+                  ]
+                }
+              },
+              {
+                "id": "aEIAAAYAAAD//v8AAAAAAEcAAAD//wEADABzZ0xpbmVIYW5kbGUGAP////8AAAAA",
+                "name": "直线6",
+                "type": 0,
+                "construction": true,
+                "geometry": {
+                  "start": [
+                    -2,
+                    0,
+                    0
+                  ],
+                  "end": [
+                    2,
+                    4.898587196589413E-16,
+                    0
+                  ]
+                }
+              }
+            ],
+            "relations": [
+              {
+                "type": 12,
+                "suppressed": false,
+                "dimension": null,
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEcAAAD//wEADQBzZ1BvaW50SGFuZGxlqAD/////AAAAAA==",
+                    "point": [
+                      0,
+                      0.2,
+                      0
+                    ]
+                  },
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEcAAAD//wEADABzZ0xpbmVIYW5kbGUDAP////8AAAAA",
+                    "segment": "直线3"
+                  }
+                ]
+              },
+              {
+                "type": 12,
+                "suppressed": false,
+                "dimension": null,
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEcAAAD//wEADQBzZ1BvaW50SGFuZGxlpgD/////AAAAAA==",
+                    "point": [
+                      0,
+                      -0.2,
+                      0
+                    ]
+                  },
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEcAAAD//wEADABzZ0xpbmVIYW5kbGUBAP////8AAAAA",
+                    "segment": "直线1"
+                  }
+                ]
+              },
+              {
+                "type": 12,
+                "suppressed": false,
+                "dimension": null,
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEcAAAD//wEADQBzZ1BvaW50SGFuZGxlpQD/////AAAAAA==",
+                    "point": [
+                      -2,
+                      0,
+                      0
+                    ]
+                  },
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEcAAAD//wEADABzZ0xpbmVIYW5kbGUCAP////8AAAAA",
+                    "segment": "直线2"
+                  }
+                ]
+              },
+              {
+                "type": 12,
+                "suppressed": false,
+                "dimension": null,
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEcAAAD//wEADQBzZ1BvaW50SGFuZGxlpwD/////AAAAAA==",
+                    "point": [
+                      2,
+                      4.898587196589413E-16,
+                      0
+                    ]
+                  },
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEcAAAD//wEADABzZ0xpbmVIYW5kbGUEAP////8AAAAA",
+                    "segment": "直线4"
+                  }
+                ]
+              },
+              {
+                "type": 9,
+                "suppressed": false,
+                "dimension": null,
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEcAAAD//wEADQBzZ1BvaW50SGFuZGxlAAD/////AAAAAA==",
+                    "point": [
+                      0,
+                      0,
+                      0
+                    ]
+                  },
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEcAAAD//wEADABzZ0xpbmVIYW5kbGUFAP////8AAAAA",
+                    "segment": "直线5"
+                  }
+                ]
+              },
+              {
+                "type": 9,
+                "suppressed": false,
+                "dimension": null,
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEcAAAD//wEADQBzZ1BvaW50SGFuZGxlAAD/////AAAAAA==",
+                    "point": [
+                      0,
+                      0,
+                      0
+                    ]
+                  },
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEcAAAD//wEADABzZ0xpbmVIYW5kbGUGAP////8AAAAA",
+                    "segment": "直线6"
+                  }
+                ]
+              },
+              {
+                "type": 9,
+                "suppressed": false,
+                "dimension": null,
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAAUAAAD//wEADQBzZ1BvaW50SGFuZGxlAAD/////AAAAAA==",
+                    "point": [
+                      0,
+                      0,
+                      0
+                    ]
+                  },
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEcAAAD//wEADQBzZ1BvaW50SGFuZGxlAAD/////AAAAAA==",
+                    "point": [
+                      0,
+                      0,
+                      0
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": 4,
+                "suppressed": false,
+                "dimension": null,
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEcAAAD//wEADABzZ0xpbmVIYW5kbGUGAP////8AAAAA",
+                    "segment": "直线6"
+                  }
+                ]
+              },
+              {
+                "type": 5,
+                "suppressed": false,
+                "dimension": null,
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEcAAAD//wEADABzZ0xpbmVIYW5kbGUFAP////8AAAAA",
+                    "segment": "直线5"
+                  }
+                ]
+              },
+              {
+                "type": 5,
+                "suppressed": false,
+                "dimension": null,
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEcAAAD//wEADABzZ0xpbmVIYW5kbGUCAP////8AAAAA",
+                    "segment": "直线2"
+                  }
+                ]
+              },
+              {
+                "type": 4,
+                "suppressed": false,
+                "dimension": null,
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEcAAAD//wEADABzZ0xpbmVIYW5kbGUBAP////8AAAAA",
+                    "segment": "直线1"
+                  }
+                ]
+              },
+              {
+                "type": 5,
+                "suppressed": false,
+                "dimension": null,
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEcAAAD//wEADABzZ0xpbmVIYW5kbGUEAP////8AAAAA",
+                    "segment": "直线4"
+                  }
+                ]
+              },
+              {
+                "type": 4,
+                "suppressed": false,
+                "dimension": null,
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEcAAAD//wEADABzZ0xpbmVIYW5kbGUDAP////8AAAAA",
+                    "segment": "直线3"
+                  }
+                ]
+              },
+              {
+                "type": 1,
+                "suppressed": false,
+                "dimension": {
+                  "name": "D1@草图1@梁.Part",
+                  "value": 4,
+                  "drivenState": 2
+                },
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEcAAAD//wEADQBzZ1BvaW50SGFuZGxlAwD/////AAAAAA==",
+                    "point": [
+                      -2,
+                      0.2,
+                      0
+                    ]
+                  },
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEcAAAD//wEADQBzZ1BvaW50SGFuZGxlAQD/////AAAAAA==",
+                    "point": [
+                      2,
+                      0.2,
+                      0
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": 1,
+                "suppressed": false,
+                "dimension": {
+                  "name": "D2@草图1@梁.Part",
+                  "value": 0.4,
+                  "drivenState": 2
+                },
+                "entities": [
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEcAAAD//wEADQBzZ1BvaW50SGFuZGxlpAD/////AAAAAA==",
+                    "point": [
+                      2,
+                      -0.2,
+                      0
+                    ]
+                  },
+                  {
+                    "id": "aEIAAAYAAAD//v8AAAAAAEcAAAD//wEADQBzZ1BvaW50SGFuZGxlAQD/////AAAAAA==",
+                    "point": [
+                      2,
+                      0.2,
+                      0
+                    ]
+                  }
+                ]
+              }
+            ],
+            "contours": [
+              {
+                "closed": true,
+                "segments": [
+                  "aEIAAAYAAAD//v8AAAAAAEcAAAD//wEADABzZ0xpbmVIYW5kbGUBAP////8AAAAA",
+                  "aEIAAAYAAAD//v8AAAAAAEcAAAD//wEADABzZ0xpbmVIYW5kbGUEAP////8AAAAA",
+                  "aEIAAAYAAAD//v8AAAAAAEcAAAD//wEADABzZ0xpbmVIYW5kbGUDAP////8AAAAA",
+                  "aEIAAAYAAAD//v8AAAAAAEcAAAD//wEADABzZ0xpbmVIYW5kbGUCAP////8AAAAA"
+                ]
+              }
+            ]
+          },
+          "definition": null,
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAAAEAAAD//v8AAAAAAFEAAAA=",
+          "name": "凸台-拉伸1",
+          "type": "Extrusion",
+          "parent": null,
+          "suppressed": false,
+          "parents": [
+            "草图1",
+            "前视基准面",
+            "原点"
+          ],
+          "dimensions": [
+            {
+              "id": null,
+              "name": "横梁厚度@凸台-拉伸1@梁.Part",
+              "value": 0.377,
+              "dimensionType": 0,
+              "readOnly": false,
+              "drivenState": 2,
+              "annotation": [
+                2.2,
+                0.00010000000000048986,
+                0.1885
+              ]
+            },
+            {
+              "id": null,
+              "name": "D1@草图1@梁.Part",
+              "value": 4,
+              "dimensionType": 0,
+              "readOnly": false,
+              "drivenState": 2,
+              "annotation": [
+                1.29447388342165,
+                0.3801665404996215,
+                0.0001
+              ]
+            },
+            {
+              "id": null,
+              "name": "D2@草图1@梁.Part",
+              "value": 0.4,
+              "dimensionType": 0,
+              "readOnly": false,
+              "drivenState": 2,
+              "annotation": [
+                2.2607662303647174,
+                -0.06555582633311614,
+                0.0001
+              ]
+            }
+          ],
+          "sketch": null,
+          "definition": {
+            "interfaceName": "IExtrudeFeatureData2",
+            "properties": {
+              "ReverseDirection": false,
+              "BothDirections": false,
+              "FlipSideToCut": false,
+              "ThinWallType": -1,
+              "CapEnds": false,
+              "CapThickness": 0,
+              "Merge": true,
+              "FeatureScope": true,
+              "AutoSelect": false,
+              "FeatureScopeBodies": null,
+              "Contours": null,
+              "FromType": 0,
+              "FromOffsetDistance": 0,
+              "FromOffsetReverse": false,
+              "LinkToThickness": false,
+              "AssemblyFeatureScope": true,
+              "AutoSelectComponents": true,
+              "PropagateFeatureToParts": false,
+              "NormalCut": false,
+              "OptimizeGeometry": false,
+              "forwardDepth": 0.377,
+              "reverseDepth": 0,
+              "forwardEndCondition": 0,
+              "reverseEndCondition": 0,
+              "isThin": false,
+              "forwardWallThickness": 0,
+              "reverseWallThickness": 0,
+              "forwardEndReference": null,
+              "reverseEndReference": null,
+              "forwardEndReferenceType": -1,
+              "reverseEndReferenceType": -1,
+              "forwardDraftEnabled": false,
+              "reverseDraftEnabled": false,
+              "forwardDraftOutward": false,
+              "reverseDraftOutward": false,
+              "forwardDraftAngle": 0,
+              "reverseDraftAngle": 0,
+              "forwardReverseOffset": false,
+              "reverseReverseOffset": false,
+              "forwardTranslateSurface": false,
+              "reverseTranslateSurface": false,
+              "fromEntity": null,
+              "fromEntityType": 0,
+              "directionReferenceMode": -1,
+              "directionReferences": [
+                {
+                  "reference": null,
+                  "type": -1
+                },
+                {
+                  "reference": null,
+                  "type": -1
+                }
+              ],
+              "autoFilletCorners": false,
+              "autoFilletRadius": 0
+            }
+          },
+          "diagnostics": []
+        }
+      ],
+      "components": [],
+      "validation": {
+        "volumeMm3": 603200000.0000001,
+        "surfaceAreaMm2": 6517600,
+        "purpose": "validation-only-never-geometry-input"
+      },
+      "supplementalCapture": {
+        "revision": 3,
+        "referenceGeometry": true,
+        "mateFeatureBindings": true,
+        "embeddedComponents": true,
+        "featureTypes": [
+          "CoordSys",
+          "CornerFeat",
+          "FlatPattern",
+          "MirrorCompFeat",
+          "RefAxis",
+          "RefPlane",
+          "SheetMetal"
+        ]
+      },
+      "methodParameterCapture": {
+        "revision": 4,
+        "featureTypes": [
+          "Boss",
+          "Chamfer",
+          "Cut",
+          "EdgeFlange",
+          "Extrusion",
+          "RevCut",
+          "Revolution"
+        ]
+      }
+    }
+  ],
+  "completion": "captured-uncompiled",
+  "containsMesh": false,
+  "containsBrepSnapshot": false
+}

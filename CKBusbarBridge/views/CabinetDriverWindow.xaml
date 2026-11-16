@@ -1,0 +1,1074 @@
+<Window Style="{DynamicResource SmallCornerWindowStyle}" x:Class="CKBusbarBridge.views.CabinetDriverWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:hc="https://handyorg.github.io/handycontrol"
+             xmlns:local="clr-namespace:CKBusbarBridge.views"
+             xmlns:designUi="clr-namespace:CKBusbarBridge.views;assembly=CKBusbarBridge.DesignUI"
+             mc:Ignorable="d" 
+        Title="柜体驱动 - 面对面场景"
+        Width="1520" Height="900"
+        MinWidth="960" MinHeight="580"
+        WindowStartupLocation="CenterScreen"
+        PreviewKeyDown="InputTextBox_PreviewKeyDown"
+        Background="{DynamicResource BackgroundBrush}">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/CKBusbarBridge;component/views/SmallCornerWindowResources.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <designUi:DimensionHighlightVisibilityConverter x:Key="DimensionHighlightVisibilityConverter" />
+
+            <Style x:Key="PreviewImageStyle" TargetType="Image">
+                <Setter Property="Stretch" Value="Uniform" />
+                <Setter Property="Source" Value="pack://application:,,,/CKBusbarBridge;component/Images/示意图1.png" />
+                <Setter Property="Tag" Value="示意图1.png" />
+                <Style.Triggers>
+                    <MultiDataTrigger>
+                        <MultiDataTrigger.Conditions>
+                            <Condition Binding="{Binding IsSelected, ElementName=ATabItem}" Value="True" />
+                            <Condition Binding="{Binding IsSelected, ElementName=AHoleParamTabItem}" Value="True" />
+                        </MultiDataTrigger.Conditions>
+                        <Setter Property="Source" Value="pack://application:,,,/CKBusbarBridge;component/Images/示意图2.png" />
+                        <Setter Property="Tag" Value="示意图2.png" />
+                    </MultiDataTrigger>
+                    <MultiDataTrigger>
+                        <MultiDataTrigger.Conditions>
+                            <Condition Binding="{Binding IsSelected, ElementName=BTabItem}" Value="True" />
+                            <Condition Binding="{Binding IsSelected, ElementName=BHoleParamTabItem}" Value="True" />
+                        </MultiDataTrigger.Conditions>
+                        <Setter Property="Source" Value="pack://application:,,,/CKBusbarBridge;component/Images/示意图2.png" />
+                        <Setter Property="Tag" Value="示意图2.png" />
+                    </MultiDataTrigger>
+                    <!-- 面对面场景视为柜前向墙；任一已启用基座需要延长基座时切换带延长的示意图。 -->
+                    <MultiDataTrigger>
+                        <MultiDataTrigger.Conditions>
+                            <Condition Binding="{Binding IsSelected, ElementName=ATabItem}" Value="True" />
+                            <Condition Binding="{Binding IsSelected, ElementName=ABaseParamTabItem}" Value="True" />
+                        </MultiDataTrigger.Conditions>
+                        <Setter Property="Source" Value="pack://application:,,,/CKBusbarBridge;component/Images/柜前向墙.png" />
+                        <Setter Property="Tag" Value="柜前向墙.png" />
+                    </MultiDataTrigger>
+                    <MultiDataTrigger>
+                        <MultiDataTrigger.Conditions>
+                            <Condition Binding="{Binding IsSelected, ElementName=BTabItem}" Value="True" />
+                            <Condition Binding="{Binding IsSelected, ElementName=BBaseParamTabItem}" Value="True" />
+                        </MultiDataTrigger.Conditions>
+                        <Setter Property="Source" Value="pack://application:,,,/CKBusbarBridge;component/Images/柜前向墙.png" />
+                        <Setter Property="Tag" Value="柜前向墙.png" />
+                    </MultiDataTrigger>
+                    <MultiDataTrigger>
+                        <MultiDataTrigger.Conditions>
+                            <Condition Binding="{Binding IsSelected, ElementName=ATabItem}" Value="True" />
+                            <Condition Binding="{Binding IsSelected, ElementName=ABaseParamTabItem}" Value="True" />
+                            <Condition Binding="{Binding IsEnabled, ElementName=AFrontBaseParameterGroup}" Value="True" />
+                            <Condition Binding="{Binding Visibility, ElementName=AFrontExtensionBasePanel}" Value="Visible" />
+                        </MultiDataTrigger.Conditions>
+                        <Setter Property="Source" Value="pack://application:,,,/CKBusbarBridge;component/Images/柜前向墙+延长.png" />
+                        <Setter Property="Tag" Value="柜前向墙+延长.png" />
+                    </MultiDataTrigger>
+                    <MultiDataTrigger>
+                        <MultiDataTrigger.Conditions>
+                            <Condition Binding="{Binding IsSelected, ElementName=ATabItem}" Value="True" />
+                            <Condition Binding="{Binding IsSelected, ElementName=ABaseParamTabItem}" Value="True" />
+                            <Condition Binding="{Binding IsEnabled, ElementName=ABackBaseParameterGroup}" Value="True" />
+                            <Condition Binding="{Binding Visibility, ElementName=ABackExtensionBasePanel}" Value="Visible" />
+                        </MultiDataTrigger.Conditions>
+                        <Setter Property="Source" Value="pack://application:,,,/CKBusbarBridge;component/Images/柜前向墙+延长.png" />
+                        <Setter Property="Tag" Value="柜前向墙+延长.png" />
+                    </MultiDataTrigger>
+                    <MultiDataTrigger>
+                        <MultiDataTrigger.Conditions>
+                            <Condition Binding="{Binding IsSelected, ElementName=BTabItem}" Value="True" />
+                            <Condition Binding="{Binding IsSelected, ElementName=BBaseParamTabItem}" Value="True" />
+                            <Condition Binding="{Binding IsEnabled, ElementName=BFrontBaseParameterGroup}" Value="True" />
+                            <Condition Binding="{Binding Visibility, ElementName=BFrontExtensionBasePanel}" Value="Visible" />
+                        </MultiDataTrigger.Conditions>
+                        <Setter Property="Source" Value="pack://application:,,,/CKBusbarBridge;component/Images/柜前向墙+延长.png" />
+                        <Setter Property="Tag" Value="柜前向墙+延长.png" />
+                    </MultiDataTrigger>
+                    <MultiDataTrigger>
+                        <MultiDataTrigger.Conditions>
+                            <Condition Binding="{Binding IsSelected, ElementName=BTabItem}" Value="True" />
+                            <Condition Binding="{Binding IsSelected, ElementName=BBaseParamTabItem}" Value="True" />
+                            <Condition Binding="{Binding IsEnabled, ElementName=BBackBaseParameterGroup}" Value="True" />
+                            <Condition Binding="{Binding Visibility, ElementName=BBackExtensionBasePanel}" Value="Visible" />
+                        </MultiDataTrigger.Conditions>
+                        <Setter Property="Source" Value="pack://application:,,,/CKBusbarBridge;component/Images/柜前向墙+延长.png" />
+                        <Setter Property="Tag" Value="柜前向墙+延长.png" />
+                    </MultiDataTrigger>
+                    <!-- 整体参数固定使用面对面整体示意图，不受当前柜体子页签影响。 -->
+                    <DataTrigger Binding="{Binding IsKeyboardFocusWithin, ElementName=GeneralParametersPanel}" Value="True">
+                        <Setter Property="Source" Value="pack://application:,,,/CKBusbarBridge;component/Images/示意图1.png" />
+                        <Setter Property="Tag" Value="示意图1.png" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+
+            <Style x:Key="ParamLabelStyle" TargetType="TextBlock">
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="TextWrapping" Value="Wrap" />
+                <Setter Property="Width" Value="96" />
+            </Style>
+
+            <Style x:Key="HoleParamLabelStyle" TargetType="TextBlock">
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="TextWrapping" Value="Wrap" />
+                <Setter Property="Width" Value="150" />
+            </Style>
+
+            <Style x:Key="RoundedInputBorderStyle" TargetType="Border">
+                <Setter Property="Height" Value="32" />
+                <Setter Property="Width" Value="120" />
+                <Setter Property="Padding" Value="10,0" />
+                <Setter Property="Background" Value="White" />
+                <Setter Property="BorderBrush" Value="#D9D9D9" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="CornerRadius" Value="6" />
+                <Setter Property="HorizontalAlignment" Value="Left" />
+            </Style>
+
+            <Style x:Key="ParamTextBoxStyle" TargetType="hc:TextBox">
+                <Setter Property="Height" Value="30" />
+                <Setter Property="MinWidth" Value="0" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="FontSize" Value="13" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="hc:InfoElement.Placeholder" Value="请输入参数值" />
+                <EventSetter Event="GotKeyboardFocus" Handler="DimensionTextBox_GotKeyboardFocus" />
+            </Style>
+
+            <Style x:Key="ParamComboBoxStyle" TargetType="ComboBox">
+                <Setter Property="Height" Value="30" />
+                <Setter Property="MinWidth" Value="0" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="FontSize" Value="13" />
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="HorizontalAlignment" Value="Stretch" />
+                <Setter Property="Cursor" Value="Hand" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ComboBox">
+                            <Grid>
+                                <Border x:Name="MainBorder"
+                                        Background="{TemplateBinding Background}"
+                                        BorderBrush="Transparent"
+                                        BorderThickness="0"
+                                        SnapsToDevicePixels="True">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="24" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <ContentPresenter Grid.Column="0"
+                                                          Margin="0,0,4,0"
+                                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                          Content="{TemplateBinding SelectionBoxItem}"
+                                                          ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                                          ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+
+                                        <Path Grid.Column="1"
+                                              Width="10"
+                                              Height="6"
+                                              HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"
+                                              Fill="#8C8C8C"
+                                              Data="M 0 0 L 5 6 L 10 0 Z" />
+                                    </Grid>
+                                </Border>
+
+                                <Popup x:Name="Popup"
+                                       AllowsTransparency="True"
+                                       Focusable="False"
+                                       IsOpen="{TemplateBinding IsDropDownOpen}"
+                                       Placement="Bottom"
+                                       PopupAnimation="Slide">
+                                    <Border x:Name="DropDownBorder"
+                                            MinWidth="{TemplateBinding ActualWidth}"
+                                            Background="White"
+                                            BorderBrush="#D9D9D9"
+                                            BorderThickness="1"
+                                            CornerRadius="6"
+                                            Padding="4">
+                                        <ScrollViewer MaxHeight="240"
+                                                      SnapsToDevicePixels="True">
+                                            <ItemsPresenter KeyboardNavigation.DirectionalNavigation="Contained" />
+                                        </ScrollViewer>
+                                    </Border>
+                                </Popup>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="DropDownBorder" Property="BorderBrush" Value="#BFBFBF" />
+                                </Trigger>
+                                <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                                    <Setter TargetName="DropDownBorder" Property="BorderBrush" Value="#1677FF" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="VerticalSideTabItemStyle" TargetType="TabItem" BasedOn="{StaticResource TabItemInLine}">
+                <Setter Property="VerticalAlignment" Value="Top" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="Height" Value="40" />
+                <Setter Property="Padding" Value="16,8" />
+            </Style>
+
+            <Style x:Key="VerticalSideTabControlStyle" TargetType="TabControl" BasedOn="{StaticResource TabControlInLine}">
+                <Setter Property="ItemContainerStyle" Value="{StaticResource VerticalSideTabItemStyle}" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="TabControl">
+                            <Grid x:Name="templateRoot" Background="{TemplateBinding Background}" ClipToBounds="True" SnapsToDevicePixels="True">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition x:Name="ColumnDefinition0" />
+                                    <ColumnDefinition x:Name="ColumnDefinition1" Width="0" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition x:Name="RowDefinition0" Height="Auto" />
+                                    <RowDefinition x:Name="RowDefinition1" Height="*" />
+                                </Grid.RowDefinitions>
+                                <UniformGrid Rows="1"
+                                             x:Name="headerPanel"
+                                             VerticalAlignment="Top"
+                                             KeyboardNavigation.TabNavigation="Once"
+                                             KeyboardNavigation.DirectionalNavigation="Cycle"
+                                             Background="Transparent"
+                                             Grid.Column="0"
+                                             IsItemsHost="True"
+                                             Margin="0"
+                                             Grid.Row="0" />
+                                <Border x:Name="contentPanel"
+                                        HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Stretch"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        BorderBrush="{DynamicResource BorderBrush}"
+                                        Background="{TemplateBinding Background}"
+                                        Grid.Column="0"
+                                        Grid.Row="1">
+                                    <ContentPresenter x:Name="PART_SelectedContentHost"
+                                                      ContentSource="SelectedContent"
+                                                      Margin="0"
+                                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                </Border>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="TabStripPlacement" Value="Bottom">
+                                    <Setter TargetName="RowDefinition0" Property="Height" Value="*" />
+                                    <Setter TargetName="RowDefinition1" Property="Height" Value="Auto" />
+                                    <Setter TargetName="headerPanel" Property="Grid.Row" Value="1" />
+                                    <Setter TargetName="contentPanel" Property="Grid.Row" Value="0" />
+                                </Trigger>
+                                <Trigger Property="TabStripPlacement" Value="Left">
+                                    <Setter TargetName="RowDefinition0" Property="Height" Value="Auto" />
+                                    <Setter TargetName="RowDefinition1" Property="Height" Value="0" />
+                                    <Setter TargetName="ColumnDefinition0" Property="Width" Value="Auto" />
+                                    <Setter TargetName="ColumnDefinition1" Property="Width" Value="*" />
+                                    <Setter TargetName="contentPanel" Property="Grid.Column" Value="1" />
+                                    <Setter TargetName="contentPanel" Property="Grid.Row" Value="0" />
+                                    <Setter TargetName="headerPanel" Property="Grid.Column" Value="0" />
+                                    <Setter TargetName="headerPanel" Property="Grid.Row" Value="0" />
+                                    <Setter TargetName="headerPanel" Property="Rows" Value="0" />
+                                    <Setter TargetName="headerPanel" Property="Columns" Value="1" />
+                                    <Setter TargetName="headerPanel" Property="VerticalAlignment" Value="Top" />
+                                </Trigger>
+                                <Trigger Property="TabStripPlacement" Value="Right">
+                                    <Setter TargetName="RowDefinition0" Property="Height" Value="Auto" />
+                                    <Setter TargetName="RowDefinition1" Property="Height" Value="0" />
+                                    <Setter TargetName="ColumnDefinition0" Property="Width" Value="*" />
+                                    <Setter TargetName="ColumnDefinition1" Property="Width" Value="Auto" />
+                                    <Setter TargetName="contentPanel" Property="Grid.Column" Value="0" />
+                                    <Setter TargetName="contentPanel" Property="Grid.Row" Value="0" />
+                                    <Setter TargetName="headerPanel" Property="Grid.Column" Value="1" />
+                                    <Setter TargetName="headerPanel" Property="Grid.Row" Value="0" />
+                                    <Setter TargetName="headerPanel" Property="Rows" Value="0" />
+                                    <Setter TargetName="headerPanel" Property="Columns" Value="1" />
+                                    <Setter TargetName="headerPanel" Property="VerticalAlignment" Value="Top" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="ParamComboBoxItemStyle" TargetType="ComboBoxItem">
+                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="MinHeight" Value="30" />
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ComboBoxItem">
+                            <Border x:Name="ItemBorder"
+                                    Background="{TemplateBinding Background}"
+                                    CornerRadius="4"
+                                    Padding="6,0">
+                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsHighlighted" Value="True">
+                                    <Setter TargetName="ItemBorder" Property="Background" Value="#F5F5F5" />
+                                </Trigger>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter TargetName="ItemBorder" Property="Background" Value="#E6F4FF" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid Margin="12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="38" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Margin="0,0,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="12" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="12" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="12" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="12" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <!-- 图号信息属于柜体生成前置数据；新项目由会话暂存，生成时写入总装配体。 -->
+            <Button x:Name="GenerateDrawingNumberButton" Grid.Column="0" Content="图号生成" Width="100" Height="28" Click="GenerateDrawingNumber_Click" />
+            <TextBlock Grid.Column="2" Text="项目根目录" VerticalAlignment="Center" />
+            <hc:TextBox x:Name="ProjectPathTextBox" Grid.Column="4" Height="28" VerticalContentAlignment="Center" Text="{Binding ProjectPath, UpdateSourceTrigger=LostFocus}" />
+            <Button x:Name="SelectProjectPathButton" Grid.Column="6" Content="设置项目根目录" Height="28" Padding="12,0" Command="{Binding SelectProjectPathCommand}" />
+            <Border x:Name="CabinetScenarioBadge" Grid.Column="8"
+                    Padding="10,4"
+                    VerticalAlignment="Center"
+                    Background="#E6F4FF"
+                    BorderBrush="#91CAFF"
+                    BorderThickness="1"
+                    CornerRadius="4">
+                <TextBlock Text="{Binding ScenarioDisplayName}"
+                           Foreground="#0958D9"
+                           FontWeight="SemiBold" />
+            </Border>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="520" />
+                <ColumnDefinition Width="16" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                <StackPanel>
+                    <Border x:Name="GeneralParametersPanel" Padding="16" BorderBrush="#D9D9D9" BorderThickness="1" CornerRadius="4" Margin="0,0,0,2">
+                        <StackPanel>
+                            <TextBlock Text="整体参数" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,12" />
+
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="12" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Row="0" Grid.Column="0" Text="楼高(D)" Style="{StaticResource ParamLabelStyle}" Margin="0,0,8,0" />
+                                <Border Grid.Row="0" Grid.Column="1" Style="{StaticResource RoundedInputBorderStyle}">
+                                    <hc:TextBox x:Name="FloorHeightTextBox" Tag="楼高(D)" Style="{StaticResource ParamTextBoxStyle}" hc:InfoElement.Placeholder="请输入楼高(D)" Text="{Binding Parameters.General.FloorHeight, UpdateSourceTrigger=LostFocus}" />
+                                </Border>
+
+                                <TextBlock Grid.Row="0" Grid.Column="3" Text="柜间距(A)" Style="{StaticResource ParamLabelStyle}" Margin="0,0,8,0" />
+                                <Border Grid.Row="0" Grid.Column="4" Style="{StaticResource RoundedInputBorderStyle}">
+                                    <hc:TextBox x:Name="CabinetSpacingTextBox" Tag="柜间距(A)" Style="{StaticResource ParamTextBoxStyle}" hc:InfoElement.Placeholder="请输入柜间距(A)" Text="{Binding Parameters.General.CabinetSpacing, UpdateSourceTrigger=LostFocus}" />
+                                </Border>
+
+                                <TextBlock Grid.Row="1" Grid.Column="0" Text="B" Style="{StaticResource ParamLabelStyle}" Margin="0,12,8,0" />
+                                <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource RoundedInputBorderStyle}" Margin="0,12,0,0">
+                                    <hc:TextBox x:Name="GeneralParameterBTextBox" Tag="B" Style="{StaticResource ParamTextBoxStyle}" hc:InfoElement.Placeholder="请输入参数B" Text="{Binding Parameters.General.ParameterB, UpdateSourceTrigger=LostFocus}" />
+                                </Border>
+                                
+                                <TextBlock Grid.Row="1" Grid.Column="3" Text="柜间偏心值" Style="{StaticResource ParamLabelStyle}" Margin="0,12,8,0" />
+                                <Border Grid.Row="1" Grid.Column="4" Style="{StaticResource RoundedInputBorderStyle}" Margin="0,12,0,0">
+                                    <hc:TextBox x:Name="CabinetEccentricityTextBox" Style="{StaticResource ParamTextBoxStyle}" hc:InfoElement.Placeholder="请输入柜间偏心值" Text="{Binding Parameters.General.CabinetEccentricity, UpdateSourceTrigger=LostFocus}" />
+                                </Border>
+
+                                <TextBlock Grid.Row="2" Grid.Column="0" Text="铜排规格" Style="{StaticResource ParamLabelStyle}" Margin="0,12,8,0" />
+                                <Border Grid.Row="2" Grid.Column="1" Style="{StaticResource RoundedInputBorderStyle}" Margin="0,12,0,0">
+                                    <hc:TextBox x:Name="BusbarSpecTextBox" Style="{StaticResource ParamTextBoxStyle}" hc:InfoElement.Placeholder="请输入母排规格" Text="{Binding Parameters.General.BusbarSpec, UpdateSourceTrigger=LostFocus}" />
+                                </Border>
+
+                                <TextBlock Grid.Row="2" Grid.Column="3" Text="相间距" Style="{StaticResource ParamLabelStyle}" Margin="0,12,8,0" />
+                                <Border Grid.Row="2" Grid.Column="4" Style="{StaticResource RoundedInputBorderStyle}" Margin="0,12,0,0">
+                                    <hc:TextBox x:Name="PhaseSpacingTextBox" Tag="相间距" Style="{StaticResource ParamTextBoxStyle}" ToolTip="相间距至少为排宽＋绝缘距离" hc:InfoElement.Placeholder="请输入相间距" Text="{Binding Parameters.General.PhaseSpacing, UpdateSourceTrigger=LostFocus}" />
+                                </Border>
+
+                                <TextBlock Grid.Row="3" Grid.Column="0" Text="单相根数" Style="{StaticResource ParamLabelStyle}" Margin="0,12,8,0" />
+                                <Border Grid.Row="3" Grid.Column="1" Style="{StaticResource RoundedInputBorderStyle}" Margin="0,12,0,0">
+                                    <ComboBox x:Name="SinglePhaseRootCountComboBox"
+                                              Height="30"
+                                              BorderThickness="0"
+                                              Background="Transparent"
+                                              Padding="0"
+                                              HorizontalAlignment="Stretch"
+                                              VerticalAlignment="Center"
+                                              VerticalContentAlignment="Center"
+                                              SelectedValuePath="Tag"
+                                              SelectedValue="{Binding Parameters.General.SinglePhaseRootCount, UpdateSourceTrigger=PropertyChanged}">
+                                        <ComboBoxItem Content="1" Tag="1" />
+                                        <ComboBoxItem Content="2" Tag="2" />
+                                        <ComboBoxItem Content="3" Tag="3" />
+                                        <ComboBoxItem Content="4" Tag="4" />
+                                    </ComboBox>
+                                </Border>
+
+                                <TextBlock Grid.Row="3" Grid.Column="3" Text="铜排材质" Style="{StaticResource ParamLabelStyle}" Margin="0,12,8,0" />
+                                <Border Grid.Row="3" Grid.Column="4" Style="{StaticResource RoundedInputBorderStyle}" Margin="0,12,0,0">
+                                    <ComboBox x:Name="BusbarMaterialComboBox"
+                                              Height="30"
+                                              BorderThickness="0"
+                                              Background="Transparent"
+                                              Padding="0"
+                                              HorizontalAlignment="Stretch"
+                                              VerticalAlignment="Center"
+                                              VerticalContentAlignment="Center"
+                                              SelectedValuePath="Content"
+                                              SelectedValue="{Binding Parameters.General.BusbarMaterial, UpdateSourceTrigger=PropertyChanged}">
+                                        <ComboBoxItem Content="直角铜母线" />
+                                        <ComboBoxItem Content="全圆边铜母线" />
+                                    </ComboBox>
+                                </Border>
+
+                                <TextBlock Grid.Row="4" Grid.Column="0" Text="A柜伸出排相序" Style="{StaticResource ParamLabelStyle}" Margin="0,12,8,0" />
+                                <Border Grid.Row="4" Grid.Column="1" Style="{StaticResource RoundedInputBorderStyle}" Margin="0,12,0,0">
+                                    <ComboBox x:Name="ACabinetExposedBusbarPhaseSequenceComboBox"
+                                              Height="30"
+                                              BorderThickness="0"
+                                              Background="Transparent"
+                                              Padding="0"
+                                              SelectedValuePath="Content"
+                                              SelectedValue="{Binding Parameters.General.ACabinetExposedBusbarPhaseSequence, UpdateSourceTrigger=PropertyChanged}">
+                                        <ComboBoxItem Content="ABC" />
+                                        <ComboBoxItem Content="CBA" />
+                                    </ComboBox>
+                                </Border>
+
+                                <TextBlock Grid.Row="4" Grid.Column="3" Text="B柜伸出排相序" Style="{StaticResource ParamLabelStyle}" Margin="0,12,8,0" />
+                                <Border Grid.Row="4" Grid.Column="4" Style="{StaticResource RoundedInputBorderStyle}" Margin="0,12,0,0">
+                                    <ComboBox x:Name="BCabinetExposedBusbarPhaseSequenceComboBox"
+                                              Height="30"
+                                              BorderThickness="0"
+                                              Background="Transparent"
+                                              Padding="0"
+                                              SelectedValuePath="Content"
+                                              SelectedValue="{Binding Parameters.General.BCabinetExposedBusbarPhaseSequence, UpdateSourceTrigger=PropertyChanged}">
+                                        <ComboBoxItem Content="ABC" />
+                                        <ComboBoxItem Content="CBA" />
+                                    </ComboBox>
+                                </Border>
+
+                                <TextBlock Grid.Row="5" Grid.Column="0" Text="绝缘子+支架高度" Style="{StaticResource ParamLabelStyle}" Margin="0,12,8,0" />
+                                <Grid Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="4" Margin="0,12,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Border Grid.Column="0" Style="{StaticResource RoundedInputBorderStyle}">
+                                        <hc:TextBox x:Name="InsulatorHeightTextBox" Style="{StaticResource ParamTextBoxStyle}" hc:InfoElement.Placeholder="请输入绝缘子+支架高度" Text="{Binding Parameters.General.InsulatorHeight, UpdateSourceTrigger=LostFocus}" />
+                                    </Border>
+                                    <TextBlock Grid.Column="1"
+                                               Text="（含支架高度：25）"
+                                               ToolTip="支架高度为25 mm；输入总高不包含上方垫块。"
+                                               VerticalAlignment="Center"
+                                               Margin="8,0,0,0"
+                                               FontSize="12"
+                                               Foreground="#999999"
+                                               TextWrapping="Wrap" />
+                                </Grid>
+                                <TextBlock Grid.Row="6" Grid.Column="0" Text="绝缘距离(mm)" Style="{StaticResource ParamLabelStyle}" Margin="0,12,8,0" />
+                                <Border Grid.Row="6" Grid.Column="1" Style="{StaticResource RoundedInputBorderStyle}" Margin="0,12,0,0">
+                                    <hc:TextBox x:Name="InsulationDistanceTextBox" Style="{StaticResource ParamTextBoxStyle}" hc:InfoElement.Placeholder="请输入绝缘距离" Text="{Binding Parameters.General.InsulationDistance, UpdateSourceTrigger=LostFocus}" />
+                                </Border>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+
+                    <TabControl Style="{StaticResource TabControlInLine}" SelectionChanged="ParameterTabControl_SelectionChanged">
+                        <TabItem x:Name="ATabItem" Header="A柜参数">
+                            <TabControl Style="{StaticResource VerticalSideTabControlStyle}" TabStripPlacement="Left">
+                                <TabItem x:Name="ACabinetParamTabItem" Header="柜体参数">
+                                    <Border Padding="16" BorderBrush="#D9D9D9" BorderThickness="1" CornerRadius="4" Margin="0,0,0,2" MinHeight="620">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Grid.Row="0" Grid.Column="0" Text="柜高" Style="{StaticResource ParamLabelStyle}" Margin="0,0,8,10" />
+                                            <Border Grid.Row="0" Grid.Column="1" Style="{StaticResource RoundedInputBorderStyle}" Margin="0,0,0,10">
+                                                <hc:TextBox x:Name="ACabinetHeightTextBox" Style="{StaticResource ParamTextBoxStyle}" hc:InfoElement.Placeholder="请输入A柜柜高" Text="{Binding Parameters.ACabinet.CabinetHeight, UpdateSourceTrigger=LostFocus}" />
+                                            </Border>
+
+                                            <TextBlock Grid.Row="1" Grid.Column="0" Text="柜深" Style="{StaticResource ParamLabelStyle}" Margin="0,0,8,10" />
+                                            <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource RoundedInputBorderStyle}" Margin="0,0,0,10">
+                                                <hc:TextBox x:Name="ACabinetDepthTextBox" Tag="A-柜深" Style="{StaticResource ParamTextBoxStyle}" hc:InfoElement.Placeholder="请输入A柜柜深" Text="{Binding Parameters.ACabinet.CabinetDepth, UpdateSourceTrigger=LostFocus}" />
+                                            </Border>
+
+                                            <TextBlock Grid.Row="2" Grid.Column="0" Text="柜宽" Style="{StaticResource ParamLabelStyle}" Margin="0,0,8,10" />
+                                            <Border Grid.Row="2" Grid.Column="1" Style="{StaticResource RoundedInputBorderStyle}" Margin="0,0,0,10">
+                                                <hc:TextBox x:Name="ACabinetWidthTextBox" Style="{StaticResource ParamTextBoxStyle}" hc:InfoElement.Placeholder="请输入A柜柜宽" Text="{Binding Parameters.ACabinet.CabinetWidth, UpdateSourceTrigger=LostFocus}" />
+                                            </Border>
+
+                                            <TextBlock Grid.Row="3" Grid.Column="0" Text="离地高度(I)" Style="{StaticResource ParamLabelStyle}" Margin="0,0,8,10" />
+                                            <Border Grid.Row="3" Grid.Column="1" Style="{StaticResource RoundedInputBorderStyle}" Margin="0,0,0,10">
+                                                <hc:TextBox x:Name="ATextBoxI" Style="{StaticResource ParamTextBoxStyle}" hc:InfoElement.Placeholder="请输入A柜参数I" Text="{Binding Parameters.ACabinet.GroundHeight, UpdateSourceTrigger=LostFocus}" />
+                                            </Border>
+                                        </Grid>
+                                    </Border>
+                                </TabItem>
+
+                                <TabItem x:Name="AHoleParamTabItem" Header="柜顶开孔参数">
+                                    <Border Padding="16" BorderBrush="#D9D9D9" BorderThickness="1" CornerRadius="4" Margin="0,0,0,2" MinHeight="620">
+                                        <StackPanel>
+                                            <Grid Margin="0,0,0,12">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="12" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                </Grid.ColumnDefinitions>
+
+                                                <TextBlock Grid.Column="0" Text="柜前孔" FontSize="18" FontWeight="SemiBold" VerticalAlignment="Center" />
+                                                <ToggleButton x:Name="AFrontHoleToggleButton" Grid.Column="2" IsChecked="{Binding Parameters.ACabinet.FrontHole.IsEnabled, UpdateSourceTrigger=PropertyChanged}" Margin="0,2,0,0" Style="{StaticResource ToggleButtonSwitch}" />
+                                            </Grid>
+
+                                            <Grid Margin="22,0,0,24" IsEnabled="{Binding IsChecked, ElementName=AFrontHoleToggleButton}">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+
+                                                <TextBlock Grid.Row="0" Grid.Column="0" Text="距柜前距离：" Style="{StaticResource HoleParamLabelStyle}" Margin="0,0,8,10" />
+                                                <Border Grid.Row="0" Grid.Column="1" Style="{StaticResource RoundedInputBorderStyle}" Margin="0,0,0,10">
+                                                    <hc:TextBox x:Name="AFrontHoleToFrontDistanceTextBox" Tag="柜前孔-距柜前距离" Style="{StaticResource ParamTextBoxStyle}" hc:InfoElement.Placeholder="请输入距柜前距离" Text="{Binding Parameters.ACabinet.FrontHole.ToCabinetEdgeDistance, UpdateSourceTrigger=LostFocus}" />
+                                                </Border>
+
+                                                <TextBlock Grid.Row="1" Grid.Column="0" Text="铜排中心至柜前距离：" Style="{StaticResource HoleParamLabelStyle}" Margin="0,0,8,10" />
+                                                <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource RoundedInputBorderStyle}" Margin="0,0,0,10">
+                                                    <hc:TextBox x:Name="AFrontHoleBusbarCenterToFrontDistanceTextBox" Tag="柜前孔-铜排中心至柜前距离" Style="{StaticResource ParamTextBoxStyle}" hc:InfoElement.Placeholder="请输入铜排中心至柜前距离" Text="{Binding Parameters.ACabinet.FrontHole.BusbarCenterToCabinetEdgeDistance, UpdateSourceTrigger=LostFocus}" />
+                                                </Border>
+
+                                                <TextBlock Grid.Row="2" Grid.Column="0" Text="接口固定孔间距：" Style="{StaticResource HoleParamLabelStyle}" Margin="0,0,8,10" />
+                                                <Border Grid.Row="2" Grid.Column="1" Style="{StaticResource RoundedInputBorderStyle}" Margin="0,0,0,10">
+                                                    <hc:TextBox x:Name="AFrontHoleFixedHoleSpacingTextBox" Tag="柜前孔-接口固定孔间距" Style="{StaticResource ParamTextBoxStyle}" hc:InfoElement.Placeholder="请输入接口固定孔间距" Text="{Binding Parameters.ACabinet.FrontHole.FixedHoleSpacing, UpdateSourceTrigger=LostFocus}" />
+                                                </Border>
+
+                                                <TextBlock Grid.Row="3" Grid.Column="0" Text="L1：" Style="{StaticResource HoleParamLabelStyle}" Margin="0,0,8,10" />
+                                                <Border Grid.Row="3" Grid.Column="1" Style="{StaticResource RoundedInputBorderStyle}" Margin="0,0,0,10">
+                                                    <hc:TextBox x:Name="AFrontHoleL1TextBox" Tag="柜前孔-L1" Style="{StaticResource ParamTextBoxStyle}" hc:InfoElement.Placeholder="请输入L1" Text="{Binding Parameters.ACabinet.FrontHole.L1, UpdateSourceTrigger=LostFocus}" />
+                                                </Border>
+
+                                                <TextBlock Grid.Row="4" Grid.Column="0" Text="L2：" Style="{StaticResource HoleParamLabelStyle}" Margin="0,0,8,10" />
+                                                <Border Grid.Row="4" Grid.Column="1" Style="{StaticResource RoundedInputBorderStyle}" Margin="0,0,0,10">
+                                                    <hc:TextBox x:Name="AFrontHoleL2TextBox" Tag="柜前孔-L2" Style="{StaticResource ParamTextBoxStyle}" hc:InfoElement.Placeholder="请输入L2" Text="{Binding Parameters.ACabinet.FrontHole.L2, UpdateSourceTrigger=LostFocus}" />
+                                                </Border>
+
+                                                <TextBlock Grid.Row="5" Grid.Column="0" Text="L3：" Style="{StaticResource HoleParamLabelStyle}" Margin="0,0,8,0" />
+                                                <Border Grid.Row="5" Grid.Column="1" Style="{StaticResource RoundedInputBorderStyle}">
+                                                    <hc:TextBox x:Name="AFrontHoleL3TextBox" Tag="柜前孔-L3" Style="{StaticResource ParamTextBoxStyle}" hc:InfoElement.Placeholder="请输入L3" Text="{Binding Parameters.ACabinet.FrontHole.L3, UpdateSourceTrigger=LostFocus}" />
+                                                </Border>
+
+                                            </Grid>
+
+                                            <Grid Margin="0,0,0,12" Visibility="Collapsed">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="12" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                </Grid.ColumnDefinitions>
+
+                                                <TextBlock Grid.Column="0" Text="柜后孔" FontSize="18" FontWeight="SemiBold" VerticalAlignment="Center" />
+                                                <ToggleButton x:Name="ABackHoleToggleButton" Grid.Column="2" IsChecked="{Binding Parameters.ACabinet.BackHole.IsEnabled, UpdateSourceTrigger=PropertyChanged}" Margin="0,2,0,0" Style="{StaticResource ToggleButtonSwitch}" />
+                                            </Grid>
+
+                                            <Grid Margin="22,0,0,0" IsEnabled="{Binding IsChecked, ElementName=ABackHoleToggleButton}" Visibility="Collapsed">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+
+                                                <TextBlock Grid.Row="0" Grid.Column="0" Text="距柜后距离：" Style="{StaticResource HoleParamLabelStyle}" Margin="0,0,8,10" />
+                                                <Border Grid.Row="0" Grid.Column="1" Style="{StaticResource RoundedInputBorderStyle}" Margin="0,0,0,10">
+                                                    <hc:TextBox x:Name="ABackHoleToBackDistanceTextBox" Tag="柜后孔-距柜后距离" Style="{StaticResource ParamTextBoxStyle}" hc:InfoElement.Placeholder="请输入距柜后距离" Text="{Binding Parameters.ACabinet.BackHole.ToCabinetEdgeDistance, UpdateSourceTrigger=LostFocus}" />
+                                                </Border>
+
+                                                <TextBlock Grid.Row="1" Grid.Column="0" Text="铜排中心至柜后距离：" Style="{StaticResource HoleParamLabelStyle}" Margin="0,0,8,10" />
+                                                <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource RoundedInputBorderStyle}" Margin="0,0,0,10">
+                                                    <hc:TextBox x:Name="ABackHoleBusbarCenterToBackDistanceTextBox" Tag="柜后孔-铜排中心至柜后距离" Style="{StaticResource ParamTextBoxStyle}" hc:InfoElement.Placeholder="请输入铜排中心至柜后距离" Text="{Binding Parameters.ACabinet.BackHole.BusbarCenterToCabinetEdgeDistance, UpdateSourceTrigger=LostFocus}" />
+                                                </Border>
+
+                                                <TextBlock Grid.Row="2" Grid.Column="0" Text="接口固定孔间距：" Style="{StaticResource HoleParamLabelStyle}" Margin="0,0,8,10" />
+                                                <Border Grid.Row="2" Grid.Column="1" Style="{StaticResource RoundedInputBorderStyle}" Margin="0,0,0,10">
+                                                    <hc:TextBox x:Name="ABackHoleFixedHoleSpacingTextBox" Tag="柜后孔-接口固定孔间距" Style="{StaticResource ParamTextBoxStyle}" hc:InfoElement.Placeholder="请输入接口固定孔间距" Text="{Binding Parameters.ACabinet.BackHole.FixedHoleSpacing, UpdateSourceTrigger=LostFocus}" />
+                                                </Border>
+
+                                                <TextBlock Grid.Row="3" Grid.Column="0" Text="L1：" Style="{StaticResource HoleParamLabelStyle}" Margin="0,0,8,10" />
+                                                <Border Grid.Row="3" Grid.Column="1" Style="{StaticResource RoundedInputBorderStyle}" Margin="0,0,0,10">
+                                                    <hc:TextBox x:Name="ABackHoleL1TextBox" Tag="柜后孔-L1" Style="{StaticResource ParamTextBoxStyle}" hc:InfoElement.Placeholder="请输入L1" Text="{Binding Parameters.ACabinet.BackHole.L1, UpdateSourceTrigger=LostFocus}" />
+                                                </Border>
+
+                                                <TextBlock Grid.Row="4" Grid.Column="0" Text="L2：" Style="{StaticResource HoleParamLabelStyle}" Margin="0,0,8,10" />
+                                                <Border Grid.Row="4" Grid.Column="1" Style="{StaticResource RoundedInputBorderStyle}" Margin="0,0,0,10">
+                                                    <hc:TextBox x:Name="ABackHoleL2TextBox" Tag="柜后孔-L2" Style="{StaticResource ParamTextBoxStyle}" hc:InfoElement.Placeholder="请输入L2" Text="{Binding Parameters.ACabinet.BackHole.L2, UpdateSourceTrigger=LostFocus}" />
+                                                </Border>
+
+                                                <TextBlock Grid.Row="5" Grid.Column="0" Text="L3：" Style="{StaticResource HoleParamLabelStyle}" Margin="0,0,8,0" />
+                                                <Border Grid.Row="5" Grid.Column="1" Style="{StaticResource RoundedInputBorderStyle}">
+                                                    <hc:TextBox x:Name="ABackHoleL3TextBox" Tag="柜后孔-L3" Style="{StaticResource ParamTextBoxStyle}" hc:InfoElement.Placeholder="请输入L3" Text="{Binding Parameters.ACabinet.BackHole.L3, UpdateSourceTrigger=LostFocus}" />
+                                                </Border>
+
+                                            </Grid>
+                                        </StackPanel>
+                                    </Border>
+                                </TabItem>
+
+                                <TabItem x:Name="ABaseParamTabItem" Header="基座参数">
+                                    <Border Padding="16" BorderBrush="#D9D9D9" BorderThickness="1" CornerRadius="4" Margin="0,0,0,2" MinHeight="620">
+                                        <StackPanel>
+                                            <TextBlock Text="柜前孔基座" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,12" />
+                                            <!-- 基座组始终显示；是否可编辑直接跟随对应柜孔开关，关闭时保留原值。 -->
+                                            <Grid x:Name="AFrontBaseParameterGroup" Margin="22,0,0,24" IsEnabled="{Binding Parameters.ACabinet.FrontHole.IsEnabled}">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+
+                                                <TextBlock Grid.Row="0" Grid.Column="0" Text="绝缘子定位：" Style="{StaticResource HoleParamLabelStyle}" Margin="0,0,8,10" />
+                                                <Border Grid.Row="0" Grid.Column="1" Style="{StaticResource RoundedInputBorderStyle}" Margin="0,0,0,10">
+                                                    <hc:TextBox x:Name="AFrontInsulatorPositionTextBox" Tag="绝缘子定位" Style="{StaticResource ParamTextBoxStyle}" hc:InfoElement.Placeholder="请输入绝缘子定位" Text="{Binding Parameters.ACabinet.FrontHole.InsulatorPosition, UpdateSourceTrigger=LostFocus}" />
+                                                </Border>
+
+                                                <TextBlock Grid.Row="1" Grid.Column="0" Text="基架高度：" Style="{StaticResource HoleParamLabelStyle}" Margin="0,0,8,10" />
+                                                <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource RoundedInputBorderStyle}" Margin="0,0,0,10">
+                                                    <hc:TextBox x:Name="AFrontBaseOpeningHeightTextBox" Tag="基架高度" Style="{StaticResource ParamTextBoxStyle}" hc:InfoElement.Placeholder="请输入基架高度" Text="{Binding Parameters.ACabinet.FrontHole.BaseOpeningHeight, UpdateSourceTrigger=LostFocus}" />
+                                                </Border>
+
+                                                <TextBlock Grid.Row="2" Grid.Column="0" Text="基座高：" Style="{StaticResource HoleParamLabelStyle}" Margin="0,0,8,10" />
+                                                <Border Grid.Row="2" Grid.Column="1" Style="{StaticResource RoundedInputBorderStyle}" Margin="0,0,0,10">
+                                                    <hc:TextBox x:Name="AFrontBaseHeightTextBox" Tag="基座高" Style="{StaticResource ParamTextBoxStyle}" hc:InfoElement.Placeholder="请输入基座高" Text="{Binding Parameters.ACabinet.FrontHole.BaseHeight, UpdateSourceTrigger=LostFocus}" TextChanged="BaseHeightTextBox_TextChanged" />
+                                                </Border>
+
+                                                <TextBlock x:Name="AFrontExtensionBaseHintTextBlock" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Text="基座高超过1400将添加延长基座" Foreground="#D46B08" Margin="0,0,0,10" Visibility="Collapsed" />
+
+                                                <StackPanel x:Name="AFrontExtensionBasePanel" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Vertical" Visibility="Collapsed">
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Text="延长基座高：" Style="{StaticResource HoleParamLabelStyle}" Margin="0,0,8,0" />
+                                                        <Border Style="{StaticResource RoundedInputBorderStyle}">
+                                                            <hc:TextBox x:Name="AFrontExtensionBaseTextBox" Tag="延长基座高" Style="{StaticResource ParamTextBoxStyle}" Text="{Binding Parameters.ACabinet.FrontHole.ExtensionBaseHeight, UpdateSourceTrigger=LostFocus}" hc:InfoElement.Placeholder="请输入延长基座高" TextChanged="ExtensionBaseTextBox_TextChanged" />
+                                                        </Border>
+                                                    </StackPanel>
+                                                    <TextBlock x:Name="AFrontBasicBaseHeightTextBlock" Margin="158,4,0,0" FontSize="12" Foreground="#999999" />
+                                                </StackPanel>
+                                            </Grid>
+
+                                            <TextBlock Text="柜后孔基座" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,12" Visibility="Collapsed" />
+                                            <Grid x:Name="ABackBaseParameterGroup" Margin="22,0,0,0" IsEnabled="{Binding Parameters.ACabinet.BackHole.IsEnabled}" Visibility="Collapsed">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+
+                                                <TextBlock Grid.Row="0" Grid.Column="0" Text="绝缘子定位：" Style="{StaticResource HoleParamLabelStyle}" Margin="0,0,8,10" />
+                                                <Border Grid.Row="0" Grid.Column="1" Style="{StaticResource RoundedInputBorderStyle}" Margin="0,0,0,10">
+                                                    <hc:TextBox x:Name="ABackInsulatorPositionTextBox" Tag="绝缘子定位" Style="{StaticResource ParamTextBoxStyle}" hc:InfoElement.Placeholder="请输入绝缘子定位" Text="{Binding Parameters.ACabinet.BackHole.InsulatorPosition, UpdateSourceTrigger=LostFocus}" />
+                                                </Border>
+
+                                                <TextBlock Grid.Row="1" Grid.Column="0" Text="基架高度：" Style="{StaticResource HoleParamLabelStyle}" Margin="0,0,8,10" />
+                                                <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource RoundedInputBorderStyle}" Margin="0,0,0,10">
+                                                    <hc:TextBox x:Name="ABackBaseOpeningHeightTextBox" Tag="基架高度" Style="{StaticResource ParamTextBoxStyle}" hc:InfoElement.Placeholder="请输入基架高度" Text="{Binding Parameters.ACabinet.BackHole.BaseOpeningHeight, UpdateSourceTrigger=LostFocus}" />
+                                                </Border>
+
+                                                <TextBlock Grid.Row="2" Grid.Column="0" Text="基座高：" Style="{StaticResource HoleParamLabelStyle}" Margin="0,0,8,10" />
+                                                <Border Grid.Row="2" Grid.Column="1" Style="{StaticResource RoundedInputBorderStyle}" Margin="0,0,0,10">
+                                                    <hc:TextBox x:Name="ABackBaseHeightTextBox" Tag="基座高" Style="{StaticResource ParamTextBoxStyle}" hc:InfoElement.Placeholder="请输入基座高" Text="{Binding Parameters.ACabinet.BackHole.BaseHeight, UpdateSourceTrigger=LostFocus}" TextChanged="BaseHeightTextBox_TextChanged" />
+                                                </Border>
+
+                                                <TextBlock x:Name="ABackExtensionBaseHintTextBlock" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Text="基座高超过1400将添加延长基座" Foreground="#D46B08" Margin="0,0,0,10" Visibility="Collapsed" />
+
+                                                <StackPanel x:Name="ABackExtensionBasePanel" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Vertical" Visibility="Collapsed">
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Text="延长基座高：" Style="{StaticResource HoleParamLabelStyle}" Margin="0,0,8,0" />
+                                                        <Border Style="{StaticResource RoundedInputBorderStyle}">
+                                                            <hc:TextBox x:Name="ABackExtensionBaseTextBox" Tag="延长基座高" Style="{StaticResource ParamTextBoxStyle}" Text="{Binding Parameters.ACabinet.BackHole.ExtensionBaseHeight, UpdateSourceTrigger=LostFocus}" hc:InfoElement.Placeholder="请输入延长基座高" TextChanged="ExtensionBaseTextBox_TextChanged" />
+                                                        </Border>
+                                                    </StackPanel>
+                                                    <TextBlock x:Name="ABackBasicBaseHeightTextBlock" Margin="158,4,0,0" FontSize="12" Foreground="#999999" />
+                                                </StackPanel>
+                                            </Grid>
+                                        </StackPanel>
+                                    </Border>
+                                </TabItem>
+                            </TabControl>
+                        </TabItem>
+
+                        <TabItem x:Name="BTabItem" Header="B柜参数">
+                            <TabControl Style="{StaticResource VerticalSideTabControlStyle}" TabStripPlacement="Left">
+                                <TabItem x:Name="BCabinetParamTabItem" Header="柜体参数">
+                                    <Border Padding="16" BorderBrush="#D9D9D9" BorderThickness="1" CornerRadius="4" Margin="0,0,0,2" MinHeight="620">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Grid.Row="0" Grid.Column="0" Text="柜高" Style="{StaticResource ParamLabelStyle}" Margin="0,0,8,10" />
+                                            <Border Grid.Row="0" Grid.Column="1" Style="{StaticResource RoundedInputBorderStyle}" Margin="0,0,0,10">
+                                                <hc:TextBox x:Name="BCabinetHeightTextBox" Tag="B-柜高" Style="{StaticResource ParamTextBoxStyle}" hc:InfoElement.Placeholder="请输入B柜柜高" Text="{Binding Parameters.BCabinet.CabinetHeight, UpdateSourceTrigger=LostFocus}" />
+                                            </Border>
+
+                                            <TextBlock Grid.Row="1" Grid.Column="0" Text="柜深" Style="{StaticResource ParamLabelStyle}" Margin="0,0,8,10" />
+                                            <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource RoundedInputBorderStyle}" Margin="0,0,0,10">
+                                                <hc:TextBox x:Name="BCabinetDepthTextBox" Tag="B-柜深" Style="{StaticResource ParamTextBoxStyle}" hc:InfoElement.Placeholder="请输入B柜柜深" Text="{Binding Parameters.BCabinet.CabinetDepth, UpdateSourceTrigger=LostFocus}" />
+                                            </Border>
+
+                                            <TextBlock Grid.Row="2" Grid.Column="0" Text="柜宽" Style="{StaticResource ParamLabelStyle}" Margin="0,0,8,10" />
+                                            <Border Grid.Row="2" Grid.Column="1" Style="{StaticResource RoundedInputBorderStyle}" Margin="0,0,0,10">
+                                                <hc:TextBox x:Name="BCabinetWidthTextBox" Style="{StaticResource ParamTextBoxStyle}" hc:InfoElement.Placeholder="请输入B柜柜宽" Text="{Binding Parameters.BCabinet.CabinetWidth, UpdateSourceTrigger=LostFocus}" />
+                                            </Border>
+
+                                            <TextBlock Grid.Row="3" Grid.Column="0" Text="离地高度(I)" Style="{StaticResource ParamLabelStyle}" Margin="0,0,8,10" />
+                                            <Border Grid.Row="3" Grid.Column="1" Style="{StaticResource RoundedInputBorderStyle}" Margin="0,0,0,10">
+                                                <hc:TextBox x:Name="BTextBoxI" Tag="B-离地高度(I)" Style="{StaticResource ParamTextBoxStyle}" hc:InfoElement.Placeholder="请输入B柜参数I" Text="{Binding Parameters.BCabinet.GroundHeight, UpdateSourceTrigger=LostFocus}" />
+                                            </Border>
+                                        </Grid>
+                                    </Border>
+                                </TabItem>
+
+                                <TabItem x:Name="BHoleParamTabItem" Header="柜顶开孔参数">
+                                    <Border Padding="16" BorderBrush="#D9D9D9" BorderThickness="1" CornerRadius="4" Margin="0,0,0,2" MinHeight="620">
+                                        <StackPanel>
+                                            <Grid Margin="0,0,0,12">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="12" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                </Grid.ColumnDefinitions>
+
+                                                <TextBlock Grid.Column="0" Text="柜前孔" FontSize="18" FontWeight="SemiBold" VerticalAlignment="Center" />
+                                                <ToggleButton x:Name="BFrontHoleToggleButton" Grid.Column="2" IsChecked="{Binding Parameters.BCabinet.FrontHole.IsEnabled, UpdateSourceTrigger=PropertyChanged}" Margin="0,2,0,0" Style="{StaticResource ToggleButtonSwitch}" />
+                                            </Grid>
+
+                                            <Grid Margin="22,0,0,24" IsEnabled="{Binding IsChecked, ElementName=BFrontHoleToggleButton}">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+
+                                                <TextBlock Grid.Row="0" Grid.Column="0" Text="距柜前距离：" Style="{StaticResource HoleParamLabelStyle}" Margin="0,0,8,10" />
+                                                <Border Grid.Row="0" Grid.Column="1" Style="{StaticResource RoundedInputBorderStyle}" Margin="0,0,0,10">
+                                                    <hc:TextBox x:Name="BFrontHoleToFrontDistanceTextBox" Tag="柜前孔-距柜前距离" Style="{StaticResource ParamTextBoxStyle}" hc:InfoElement.Placeholder="请输入距柜前距离" Text="{Binding Parameters.BCabinet.FrontHole.ToCabinetEdgeDistance, UpdateSourceTrigger=LostFocus}" />
+                                                </Border>
+
+                                                <TextBlock Grid.Row="1" Grid.Column="0" Text="铜排中心至柜前距离：" Style="{StaticResource HoleParamLabelStyle}" Margin="0,0,8,10" />
+                                                <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource RoundedInputBorderStyle}" Margin="0,0,0,10">
+                                                    <hc:TextBox x:Name="BFrontHoleBusbarCenterToFrontDistanceTextBox" Tag="柜前孔-铜排中心至柜前距离" Style="{StaticResource ParamTextBoxStyle}" hc:InfoElement.Placeholder="请输入铜排中心至柜前距离" Text="{Binding Parameters.BCabinet.FrontHole.BusbarCenterToCabinetEdgeDistance, UpdateSourceTrigger=LostFocus}" />
+                                                </Border>
+
+                                                <TextBlock Grid.Row="2" Grid.Column="0" Text="接口固定孔间距：" Style="{StaticResource HoleParamLabelStyle}" Margin="0,0,8,10" />
+                                                <Border Grid.Row="2" Grid.Column="1" Style="{StaticResource RoundedInputBorderStyle}" Margin="0,0,0,10">
+                                                    <hc:TextBox x:Name="BFrontHoleFixedHoleSpacingTextBox" Tag="柜前孔-接口固定孔间距" Style="{StaticResource ParamTextBoxStyle}" hc:InfoElement.Placeholder="请输入接口固定孔间距" Text="{Binding Parameters.BCabinet.FrontHole.FixedHoleSpacing, UpdateSourceTrigger=LostFocus}" />
+                                                </Border>
+
+                                                <TextBlock Grid.Row="3" Grid.Column="0" Text="L1：" Style="{StaticResource HoleParamLabelStyle}" Margin="0,0,8,10" />
+                                                <Border Grid.Row="3" Grid.Column="1" Style="{StaticResource RoundedInputBorderStyle}" Margin="0,0,0,10">
+                                                    <hc:TextBox x:Name="BFrontHoleL1TextBox" Tag="柜前孔-L1" Style="{StaticResource ParamTextBoxStyle}" hc:InfoElement.Placeholder="请输入L1" Text="{Binding Parameters.BCabinet.FrontHole.L1, UpdateSourceTrigger=LostFocus}" />
+                                                </Border>
+
+                                                <TextBlock Grid.Row="4" Grid.Column="0" Text="L2：" Style="{StaticResource HoleParamLabelStyle}" Margin="0,0,8,10" />
+                                                <Border Grid.Row="4" Grid.Column="1" Style="{StaticResource RoundedInputBorderStyle}" Margin="0,0,0,10">
+                                                    <hc:TextBox x:Name="BFrontHoleL2TextBox" Tag="柜前孔-L2" Style="{StaticResource ParamTextBoxStyle}" hc:InfoElement.Placeholder="请输入L2" Text="{Binding Parameters.BCabinet.FrontHole.L2, UpdateSourceTrigger=LostFocus}" />
+                                                </Border>
+
+                                                <TextBlock Grid.Row="5" Grid.Column="0" Text="L3：" Style="{StaticResource HoleParamLabelStyle}" Margin="0,0,8,0" />
+                                                <Border Grid.Row="5" Grid.Column="1" Style="{StaticResource RoundedInputBorderStyle}">
+                                                    <hc:TextBox x:Name="BFrontHoleL3TextBox" Tag="柜前孔-L3" Style="{StaticResource ParamTextBoxStyle}" hc:InfoElement.Placeholder="请输入L3" Text="{Binding Parameters.BCabinet.FrontHole.L3, UpdateSourceTrigger=LostFocus}" />
+                                                </Border>
+
+                                            </Grid>
+
+                                            <Grid Margin="0,0,0,12" Visibility="Collapsed">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="12" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                </Grid.ColumnDefinitions>
+
+                                                <TextBlock Grid.Column="0" Text="柜后孔" FontSize="18" FontWeight="SemiBold" VerticalAlignment="Center" />
+                                                <ToggleButton x:Name="BBackHoleToggleButton" Grid.Column="2" IsChecked="{Binding Parameters.BCabinet.BackHole.IsEnabled, UpdateSourceTrigger=PropertyChanged}" Margin="0,2,0,0" Style="{StaticResource ToggleButtonSwitch}" />
+                                            </Grid>
+
+                                            <Grid Margin="22,0,0,0" IsEnabled="{Binding IsChecked, ElementName=BBackHoleToggleButton}" Visibility="Collapsed">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+
+                                                <TextBlock Grid.Row="0" Grid.Column="0" Text="距柜后距离：" Style="{StaticResource HoleParamLabelStyle}" Margin="0,0,8,10" />
+                                                <Border Grid.Row="0" Grid.Column="1" Style="{StaticResource RoundedInputBorderStyle}" Margin="0,0,0,10">
+                                                    <hc:TextBox x:Name="BBackHoleToBackDistanceTextBox" Tag="柜后孔-距柜后距离" Style="{StaticResource ParamTextBoxStyle}" hc:InfoElement.Placeholder="请输入距柜后距离" Text="{Binding Parameters.BCabinet.BackHole.ToCabinetEdgeDistance, UpdateSourceTrigger=LostFocus}" />
+                                                </Border>
+
+                                                <TextBlock Grid.Row="1" Grid.Column="0" Text="铜排中心至柜后距离：" Style="{StaticResource HoleParamLabelStyle}" Margin="0,0,8,10" />
+                                                <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource RoundedInputBorderStyle}" Margin="0,0,0,10">
+                                                    <hc:TextBox x:Name="BBackHoleBusbarCenterToBackDistanceTextBox" Tag="柜后孔-铜排中心至柜后距离" Style="{StaticResource ParamTextBoxStyle}" hc:InfoElement.Placeholder="请输入铜排中心至柜后距离" Text="{Binding Parameters.BCabinet.BackHole.BusbarCenterToCabinetEdgeDistance, UpdateSourceTrigger=LostFocus}" />
+                                                </Border>
+
+                                                <TextBlock Grid.Row="2" Grid.Column="0" Text="接口固定孔间距：" Style="{StaticResource HoleParamLabelStyle}" Margin="0,0,8,10" />
+                                                <Border Grid.Row="2" Grid.Column="1" Style="{StaticResource RoundedInputBorderStyle}" Margin="0,0,0,10">
+                                                    <hc:TextBox x:Name="BBackHoleFixedHoleSpacingTextBox" Tag="柜后孔-接口固定孔间距" Style="{StaticResource ParamTextBoxStyle}" hc:InfoElement.Placeholder="请输入接口固定孔间距" Text="{Binding Parameters.BCabinet.BackHole.FixedHoleSpacing, UpdateSourceTrigger=LostFocus}" />
+                                                </Border>
+
+                                                <TextBlock Grid.Row="3" Grid.Column="0" Text="L1：" Style="{StaticResource HoleParamLabelStyle}" Margin="0,0,8,10" />
+                                                <Border Grid.Row="3" Grid.Column="1" Style="{StaticResource RoundedInputBorderStyle}" Margin="0,0,0,10">
+                                                    <hc:TextBox x:Name="BBackHoleL1TextBox" Tag="柜后孔-L1" Style="{StaticResource ParamTextBoxStyle}" hc:InfoElement.Placeholder="请输入L1" Text="{Binding Parameters.BCabinet.BackHole.L1, UpdateSourceTrigger=LostFocus}" />
+                                                </Border>
+
+                                                <TextBlock Grid.Row="4" Grid.Column="0" Text="L2：" Style="{StaticResource HoleParamLabelStyle}" Margin="0,0,8,10" />
+                                                <Border Grid.Row="4" Grid.Column="1" Style="{StaticResource RoundedInputBorderStyle}" Margin="0,0,0,10">
+                                                    <hc:TextBox x:Name="BBackHoleL2TextBox" Tag="柜后孔-L2" Style="{StaticResource ParamTextBoxStyle}" hc:InfoElement.Placeholder="请输入L2" Text="{Binding Parameters.BCabinet.BackHole.L2, UpdateSourceTrigger=LostFocus}" />
+                                                </Border>
+
+                                                <TextBlock Grid.Row="5" Grid.Column="0" Text="L3：" Style="{StaticResource HoleParamLabelStyle}" Margin="0,0,8,0" />
+                                                <Border Grid.Row="5" Grid.Column="1" Style="{StaticResource RoundedInputBorderStyle}">
+                                                    <hc:TextBox x:Name="BBackHoleL3TextBox" Tag="柜后孔-L3" Style="{StaticResource ParamTextBoxStyle}" hc:InfoElement.Placeholder="请输入L3" Text="{Binding Parameters.BCabinet.BackHole.L3, UpdateSourceTrigger=LostFocus}" />
+                                                </Border>
+
+                                            </Grid>
+                                        </StackPanel>
+                                    </Border>
+                                </TabItem>
+
+                                <TabItem x:Name="BBaseParamTabItem" Header="基座参数">
+                                    <Border Padding="16" BorderBrush="#D9D9D9" BorderThickness="1" CornerRadius="4" Margin="0,0,0,2" MinHeight="620">
+                                        <StackPanel>
+                                            <TextBlock Text="柜前孔基座" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,12" />
+                                            <!-- 基座组始终显示；是否可编辑直接跟随对应柜孔开关，关闭时保留原值。 -->
+                                            <Grid x:Name="BFrontBaseParameterGroup" Margin="22,0,0,24" IsEnabled="{Binding Parameters.BCabinet.FrontHole.IsEnabled}">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+
+                                                <TextBlock Grid.Row="0" Grid.Column="0" Text="绝缘子定位：" Style="{StaticResource HoleParamLabelStyle}" Margin="0,0,8,10" />
+                                                <Border Grid.Row="0" Grid.Column="1" Style="{StaticResource RoundedInputBorderStyle}" Margin="0,0,0,10">
+                                                    <hc:TextBox x:Name="BFrontInsulatorPositionTextBox" Tag="绝缘子定位" Style="{StaticResource ParamTextBoxStyle}" hc:InfoElement.Placeholder="请输入绝缘子定位" Text="{Binding Parameters.BCabinet.FrontHole.InsulatorPosition, UpdateSourceTrigger=LostFocus}" />
+                                                </Border>
+
+                                                <TextBlock Grid.Row="1" Grid.Column="0" Text="基架高度：" Style="{StaticResource HoleParamLabelStyle}" Margin="0,0,8,10" />
+                                                <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource RoundedInputBorderStyle}" Margin="0,0,0,10">
+                                                    <hc:TextBox x:Name="BFrontBaseOpeningHeightTextBox" Tag="基架高度" Style="{StaticResource ParamTextBoxStyle}" hc:InfoElement.Placeholder="请输入基架高度" Text="{Binding Parameters.BCabinet.FrontHole.BaseOpeningHeight, UpdateSourceTrigger=LostFocus}" />
+                                                </Border>
+
+                                                <TextBlock Grid.Row="2" Grid.Column="0" Text="基座高：" Style="{StaticResource HoleParamLabelStyle}" Margin="0,0,8,10" />
+                                                <Border Grid.Row="2" Grid.Column="1" Style="{StaticResource RoundedInputBorderStyle}" Margin="0,0,0,10">
+                                                    <hc:TextBox x:Name="BFrontBaseHeightTextBox" Tag="基座高" Style="{StaticResource ParamTextBoxStyle}" hc:InfoElement.Placeholder="请输入基座高" Text="{Binding Parameters.BCabinet.FrontHole.BaseHeight, UpdateSourceTrigger=LostFocus}" TextChanged="BaseHeightTextBox_TextChanged" />
+                                                </Border>
+
+                                                <TextBlock x:Name="BFrontExtensionBaseHintTextBlock" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Text="基座高超过1400将添加延长基座" Foreground="#D46B08" Margin="0,0,0,10" Visibility="Collapsed" />
+
+                                                <StackPanel x:Name="BFrontExtensionBasePanel" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Vertical" Visibility="Collapsed">
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Text="延长基座高：" Style="{StaticResource HoleParamLabelStyle}" Margin="0,0,8,0" />
+                                                        <Border Style="{StaticResource RoundedInputBorderStyle}">
+                                                            <hc:TextBox x:Name="BFrontExtensionBaseTextBox" Tag="延长基座高" Style="{StaticResource ParamTextBoxStyle}" Text="{Binding Parameters.BCabinet.FrontHole.ExtensionBaseHeight, UpdateSourceTrigger=LostFocus}" hc:InfoElement.Placeholder="请输入延长基座高" TextChanged="ExtensionBaseTextBox_TextChanged" />
+                                                        </Border>
+                                                    </StackPanel>
+                                                    <TextBlock x:Name="BFrontBasicBaseHeightTextBlock" Margin="158,4,0,0" FontSize="12" Foreground="#999999" />
+                                                </StackPanel>
+                                            </Grid>
+
+                                            <TextBlock Text="柜后孔基座" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,12" Visibility="Collapsed" />
+                                            <Grid x:Name="BBackBaseParameterGroup" Margin="22,0,0,0" IsEnabled="{Binding Parameters.BCabinet.BackHole.IsEnabled}" Visibility="Collapsed">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+
+                                                <TextBlock Grid.Row="0" Grid.Column="0" Text="绝缘子定位：" Style="{StaticResource HoleParamLabelStyle}" Margin="0,0,8,10" />
+                                                <Border Grid.Row="0" Grid.Column="1" Style="{StaticResource RoundedInputBorderStyle}" Margin="0,0,0,10">
+                                                    <hc:TextBox x:Name="BBackInsulatorPositionTextBox" Tag="绝缘子定位" Style="{StaticResource ParamTextBoxStyle}" hc:InfoElement.Placeholder="请输入绝缘子定位" Text="{Binding Parameters.BCabinet.BackHole.InsulatorPosition, UpdateSourceTrigger=LostFocus}" />
+                                                </Border>
+
+                                                <TextBlock Grid.Row="1" Grid.Column="0" Text="基架高度：" Style="{StaticResource HoleParamLabelStyle}" Margin="0,0,8,10" />
+                                                <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource RoundedInputBorderStyle}" Margin="0,0,0,10">
+                                                    <hc:TextBox x:Name="BBackBaseOpeningHeightTextBox" Tag="基架高度" Style="{StaticResource ParamTextBoxStyle}" hc:InfoElement.Placeholder="请输入基架高度" Text="{Binding Parameters.BCabinet.BackHole.BaseOpeningHeight, UpdateSourceTrigger=LostFocus}" />
+                                                </Border>
+
+                                                <TextBlock Grid.Row="2" Grid.Column="0" Text="基座高：" Style="{StaticResource HoleParamLabelStyle}" Margin="0,0,8,10" />
+                                                <Border Grid.Row="2" Grid.Column="1" Style="{StaticResource RoundedInputBorderStyle}" Margin="0,0,0,10">
+                                                    <hc:TextBox x:Name="BBackBaseHeightTextBox" Tag="基座高" Style="{StaticResource ParamTextBoxStyle}" hc:InfoElement.Placeholder="请输入基座高" Text="{Binding Parameters.BCabinet.BackHole.BaseHeight, UpdateSourceTrigger=LostFocus}" TextChanged="BaseHeightTextBox_TextChanged" />
+                                                </Border>
+
+                                                <TextBlock x:Name="BBackExtensionBaseHintTextBlock" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Text="基座高超过1400将添加延长基座" Foreground="#D46B08" Margin="0,0,0,10" Visibility="Collapsed" />
+
+                                                <StackPanel x:Name="BBackExtensionBasePanel" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Vertical" Visibility="Collapsed">
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Text="延长基座高：" Style="{StaticResource HoleParamLabelStyle}" Margin="0,0,8,0" />
+                                                        <Border Style="{StaticResource RoundedInputBorderStyle}">
+                                                            <hc:TextBox x:Name="BBackExtensionBaseTextBox" Tag="延长基座高" Style="{StaticResource ParamTextBoxStyle}" Text="{Binding Parameters.BCabinet.BackHole.ExtensionBaseHeight, UpdateSourceTrigger=LostFocus}" hc:InfoElement.Placeholder="请输入延长基座高" TextChanged="ExtensionBaseTextBox_TextChanged" />
+                                                        </Border>
+                                                    </StackPanel>
+                                                    <TextBlock x:Name="BBackBasicBaseHeightTextBlock" Margin="158,4,0,0" FontSize="12" Foreground="#999999" />
+                                                </StackPanel>
+                                            </Grid>
+                                        </StackPanel>
+                                    </Border>
+                                </TabItem>
+                            </TabControl>
+                        </TabItem>
+                    </TabControl>
+                </StackPanel>
+            </ScrollViewer>
+
+            <Border Grid.Column="2" Padding="12" BorderBrush="#D9D9D9" BorderThickness="1" CornerRadius="4">
+                <Grid ClipToBounds="True">
+                    <Image x:Name="PreviewImage"
+                           Style="{StaticResource PreviewImageStyle}"
+                           SizeChanged="PreviewImage_SizeChanged" />
+                    <Canvas x:Name="DimensionHighlightCanvas"
+                            IsHitTestVisible="False"
+                            ClipToBounds="True">
+                        <Rectangle Stroke="#FFFF0000"
+                                   StrokeThickness="1.5"
+                                   Fill="#20FF0000"
+                                   Canvas.Left="{Binding DimensionHighlightLeft}"
+                                   Canvas.Top="{Binding DimensionHighlightTop}"
+                                   Width="{Binding DimensionHighlightWidth}"
+                                   Height="{Binding DimensionHighlightHeight}"
+                                   SnapsToDevicePixels="True">
+                            <Rectangle.Visibility>
+                                <MultiBinding Converter="{StaticResource DimensionHighlightVisibilityConverter}">
+                                    <Binding Path="DimensionHighlightVisibility" />
+                                    <Binding Path="Tag" ElementName="PreviewImage" />
+                                    <Binding Path="ActiveDimensionImageName" />
+                                </MultiBinding>
+                            </Rectangle.Visibility>
+                        </Rectangle>
+                    </Canvas>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,8,0,0">
+            <Button x:Name="GenerateButton" Content="生成" Width="100" Height="32" Margin="0,0,32,0" Visibility="{Binding GenerateButtonVisibility}" Style="{StaticResource ButtonPrimary}" Command="{Binding GenerateCommand}" />
+        </StackPanel>
+
+    </Grid>
+</Window>

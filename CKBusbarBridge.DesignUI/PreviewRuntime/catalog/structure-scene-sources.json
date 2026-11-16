@@ -1,0 +1,59 @@
+{
+  "models": [
+    {
+      "path": "模板/基座模板/侧对侧基座1/5GX.355.030.SLDASM",
+      "sha256": "690743e5371f6df4348f751616b8cc75f11cc9deb8cbdf9077d2f5c99d493c90",
+      "configuration": "默认"
+    },
+    {
+      "path": "模板/基座模板/侧对侧基座2/5GX.355.031.SLDASM",
+      "sha256": "4445d3491f4246293b0ed1df4463a1162515bdda298ca9d1bee877553606b60a",
+      "configuration": "默认"
+    },
+    {
+      "path": "模板/基座模板/基座/5GX.355.020.SLDASM",
+      "sha256": "8219fab54ac759e8dc6b8085f9807c4080f1a9666c30b211164cfe89bb254ff0",
+      "configuration": "默认"
+    },
+    {
+      "path": "模板/基座模板/增高基座/5GX.355.021.SLDASM",
+      "sha256": "38253922f67bc67e56d562366a9d2332565b848397002a08a7ed8549c84941ec",
+      "configuration": "默认"
+    },
+    {
+      "path": "模板/基架模板/侧对侧换相基架/5GX.355.029.SLDASM",
+      "sha256": "7f608152b6fe0070b332f9ad0aafe7a9c54a01a2bbcca0ee102cc465f2d7a6ff",
+      "configuration": "默认"
+    },
+    {
+      "path": "模板/基架模板/大偏移基架/5GX.355.028.SLDASM",
+      "sha256": "14d24e203672948f473c3bf84dd10285340a7813b99bdbd6276aabce96ad98c1",
+      "configuration": "默认"
+    },
+    {
+      "path": "模板/基架模板/大基架1/5GX.355.026.SLDASM",
+      "sha256": "5f2046ac044284412eaf4c779ebef9f0389d514b779c50d1f18cd5efe13ab090",
+      "configuration": "默认"
+    },
+    {
+      "path": "模板/基架模板/大基架2/5GX.355.027.SLDASM",
+      "sha256": "ad5c666c7c5a7f13e19a7cfa83c494553d84407116c47bd2978d620efc4769f1",
+      "configuration": "默认"
+    },
+    {
+      "path": "模板/基架模板/小偏移基架/5GX.355.032.SLDASM",
+      "sha256": "36f7d0dfed028103c41c894af019974b920687521a892c862bad5582a2e13263",
+      "configuration": "默认"
+    },
+    {
+      "path": "模板/基架模板/常规基架/5GX.355.024.SLDASM",
+      "sha256": "d9fc43480c334cc5135b1ad25dce4badcd31b23654cfe85108ae6aea1be45b7c",
+      "configuration": "默认"
+    },
+    {
+      "path": "模板/绝缘子模板/绝缘子通用模板/绝缘子+垫片+支架（3垫块）.SLDASM",
+      "sha256": "9bfba5bef490f055464ac367f86ddd8f352a1c08159bee6977b9f120a17de0f4",
+      "configuration": "默认"
+    }
+  ]
+}

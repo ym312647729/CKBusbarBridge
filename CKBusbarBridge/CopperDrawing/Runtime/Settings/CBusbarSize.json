@@ -1,0 +1,11 @@
+[
+  {
+    "Id": 0,
+    "BusMaterial": "TMY",
+    "BusSize": "40*6",
+    "BusIntensity": "205",
+    "BusTemperature": "35℃",
+    "Quantity": "1",
+    "Comment": "圆角 镀锡"
+  }
+]

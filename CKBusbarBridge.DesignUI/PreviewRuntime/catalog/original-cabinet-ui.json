@@ -1,0 +1,5408 @@
+{
+  "version": "original-cabinet-ui/1",
+  "source": "migration/20261102-opengl/source",
+  "scenarios": [
+    {
+      "key": "face-to-face",
+      "sourceWindow": "views/CabinetDriverWindow.xaml",
+      "defaults": {
+        "ProjectPath": null,
+        "General.FloorHeight": 4377,
+        "General.CabinetSpacing": 3500,
+        "General.CabinetEccentricity": 0,
+        "General.PhaseSpacing": 210,
+        "General.InsulationDistance": 125,
+        "General.ParameterB": 4000,
+        "General.BusbarSpec": "80×8",
+        "General.SinglePhaseRootCount": 4,
+        "General.ACabinetExposedBusbarPhaseSequence": "CBA",
+        "General.BCabinetExposedBusbarPhaseSequence": "ABC",
+        "General.BusbarMaterial": "直角铜母线",
+        "General.InsulatorHeight": 165,
+        "ACabinet.CabinetHeight": 2240,
+        "ACabinet.CabinetDepth": 1500,
+        "ACabinet.CabinetWidth": 1000,
+        "ACabinet.GroundHeight": 80,
+        "ACabinet.FrontHole.BusbarCenterToBaseOffset": 282,
+        "ACabinet.FrontHole.IsEnabled": true,
+        "ACabinet.FrontHole.InsulatorPosition": 500,
+        "ACabinet.FrontHole.BaseHeight": 1000,
+        "ACabinet.FrontHole.BaseOpeningHeight": 500,
+        "ACabinet.FrontHole.ExtensionBaseHeight": 0,
+        "ACabinet.FrontHole.ToCabinetEdgeDistance": 740,
+        "ACabinet.FrontHole.BusbarCenterToCabinetEdgeDistance": 936,
+        "ACabinet.FrontHole.FixedHoleSpacing": 475,
+        "ACabinet.FrontHole.L1": 100,
+        "ACabinet.FrontHole.L2": 250,
+        "ACabinet.FrontHole.L3": 350,
+        "ACabinet.BackHole.BusbarCenterToBaseOffset": 247,
+        "ACabinet.BackHole.IsEnabled": false,
+        "ACabinet.BackHole.InsulatorPosition": 500,
+        "ACabinet.BackHole.BaseHeight": 1000,
+        "ACabinet.BackHole.BaseOpeningHeight": 500,
+        "ACabinet.BackHole.ExtensionBaseHeight": 0,
+        "ACabinet.BackHole.ToCabinetEdgeDistance": 25,
+        "ACabinet.BackHole.BusbarCenterToCabinetEdgeDistance": 210,
+        "ACabinet.BackHole.FixedHoleSpacing": 440,
+        "ACabinet.BackHole.L1": 100,
+        "ACabinet.BackHole.L2": 250,
+        "ACabinet.BackHole.L3": 350,
+        "BCabinet.CabinetHeight": 2240,
+        "BCabinet.CabinetDepth": 1500,
+        "BCabinet.CabinetWidth": 1000,
+        "BCabinet.GroundHeight": 80,
+        "BCabinet.FrontHole.BusbarCenterToBaseOffset": 282,
+        "BCabinet.FrontHole.IsEnabled": true,
+        "BCabinet.FrontHole.InsulatorPosition": 500,
+        "BCabinet.FrontHole.BaseHeight": 1000,
+        "BCabinet.FrontHole.BaseOpeningHeight": 500,
+        "BCabinet.FrontHole.ExtensionBaseHeight": 0,
+        "BCabinet.FrontHole.ToCabinetEdgeDistance": 740,
+        "BCabinet.FrontHole.BusbarCenterToCabinetEdgeDistance": 936,
+        "BCabinet.FrontHole.FixedHoleSpacing": 475,
+        "BCabinet.FrontHole.L1": 100,
+        "BCabinet.FrontHole.L2": 250,
+        "BCabinet.FrontHole.L3": 350,
+        "BCabinet.BackHole.BusbarCenterToBaseOffset": 247,
+        "BCabinet.BackHole.IsEnabled": false,
+        "BCabinet.BackHole.InsulatorPosition": 500,
+        "BCabinet.BackHole.BaseHeight": 1000,
+        "BCabinet.BackHole.BaseOpeningHeight": 500,
+        "BCabinet.BackHole.ExtensionBaseHeight": 0,
+        "BCabinet.BackHole.ToCabinetEdgeDistance": 25,
+        "BCabinet.BackHole.BusbarCenterToCabinetEdgeDistance": 210,
+        "BCabinet.BackHole.FixedHoleSpacing": 440,
+        "BCabinet.BackHole.L1": 100,
+        "BCabinet.BackHole.L2": 250,
+        "BCabinet.BackHole.L3": 350
+      },
+      "fields": [
+        {
+          "path": "ProjectPath",
+          "label": "项目根目录",
+          "highlightKey": null,
+          "sourceName": "ProjectPathTextBox",
+          "kind": "TextBox",
+          "tabs": [],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding ProjectPath, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": null,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.FloorHeight",
+          "label": "楼高(D)",
+          "highlightKey": "楼高(D)",
+          "sourceName": "FloorHeightTextBox",
+          "kind": "TextBox",
+          "tabs": [],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.General.FloorHeight, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 4377,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.CabinetSpacing",
+          "label": "柜间距(A)",
+          "highlightKey": "柜间距(A)",
+          "sourceName": "CabinetSpacingTextBox",
+          "kind": "TextBox",
+          "tabs": [],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.General.CabinetSpacing, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 3500,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.ParameterB",
+          "label": "B",
+          "highlightKey": "B",
+          "sourceName": "GeneralParameterBTextBox",
+          "kind": "TextBox",
+          "tabs": [],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.General.ParameterB, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 4000,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.CabinetEccentricity",
+          "label": "柜间偏心值",
+          "highlightKey": null,
+          "sourceName": "CabinetEccentricityTextBox",
+          "kind": "TextBox",
+          "tabs": [],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.General.CabinetEccentricity, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 0,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.BusbarSpec",
+          "label": "铜排规格",
+          "highlightKey": null,
+          "sourceName": "BusbarSpecTextBox",
+          "kind": "TextBox",
+          "tabs": [],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.General.BusbarSpec, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": "80×8",
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.PhaseSpacing",
+          "label": "相间距",
+          "highlightKey": "相间距",
+          "sourceName": "PhaseSpacingTextBox",
+          "kind": "TextBox",
+          "tabs": [],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.General.PhaseSpacing, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 210,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.SinglePhaseRootCount",
+          "label": "单相根数",
+          "highlightKey": null,
+          "sourceName": "SinglePhaseRootCountComboBox",
+          "kind": "ComboBox",
+          "tabs": [],
+          "tabIds": [],
+          "choices": [
+            {
+              "label": "1",
+              "value": "1"
+            },
+            {
+              "label": "2",
+              "value": "2"
+            },
+            {
+              "label": "3",
+              "value": "3"
+            },
+            {
+              "label": "4",
+              "value": "4"
+            }
+          ],
+          "sourceBinding": "{Binding Parameters.General.SinglePhaseRootCount, UpdateSourceTrigger=PropertyChanged}",
+          "defaultValue": 4,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.BusbarMaterial",
+          "label": "铜排材质",
+          "highlightKey": null,
+          "sourceName": "BusbarMaterialComboBox",
+          "kind": "ComboBox",
+          "tabs": [],
+          "tabIds": [],
+          "choices": [
+            {
+              "label": "直角铜母线",
+              "value": "直角铜母线"
+            },
+            {
+              "label": "全圆边铜母线",
+              "value": "全圆边铜母线"
+            }
+          ],
+          "sourceBinding": "{Binding Parameters.General.BusbarMaterial, UpdateSourceTrigger=PropertyChanged}",
+          "defaultValue": "直角铜母线",
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.ACabinetExposedBusbarPhaseSequence",
+          "label": "A柜伸出排相序",
+          "highlightKey": null,
+          "sourceName": "ACabinetExposedBusbarPhaseSequenceComboBox",
+          "kind": "ComboBox",
+          "tabs": [],
+          "tabIds": [],
+          "choices": [
+            {
+              "label": "ABC",
+              "value": "ABC"
+            },
+            {
+              "label": "CBA",
+              "value": "CBA"
+            }
+          ],
+          "sourceBinding": "{Binding Parameters.General.ACabinetExposedBusbarPhaseSequence, UpdateSourceTrigger=PropertyChanged}",
+          "defaultValue": "CBA",
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.BCabinetExposedBusbarPhaseSequence",
+          "label": "B柜伸出排相序",
+          "highlightKey": null,
+          "sourceName": "BCabinetExposedBusbarPhaseSequenceComboBox",
+          "kind": "ComboBox",
+          "tabs": [],
+          "tabIds": [],
+          "choices": [
+            {
+              "label": "ABC",
+              "value": "ABC"
+            },
+            {
+              "label": "CBA",
+              "value": "CBA"
+            }
+          ],
+          "sourceBinding": "{Binding Parameters.General.BCabinetExposedBusbarPhaseSequence, UpdateSourceTrigger=PropertyChanged}",
+          "defaultValue": "ABC",
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.InsulatorHeight",
+          "label": "绝缘子+支架高度",
+          "highlightKey": null,
+          "sourceName": "InsulatorHeightTextBox",
+          "kind": "TextBox",
+          "tabs": [],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.General.InsulatorHeight, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 165,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.InsulationDistance",
+          "label": "绝缘距离(mm)",
+          "highlightKey": null,
+          "sourceName": "InsulationDistanceTextBox",
+          "kind": "TextBox",
+          "tabs": [],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.General.InsulationDistance, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 125,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "ACabinet.CabinetHeight",
+          "label": "柜高",
+          "highlightKey": null,
+          "sourceName": "ACabinetHeightTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "柜体参数"
+          ],
+          "tabIds": [
+            "ATabItem",
+            "ACabinetParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.ACabinet.CabinetHeight, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 2240,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "ACabinet.CabinetDepth",
+          "label": "柜深",
+          "highlightKey": "A-柜深",
+          "sourceName": "ACabinetDepthTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "柜体参数"
+          ],
+          "tabIds": [
+            "ATabItem",
+            "ACabinetParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.ACabinet.CabinetDepth, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 1500,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "ACabinet.CabinetWidth",
+          "label": "柜宽",
+          "highlightKey": null,
+          "sourceName": "ACabinetWidthTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "柜体参数"
+          ],
+          "tabIds": [
+            "ATabItem",
+            "ACabinetParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.ACabinet.CabinetWidth, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 1000,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "ACabinet.GroundHeight",
+          "label": "离地高度(I)",
+          "highlightKey": null,
+          "sourceName": "ATextBoxI",
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "柜体参数"
+          ],
+          "tabIds": [
+            "ATabItem",
+            "ACabinetParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.ACabinet.GroundHeight, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 80,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "ACabinet.FrontHole.IsEnabled",
+          "label": "柜前孔",
+          "highlightKey": null,
+          "sourceName": "AFrontHoleToggleButton",
+          "kind": "ToggleButton",
+          "tabs": [
+            "A柜参数",
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "ATabItem",
+            "AHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.ACabinet.FrontHole.IsEnabled, UpdateSourceTrigger=PropertyChanged}",
+          "defaultValue": true,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "ACabinet.FrontHole.ToCabinetEdgeDistance",
+          "label": "距柜前距离：",
+          "highlightKey": "柜前孔-距柜前距离",
+          "sourceName": "AFrontHoleToFrontDistanceTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "ATabItem",
+            "AHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.ACabinet.FrontHole.ToCabinetEdgeDistance, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 740,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": null,
+              "enabled": "{Binding IsChecked, ElementName=AFrontHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "ACabinet.FrontHole.BusbarCenterToCabinetEdgeDistance",
+          "label": "铜排中心至柜前距离：",
+          "highlightKey": "柜前孔-铜排中心至柜前距离",
+          "sourceName": "AFrontHoleBusbarCenterToFrontDistanceTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "ATabItem",
+            "AHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.ACabinet.FrontHole.BusbarCenterToCabinetEdgeDistance, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 936,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": null,
+              "enabled": "{Binding IsChecked, ElementName=AFrontHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "ACabinet.FrontHole.FixedHoleSpacing",
+          "label": "接口固定孔间距：",
+          "highlightKey": "柜前孔-接口固定孔间距",
+          "sourceName": "AFrontHoleFixedHoleSpacingTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "ATabItem",
+            "AHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.ACabinet.FrontHole.FixedHoleSpacing, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 475,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": null,
+              "enabled": "{Binding IsChecked, ElementName=AFrontHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "ACabinet.FrontHole.L1",
+          "label": "L1：",
+          "highlightKey": "柜前孔-L1",
+          "sourceName": "AFrontHoleL1TextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "ATabItem",
+            "AHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.ACabinet.FrontHole.L1, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 100,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": null,
+              "enabled": "{Binding IsChecked, ElementName=AFrontHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "ACabinet.FrontHole.L2",
+          "label": "L2：",
+          "highlightKey": "柜前孔-L2",
+          "sourceName": "AFrontHoleL2TextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "ATabItem",
+            "AHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.ACabinet.FrontHole.L2, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 250,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": null,
+              "enabled": "{Binding IsChecked, ElementName=AFrontHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "ACabinet.FrontHole.L3",
+          "label": "L3：",
+          "highlightKey": "柜前孔-L3",
+          "sourceName": "AFrontHoleL3TextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "ATabItem",
+            "AHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.ACabinet.FrontHole.L3, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 350,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": null,
+              "enabled": "{Binding IsChecked, ElementName=AFrontHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "ACabinet.BackHole.IsEnabled",
+          "label": "柜后孔",
+          "highlightKey": null,
+          "sourceName": "ABackHoleToggleButton",
+          "kind": "ToggleButton",
+          "tabs": [
+            "A柜参数",
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "ATabItem",
+            "AHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.ACabinet.BackHole.IsEnabled, UpdateSourceTrigger=PropertyChanged}",
+          "defaultValue": false,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": "Collapsed",
+              "enabled": null
+            }
+          ]
+        },
+        {
+          "path": "ACabinet.BackHole.ToCabinetEdgeDistance",
+          "label": "距柜后距离：",
+          "highlightKey": "柜后孔-距柜后距离",
+          "sourceName": "ABackHoleToBackDistanceTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "ATabItem",
+            "AHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.ACabinet.BackHole.ToCabinetEdgeDistance, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 25,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": "Collapsed",
+              "enabled": "{Binding IsChecked, ElementName=ABackHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "ACabinet.BackHole.BusbarCenterToCabinetEdgeDistance",
+          "label": "铜排中心至柜后距离：",
+          "highlightKey": "柜后孔-铜排中心至柜后距离",
+          "sourceName": "ABackHoleBusbarCenterToBackDistanceTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "ATabItem",
+            "AHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.ACabinet.BackHole.BusbarCenterToCabinetEdgeDistance, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 210,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": "Collapsed",
+              "enabled": "{Binding IsChecked, ElementName=ABackHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "ACabinet.BackHole.FixedHoleSpacing",
+          "label": "接口固定孔间距：",
+          "highlightKey": "柜后孔-接口固定孔间距",
+          "sourceName": "ABackHoleFixedHoleSpacingTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "ATabItem",
+            "AHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.ACabinet.BackHole.FixedHoleSpacing, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 440,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": "Collapsed",
+              "enabled": "{Binding IsChecked, ElementName=ABackHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "ACabinet.BackHole.L1",
+          "label": "L1：",
+          "highlightKey": "柜后孔-L1",
+          "sourceName": "ABackHoleL1TextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "ATabItem",
+            "AHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.ACabinet.BackHole.L1, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 100,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": "Collapsed",
+              "enabled": "{Binding IsChecked, ElementName=ABackHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "ACabinet.BackHole.L2",
+          "label": "L2：",
+          "highlightKey": "柜后孔-L2",
+          "sourceName": "ABackHoleL2TextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "ATabItem",
+            "AHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.ACabinet.BackHole.L2, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 250,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": "Collapsed",
+              "enabled": "{Binding IsChecked, ElementName=ABackHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "ACabinet.BackHole.L3",
+          "label": "L3：",
+          "highlightKey": "柜后孔-L3",
+          "sourceName": "ABackHoleL3TextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "ATabItem",
+            "AHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.ACabinet.BackHole.L3, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 350,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": "Collapsed",
+              "enabled": "{Binding IsChecked, ElementName=ABackHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "ACabinet.FrontHole.InsulatorPosition",
+          "label": "绝缘子定位：",
+          "highlightKey": "绝缘子定位",
+          "sourceName": "AFrontInsulatorPositionTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "基座参数"
+          ],
+          "tabIds": [
+            "ATabItem",
+            "ABaseParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.ACabinet.FrontHole.InsulatorPosition, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 500,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": "AFrontBaseParameterGroup",
+              "visibility": null,
+              "enabled": "{Binding Parameters.ACabinet.FrontHole.IsEnabled}"
+            }
+          ]
+        },
+        {
+          "path": "ACabinet.FrontHole.BaseOpeningHeight",
+          "label": "基架高度：",
+          "highlightKey": "基架高度",
+          "sourceName": "AFrontBaseOpeningHeightTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "基座参数"
+          ],
+          "tabIds": [
+            "ATabItem",
+            "ABaseParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.ACabinet.FrontHole.BaseOpeningHeight, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 500,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": "AFrontBaseParameterGroup",
+              "visibility": null,
+              "enabled": "{Binding Parameters.ACabinet.FrontHole.IsEnabled}"
+            }
+          ]
+        },
+        {
+          "path": "ACabinet.FrontHole.BaseHeight",
+          "label": "基座高：",
+          "highlightKey": "基座高",
+          "sourceName": "AFrontBaseHeightTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "基座参数"
+          ],
+          "tabIds": [
+            "ATabItem",
+            "ABaseParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.ACabinet.FrontHole.BaseHeight, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 1000,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": "AFrontBaseParameterGroup",
+              "visibility": null,
+              "enabled": "{Binding Parameters.ACabinet.FrontHole.IsEnabled}"
+            }
+          ]
+        },
+        {
+          "path": "ACabinet.FrontHole.ExtensionBaseHeight",
+          "label": "延长基座高",
+          "highlightKey": "延长基座高",
+          "sourceName": "AFrontExtensionBaseTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "基座参数"
+          ],
+          "tabIds": [
+            "ATabItem",
+            "ABaseParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.ACabinet.FrontHole.ExtensionBaseHeight, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 0,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": "AFrontExtensionBasePanel",
+              "visibility": "Collapsed",
+              "enabled": null
+            },
+            {
+              "sourceName": "AFrontBaseParameterGroup",
+              "visibility": null,
+              "enabled": "{Binding Parameters.ACabinet.FrontHole.IsEnabled}"
+            }
+          ]
+        },
+        {
+          "path": "ACabinet.BackHole.InsulatorPosition",
+          "label": "绝缘子定位：",
+          "highlightKey": "绝缘子定位",
+          "sourceName": "ABackInsulatorPositionTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "基座参数"
+          ],
+          "tabIds": [
+            "ATabItem",
+            "ABaseParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.ACabinet.BackHole.InsulatorPosition, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 500,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": "ABackBaseParameterGroup",
+              "visibility": "Collapsed",
+              "enabled": "{Binding Parameters.ACabinet.BackHole.IsEnabled}"
+            }
+          ]
+        },
+        {
+          "path": "ACabinet.BackHole.BaseOpeningHeight",
+          "label": "基架高度：",
+          "highlightKey": "基架高度",
+          "sourceName": "ABackBaseOpeningHeightTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "基座参数"
+          ],
+          "tabIds": [
+            "ATabItem",
+            "ABaseParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.ACabinet.BackHole.BaseOpeningHeight, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 500,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": "ABackBaseParameterGroup",
+              "visibility": "Collapsed",
+              "enabled": "{Binding Parameters.ACabinet.BackHole.IsEnabled}"
+            }
+          ]
+        },
+        {
+          "path": "ACabinet.BackHole.BaseHeight",
+          "label": "基座高：",
+          "highlightKey": "基座高",
+          "sourceName": "ABackBaseHeightTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "基座参数"
+          ],
+          "tabIds": [
+            "ATabItem",
+            "ABaseParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.ACabinet.BackHole.BaseHeight, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 1000,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": "ABackBaseParameterGroup",
+              "visibility": "Collapsed",
+              "enabled": "{Binding Parameters.ACabinet.BackHole.IsEnabled}"
+            }
+          ]
+        },
+        {
+          "path": "ACabinet.BackHole.ExtensionBaseHeight",
+          "label": "延长基座高",
+          "highlightKey": "延长基座高",
+          "sourceName": "ABackExtensionBaseTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "基座参数"
+          ],
+          "tabIds": [
+            "ATabItem",
+            "ABaseParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.ACabinet.BackHole.ExtensionBaseHeight, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 0,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": "ABackExtensionBasePanel",
+              "visibility": "Collapsed",
+              "enabled": null
+            },
+            {
+              "sourceName": "ABackBaseParameterGroup",
+              "visibility": "Collapsed",
+              "enabled": "{Binding Parameters.ACabinet.BackHole.IsEnabled}"
+            }
+          ]
+        },
+        {
+          "path": "BCabinet.CabinetHeight",
+          "label": "柜高",
+          "highlightKey": "B-柜高",
+          "sourceName": "BCabinetHeightTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "柜体参数"
+          ],
+          "tabIds": [
+            "BTabItem",
+            "BCabinetParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.BCabinet.CabinetHeight, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 2240,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "BCabinet.CabinetDepth",
+          "label": "柜深",
+          "highlightKey": "B-柜深",
+          "sourceName": "BCabinetDepthTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "柜体参数"
+          ],
+          "tabIds": [
+            "BTabItem",
+            "BCabinetParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.BCabinet.CabinetDepth, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 1500,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "BCabinet.CabinetWidth",
+          "label": "柜宽",
+          "highlightKey": null,
+          "sourceName": "BCabinetWidthTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "柜体参数"
+          ],
+          "tabIds": [
+            "BTabItem",
+            "BCabinetParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.BCabinet.CabinetWidth, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 1000,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "BCabinet.GroundHeight",
+          "label": "离地高度(I)",
+          "highlightKey": "B-离地高度(I)",
+          "sourceName": "BTextBoxI",
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "柜体参数"
+          ],
+          "tabIds": [
+            "BTabItem",
+            "BCabinetParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.BCabinet.GroundHeight, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 80,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "BCabinet.FrontHole.IsEnabled",
+          "label": "柜前孔",
+          "highlightKey": null,
+          "sourceName": "BFrontHoleToggleButton",
+          "kind": "ToggleButton",
+          "tabs": [
+            "B柜参数",
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "BTabItem",
+            "BHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.BCabinet.FrontHole.IsEnabled, UpdateSourceTrigger=PropertyChanged}",
+          "defaultValue": true,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "BCabinet.FrontHole.ToCabinetEdgeDistance",
+          "label": "距柜前距离：",
+          "highlightKey": "柜前孔-距柜前距离",
+          "sourceName": "BFrontHoleToFrontDistanceTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "BTabItem",
+            "BHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.BCabinet.FrontHole.ToCabinetEdgeDistance, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 740,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": null,
+              "enabled": "{Binding IsChecked, ElementName=BFrontHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "BCabinet.FrontHole.BusbarCenterToCabinetEdgeDistance",
+          "label": "铜排中心至柜前距离：",
+          "highlightKey": "柜前孔-铜排中心至柜前距离",
+          "sourceName": "BFrontHoleBusbarCenterToFrontDistanceTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "BTabItem",
+            "BHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.BCabinet.FrontHole.BusbarCenterToCabinetEdgeDistance, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 936,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": null,
+              "enabled": "{Binding IsChecked, ElementName=BFrontHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "BCabinet.FrontHole.FixedHoleSpacing",
+          "label": "接口固定孔间距：",
+          "highlightKey": "柜前孔-接口固定孔间距",
+          "sourceName": "BFrontHoleFixedHoleSpacingTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "BTabItem",
+            "BHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.BCabinet.FrontHole.FixedHoleSpacing, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 475,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": null,
+              "enabled": "{Binding IsChecked, ElementName=BFrontHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "BCabinet.FrontHole.L1",
+          "label": "L1：",
+          "highlightKey": "柜前孔-L1",
+          "sourceName": "BFrontHoleL1TextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "BTabItem",
+            "BHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.BCabinet.FrontHole.L1, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 100,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": null,
+              "enabled": "{Binding IsChecked, ElementName=BFrontHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "BCabinet.FrontHole.L2",
+          "label": "L2：",
+          "highlightKey": "柜前孔-L2",
+          "sourceName": "BFrontHoleL2TextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "BTabItem",
+            "BHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.BCabinet.FrontHole.L2, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 250,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": null,
+              "enabled": "{Binding IsChecked, ElementName=BFrontHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "BCabinet.FrontHole.L3",
+          "label": "L3：",
+          "highlightKey": "柜前孔-L3",
+          "sourceName": "BFrontHoleL3TextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "BTabItem",
+            "BHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.BCabinet.FrontHole.L3, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 350,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": null,
+              "enabled": "{Binding IsChecked, ElementName=BFrontHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "BCabinet.BackHole.IsEnabled",
+          "label": "柜后孔",
+          "highlightKey": null,
+          "sourceName": "BBackHoleToggleButton",
+          "kind": "ToggleButton",
+          "tabs": [
+            "B柜参数",
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "BTabItem",
+            "BHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.BCabinet.BackHole.IsEnabled, UpdateSourceTrigger=PropertyChanged}",
+          "defaultValue": false,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": "Collapsed",
+              "enabled": null
+            }
+          ]
+        },
+        {
+          "path": "BCabinet.BackHole.ToCabinetEdgeDistance",
+          "label": "距柜后距离：",
+          "highlightKey": "柜后孔-距柜后距离",
+          "sourceName": "BBackHoleToBackDistanceTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "BTabItem",
+            "BHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.BCabinet.BackHole.ToCabinetEdgeDistance, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 25,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": "Collapsed",
+              "enabled": "{Binding IsChecked, ElementName=BBackHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "BCabinet.BackHole.BusbarCenterToCabinetEdgeDistance",
+          "label": "铜排中心至柜后距离：",
+          "highlightKey": "柜后孔-铜排中心至柜后距离",
+          "sourceName": "BBackHoleBusbarCenterToBackDistanceTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "BTabItem",
+            "BHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.BCabinet.BackHole.BusbarCenterToCabinetEdgeDistance, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 210,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": "Collapsed",
+              "enabled": "{Binding IsChecked, ElementName=BBackHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "BCabinet.BackHole.FixedHoleSpacing",
+          "label": "接口固定孔间距：",
+          "highlightKey": "柜后孔-接口固定孔间距",
+          "sourceName": "BBackHoleFixedHoleSpacingTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "BTabItem",
+            "BHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.BCabinet.BackHole.FixedHoleSpacing, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 440,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": "Collapsed",
+              "enabled": "{Binding IsChecked, ElementName=BBackHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "BCabinet.BackHole.L1",
+          "label": "L1：",
+          "highlightKey": "柜后孔-L1",
+          "sourceName": "BBackHoleL1TextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "BTabItem",
+            "BHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.BCabinet.BackHole.L1, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 100,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": "Collapsed",
+              "enabled": "{Binding IsChecked, ElementName=BBackHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "BCabinet.BackHole.L2",
+          "label": "L2：",
+          "highlightKey": "柜后孔-L2",
+          "sourceName": "BBackHoleL2TextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "BTabItem",
+            "BHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.BCabinet.BackHole.L2, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 250,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": "Collapsed",
+              "enabled": "{Binding IsChecked, ElementName=BBackHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "BCabinet.BackHole.L3",
+          "label": "L3：",
+          "highlightKey": "柜后孔-L3",
+          "sourceName": "BBackHoleL3TextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "BTabItem",
+            "BHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.BCabinet.BackHole.L3, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 350,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": "Collapsed",
+              "enabled": "{Binding IsChecked, ElementName=BBackHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "BCabinet.FrontHole.InsulatorPosition",
+          "label": "绝缘子定位：",
+          "highlightKey": "绝缘子定位",
+          "sourceName": "BFrontInsulatorPositionTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "基座参数"
+          ],
+          "tabIds": [
+            "BTabItem",
+            "BBaseParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.BCabinet.FrontHole.InsulatorPosition, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 500,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": "BFrontBaseParameterGroup",
+              "visibility": null,
+              "enabled": "{Binding Parameters.BCabinet.FrontHole.IsEnabled}"
+            }
+          ]
+        },
+        {
+          "path": "BCabinet.FrontHole.BaseOpeningHeight",
+          "label": "基架高度：",
+          "highlightKey": "基架高度",
+          "sourceName": "BFrontBaseOpeningHeightTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "基座参数"
+          ],
+          "tabIds": [
+            "BTabItem",
+            "BBaseParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.BCabinet.FrontHole.BaseOpeningHeight, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 500,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": "BFrontBaseParameterGroup",
+              "visibility": null,
+              "enabled": "{Binding Parameters.BCabinet.FrontHole.IsEnabled}"
+            }
+          ]
+        },
+        {
+          "path": "BCabinet.FrontHole.BaseHeight",
+          "label": "基座高：",
+          "highlightKey": "基座高",
+          "sourceName": "BFrontBaseHeightTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "基座参数"
+          ],
+          "tabIds": [
+            "BTabItem",
+            "BBaseParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.BCabinet.FrontHole.BaseHeight, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 1000,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": "BFrontBaseParameterGroup",
+              "visibility": null,
+              "enabled": "{Binding Parameters.BCabinet.FrontHole.IsEnabled}"
+            }
+          ]
+        },
+        {
+          "path": "BCabinet.FrontHole.ExtensionBaseHeight",
+          "label": "延长基座高",
+          "highlightKey": "延长基座高",
+          "sourceName": "BFrontExtensionBaseTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "基座参数"
+          ],
+          "tabIds": [
+            "BTabItem",
+            "BBaseParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.BCabinet.FrontHole.ExtensionBaseHeight, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 0,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": "BFrontExtensionBasePanel",
+              "visibility": "Collapsed",
+              "enabled": null
+            },
+            {
+              "sourceName": "BFrontBaseParameterGroup",
+              "visibility": null,
+              "enabled": "{Binding Parameters.BCabinet.FrontHole.IsEnabled}"
+            }
+          ]
+        },
+        {
+          "path": "BCabinet.BackHole.InsulatorPosition",
+          "label": "绝缘子定位：",
+          "highlightKey": "绝缘子定位",
+          "sourceName": "BBackInsulatorPositionTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "基座参数"
+          ],
+          "tabIds": [
+            "BTabItem",
+            "BBaseParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.BCabinet.BackHole.InsulatorPosition, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 500,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": "BBackBaseParameterGroup",
+              "visibility": "Collapsed",
+              "enabled": "{Binding Parameters.BCabinet.BackHole.IsEnabled}"
+            }
+          ]
+        },
+        {
+          "path": "BCabinet.BackHole.BaseOpeningHeight",
+          "label": "基架高度：",
+          "highlightKey": "基架高度",
+          "sourceName": "BBackBaseOpeningHeightTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "基座参数"
+          ],
+          "tabIds": [
+            "BTabItem",
+            "BBaseParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.BCabinet.BackHole.BaseOpeningHeight, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 500,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": "BBackBaseParameterGroup",
+              "visibility": "Collapsed",
+              "enabled": "{Binding Parameters.BCabinet.BackHole.IsEnabled}"
+            }
+          ]
+        },
+        {
+          "path": "BCabinet.BackHole.BaseHeight",
+          "label": "基座高：",
+          "highlightKey": "基座高",
+          "sourceName": "BBackBaseHeightTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "基座参数"
+          ],
+          "tabIds": [
+            "BTabItem",
+            "BBaseParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.BCabinet.BackHole.BaseHeight, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 1000,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": "BBackBaseParameterGroup",
+              "visibility": "Collapsed",
+              "enabled": "{Binding Parameters.BCabinet.BackHole.IsEnabled}"
+            }
+          ]
+        },
+        {
+          "path": "BCabinet.BackHole.ExtensionBaseHeight",
+          "label": "延长基座高",
+          "highlightKey": "延长基座高",
+          "sourceName": "BBackExtensionBaseTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "基座参数"
+          ],
+          "tabIds": [
+            "BTabItem",
+            "BBaseParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.BCabinet.BackHole.ExtensionBaseHeight, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 0,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": "BBackExtensionBasePanel",
+              "visibility": "Collapsed",
+              "enabled": null
+            },
+            {
+              "sourceName": "BBackBaseParameterGroup",
+              "visibility": "Collapsed",
+              "enabled": "{Binding Parameters.BCabinet.BackHole.IsEnabled}"
+            }
+          ]
+        }
+      ],
+      "defaultImage": "示意图1.png",
+      "imageRules": [
+        {
+          "conditions": [
+            {
+              "binding": "{Binding IsSelected, ElementName=ATabItem}",
+              "value": "True"
+            },
+            {
+              "binding": "{Binding IsSelected, ElementName=AHoleParamTabItem}",
+              "value": "True"
+            }
+          ],
+          "image": "示意图2.png"
+        },
+        {
+          "conditions": [
+            {
+              "binding": "{Binding IsSelected, ElementName=BTabItem}",
+              "value": "True"
+            },
+            {
+              "binding": "{Binding IsSelected, ElementName=BHoleParamTabItem}",
+              "value": "True"
+            }
+          ],
+          "image": "示意图2.png"
+        },
+        {
+          "conditions": [
+            {
+              "binding": "{Binding IsSelected, ElementName=ATabItem}",
+              "value": "True"
+            },
+            {
+              "binding": "{Binding IsSelected, ElementName=ABaseParamTabItem}",
+              "value": "True"
+            }
+          ],
+          "image": "柜前向墙.png"
+        },
+        {
+          "conditions": [
+            {
+              "binding": "{Binding IsSelected, ElementName=BTabItem}",
+              "value": "True"
+            },
+            {
+              "binding": "{Binding IsSelected, ElementName=BBaseParamTabItem}",
+              "value": "True"
+            }
+          ],
+          "image": "柜前向墙.png"
+        },
+        {
+          "conditions": [
+            {
+              "binding": "{Binding IsSelected, ElementName=ATabItem}",
+              "value": "True"
+            },
+            {
+              "binding": "{Binding IsSelected, ElementName=ABaseParamTabItem}",
+              "value": "True"
+            },
+            {
+              "binding": "{Binding IsEnabled, ElementName=AFrontBaseParameterGroup}",
+              "value": "True"
+            },
+            {
+              "binding": "{Binding Visibility, ElementName=AFrontExtensionBasePanel}",
+              "value": "Visible"
+            }
+          ],
+          "image": "柜前向墙+延长.png"
+        },
+        {
+          "conditions": [
+            {
+              "binding": "{Binding IsSelected, ElementName=ATabItem}",
+              "value": "True"
+            },
+            {
+              "binding": "{Binding IsSelected, ElementName=ABaseParamTabItem}",
+              "value": "True"
+            },
+            {
+              "binding": "{Binding IsEnabled, ElementName=ABackBaseParameterGroup}",
+              "value": "True"
+            },
+            {
+              "binding": "{Binding Visibility, ElementName=ABackExtensionBasePanel}",
+              "value": "Visible"
+            }
+          ],
+          "image": "柜前向墙+延长.png"
+        },
+        {
+          "conditions": [
+            {
+              "binding": "{Binding IsSelected, ElementName=BTabItem}",
+              "value": "True"
+            },
+            {
+              "binding": "{Binding IsSelected, ElementName=BBaseParamTabItem}",
+              "value": "True"
+            },
+            {
+              "binding": "{Binding IsEnabled, ElementName=BFrontBaseParameterGroup}",
+              "value": "True"
+            },
+            {
+              "binding": "{Binding Visibility, ElementName=BFrontExtensionBasePanel}",
+              "value": "Visible"
+            }
+          ],
+          "image": "柜前向墙+延长.png"
+        },
+        {
+          "conditions": [
+            {
+              "binding": "{Binding IsSelected, ElementName=BTabItem}",
+              "value": "True"
+            },
+            {
+              "binding": "{Binding IsSelected, ElementName=BBaseParamTabItem}",
+              "value": "True"
+            },
+            {
+              "binding": "{Binding IsEnabled, ElementName=BBackBaseParameterGroup}",
+              "value": "True"
+            },
+            {
+              "binding": "{Binding Visibility, ElementName=BBackExtensionBasePanel}",
+              "value": "Visible"
+            }
+          ],
+          "image": "柜前向墙+延长.png"
+        },
+        {
+          "conditions": [
+            {
+              "binding": "{Binding IsKeyboardFocusWithin, ElementName=GeneralParametersPanel}",
+              "value": "True"
+            }
+          ],
+          "image": "示意图1.png"
+        }
+      ]
+    },
+    {
+      "key": "face-to-wall",
+      "sourceWindow": "views/FaceToWallCabinetDriverWindow.xaml",
+      "defaults": {
+        "ProjectPath": null,
+        "General.WallInstallation.Top": 0,
+        "General.WallInstallation.Bottom": 0,
+        "General.WallInstallation.Left": 0,
+        "General.WallInstallation.Right": 0,
+        "General.WallInstallation.EntryDistance": 0,
+        "General.BusbarMaterial": "直角铜母线",
+        "General.IsPhaseSwitched": false,
+        "General.CabinetToWallDistance": 1340,
+        "General.CabinetBackToWallDistance": 1340,
+        "General.FloorToBeamDistance": 4000,
+        "General.WallHoleEdgeGroundHeight": 2990,
+        "General.WallEntryBusbarCenterToHoleBottomDistance": 400,
+        "General.WallHoleHeight": 830,
+        "General.ExposedBusbarPhaseSpacing": 210,
+        "General.InsulationDistance": 125,
+        "General.BusbarSpec": "80×8",
+        "General.SinglePhaseRootCount": 4,
+        "General.F1": 300,
+        "General.F2": 600,
+        "General.F3": 600,
+        "General.J": 100,
+        "General.WallBushingPhaseSpacing": 600,
+        "General.WallBushingTerminalToWallDistance": 500,
+        "General.WallBushingTerminal.Diameter": 200,
+        "General.WallBushingTerminal.C1": 100,
+        "General.WallBushingTerminal.C2": 100,
+        "General.WallBushingTerminal.C3": 20,
+        "General.WallBushingTerminal.C4": 50,
+        "General.WallBushingTerminal.C5": 25,
+        "General.WallBushingTerminal.C6": 50,
+        "General.WallBushingTerminal.C7": 11,
+        "General.WallBushingTerminal.C8": 8,
+        "General.WallBushingTerminal.C9": 16,
+        "General.WallBushingTerminal.C10": 16,
+        "General.WallHoleWidth": 1960,
+        "General.CabinetGroundHeight": 80,
+        "General.BuildingHeight": 4340,
+        "General.WallCabinetEccentricity": 20,
+        "General.InsulatorHeight": 165,
+        "Cabinet.CabinetHeight": 2240,
+        "Cabinet.CabinetDepth": 1550,
+        "Cabinet.CabinetWidth": 1000,
+        "Cabinet.FrontHole.IsBaseHeightManuallyModified": false,
+        "Cabinet.FrontHole.IsBaseOpeningHeightManuallyModified": false,
+        "Cabinet.FrontHole.BusbarCenterToBaseOffset": 279.5,
+        "Cabinet.FrontHole.IsEnabled": true,
+        "Cabinet.FrontHole.BaseToCabinetEdgeDistance": 740,
+        "Cabinet.FrontHole.BusbarCenterToCabinetEdgeDistance": 936,
+        "Cabinet.FrontHole.FixedHoleSpacing": 475,
+        "Cabinet.FrontHole.L1": 100,
+        "Cabinet.FrontHole.L2": 250,
+        "Cabinet.FrontHole.L3": 350,
+        "Cabinet.FrontHole.InsulatorPosition": 600,
+        "Cabinet.FrontHole.BaseOpeningHeight": 830,
+        "Cabinet.FrontHole.BaseHeight": 1500,
+        "Cabinet.FrontHole.ExtensionBaseHeight": 500,
+        "Cabinet.BackHole.IsBaseHeightManuallyModified": false,
+        "Cabinet.BackHole.IsBaseOpeningHeightManuallyModified": false,
+        "Cabinet.BackHole.BusbarCenterToBaseOffset": 263.5,
+        "Cabinet.BackHole.IsEnabled": false,
+        "Cabinet.BackHole.BaseToCabinetEdgeDistance": 25,
+        "Cabinet.BackHole.BusbarCenterToCabinetEdgeDistance": 210,
+        "Cabinet.BackHole.FixedHoleSpacing": 440,
+        "Cabinet.BackHole.L1": 100,
+        "Cabinet.BackHole.L2": 250,
+        "Cabinet.BackHole.L3": 350,
+        "Cabinet.BackHole.InsulatorPosition": 600,
+        "Cabinet.BackHole.BaseOpeningHeight": 830,
+        "Cabinet.BackHole.BaseHeight": 1500,
+        "Cabinet.BackHole.ExtensionBaseHeight": 500
+      },
+      "fields": [
+        {
+          "path": "ProjectPath",
+          "label": "项目根目录",
+          "highlightKey": null,
+          "sourceName": "ProjectPathTextBox",
+          "kind": "TextBox",
+          "tabs": [],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding ProjectPath, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": null,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.BuildingHeight",
+          "label": "楼高(L)",
+          "highlightKey": "楼高(L)",
+          "sourceName": "BuildingHeightTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "建筑与安装"
+          ],
+          "tabIds": [
+            "BuildingInstallationParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.General.BuildingHeight, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 4340,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.FloorToBeamDistance",
+          "label": "地面距横梁(B)",
+          "highlightKey": "地面距横梁(B)",
+          "sourceName": "FloorToBeamDistanceTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "建筑与安装"
+          ],
+          "tabIds": [
+            "BuildingInstallationParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.General.FloorToBeamDistance, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 4000,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.CabinetGroundHeight",
+          "label": "柜体离地(I)",
+          "highlightKey": "柜体离地(I)",
+          "sourceName": "CabinetGroundHeightTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "建筑与安装"
+          ],
+          "tabIds": [
+            "BuildingInstallationParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.General.CabinetGroundHeight, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 80,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.CabinetToWallDistance",
+          "label": "{Binding WallDistanceDisplayName}",
+          "highlightKey": "{Binding WallDistanceDisplayName}",
+          "sourceName": "CabinetToWallDistanceTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "建筑与安装"
+          ],
+          "tabIds": [
+            "BuildingInstallationParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.General.CabinetToWallDistance, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 1340,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.WallHoleEdgeGroundHeight",
+          "label": "墙孔边距地面(C)",
+          "highlightKey": "墙孔边距地面(C)",
+          "sourceName": "WallHoleEdgeGroundHeightTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "建筑与安装"
+          ],
+          "tabIds": [
+            "BuildingInstallationParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.General.WallHoleEdgeGroundHeight, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 2990,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.WallCabinetEccentricity",
+          "label": "墙柜偏心值",
+          "highlightKey": null,
+          "sourceName": "WallCabinetEccentricityTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "建筑与安装"
+          ],
+          "tabIds": [
+            "BuildingInstallationParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.General.WallCabinetEccentricity, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 20,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.WallHoleHeight",
+          "label": "墙孔高度(E)",
+          "highlightKey": "墙孔高度(E)",
+          "sourceName": "WallHoleHeightTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "墙孔参数"
+          ],
+          "tabIds": [
+            "WallHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.General.WallHoleHeight, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 830,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.WallHoleWidth",
+          "label": "墙孔宽度(G)",
+          "highlightKey": "墙孔宽度(G)",
+          "sourceName": "WallHoleWidthTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "墙孔参数"
+          ],
+          "tabIds": [
+            "WallHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.General.WallHoleWidth, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 1960,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.WallInstallation.Top",
+          "label": "上间距(mm)",
+          "highlightKey": null,
+          "sourceName": "WallTopClearanceTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "墙孔参数"
+          ],
+          "tabIds": [
+            "WallHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.General.WallInstallation.Top, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 0,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.WallInstallation.Bottom",
+          "label": "下间距(mm)",
+          "highlightKey": null,
+          "sourceName": "WallBottomClearanceTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "墙孔参数"
+          ],
+          "tabIds": [
+            "WallHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.General.WallInstallation.Bottom, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 0,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.WallInstallation.Left",
+          "label": "左间距(mm)",
+          "highlightKey": null,
+          "sourceName": "WallLeftClearanceTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "墙孔参数"
+          ],
+          "tabIds": [
+            "WallHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.General.WallInstallation.Left, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 0,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.WallInstallation.Right",
+          "label": "右间距(mm)",
+          "highlightKey": null,
+          "sourceName": "WallRightClearanceTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "墙孔参数"
+          ],
+          "tabIds": [
+            "WallHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.General.WallInstallation.Right, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 0,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.WallInstallation.EntryDistance",
+          "label": "伸入墙距离(mm)",
+          "highlightKey": null,
+          "sourceName": "WallEntryDistanceTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "墙孔参数"
+          ],
+          "tabIds": [
+            "WallHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.General.WallInstallation.EntryDistance, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 0,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.BusbarSpec",
+          "label": "铜排规格",
+          "highlightKey": null,
+          "sourceName": "BusbarSpecTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "母排与绝缘子"
+          ],
+          "tabIds": [
+            "BusbarInsulatorParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.General.BusbarSpec, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": "80×8",
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.SinglePhaseRootCount",
+          "label": "单相根数",
+          "highlightKey": null,
+          "sourceName": "SinglePhaseRootCountComboBox",
+          "kind": "ComboBox",
+          "tabs": [
+            "母排与绝缘子"
+          ],
+          "tabIds": [
+            "BusbarInsulatorParamTabItem"
+          ],
+          "choices": [
+            {
+              "label": "1",
+              "value": "1"
+            },
+            {
+              "label": "2",
+              "value": "2"
+            },
+            {
+              "label": "3",
+              "value": "3"
+            },
+            {
+              "label": "4",
+              "value": "4"
+            }
+          ],
+          "sourceBinding": "{Binding Parameters.General.SinglePhaseRootCount, UpdateSourceTrigger=PropertyChanged}",
+          "defaultValue": 4,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.ExposedBusbarPhaseSpacing",
+          "label": "伸出排相间距",
+          "highlightKey": "伸出排相间距",
+          "sourceName": "ExposedBusbarPhaseSpacingTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "母排与绝缘子"
+          ],
+          "tabIds": [
+            "BusbarInsulatorParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.General.ExposedBusbarPhaseSpacing, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 210,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.InsulatorHeight",
+          "label": "绝缘子+支架高度",
+          "highlightKey": null,
+          "sourceName": "InsulatorHeightTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "母排与绝缘子"
+          ],
+          "tabIds": [
+            "BusbarInsulatorParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.General.InsulatorHeight, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 165,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.BusbarMaterial",
+          "label": "铜排材质",
+          "highlightKey": null,
+          "sourceName": null,
+          "kind": "ComboBox",
+          "tabs": [
+            "母排与绝缘子"
+          ],
+          "tabIds": [
+            "BusbarInsulatorParamTabItem"
+          ],
+          "choices": [
+            {
+              "label": "直角铜母线",
+              "value": "直角铜母线"
+            },
+            {
+              "label": "全圆边铜母线",
+              "value": "全圆边铜母线"
+            }
+          ],
+          "sourceBinding": "{Binding Parameters.General.BusbarMaterial, UpdateSourceTrigger=PropertyChanged}",
+          "defaultValue": "直角铜母线",
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.InsulationDistance",
+          "label": "绝缘距离(mm)",
+          "highlightKey": null,
+          "sourceName": "InsulationDistanceTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "母排与绝缘子"
+          ],
+          "tabIds": [
+            "BusbarInsulatorParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.General.InsulationDistance, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 125,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.IsPhaseSwitched",
+          "label": "是否换相",
+          "highlightKey": null,
+          "sourceName": "IsPhaseSwitchedComboBox",
+          "kind": "ComboBox",
+          "tabs": [
+            "母排与绝缘子"
+          ],
+          "tabIds": [
+            "BusbarInsulatorParamTabItem"
+          ],
+          "choices": [
+            {
+              "label": "否",
+              "value": "False"
+            },
+            {
+              "label": "是",
+              "value": "True"
+            }
+          ],
+          "sourceBinding": "{Binding Parameters.General.IsPhaseSwitched, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}",
+          "defaultValue": false,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.F1",
+          "label": "套管到左侧墙洞(F1)",
+          "highlightKey": "套管到左侧墙洞(F1)",
+          "sourceName": "F1TextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "穿墙套管"
+          ],
+          "tabIds": [
+            "WallBushingParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.General.F1, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 300,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.F2",
+          "label": "第一、二套管中心距(F2)",
+          "highlightKey": "第一、第二套管中心距(F2)",
+          "sourceName": "F2TextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "穿墙套管"
+          ],
+          "tabIds": [
+            "WallBushingParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.General.F2, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 600,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.F3",
+          "label": "第二、三套管中心距(F3)",
+          "highlightKey": "第二、第三套管中心距(F3)",
+          "sourceName": "F3TextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "穿墙套管"
+          ],
+          "tabIds": [
+            "WallBushingParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.General.F3, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 600,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.J",
+          "label": "安装板距内侧墙面(J)",
+          "highlightKey": "穿墙套管安装板距内侧墙面距离(J)",
+          "sourceName": "JTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "穿墙套管"
+          ],
+          "tabIds": [
+            "WallBushingParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.General.J, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 100,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.WallEntryBusbarCenterToHoleBottomDistance",
+          "label": "套管中心距孔底(D)",
+          "highlightKey": "套管中心距孔底(D)",
+          "sourceName": "WallEntryBusbarCenterToHoleBottomDistanceTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "穿墙套管"
+          ],
+          "tabIds": [
+            "WallBushingParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.General.WallEntryBusbarCenterToHoleBottomDistance, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 400,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.WallBushingTerminalToWallDistance",
+          "label": "桩头距墙面距离(H)",
+          "highlightKey": "穿墙套管桩头距墙面距离(H)",
+          "sourceName": "WallBushingTerminalToWallDistanceTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "穿墙套管"
+          ],
+          "tabIds": [
+            "WallBushingParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.General.WallBushingTerminalToWallDistance, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 500,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.WallBushingTerminal.C1",
+          "label": "桩头长度(C1)",
+          "highlightKey": "桩头长度(C1)",
+          "sourceName": "WallBushingTerminalC1TextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "穿墙套管"
+          ],
+          "tabIds": [
+            "WallBushingParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.General.WallBushingTerminal.C1, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 100,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.WallBushingTerminal.C2",
+          "label": "桩头宽度(C2)",
+          "highlightKey": "桩头宽度(C2)",
+          "sourceName": "WallBushingTerminalC2TextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "穿墙套管"
+          ],
+          "tabIds": [
+            "WallBushingParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.General.WallBushingTerminal.C2, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 100,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.WallBushingTerminal.C3",
+          "label": "桩头孔到前边距离(C3)",
+          "highlightKey": "桩头孔到前边的距离(C3)",
+          "sourceName": "WallBushingTerminalC3TextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "穿墙套管"
+          ],
+          "tabIds": [
+            "WallBushingParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.General.WallBushingTerminal.C3, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 20,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.WallBushingTerminal.C4",
+          "label": "桩头孔垂直距离(C4)",
+          "highlightKey": "桩头孔垂直距离(C4)",
+          "sourceName": "WallBushingTerminalC4TextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "穿墙套管"
+          ],
+          "tabIds": [
+            "WallBushingParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.General.WallBushingTerminal.C4, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 50,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.WallBushingTerminal.C5",
+          "label": "桩头孔到上边距离(C5)",
+          "highlightKey": "桩头孔到上边的距离(C5)",
+          "sourceName": "WallBushingTerminalC5TextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "穿墙套管"
+          ],
+          "tabIds": [
+            "WallBushingParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.General.WallBushingTerminal.C5, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 25,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.WallBushingTerminal.C6",
+          "label": "桩头孔水平距离(C6)",
+          "highlightKey": "桩头孔水平距离(C6)",
+          "sourceName": "WallBushingTerminalC6TextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "穿墙套管"
+          ],
+          "tabIds": [
+            "WallBushingParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.General.WallBushingTerminal.C6, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 50,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.WallBushingTerminal.C7",
+          "label": "桩头孔径(C7)",
+          "highlightKey": "桩头孔径(C7)",
+          "sourceName": "WallBushingTerminalC7TextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "穿墙套管"
+          ],
+          "tabIds": [
+            "WallBushingParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.General.WallBushingTerminal.C7, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 11,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.WallBushingTerminal.C8",
+          "label": "桩头厚度(C8)",
+          "highlightKey": "桩头厚度(C8)",
+          "sourceName": "WallBushingTerminalC8TextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "穿墙套管"
+          ],
+          "tabIds": [
+            "WallBushingParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.General.WallBushingTerminal.C8, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 8,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.WallBushingTerminal.C9",
+          "label": "中间阵列到上桩头距离(C9)",
+          "highlightKey": "中间桩头阵列到上桩头的距离(C9)",
+          "sourceName": "WallBushingTerminalC9TextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "穿墙套管"
+          ],
+          "tabIds": [
+            "WallBushingParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.General.WallBushingTerminal.C9, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 16,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.WallBushingTerminal.C10",
+          "label": "中间阵列到下桩头距离(C10)",
+          "highlightKey": "中间桩头阵列到下桩头的距离(C10)",
+          "sourceName": "WallBushingTerminalC10TextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "穿墙套管"
+          ],
+          "tabIds": [
+            "WallBushingParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.General.WallBushingTerminal.C10, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 16,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.WallBushingTerminal.Diameter",
+          "label": "穿墙套管直径",
+          "highlightKey": null,
+          "sourceName": "WallBushingDiameterTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "穿墙套管"
+          ],
+          "tabIds": [
+            "WallBushingParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.General.WallBushingTerminal.Diameter, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 200,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "Cabinet.CabinetHeight",
+          "label": "柜高",
+          "highlightKey": "柜高",
+          "sourceName": "CabinetHeightTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "柜体参数"
+          ],
+          "tabIds": [
+            "CabinetParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.Cabinet.CabinetHeight, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 2240,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "Cabinet.CabinetDepth",
+          "label": "柜深",
+          "highlightKey": "柜深",
+          "sourceName": "CabinetDepthTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "柜体参数"
+          ],
+          "tabIds": [
+            "CabinetParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.Cabinet.CabinetDepth, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 1550,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "Cabinet.CabinetWidth",
+          "label": "柜宽",
+          "highlightKey": null,
+          "sourceName": "CabinetWidthTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "柜体参数"
+          ],
+          "tabIds": [
+            "CabinetParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.Cabinet.CabinetWidth, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 1000,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "Cabinet.FrontHole.IsEnabled",
+          "label": "柜前孔",
+          "highlightKey": null,
+          "sourceName": "FrontHoleToggleButton",
+          "kind": "ToggleButton",
+          "tabs": [
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "HoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.Cabinet.FrontHole.IsEnabled, UpdateSourceTrigger=PropertyChanged}",
+          "defaultValue": true,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "Cabinet.FrontHole.BaseToCabinetEdgeDistance",
+          "label": "基座距柜前距离：",
+          "highlightKey": "柜前孔-距柜前距离",
+          "sourceName": "FrontHoleToFrontDistanceTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "HoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.Cabinet.FrontHole.BaseToCabinetEdgeDistance, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 740,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": null,
+              "enabled": "{Binding IsChecked, ElementName=FrontHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "Cabinet.FrontHole.BusbarCenterToCabinetEdgeDistance",
+          "label": "铜排中心至柜前距离：",
+          "highlightKey": "柜前孔-铜排中心至柜前距离",
+          "sourceName": "FrontHoleBusbarCenterToFrontDistanceTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "HoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.Cabinet.FrontHole.BusbarCenterToCabinetEdgeDistance, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 936,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": null,
+              "enabled": "{Binding IsChecked, ElementName=FrontHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "Cabinet.FrontHole.FixedHoleSpacing",
+          "label": "接口固定孔间距：",
+          "highlightKey": "柜前孔-接口固定孔间距",
+          "sourceName": "FrontHoleFixedHoleSpacingTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "HoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.Cabinet.FrontHole.FixedHoleSpacing, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 475,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": null,
+              "enabled": "{Binding IsChecked, ElementName=FrontHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "Cabinet.FrontHole.L1",
+          "label": "L1：",
+          "highlightKey": "柜前孔-L1",
+          "sourceName": "FrontHoleL1TextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "HoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.Cabinet.FrontHole.L1, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 100,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": null,
+              "enabled": "{Binding IsChecked, ElementName=FrontHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "Cabinet.FrontHole.L2",
+          "label": "L2：",
+          "highlightKey": "柜前孔-L2",
+          "sourceName": "FrontHoleL2TextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "HoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.Cabinet.FrontHole.L2, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 250,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": null,
+              "enabled": "{Binding IsChecked, ElementName=FrontHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "Cabinet.FrontHole.L3",
+          "label": "L3：",
+          "highlightKey": "柜前孔-L3",
+          "sourceName": "FrontHoleL3TextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "HoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.Cabinet.FrontHole.L3, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 350,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": null,
+              "enabled": "{Binding IsChecked, ElementName=FrontHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "Cabinet.BackHole.IsEnabled",
+          "label": "柜后孔",
+          "highlightKey": null,
+          "sourceName": "BackHoleToggleButton",
+          "kind": "ToggleButton",
+          "tabs": [
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "HoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.Cabinet.BackHole.IsEnabled, UpdateSourceTrigger=PropertyChanged}",
+          "defaultValue": false,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": "Collapsed",
+              "enabled": null
+            }
+          ]
+        },
+        {
+          "path": "Cabinet.BackHole.BaseToCabinetEdgeDistance",
+          "label": "基座距柜后距离：",
+          "highlightKey": "柜后孔-距柜后距离",
+          "sourceName": "BackHoleToBackDistanceTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "HoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.Cabinet.BackHole.BaseToCabinetEdgeDistance, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 25,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": "Collapsed",
+              "enabled": "{Binding IsChecked, ElementName=BackHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "Cabinet.BackHole.BusbarCenterToCabinetEdgeDistance",
+          "label": "铜排中心至柜后距离：",
+          "highlightKey": "柜后孔-铜排中心至柜后距离",
+          "sourceName": "BackHoleBusbarCenterToBackDistanceTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "HoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.Cabinet.BackHole.BusbarCenterToCabinetEdgeDistance, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 210,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": "Collapsed",
+              "enabled": "{Binding IsChecked, ElementName=BackHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "Cabinet.BackHole.FixedHoleSpacing",
+          "label": "接口固定孔间距：",
+          "highlightKey": "柜后孔-接口固定孔间距",
+          "sourceName": "BackHoleFixedHoleSpacingTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "HoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.Cabinet.BackHole.FixedHoleSpacing, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 440,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": "Collapsed",
+              "enabled": "{Binding IsChecked, ElementName=BackHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "Cabinet.BackHole.L1",
+          "label": "L1：",
+          "highlightKey": "柜后孔-L1",
+          "sourceName": "BackHoleL1TextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "HoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.Cabinet.BackHole.L1, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 100,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": "Collapsed",
+              "enabled": "{Binding IsChecked, ElementName=BackHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "Cabinet.BackHole.L2",
+          "label": "L2：",
+          "highlightKey": "柜后孔-L2",
+          "sourceName": "BackHoleL2TextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "HoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.Cabinet.BackHole.L2, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 250,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": "Collapsed",
+              "enabled": "{Binding IsChecked, ElementName=BackHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "Cabinet.BackHole.L3",
+          "label": "L3：",
+          "highlightKey": "柜后孔-L3",
+          "sourceName": "BackHoleL3TextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "HoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.Cabinet.BackHole.L3, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 350,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": "Collapsed",
+              "enabled": "{Binding IsChecked, ElementName=BackHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "Cabinet.FrontHole.InsulatorPosition",
+          "label": "绝缘子定位：",
+          "highlightKey": "绝缘子定位",
+          "sourceName": "FrontInsulatorPositionTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "基座参数"
+          ],
+          "tabIds": [
+            "BaseParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.Cabinet.FrontHole.InsulatorPosition, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 600,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": "FrontBaseParameterGroup",
+              "visibility": null,
+              "enabled": "{Binding IsChecked, ElementName=FrontHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "Cabinet.FrontHole.BaseOpeningHeight",
+          "label": "基架高度：",
+          "highlightKey": "基架高度",
+          "sourceName": "FrontBaseOpeningHeightTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "基座参数"
+          ],
+          "tabIds": [
+            "BaseParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.Cabinet.FrontHole.BaseOpeningHeight, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 830,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": "FrontBaseParameterGroup",
+              "visibility": null,
+              "enabled": "{Binding IsChecked, ElementName=FrontHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "Cabinet.FrontHole.BaseHeight",
+          "label": "基座高：",
+          "highlightKey": "基座高",
+          "sourceName": "FrontBaseHeightTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "基座参数"
+          ],
+          "tabIds": [
+            "BaseParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.Cabinet.FrontHole.BaseHeight, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 1500,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": "FrontBaseParameterGroup",
+              "visibility": null,
+              "enabled": "{Binding IsChecked, ElementName=FrontHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "Cabinet.FrontHole.ExtensionBaseHeight",
+          "label": "延长基座高",
+          "highlightKey": "延长基座高",
+          "sourceName": "FrontExtensionBaseTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "基座参数"
+          ],
+          "tabIds": [
+            "BaseParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.Cabinet.FrontHole.ExtensionBaseHeight, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 500,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": "FrontExtensionBasePanel",
+              "visibility": "Collapsed",
+              "enabled": null
+            },
+            {
+              "sourceName": "FrontBaseParameterGroup",
+              "visibility": null,
+              "enabled": "{Binding IsChecked, ElementName=FrontHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "Cabinet.BackHole.InsulatorPosition",
+          "label": "绝缘子定位：",
+          "highlightKey": "绝缘子定位",
+          "sourceName": "BackInsulatorPositionTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "基座参数"
+          ],
+          "tabIds": [
+            "BaseParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.Cabinet.BackHole.InsulatorPosition, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 600,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": "BackBaseParameterGroup",
+              "visibility": "Collapsed",
+              "enabled": "{Binding IsChecked, ElementName=BackHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "Cabinet.BackHole.BaseOpeningHeight",
+          "label": "基架高度：",
+          "highlightKey": "基架高度",
+          "sourceName": "BackBaseOpeningHeightTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "基座参数"
+          ],
+          "tabIds": [
+            "BaseParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.Cabinet.BackHole.BaseOpeningHeight, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 830,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": "BackBaseParameterGroup",
+              "visibility": "Collapsed",
+              "enabled": "{Binding IsChecked, ElementName=BackHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "Cabinet.BackHole.BaseHeight",
+          "label": "基座高：",
+          "highlightKey": "基座高",
+          "sourceName": "BackBaseHeightTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "基座参数"
+          ],
+          "tabIds": [
+            "BaseParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.Cabinet.BackHole.BaseHeight, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 1500,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": "BackBaseParameterGroup",
+              "visibility": "Collapsed",
+              "enabled": "{Binding IsChecked, ElementName=BackHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "Cabinet.BackHole.ExtensionBaseHeight",
+          "label": "延长基座高",
+          "highlightKey": "延长基座高",
+          "sourceName": "BackExtensionBaseTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "基座参数"
+          ],
+          "tabIds": [
+            "BaseParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.Cabinet.BackHole.ExtensionBaseHeight, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 500,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": "BackExtensionBasePanel",
+              "visibility": "Collapsed",
+              "enabled": null
+            },
+            {
+              "sourceName": "BackBaseParameterGroup",
+              "visibility": "Collapsed",
+              "enabled": "{Binding IsChecked, ElementName=BackHoleToggleButton}"
+            }
+          ]
+        }
+      ],
+      "defaultImage": "示意图3.png",
+      "imageRules": [
+        {
+          "conditions": [
+            {
+              "binding": "{Binding IsSelected, ElementName=HoleParamTabItem}",
+              "value": "True"
+            }
+          ],
+          "image": "示意图2.png"
+        },
+        {
+          "conditions": [
+            {
+              "binding": "{Binding IsSelected, ElementName=BaseParamTabItem}",
+              "value": "True"
+            },
+            {
+              "binding": "{Binding CabinetOrientation}",
+              "value": "CabinetFrontToWall"
+            }
+          ],
+          "image": "柜前向墙.png"
+        },
+        {
+          "conditions": [
+            {
+              "binding": "{Binding IsSelected, ElementName=BaseParamTabItem}",
+              "value": "True"
+            },
+            {
+              "binding": "{Binding CabinetOrientation}",
+              "value": "CabinetRearToWall"
+            }
+          ],
+          "image": "柜后向墙.png"
+        },
+        {
+          "conditions": [
+            {
+              "binding": "{Binding IsSelected, ElementName=BaseParamTabItem}",
+              "value": "True"
+            },
+            {
+              "binding": "{Binding CabinetOrientation}",
+              "value": "CabinetFrontToWall"
+            },
+            {
+              "binding": "{Binding IsEnabled, ElementName=FrontBaseParameterGroup}",
+              "value": "True"
+            },
+            {
+              "binding": "{Binding Visibility, ElementName=FrontExtensionBasePanel}",
+              "value": "Visible"
+            }
+          ],
+          "image": "柜前向墙+延长.png"
+        },
+        {
+          "conditions": [
+            {
+              "binding": "{Binding IsSelected, ElementName=BaseParamTabItem}",
+              "value": "True"
+            },
+            {
+              "binding": "{Binding CabinetOrientation}",
+              "value": "CabinetFrontToWall"
+            },
+            {
+              "binding": "{Binding IsEnabled, ElementName=BackBaseParameterGroup}",
+              "value": "True"
+            },
+            {
+              "binding": "{Binding Visibility, ElementName=BackExtensionBasePanel}",
+              "value": "Visible"
+            }
+          ],
+          "image": "柜前向墙+延长.png"
+        },
+        {
+          "conditions": [
+            {
+              "binding": "{Binding IsSelected, ElementName=BaseParamTabItem}",
+              "value": "True"
+            },
+            {
+              "binding": "{Binding CabinetOrientation}",
+              "value": "CabinetRearToWall"
+            },
+            {
+              "binding": "{Binding IsEnabled, ElementName=FrontBaseParameterGroup}",
+              "value": "True"
+            },
+            {
+              "binding": "{Binding Visibility, ElementName=FrontExtensionBasePanel}",
+              "value": "Visible"
+            }
+          ],
+          "image": "柜后向墙+延长.png"
+        },
+        {
+          "conditions": [
+            {
+              "binding": "{Binding IsSelected, ElementName=BaseParamTabItem}",
+              "value": "True"
+            },
+            {
+              "binding": "{Binding CabinetOrientation}",
+              "value": "CabinetRearToWall"
+            },
+            {
+              "binding": "{Binding IsEnabled, ElementName=BackBaseParameterGroup}",
+              "value": "True"
+            },
+            {
+              "binding": "{Binding Visibility, ElementName=BackExtensionBasePanel}",
+              "value": "Visible"
+            }
+          ],
+          "image": "柜后向墙+延长.png"
+        },
+        {
+          "conditions": [
+            {
+              "binding": "{Binding SelectedItem.Tag, ElementName=GeneralParametersPanel}",
+              "value": "GeneralParameters"
+            }
+          ],
+          "image": "示意图3.png"
+        }
+      ]
+    },
+    {
+      "key": "side-to-side",
+      "sourceWindow": "views/SideToSideCabinetDriverWindow.xaml",
+      "defaults": {
+        "ProjectPath": null,
+        "General.FloorHeight": 4377,
+        "General.ParameterB": 4000,
+        "General.CabinetSpacing": 1000,
+        "General.CabinetEccentricity": 0,
+        "General.BusbarSpec": "80×8",
+        "General.SinglePhaseRootCount": 4,
+        "General.ExposedBusbarPhaseSpacing": 210,
+        "General.InsulationDistance": 125,
+        "General.BusbarMaterial": "直角铜母线",
+        "General.InsulatorHeight": 165,
+        "General.ACabinetExposedBusbarPhaseSequence": "ABC",
+        "General.BCabinetExposedBusbarPhaseSequence": "ABC",
+        "General.CabinetTopOpeningMode": "FrontRear",
+        "General.CabinetTopOpeningModeDisplayName": "前后开孔",
+        "General.BackHoleToCabinetEdgeDistanceDisplayName": "距柜后距离：",
+        "ACabinet.CabinetHeight": 2240,
+        "ACabinet.CabinetDepth": 1500,
+        "ACabinet.CabinetWidth": 1000,
+        "ACabinet.GroundHeight": 80,
+        "ACabinet.FrontHole.FrontRearOpeningParameters.ToCabinetEdgeDistance": 740,
+        "ACabinet.FrontHole.FrontRearOpeningParameters.BusbarCenterToCabinetEdgeDistance": 936,
+        "ACabinet.FrontHole.FrontRearOpeningParameters.FixedHoleSpacing": 475,
+        "ACabinet.FrontHole.FrontRearOpeningParameters.L1": 100,
+        "ACabinet.FrontHole.FrontRearOpeningParameters.L2": 250,
+        "ACabinet.FrontHole.FrontRearOpeningParameters.L3": 350,
+        "ACabinet.FrontHole.LeftRightOpeningParameters.ToCabinetEdgeDistance": 740,
+        "ACabinet.FrontHole.LeftRightOpeningParameters.BusbarCenterToCabinetEdgeDistance": 936,
+        "ACabinet.FrontHole.LeftRightOpeningParameters.FixedHoleSpacing": 960,
+        "ACabinet.FrontHole.LeftRightOpeningParameters.L1": 65,
+        "ACabinet.FrontHole.LeftRightOpeningParameters.L2": 125,
+        "ACabinet.FrontHole.LeftRightOpeningParameters.L3": 200,
+        "ACabinet.FrontHole.Base1.BaseHeight": 1300,
+        "ACabinet.FrontHole.Base1.BaseOpeningHeight": 800,
+        "ACabinet.FrontHole.Base1.InsulatorPosition1": 600,
+        "ACabinet.FrontHole.Base1.InsulatorPosition2": 900,
+        "ACabinet.FrontHole.Base1.InsulatorPosition3": 1120,
+        "ACabinet.FrontHole.Base2.BaseHeight": 1500,
+        "ACabinet.FrontHole.Base2.Base2Height": 1000,
+        "ACabinet.FrontHole.Base2.BaseWidth": 800,
+        "ACabinet.FrontHole.Base2.BaseOpeningHeight": 500,
+        "ACabinet.FrontHole.Base2.ElevatedBaseHeight": 500,
+        "ACabinet.FrontHole.Base2.InsulatorPosition": 400,
+        "ACabinet.FrontHole.Base2.MinimumBaseWidth": 799,
+        "ACabinet.FrontHole.Base2.HasErrors": false,
+        "ACabinet.FrontHole.ActiveBase1Visibility": "Collapsed",
+        "ACabinet.FrontHole.ActiveBase2Visibility": "Visible",
+        "ACabinet.FrontHole.IsEnabled": true,
+        "ACabinet.FrontHole.ToCabinetEdgeDistance": 740,
+        "ACabinet.FrontHole.BusbarCenterToCabinetEdgeDistance": 936,
+        "ACabinet.FrontHole.FixedHoleSpacing": 475,
+        "ACabinet.FrontHole.BusbarCenterToBaseOffset": 200.5,
+        "ACabinet.FrontHole.L1": 100,
+        "ACabinet.FrontHole.L2": 250,
+        "ACabinet.FrontHole.L3": 350,
+        "ACabinet.BackHole.FrontRearOpeningParameters.ToCabinetEdgeDistance": 25,
+        "ACabinet.BackHole.FrontRearOpeningParameters.BusbarCenterToCabinetEdgeDistance": 210,
+        "ACabinet.BackHole.FrontRearOpeningParameters.FixedHoleSpacing": 440,
+        "ACabinet.BackHole.FrontRearOpeningParameters.L1": 100,
+        "ACabinet.BackHole.FrontRearOpeningParameters.L2": 250,
+        "ACabinet.BackHole.FrontRearOpeningParameters.L3": 350,
+        "ACabinet.BackHole.LeftRightOpeningParameters.ToCabinetEdgeDistance": 25,
+        "ACabinet.BackHole.LeftRightOpeningParameters.BusbarCenterToCabinetEdgeDistance": 210,
+        "ACabinet.BackHole.LeftRightOpeningParameters.FixedHoleSpacing": 960,
+        "ACabinet.BackHole.LeftRightOpeningParameters.L1": 100,
+        "ACabinet.BackHole.LeftRightOpeningParameters.L2": 250,
+        "ACabinet.BackHole.LeftRightOpeningParameters.L3": 350,
+        "ACabinet.BackHole.Base1.BaseHeight": 1300,
+        "ACabinet.BackHole.Base1.BaseOpeningHeight": 800,
+        "ACabinet.BackHole.Base1.InsulatorPosition1": 600,
+        "ACabinet.BackHole.Base1.InsulatorPosition2": 900,
+        "ACabinet.BackHole.Base1.InsulatorPosition3": 1120,
+        "ACabinet.BackHole.Base2.BaseHeight": 1500,
+        "ACabinet.BackHole.Base2.Base2Height": 1000,
+        "ACabinet.BackHole.Base2.BaseWidth": 800,
+        "ACabinet.BackHole.Base2.BaseOpeningHeight": 500,
+        "ACabinet.BackHole.Base2.ElevatedBaseHeight": 500,
+        "ACabinet.BackHole.Base2.InsulatorPosition": 400,
+        "ACabinet.BackHole.Base2.MinimumBaseWidth": 799,
+        "ACabinet.BackHole.Base2.HasErrors": false,
+        "ACabinet.BackHole.ActiveBase1Visibility": "Collapsed",
+        "ACabinet.BackHole.ActiveBase2Visibility": "Visible",
+        "ACabinet.BackHole.IsEnabled": false,
+        "ACabinet.BackHole.ToCabinetEdgeDistance": 25,
+        "ACabinet.BackHole.BusbarCenterToCabinetEdgeDistance": 210,
+        "ACabinet.BackHole.FixedHoleSpacing": 440,
+        "ACabinet.BackHole.BusbarCenterToBaseOffset": 200.5,
+        "ACabinet.BackHole.L1": 100,
+        "ACabinet.BackHole.L2": 250,
+        "ACabinet.BackHole.L3": 350,
+        "BCabinet.CabinetHeight": 2240,
+        "BCabinet.CabinetDepth": 1500,
+        "BCabinet.CabinetWidth": 1000,
+        "BCabinet.GroundHeight": 80,
+        "BCabinet.FrontHole.FrontRearOpeningParameters.ToCabinetEdgeDistance": 740,
+        "BCabinet.FrontHole.FrontRearOpeningParameters.BusbarCenterToCabinetEdgeDistance": 936,
+        "BCabinet.FrontHole.FrontRearOpeningParameters.FixedHoleSpacing": 475,
+        "BCabinet.FrontHole.FrontRearOpeningParameters.L1": 100,
+        "BCabinet.FrontHole.FrontRearOpeningParameters.L2": 250,
+        "BCabinet.FrontHole.FrontRearOpeningParameters.L3": 350,
+        "BCabinet.FrontHole.LeftRightOpeningParameters.ToCabinetEdgeDistance": 740,
+        "BCabinet.FrontHole.LeftRightOpeningParameters.BusbarCenterToCabinetEdgeDistance": 936,
+        "BCabinet.FrontHole.LeftRightOpeningParameters.FixedHoleSpacing": 960,
+        "BCabinet.FrontHole.LeftRightOpeningParameters.L1": 65,
+        "BCabinet.FrontHole.LeftRightOpeningParameters.L2": 125,
+        "BCabinet.FrontHole.LeftRightOpeningParameters.L3": 200,
+        "BCabinet.FrontHole.Base1.BaseHeight": 1300,
+        "BCabinet.FrontHole.Base1.BaseOpeningHeight": 800,
+        "BCabinet.FrontHole.Base1.InsulatorPosition1": 600,
+        "BCabinet.FrontHole.Base1.InsulatorPosition2": 900,
+        "BCabinet.FrontHole.Base1.InsulatorPosition3": 1120,
+        "BCabinet.FrontHole.Base2.BaseHeight": 1500,
+        "BCabinet.FrontHole.Base2.Base2Height": 1000,
+        "BCabinet.FrontHole.Base2.BaseWidth": 800,
+        "BCabinet.FrontHole.Base2.BaseOpeningHeight": 500,
+        "BCabinet.FrontHole.Base2.ElevatedBaseHeight": 500,
+        "BCabinet.FrontHole.Base2.InsulatorPosition": 400,
+        "BCabinet.FrontHole.Base2.MinimumBaseWidth": 799,
+        "BCabinet.FrontHole.Base2.HasErrors": false,
+        "BCabinet.FrontHole.ActiveBase1Visibility": "Collapsed",
+        "BCabinet.FrontHole.ActiveBase2Visibility": "Visible",
+        "BCabinet.FrontHole.IsEnabled": true,
+        "BCabinet.FrontHole.ToCabinetEdgeDistance": 740,
+        "BCabinet.FrontHole.BusbarCenterToCabinetEdgeDistance": 936,
+        "BCabinet.FrontHole.FixedHoleSpacing": 475,
+        "BCabinet.FrontHole.BusbarCenterToBaseOffset": 200.5,
+        "BCabinet.FrontHole.L1": 100,
+        "BCabinet.FrontHole.L2": 250,
+        "BCabinet.FrontHole.L3": 350,
+        "BCabinet.BackHole.FrontRearOpeningParameters.ToCabinetEdgeDistance": 25,
+        "BCabinet.BackHole.FrontRearOpeningParameters.BusbarCenterToCabinetEdgeDistance": 210,
+        "BCabinet.BackHole.FrontRearOpeningParameters.FixedHoleSpacing": 440,
+        "BCabinet.BackHole.FrontRearOpeningParameters.L1": 100,
+        "BCabinet.BackHole.FrontRearOpeningParameters.L2": 250,
+        "BCabinet.BackHole.FrontRearOpeningParameters.L3": 350,
+        "BCabinet.BackHole.LeftRightOpeningParameters.ToCabinetEdgeDistance": 25,
+        "BCabinet.BackHole.LeftRightOpeningParameters.BusbarCenterToCabinetEdgeDistance": 210,
+        "BCabinet.BackHole.LeftRightOpeningParameters.FixedHoleSpacing": 960,
+        "BCabinet.BackHole.LeftRightOpeningParameters.L1": 100,
+        "BCabinet.BackHole.LeftRightOpeningParameters.L2": 250,
+        "BCabinet.BackHole.LeftRightOpeningParameters.L3": 350,
+        "BCabinet.BackHole.Base1.BaseHeight": 1300,
+        "BCabinet.BackHole.Base1.BaseOpeningHeight": 800,
+        "BCabinet.BackHole.Base1.InsulatorPosition1": 600,
+        "BCabinet.BackHole.Base1.InsulatorPosition2": 900,
+        "BCabinet.BackHole.Base1.InsulatorPosition3": 1120,
+        "BCabinet.BackHole.Base2.BaseHeight": 1500,
+        "BCabinet.BackHole.Base2.Base2Height": 1000,
+        "BCabinet.BackHole.Base2.BaseWidth": 800,
+        "BCabinet.BackHole.Base2.BaseOpeningHeight": 500,
+        "BCabinet.BackHole.Base2.ElevatedBaseHeight": 500,
+        "BCabinet.BackHole.Base2.InsulatorPosition": 400,
+        "BCabinet.BackHole.Base2.MinimumBaseWidth": 799,
+        "BCabinet.BackHole.Base2.HasErrors": false,
+        "BCabinet.BackHole.ActiveBase1Visibility": "Collapsed",
+        "BCabinet.BackHole.ActiveBase2Visibility": "Visible",
+        "BCabinet.BackHole.IsEnabled": false,
+        "BCabinet.BackHole.ToCabinetEdgeDistance": 25,
+        "BCabinet.BackHole.BusbarCenterToCabinetEdgeDistance": 210,
+        "BCabinet.BackHole.FixedHoleSpacing": 440,
+        "BCabinet.BackHole.BusbarCenterToBaseOffset": 200.5,
+        "BCabinet.BackHole.L1": 100,
+        "BCabinet.BackHole.L2": 250,
+        "BCabinet.BackHole.L3": 350
+      },
+      "fields": [
+        {
+          "path": "ProjectPath",
+          "label": "项目根目录",
+          "highlightKey": null,
+          "sourceName": "ProjectPathTextBox",
+          "kind": "TextBox",
+          "tabs": [],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding ProjectPath, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": null,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.FloorHeight",
+          "label": "楼高(D)",
+          "highlightKey": "楼高(D)",
+          "sourceName": "FloorHeightTextBox",
+          "kind": "TextBox",
+          "tabs": [],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.General.FloorHeight, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 4377,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.ParameterB",
+          "label": "地面距横梁(B)",
+          "highlightKey": "地面距横梁(B)",
+          "sourceName": "GeneralParameterBTextBox",
+          "kind": "TextBox",
+          "tabs": [],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.General.ParameterB, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 4000,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.CabinetSpacing",
+          "label": "柜间距(A)",
+          "highlightKey": "柜间距(A)",
+          "sourceName": "CabinetSpacingTextBox",
+          "kind": "TextBox",
+          "tabs": [],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.General.CabinetSpacing, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 1000,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.CabinetEccentricity",
+          "label": "柜间偏心值",
+          "highlightKey": null,
+          "sourceName": "CabinetEccentricityTextBox",
+          "kind": "TextBox",
+          "tabs": [],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.General.CabinetEccentricity, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 0,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.BusbarSpec",
+          "label": "铜排规格",
+          "highlightKey": null,
+          "sourceName": "BusbarSpecTextBox",
+          "kind": "TextBox",
+          "tabs": [],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.General.BusbarSpec, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": "80×8",
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.SinglePhaseRootCount",
+          "label": "单相根数",
+          "highlightKey": null,
+          "sourceName": "SinglePhaseRootCountComboBox",
+          "kind": "ComboBox",
+          "tabs": [],
+          "tabIds": [],
+          "choices": [
+            {
+              "label": "1",
+              "value": "1"
+            },
+            {
+              "label": "2",
+              "value": "2"
+            },
+            {
+              "label": "3",
+              "value": "3"
+            },
+            {
+              "label": "4",
+              "value": "4"
+            }
+          ],
+          "sourceBinding": "{Binding Parameters.General.SinglePhaseRootCount, UpdateSourceTrigger=PropertyChanged}",
+          "defaultValue": 4,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.ExposedBusbarPhaseSpacing",
+          "label": "伸出排相间距",
+          "highlightKey": "伸出排相间距",
+          "sourceName": "ExposedBusbarPhaseSpacingTextBox",
+          "kind": "TextBox",
+          "tabs": [],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.General.ExposedBusbarPhaseSpacing, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 210,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.BusbarMaterial",
+          "label": "铜排材质",
+          "highlightKey": null,
+          "sourceName": "BusbarMaterialComboBox",
+          "kind": "ComboBox",
+          "tabs": [],
+          "tabIds": [],
+          "choices": [
+            {
+              "label": "直角铜母线",
+              "value": "直角铜母线"
+            },
+            {
+              "label": "全圆边铜母线",
+              "value": "全圆边铜母线"
+            }
+          ],
+          "sourceBinding": "{Binding Parameters.General.BusbarMaterial, UpdateSourceTrigger=PropertyChanged}",
+          "defaultValue": "直角铜母线",
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.ACabinetExposedBusbarPhaseSequence",
+          "label": "A柜伸出排相序",
+          "highlightKey": null,
+          "sourceName": "ACabinetExposedBusbarPhaseSequenceComboBox",
+          "kind": "ComboBox",
+          "tabs": [],
+          "tabIds": [],
+          "choices": [
+            {
+              "label": "ABC",
+              "value": "ABC"
+            },
+            {
+              "label": "CBA",
+              "value": "CBA"
+            }
+          ],
+          "sourceBinding": "{Binding Parameters.General.ACabinetExposedBusbarPhaseSequence, UpdateSourceTrigger=PropertyChanged}",
+          "defaultValue": "ABC",
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.BCabinetExposedBusbarPhaseSequence",
+          "label": "B柜伸出排相序",
+          "highlightKey": null,
+          "sourceName": "BCabinetExposedBusbarPhaseSequenceComboBox",
+          "kind": "ComboBox",
+          "tabs": [],
+          "tabIds": [],
+          "choices": [
+            {
+              "label": "ABC",
+              "value": "ABC"
+            },
+            {
+              "label": "CBA",
+              "value": "CBA"
+            }
+          ],
+          "sourceBinding": "{Binding Parameters.General.BCabinetExposedBusbarPhaseSequence, UpdateSourceTrigger=PropertyChanged}",
+          "defaultValue": "ABC",
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.InsulatorHeight",
+          "label": "绝缘子+支架高度",
+          "highlightKey": null,
+          "sourceName": "InsulatorHeightTextBox",
+          "kind": "TextBox",
+          "tabs": [],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.General.InsulatorHeight, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 165,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "General.InsulationDistance",
+          "label": "绝缘距离(mm)",
+          "highlightKey": null,
+          "sourceName": "InsulationDistanceTextBox",
+          "kind": "TextBox",
+          "tabs": [],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.General.InsulationDistance, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 125,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "ACabinet.CabinetHeight",
+          "label": "柜高",
+          "highlightKey": "A-柜高",
+          "sourceName": "ACabinetHeightTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "柜体参数"
+          ],
+          "tabIds": [
+            "ATabItem",
+            "ACabinetParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.ACabinet.CabinetHeight, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 2240,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "ACabinet.CabinetDepth",
+          "label": "柜深",
+          "highlightKey": "A-柜深",
+          "sourceName": "ACabinetDepthTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "柜体参数"
+          ],
+          "tabIds": [
+            "ATabItem",
+            "ACabinetParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.ACabinet.CabinetDepth, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 1500,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "ACabinet.CabinetWidth",
+          "label": "柜宽",
+          "highlightKey": "A-柜宽",
+          "sourceName": "ACabinetWidthTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "柜体参数"
+          ],
+          "tabIds": [
+            "ATabItem",
+            "ACabinetParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.ACabinet.CabinetWidth, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 1000,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "ACabinet.GroundHeight",
+          "label": "离地高度(I)",
+          "highlightKey": "A-离地高度(I)",
+          "sourceName": "ATextBoxI",
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "柜体参数"
+          ],
+          "tabIds": [
+            "ATabItem",
+            "ACabinetParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.ACabinet.GroundHeight, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 80,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "ACabinet.FrontHole.IsEnabled",
+          "label": "柜前孔",
+          "highlightKey": null,
+          "sourceName": "AFrontHoleToggleButton",
+          "kind": "ToggleButton",
+          "tabs": [
+            "A柜参数",
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "ATabItem",
+            "AHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.ACabinet.FrontHole.IsEnabled, UpdateSourceTrigger=PropertyChanged}",
+          "defaultValue": true,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "ACabinet.FrontHole.ToCabinetEdgeDistance",
+          "label": "距柜前距离：",
+          "highlightKey": "柜前孔-距柜前距离",
+          "sourceName": "AFrontHoleToFrontDistanceTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "ATabItem",
+            "AHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.ACabinet.FrontHole.ToCabinetEdgeDistance, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 740,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": null,
+              "enabled": "{Binding IsChecked, ElementName=AFrontHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "ACabinet.FrontHole.BusbarCenterToCabinetEdgeDistance",
+          "label": "铜排中心至柜前距离：",
+          "highlightKey": "柜前孔-铜排中心至柜前距离",
+          "sourceName": "AFrontHoleBusbarCenterToFrontDistanceTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "ATabItem",
+            "AHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.ACabinet.FrontHole.BusbarCenterToCabinetEdgeDistance, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 936,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": null,
+              "enabled": "{Binding IsChecked, ElementName=AFrontHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "ACabinet.FrontHole.FixedHoleSpacing",
+          "label": "接口固定孔间距：",
+          "highlightKey": "柜前孔-接口固定孔间距",
+          "sourceName": "AFrontHoleFixedHoleSpacingTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "ATabItem",
+            "AHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.ACabinet.FrontHole.FixedHoleSpacing, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 475,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": null,
+              "enabled": "{Binding IsChecked, ElementName=AFrontHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "ACabinet.FrontHole.L1",
+          "label": "L1：",
+          "highlightKey": "柜前孔-L1",
+          "sourceName": "AFrontHoleL1TextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "ATabItem",
+            "AHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.ACabinet.FrontHole.L1, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 100,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": null,
+              "enabled": "{Binding IsChecked, ElementName=AFrontHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "ACabinet.FrontHole.L2",
+          "label": "L2：",
+          "highlightKey": "柜前孔-L2",
+          "sourceName": "AFrontHoleL2TextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "ATabItem",
+            "AHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.ACabinet.FrontHole.L2, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 250,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": null,
+              "enabled": "{Binding IsChecked, ElementName=AFrontHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "ACabinet.FrontHole.L3",
+          "label": "L3：",
+          "highlightKey": "柜前孔-L3",
+          "sourceName": "AFrontHoleL3TextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "ATabItem",
+            "AHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.ACabinet.FrontHole.L3, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 350,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": null,
+              "enabled": "{Binding IsChecked, ElementName=AFrontHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "ACabinet.BackHole.IsEnabled",
+          "label": "柜后孔",
+          "highlightKey": null,
+          "sourceName": "ABackHoleToggleButton",
+          "kind": "ToggleButton",
+          "tabs": [
+            "A柜参数",
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "ATabItem",
+            "AHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.ACabinet.BackHole.IsEnabled, UpdateSourceTrigger=PropertyChanged}",
+          "defaultValue": false,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": "Collapsed",
+              "enabled": null
+            }
+          ]
+        },
+        {
+          "path": "ACabinet.BackHole.ToCabinetEdgeDistance",
+          "label": "{Binding Parameters.General.BackHoleToCabinetEdgeDistanceDisplayName, Mode=OneWay}",
+          "highlightKey": "柜后孔-距柜后距离",
+          "sourceName": "ABackHoleToBackDistanceTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "ATabItem",
+            "AHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.ACabinet.BackHole.ToCabinetEdgeDistance, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 25,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": "Collapsed",
+              "enabled": "{Binding IsChecked, ElementName=ABackHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "ACabinet.BackHole.BusbarCenterToCabinetEdgeDistance",
+          "label": "铜排中心至柜后距离：",
+          "highlightKey": "柜后孔-铜排中心至柜后距离",
+          "sourceName": "ABackHoleBusbarCenterToBackDistanceTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "ATabItem",
+            "AHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.ACabinet.BackHole.BusbarCenterToCabinetEdgeDistance, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 210,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": "Collapsed",
+              "enabled": "{Binding IsChecked, ElementName=ABackHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "ACabinet.BackHole.FixedHoleSpacing",
+          "label": "接口固定孔间距：",
+          "highlightKey": "柜后孔-接口固定孔间距",
+          "sourceName": "ABackHoleFixedHoleSpacingTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "ATabItem",
+            "AHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.ACabinet.BackHole.FixedHoleSpacing, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 440,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": "Collapsed",
+              "enabled": "{Binding IsChecked, ElementName=ABackHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "ACabinet.BackHole.L1",
+          "label": "L1：",
+          "highlightKey": "柜后孔-L1",
+          "sourceName": "ABackHoleL1TextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "ATabItem",
+            "AHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.ACabinet.BackHole.L1, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 100,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": "Collapsed",
+              "enabled": "{Binding IsChecked, ElementName=ABackHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "ACabinet.BackHole.L2",
+          "label": "L2：",
+          "highlightKey": "柜后孔-L2",
+          "sourceName": "ABackHoleL2TextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "ATabItem",
+            "AHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.ACabinet.BackHole.L2, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 250,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": "Collapsed",
+              "enabled": "{Binding IsChecked, ElementName=ABackHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "ACabinet.BackHole.L3",
+          "label": "L3：",
+          "highlightKey": "柜后孔-L3",
+          "sourceName": "ABackHoleL3TextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "ATabItem",
+            "AHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.ACabinet.BackHole.L3, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 350,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": "Collapsed",
+              "enabled": "{Binding IsChecked, ElementName=ABackHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "ACabinet.FrontHole.Base1.BaseHeight",
+          "label": "基座高",
+          "highlightKey": "基座高",
+          "sourceName": null,
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "基座参数"
+          ],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding BaseHeight, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 1300,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "ACabinet.FrontHole.Base1.BaseOpeningHeight",
+          "label": "基架高度",
+          "highlightKey": "基架高度",
+          "sourceName": null,
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "基座参数"
+          ],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding BaseOpeningHeight, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 800,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "ACabinet.FrontHole.Base1.InsulatorPosition1",
+          "label": "绝缘子定位1",
+          "highlightKey": "绝缘子定位1",
+          "sourceName": null,
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "基座参数"
+          ],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding InsulatorPosition1, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 600,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "ACabinet.FrontHole.Base1.InsulatorPosition2",
+          "label": "绝缘子定位2",
+          "highlightKey": "绝缘子定位2",
+          "sourceName": null,
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "基座参数"
+          ],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding InsulatorPosition2, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 900,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "ACabinet.FrontHole.Base1.InsulatorPosition3",
+          "label": "绝缘子定位3",
+          "highlightKey": "绝缘子定位3",
+          "sourceName": null,
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "基座参数"
+          ],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding InsulatorPosition3, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 1120,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "ACabinet.FrontHole.Base2.BaseHeight",
+          "label": "组合基座高",
+          "highlightKey": "组合基座高",
+          "sourceName": null,
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "基座参数"
+          ],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding BaseHeight, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 1500,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "ACabinet.FrontHole.Base2.ElevatedBaseHeight",
+          "label": "增高基座高",
+          "highlightKey": "增高基座高",
+          "sourceName": null,
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "基座参数"
+          ],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding ElevatedBaseHeight, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 500,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "ACabinet.FrontHole.Base2.BaseWidth",
+          "label": "基座2宽",
+          "highlightKey": "基座2宽",
+          "sourceName": "Base2WidthTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "基座参数"
+          ],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding BaseWidth, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True, NotifyOnValidationError=True}",
+          "defaultValue": 800,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "ACabinet.FrontHole.Base2.BaseOpeningHeight",
+          "label": "基架高度",
+          "highlightKey": "基架高度",
+          "sourceName": null,
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "基座参数"
+          ],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding BaseOpeningHeight, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 500,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "ACabinet.FrontHole.Base2.InsulatorPosition",
+          "label": "绝缘子定位",
+          "highlightKey": "绝缘子定位",
+          "sourceName": "Base2InsulatorPositionTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "基座参数"
+          ],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding InsulatorPosition, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True, NotifyOnValidationError=True}",
+          "defaultValue": 400,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "ACabinet.BackHole.Base1.BaseHeight",
+          "label": "基座高",
+          "highlightKey": "基座高",
+          "sourceName": null,
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "基座参数"
+          ],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding BaseHeight, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 1300,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "ACabinet.BackHole.Base1.BaseOpeningHeight",
+          "label": "基架高度",
+          "highlightKey": "基架高度",
+          "sourceName": null,
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "基座参数"
+          ],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding BaseOpeningHeight, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 800,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "ACabinet.BackHole.Base1.InsulatorPosition1",
+          "label": "绝缘子定位1",
+          "highlightKey": "绝缘子定位1",
+          "sourceName": null,
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "基座参数"
+          ],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding InsulatorPosition1, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 600,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "ACabinet.BackHole.Base1.InsulatorPosition2",
+          "label": "绝缘子定位2",
+          "highlightKey": "绝缘子定位2",
+          "sourceName": null,
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "基座参数"
+          ],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding InsulatorPosition2, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 900,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "ACabinet.BackHole.Base1.InsulatorPosition3",
+          "label": "绝缘子定位3",
+          "highlightKey": "绝缘子定位3",
+          "sourceName": null,
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "基座参数"
+          ],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding InsulatorPosition3, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 1120,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "ACabinet.BackHole.Base2.BaseHeight",
+          "label": "组合基座高",
+          "highlightKey": "组合基座高",
+          "sourceName": null,
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "基座参数"
+          ],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding BaseHeight, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 1500,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "ACabinet.BackHole.Base2.ElevatedBaseHeight",
+          "label": "增高基座高",
+          "highlightKey": "增高基座高",
+          "sourceName": null,
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "基座参数"
+          ],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding ElevatedBaseHeight, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 500,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "ACabinet.BackHole.Base2.BaseWidth",
+          "label": "基座2宽",
+          "highlightKey": "基座2宽",
+          "sourceName": "Base2WidthTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "基座参数"
+          ],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding BaseWidth, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True, NotifyOnValidationError=True}",
+          "defaultValue": 800,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "ACabinet.BackHole.Base2.BaseOpeningHeight",
+          "label": "基架高度",
+          "highlightKey": "基架高度",
+          "sourceName": null,
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "基座参数"
+          ],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding BaseOpeningHeight, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 500,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "ACabinet.BackHole.Base2.InsulatorPosition",
+          "label": "绝缘子定位",
+          "highlightKey": "绝缘子定位",
+          "sourceName": "Base2InsulatorPositionTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "A柜参数",
+            "基座参数"
+          ],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding InsulatorPosition, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True, NotifyOnValidationError=True}",
+          "defaultValue": 400,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "BCabinet.CabinetHeight",
+          "label": "柜高",
+          "highlightKey": "B-柜高",
+          "sourceName": "BCabinetHeightTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "柜体参数"
+          ],
+          "tabIds": [
+            "BTabItem",
+            "BCabinetParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.BCabinet.CabinetHeight, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 2240,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "BCabinet.CabinetDepth",
+          "label": "柜深",
+          "highlightKey": "B-柜深",
+          "sourceName": "BCabinetDepthTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "柜体参数"
+          ],
+          "tabIds": [
+            "BTabItem",
+            "BCabinetParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.BCabinet.CabinetDepth, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 1500,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "BCabinet.CabinetWidth",
+          "label": "柜宽",
+          "highlightKey": "B-柜宽",
+          "sourceName": "BCabinetWidthTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "柜体参数"
+          ],
+          "tabIds": [
+            "BTabItem",
+            "BCabinetParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.BCabinet.CabinetWidth, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 1000,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "BCabinet.GroundHeight",
+          "label": "离地高度(I)",
+          "highlightKey": "B-离地高度(I)",
+          "sourceName": "BTextBoxI",
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "柜体参数"
+          ],
+          "tabIds": [
+            "BTabItem",
+            "BCabinetParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.BCabinet.GroundHeight, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 80,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "BCabinet.FrontHole.IsEnabled",
+          "label": "柜前孔",
+          "highlightKey": null,
+          "sourceName": "BFrontHoleToggleButton",
+          "kind": "ToggleButton",
+          "tabs": [
+            "B柜参数",
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "BTabItem",
+            "BHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.BCabinet.FrontHole.IsEnabled, UpdateSourceTrigger=PropertyChanged}",
+          "defaultValue": true,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "BCabinet.FrontHole.ToCabinetEdgeDistance",
+          "label": "距柜前距离：",
+          "highlightKey": "柜前孔-距柜前距离",
+          "sourceName": "BFrontHoleToFrontDistanceTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "BTabItem",
+            "BHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.BCabinet.FrontHole.ToCabinetEdgeDistance, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 740,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": null,
+              "enabled": "{Binding IsChecked, ElementName=BFrontHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "BCabinet.FrontHole.BusbarCenterToCabinetEdgeDistance",
+          "label": "铜排中心至柜前距离：",
+          "highlightKey": "柜前孔-铜排中心至柜前距离",
+          "sourceName": "BFrontHoleBusbarCenterToFrontDistanceTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "BTabItem",
+            "BHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.BCabinet.FrontHole.BusbarCenterToCabinetEdgeDistance, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 936,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": null,
+              "enabled": "{Binding IsChecked, ElementName=BFrontHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "BCabinet.FrontHole.FixedHoleSpacing",
+          "label": "接口固定孔间距：",
+          "highlightKey": "柜前孔-接口固定孔间距",
+          "sourceName": "BFrontHoleFixedHoleSpacingTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "BTabItem",
+            "BHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.BCabinet.FrontHole.FixedHoleSpacing, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 475,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": null,
+              "enabled": "{Binding IsChecked, ElementName=BFrontHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "BCabinet.FrontHole.L1",
+          "label": "L1：",
+          "highlightKey": "柜前孔-L1",
+          "sourceName": "BFrontHoleL1TextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "BTabItem",
+            "BHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.BCabinet.FrontHole.L1, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 100,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": null,
+              "enabled": "{Binding IsChecked, ElementName=BFrontHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "BCabinet.FrontHole.L2",
+          "label": "L2：",
+          "highlightKey": "柜前孔-L2",
+          "sourceName": "BFrontHoleL2TextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "BTabItem",
+            "BHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.BCabinet.FrontHole.L2, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 250,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": null,
+              "enabled": "{Binding IsChecked, ElementName=BFrontHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "BCabinet.FrontHole.L3",
+          "label": "L3：",
+          "highlightKey": "柜前孔-L3",
+          "sourceName": "BFrontHoleL3TextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "BTabItem",
+            "BHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.BCabinet.FrontHole.L3, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 350,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": null,
+              "enabled": "{Binding IsChecked, ElementName=BFrontHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "BCabinet.BackHole.IsEnabled",
+          "label": "柜后孔",
+          "highlightKey": null,
+          "sourceName": "BBackHoleToggleButton",
+          "kind": "ToggleButton",
+          "tabs": [
+            "B柜参数",
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "BTabItem",
+            "BHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.BCabinet.BackHole.IsEnabled, UpdateSourceTrigger=PropertyChanged}",
+          "defaultValue": false,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": "Collapsed",
+              "enabled": null
+            }
+          ]
+        },
+        {
+          "path": "BCabinet.BackHole.ToCabinetEdgeDistance",
+          "label": "{Binding Parameters.General.BackHoleToCabinetEdgeDistanceDisplayName, Mode=OneWay}",
+          "highlightKey": "柜后孔-距柜后距离",
+          "sourceName": "BBackHoleToBackDistanceTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "BTabItem",
+            "BHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.BCabinet.BackHole.ToCabinetEdgeDistance, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 25,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": "Collapsed",
+              "enabled": "{Binding IsChecked, ElementName=BBackHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "BCabinet.BackHole.BusbarCenterToCabinetEdgeDistance",
+          "label": "铜排中心至柜后距离：",
+          "highlightKey": "柜后孔-铜排中心至柜后距离",
+          "sourceName": "BBackHoleBusbarCenterToBackDistanceTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "BTabItem",
+            "BHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.BCabinet.BackHole.BusbarCenterToCabinetEdgeDistance, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 210,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": "Collapsed",
+              "enabled": "{Binding IsChecked, ElementName=BBackHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "BCabinet.BackHole.FixedHoleSpacing",
+          "label": "接口固定孔间距：",
+          "highlightKey": "柜后孔-接口固定孔间距",
+          "sourceName": "BBackHoleFixedHoleSpacingTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "BTabItem",
+            "BHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.BCabinet.BackHole.FixedHoleSpacing, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 440,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": "Collapsed",
+              "enabled": "{Binding IsChecked, ElementName=BBackHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "BCabinet.BackHole.L1",
+          "label": "L1：",
+          "highlightKey": "柜后孔-L1",
+          "sourceName": "BBackHoleL1TextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "BTabItem",
+            "BHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.BCabinet.BackHole.L1, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 100,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": "Collapsed",
+              "enabled": "{Binding IsChecked, ElementName=BBackHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "BCabinet.BackHole.L2",
+          "label": "L2：",
+          "highlightKey": "柜后孔-L2",
+          "sourceName": "BBackHoleL2TextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "BTabItem",
+            "BHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.BCabinet.BackHole.L2, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 250,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": "Collapsed",
+              "enabled": "{Binding IsChecked, ElementName=BBackHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "BCabinet.BackHole.L3",
+          "label": "L3：",
+          "highlightKey": "柜后孔-L3",
+          "sourceName": "BBackHoleL3TextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "柜顶开孔参数"
+          ],
+          "tabIds": [
+            "BTabItem",
+            "BHoleParamTabItem"
+          ],
+          "choices": [],
+          "sourceBinding": "{Binding Parameters.BCabinet.BackHole.L3, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 350,
+          "readOnly": false,
+          "conditions": [
+            {
+              "sourceName": null,
+              "visibility": "Collapsed",
+              "enabled": "{Binding IsChecked, ElementName=BBackHoleToggleButton}"
+            }
+          ]
+        },
+        {
+          "path": "BCabinet.FrontHole.Base1.BaseHeight",
+          "label": "基座高",
+          "highlightKey": "基座高",
+          "sourceName": null,
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "基座参数"
+          ],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding BaseHeight, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 1300,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "BCabinet.FrontHole.Base1.BaseOpeningHeight",
+          "label": "基架高度",
+          "highlightKey": "基架高度",
+          "sourceName": null,
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "基座参数"
+          ],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding BaseOpeningHeight, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 800,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "BCabinet.FrontHole.Base1.InsulatorPosition1",
+          "label": "绝缘子定位1",
+          "highlightKey": "绝缘子定位1",
+          "sourceName": null,
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "基座参数"
+          ],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding InsulatorPosition1, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 600,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "BCabinet.FrontHole.Base1.InsulatorPosition2",
+          "label": "绝缘子定位2",
+          "highlightKey": "绝缘子定位2",
+          "sourceName": null,
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "基座参数"
+          ],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding InsulatorPosition2, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 900,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "BCabinet.FrontHole.Base1.InsulatorPosition3",
+          "label": "绝缘子定位3",
+          "highlightKey": "绝缘子定位3",
+          "sourceName": null,
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "基座参数"
+          ],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding InsulatorPosition3, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 1120,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "BCabinet.FrontHole.Base2.BaseHeight",
+          "label": "组合基座高",
+          "highlightKey": "组合基座高",
+          "sourceName": null,
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "基座参数"
+          ],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding BaseHeight, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 1500,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "BCabinet.FrontHole.Base2.ElevatedBaseHeight",
+          "label": "增高基座高",
+          "highlightKey": "增高基座高",
+          "sourceName": null,
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "基座参数"
+          ],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding ElevatedBaseHeight, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 500,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "BCabinet.FrontHole.Base2.BaseWidth",
+          "label": "基座2宽",
+          "highlightKey": "基座2宽",
+          "sourceName": "Base2WidthTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "基座参数"
+          ],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding BaseWidth, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True, NotifyOnValidationError=True}",
+          "defaultValue": 800,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "BCabinet.FrontHole.Base2.BaseOpeningHeight",
+          "label": "基架高度",
+          "highlightKey": "基架高度",
+          "sourceName": null,
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "基座参数"
+          ],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding BaseOpeningHeight, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 500,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "BCabinet.FrontHole.Base2.InsulatorPosition",
+          "label": "绝缘子定位",
+          "highlightKey": "绝缘子定位",
+          "sourceName": "Base2InsulatorPositionTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "基座参数"
+          ],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding InsulatorPosition, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True, NotifyOnValidationError=True}",
+          "defaultValue": 400,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "BCabinet.BackHole.Base1.BaseHeight",
+          "label": "基座高",
+          "highlightKey": "基座高",
+          "sourceName": null,
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "基座参数"
+          ],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding BaseHeight, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 1300,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "BCabinet.BackHole.Base1.BaseOpeningHeight",
+          "label": "基架高度",
+          "highlightKey": "基架高度",
+          "sourceName": null,
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "基座参数"
+          ],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding BaseOpeningHeight, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 800,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "BCabinet.BackHole.Base1.InsulatorPosition1",
+          "label": "绝缘子定位1",
+          "highlightKey": "绝缘子定位1",
+          "sourceName": null,
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "基座参数"
+          ],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding InsulatorPosition1, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 600,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "BCabinet.BackHole.Base1.InsulatorPosition2",
+          "label": "绝缘子定位2",
+          "highlightKey": "绝缘子定位2",
+          "sourceName": null,
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "基座参数"
+          ],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding InsulatorPosition2, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 900,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "BCabinet.BackHole.Base1.InsulatorPosition3",
+          "label": "绝缘子定位3",
+          "highlightKey": "绝缘子定位3",
+          "sourceName": null,
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "基座参数"
+          ],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding InsulatorPosition3, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 1120,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "BCabinet.BackHole.Base2.BaseHeight",
+          "label": "组合基座高",
+          "highlightKey": "组合基座高",
+          "sourceName": null,
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "基座参数"
+          ],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding BaseHeight, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 1500,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "BCabinet.BackHole.Base2.ElevatedBaseHeight",
+          "label": "增高基座高",
+          "highlightKey": "增高基座高",
+          "sourceName": null,
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "基座参数"
+          ],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding ElevatedBaseHeight, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 500,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "BCabinet.BackHole.Base2.BaseWidth",
+          "label": "基座2宽",
+          "highlightKey": "基座2宽",
+          "sourceName": "Base2WidthTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "基座参数"
+          ],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding BaseWidth, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True, NotifyOnValidationError=True}",
+          "defaultValue": 800,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "BCabinet.BackHole.Base2.BaseOpeningHeight",
+          "label": "基架高度",
+          "highlightKey": "基架高度",
+          "sourceName": null,
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "基座参数"
+          ],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding BaseOpeningHeight, UpdateSourceTrigger=LostFocus}",
+          "defaultValue": 500,
+          "readOnly": false,
+          "conditions": []
+        },
+        {
+          "path": "BCabinet.BackHole.Base2.InsulatorPosition",
+          "label": "绝缘子定位",
+          "highlightKey": "绝缘子定位",
+          "sourceName": "Base2InsulatorPositionTextBox",
+          "kind": "TextBox",
+          "tabs": [
+            "B柜参数",
+            "基座参数"
+          ],
+          "tabIds": [],
+          "choices": [],
+          "sourceBinding": "{Binding InsulatorPosition, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True, NotifyOnValidationError=True}",
+          "defaultValue": 400,
+          "readOnly": false,
+          "conditions": []
+        }
+      ],
+      "defaultImage": "示意图4.png",
+      "imageRules": [
+        {
+          "conditions": [
+            {
+              "binding": "{Binding Parameters.General.CabinetTopOpeningMode}",
+              "value": "FrontRear"
+            }
+          ],
+          "image": "示意图6.png"
+        },
+        {
+          "conditions": [
+            {
+              "binding": "{Binding IsSelected, ElementName=ATabItem}",
+              "value": "True"
+            },
+            {
+              "binding": "{Binding IsSelected, ElementName=AHoleParamTabItem}",
+              "value": "True"
+            },
+            {
+              "binding": "{Binding Parameters.General.CabinetTopOpeningMode}",
+              "value": "FrontRear"
+            }
+          ],
+          "image": "示意图2.png"
+        },
+        {
+          "conditions": [
+            {
+              "binding": "{Binding IsSelected, ElementName=ATabItem}",
+              "value": "True"
+            },
+            {
+              "binding": "{Binding IsSelected, ElementName=AHoleParamTabItem}",
+              "value": "True"
+            },
+            {
+              "binding": "{Binding Parameters.General.CabinetTopOpeningMode}",
+              "value": "LeftRight"
+            }
+          ],
+          "image": "示意图5.png"
+        },
+        {
+          "conditions": [
+            {
+              "binding": "{Binding IsSelected, ElementName=BTabItem}",
+              "value": "True"
+            },
+            {
+              "binding": "{Binding IsSelected, ElementName=BHoleParamTabItem}",
+              "value": "True"
+            },
+            {
+              "binding": "{Binding Parameters.General.CabinetTopOpeningMode}",
+              "value": "FrontRear"
+            }
+          ],
+          "image": "示意图2.png"
+        },
+        {
+          "conditions": [
+            {
+              "binding": "{Binding IsSelected, ElementName=BTabItem}",
+              "value": "True"
+            },
+            {
+              "binding": "{Binding IsSelected, ElementName=BHoleParamTabItem}",
+              "value": "True"
+            },
+            {
+              "binding": "{Binding Parameters.General.CabinetTopOpeningMode}",
+              "value": "LeftRight"
+            }
+          ],
+          "image": "示意图5.png"
+        },
+        {
+          "conditions": [
+            {
+              "binding": "{Binding IsSelected, ElementName=ATabItem}",
+              "value": "True"
+            },
+            {
+              "binding": "{Binding IsSelected, ElementName=ABaseParamTabItem}",
+              "value": "True"
+            },
+            {
+              "binding": "{Binding Parameters.General.CabinetTopOpeningMode}",
+              "value": "LeftRight"
+            }
+          ],
+          "image": "侧对侧基座1.png"
+        },
+        {
+          "conditions": [
+            {
+              "binding": "{Binding IsSelected, ElementName=ATabItem}",
+              "value": "True"
+            },
+            {
+              "binding": "{Binding IsSelected, ElementName=ABaseParamTabItem}",
+              "value": "True"
+            },
+            {
+              "binding": "{Binding Parameters.General.CabinetTopOpeningMode}",
+              "value": "FrontRear"
+            }
+          ],
+          "image": "侧对侧基座2.png"
+        },
+        {
+          "conditions": [
+            {
+              "binding": "{Binding IsSelected, ElementName=BTabItem}",
+              "value": "True"
+            },
+            {
+              "binding": "{Binding IsSelected, ElementName=BBaseParamTabItem}",
+              "value": "True"
+            },
+            {
+              "binding": "{Binding Parameters.General.CabinetTopOpeningMode}",
+              "value": "LeftRight"
+            }
+          ],
+          "image": "侧对侧基座1.png"
+        },
+        {
+          "conditions": [
+            {
+              "binding": "{Binding IsSelected, ElementName=BTabItem}",
+              "value": "True"
+            },
+            {
+              "binding": "{Binding IsSelected, ElementName=BBaseParamTabItem}",
+              "value": "True"
+            },
+            {
+              "binding": "{Binding Parameters.General.CabinetTopOpeningMode}",
+              "value": "FrontRear"
+            }
+          ],
+          "image": "侧对侧基座2.png"
+        },
+        {
+          "conditions": [
+            {
+              "binding": "{Binding IsKeyboardFocusWithin, ElementName=GeneralParametersPanel}",
+              "value": "True"
+            },
+            {
+              "binding": "{Binding Parameters.General.CabinetTopOpeningMode}",
+              "value": "LeftRight"
+            }
+          ],
+          "image": "示意图4.png"
+        },
+        {
+          "conditions": [
+            {
+              "binding": "{Binding IsKeyboardFocusWithin, ElementName=GeneralParametersPanel}",
+              "value": "True"
+            },
+            {
+              "binding": "{Binding Parameters.General.CabinetTopOpeningMode}",
+              "value": "FrontRear"
+            }
+          ],
+          "image": "示意图6.png"
+        }
+      ]
+    }
+  ]
+}

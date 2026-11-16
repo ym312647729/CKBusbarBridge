@@ -1,0 +1,409 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="Current">
+  <PropertyGroup>
+    <Configuration Condition="'$(Configuration)' == ''">Debug</Configuration>
+    <Platform Condition="'$(Platform)' == ''">AnyCPU</Platform>
+    <ProjectGuid>{73B3DCB7-012F-4E59-9609-CA1FD3FA9148}</ProjectGuid>
+    <AssemblyName>CKBusbarBridge.DesignUI</AssemblyName>
+    <RootNamespace>CKBusbarBridge</RootNamespace>
+    <OutputType>Library</OutputType>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>latest</LangVersion>
+    <Configurations>Debug;Release</Configurations>
+    <Platforms>AnyCPU</Platforms>
+    <IncludePackageReferencesDuringMarkupCompilation>false</IncludePackageReferencesDuringMarkupCompilation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <DefineConstants>TRACE</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="AboutInformation.cs" />
+    <Compile Include="AboutWindow.cs" />
+    <Compile Include="ReleaseNotesDocument.cs" />
+    <Compile Include="DimensionHighlightVisibilityConverter.cs" />
+    <Compile Include="UniversalInsulatorLayout.cs" />
+    <Compile Include="BridgeInsulatorMountPlan.cs" />
+    <Compile Include="BridgeSmallOffsetSupportPlanner.cs" />
+    <Compile Include="BridgePhaseChangeSupportPlanner.cs" />
+    <Reference Include="RouteLinkBar.Algorithm">
+      <HintPath>..\CKBusbarBridge\AlgorithmWorkerDelivery\RouteLinkBar.Algorithm.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GeometRi, Version=1.4.0.5, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\CKBusbarBridge\..\packages\GeometRi.1.4.0.5\lib\net20\GeometRi.dll</HintPath>
+    </Reference>
+    <Reference Include="HandyControl, Version=3.5.1.0, Culture=neutral, PublicKeyToken=45be8712787a1e5b, processorArchitecture=MSIL">
+      <HintPath>..\CKBusbarBridge\..\packages\HandyControl.3.5.1\lib\net48\HandyControl.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SolidWorks.Interop.sldworks, Version=26.5.0.66, Culture=neutral, PublicKeyToken=7c4797c3e4eeac03, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoOpeningHoleBase.1.3.0\lib\net48\SolidWorks.Interop.sldworks.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SolidWorks.Interop.swconst, Version=26.5.0.66, Culture=neutral, PublicKeyToken=19f43e188e4269d8, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoOpeningHoleBase.1.3.0\lib\net48\SolidWorks.Interop.swconst.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.7.14\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.WebView2.Core, Version=1.0.4129.50, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
+      <HintPath>..\CKBusbarBridge\..\packages\Microsoft.Web.WebView2.1.0.4129.50\lib\net462\Microsoft.Web.WebView2.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebView2.Wpf, Version=1.0.4129.50, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
+      <HintPath>..\CKBusbarBridge\..\packages\Microsoft.Web.WebView2.1.0.4129.50\lib\net462\Microsoft.Web.WebView2.Wpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\CKBusbarBridge\..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RD.UI.Wpf"><HintPath>..\packages\RD.UI.Wpf.1.7.4\lib\net462\RD.UI.Wpf.dll</HintPath><Private>True</Private></Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RD.WebPreview.Contracts\RD.WebPreview.Contracts.csproj">
+      <Project>{B17E2F24-6D30-4D18-8A9D-4C2B9D6E7F51}</Project>
+      <Name>RD.WebPreview.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RD.WebPreview.Client\RD.WebPreview.Client.csproj">
+      <Project>{C28F3045-7E41-4E29-9BAE-5D3CAE7F8062}</Project>
+      <Name>RD.WebPreview.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CKBusbarBridgePreview\CKBusbarBridgePreview.csproj">
+      <Project>{57ED8D95-E516-496B-BB1D-FC50F81CEE86}</Project>
+      <Name>CKBusbarBridgePreview</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\CKBusbarBridge\models\BridgeGenerationContracts.cs"><Link>models\BridgeGenerationContracts.cs</Link></Compile>
+    <Compile Include="..\CKBusbarBridge\Services\BridgeDraftGenerationPlanFactory.cs"><Link>Services\BridgeDraftGenerationPlanFactory.cs</Link></Compile>
+    <Compile Include="..\CKBusbarBridge\Services\BridgeGenerationRecipeCodec.cs"><Link>Services\BridgeGenerationRecipeCodec.cs</Link></Compile>
+    <Compile Include="..\CKBusbarBridge\Services\BridgeCabinetPlanBuilder.cs"><Link>Services\BridgeCabinetPlanBuilder.cs</Link></Compile>
+    <Compile Include="..\CKBusbarBridge\Services\BridgeCabinetChangeAnalyzer.cs"><Link>Services\BridgeCabinetChangeAnalyzer.cs</Link></Compile>
+    <Compile Include="..\CKBusbarBridge\Drivers\BridgeParameterDraftGeometry.cs"><Link>Preview\BridgeParameterDraftGeometry.cs</Link></Compile>
+    <Compile Include="DesignHost.cs" />
+    <Compile Include="CabinetBaseParameterNavigation.cs" />
+    <Compile Include="FaceToWallInstallationParameters.cs" />
+    <Compile Include="FaceToWallPhaseSwitchMetadata.cs" />
+    <Compile Include="FaceToWallInstallationModelReader.cs" />
+    <Compile Include="ReferencedModelValueReader.cs" />
+    <Compile Include="CabinetHoleModelContract.cs" />
+    <Compile Include="..\CKBusbarBridge\models\ThreePadInsulatorIdentity.cs">
+      <Link>models\ThreePadInsulatorIdentity.cs</Link>
+    </Compile>
+    <Compile Include="BridgeWallPlanningCodec.cs" />
+    <Compile Include="FaceToWallWallEndRule.cs" />
+    <Compile Include="FaceToWallWallEndPlanner.cs" />
+    <Compile Include="FaceToWallMinimumSpan.cs" />
+    <Compile Include="FaceToWallMinimumSpanPlanning.cs" />
+    <Compile Include="FaceToWallSpanPlanning.cs" />
+    <Compile Include="BusbarBridgeDesignWindowVM.WallSpan.cs" />
+    <Compile Include="..\CKBusbarBridge\views\SmallCornerWindowResources.xaml.cs">
+      <Link>views\SmallCornerWindowResources.xaml.cs</Link>
+      <DependentUpon>SmallCornerWindowResources.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="..\CKBusbarBridge\models\CabinetOpeningElevationValidator.cs"><Link>models\CabinetOpeningElevationValidator.cs</Link></Compile>
+    <Compile Include="..\CKBusbarBridge\Drivers\CabinetDriverStartupContext.cs"><Link>Drivers\CabinetDriverStartupContext.cs</Link></Compile>
+    <Compile Include="..\CKBusbarBridge\Drivers\CabinetDriverStartupContextResolver.cs"><Link>Drivers\CabinetDriverStartupContextResolver.cs</Link></Compile>
+    <Compile Include="..\CKBusbarBridge\models\FaceToWallCabinetOrientation.cs"><Link>models\FaceToWallCabinetOrientation.cs</Link></Compile>
+    <Compile Include="..\CKBusbarBridge\models\FaceToWallCabinetOrientationDefaults.cs"><Link>models\FaceToWallCabinetOrientationDefaults.cs</Link></Compile>
+    <Compile Include="..\CKBusbarBridge\Helpers\FaceToFaceBaseModelMappingHelper.cs"><Link>Helpers\FaceToFaceBaseModelMappingHelper.cs</Link></Compile>
+    <Compile Include="..\CKBusbarBridge\Helpers\SideToSideBaseModelMappingHelper.cs"><Link>Helpers\SideToSideBaseModelMappingHelper.cs</Link></Compile>
+    <Compile Include="..\CKBusbarBridge\Drivers\CabinetAssemblyDimensionReader.cs"><Link>Drivers\CabinetAssemblyDimensionReader.cs</Link></Compile>
+    <Compile Include="..\CKBusbarBridge\Drivers\SideToSideCabinetModelReadService.cs"><Link>Drivers\SideToSideCabinetModelReadService.cs</Link></Compile>
+    <Compile Include="..\CKBusbarBridge\Drivers\SideToSideFrameInputAdapter.cs"><Link>Drivers\SideToSideFrameInputAdapter.cs</Link></Compile>
+    <Compile Include="..\CKBusbarBridge\Drivers\SideToSideCabinetGenerationPlan.cs"><Link>Drivers\SideToSideCabinetGenerationPlan.cs</Link></Compile>
+    <Compile Include="..\CKBusbarBridge\models\SideToSideFrameInitialization.cs"><Link>models\SideToSideFrameInitialization.cs</Link></Compile>
+    <Compile Include="..\CKBusbarBridge\models\FaceToFaceBaseGenerationModels.cs"><Link>models\FaceToFaceBaseGenerationModels.cs</Link></Compile>
+    <Compile Include="..\CKBusbarBridge\models\SideToSideBaseGenerationModels.cs"><Link>models\SideToSideBaseGenerationModels.cs</Link></Compile>
+    <Compile Include="..\CKBusbarBridge\models\FaceToWallCabinetDriverParameters.cs"><Link>models\FaceToWallCabinetDriverParameters.cs</Link></Compile>
+    <Compile Include="..\CKBusbarBridge\models\FaceToWallBushingTerminalParameters.cs"><Link>models\FaceToWallBushingTerminalParameters.cs</Link></Compile>
+    <Compile Include="..\CKBusbarBridge\models\DesignScenarioDefaults.cs"><Link>models\DesignScenarioDefaults.cs</Link></Compile>
+    <Compile Include="..\CKBusbarBridge\Helpers\DrawingNumberHelper.cs"><Link>Helpers\DrawingNumberHelper.cs</Link></Compile>
+    <Compile Include="..\CKBusbarBridge\Helpers\SolidWorksMaterialHelper.cs"><Link>Helpers\SolidWorksMaterialHelper.cs</Link></Compile>
+    <Compile Include="..\CKBusbarBridge\Helpers\TopBusbarSpecificationMetadata.cs"><Link>Helpers\TopBusbarSpecificationMetadata.cs</Link></Compile>
+    <Compile Include="..\CKBusbarBridge\Drivers\ExtensionBusbarModelReadHelper.cs"><Link>Drivers\ExtensionBusbarModelReadHelper.cs</Link></Compile>
+    <Compile Include="..\CKBusbarBridge\Drivers\CabinetInsulationDistanceReadback.cs"><Link>Drivers\CabinetInsulationDistanceReadback.cs</Link></Compile>
+    <Compile Include="..\CKBusbarBridge\Drivers\FaceToWallBaseDrivePlanner.cs"><Link>Drivers\FaceToWallBaseDrivePlanner.cs</Link></Compile>
+    <Compile Include="..\CKBusbarBridge\Drivers\SideToSideBaseDrivePlanner.cs"><Link>Drivers\SideToSideBaseDrivePlanner.cs</Link></Compile>
+    <Compile Include="..\CKBusbarBridge\Drivers\SideToSideBaseTemplateLocator.cs"><Link>Drivers\SideToSideBaseTemplateLocator.cs</Link></Compile>
+    <Compile Include="..\CKBusbarBridge\models\BusbarMaterialApplyResult.cs"><Link>models\BusbarMaterialApplyResult.cs</Link></Compile>
+    <Compile Include="..\CKBusbarBridge\models\BusbarPhaseSpacingRules.cs"><Link>models\BusbarPhaseSpacingRules.cs</Link></Compile>
+    <Compile Include="BridgeModelReadOperations.cs" />
+    <Compile Include="..\CKBusbarBridge\Drivers\SideToSideBaseGenerationContracts.cs"><Link>Drivers\SideToSideBaseGenerationContracts.cs</Link></Compile>
+    <Compile Include="..\CKBusbarBridge\Helpers\DrawingNumberGenerator.cs"><Link>Helpers\DrawingNumberGenerator.cs</Link></Compile>
+    <Compile Include="..\CKBusbarBridge\Drivers\FaceToFaceBaseDrivePlanner.cs"><Link>Drivers\FaceToFaceBaseDrivePlanner.cs</Link></Compile>
+    <Compile Include="..\CKBusbarBridge\models\SideToSideBaseNominalGeometry.cs"><Link>models\SideToSideBaseNominalGeometry.cs</Link></Compile>
+    <Compile Include="..\CKBusbarBridge\models\CabinetDriverParameterSnapshot.cs"><Link>models\CabinetDriverParameterSnapshot.cs</Link></Compile>
+    <Compile Include="BridgeNativePreviewCopy.cs" />
+    <Compile Include="BridgeSupportPreviewGeometry.cs" />
+    <Compile Include="BridgeHangerGeometry.cs" />
+    <Compile Include="BridgeHangerLayout.cs" />
+    <Compile Include="BridgeHangerSections.cs" />
+    <Compile Include="BusbarBridgeDraftEditor.Hangers.cs" />
+    <Compile Include="BusbarBridgeDesignWindowVM.Hangers.cs" />
+    <Compile Include="BridgeOffsetRules.cs" />
+    <Compile Include="BridgeCopperClearance.cs" />
+    <Compile Include="BridgeCopperManufacturingValidation.cs" />
+    <Compile Include="BridgeCopperJointGeometryEditor.cs" />
+    <Compile Include="BridgeRaisedLapGeometry.cs" />
+    <Compile Include="BridgeRaisedLapPlanner.cs" />
+    <Compile Include="BridgeSideToSideCopperEditor.cs" />
+    <Compile Include="SideToSideSchemeRules.cs" />
+    <Compile Include="..\CKBusbarBridge\models\BridgeBusinessBinding.cs"><Link>models\BridgeBusinessBinding.cs</Link></Compile>
+    <Compile Include="BridgeDesignWindowController.cs" />
+    <Compile Include="FrameDriverWindow.PreviewLayout.cs" />
+    <Compile Include="BridgeObjectListValueConverter.cs" />
+    <Compile Include="BridgeInsulatorObjects.cs" />
+    <Compile Include="BridgeSupportTransition.cs" />
+    <Compile Include="BusbarBridgeDraftEditor.Insulators.cs" />
+    <Compile Include="BusbarBridgeDesignWindowVM.Insulators.cs" />
+    <Compile Include="BusbarBridgeDesignWindowVM.CopperList.cs" />
+    <Compile Include="BusbarBridgeDesignWindowVM.Generation.cs" />
+    <Compile Include="BridgeReadLoadingIndicator.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="..\CKBusbarBridge\Drivers\FaceToFaceFrameDrivePlanner.cs">
+      <Link>Drivers\FaceToFaceFrameDrivePlanner.cs</Link>
+    </Compile>
+    <Compile Include="..\CKBusbarBridge\Drivers\FaceToFaceFrameTemplateRules.cs">
+      <Link>Drivers\FaceToFaceFrameTemplateRules.cs</Link>
+    </Compile>
+    <Compile Include="..\CKBusbarBridge\Drivers\FaceToFaceSmallOffsetFramePlanner.cs">
+      <Link>Drivers\FaceToFaceSmallOffsetFramePlanner.cs</Link>
+    </Compile>
+    <Compile Include="..\CKBusbarBridge\Drivers\FaceToWallFrameDrivePlanner.cs">
+      <Link>Drivers\FaceToWallFrameDrivePlanner.cs</Link>
+    </Compile>
+    <Compile Include="..\CKBusbarBridge\models\BridgeCoordinateFrame.cs">
+      <Link>models\BridgeCoordinateFrame.cs</Link>
+    </Compile>
+    <Compile Include="..\CKBusbarBridge\models\BridgeUpstreamSnapshot.cs">
+      <Link>models\BridgeUpstreamSnapshot.cs</Link>
+    </Compile>
+    <Compile Include="..\CKBusbarBridge\models\BusbarBridgeDesignContracts.cs">
+      <Link>models\BusbarBridgeDesignContracts.cs</Link>
+    </Compile>
+    <Compile Include="..\CKBusbarBridge\models\BusbarSegmentItem.cs">
+      <Link>models\BusbarSegmentItem.cs</Link>
+    </Compile>
+    <Compile Include="..\CKBusbarBridge\models\BusBridgeDimSizeDefine.cs">
+      <Link>models\BusBridgeDimSizeDefine.cs</Link>
+    </Compile>
+    <Compile Include="..\CKBusbarBridge\models\CabinetBaseEdgeDistanceHelper.cs">
+      <Link>models\CabinetBaseEdgeDistanceHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\CKBusbarBridge\models\CabinetDriverParameters.cs">
+      <Link>models\CabinetDriverParameters.cs</Link>
+    </Compile>
+    <Compile Include="..\CKBusbarBridge\models\DesignScenarioId.cs">
+      <Link>models\DesignScenarioId.cs</Link>
+    </Compile>
+    <Compile Include="..\CKBusbarBridge\models\FaceToFaceBusbarCenterDistanceHelper.cs">
+      <Link>models\FaceToFaceBusbarCenterDistanceHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\CKBusbarBridge\models\FaceToFaceFrameGenerationModels.cs">
+      <Link>models\FaceToFaceFrameGenerationModels.cs</Link>
+    </Compile>
+    <Compile Include="..\CKBusbarBridge\models\FaceToFaceFrameModelReadModels.cs">
+      <Link>models\FaceToFaceFrameModelReadModels.cs</Link>
+    </Compile>
+    <Compile Include="..\CKBusbarBridge\models\FaceToFaceFrameSecondaryGenerationModels.cs">
+      <Link>models\FaceToFaceFrameSecondaryGenerationModels.cs</Link>
+    </Compile>
+    <Compile Include="..\CKBusbarBridge\models\FaceToFaceLargeOffsetFrameModels.cs">
+      <Link>models\FaceToFaceLargeOffsetFrameModels.cs</Link>
+    </Compile>
+    <Compile Include="..\CKBusbarBridge\models\FaceToWallFrameGenerationModels.cs">
+      <Link>models\FaceToWallFrameGenerationModels.cs</Link>
+    </Compile>
+    <Compile Include="..\CKBusbarBridge\models\FaceToWallFrameLengthPlanning.cs">
+      <Link>models\FaceToWallFrameLengthPlanning.cs</Link>
+    </Compile>
+    <Compile Include="..\CKBusbarBridge\models\FaceToWallUpstreamGeometry.cs">
+      <Link>models\FaceToWallUpstreamGeometry.cs</Link>
+    </Compile>
+    <Compile Include="..\CKBusbarBridge\models\FrameInfoParameters.cs">
+      <Link>models\FrameInfoParameters.cs</Link>
+    </Compile>
+    <Compile Include="..\CKBusbarBridge\models\FrameTemplateIdentity.cs">
+      <Link>models\FrameTemplateIdentity.cs</Link>
+    </Compile>
+    <Compile Include="..\CKBusbarBridge\models\RdTypeMetadata.cs">
+      <Link>models\RdTypeMetadata.cs</Link>
+    </Compile>
+    <Compile Include="..\CKBusbarBridge\models\SideToSideCabinetDriverParameters.cs">
+      <Link>models\SideToSideCabinetDriverParameters.cs</Link>
+    </Compile>
+    <Compile Include="..\CKBusbarBridge\models\SideToSideUpstreamGeometry.cs">
+      <Link>models\SideToSideUpstreamGeometry.cs</Link>
+    </Compile>
+    <Compile Include="..\CKBusbarBridge\mvvmbase\NotificationObject.cs">
+      <Link>mvvmbase\NotificationObject.cs</Link>
+    </Compile>
+    <Compile Include="..\CKBusbarBridge\Services\BridgeCopperRoundedProjection.cs">
+      <Link>Services\BridgeCopperRoundedProjection.cs</Link>
+    </Compile>
+    <Compile Include="..\CKBusbarBridge\Services\BridgeDraftNativePreview.cs">
+      <Link>Services\BridgeDraftNativePreview.cs</Link>
+    </Compile>
+    <Compile Include="..\CKBusbarBridge\Services\BridgeModelMeshProjection.cs">
+      <Link>Services\BridgeModelMeshProjection.cs</Link>
+    </Compile>
+    <Compile Include="..\CKBusbarBridge\Services\BusbarAlgorithmWebPreviewSceneFactory.cs">
+      <Link>Services\BusbarAlgorithmWebPreviewSceneFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\CKBusbarBridge\Services\BusbarAlgorithmWorkerClient.cs">
+      <Link>Services\BusbarAlgorithmWorkerClient.cs</Link>
+    </Compile>
+    <Compile Include="..\CKBusbarBridge\Services\BusbarAlgorithmWorkerRequestFactory.cs">
+      <Link>Services\BusbarAlgorithmWorkerRequestFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\CKBusbarBridge\Services\BusbarBridgeDraftEditor.cs">
+      <Link>Services\BusbarBridgeDraftEditor.cs</Link>
+    </Compile>
+    <Compile Include="..\CKBusbarBridge\Services\BusbarBridgeDraftEditor.LargeOffset.cs">
+      <Link>Services\BusbarBridgeDraftEditor.LargeOffset.cs</Link>
+    </Compile>
+    <Compile Include="..\CKBusbarBridge\Services\BridgeOffsetCopperChange.cs"><Link>Services\BridgeOffsetCopperChange.cs</Link></Compile>
+    <Compile Include="..\CKBusbarBridge\Services\BridgePhaseChangeCopperChange.cs"><Link>Services\BridgePhaseChangeCopperChange.cs</Link></Compile>
+    <Compile Include="..\CKBusbarBridge\Services\BusbarBridgeDraftEditor.OffsetCopper.cs"><Link>Services\BusbarBridgeDraftEditor.OffsetCopper.cs</Link></Compile>
+    <Compile Include="..\CKBusbarBridge\Services\BusbarBridgeDraftPreviewSceneFactory.cs">
+      <Link>Services\BusbarBridgeDraftPreviewSceneFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\CKBusbarBridge\Services\BusbarBridgeInsulatorClearance.cs">
+      <Link>Services\BusbarBridgeInsulatorClearance.cs</Link>
+    </Compile>
+    <Compile Include="..\CKBusbarBridge\Services\FaceToWallAlgorithmWorkerRequestFactory.cs">
+      <Link>Services\FaceToWallAlgorithmWorkerRequestFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\CKBusbarBridge\Services\FaceToWallCopperDraft.cs">
+      <Link>Services\FaceToWallCopperDraft.cs</Link>
+    </Compile>
+    <Compile Include="..\CKBusbarBridge\Services\FaceToWallInternalSupportPlanner.cs">
+      <Link>Services\FaceToWallInternalSupportPlanner.cs</Link>
+    </Compile>
+    <Compile Include="..\CKBusbarBridge\Services\FaceToWallPreviewFrameLayoutPlanner.cs">
+      <Link>Services\FaceToWallPreviewFrameLayoutPlanner.cs</Link>
+    </Compile>
+    <Compile Include="..\CKBusbarBridge\Services\FaceToWallPreviewPlanning.cs">
+      <Link>Services\FaceToWallPreviewPlanning.cs</Link>
+    </Compile>
+    <Compile Include="..\CKBusbarBridge\Services\FaceToWallPreviewRouteFactory.cs">
+      <Link>Services\FaceToWallPreviewRouteFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\CKBusbarBridge\Services\PrototypeBusbarBridgeDesignProvider.cs">
+      <Link>Services\PrototypeBusbarBridgeDesignProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\CKBusbarBridge\Services\PrototypeBusbarBridgeDesignProvider.FaceToWall.cs">
+      <Link>Services\PrototypeBusbarBridgeDesignProvider.FaceToWall.cs</Link>
+    </Compile>
+    <Compile Include="..\CKBusbarBridge\Services\PrototypeBusbarBridgeDesignProvider.SideToSide.cs">
+      <Link>Services\PrototypeBusbarBridgeDesignProvider.SideToSide.cs</Link>
+    </Compile>
+    <Compile Include="..\CKBusbarBridge\viewmodels\BusbarAlgorithmSchemeModels.cs">
+      <Link>viewmodels\BusbarAlgorithmSchemeModels.cs</Link>
+    </Compile>
+    <Compile Include="..\CKBusbarBridge\viewmodels\BusbarBridgeDesignWindowVM.cs">
+      <Link>viewmodels\BusbarBridgeDesignWindowVM.cs</Link>
+    </Compile>
+    <Compile Include="..\CKBusbarBridge\viewmodels\BusbarBridgeDesignWindowVM.FaceToWall.cs">
+      <Link>viewmodels\BusbarBridgeDesignWindowVM.FaceToWall.cs</Link>
+    </Compile>
+    <Compile Include="..\CKBusbarBridge\viewmodels\BusbarSchemeSelectionWindowVM.cs">
+      <Link>viewmodels\BusbarSchemeSelectionWindowVM.cs</Link>
+    </Compile>
+    <Compile Include="..\CKBusbarBridge\views\BusbarBridgeJointPreviewControl.cs">
+      <Link>views\BusbarBridgeJointPreviewControl.cs</Link>
+    </Compile>
+    <Compile Include="..\CKBusbarBridge\views\BusbarSchemeSelectionWindow.xaml.cs">
+      <Link>views\BusbarSchemeSelectionWindow.xaml.cs</Link>
+      <DependentUpon>BusbarSchemeSelectionWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="..\CKBusbarBridge\views\BusbarWebPreviewWindow.xaml.cs">
+      <Link>views\BusbarWebPreviewWindow.xaml.cs</Link>
+      <DependentUpon>BusbarWebPreviewWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="..\CKBusbarBridge\WorkerInterop\LinkageRouteWorkerContracts.cs">
+      <Link>WorkerInterop\LinkageRouteWorkerContracts.cs</Link>
+    </Compile>
+    <Compile Include="..\CKBusbarBridge\WorkerInterop\LinkageRouteWorkerMessageCodec.cs">
+      <Link>WorkerInterop\LinkageRouteWorkerMessageCodec.cs</Link>
+    </Compile>
+    <Compile Include="..\CKBusbarBridge\views\FrameDriverWindow.xaml.cs">
+      <Link>views\FrameDriverWindow.xaml.cs</Link>
+      <DependentUpon>FrameDriverWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="..\CKBusbarBridge\views\BusbarAlgorithmSchemeView.xaml.cs">
+      <Link>views\BusbarAlgorithmSchemeView.xaml.cs</Link>
+      <DependentUpon>BusbarAlgorithmSchemeView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="..\CKBusbarBridge\views\FrameDriverWindow.xaml">
+      <Link>views\FrameDriverWindow.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\CKBusbarBridge\views\BusbarSchemeSelectionWindow.xaml">
+      <Link>views\BusbarSchemeSelectionWindow.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\CKBusbarBridge\views\BusbarWebPreviewWindow.xaml">
+      <Link>views\BusbarWebPreviewWindow.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\CKBusbarBridge\views\BusbarAlgorithmSchemeView.xaml">
+      <Link>views\BusbarAlgorithmSchemeView.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\CKBusbarBridge\views\SmallCornerWindowResources.xaml">
+      <Link>views\SmallCornerWindowResources.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- 旧式非 SDK WPF 工程不会自动导入 WinFX targets；没有它，Page 不会生成 InitializeComponent 和命名控件字段。 -->
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\WPF\Microsoft.WinFX.targets"
+          Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\WPF\Microsoft.WinFX.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Sdks\Microsoft.NET.Sdk.WindowsDesktop\targets\Microsoft.WinFX.targets"
+          Condition="Exists('$(MSBuildToolsPath)\Sdks\Microsoft.NET.Sdk.WindowsDesktop\targets\Microsoft.WinFX.targets')" />
+  <Import Project="..\packages\Microsoft.Web.WebView2.1.0.4129.50\build\Microsoft.Web.WebView2.targets" Condition="Exists('..\packages\Microsoft.Web.WebView2.1.0.4129.50\build\Microsoft.Web.WebView2.targets')" />
+  <ItemGroup>
+    <Compile Include="Preview\*.cs" />
+    <EmbeddedResource Include="Preview\CabinetParameterProperties.json"><LogicalName>CKBusbarBridge.CabinetParameterProperties.json</LogicalName></EmbeddedResource>
+    <None Include="packages.config" />
+    <Page Include="Preview\ManualDrawDimensionWindow.xaml"><Generator>MSBuild:Compile</Generator></Page>
+    <Page Include="Preview\WpfLibraryAppearance.xaml"><Generator>MSBuild:Compile</Generator></Page>
+    <Content Include="PreviewRuntime\**\*"><CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory></Content>
+    <Content Include="PreviewAssets\EmptyAssembly.asmdot"><CopyToOutputDirectory>Always</CopyToOutputDirectory></Content>
+  </ItemGroup>
+</Project>

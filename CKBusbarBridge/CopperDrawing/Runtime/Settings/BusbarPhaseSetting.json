@@ -1,0 +1,47 @@
+[
+  {
+    "PhaseValue": 1,
+    "DisplayText": "A相",
+    "Color": "Yellow"
+  },
+  {
+    "PhaseValue": 2,
+    "DisplayText": "B相",
+    "Color": "Green"
+  },
+  {
+    "PhaseValue": 3,
+    "DisplayText": "C相",
+    "Color": "Red"
+  },
+  {
+    "PhaseValue": 4,
+    "DisplayText": "N相",
+    "Color": "Blue"
+  },
+  {
+    "PhaseValue": 5,
+    "DisplayText": "PE相",
+    "Color": "YellowGreen"
+  },
+  {
+    "PhaseValue": 0,
+    "DisplayText": "空相序",
+    "Color": "248, 182, 7"
+  },
+  {
+    "PhaseValue": 6,
+    "DisplayText": "ABC相",
+    "Color": "Brown"
+  },
+  {
+    "PhaseValue": 7,
+    "DisplayText": "+",
+    "Color": "Red"
+  },
+  {
+    "PhaseValue": 8,
+    "DisplayText": "-",
+    "Color": "Blue"
+  }
+]

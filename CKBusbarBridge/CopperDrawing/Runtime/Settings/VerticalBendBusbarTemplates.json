@@ -1,0 +1,22 @@
+{
+    "EndPointReverse": [
+        "SPC_L2"
+    ],
+    "VerticalBendBusbarDefaultDimNames": [
+        {
+            "BusbarStyle": "垂直四段",
+            "DimNameAndValues": [
+                {
+                    "Name": "D1@形状草图",
+                    "DisplayName": "L1",
+                    "DefaultValue": 100.0
+                },
+                {
+                    "Name": "D2@形状草图",
+                    "DisplayName": "L2",
+                    "DefaultValue": 100.0
+                }
+            ]
+        }
+    ]
+}

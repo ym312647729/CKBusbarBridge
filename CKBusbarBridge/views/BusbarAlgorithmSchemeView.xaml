@@ -1,0 +1,284 @@
+﻿<UserControl x:Class="CKBusbarBridge.views.BusbarAlgorithmSchemeView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:hc="https://handyorg.github.io/handycontrol">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/CKBusbarBridge.DesignUI;component/views/SmallCornerWindowResources.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style x:Key="SectionTitleStyle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="FontWeight" Value="SemiBold" />
+                <Setter Property="Foreground" Value="#1F2937" />
+            </Style>
+
+            <Style x:Key="SectionCaptionStyle" TargetType="TextBlock">
+                <Setter Property="Margin" Value="0,3,0,0" />
+                <Setter Property="Foreground" Value="#667085" />
+                <Setter Property="FontSize" Value="11" />
+            </Style>
+
+            <Style x:Key="FieldLabelStyle" TargetType="TextBlock">
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="Foreground" Value="#344054" />
+                <Setter Property="FontSize" Value="12" />
+            </Style>
+
+            <Style x:Key="RoundedInputBorderStyle" TargetType="Border">
+                <Setter Property="Height" Value="29" />
+                <Setter Property="Padding" Value="8,0" />
+                <Setter Property="Background" Value="White" />
+                <Setter Property="BorderBrush" Value="#D0D5DD" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="CornerRadius" Value="5" />
+            </Style>
+
+            <Style x:Key="ParamTextBoxStyle" TargetType="hc:TextBox">
+                <Setter Property="Height" Value="27" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="hc:InfoElement.Placeholder" Value="请输入" />
+                <EventSetter Event="KeyDown" Handler="ParamTextBox_KeyDown" />
+            </Style>
+
+            <Style x:Key="InformationLineBorderStyle" TargetType="Border">
+                <Setter Property="Height" Value="26" />
+                <Setter Property="Margin" Value="0,0,4,4" />
+                <Setter Property="Padding" Value="6,0" />
+                <Setter Property="Background" Value="#F8FAFC" />
+                <Setter Property="BorderBrush" Value="#E4E7EC" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="CornerRadius" Value="4" />
+            </Style>
+
+            <Style x:Key="AlgorithmParameterBorderStyle" TargetType="Border">
+                <Setter Property="Height" Value="30" />
+                <Setter Property="Margin" Value="0,4,6,0" />
+                <Setter Property="Padding" Value="7,0" />
+                <Setter Property="Background" Value="White" />
+                <Setter Property="BorderBrush" Value="#D0D5DD" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="CornerRadius" Value="5" />
+            </Style>
+
+            <Style x:Key="SchemeDataGridStyle" TargetType="DataGrid">
+                <Setter Property="AutoGenerateColumns" Value="False" />
+                <Setter Property="CanUserAddRows" Value="False" />
+                <Setter Property="CanUserDeleteRows" Value="False" />
+                <Setter Property="CanUserReorderColumns" Value="False" />
+                <Setter Property="GridLinesVisibility" Value="Horizontal" />
+                <Setter Property="HorizontalGridLinesBrush" Value="#EAECF0" />
+                <Setter Property="HeadersVisibility" Value="Column" />
+                <Setter Property="IsReadOnly" Value="True" />
+                <Setter Property="RowHeight" Value="31" />
+                <Setter Property="ColumnHeaderHeight" Value="31" />
+                <Setter Property="FontSize" Value="11" />
+                <Setter Property="AlternatingRowBackground" Value="#F9FAFB" />
+                <Setter Property="BorderBrush" Value="#D0D5DD" />
+                <Setter Property="BorderThickness" Value="1" />
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+            <Border
+                    Padding="12"
+                    Background="White"
+                    BorderBrush="#E5E7EB"
+                    BorderThickness="1"
+                    CornerRadius="8">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <StackPanel>
+                        <TextBlock Text="方案生成"
+                                   Style="{StaticResource SectionTitleStyle}" />
+                        <TextBlock Text="{Binding AlgorithmSectionCaptionText}"
+                                   Style="{StaticResource SectionCaptionStyle}" />
+                    </StackPanel>
+
+                    <Border Grid.Row="1"
+                            Margin="0,9,0,0"
+                            Padding="10"
+                            Background="#F8FAFC"
+                            BorderBrush="#D0D5DD"
+                            BorderThickness="1"
+                            CornerRadius="6">
+                        <StackPanel>
+                            <TextBlock Text="工艺参数"
+                                       Foreground="#344054"
+                                       FontSize="11"
+                                       FontWeight="SemiBold" />
+                            <UniformGrid Columns="4" IsEnabled="{Binding IsAlgorithmIdle}">
+                                <StackPanel Margin="0,0,3,0">
+                                    <TextBlock Text="绝缘距离(mm)" Style="{StaticResource SectionCaptionStyle}" />
+                                    <Border Style="{StaticResource AlgorithmParameterBorderStyle}">
+                                        <hc:TextBox Style="{StaticResource ParamTextBoxStyle}"
+                                                    IsReadOnly="{Binding IsInsulationClearanceReadOnly, FallbackValue=False}"
+                                                    Text="{Binding AlgorithmParameterInput.InsulationClearanceText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    </Border>
+                                </StackPanel>
+                                <StackPanel Margin="0,0,3,0">
+                                    <TextBlock Text="最小段长(mm)" Style="{StaticResource SectionCaptionStyle}" />
+                                    <Border Style="{StaticResource AlgorithmParameterBorderStyle}">
+                                        <hc:TextBox Style="{StaticResource ParamTextBoxStyle}"
+                                                    Text="{Binding AlgorithmParameterInput.MinimumSegmentLengthText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    </Border>
+                                </StackPanel>
+                                <StackPanel Margin="0,0,3,0">
+                                    <TextBlock Text="折弯半径(mm)" Style="{StaticResource SectionCaptionStyle}" />
+                                    <Border Style="{StaticResource AlgorithmParameterBorderStyle}">
+                                        <hc:TextBox Style="{StaticResource ParamTextBoxStyle}"
+                                                    Text="{Binding AlgorithmParameterInput.BendingRadiusText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    </Border>
+                                </StackPanel>
+                                <StackPanel>
+                                    <TextBlock Text="折弯余量(mm)" Style="{StaticResource SectionCaptionStyle}" />
+                                    <Border Style="{StaticResource AlgorithmParameterBorderStyle}">
+                                        <hc:TextBox Style="{StaticResource ParamTextBoxStyle}"
+                                                    Text="{Binding AlgorithmParameterInput.BendAllowanceText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    </Border>
+                                </StackPanel>
+                            </UniformGrid>
+
+                            <Grid Margin="0,8,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Button Width="96"
+                                        Height="29"
+                                        Content="刷新方案"
+                                        Style="{StaticResource ButtonPrimary}"
+                                        Command="{Binding GenerateAlgorithmSchemesCommand}" />
+                                <Button Grid.Column="1"
+                                        Width="82"
+                                        Height="29"
+                                        Margin="8,0,0,0"
+                                        Content="停止生成"
+                                        Command="{Binding StopAlgorithmSchemesCommand}" />
+                                <WrapPanel Grid.Column="2"
+                                           Margin="12,0,0,0"
+                                           VerticalAlignment="Center">
+                                    <CheckBox Margin="0,0,12,0"
+                                              Content="换相"
+                                              FontSize="11"
+                                              IsEnabled="{Binding CanSwapPhase, FallbackValue=True}"
+                                              IsChecked="{Binding AlgorithmParameterInput.SwapPhaseAAndC, Mode=TwoWay}"
+                                              ToolTip="勾选后，末端穿墙套管按 A/C 换相搭接，B 相保持不变">
+                                        <CheckBox.Style>
+                                            <Style TargetType="CheckBox">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding CanSwapPhase}" Value="False">
+                                                        <Setter Property="Visibility" Value="Collapsed" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </CheckBox.Style>
+                                    </CheckBox>
+                                    <CheckBox x:Name="ShowWebPreviewCheckBox"
+                                              Content="显示 Web 预览"
+                                              FontSize="11"
+                                              IsChecked="True"
+                                              Checked="ShowWebPreviewCheckBox_Changed"
+                                              Unchecked="ShowWebPreviewCheckBox_Changed" />
+                                </WrapPanel>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+
+                    <Grid Grid.Row="2" Margin="0,9,0,0">
+                        <DataGrid ItemsSource="{Binding AlgorithmSchemes}"
+                                  SelectedItem="{Binding SelectedAlgorithmScheme, Mode=TwoWay}"
+                                  SelectionMode="Single"
+                                  SelectionUnit="FullRow"
+                                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                  MouseDoubleClick="AlgorithmSchemeDataGrid_MouseDoubleClick"
+                                  Style="{StaticResource SchemeDataGridStyle}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="排名" Binding="{Binding SchemeSequence}" Width="44" />
+                                <DataGridTextColumn Header="方案状态" Binding="{Binding SchemeStatusText}" Width="110" />
+                                <DataGridTextColumn Header="算法" Binding="{Binding AlgorithmName}" Width="76" />
+                                <DataGridTextColumn Header="总长(mm)" Binding="{Binding ActualCopperLength, StringFormat=0.##}" Width="76" />
+                                <DataGridTextColumn Header="最小净距" Binding="{Binding MinimumClearance, StringFormat=0.##}" Width="68" />
+                                <DataGridTextColumn Header="垂直搭接" Binding="{Binding PerpendicularLapCount}" Width="68" />
+                                <DataGridTextColumn Header="绝缘状态" Binding="{Binding ClearanceStatusText}" Width="*" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <StackPanel HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    IsHitTestVisible="False"
+                                    Visibility="{Binding EmptyAlgorithmSchemeVisibility}">
+                            <TextBlock Text="暂无算法方案"
+                                       HorizontalAlignment="Center"
+                                       Foreground="#667085"
+                                       FontSize="14"
+                                       FontWeight="SemiBold" />
+                            <TextBlock Margin="0,6,0,0"
+                                       Text="点击“刷新方案”后首个可行方案会立即显示"
+                                       Foreground="#98A2B3"
+                                       FontSize="11" />
+                        </StackPanel>
+                    </Grid>
+
+                    <Border Grid.Row="3"
+                            Margin="0,8,0,0"
+                            Padding="10"
+                            Background="#F9FAFB"
+                            BorderBrush="#EAECF0"
+                            BorderThickness="1"
+                            CornerRadius="6">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <StackPanel>
+                                <TextBlock Text="当前状态"
+                                           Foreground="#344054"
+                                           FontSize="11"
+                                           FontWeight="SemiBold" />
+                                 <TextBlock Margin="0,4,10,0"
+                                            Text="{Binding AlgorithmSchemeStatusText}"
+                                            TextWrapping="Wrap"
+                                            FontSize="11">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Foreground" Value="#667085" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsAlgorithmSchemeStatusError}"
+                                                             Value="True">
+                                                    <Setter Property="Foreground" Value="#D92D20" />
+                                                    <Setter Property="FontWeight" Value="SemiBold" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                                <TextBlock Margin="0,3,10,0"
+                                           Text="{Binding SelectedSchemeDetailText}"
+                                           TextWrapping="Wrap"
+                                           Foreground="#98A2B3"
+                                           FontSize="10" />
+                            </StackPanel>
+                            <Button Grid.Column="1"
+                                    Width="108"
+                                    Height="29"
+                                    VerticalAlignment="Center"
+                                    Content="方案预览"
+                                    ToolTip="{Binding PreviewSelectedSchemeToolTip}"
+                                    Command="{Binding PreviewSelectedSchemeCommand}" />
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Border>
+</UserControl>

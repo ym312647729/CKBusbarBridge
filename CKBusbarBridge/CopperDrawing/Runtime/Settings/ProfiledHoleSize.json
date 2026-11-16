@@ -1,0 +1,826 @@
+﻿[
+    {
+        "Id": "0",
+        "SizePrefix": "M",
+        "Size": "1",
+        "Size2": "0.25",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "1",
+        "SizePrefix": "M",
+        "Size": "1.2",
+        "Size2": "0.25",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "2",
+        "SizePrefix": "M",
+        "Size": "1.2",
+        "Size2": "0.2",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "3",
+        "SizePrefix": "M",
+        "Size": "1.4",
+        "Size2": "0.3",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "4",
+        "SizePrefix": "M",
+        "Size": "1.4",
+        "Size2": "0.2",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "5",
+        "SizePrefix": "M",
+        "Size": "1.6",
+        "Size2": "",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "6",
+        "SizePrefix": "M",
+        "Size": "1.6",
+        "Size2": "0.2",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "7",
+        "SizePrefix": "M",
+        "Size": "2",
+        "Size2": "",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "8",
+        "SizePrefix": "M",
+        "Size": "2",
+        "Size2": "0.35",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "9",
+        "SizePrefix": "M",
+        "Size": "2",
+        "Size2": "0.25",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "10",
+        "SizePrefix": "M",
+        "Size": "2.2",
+        "Size2": "0.45",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "11",
+        "SizePrefix": "M",
+        "Size": "2.5",
+        "Size2": "",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "12",
+        "SizePrefix": "M",
+        "Size": "2.5",
+        "Size2": "0.35",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "13",
+        "SizePrefix": "M",
+        "Size": "3",
+        "Size2": "",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "14",
+        "SizePrefix": "M",
+        "Size": "3",
+        "Size2": "0.35",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "15",
+        "SizePrefix": "M",
+        "Size": "3.5",
+        "Size2": "",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "16",
+        "SizePrefix": "M",
+        "Size": "4",
+        "Size2": "",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "17",
+        "SizePrefix": "M",
+        "Size": "4",
+        "Size2": "0.5",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "18",
+        "SizePrefix": "M",
+        "Size": "5",
+        "Size2": "",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "19",
+        "SizePrefix": "M",
+        "Size": "5",
+        "Size2": "0.5",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "20",
+        "SizePrefix": "M",
+        "Size": "6",
+        "Size2": "",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "21",
+        "SizePrefix": "M",
+        "Size": "6",
+        "Size2": "0.75",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "22",
+        "SizePrefix": "M",
+        "Size": "7",
+        "Size2": "1.0",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "23",
+        "SizePrefix": "M",
+        "Size": "8",
+        "Size2": "",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "24",
+        "SizePrefix": "M",
+        "Size": "8",
+        "Size2": "1.0",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "25",
+        "SizePrefix": "M",
+        "Size": "10",
+        "Size2": "",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "26",
+        "SizePrefix": "M",
+        "Size": "10",
+        "Size2": "1.25",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "27",
+        "SizePrefix": "M",
+        "Size": "10",
+        "Size2": "1.0",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "28",
+        "SizePrefix": "M",
+        "Size": "12",
+        "Size2": "",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "29",
+        "SizePrefix": "M",
+        "Size": "12",
+        "Size2": "1.5",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "30",
+        "SizePrefix": "M",
+        "Size": "12",
+        "Size2": "1.25",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "31",
+        "SizePrefix": "M",
+        "Size": "12",
+        "Size2": "1.0",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "32",
+        "SizePrefix": "M",
+        "Size": "14",
+        "Size2": "",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "33",
+        "SizePrefix": "M",
+        "Size": "14",
+        "Size2": "1.5",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "34",
+        "SizePrefix": "M",
+        "Size": "16",
+        "Size2": "",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "35",
+        "SizePrefix": "M",
+        "Size": "16",
+        "Size2": "1.5",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "36",
+        "SizePrefix": "M",
+        "Size": "18",
+        "Size2": "",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "37",
+        "SizePrefix": "M",
+        "Size": "18",
+        "Size2": "2.0",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "38",
+        "SizePrefix": "M",
+        "Size": "18",
+        "Size2": "1.5",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "39",
+        "SizePrefix": "M",
+        "Size": "20",
+        "Size2": "",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "40",
+        "SizePrefix": "M",
+        "Size": "20",
+        "Size2": "2.0",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "41",
+        "SizePrefix": "M",
+        "Size": "20",
+        "Size2": "1.5",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "42",
+        "SizePrefix": "M",
+        "Size": "22",
+        "Size2": "",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "43",
+        "SizePrefix": "M",
+        "Size": "22",
+        "Size2": "2.0",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "44",
+        "SizePrefix": "M",
+        "Size": "22",
+        "Size2": "1.5",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "45",
+        "SizePrefix": "M",
+        "Size": "24",
+        "Size2": "",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "46",
+        "SizePrefix": "M",
+        "Size": "24",
+        "Size2": "2.0",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "47",
+        "SizePrefix": "M",
+        "Size": "24",
+        "Size2": "1.5",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "48",
+        "SizePrefix": "M",
+        "Size": "25",
+        "Size2": "1.5",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "49",
+        "SizePrefix": "M",
+        "Size": "27",
+        "Size2": "",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "50",
+        "SizePrefix": "M",
+        "Size": "27",
+        "Size2": "2.0",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "51",
+        "SizePrefix": "M",
+        "Size": "27",
+        "Size2": "1.5",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "52",
+        "SizePrefix": "M",
+        "Size": "30",
+        "Size2": "",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "53",
+        "SizePrefix": "M",
+        "Size": "30",
+        "Size2": "2.0",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "54",
+        "SizePrefix": "M",
+        "Size": "30",
+        "Size2": "1.5",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "55",
+        "SizePrefix": "M",
+        "Size": "33",
+        "Size2": "3.5",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "56",
+        "SizePrefix": "M",
+        "Size": "33",
+        "Size2": "",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "57",
+        "SizePrefix": "M",
+        "Size": "33",
+        "Size2": "1.5",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "58",
+        "SizePrefix": "M",
+        "Size": "36",
+        "Size2": "",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "59",
+        "SizePrefix": "M",
+        "Size": "36",
+        "Size2": "3.0",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "60",
+        "SizePrefix": "M",
+        "Size": "35",
+        "Size2": "1.5",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "61",
+        "SizePrefix": "M",
+        "Size": "36",
+        "Size2": "2.0",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "62",
+        "SizePrefix": "M",
+        "Size": "36",
+        "Size2": "1.5",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "63",
+        "SizePrefix": "M",
+        "Size": "39",
+        "Size2": "4.0",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "64",
+        "SizePrefix": "M",
+        "Size": "39",
+        "Size2": "3.0",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "65",
+        "SizePrefix": "M",
+        "Size": "39",
+        "Size2": "",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "66",
+        "SizePrefix": "M",
+        "Size": "39",
+        "Size2": "1.5",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "67",
+        "SizePrefix": "M",
+        "Size": "42",
+        "Size2": "",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "68",
+        "SizePrefix": "M",
+        "Size": "40",
+        "Size2": "1.5",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "69",
+        "SizePrefix": "M",
+        "Size": "42",
+        "Size2": "3.0",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "70",
+        "SizePrefix": "M",
+        "Size": "42",
+        "Size2": "1.5",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "71",
+        "SizePrefix": "M",
+        "Size": "45",
+        "Size2": "4.5",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "72",
+        "SizePrefix": "M",
+        "Size": "45",
+        "Size2": "3.0",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "73",
+        "SizePrefix": "M",
+        "Size": "48",
+        "Size2": "",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "74",
+        "SizePrefix": "M",
+        "Size": "45",
+        "Size2": "",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "75",
+        "SizePrefix": "M",
+        "Size": "48",
+        "Size2": "3.0",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "76",
+        "SizePrefix": "M",
+        "Size": "48",
+        "Size2": "1.5",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "77",
+        "SizePrefix": "M",
+        "Size": "52",
+        "Size2": "5.0",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "78",
+        "SizePrefix": "M",
+        "Size": "52",
+        "Size2": "4.0",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "79",
+        "SizePrefix": "M",
+        "Size": "50",
+        "Size2": "1.5",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "80",
+        "SizePrefix": "M",
+        "Size": "52",
+        "Size2": "1.5",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "81",
+        "SizePrefix": "M",
+        "Size": "56",
+        "Size2": "",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "82",
+        "SizePrefix": "M",
+        "Size": "56",
+        "Size2": "5.5",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "83",
+        "SizePrefix": "M",
+        "Size": "56",
+        "Size2": "4.0",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "84",
+        "SizePrefix": "M",
+        "Size": "55",
+        "Size2": "2.0",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "85",
+        "SizePrefix": "M",
+        "Size": "56",
+        "Size2": "3.0",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "86",
+        "SizePrefix": "M",
+        "Size": "56",
+        "Size2": "2.0",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "87",
+        "SizePrefix": "M",
+        "Size": "60",
+        "Size2": "5.5",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "88",
+        "SizePrefix": "M",
+        "Size": "56",
+        "Size2": "1.5",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "89",
+        "SizePrefix": "M",
+        "Size": "56",
+        "Size2": "1.0",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "90",
+        "SizePrefix": "M",
+        "Size": "60",
+        "Size2": "4.0",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "91",
+        "SizePrefix": "M",
+        "Size": "60",
+        "Size2": "3.0",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "92",
+        "SizePrefix": "M",
+        "Size": "60",
+        "Size2": "2.0",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "93",
+        "SizePrefix": "M",
+        "Size": "64",
+        "Size2": "",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "94",
+        "SizePrefix": "M",
+        "Size": "64",
+        "Size2": "6.0",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "95",
+        "SizePrefix": "M",
+        "Size": "60",
+        "Size2": "",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "96",
+        "SizePrefix": "M",
+        "Size": "60",
+        "Size2": "1.5",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "97",
+        "SizePrefix": "M",
+        "Size": "64",
+        "Size2": "4.0",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "98",
+        "SizePrefix": "M",
+        "Size": "64",
+        "Size2": "3.0",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "99",
+        "SizePrefix": "M",
+        "Size": "64",
+        "Size2": "2.0",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "100",
+        "SizePrefix": "M",
+        "Size": "68",
+        "Size2": "6.0",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "101",
+        "SizePrefix": "M",
+        "Size": "64",
+        "Size2": "1.5",
+        "Quantity": "1",
+        "Comment": ""
+    },
+    {
+        "Id": "102",
+        "SizePrefix": "M",
+        "Size": "65",
+        "Size2": "2.0",
+        "Quantity": "1",
+        "Comment": ""
+    }
+]

@@ -1,0 +1,159 @@
+<Window Style="{DynamicResource SmallCornerWindowStyle}" x:Class="CKBusbarBridge.views.GenerateDrawingNumberWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
+        mc:Ignorable="d"
+        Title="图号生成"
+        Width="440"
+        SizeToContent="Height"
+        MinHeight="120"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        Background="{DynamicResource BackgroundBrush}"
+        PreviewKeyDown="GenerateDrawingNumberWindow_PreviewKeyDown">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/CKBusbarBridge;component/views/SmallCornerWindowResources.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style x:Key="FormLabelStyle" TargetType="TextBlock">
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="HorizontalAlignment" Value="Stretch" />
+                <Setter Property="TextAlignment" Value="Right" />
+                <Setter Property="Margin" Value="0,0,12,0" />
+            </Style>
+
+            <Style x:Key="RoundedInputBorderStyle" TargetType="Border">
+                <Setter Property="Height" Value="32" />
+                <Setter Property="Padding" Value="10,0" />
+                <Setter Property="Background" Value="White" />
+                <Setter Property="BorderBrush" Value="#D9D9D9" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="CornerRadius" Value="6" />
+                <Setter Property="HorizontalAlignment" Value="Stretch" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+            </Style>
+
+            <Style x:Key="FormTextBoxStyle" TargetType="hc:TextBox">
+                <Setter Property="Height" Value="30" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="FontSize" Value="13" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="BorderThickness" Value="0" />
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid Margin="20,16,20,20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="72" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="42" />
+            <RowDefinition Height="42" />
+            <RowDefinition Height="42" />
+            <RowDefinition Height="42" />
+            <RowDefinition Height="42" />
+            <RowDefinition Height="42" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="合同号：" Style="{StaticResource FormLabelStyle}" />
+        <Border x:Name="ContractNumberInputBorder" Grid.Row="0" Grid.Column="1" Style="{StaticResource RoundedInputBorderStyle}">
+            <hc:TextBox x:Name="ContractNumberTextBox"
+                        Style="{StaticResource FormTextBoxStyle}"
+                        MaxLength="6"
+                        hc:InfoElement.Placeholder="6位合同号，首位为大写字母"
+                        PreviewTextInput="ContractNumberTextBox_PreviewTextInput"
+                        TextChanged="ContractNumberTextBox_TextChanged"
+                        LostFocus="ContractNumberTextBox_LostFocus" />
+        </Border>
+
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="图号：" Style="{StaticResource FormLabelStyle}" />
+        <Border x:Name="DrawingNumberInputBorder" Grid.Row="1" Grid.Column="1" Style="{StaticResource RoundedInputBorderStyle}">
+            <hc:TextBox x:Name="DrawingNumberTextBox"
+                        Style="{StaticResource FormTextBoxStyle}"
+                        PreviewTextInput="DrawingNumberTextBox_PreviewTextInput"
+                        TextChanged="DrawingNumberTextBox_TextChanged"
+                        LostFocus="DrawingNumberTextBox_LostFocus" />
+        </Border>
+
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="设计：" Style="{StaticResource FormLabelStyle}" />
+        <Border x:Name="DesignerInputBorder" Grid.Row="2" Grid.Column="1" Style="{StaticResource RoundedInputBorderStyle}">
+            <hc:TextBox x:Name="DesignerTextBox"
+                        Style="{StaticResource FormTextBoxStyle}"
+                        hc:InfoElement.Placeholder="选填，5位数字"
+                        PreviewTextInput="DigitField_PreviewTextInput"
+                        TextChanged="DigitField_TextChanged"
+                        LostFocus="DesignerTextBox_LostFocus" />
+        </Border>
+
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="校对：" Style="{StaticResource FormLabelStyle}" />
+        <Border x:Name="ProofreaderInputBorder" Grid.Row="3" Grid.Column="1" Style="{StaticResource RoundedInputBorderStyle}">
+            <hc:TextBox x:Name="ProofreaderTextBox"
+                        Style="{StaticResource FormTextBoxStyle}"
+                        hc:InfoElement.Placeholder="选填，5位数字"
+                        PreviewTextInput="DigitField_PreviewTextInput"
+                        TextChanged="DigitField_TextChanged"
+                        LostFocus="ProofreaderTextBox_LostFocus" />
+        </Border>
+
+        <TextBlock Grid.Row="4" Grid.Column="0" Text="审核：" Style="{StaticResource FormLabelStyle}" />
+        <Border x:Name="ReviewerInputBorder" Grid.Row="4" Grid.Column="1" Style="{StaticResource RoundedInputBorderStyle}">
+            <hc:TextBox x:Name="ReviewerTextBox"
+                        Style="{StaticResource FormTextBoxStyle}"
+                        hc:InfoElement.Placeholder="选填，5位数字"
+                        PreviewTextInput="DigitField_PreviewTextInput"
+                        TextChanged="DigitField_TextChanged"
+                        LostFocus="ReviewerTextBox_LostFocus" />
+        </Border>
+
+        <TextBlock Grid.Row="5" Grid.Column="0" Text="批准：" Style="{StaticResource FormLabelStyle}" />
+        <Border x:Name="ApproverInputBorder" Grid.Row="5" Grid.Column="1" Style="{StaticResource RoundedInputBorderStyle}">
+            <hc:TextBox x:Name="ApproverTextBox"
+                        Style="{StaticResource FormTextBoxStyle}"
+                        hc:InfoElement.Placeholder="选填，5位数字"
+                        PreviewTextInput="DigitField_PreviewTextInput"
+                        TextChanged="DigitField_TextChanged"
+                        LostFocus="ApproverTextBox_LostFocus" />
+        </Border>
+
+        <TextBlock x:Name="ValidationMessageTextBlock"
+                   Grid.Row="6"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   Margin="0,8,0,0"
+                   Foreground="#FF4D4F"
+                   TextWrapping="Wrap"
+                   Visibility="Collapsed" />
+
+        <StackPanel Grid.Row="7"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Margin="0,16,0,0">
+            <Button x:Name="OkButton"
+                    Content="确定"
+                    Width="88"
+                    Height="32"
+                    IsDefault="True"
+                    Style="{StaticResource ButtonPrimary}"
+                    Click="OkButton_Click" />
+            <Button Content="取消"
+                    Width="88"
+                    Height="32"
+                    Margin="12,0,0,0"
+                    IsCancel="True" />
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,2092 @@
+﻿{
+  "SchemaVersion": 1,
+  "WorkerName": "RouteLinkBar.Algorithm.Worker",
+  "WorkerVersion": "1.13.0.1",
+  "ProtocolVersion": 16,
+  "Releases": [
+    {
+      "Version": "1.13.0.1",
+      "ReleaseDate": "2026-11-07",
+      "ChangeLevel": "Major",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "路径族判重：每组按六个有向轴累计行程（斜段拆分量），小于一个排距（排宽+绝缘距离）的行程视为偏移忽略，不计先后顺序，同轴往返保留先走方向；全部组走向相同即同一路径族。主搜索不再为已发布路径族另起新方案，更短的同族方案作为该族代表替换发布。",
+        "探索期：搜索前2分钟沿用首方案线程分配（主搜索=可用−至多2路优化），忽略“≥N个方案”与停滞改配，后台优化只针对当前最短的2个方案，新的最短方案出现时取消被挤出者的优化；期满按原规则分配。主搜索全部阶段正常走完后全部线程转去优化前10套方案。",
+        "新增减折弯段优化：4段及以上的排把首末段以外两段同向段合并，中心线总长不变、折弯至少减1；总长相同而折弯更少也视为优化结果，代表比较顺序为总长→零件数→折弯数。",
+        "异规格搜索（主分支及通用/包络辅助分支）内部发布需外层实体化复核，不启用路径族判重、探索期和路径找完全力优化，保持原规则。",
+        "协议16、输入契约、SearchOptions 数值及全部几何、制造、绝缘与最终门禁保持；新候选同样经完整校验。"
+      ]
+    },
+    {
+      "Version": "1.12.0.2",
+      "ReleaseDate": "2026-11-07",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "修复始端两根连接排伸出固定排后，叠排搭接区之间的真实夹缝漏补垫块：按实际圆弧外平直搭接交集分区，逐区扣除固定排、生成排、连接排和已有垫块的有限占位，仅补两连接排之间剩余正间隙。",
+        "附件式与合并入主路径的连接排共用补偿，最终层位调整后再次补齐；沿用真实排厚分层、计长及全部实体终检，不修改协议16、输入字段、SearchOptions或尺寸与孔边距标准。"
+      ]
+    },
+    {
+      "Version": "1.12.0.1",
+      "ReleaseDate": "2026-11-06",
+      "ChangeLevel": "Major",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "相序交叉新增顺序避让重规划：快速层未成套后逐组落位，已落位组实体作为后续组避让实体，由避让网格 A* 只重规划中间段并同步平弯拆片规则；整套仍交原组合搜索和全部最终门禁，硬预算为深层时间片的2倍。",
+        "不退化保护：阶段前后恢复原搜索查重与失败记录，异常隔离，不并入中断标志；孔组居中首发阶段、启用自动总时限及异规格多分支不运行。对原搜索的影响仅为至多推迟一个硬预算。",
+        "协议16、输入契约、SearchOptions 数值、0.5mm 尺寸验收、严格孔边距及全部几何、制造、绝缘门禁保持。"
+      ]
+    },
+    {
+      "Version": "1.11.0.1",
+      "ReleaseDate": "2026-11-05",
+      "ChangeLevel": "Major",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "显式包围盒内的轴向三相交叉新增共同空间候选：先用实际搭接姿态和叠排夹层定位两端，再枚举厚向通道和沿排长错开的进出位置，整套组合验证通过才发布。",
+        "不交叉或通道未成套时沿用普通候选；N、PE 等其他组仍参与组合净距和最终验证。输入契约、SearchOptions、0.5mm 尺寸验收、严格孔边距和全部几何门禁保持。"
+      ]
+    },
+    {
+      "Version": "1.10.0.11",
+      "ReleaseDate": "2026-11-03",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "物理始端水平搭接的实际平直重合长度至少为始端搭接排设置宽度，不随实际生成排宽或短固定端缩小；姿态生成、自由切边修复和最终独立验收共同检查，反向搜索沿用物理始端设置。",
+        "有孔水平搭接先尝试沿自由切边额外延长5mm，默认孔边距优先10mm；完整门禁受阻回退严格5mm。范围外孔仍不参与，不强制含孔，垂直双排孔中线规则不变。",
+        "原Json、协议16、SearchOptions、孔边距严格验收及其它几何、制造、绝缘门禁保持；搭接长度沿用既有0.5mm最终尺寸验收。"
+      ]
+    },
+    {
+      "Version": "1.10.0.10",
+      "ReleaseDate": "2026-11-03",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "修复普通实际搭接接口只从生成排表面建立绝缘盒，遗漏固定排或相邻铜排位于接头外侧的真实外表面；两根参与排分别从背离接触面的外表面构造单侧绝缘区，同向重复区域仍保留最外侧。",
+        "独立端部审计双向重建固定排与生成排的外侧区域，补充固定排厚10mm导致外部仅25mm却误算35mm的反例及既有0.5mm尺寸验收边界。",
+        "不改原Json、SearchOptions、协议16、搭接绝缘设置、孔边距及制造发布门禁；不把搭接绝缘盒加入原铜排集合或进行盒对盒膨胀。"
+      ]
+    },
+    {
+      "Version": "1.10.0.9",
+      "ReleaseDate": "2026-11-03",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "修复固定端比生成搭接排更宽时，搭接绝缘盒误以较宽固定排宽度重新判断接口，导致合法始端、柜顶及附件接口静默漏算；改为沿用对应端部原搭接验收要求。",
+        "单侧搭接绝缘盒去重保留外法向正负号，修复夹持叠排相反两侧接口合并丢失；同方向的重复描述仍取原有最外侧区域。",
+        "补充异宽87mm实际搭接、相反外侧面及20mm通用距离通过但35mm搭接绝缘仍须拒绝的独立坐标回归。原Json、SearchOptions、协议16、孔边距及全部制造和发布门禁不变。"
+      ]
+    },
+    {
+      "Version": "1.10.0.8",
+      "ReleaseDate": "2026-11-03",
+      "ChangeLevel": "Patch",
+      "Compatibility": "HostUpdateRequired",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "新增尽量减少垫块设置，按用户确认默认开启；旧Json缺失时开启，显式关闭保留原方式；协议16新增可选同名布尔字段及能力握手。",
+        "完整成组后在副本上对非I排或接口整条垫块链总厚严格大于移动排单层厚度的接口尝试直接贴面；固定排和锁定桥排不移动，I排保持形状传递同一位移、非I排吸收。",
+        "真实垫块重建并严格减少数量后才考虑接受；逐次完整候选、孔边距、制造、包围盒、干涉、绝缘和整套发布门禁不变，受限时回退原合法方案。不修改原Json、搜索预算或数据库。"
+      ]
+    },
+    {
+      "Version": "1.10.0.7",
+      "ReleaseDate": "2026-11-03",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "始端垂直搭接优先选不可伸出方向的反向端（允许伸出端）最近两排孔，以两排孔心线中间位置对齐生成排宽中线；按实际输入方向识别，不依赖世界Z、视角或中心线点序。",
+        "既有居中首发阶段不释放其它孔排窗口；未找到完整居中方案才在原剩余预算内开放偏心，并新增映射孔轮廓距离排边等于设置值的边界姿态（默认严格5mm）。",
+        "仅一排孔时按该排孔心居中；缺少不可伸出方向时保留原孔组偏好。平行搭接、范围外孔不参与、无孔搭接、实际孔轮廓、联动/延长/回滚及完整门禁不变；不增加Json或协议字段，不修改SearchOptions。"
+      ]
+    },
+    {
+      "Version": "1.10.0.6",
+      "ReleaseDate": "2026-11-03",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "始端参与搭接的映射孔组优先按完整孔轮廓包络在排宽方向居中；先在既有首方案目标时间内搜索居中完整方案，未找到再于原总时限内开放偏心候选。",
+        "孔跨自由切边时允许延长物理始端搭接排的自由端，保持另一端及折弯点；同时尝试居中位移与延长并重建附件和完整终检，失败回滚。",
+        "在路径锚点及端部落位兄弟候选阶段加入孔组居中和自由端延长姿态，保留原有无孔搭接姿态；含孔输出补验身份唯一的单固定/单生成端部实际覆盖，拒绝末端试移导致的搭接短缺。",
+        "按2026-11-03最新确认，孔边距仍默认5mm可设，但按实测值严格验收，不再扣减0.5mm容差；4.999mm拒绝、5mm通过。其余尺寸容差、范围外孔不参与、无孔搭接、腰孔旋转、协议16及既有输入/SearchOptions不变，保留1.10.0.5协作取消空结果保护。"
+      ]
+    },
+    {
+      "Version": "1.10.0.5",
+      "ReleaseDate": "2026-11-03",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "修复含孔始端偏移试算在搜索时间片取消时对空校验结果取IsValid导致的空引用；未完成校验的试移仍拒绝并回滚，不中断整个计算。",
+        "保留1.10.0.4的始端孔轮廓、孔边距、腰孔旋转及联动修复；协议16、输入参数、SearchOptions、预算和全部几何门禁不变。"
+      ]
+    },
+    {
+      "Version": "1.10.0.4",
+      "ReleaseDate": "2026-11-02",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "始端已有孔仅在实际搭接面内（含0.5mm容差内轮廓重合）参与边距约束，范围外不要求含孔，不把搭接位置锁到孔中心。",
+        "请求级terminal_hole_edge_distance默认5mm，可编辑；允许0.5mm最终尺寸偏差；腰孔按两弧心中点旋转90度后检查完整孔轮廓。",
+        "候选与最终输出均校验真实接触的始端搭接排；失败先试端部联动偏移，I排保持形状传递位移，重建真实间隙垫块并完整终检，失败回滚。",
+        "新增SupportsTerminalHoleLapConstraints能力握手，拒绝旧Worker静默忽略始端孔门禁；协议保持16，无孔与范围外孔保持原规则。"
+      ]
+    },
+    {
+      "Version": "1.10.0.3",
+      "ReleaseDate": "2026-11-02",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "原始Json沿用逐根holes孔快照，补齐始端/柜顶固定排到纯算法及Worker的深拷贝传递；未提供、null或空列表均按未开孔输入。",
+        "新增请求级rotate_slot_hole_90_degrees/RotateSlotHole90Degrees，默认关闭；编辑和导入导出保留显式true/false，不写通用设置。",
+        "授权握手声明SupportsTerminalHoleInput，客户端遇不支持的旧Worker拒绝静默丢弃孔输入；协议仍为16。",
+        "本轮仅接通输入，不执行孔映射旋转、不改变搜索、搭接/干涉门禁、制造规则或实体开孔。"
+      ]
+    },
+    {
+      "Version": "1.10.0.2",
+      "ReleaseDate": "2026-10-29",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "终端输出后处理由单条串行改为有限并发（原并行度÷3，至少1条），只在深拷贝上计算，发布与终检仍经唯一串行通道，避免单条失败恢复把整条输出队列串成长链。",
+        "组合搜索等待后处理队列名额时同时服从当前阶段时间片，阶段到点即结束等待并按原拒绝路径丢弃该组合，不再因排队让阶段越过时间片；后续阶段仍可重新找到。",
+        "候选生成、候选池内容、组合顺序、JSON v3、Worker协议16、请求字段、SearchOptions及全部门禁不变；保留1.10.0.1柜顶桥接与空组补救及39～33全部修复。"
+      ]
+    },
+    {
+      "Version": "1.10.0.1",
+      "ReleaseDate": "2026-10-29",
+      "ChangeLevel": "Major",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "支持真实逐根混厚柜顶的跨列特殊连接排；按固定夹缝数与柜搭生成层数差不超过1选择桥数，插入和外伸各一个实际搭接排宽，剩余夹缝按真实投影补齐分层垫块。",
+        "保留原固定排终检，外伸面仅作搜索搭接代理；桥、补块及整链逐层真实接通、干涉、制造、绝缘、圆弧和包围盒完整校验，并按实际铜排统计长度。",
+        "正反完整候选池仍为空时，仅为空组补充原预算内的临界坐标原轴候选，保留其他相组及已完成候选；修复扩展失败后提前无解和按未转换轴长裁掉合法LL路径的覆盖缺口。",
+        "JSON v3、Worker协议16、请求字段、SearchOptions、默认开关及全部门禁不变；保留39/38桥接与真实层位、37绕行、36的M/U长度规则、35提速和33末端优化。"
+      ]
+    },
+    {
+      "Version": "1.9.0.39",
+      "ReleaseDate": "2026-10-28",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "沿排长共线分离的固定始端补充整体几何视图与两侧合法进排，保留逐根真实固定排；实际I桥合并后统一物理段索引，候选及发布逐层验证满宽铜排/垫块接通全部固定始端。",
+        "该排列的已完成桥接种子跨搜索阶段保留，完整枚举同时覆盖同向厚面始末端；平行I桥按真实满搭接长度计算最短覆盖端点，缺接、窄垫块、超差及穿透仍拒绝。",
+        "原始Json、归一化请求、协议16、SearchOptions、开关、绝缘距离、包围盒和完整最终门禁不变；保留38层位/两侧进排、37绕行、36的M/U长度规则、35提速及33末端优化。"
+      ]
+    },
+    {
+      "Version": "1.9.0.38",
+      "ReleaseDate": "2026-10-28",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "固定端与生成叠排排厚不同时，将真实非均匀端部层位沿刚性I链传递，由后续非I段吸收；避免用中段均匀偏移替代端部贴合造成穿透。纯I受限支撑和真实双始端桥锁定规则保留。",
+        "单组已有合法候选仍保留原有有界扩展枚举，补齐与其它相组配对所需的空间路线；扩展端部姿态复用生产工艺规则枚举另一侧合法垂直进排边，保留满搭接和短搭接变体。",
+        "保留37版多段短路及真实桥身份、36版M/U平直长度限制、35版搜索提速与33版末端优化；输入Json、协议16、请求字段、SearchOptions、包围盒和全部验收门禁不变。"
+      ]
+    },
+    {
+      "Version": "1.9.0.37",
+      "ReleaseDate": "2026-10-28",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "补充多段绕行的有限短路候选；联动消除内部多余回路，来向反转时依据新路线相邻点重新选择固定端允许搭接边，避免仍套用对端锚点选择的旧侧端点。普通种子和完整方案局部优化均保留原候选，每条短路重新实体化并执行全部门禁。",
+        "普通拆U的L+L必须有首段真实桥排身份才执行合并桥后续层位外移，修复最终输出重复调整造成的累积偏移与大量无必要垫块。",
+        "保留36版M/U实际平直长度规则、35版搜索提速及33版末端直接搭接；输入Json、协议16、请求映射、SearchOptions、排规、包围盒和验收标准不变。"
+      ]
+    },
+    {
+      "Version": "1.9.0.36",
+      "ReleaseDate": "2026-10-28",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "按用户最终确认，关闭允许U形时，连续同向双折弯的M/U仅在中段实际平直长度严格大于两端之和时保留；相等或更短时M尝试同锚点转L、U尝试实际满搭接LL，不再一概禁用或将M当U拆排。",
+        "长度按实际成员中心线扣除圆弧切距计算，逐层及最终发布复核；转换失败保留拒绝与原候选，所有搭接、干涉、绝缘、制造和包围盒门禁继续执行。",
+        "保留35版GC、线程池、缓存、后台组合和有序并行预取及33版末端直接搭接优化；JSON字段、请求参数、SearchOptions和协议16不变。"
+      ]
+    },
+    {
+      "Version": "1.9.0.35",
+      "ReleaseDate": "2026-10-28",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "Worker进程启用服务器GC（不绑定处理器亲和性）并提高线程池最小工作线程数，减少多线程搜索的GC停顿和线程饥饿；算法并行度配置不变。",
+        "候选对净距缓存与精确净距缓存改用“实例身份+签名版本”整数键，热路径不再拼接长签名字符串；缓存命中口径与原签名键一致。",
+        "空组断点续搜的组合轮次改为后台运行，候选构建不再在组合时间片和深层修复期间停顿；同一时刻只运行一轮组合，组合参数不变。",
+        "快速层和困难组有限种子层对同组骨架做有序预取并行构建，按原顺序消费、去重和提前结束，单组为空时可用满原并行度；候选池内容与顺序不变。",
+        "全部候选、搭接、干涉、绝缘、制造及最终发布门禁、请求参数、SearchOptions和协议16保持不变。"
+      ]
+    },
+    {
+      "Version": "1.9.0.34",
+      "ReleaseDate": "2026-10-28",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "禁用U形输出时，将连续三段的两次同向折弯识别为U形，不再要求两侧反向平行；保留多段非局部回折检查。",
+        "斜U仍按既有实际排规拆分并通过完整搭接、折弯、干涉、绝缘及最终几何门禁；反向折弯S/N形和允许U形语义保持。"
+      ]
+    },
+    {
+      "Version": "1.9.0.33",
+      "ReleaseDate": "2026-10-27",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "成功方案后台增加末端直接搭接候选：等规格单层折弯排加两根I排结构可重新选择固定端真实搭接位置，整体移动I排并由相邻折弯排吸收位移，完整门禁通过且实际总长缩短才保留。",
+        "保留原成功候选、搜索参数、JSON及协议16；补齐独立终检单层固定端实际搭接覆盖的正反例。"
+      ]
+    },
+    {
+      "Version": "1.9.0.32",
+      "Changes": [
+        "新增默认关闭的“必须搭接到固定排末端”：按实际相接排宽在搜索前锁定范围；兼容异规格柜顶排直搭始端、正反向与双始端桥后续真实柜顶限制，完整固定实体保持。",
+        "增加兼容可选字段 RequireFixedTerminalEndLap，缺省 false；原参数、搜索选项和完整几何门禁保持。",
+        "候选及最终发布复核全部生成直段和附件的实际搭接区，独立几何终检单独测量；覆盖叠排、连接排、分层垫块及后处理越界。"
+      ],
+      "ReleaseDate": "2026-10-26",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16
+    },
+    {
+      "Version": "1.9.0.31",
+      "ReleaseDate": "2026-10-25",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "修复定向候选转换时间片取消被包装为整个搜索异常，保留此前完整候选，外来取消与真实错误继续传播。",
+        "Worker独立发布至仓库AlgorithmWorker；Worker移出主解决方案构建图，宿主重建仅复制完整发布包并核验版本、日志、清单、配置与文件指纹，拒绝旧包及Release混入Debug依赖；原Json、协议16、请求、SearchOptions及全部门禁不变。"
+      ]
+    },
+    {
+      "Version": "1.9.0.30",
+      "ReleaseDate": "2026-10-25",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "修复有限候选空组后完整枚举阻塞后续交付：在已完成候选边界保留原构建断点，按当前缺失组和实际冲突公平调度原候选族，新种子继续既有端部允许落位备选。",
+        "构建与组合共用原主搜索并发许可；会话已完成有效候选贯穿快慢层及正反向合并保留，完成候选及时组合，进度分别报告有效候选、已评估骨架和组合状态。",
+        "保持原Json、归一化协议16、请求字段、SearchOptions、包围盒语义及全部几何、制造、绝缘和发布门禁；取消停止本会话并传播外来取消或真实故障。"
+      ]
+    },
+    {
+      "Version": "1.9.0.29",
+      "ReleaseDate": "2026-10-24",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "补齐普通柜顶固定排与生成搭接排真实搭接区内的厚差剩余夹缝，保留原固定端、路径层位、分层及完整终检。"
+      ]
+    },
+    {
+      "Version": "1.9.0.28",
+      "ReleaseDate": "2026-10-24",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "修复分段真实排厚落位后等排宽端部遗漏满宽校正；仍按实际固定面、真实两侧厚度接触及各段偏移线求交，完整搭接与制造门禁不变。",
+        "有限候选无完整解时补充既有固定端允许姿态和临界平面兄弟，全部重新实体化及完整校验；补充合并保留此前已完成候选，旧普通合并仍使用原数量上限。",
+        "原Json、协议16、请求字段、SearchOptions、有效包围盒及0.5mm最终尺寸验收不变；本版基于G盘0606-8完整Worker终检通过，发布后继续既定50份回归。"
+      ]
+    },
+    {
+      "Version": "1.9.0.27",
+      "ReleaseDate": "2026-10-24",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "【发布状态】测试版：同步G盘1.9.0.26已通过03-G、0606及伊顿04的候选优化，供本轮SolidWorks验证；不代表全部历史方案均已通过。",
+        "按真实固定端边界、排宽/厚度及既有临界坐标增加正交端头分层XYZ候选；保留原候选及完整构造、组合、制造、绝缘和最终实体门禁。",
+        "深层本令牌时间片结束时保留已完整校验入池的候选，不保留中断项或截断缓存；外来取消和真实故障继续传播。",
+        "全部组顺序搜索不再因首个零兼容池丢弃后续顺序，单顺序层行为保持。原Json、协议16、请求字段、SearchOptions、包围盒语义及0.5mm验收不变。"
+      ]
+    },
+    {
+      "Version": "1.9.0.22",
+      "ReleaseDate": "2026-10-24",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "保留U形搜索骨架，禁止U输出时尝试正反厚向拆成LL或LIL；复制实际分段与接触侧，保持固定端及连接排约束。",
+        "真实圆弧极限仍不足时允许受限叠排局部压紧、逐根延长及受影响相邻接口联动；失败完整回滚，按实际半厚接触落位，补块后完整终检。",
+        "通用净距满足且搭接绝缘缺口不超过相关较薄排厚时，有限尝试内部搭接切向移位或上下换侧，均重新完成实体、搭接、圆弧与绝缘门禁。",
+        "混规增加实际端宽、盒边界与临界平面有限种子，分族限时交付并保留到完整候选池；有限层完成再开放原通用和包络辅助分支。",
+        "深层转换取消按令牌所有权传播，阶段停止保留已完成有效候选，联动取消及故障恢复完整状态；任务汇合不吞真实故障或外来取消。协议16、Json、默认值、SearchOptions及几何门禁不变。"
+      ]
+    },
+    {
+      "Version": "1.9.0.21",
+      "ReleaseDate": "2026-10-23",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "通用算法按固定始端真实有限接触直段派生短始端水平搭接；只有原规则需要连接排时缩小其排宽，不自动增加连接排，不改生成搭接排规格或数据库原路径实体。",
+        "保留实际端宽及反向物理始端约束，逐成员证明共同接触范围；实际连接两端或直接水平接口完整校验，仅短始端调整对应绝缘盒长度要求，普通接口规则不变。",
+        "单始端水平搭接居中默认关闭，原始Json、界面、导出、统一请求及Worker缺省一致；显式true/false保留，协议16、字段结构及搜索参数不变。"
+      ]
+    },
+    {
+      "Version": "1.9.0.20",
+      "ReleaseDate": "2026-10-23",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "新增默认关闭的允许减到折弯极限、默认开启的受限时逐排减小折弯余量，极限模式直接忽略设置余量但保留原输入。",
+        "优选设置余量不足且将被淘汰时，开启自动减小则按真实圆弧几何极限复核；受限落位只额外尝试半余量、几何极限两档，成功即停，不降低无关成员或整请求余量。",
+        "按实际成员半径、厚度和角度复核圆弧后的有限搭接平面，覆盖连接排与固定弯排及中间直腿双圆弧；保形补齐和I链联动优先，受限试验失败回滚，补块后完整终检保留。",
+        "用户明确将最终线性尺寸验收改为0.5mm含边界；内部几何精度、角度、拓扑、绝缘及发布门禁不旁路。修复后刷新候选长度，避免旧估长参与排序。"
+      ]
+    },
+    {
+      "Version": "1.9.0.19",
+      "ReleaseDate": "2026-10-22",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "修复通用算法搭接绝缘盒把矩形边界当中心线导致横向偏移半个搭接宽度的问题；沿实际搭接矩形宽向居中后再按最外侧铜排外法向单侧拉伸。",
+        "保持每个稳定接口仅一个最外侧绝缘盒，仅与异绝缘组原始铜排判断干涉；35mm默认搭接距离、边界接触通过、正体积重叠拒绝及0.1mm验收容差不变。",
+        "保留1.9.0.18固定端部分越界、禁区与容纳盒求交及全零显式盒禁用规则，完整生成实体包围盒和最终发布门禁不变；协议16、JSON、映射、数据库及SearchOptions不变。"
+      ]
+    },
+    {
+      "Version": "1.9.0.18",
+      "ReleaseDate": "2026-10-22",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "显式包围盒逐根检查固定始端排及柜顶排的真实实体，允许部分越界，整根不与盒相交时拒绝；沿用0.1mm最终验收容差。",
+        "不可伸出侧整体禁区改为半空间与容纳盒的交集，空交集不生成禁区，覆盖整盒时保留完整禁区；固定铜排仍以原始完整实体参与干涉及绝缘计算。",
+        "中间排、连接排、垫块及折弯扫掠的完整实体包围盒门禁保持不变；协议16、JSON格式、请求映射、默认值及SearchOptions不变。"
+      ]
+    },
+    {
+      "Version": "1.9.0.17",
+      "ReleaseDate": "2026-10-11",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "方案端部候选按真实厚面搭接判定只有一个几何端点接触，同一端连接多个邻排仍可识别；两端均搭接及完全覆盖的短I排不作为普通端部候选。",
+        "原文档及归一化拓扑统一传入实际搭接关系，保留全部源实体与分支；未提供关系列表与显式空白名单保持不同语义，所有关系仍以实际几何核验。",
+        "服务成功返回前逐项复核全部实际搭接接口覆盖，悬空支路及缺固定端分量不得被忽略后判成功；保留完整接口、端部、干涉和绝缘校验，JSON、协议16、Worker请求映射及搜索参数不变。",
+        "按用户确认将无对应柜顶、未形成联络回路的实际纯I短接支路排除联络链，保留全部原实体与几何校验；连通判定迁为纯共享实现，存在同色/同相对端或未赋角色端部、正间隙、穿透及单端悬空时仍拒绝。"
+      ]
+    },
+    {
+      "Version": "1.9.0.16",
+      "ReleaseDate": "2026-10-09",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "新增默认关闭的 EnableSingleStartConnectionBar，仅通用算法单始端水平搭接增加连接排；一根始端搭接排只加实际搭接侧，两根及以上两侧连接并夹排，连接排长度只覆盖固定始端排宽。",
+        "水平候选按插入连接排后的真实叠排基准搜索和转换；端部校验复核生成排—连接排—固定始端两个实际接口，连接排尺寸、层位、实体、绝缘及最终发布门禁保持有效。",
+        "垂直搭接、数据库原路径重算及关闭开关时的既有流程保持不变；协议16以可选布尔字段向后兼容，并接通WPF编辑、初始/手动Json与请求映射。"
+      ]
+    },
+    {
+      "Version": "1.9.0.15",
+      "ReleaseDate": "2026-10-08",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "将方案库共享纯契约、几何及原路径拓扑迁入 SchemeData，匹配表模型及只读访问迁入 SchemeLibrary；Worker 不再引用 SwHelper、SwHelper.Data、Database 或 SolidWorks Interop。",
+        "宿主旧入口通过类型转发和显式几何/拓扑适配调用唯一纯实现；只读摘要、命中快照查询及排序不变，关闭匹配不打开数据库。",
+        "保持协议16、Json、数据库表、SearchOptions、匹配评分及算法和全部几何门禁不变；交付脚本增加纯协议冒烟验证及递归依赖检查，仅混淆算法DLL。"
+      ]
+    },
+    {
+      "Version": "1.9.0.14",
+      "ReleaseDate": "2026-10-08",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "最终垂直端腿补齐保持相邻直段方向并传递自由端位移，复用I链联动与非I排吸收调整；始端与柜顶方向均保留固定端点和完整最终实体门禁。",
+        "缺少可吸收位移的相邻排或立即受锁定连接排限制时保留拒绝；普通I链可在锁定连接排前保留已成功位移，不能修改合并连接排的点集或排形。",
+        "首方案状态、长度剪枝、线程分配与优化种子仅采用完整最终门禁通过并实际发布的方案；普通待验证缓存不占成功名额，不屏蔽其它可验候选。",
+        "同步与异步发布拒绝均按来源实例身份清理，保留有效前驱和较新代表；输出与优化任务原子登记、交接及排空，去重仅记录实际发布的来源与最终拓扑。",
+        "终端后处理在创建异步任务及候选快照前按既有并行数施加可取消有界背压，不以普通Top-N丢弃尚未验证的不同候选；协议、Json、数据库与SearchOptions保持不变。"
+      ]
+    },
+    {
+      "Version": "1.9.0.13",
+      "ReleaseDate": "2026-10-07",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "统一有几何正反例证明的尺寸验收口径：共享端部层位、实际搭接区域、端点、实体净距与穿透、实际段长及端腿余量使用既有0.1mm含边界容差；精确距离、内部构造、方向和点身份精度保持。",
+        "完整方案构建、异规格备用方案发布及调度入口一致按尺寸验收判定，避免容差内净距被重复拒发；原距离与请求值如实保留，不降低参数或跳过最终实体门禁。",
+        "垂直求交的无量纲段参数容差按毫米容差除以实际段长换算，拒绝长排端段外交点冒充满搭接；20类尺寸边界及严格计算正反例通过。",
+        "G盘最新独立Worker目标1AL105、Id344及冻结历史请求随机50份首发和完整独立几何终检通过；协议、Json、数据库、映射和SearchOptions保持不变。"
+      ]
+    },
+    {
+      "Version": "1.9.0.12",
+      "ReleaseDate": "2026-10-07",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "用户确认方案匹配可调整I排允许沿排长伸长和缩短；厚向位移继续沿原I链传递，沿排长调整独立保留全部已成功接口、原直接搭接长宽及静止实体占位约束。",
+        "按全部原接口投影汇总I排两端补长及多余端长缩短候选；原垫块区域交集必须保留完整有效长宽，错位缩水拒绝。",
+        "固定始端、柜顶及锁定连接排保持约束；伸缩后的最终搭接、垫块区域、实体干涉、最小段长和请求绝缘门禁保持完整，协议与请求字段不变。"
+      ]
+    },
+    {
+      "Version": "1.9.0.11",
+      "ReleaseDate": "2026-10-07",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "十轮联动与柜顶过渡回退后，只对实际延伸到端部物理段的成员按固定排或双始端连接排主排对齐端头；仅在最终端腿余量不足时复用原物理分段折弯余量处理。",
+        "普通方案发布前仅对实际延伸到端部物理段的成员复核垂直端腿；按真实接触或有限端段原始实体净距选择对侧固定排，避免邻近异厚层和远处宽排误拒。独立审计沿用 0.1 mm 最终误差与完整门禁。",
+        "协议和请求字段不变；虚拟 Release Worker 的双始端、异规格及端腿历史样本进程级首发和独立终检通过。"
+      ]
+    },
+    {
+      "Version": "1.9.0.10",
+      "ReleaseDate": "2026-10-06",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "异规格通用搜索保留原中间排宽分支，实际端部排宽更大时补充最大真实排宽骨架；输出仍按原请求真实规格实体化并执行完整几何与绝缘门禁。",
+        "相同实际排规的逻辑组保留已落位物理段，柜顶斜过渡穿入固定排时沿末端直腿局部后移；非水平双始端搭接不再由旧层位索引回退生成横向连接排。",
+        "数据库原方案几何引导的 Id992 虚拟首发与独立终检通过，固定种子历史 PASS 随机 50 份无退化；Worker 请求字段、协议、原 Json、数据库和搜索选项不变。"
+      ]
+    },
+    {
+      "Version": "1.9.0.9",
+      "ReleaseDate": "2026-10-06",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "通用生成实际始端和柜顶搭接面按各自真实搭接排宽验算，内部物理分段继续保留原中间排宽门槛；修正异规格多成员端部搭接误判。",
+        "最终联动回归后按实际规格接口双向复核正交搭接的两侧折弯余量，覆盖不等叠排数量和 U 型拆分后保留的原规格索引；拒发端腿不足的方案，并补充独立审计及固定请求随机50份回归。"
+      ]
+    },
+    {
+      "Version": "1.9.0.8",
+      "ReleaseDate": "2026-10-06",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "通用路径端部姿态先保留原中间骨架宽候选；仅当该端无候选且实际始端或柜顶搭接排更窄时，以真实搭接排宽恢复端部姿态，并保持全部实体及绝缘终检。",
+        "新增端宽100mm、中间骨架125mm的正反例回归；方案库匹配、请求字段、协议和搜索选项不变。"
+      ]
+    },
+    {
+      "Version": "1.9.0.7",
+      "ReleaseDate": "2026-10-04",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "通用算法搭接绝缘修复按单侧绝缘盒与原铜排的实际轴向退出位移处理，修正组对冲突位移为0及固定排冲突固定取1mm的问题，不再次叠加通用距离。",
+        "普通方案最终移动后重新生成实际接口单侧绝缘盒并与异组原铜排复核；通用净距合格不能代替搭接绝缘合格，违规方案不发布。",
+        "失败诊断分别统计通用净距、搭接区域和同组重叠，并保留最终拒发原因；请求、协议、搜索预算及方案库独立重建规则不变。"
+      ]
+    },
+    {
+      "Version": "1.9.0.6",
+      "ReleaseDate": "2026-09-28",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "历史直接接口同时保留原始有效搭接长宽，接触和补块两种路径均不允许超过0.1mm的区域缩水；真实扩展仍可通过。",
+        "共享网络固定端闭合只允许I排刚性整体位移，并沿连续I排传递同一位移，拒绝通过单端拉长掩盖搭接不足。",
+        "历史接口补块先检查全部已保留源实体及附件占位，拒绝创建重复重叠铜块并报告占位源；不擅自改变原搭接关系。普通算法和输入协议不变。"
+      ]
+    },
+    {
+      "Version": "1.9.0.5",
+      "ReleaseDate": "2026-09-28",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "历史直接接口补垫块前按共享源统一补足非I排自由端满搭接，保留固定连接排及厚向位置；拒绝用缩小后的垫块掩盖搭接面积不足。",
+        "历史匹配的搭接绝缘盒按实际搭接矩形中心定位，修复以宽边作中心线导致偏移半个排宽的误判；正反法向仍保持35mm等请求净距，普通生成与协议不变。"
+      ]
+    },
+    {
+      "Version": "1.9.0.4",
+      "ReleaseDate": "2026-09-28",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "历史接口分层垫块按原公共搭接区域逐层检查完整覆盖及实际厚面贴合，不再将短宽垫块的排宽误当最小排长。",
+        "匹配连通图与垫块搭接绝缘实体使用同一真实满面证据，缺口、偏移及超差厚向间隙仍拒绝；普通铜排搭接规则、输入和协议不变。"
+      ]
+    },
+    {
+      "Version": "1.9.0.3",
+      "ReleaseDate": "2026-09-28",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "历史共享网络的非I排端腿调整检查全部静止源实体，避免为闭合叠排间隙而压坏原有柜顶搭接。",
+        "受限端腿保留调整前位置，实际正间隙继续按公共区域分层补块并完整终检；连续I排同位移传递、普通生成和协议保持不变。"
+      ]
+    },
+    {
+      "Version": "1.9.0.2",
+      "ReleaseDate": "2026-09-28",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "修复完整源匹配中固定端贴合阶段仍移动已锁定连接排的问题，固定连接排在端侧与内部闭合阶段均保持位置。",
+        "已确认连接排与固定端之间的历史正间隙保留到最终公共区域分层补块，不通过强行移动连接排引入相邻实体重叠；普通生成算法及协议不变。"
+      ]
+    },
+    {
+      "Version": "1.9.0.1",
+      "ReleaseDate": "2026-09-28",
+      "ChangeLevel": "Major",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "方案库匹配通过候选局部上下文传递完整源身份、实际叠排段及垫块公共搭接区域，不扩展协议和原始Json契约。",
+        "同相不同物理连通域按端部组关联、实际接触深度及两两几何对应合并为叠排段，不以连通分量数或仅凭平行投影替代层数。",
+        "共享源按唯一几何状态联动，连续I排传递位移；保留路径外接口及固定连接排约束，实际正间隙按公共区域分层补铜块并参与干涉、绝缘及完整接触终检。",
+        "完整源证据缺失或归属不明时保守拒绝并输出源身份诊断，不退回旧入口绕过门禁；普通生成请求与调用链不变。"
+      ]
+    },
+    {
+      "Version": "1.8.0.9",
+      "ReleaseDate": "2026-09-27",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "历史垫块新增充分条件：非固定端I排先验证真实相向厚面贴合，再验证整个排面被另一排同一厚面完全包含，边界计入。",
+        "全源几何统一判定并保留旧短I规则；排除远距投影、部分包含、同向共面重叠及穿入母排其它折弯段。尺寸验收0.1mm，内部求交精度、普通生成算法和Json契约不变。"
+      ]
+    },
+    {
+      "Version": "1.8.0.8",
+      "ReleaseDate": "2026-09-27",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "历史匹配拓扑按真实搭接边提取完整端到端支路覆盖，不再只取最短路径而遗漏有效中间排。",
+        "采用双单位顶点不相交路径见证，固定端不得充当内部转接排；不枚举全路径组合，不改变源实体、垫块规则、叠排门禁或普通求解。"
+      ]
+    },
+    {
+      "Version": "1.8.0.7",
+      "ReleaseDate": "2026-09-27",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "历史固定端匹配入口采用0.1mm最终搭接验收口径，避免0.001mm平行宽向覆盖误差被内部严格精度提前拒绝。",
+        "内部求交和移动构造精度、固定端约束、原始Json、普通生成算法及完整几何终检保持不变。"
+      ]
+    },
+    {
+      "Version": "1.8.0.6",
+      "ReleaseDate": "2026-09-27",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "历史匹配发布前补齐不同绝缘组固定端之间的净距与超差重叠校验，禁止只检查生成排后误发固定输入不合格的方案。",
+        "固定端保持不动，沿用0.1mm最终验收容差及原请求绝缘值；输入冲突报告诊断，不修改Json或普通求解行为。"
+      ]
+    },
+    {
+      "Version": "1.8.0.5",
+      "ReleaseDate": "2026-09-27",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "历史匹配连接结构按源实体、原始接口及完整实际接触图验收，不再套用普通生成器的双始端桥排附件数量要求。",
+        "匹配完整叠排、原排规格/点数、固定端搭接、实体干涉和绝缘终检保持；普通算法连接排生成及数量校验不变。"
+      ]
+    },
+    {
+      "Version": "1.8.0.4",
+      "ReleaseDate": "2026-09-27",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "按用户确认，固定端搭接几何无法确定不可伸出方向时默认负Z，不再根据路径点排列顺序猜测。",
+        "数据库端部档案补齐仍优先采用实际搭接面和搭接中心，默认值不阻断几何判向；明确方向保留，不修改普通求解或协议。"
+      ]
+    },
+    {
+      "Version": "1.8.0.3",
+      "ReleaseDate": "2026-09-27",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "历史匹配按源实体身份保留部分共享的始端分支，每根物理铜排仅输出一次，各原始支路及固定端接口仍逐一验收。",
+        "共享端头在合并后按全部接口共同覆盖边界处理，搭接绝缘盒和连通终检按真实接触图生成；拒绝源实体冲突、断链、漏端及孤立生成排。",
+        "普通算法生成流程、原始Json、协议16和请求参数不变；补充共享支路、协议回读及断链负例验证。"
+      ]
+    },
+    {
+      "Version": "1.8.0.2",
+      "ReleaseDate": "2026-09-27",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "补齐历史匹配内部已有接口及端头复核的0.1mm验收口径，避免最终合格接口被前置严格门禁误拒绝。",
+        "内部端头构造、求交和位移仍使用原精度；新增0.001/0.099/0.100mm不移动通过及0.101mm拒绝回归，不修改输入禁区方向。"
+      ]
+    },
+    {
+      "Version": "1.8.0.1",
+      "ReleaseDate": "2026-09-27",
+      "ChangeLevel": "Major",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "按用户确认将匹配和通用算法的最终几何验收容差统一为0.1mm：禁区/包围盒、实体重叠、搭接尺寸及厚向间隙、连接排位置和绝缘净距。",
+        "最终验收参数与内部求交、方向归一化、点重合和构造精度分离；不修改原始Json、请求参数或搜索策略，两类算法仍独立生成。",
+        "同步进程级复核与报告容差口径，增加0.099/0.100/0.101mm边界及内部严格计算回归。"
+      ]
+    },
+    {
+      "Version": "1.7.0.15",
+      "ReleaseDate": "2026-09-27",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "历史匹配接口端头按实际满搭接边界精确补足，删除额外0.001mm延伸，避免固定端全长搭接时误入不可伸出侧禁区。",
+        "保留完整满搭接、禁区、干涉和绝缘终检；普通算法、输入Json、请求字段及协议16不变。"
+      ]
+    },
+    {
+      "Version": "1.7.0.14",
+      "ReleaseDate": "2026-09-27",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "匹配历史模板的固定端保留由实体拓扑恢复的真实中心线，端部组档案仅确定首尾与坐标轴约定，不再以厚度单侧点覆盖中心线。",
+        "历史端部满搭接存在宽向投影缺口时，沿原排宽方向整体移动补足固定排实际长度范围，随后仍严格复核链内接口、干涉及请求净距。",
+        "普通算法、输入Json、固定端位置、请求映射、校验容差与协议16均保持不变。"
+      ]
+    },
+    {
+      "Version": "1.7.0.13",
+      "ReleaseDate": "2026-09-27",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "匹配专用历史落位按源实体身份合并多始端共用同一中间链的重复遍历，保留每个始端和柜顶的完整接触校验；不同实体同位或共享实体落位冲突仍拒绝。",
+        "历史排端头先收集全部实际搭接接口，按共同覆盖外边界补齐或回收，避免下游接口截短共享I排而漏接另一始端。",
+        "普通路径算法、原始Json、Worker协议16及请求参数映射保持不变。"
+      ]
+    },
+    {
+      "Version": "1.7.0.12",
+      "ReleaseDate": "2026-09-24",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "固定叠排夹缝小于生成排厚且普通交错不可行时，按连续紧邻固定组件提供外侧夹排或单侧搭接候选；固定排不移动，接触仍关联外侧原始成员。",
+        "柜顶未占用固定夹缝小于1mm不生成垫块，从1mm起按实际搭接投影和净空补齐，不再因等根数或单根生成排漏补。",
+        "同一内部接口按最终长方体八顶点合并长宽交换造成的完全重复垫块，部分重叠仍拒绝。",
+        "内部垂直端腿缺少实际搭接面积时，在既有厚向位移副本内同步恢复满搭接端头；最终闭合只接受有限实体投影，拒绝无限延长线伪造搭接。",
+        "原始Json、Worker协议16、请求映射、绝缘阈值及搜索预算均保持不变。"
+      ]
+    },
+    {
+      "Version": "1.7.0.11",
+      "ReleaseDate": "2026-09-24",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "单根双始端水平连接排的贴合侧由真实固定始端厚向位置确定，避免零侧向时生成排未移动或被推入固定排。",
+        "固定连接排层位保持锁定，关联生成排贴合后将其余叠排成员按连接排实际包络向外让位，最终严格复核实体搭接和干涉。",
+        "最终实体已经通过完整复核时清除前轮联动留下的过时自相交诊断，不将中间失败显示为成功方案的当前错误。"
+      ]
+    },
+    {
+      "Version": "1.7.0.10",
+      "ReleaseDate": "2026-09-23",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "内部搭接增加跨成员穿透检查及实际厚面边界位移候选，不再因同索引层已贴合而漏掉相邻层重叠；自由内部I排可沿既有链传递位移，固定端保持锁定。",
+        "连接排首段贴面后复核近端斜过渡，必要时只后移近端转折点，消除斜段切入连接排。",
+        "全部铜排联动完成后，按最终实际位置重建始端连接排处的端部垫块，避免沿用移动前厚度导致垫块与生成排重叠。",
+        "按用户确认范围完成统一虚拟版本45/45样本验收；未修改Json、输入映射或请求绝缘，未合入未验证的候选及桥排层位实验。"
+      ]
+    },
+    {
+      "Version": "1.7.0.9",
+      "ReleaseDate": "2026-09-23",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "普通输出优先将可移动内部搭接端放入可容纳的叠排内侧缝隙；使用独立副本联动、补块及完整终检，失败保留原合格方案。",
+        "修复等规格内部搭接漏补垫块，并补齐内侧落位后同段相邻层之间的实际搭接间隙。",
+        "垫块每层不得超过相接生成搭接排的较薄厚度，超厚块拆成整厚层加剩余薄层；按全部相组固定始端、柜顶及实际生成排的全局最薄铜排，只有严格厚于该值的每块垫块计入最终ActualCopperLength。",
+        "协议和Json字段保持16及原结构，结果诊断报告内侧落位及计长垫块/总长前后对照。"
+      ]
+    },
+    {
+      "Version": "1.7.0.8",
+      "ReleaseDate": "2026-09-23",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "恢复固定连接排优先的端部联动：不满足I转N条件时，I排保持直线整体偏移，并向后续I排/非I排传递位移，不再无操作返回成功。",
+        "修复双始端4000A样本搜索已找到候选但连接排与生成排重叠、最终不发布的问题。固定连接排和原始搜索候选不动，保留搭接、干涉、绝缘终检及最后补垫块。"
+      ]
+    },
+    {
+      "Version": "1.7.0.7",
+      "ReleaseDate": "2026-09-23",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "修复异规格叠排实体化中刚性 I 排层位被旧模板锁死的问题：允许连续 I 排整体偏移并传递临时脱开量，由非 I 排吸收残差，最终正间隙补垫块；保留固定端、搭接、干涉和绝缘终检。",
+        "生成始端/中间/柜顶搭接排数量只在三者之间检查差值不超过 1，不受实际固定排根数限制。",
+        "同步当前输入适配：忽略旧 passVecs；单始端不因 end_pos 数量被误判为双始端，协议保持 16。"
+      ]
+    },
+    {
+      "Version": "1.7.0.6",
+      "ReleaseDate": "2026-09-22",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "Worker 失败候选的 NaN/Infinity 净距不再写入跨进程 Json，统一输出有限值 0，保留诊断消息，避免客户端先报 Infinity 解析错误。"
+      ]
+    },
+    {
+      "Version": "1.7.0.5",
+      "ReleaseDate": "2026-09-22",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "兼容缺失数量字段的旧分组 Json：单个始端合并 Box 带合法 end_pos 时恢复真实根数，避免编辑器导入再导出丢失叠排成员。",
+        "手动编辑器导出多始端时验证 end_pos 是否能沿排宽或非排厚横向轴拆分；不能合法拆分时保留独立 end_point，不再输出不可恢复的合并 Box。",
+        "继续保留端部角色、排规、叠排数量和实际搭接终检，不静默修复沿路径轴错误 end_pos。"
+      ]
+    },
+    {
+      "Version": "1.7.0.4",
+      "ReleaseDate": "2026-09-22",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "匹配方案垂直搭接末端复用通用算法交点外侧半个对方排宽的端点计算，过长回收、过短补齐，不移动固定排或新增路径。",
+        "按实际搭接面识别历史排参与接口的首尾端，保持原点列方向；始端、柜顶及内部垂直接口均执行端头位置复核。",
+        "发布前独立拒绝仍有搭接面积但端头超出规定边界的方案，继续验证最小段长、满搭接、绝缘盒与实体干涉。"
+      ]
+    },
+    {
+      "Version": "1.7.0.3",
+      "ReleaseDate": "2026-09-22",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "固定端模板统一端点与排宽/排厚坐标契约，柜顶刚体对齐按两端几何消解点列反向，避免旧预览宽向造成180度误旋转。",
+        "历史内部搭接支持I→N、自由中间I排联动及斜腿偏移；平行搭接只补足规定搭接长度，不延长到对方长排远端。",
+        "历史排内部终检按实际接触端面验证，不套用普通路径首尾点顺序；继续严格检查完整搭接、绝缘盒、净距与正体积干涉。"
+      ]
+    },
+    {
+      "Version": "1.7.0.2",
+      "ReleaseDate": "2026-09-22",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "方案库逐排落位锁定柜顶真实厚面，始端与内部接口只调整原排已有直腿，并补足完整搭接投影。",
+        "方案库专用终检逐层验证始端、柜顶和内部实际搭接面，按真实端段生成单侧绝缘盒并只与异组原始铜排校验干涉；缺失接口或绝缘盒拒绝发布。",
+        "隔离普通搜索输出的再次层位平移，避免方案库已贴合的历史铜排被回归调整重新拉开；协议字段保持 v16。"
+      ]
+    },
+    {
+      "Version": "1.7.0.1",
+      "ReleaseDate": "2026-09-22",
+      "ChangeLevel": "Major",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "方案库匹配评分和数据库只读加载不变；命中后独立映射历史逐根中间排，不再等待或复用普通路径搜索方案池。",
+        "每条历史链先按当前柜顶固定排刚体落位，再沿已有直腿调整始端位置与内部搭接接口，保持原排数量、规格、折点和原有点列方向。",
+        "历史排落位后执行实体搭接、障碍和跨组绝缘终检；无法满足规则的候选明确淘汰，不能回退为通用路径，最终才补实际厚向垫块。",
+        "只开方案库时不启动普通搜索；同时开启时两类方案仍独立实时发布，协议字段保持 v16。"
+      ]
+    },
+    {
+      "Version": "1.6.0.1",
+      "ReleaseDate": "2026-09-22",
+      "ChangeLevel": "Major",
+      "Compatibility": "HostUpdateRequired",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "方案库请求新增 DatabasePath；Worker 在独立进程只读加载指定 SQLite 匹配库摘要，仅查询命中候选的完整快照并提取历史路径模板。",
+        "同一次 SolveRequest 内并行运行普通搜索和方案库重算，分别实时发布完整方案；界面不再读取匹配数据库或发起二阶段求解。",
+        "方案库结果新增 CandidateProfileJson 供界面显示映射，独立匹配窗口改为只接收 Worker 重算后方案并预览；匹配数据库错误明确报告。",
+        "Worker 直接引用既有数据库及纯数据拓扑提取组件，并打包 SQLite 原生运行库；协议升级至 16。"
+      ]
+    },
+    {
+      "Version": "1.5.0.45",
+      "ReleaseDate": "2026-09-21",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 15,
+      "Changes": [
+        "端部叠排先选择与始端排、柜顶排或双始端连接排直接搭接的成员作为主排，再将其余成员端头投影到主排最终端面齐平。",
+        "双始端连接排延长完成后传播主搭接端面，垫块继续在端头齐平之后生成，避免按参差端头分别补块。",
+        "1AA808 3200A-规格不同-19绝缘、25AA7(双始端侧进)、#1专变 3200A 与 4P14P1 虚拟首方案回归通过；保持协议版本 15。"
+      ]
+    },
+    {
+      "Version": "1.5.0.44",
+      "ReleaseDate": "2026-09-21",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 15,
+      "Changes": [
+        "异规格端部实体化后按实际排宽补足平行满搭接，双始端关联生成排必须延伸到连接排实际外侧边界。",
+        "最终输出新增直 I 排首尾搭接区域正面积重叠门禁，并拒绝生成排或连接排与本组固定始端、柜顶排的正体积重叠。",
+        "1AA808 3200A-规格不同-19绝缘虚拟回归中，双始端端头短缺归零，单始端 80 mm 实际排宽恢复完整搭接；保持协议版本 15。"
+      ]
+    },
+    {
+      "Version": "1.5.0.43",
+      "ReleaseDate": "2026-09-21",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 15,
+      "Changes": [
+        "方案库匹配不再按方案 Id 或方案名称提前排除候选，允许目标使用同名或同源记录。",
+        "同名和同源候选仍必须经过整体端部几何评分、当前固定端路径重算、搭接、干涉和绝缘终检。",
+        "保持协议版本 15 及方案库候选完整重算、失败隐藏和取消清理语义不变。"
+      ]
+    },
+    {
+      "Version": "1.5.0.42",
+      "ReleaseDate": "2026-09-21",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 15,
+      "Changes": [
+        "快速正向 XYZ 候选在形状压缩前保留三轴临界坐标的最小值和最大值少量边界样本，边界样本与普通候选一样进入完整实体、搭接、绝缘和转换校验。",
+        "反向遍历和扩展候选不增加该快速边界预算；首个完整方案发布后的最短/最长后台优化样本规则保持不变。",
+        "保持协议版本 15 及原有最终实体、搭接和绝缘门禁不变。"
+      ]
+    },
+    {
+      "Version": "1.5.0.41",
+      "ReleaseDate": "2026-09-21",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 15,
+      "Changes": [
+        "候选池、优化候选及多组组合排序统一以实际铜排展开长度为首要依据，SearchPriority 仅作为同长稳定次序，避免较短路径被双始端桥接优先级延后。",
+        "双始端共同固定排的水平搭接优化不再因某一始端排中心超出区间而提前淘汰；允许生成排先按短路径搭接，再由连接排沿排长方向延长并完成垂直搭接，最终实体覆盖和绝缘门禁保持不变。",
+        "保持协议版本 15 及原有最终实体、搭接和绝缘门禁不变。"
+      ]
+    },
+    {
+      "Version": "1.5.0.39",
+      "ReleaseDate": "2026-09-20",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 15,
+      "Changes": [
+        "异规格通用骨架搜索在通用绝缘距离低于 30 mm 时不再叠加排厚迁移预留，避免 19 mm 等历史输入在候选池阶段被提前淘汰；30 mm 及以上仍保留必要的层位迁移预留。",
+        "异规格通用候选继续在最终真实分段实体化、搭接、干涉和请求绝缘距离复核后才允许发布，恢复 1AA808 规格不同样本的首方案搜索。",
+        "补充异规格低于 30 mm 与 30 mm 及以上通用绝缘搜索回归，保持协议版本 15。",
+        "新增通用绝缘距离与搭接面绝缘距离两层输入；旧 insulation_clearance/space 继续作为通用距离，新增 lap_insulation_clearance 默认 35 mm。",
+        "搭接面采用单侧绝缘膨胀长方体与另一侧原始铜排的成对干涉校验，绝缘长方体不再参与后续膨胀或绝缘盒之间的重复计算。",
+        "协议版本升级为 15，保留缺少搭接面字段的旧请求兼容默认值。"
+      ]
+    },
+    {
+      "Version": "1.5.0.36",
+      "ReleaseDate": "2026-09-19",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 14,
+      "Changes": [
+        "修复合并式双始端 L/I 连接排输出后处理：保留始端成员索引，连接排本体保持固定，只从第二段统一调整后续叠排，避免连接排与后续搭接排厚向交错；短 I 排不满足 I→N 条件时保持 I 形并沿搭接链联动偏移。",
+        "恢复垂直双始端的普通 L 形实体路径候选：L 段作为首段实体路径而非水平连接排附件，补齐物理分段索引，完整搜索和首发偏好均保留该拓扑；垂直无连接排输出校验不再错误要求 1/2 根连接排。",
+        "对端部厚差叠排的内部垂直搭接增加最小端段联动修正：仅在实际缺口小于一个搭接排宽余量且属于内部边界时，沿搭接段已有折点延长最短缺口，重新执行完整搭接/干涉校验；修正失败则回滚，不放宽搭接门禁。",
+        "普通同规格路径遇到始端/柜顶固定排厚度不同且单段 I 排两端层位不一致时，保留内部搭接侧层位，避免整体推向终端造成相邻排干涉；终端剩余厚差继续交给既有实体/垫块后处理。",
+        "修正内部垂直搭接端部留量门禁：按相邻实际物理段各自排宽的一半加叠排折弯余量计算，避免把可由内部 N/M 转换处理的候选按完整排宽提前淘汰；终端固定排搭接门禁保持不变。",
+        "Keep multi-start horizontal candidates when the generated lap lies outside the fixed-start width envelope; defer bridge extension, short-I overlap and terminal layer correction to final output processing.",
+        "Preserve expected double-start bridge member indices across solution snapshots and validate one bridge for one physical member, or two bridges for two or more members.",
+        "Allow constrained I-to-N output regression and defer short-I zero-length/terminal-overlap cases to the final physical gate.",
+        "Restore the constrained straight-I-to-N output conversion: convert only when the actual terminal offset is greater than the I-bar thickness and the I-bar is longer than two width-plus-bend reserves; otherwise preserve the straight I shape.",
+        "Add virtual regression coverage for the strict thickness boundary and minimum-length boundary so equal-thickness and short I bars cannot be converted to N.",
+        "Keep successful historical route groups whose direction/topology was rebuilt against the current fixed ends, even when another route group of the same candidate is blocked by a current support or clearance constraint.",
+        "Merge those direction-preserving historical groups into a complete ordinary solution only after the full multi-group output, lap, stack, interference and clearance gates pass; otherwise keep the complete ordinary fallback and never publish a partial candidate.",
+        "Run the complete historical repair ladder before fallback so #13 scheme-library matching can publish at least three candidates that retain validated historical route groups."
+      ]
+    },
+    {
+      "Version": "1.5.0.27",
+      "ReleaseDate": "2026-09-18",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 14,
+      "Changes": [
+        "The historical rebuild now treats the persisted route as an axis multiset: it also enumerates rotations of the historical axis order with signs re-derived from the current displacement, because a rotated order moves the bend points and can clear a local overlap with an end support block that no whole-path offset can."
+      ]
+    },
+    {
+      "Version": "1.5.0.26",
+      "ReleaseDate": "2026-09-18",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 14,
+      "Changes": [
+        "Skip the expensive historical repair ladder (axis-skeleton enumeration, end-leg ladder and offset/local-separation repair) while an ordinary solution pool is already available for the candidate, so the history-first rebuild stays cheap and the first scheme-library result returns in about 1.5 s again."
+      ]
+    },
+    {
+      "Version": "1.5.0.25",
+      "ReleaseDate": "2026-09-18",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 14,
+      "Changes": [
+        "Rebuild scheme-library candidates from the persisted historical path first (RebuildFromHistoricalPath): the historical axis order is re-oriented to the current displacement, end legs keep the required lap-plus-bend length with the lap sliding inside the fixed-end allowed range, short displacement components are handed to the end lap, and failures are repaired by local separation or graded offsets.",
+        "Fall back to the ordinary solution pool selection whenever the historical rebuild cannot complete every route, so a matched candidate still publishes a complete previewable solution instead of being dropped."
+      ]
+    },
+    {
+      "Version": "1.5.0.24",
+      "ReleaseDate": "2026-09-17",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 14,
+      "Changes": [
+        "Run the ordinary search only when the algorithm output is requested or when a scheme-library candidate actually carries a route template, so the summary-only scheme-library stage no longer waits for a full search before the host can start the rebuild stage.",
+        "Bound the ordinary search to the scheme-library pool ready budget when only the scheme library is requested, so the Worker Completed message is no longer delayed by an unbounded production search.",
+        "Publish scheme-library match ids immediately in the summary-only stage instead of waiting for a solution pool that this stage does not use."
+      ]
+    },
+    {
+      "Version": "1.5.0.23",
+      "ReleaseDate": "2026-09-17",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 14,
+      "Changes": [
+        "Publish scheme-library candidates in two passes: the first pass rebuilds and publishes as soon as the ordinary search has published a few complete solutions (or a short ready budget expires), instead of waiting for the whole search to finish.",
+        "After the ordinary search completes, run a second pass that fills in candidates which failed in the first pass, using the complete solution pool; candidates already published are never published twice.",
+        "Collect published ordinary solutions from the search progress stream so the scheme-library pool is available incrementally; algorithm progress reporting is unchanged."
+      ]
+    },
+    {
+      "Version": "1.5.0.22",
+      "ReleaseDate": "2026-09-17",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 14,
+      "Changes": [
+        "Clamp start terminal lap endpoints to the contacted fixed busbar boundary after the shared start-lap length alignment, so a stack member whose bend interior sits one cabinet-top layer further out cannot protrude past the fixed busbar end face.",
+        "Treat the fixed busbar width face as the boundary for perpendicular start laps and the busbar length face for parallel start laps; only pull back overshoot, never extend, and keep the lateral position unchanged.",
+        "Keep the correction inside final output geometry post-processing; candidate search, sorting and insulation decisions are unchanged."
+      ]
+    },
+    {
+      "Version": "1.5.0.21",
+      "ReleaseDate": "2026-09-16",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 14,
+      "Changes": [
+        "Exclude same-source and same-name records from scheme-library candidates so a customer scheme cannot validate itself.",
+        "Run one ordinary current-terminal search per Worker request and let scheme-library candidates reuse its fully validated solutions; this prevents a residual candidate pool from producing false geometry or starving the ordinary scheduler.",
+        "Align each matched route through its paired terminal frame, use the transformed historical path only for direction preference, regenerate all middle bars with ordinary lap/clearance/interference rules, and publish only candidates passing the complete output validator."
+      ]
+    },
+    {
+      "Version": "1.5.0.12",
+      "ReleaseDate": "2026-09-14",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 14,
+      "Changes": [
+        "Run scheme-library candidate rebuilds as short-lived asynchronous tasks instead of retaining a LongRunning scheduler thread across all candidates.",
+        "Return candidate task capacity to ordinary algorithm search immediately after each scheme-library result is published."
+      ]
+    },
+    {
+      "Version": "1.5.0.11",
+      "ReleaseDate": "2026-09-14",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 14,
+      "Changes": [
+        "Use route-specific terminal frame alignment when rebuilding scheme-library paths.",
+        "Validate every persisted interface center against transformed busbar segment bounds before publishing middle bars."
+      ]
+    },
+    {
+      "Version": "1.5.0.10",
+      "ReleaseDate": "2026-09-14",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 14,
+      "Changes": [
+        "新增 EnableAlgorithmCalculation 请求开关；关闭普通算法时仍通过同一 SolveRequest 执行方案库匹配和候选中间排路径重算。",
+        "路径生成窗口的方案库单独模式不再使用只有匹配评分的旧 SchemeLibraryMatchRequest，因此每个候选都可以返回 GeneratedRouteSolution 并进入右侧预览列表。"
+      ]
+    },
+    {
+      "Version": "1.5.0.9",
+      "ReleaseDate": "2026-09-14",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 14,
+      "Changes": [
+        "SolveRequest 内的普通算法搜索与方案库匹配改用独立 LongRunning 调度槽位，避免默认线程池繁忙时方案库任务长期得不到执行。",
+        "方案库候选逐条隔离重算异常并继续发布后续候选；失败候选也回传诊断方案行，不再因单个候选异常导致右侧结果全部为空。",
+        "方案库候选路径模板随 SolveRequest 进入 Worker，并使用当前始端/柜顶固定端重算中间排。",
+        "中心线转换无法直接复原历史非连续链时，使用已通过模板完整性和变换校验的中间排中心线保底输出，仍不复制候选固定端。",
+        "SchemeLibrarySolutionPublished 返回 Worker 重算后的 LinkageRouteSolution；宿主右侧结果按算法路径长度排序。"
+      ]
+    },
+    {
+      "Version": "1.5.0.6",
+      "ReleaseDate": "2026-09-13",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 13,
+      "Changes": [
+        "方案库组级匹配正式在 Worker 内执行，宿主只提供独立匹配库的纯数据快照。",
+        "新增独立方案库匹配请求入口，旧方案匹配窗口也通过 Worker 执行评分，不再调用宿主内匹配服务。",
+        "新增 SchemeLibrarySolutionPublished 消息，宿主按返回方案 Id 读取模板快照并生成预览。",
+        "匹配数据库与原始客户数据库物理分离，Worker 不读取数据库或 SolidWorks。",
+        "新增 EnableSchemeLibraryMatching 请求开关，默认开启；宿主可在算法 Worker 搜索期间并行匹配数据库方案库，方案库候选按完成顺序增量输出并与算法方案分栏显示。",
+        "方案库匹配保持在宿主数据库层，不将数据库或 SolidWorks 依赖引入 Worker；关闭开关时 Worker 仅执行算法方案搜索。",
+        "禁用 U 型时按同一物理铜排内任意前后反向平行段识别回折，不再因中间存在额外折点或分段而漏检。",
+        "回折拆分选择实际长度足够的中间段建立水平平行满搭接，并通过实际搭接面复核；搭接不足的候选直接淘汰。"
+      ]
+    },
+    {
+      "Version": "1.5.0.1",
+      "ReleaseDate": "2026-09-10",
+      "ChangeLevel": "Major",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 13,
+      "Changes": [
+        "初始 Json v3 新增 allow_u_shape_routes，缺失或 false 时把完整及局部 U 型输出拆成满足实际排规和满搭接的双 L 型排；true 时保留 U 型及最小跨距规则。",
+        "双始端水平搭接取消始端自身排宽窗口裁切，连接排保持方向和层位并按实际搭接区域独立延长两端；普通直 I 排不再转 N 或参与刚性联动偏移。",
+        "等叠排数但排厚不同的内部搭接按成员局部调整可折弯排，并后移过渡点保证实际排宽折弯余量；普通 N/M 不再误判成 U 型。",
+        "最终发布统一复核叠排、连接排、搭接、正体积干涉、请求绝缘距离和 U 型策略，失败候选在任何时限后均不得发布；新建数据默认绝缘距离调整为 35 mm。"
+      ]
+    },
+    {
+      "Version": "1.4.0.60",
+      "ReleaseDate": "2026-09-10",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 12,
+      "Changes": [
+        "输入障碍物改为独立实体角色，只执行正体积进入限制，不再参与相间绝缘距离、净距优化或最小净距显示。",
+        "最终输出增加障碍物与终端禁区独立相交门禁，并在实际净距重算后同步刷新最短实体面组诊断。",
+        "显式容纳范围继续只执行实体盒内约束；原始 v3 Json 与 Worker 协议字段保持不变。"
+      ]
+    },
+    {
+      "Version": "1.4.0.59",
+      "ReleaseDate": "2026-09-10",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 12,
+      "Changes": [
+        "新增优先全部方案搜索参数：跳过首方案快速层和自动总时限，先穷尽原绝缘普通路径，再启动低净距补充搜索。",
+        "新增运行中优先优化命令：停止新方案及低净距枚举，把全部算法工作线程用于持续优化最终验证通过的前10套方案。",
+        "优化结果只在每相总长缩短且重新通过搭接、叠排、连接排、正体积干涉和实际绝缘距离终检后发布。"
+      ]
+    },
+    {
+      "Version": "1.4.0.58",
+      "ReleaseDate": "2026-09-10",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 11,
+      "Changes": [
+        "修正多始端连接排输出副本入口缺少实际始端参数造成的编译错误，并由候选调用方显式传入对应逻辑组始端。"
+      ]
+    },
+    {
+      "Version": "1.4.0.57",
+      "ReleaseDate": "2026-09-10",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 11,
+      "Changes": [
+        "新增统一 U 型中间距离门禁，公共倍率固定为 4，中间跨距必须严格大于 4×(实际排厚+折弯半径)。",
+        "路径枚举和最终实际叠排复核共用该规则，并扫描四段及以上同一平面路径中嵌入的任意局部 U。"
+      ]
+    },
+    {
+      "Version": "1.4.0.56",
+      "ReleaseDate": "2026-09-10",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 11,
+      "Changes": [
+        "多始端最终输出及十轮回归改用实际固定始端与生成首段方向判定水平搭接，垂直搭接不再因合并连接段与后一物理段平行而误执行水平层位偏移。",
+        "最终绝缘净距复算只纳入实际叠排铜排和双始端铜连接排，SupportBlock 绝缘垫块不再被误当成带电铜排实体。"
+      ]
+    },
+    {
+      "Version": "1.4.0.55",
+      "ReleaseDate": "2026-09-10",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 11,
+      "Changes": [
+        "单始端水平居中开关开启时继续保留垂直搭接姿态，并保留可在实体转换前拉回中心的合法偏心水平路径提案，避免完整组合方案被过早删除。",
+        "可转换的偏心水平提案在候选校验前移动始端前缀到固定排排宽中心，由后续首个排宽向线段吸收位移；候选裁剪同时保留中心与可转换偏心位置，最终水平居中门禁保持不变。"
+      ]
+    },
+    {
+      "Version": "1.4.0.54",
+      "ReleaseDate": "2026-09-10",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 11,
+      "Changes": [
+        "单始端水平居中开关关闭时，最终输出只修正真实正体积重叠，不再强制按双始端夹持层位整体偏移；开关开启时保持原有两侧夹持规则。",
+        "合并为首段实体的多始端连接排仅在首段与下一段排长方向平行的水平搭接时统一首段长度；垂直搭接保留原有交叉位置，不再执行水平端点传播。"
+      ]
+    },
+    {
+      "Version": "1.4.0.52",
+      "ReleaseDate": "2026-09-09",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 11,
+      "Changes": [
+        "低净距补充搜索改为按配置步长逐级降低；首个种子形成后延迟启动 +5 mm 和 +10 mm 净距提升分流，提升目标未达到但实际净距满足原要求的方案按正常方案发布。",
+        "快速候选池全部齐全但组合停滞时补报种子分流就绪信号，并按目标净距差值自动补足优化轮数，避免低净距种子提升到原要求时提前停止。",
+        "U 型路径在候选阶段和最终实际几何阶段补充折弯切线留量校验，按 (BendingRadius + BusbarThickness) / tan(内角/2) 检查相邻段，避免折弯距离不足的路径进入方案。",
+        "统一规格路径转换时锁定连续物理分段索引，避免最终内部搭接闭合校验将有效垂直始端方案误判为异规格输出。",
+        "同侧不同逻辑组的归一不可伸出方向差异达到 0.1 时跳过统一整体禁区，允许混合方向始端继续独立垂直搭接搜索。",
+        "直 I 路径预留按两端实际搭接排宽之和的一半计算，不再把折弯半径混入直 I 的源路径长度。",
+        "最终输出统一执行十轮联动后的连接排、叠排、搭接闭合和正体积干涉门禁；有成功方案时不再追加失败方案，联动阶段不提前生成厚差垫块。",
+        "新增最终发布前的实际叠排数量、规格以及双始端连接排位置和关联成员校验，结构不一致的方案不会发布或写入方案库。",
+        "异规格路径仅在始端与柜顶排宽不同、物理段达到三段且中间存在单段直 I 时，按两侧实际搭接排宽预留 I 排长度；同规格、少于三段或中间含折弯的路径保持原有搜索逻辑。",
+        "恢复异规格请求的通用兜底路径搜索：先以通用规格保留完整候选，再在终端输出阶段按始端、中间和柜顶真实规格实体化，避免有效路径因过早物理规格校验被筛掉。",
+        "异规格实际主分支与通用兜底分支不再在首个物理合格方案发布时互相取消；两条分支完成搜索后继续执行后台最短化，并保留首方案后发现的更短候选。",
+        "普通模式已有成功方案时不再提前结束组合搜索阶段，继续完成浅层、定向修复、深层候选与优化收敛；仅用户取消或启用的搜索时限到达时停止。",
+        "无中间间距的 2↔1 异规格内部搭接先沿排厚方向闭合可消除缝隙，仅移动可分段 N 排，避免正常两根夹一根的层位被扩大并生成多余垫块。"
+      ]
+    },
+    {
+      "Version": "1.4.0.42",
+      "ReleaseDate": "2026-09-08",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 11,
+      "Changes": [
+        "快速候选池不再因宽度重叠候选提前结束；每组继续枚举原始 XYZ 直排及其合法 N/M 斜排转换，双始端开关仅约束对应端部姿态，不再成为直排候选的总开关。",
+        "最终实体正体积重叠继续走十轮联动偏移和复查；十轮后仍无法消除时保留首方案并输出明确诊断，不再把残余重叠直接当作无方案失败。",
+        "虚拟首方案回归与生产输出口径保持一致：只有绝缘距离不足或缺少真实物理实体才淘汰，后处理重叠诊断不改变方案成功状态。"
+      ]
+    },
+    {
+      "Version": "1.4.0.40",
+      "ReleaseDate": "2026-09-08",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 11,
+      "Changes": [
+        "异规格方案统一以通用排规搜索中心线骨架，并在同一终端输出管线中按始端、中间、柜顶真实排宽、排厚和叠排数量实体化。",
+        "终端输出结果与普通搜索 Top-N 分离保留，异步实体化不再因来源骨架被搜索榜淘汰而丢失有效真实规格方案。",
+        "真实规格输出和瓶颈净距优化增加物理段身份校验，禁止通用中间排规实体回退并伪装成成功方案。",
+        "实体化后的真实规格候选重新执行净距优化与最终绝缘复核，不针对单个测试文件、项目名或固定坐标增加特殊分支。"
+      ]
+    },
+    {
+      "Version": "1.4.0.39",
+      "ReleaseDate": "2026-09-08",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 11,
+      "Changes": [
+        "修正单始端一根固定排配两根始端叠排的层位：固定始端必须位于两根生成排之间，禁止把整组叠排偏移到同一侧。",
+        "两侧夹持中心距按固定排厚、对应生成排厚和始端附加间距计算，长 I 排仅移动始端搭接段并保留内部搭接端位置。",
+        "夹持调整完成后才按最终真实夹缝重建垫块；没有实体缝隙时不生成多余垫块。",
+        "使用 1AA808 3200A-规格不同-19绝缘数据验证 LEGACY-4 两根生成排分居固定始端两侧且无正体积干涉，方案最小绝缘为 20 mm。"
+      ]
+    },
+    {
+      "Version": "1.4.0.38",
+      "ReleaseDate": "2026-09-08",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 11,
+      "Changes": [
+        "修复单始端水平搭接在异规格实体化后叠排穿入固定始端的问题，最终闭环增加单始端固定排与生成排的正体积重叠复查。",
+        "单始端同侧任一层需要避让时，同侧叠排保持相对层距联动移动；长 I 排一致转 N 并只移动始端搭接段，内部搭接端保持不动。",
+        "单始端层位调整后重新生成端部垫块，使垫块按最终真实缝隙贴合且不与调整后的铜排重叠。",
+        "使用 1AA808 3200A-规格不同-19绝缘数据验证单始端组无实体重叠且最终绝缘满足 19 mm。"
+      ]
+    },
+    {
+      "Version": "1.4.0.37",
+      "ReleaseDate": "2026-09-08",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 11,
+      "Changes": [
+        "最终输出回归改为先执行多始端连接排贴合与内部搭接校正，再复查搭接完整性和正体积干涉，不再因当前无干涉而跳过本轮贴合。",
+        "多始端连接排侧在每轮联动后重新按固定连接排排列直接搭接排和同组外侧叠排，可同时拉回缝隙层和推出重叠层。",
+        "内部搭接增加按真实排厚、搭接区域、同组相邻层和最终垫块组成的连通链复查；移动无法闭合的缝隙仅在全部偏移完成后补垫块。",
+        "异规格水平始端搭接优先采用始端排宽与相邻排宽的绝对差进行宽向偏移，并受固定始端或连接排搭接范围约束。"
+      ]
+    },
+    {
+      "Version": "1.4.0.36",
+      "ReleaseDate": "2026-09-08",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 11,
+      "Changes": [
+        "多始端连接排改为在附件创建时按固定始端实际搭接段确定排宽位置，禁止实体化后再依据生成排反向移动连接排。",
+        "异规格水平搭接在实体化后按实际排宽差计算始端搭接排宽向合法区间，并限制其始终位于单始端固定排或多始端连接排的有效搭接范围内。",
+        "单始端 I 排仅在与下一物理段水平搭接且严格长于 2×排宽+2×折弯余量时转 N；垂直接口保持刚性，避免误转换产生内部实体重叠。",
+        "新增异规格宽向区间、严格 I 转 N 门槛回归，并用 1AA808 3200A-规格不同-19绝缘验证约 10 秒发布最小绝缘 20 mm 的无干涉方案。"
+      ]
+    },
+    {
+      "Version": "1.4.0.35",
+      "ReleaseDate": "2026-09-08",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 11,
+      "Changes": [
+        "修复异规格实体链包含刚性 I 排时，始端层位强制向柜顶传播导致输出联动校正长时间占用、首方案无法及时发布的问题。",
+        "异规格链仅在全部物理段均可折弯时从始端单向传播；含刚性 I 排时恢复双端协调，同时保留真实排宽落位、多始端连接排和最终绝缘复核规则。",
+        "新增刚性 I 排传播门控回归，并用 1AA808 3200A-规格不同-19绝缘数据验证 70 秒内发布满足绝缘距离的方案。"
+      ]
+    },
+    {
+      "Version": "1.4.0.34",
+      "ReleaseDate": "2026-09-08",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 11,
+      "Changes": [
+        "修正异规格实体化层位优先级：真实始端搭接层位从始端向中间传播，不再由柜顶侧反向覆盖；刚性始端段优先保留始端贴合坐标，柜顶段保留柜顶外部坐标。",
+        "恢复端部实际排宽后，若完整排宽投影越出所接触固定排的有限搭接段，则仅对排宽不同于搜索规格的生成实体沿自身排宽方向移动到最近合法区间，再按实际固定排宽修正端点和折弯余量；同规格路径搜索不变。",
+        "新增始端刚性排贴合优先和 50×100 mm 异规格完整搭接区域回归。"
+      ]
+    },
+    {
+      "Version": "1.4.0.33",
+      "ReleaseDate": "2026-09-08",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 11,
+      "Changes": [
+        "路径搜索继续统一使用中间排规格；普通中心线成功后只在已有物理段上恢复始端、中间、柜顶实际排宽、排厚和叠排数量，不因异规格增加路径段。",
+        "最终输出先对实体排和搭接段执行最多 10 轮联动回归，全部可行偏移完成后才按最终真实余隙补垫块；偏移、垫块及正体积干涉不得淘汰方案，只有最终实际绝缘距离不足才允许判定方案失败。",
+        "内部垫块按其他实体排已经占用的搭接区域裁剪；厚向缝隙已被实体排连续填满时移除重复垫块，避免异规格 3↔2↔3 输出产生正体积干涉。",
+        "修正多始端第二连接排相邻反侧成员选择和连接排包络侧层位，避免内外层交叉。"
+      ]
+    },
+    {
+      "Version": "1.4.0.32",
+      "ReleaseDate": "2026-09-08",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 11,
+      "Changes": [
+        "修复多始端水平连接排层位调整误平移整根中间排的问题：已有折弯排只移动始端搭接直段并由后续折弯吸收位移；直 I 排仅在实际长度严格大于 2×排宽+2×折弯余量时转换为 N 排并保持远端不动，长度不足时整根平移并沿同一成员的后续搭接排逐段传播，直到可折弯段吸收，内部厚向余隙继续按实际搭接面生成垫块。新增三方案专项实体复核，同时校验同一成员内部物理排、外侧叠排和连接排均无正体积干涉。"
+      ]
+    },
+    {
+      "Version": "1.4.0.31",
+      "ReleaseDate": "2026-09-08",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 11,
+      "Changes": [
+        "修复主路径多始端连接排输出层位修正误移动垂直搭接段的问题；现在仅当连接排末段与下一搭接段的实际排长方向平行时才执行叠排包络外移，垂直搭接保留搜索阶段确定的交叉搭接区域。新增垂直搭接厚向坐标不变回归，并保留水平连接排方案的独立输出修正。"
+      ]
+    },
+    {
+      "Version": "1.4.0.30",
+      "ReleaseDate": "2026-09-08",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 11,
+      "Changes": [
+        "修复多始端连接排输出后处理误将整组水平搭接候选重新求解并淘汰的问题；无全局端部输出选项时，仅对实际包含附件式或主路径式连接排的候选创建输出深拷贝，分别修正连接排搭接层位与主路径连接排后续段包络，其余候选保持原搜索结果。连接排修正失败只记录诊断并继续按最终实体复算干涉和净距。"
+      ]
+    },
+    {
+      "Version": "1.4.0.29",
+      "ReleaseDate": "2026-09-08",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 11,
+      "Changes": [
+        "修复后台净距优化及绝缘不足候选发布链漏做多始端连接排输出后处理的问题；所有包含水平多始端连接排的普通、最短化、净距优化和降级方案现在统一先按连接排外侧端面调整直接搭接排及外侧叠排，再复算最终实体净距。新增全时段逐方案结构回归，可捕获原中心距 5 mm、应为 9 mm 的 4 mm 正体积重叠；路径搜索与普通无连接排方案不变。"
+      ]
+    },
+    {
+      "Version": "1.4.0.28",
+      "ReleaseDate": "2026-09-08",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 11,
+      "Changes": [
+        "统一多始端水平连接排的最终输出层位联动处理：连接排所在端不生成垫块，以连接排外侧端面为基准优先放置直接搭接排，再将同侧后续叠排按原顺序逐根无间隙贴合；该规则不区分 I、L、N、M 或 XYZ 路径形状，并最多执行 10 轮‘实体干涉复查→层位回归调整’。正体积干涉不再直接淘汰最终方案，10 轮后仍未消除时保留方案并返回明确错误信息，最终绝缘距离继续按实际实体复算，路径搜索和普通中间搭接不变。"
+      ]
+    },
+    {
+      "Version": "1.4.0.27",
+      "ReleaseDate": "2026-09-08",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 11,
+      "Changes": [
+        "修复双始端 I/L 实体连接排与后续搭接排按成员逐层交错的问题；两根连接排现在按完整叠排包络的实际外侧端面与后续搭接排贴合，普通路径搜索和中间搭接规则保持不变。"
+      ]
+    },
+    {
+      "Version": "1.4.0.26",
+      "ReleaseDate": "2026-09-08",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 11,
+      "Changes": [
+        "路径搜索阶段恢复使用中间排通用排宽、排厚、叠排数量和折弯余量进行轴线枚举、端部候选边界及搜索转换；输出实体仍按始端、中间、柜顶真实分段规格生成，并完整保留多始端连接排规则。"
+      ]
+    },
+    {
+      "Version": "1.4.0.25",
+      "ReleaseDate": "2026-09-07",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 11,
+      "Changes": [
+        "异规格实体化后按原始方向链合并水平搭接物理段，统一单根柜顶/多根始端规格；双始端连接排始终继承始端宽厚，柜顶单根相邻时按连接排宽度搭接，删除拆分冗余 I 段并保留真实 N/M 与障碍转折。"
+      ]
+    },
+    {
+      "Version": "1.4.0.23",
+      "ReleaseDate": "2026-09-07",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 11,
+      "Changes": [
+        "修复无异规格始端成员索引时未执行始端搭接外侧端面对齐的问题；所有 StackMembers 始端端点现在统一按连接排实际外侧边界处理。"
+      ]
+    },
+    {
+      "Version": "1.4.0.22",
+      "ReleaseDate": "2026-09-07",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 11,
+      "Changes": [
+        "始端搭接排末端统一锁定到连接排外侧搭接边界平面，过长或过短叠排成员均按同一实际端面修正，避免端点不共面导致无用垫块。"
+      ]
+    },
+    {
+      "Version": "1.4.0.21",
+      "ReleaseDate": "2026-09-07",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 11,
+      "Changes": [
+        "重构多始端输出后处理：垂直搭接删除连接排，水平非 I 排贴合后不再生成连接排等长垫块；连接排完整垫块逻辑移除，保留 I 排和真实局部夹缝补偿。"
+      ]
+    },
+    {
+      "Version": "1.4.0.20",
+      "ReleaseDate": "2026-09-07",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 11,
+      "Changes": [
+        "修复始端垂直短搭接输出统一端面未覆盖部分叠排的问题；实体化阶段对长 I 排插入两处 N 排过渡点，短 I 排保持刚性并沿既有端部规则完成局部延长。"
+      ]
+    },
+    {
+      "Version": "1.4.0.19",
+      "ReleaseDate": "2026-09-07",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 11,
+      "Changes": [
+        "水平多始端搭接输出改为按始端排厚度两侧生成连接排；实体化阶段分别偏移两侧始端搭接排并传播到其他叠排成员，垂直搭接路径搜索保持不变。"
+      ]
+    },
+    {
+      "Version": "1.4.0.18",
+      "ReleaseDate": "2026-09-07",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 11,
+      "Changes": [
+        "输出阶段按始端实际选中的最近搭接边定位独立双始端连接排，修正固定排点序起点与真实出口边不一致时的端部小间隙；同时补齐始端成员端点传播的编译回归。"
+      ]
+    },
+    {
+      "Version": "1.4.0.17",
+      "ReleaseDate": "2026-09-07",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 11,
+      "Changes": [
+        "统一同组始端搭接排首段长度；对连接排合并为主路径第一物理段的 I/L 分支同步修正后续始端搭接段，并在最终几何统一后生成垫块。"
+      ]
+    },
+    {
+      "Version": "1.4.0.16",
+      "ReleaseDate": "2026-09-07",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 11,
+      "Changes": [
+        "始端搭接排按每根实际接触固定排宽度计算最低垂直搭接端点，并统一到同组共同端面；连接排需要更远端面时同步传播到全部始端搭接排，避免垫块依据不一致的搭接高度生成。"
+      ]
+    },
+    {
+      "Version": "1.4.0.15",
+      "ReleaseDate": "2026-09-07",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 11,
+      "Changes": [
+        "双始端连接排确定始端垂直搭接端面后，同组其他始端搭接排同步对齐到相同端面，确保叠排搭接高度一致并使垫块按最终实体几何生成。"
+      ]
+    },
+    {
+      "Version": "1.4.0.14",
+      "ReleaseDate": "2026-09-07",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 11,
+      "Changes": [
+        "按实际端部连接排宽度对齐双始端连接排实体，使每个实际接触固定排的垂直重合宽度达到连接排自身宽度；该输出几何修正不参与候选淘汰，并同步刷新最终实体展开总长。"
+      ]
+    },
+    {
+      "Version": "1.4.0.6",
+      "ReleaseDate": "2026-09-06",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 11,
+      "Changes": [
+        "多始端同组仅有一根中间排时，双始端连接排统一使用柜顶搭接排的排宽和排厚。"
+      ]
+    },
+    {
+      "Version": "1.4.0.5",
+      "ReleaseDate": "2026-09-06",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 11,
+      "Changes": [
+        "修正两根排边界处理：先锁定始端与柜顶固定排，再按实际搭接排厚度和叠排间隙调整另一根排。"
+      ]
+    },
+    {
+      "Version": "1.4.0.4",
+      "ReleaseDate": "2026-09-05",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 11,
+      "Changes": [
+        "垫块、端部附件及异规格贴合后处理失败不再淘汰普通路径候选；候选继续进入多组组合和优化，后处理仍在输出阶段重试，失败时保留错误诊断方案。"
+      ]
+    },
+    {
+      "Version": "1.4.0.3",
+      "ReleaseDate": "2026-09-05",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 11,
+      "Changes": [
+        "修复双始端连接排识别与厚差垫块搭接区域计算；仅实际同时搭接两根固定始端的生成成员建立连接排，垫块按双始端整体有效搭接区域覆盖。",
+        "修复排厚偏移后的始端垂直短搭接折弯余量，缩短后保留实际对方排宽与叠排折弯余量。",
+        "方案后台优化改为替换后持续迭代，直到当前方案集合没有更短且通过终检的候选。",
+        "【发布状态】测试版：补充 5 mm 种子搜索改为候选状态驱动的自适应调度；启动延迟只决定最早分流时机，不再按固定秒数一刀切。原要求快速候选尚未补齐时继续保留主搜索，候选池齐全但组合停滞时才临时集中搜索预算建立完整种子。",
+        "强化种子形成后恢复至少一路原要求主搜索，并按配置启动历史双始端层位兼容搜索；调度、种子、主搜索和兼容分流共享请求预算，方案优化仍按请求总时限持续运行。",
+        "原要求主搜索形成的最佳完整低净距候选也进入同一净距优化链，避免优化器始终停留在最早的 5 mm 几何；仅在出现新的最佳完整候选后分配优化许可，不改变正常成功方案的候选生成和门禁。",
+        "历史双始端层位只允许作为内部中心线提案，正式成功和绝缘不足候选进入方案前都必须按当前连接排规则重新实体化，并重新通过搭接、附件、逐排实体、干涉和绝缘终检，修复兼容候选缺失连接排仍被发布的问题。",
+        "回归确认珑腾 D07-2 在最小段长 40 mm、原要求净距 21 mm 下约 22 秒形成正式方案；保留后续继续提升 20/30 mm 最小段长搜索能力的算法任务。"
+      ]
+    },
+    {
+      "Version": "1.4.0.1",
+      "ReleaseDate": "2026-09-04",
+      "ChangeLevel": "Major",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 11,
+      "Changes": [
+        "始端搭接排、中间排、柜顶搭接排的真实排宽、排厚和叠排数量改为在候选路径转换阶段生效；终端层位、跨平面拆排、搭接位置、折弯余量及实体终检不再依赖通用中间排规格后移。",
+        "修复物理 I/L 双始端连接排在附件阶段重复生成或丢失的问题；连接排按独立规格输出，末端按实际接触段厚度贴合，并保留原有成员接触映射。",
+        "修复 2↔3 叠排及不同厚度接口的多处夹缝垫块遗漏，保持无垫块开关只在普通完整方案成功后执行，关闭时不再误输出无垫块结构。",
+        "成功方案优化继续优先处理始端和柜顶段并持续迭代当前前三方案；异规格正常集四份输入全部得到方案，12AA5 在 60 秒诊断中由 16892.584 mm 优化至 15502.198 mm。"
+      ]
+    },
+    {
+      "Version": "1.3.0.5",
+      "ReleaseDate": "2026-09-04",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 11,
+      "Changes": [
+        "双始端连接排另一侧需要垫块时，垫块改用连接排完整搭接长度和宽度，厚度仍按各真实夹缝分别计算；3↔2 等内部接口补齐每一处相邻厚差空隙。",
+        "同一根直 I 排同时连接柜顶和双始端连接排时，保持柜顶层间距并整体平移到连接排接触面，避免末端回接与连接排正体积干涉。",
+        "成功方案优化改为同一方案谱系原位替换并持续优化当前前三方案，始端和柜顶段优先于中间段，同级优先收拢 U 型绕路；成对替换允许改变路径方向和拓扑，并在候选生成时暂时排除同步移动的另一根排，避免旧位置阻断联动缩短。",
+        "首个方案后先从主搜索收回对应额度再启动优化，避免两类任务叠加超出并发预算；连续 120 秒没有保留新方案后只保留一路主搜索，其余可用算力转给前三方案优化，同一方案谱系优化上限改为可配置的 30 分钟。"
+      ]
+    },
+    {
+      "Version": "1.3.0.4",
+      "ReleaseDate": "2026-09-04",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 11,
+      "Changes": [
+        "修复分段规格后处理的逐段偏移修复同时覆盖安全交点，导致叠排内外层在后续斜段交叉和正体积重叠的问题；仅在锐角或自交时修复实际违规的一侧。",
+        "双始端水平搭接在规格后处理后保留连接排；普通桥排仍作为附件输出，I/L 桥首段明确标记为连接排本体并使用独立连接排宽厚及始端搭接排叠排数。",
+        "成功方案的始端与柜顶水平搭接优化分别按始端搭接排和柜顶搭接排的真实排宽计算连续极限位置；垂直搭接按层位接触映射选择实际固定搭接面及其排宽。",
+        "规格不同方案回归改为检查测试时限内发布的每套方案，逐套验证叠排交叉、连接排存在与规格、分段折弯余量和实际成员实体重叠。"
+      ]
+    },
+    {
+      "Version": "1.3.0.3",
+      "ReleaseDate": "2026-09-04",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 11,
+      "Changes": [
+        "修复分段规格后处理在相邻物理段排厚轴反向时重新排序导致叠排内外层交换、交叉和正体积重叠的问题，成员层序现在沿整条路径连续传播。",
+        "双始端水平搭接在规格后处理后保留连接排，并使用双始端连接排配置（缺省继承始端搭接排）输出宽度和厚度；主搜索仍沿用中间排骨架，不增加首方案搜索负担。",
+        "成功方案的始端与柜顶水平搭接优化分别按始端搭接排和柜顶搭接排的真实排宽计算连续极限位置；垂直搭接按层位接触映射选择实际固定搭接面及其排宽。",
+        "双始端短搭接后的连接排按自身与中间排实际投影并集延长，修复中间排仅部分超出连接排时未补到排宽边缘的问题。"
+      ]
+    },
+    {
+      "Version": "1.3.0.2",
+      "ReleaseDate": "2026-09-04",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 11,
+      "Changes": [
+        "分段规格垂直搭接的折弯极限改为对方真实排宽的一半加当前段叠排折弯余量，并覆盖始端、柜顶和内部接口。",
+        "修复 3↔2 与不同排厚接口只覆盖较少层、部分铜排悬空或未完全贴合的问题，厚差垫块按双方最近层真实搭接区域补齐。",
+        "分段后处理失败时改从既有普通候选目录换选满足折弯余量与最小可发布净距的候选，避免发布净距为零的方案；按实际净距正确标记降净距方案，并继续遵守 60 秒后才发布绝缘不足方案的规则。"
+      ]
+    },
+    {
+      "Version": "1.3.0.1",
+      "ReleaseDate": "2026-09-03",
+      "ChangeLevel": "Major",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 11,
+      "Changes": [
+        "【发布状态】测试版：增加生成排分段规格后处理，上一稳定基线仍为 1.1.0.20。",
+        "新增始端搭接排、中间排、柜顶搭接排三段独立排宽、排厚和叠排数量输入，双始端连接排可独立设置宽厚，旧请求缺省时继续继承原中间排规格。",
+        "普通路径搜索继续只使用中间排规格；完整方案成功后才执行分段规格、层位偏移、内部垂直搭接延伸和实体干涉复核，不改变主搜索候选与剪枝。",
+        "相邻分段叠排数量差值大于一时按相序和分段名称明确报错；单根铜排同时接触始端与柜顶时整根按柜顶搭接排规格处理。",
+        "I 排两端所需层位因相邻排厚不同而冲突时优先贴合较厚侧，并在较薄侧的真实搭接区域生成厚差垫块。"
+      ]
+    },
+    {
+      "Version": "1.2.0.4",
+      "ReleaseDate": "2026-09-02",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 11,
+      "Changes": [
+        "方案结果新增可选优化来源拓扑字段，用于宿主稳定显示首次发布顺序及同源优化序号，不参与搜索、排序或几何校验。",
+        "普通方案最短化和净距提升结果保留原始方案来源，即使形状合并或 U 型消除改变方向拓扑，仍可显示为原方案的后续优化。",
+        "方案列表移除单一算法来源列，直接方案按跳出顺序显示为方案N，优化结果显示为方案N-优化M。"
+      ]
+    },
+    {
+      "Version": "1.2.0.3",
+      "ReleaseDate": "2026-09-01",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 11,
+      "Changes": [
+        "取消宿主与 Worker 的协议版本号强制相等校验，版本字段仅作为诊断信息，不再阻止直接替换 Worker 文件升级。",
+        "Worker 对响应回传调用方请求中的协议号，使仍保留旧协议常量但 JSON 字段兼容的调用程序可以继续握手、求解、取消和关闭。",
+        "取消 WorkerVersion 与程序集文件版本的运行时相等校验；更新日志与程序集版本仍按构建规则维护，但不再参与调用兼容性判定。"
+      ]
+    },
+    {
+      "Version": "1.2.0.2",
+      "ReleaseDate": "2026-09-01",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 11,
+      "Changes": [
+        "【发布状态】测试版：修复 5 mm 低净距种子跳过普通快速候选层而无法形成完整方案的问题，并新增降级后的历史双始端水平桥排层位兼容分流。",
+        "补充净距种子重新复用普通快速候选层和物理正向优先组合层；降到补充净距后可另占受控工作许可，恢复历史桥排接触层位并按原始净距完成普通搭接、附件、逐排实体和绝缘终检。",
+        "候选对与静态实体精确净距缓存加入候选实例身份，避免中心线相同而桥排、拆排或附件实体不同的候选错误复用距离结果。",
+        "无垫块回归允许保留防止叠排正体积重叠所必需的保护垫块，并继续核对附件映射、统计和铜排总长排除规则。"
+      ]
+    },
+    {
+      "Version": "1.2.0.1",
+      "ReleaseDate": "2026-09-01",
+      "ChangeLevel": "Major",
+      "Compatibility": "HostUpdateRequired",
+      "ProtocolVersion": 11,
+      "Changes": [
+        "【发布状态】测试版：统一规则配置完成后先执行 50 方案回归，达到稳定门槛后再转为稳定版。",
+        "SearchOptions 扩展为请求级统一算法规则配置，开放阶段时限、候选预算、方案优化切换阈值、线程比例、低净距种子和降级发布等生产规则。",
+        "累计方案达到配置阈值后，主搜索与方案优化按可配置比例重新分配，并继续保留可配置的调度发布线程和快速优化线程。",
+        "新增所有通用规则的范围校验、Worker 协议传输和中文参数说明；默认值保持原有 10 个方案、25%/75%、优先 3 个方案、10 秒种子和 60 秒降级发布行为。"
+      ]
+    },
+    {
+      "Version": "1.1.0.20",
+      "ReleaseDate": "2026-09-01",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 10,
+      "Changes": [
+        "【发布状态】稳定版：作为本次通用规则配置大更新之前的生产回归基线。",
+        "无垫块后处理新增实际逐排正体积重叠保护：I排压紧会与同相叠排重叠时，只在冲突终端保留普通垫块，原成功方案继续输出。",
+        "方案铜排总长排除 SupportBlock 垫块并计入 DoubleStartHorizontalBridge 双始端连接排；垫块按不同厚度分别统计数量和展开长度。",
+        "垂直搭接可不满时，双始端连接排会检查短搭接后的中间排实际宽度边缘，必要时延长以消除实体缝隙。"
+      ]
+    },
+    {
+      "Version": "1.1.0.19",
+      "ReleaseDate": "2026-09-01",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 10,
+      "Changes": [
+        "普通成功方案后台优化新增始端水平搭接连续位置计算，首段沿合法排宽区间移动到下一控制点投影的最短位置。",
+        "理论最短位置受相间净距或制造约束阻挡时，按分段试探和二分逼近保留完整校验允许的最远有效位置。",
+        "单始端水平居中开关继续生效；双始端保留实际搭接成员区间，并在允许时增加整体连续搭接区间；始端垂直满搭接和短搭接均不参与该优化，主搜索候选不变。",
+        "同一方向拓扑后续出现更优普通代表时继续进入后台优化，取得并发槽前丢弃已经过时的种子，避免早期较长代表阻断当前方案优化。",
+        "后台优化先以独立批次横扫所有组的始端水平搭接连续位置并合并彼此兼容的替换，发布后才进入其他直接几何和深层枚举；其他组的后续处理失败不再阻止水平搭接结果发布。",
+        "深度几何与净距任务不得占满优化并发，始终为快速水平搭接优化保留一路。",
+        "累计十个方案后，预留一路执行调度和发布，剩余计算并行度按主搜索约 25%、方案优化约 75% 分配；优化动态只取前三名，新优解进入前三时取消原第三名并优先优化新第一名。"
+      ]
+    },
+    {
+      "Version": "1.1.0.18",
+      "ReleaseDate": "2026-09-01",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 10,
+      "Changes": [
+        "修复骨架早期净距剪枝把同相始端和柜顶固定排误当成绝缘障碍的问题，合法端部搭接不再被提前淘汰。",
+        "同相不同逻辑组的正体积穿入继续由完整候选实体校验拒绝，异相实体仍保留早期绝缘距离剪枝。",
+        "新增相序早期放行、异相提前拒绝、同相跨组终检拒绝及真实方案首发诊断回归。",
+        "原要求大于5毫米时只建立一次5毫米完整种子，并在同一成功方案上按真实净距瓶颈执行局部几何替换，不再按10、15、20毫米逐档重跑全量搜索。",
+        "5毫米种子优化按全局最小净距优先、并列瓶颈数量次优接受连续替换，重新计算实际总长和最小净距后实时发布。",
+        "前10秒全部资源只执行原绝缘要求搜索；第10秒起5毫米种子搜索固定单许可，首个种子形成后立即停止剩余组合枚举并转入净距优化，主搜索始终不中断。",
+        "60秒降级发布增加5毫米实际净距底线，低于5毫米的候选仅保留为内部失败诊断。"
+      ]
+    },
+    {
+      "Version": "1.1.0.17",
+      "ReleaseDate": "2026-09-01",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 10,
+      "Changes": [
+        "普通完整方案发布后启用一至两路有界后台几何优化，主组合搜索继续运行；局部短候选失败后再惰性进入原有深度优化。",
+        "新增内部直段向相邻笛卡尔临界坐标的极限压缩，并以配置步长逼近完整校验允许的最远位置。",
+        "新增全部连续区间的最小折弯余量斜化和斜段极限落位，双方真实搭接宽度、叠排余量及最短直段继续作为硬约束。",
+        "超过三段的路径支持从中间折点开始逐轮合并，五段依次尝试四段和三段；每次仍执行完整制造与绝缘复核。"
+      ]
+    },
+    {
+      "Version": "1.1.0.16",
+      "ReleaseDate": "2026-08-31",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 10,
+      "Changes": [
+        "叠排连续相邻锐角改为基于同一求交快照统一判定和批量回退，结果不再依赖中段遍历顺序。",
+        "相邻回退对共享接缝给出互斥原偏移端点时显式淘汰当前几何候选并记录差值，不再由后写位置静默覆盖。",
+        "叠排锐角回退阈值与最终理论转角规范统一为 89.95 度，并增加共享接缝相容与冲突回归。"
+      ]
+    },
+    {
+      "Version": "1.1.0.15",
+      "ReleaseDate": "2026-08-31",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 10,
+      "Changes": [
+        "双始端 I/L 桥对相同虚拟终端复用请求内下游候选池，避免重复执行完整轴路径枚举、拆排和候选校验。",
+        "骨架点绝缘冲突识别增加点到实体 AABB 的安全距离下界，明显远离实体时不再进入精确 OBB 点距。",
+        "候选分组排序键改为单次物化，算法内重复的 GeometRi 点向量基础运算集中到纯函数工具类。",
+        "连续转换候选显式携带转换后始末锚点索引，内部搭接修复不再依赖转换器固定插入两个点的 +3 隐式形状约定。"
+      ]
+    },
+    {
+      "Version": "1.1.0.14",
+      "ReleaseDate": "2026-08-31",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 10,
+      "Changes": [
+        "统一点、方向、装配噪声、距离、端面和正体积容差；轴向搜索不再因六位小数坐标或 1e-5 级装配方向噪声静默丢候选。",
+        "组合搜索增加安全长度下界和无锁 Top-N 阈值，复用候选池排序并预筛失败诊断；各候选层穷尽后立即推进，同时保持绝缘不足方案仍在 60 秒后发布。",
+        "发布方案和最终排序结果改为深拷贝快照，错层组合同时计算始末端搭接覆盖，端部退化段显式拒绝。",
+        "固定端禁出方向改为逐成员处理，整体双始端只合并一致方向；快速绝缘修复不再只尝试前两个转换候选。",
+        "OBB 棱对增加 AABB 距离下界跳过，候选池邻近度复用实体轴对齐半尺寸，减少热路径几何分配和精确距离调用。"
+      ]
+    },
+    {
+      "Version": "1.1.0.13",
+      "ReleaseDate": "2026-08-31",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 10,
+      "Changes": [
+        "最终叠排成员的每根平面铜排改为逐段复核 MinimumSegmentLength，桥排裁切或逐层偏移产生的过短实际段不再被基准中心线校验漏过。",
+        "端部搭接矩形重叠使用双方长宽共四条边轴完成平面 SAT；亚毫米线段距离改用尺度相关的平行容差，并显式处理退化线段。",
+        "null 净距实体改为失败，同组实体重合的骨架段恢复早期剪枝；精确净距在取消后不写缓存。",
+        "固定排禁出端面无法唯一推断、方向不匹配、非轴向、不一致或越界时不再抛出未处理异常，改为求解输入失败并输出中文诊断。"
+      ]
+    },
+    {
+      "Version": "1.1.0.12",
+      "ReleaseDate": "2026-08-31",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 10,
+      "Changes": [
+        "候选稳定签名和最终多样性签名改为按候选缓存，相关身份、骨架或中心线变化时自动失效；跨组候选对的正反顺序统一使用同一个净距缓存键。",
+        "有向包围盒复用顶点、局部轴和轴对齐半尺寸，并消除精确边距计算中重复创建边对象的热点分配。",
+        "平面转换方向组合复用固定端层位解析，轴序列 DFS 预计算后续同轴索引；实际平面转换超过八个时输出明确枚举上限诊断。"
+      ]
+    },
+    {
+      "Version": "1.1.0.11",
+      "ReleaseDate": "2026-08-31",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 10,
+      "Changes": [
+        "物理始端垂直短搭接先由直接接触关系求整组共同裁切端面，再同步应用到首段方向相同的全部实际叠排成员。",
+        "隔着普通垫块的叠排成员不再因缺少直接 Contacts 而漏掉缩短，无垫块局部偏移继续保留每根铜排已经完成的裁切结果。",
+        "新增三叠排定向回归，覆盖有垫块与无垫块两种输出下全部成员的端点和总长重算。"
+      ]
+    },
+    {
+      "Version": "1.1.0.10",
+      "ReleaseDate": "2026-08-31",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 10,
+      "Changes": [
+        "无垫块输出后处理按每根铜排最终 PointList 逐段重建矩形实体，不再用叠排最外层包络代表已经独立移动的全部成员。",
+        "后处理最小净距按相序归组；同相始端、柜顶固定排、生成排及附件归入同一绝缘排除组，只比较不同相序实体。",
+        "搜索阶段继续使用原有叠排保守方盒，普通有垫块方案的候选生成和净距规则保持不变。"
+      ]
+    },
+    {
+      "Version": "1.1.0.9",
+      "ReleaseDate": "2026-08-31",
+      "ChangeLevel": "Patch",
+      "Compatibility": "HostUpdateRequired",
+      "ProtocolVersion": 10,
+      "Changes": [
+        "算法请求和 Worker 协议新增逻辑组相位字段，界面输入中的 phase 不再在进入算法前丢失。",
+        "绝缘实体同时保留逻辑组标识与相位排除键；同相不同 GroupKey 不再参与相间绝缘距离计算。",
+        "同相排除规则覆盖路径早期剪枝、候选转换、固定端复核、跨组组合及最终最小绝缘距离统计。",
+        "未提供相位的旧请求继续按 GroupKey 判断，保持原有输入兼容行为。"
+      ]
+    },
+    {
+      "Version": "1.1.0.8",
+      "ReleaseDate": "2026-08-31",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 9,
+      "Changes": [
+        "垂直短搭接与无垫块选项继续只作用于普通方案成功后的深拷贝，不参与路径搜索、候选校验或组合校验。",
+        "统一终端后处理不再以搭接、干涉、包围盒或绝缘复核否决普通成功方案，避免开启选项后方案列表为空。",
+        "最终方案按后处理实际几何重新计算总长与最小绝缘距离，并如实发布全部所选后处理完成的结果。",
+        "怀来联通DC1 P7双开终端选项回归恢复秒级方案输出。"
+      ]
+    },
+    {
+      "Version": "1.1.0.7",
+      "ReleaseDate": "2026-08-31",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 9,
+      "Changes": [
+        "完整多组组合仅因跨组绝缘距离不足时立即内部记录，不再只保留四组完成加末组失败的诊断。",
+        "完整绝缘不足方案接入既有60秒降级发布，按最终实际最小净距优先保留，并允许后续更优不足方案替换。",
+        "终端短搭接或无垫块后处理失败时仍保留普通完整组合用于60秒方案列表兜底，并显式标记后处理待修复。",
+        "界面与算法规范同步明确60秒绝缘不足候选的显示和排序规则。"
+      ]
+    },
+    {
+      "Version": "1.1.0.6",
+      "ReleaseDate": "2026-08-31",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 9,
+      "Changes": [
+        "物理始端垂直短搭接与端头无垫块统一改为普通满搭接、普通垫块方案终检成功后的输出后处理，不再参与路径或候选枚举。",
+        "垂直短搭接按普通方案声明的真实始端接触统一缩短逐层端点，并按最终 StackMembers 平面铜排重新计算实际展开总长。",
+        "启用任一终端输出选项时只发布全部后处理完成且通过实体复核的最终方案，不再先发布普通或半处理方案，也不再失败回退。",
+        "补充统一终端输出、双始端最小垂直覆盖、无垫块移除贴合及最终长度回归。"
+      ]
+    },
+    {
+      "Version": "1.1.0.5",
+      "ReleaseDate": "2026-08-31",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 9,
+      "Changes": [
+        "普通完整方案通过终检后立即发布，端头无垫块转换改为发布后的异步输出处理，不再阻塞首套方案。",
+        "同一普通方案的无垫块转换成功后允许原子替换输出；转换失败时继续保留已发布的普通方案。",
+        "输出来源校验、结果提交和进度通知改为串行发布，并再次确认当前普通代表，避免旧异步任务晚到覆盖优化方案。",
+        "补充端头无垫块发布时序回归，覆盖开启选项时首个发布事件必须来自普通方案。"
+      ]
+    },
+    {
+      "Version": "1.1.0.4",
+      "ReleaseDate": "2026-08-31",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 9,
+      "Changes": [
+        "端头无垫块后处理改为直接读取普通成功方案的实际叠排成员和物理端点，不再重新匹配通用层位或从基准中心线展开叠排。",
+        "保留双始端 I/L 桥的逐成员映射与裁切；单段 I 排刚性位移沿既有搭接链传播，多段排在自身折弯内完成端部层位过渡。",
+        "双始端横向桥排按实际固定端厚向重新识别搭接侧，并在局部闭缝前后还原、重插，避免把桥排间隙误当成普通垫块压掉。",
+        "物理始端短搭接继续作为满搭接之外的补充候选，候选截断时为原满搭接路径保留名额。"
+      ]
+    },
+    {
+      "Version": "1.1.0.3",
+      "ReleaseDate": "2026-08-31",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 9,
+      "Changes": [
+        "端头无垫块改为完整普通方案通过终检后的独立输出后处理，不再改变路径候选、层位枚举、候选排序或搜索剪枝。",
+        "无垫块输出后处理改为独立后台任务，普通首解通知、阶段停止、同拓扑登记、Top-N 和优化不再等待后处理；优化后处理失败时保留上一套有效输出。",
+        "无垫块后处理在深拷贝上保留既有平面拆排、双始端 I/L 桥和逐成员裁切，并重新复核自交、干涉、包围盒及实际绝缘距离。",
+        "始端垂直短搭接改为在原满搭接候选之外追加短搭接候选，避免开启选项后丢失可制造的满搭接路径。"
+      ]
+    },
+    {
+      "Version": "1.1.0.2",
+      "ReleaseDate": "2026-08-31",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 9,
+      "Changes": [
+        "修复端头无垫块模式错误压紧默认规则不生成垫块的柜顶固定排夹层。",
+        "无垫块模式只闭合原普通垫块对应的夹缝；柜顶未加厚差垫块的原夹排层位保持不变。",
+        "修复镜像厚向层位错误选择外层锚点的问题，正反方向统一保留靠最近固定边界的内层成员。",
+        "终检只要求实际移动的无垫块成员完成贴合；仍保留全部正重叠和声明搭接关系校验。"
+      ]
+    },
+    {
+      "Version": "1.1.0.1",
+      "ReleaseDate": "2026-08-31",
+      "ChangeLevel": "Major",
+      "Compatibility": "HostUpdateRequired",
+      "ProtocolVersion": 9,
+      "Changes": [
+        "新增始端垂直短搭接和端头无垫块两项可选规则；开关默认关闭，原加垫块路径保持不变。",
+        "无垫块模式保留原夹排拓扑，仅局部闭合原垫块夹缝，并按移动后的实际实体重新复核自交、干涉、绝缘距离和包围盒。",
+        "完善单始端水平居中、垂直端头定位和 U 型叠排内层最短长度计算。",
+        "完善双始端水平桥排与离散垫块规则，补齐有效夹缝并排除未搭接侧的冗余垫块。",
+        "新增授权握手可读取的结构化 Worker 版本与历史日志；宿主需要同步升级至协议 v9。"
+      ]
+    },
+    {
+      "Version": "1.0.0.9",
+      "ReleaseDate": "2026-08-30",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 9,
+      "Changes": [
+        "修复端头无垫块搭接错误地把整组生成叠排移到固定端同一外侧的问题。",
+        "保留普通夹排拓扑和路径基准，仅局部闭合原垫块夹缝；双始端桥排只移动桥接侧连续组件。"
+      ]
+    },
+    {
+      "Version": "1.0.0.8",
+      "ReleaseDate": "2026-08-30",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 9,
+      "Changes": [
+        "修复双始端水平搭接时三叠排有效厚向夹缝未生成垫块的问题。",
+        "垫块按两根真实始端的离散投影区域分别输出，并继续排除真正未搭接侧的多余垫块。"
+      ]
+    },
+    {
+      "Version": "1.0.0.7",
+      "ReleaseDate": "2026-08-30",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 9,
+      "Changes": [
+        "新增内置且可机器读取的 Worker 更新日志。",
+        "授权握手确认中返回当前 Worker 版本、协议版本和历史更新内容。"
+      ]
+    },
+    {
+      "Version": "1.0.0.6",
+      "ReleaseDate": "2026-08-30",
+      "ChangeLevel": "Patch",
+      "Compatibility": "HostUpdateRequired",
+      "ProtocolVersion": 9,
+      "Changes": [
+        "新增端头无垫块搭接选项，支持端部叠排逐层贴合。",
+        "移动后按实际直段、折弯和附件实体重新复核绝缘距离与干涉。"
+      ]
+    },
+    {
+      "Version": "1.0.0.5",
+      "ReleaseDate": "2026-08-30",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 8,
+      "Changes": [
+        "修正单始端垂直搭接位置，垂直搭接保持在不可搭接方向的端头。",
+        "单始端水平居中选项不再影响垂直搭接。"
+      ]
+    },
+    {
+      "Version": "1.0.0.4",
+      "ReleaseDate": "2026-08-30",
+      "ChangeLevel": "Patch",
+      "Compatibility": "HostUpdateRequired",
+      "ProtocolVersion": 8,
+      "Changes": [
+        "新增始端垂直短搭接选项。",
+        "支持单始端搭接一个排宽、双始端连续搭接两根始端的受控垂直搭接范围。"
+      ]
+    },
+    {
+      "Version": "1.0.0.3",
+      "ReleaseDate": "2026-08-30",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 7,
+      "Changes": [
+        "修复单始端水平居中搭接被后续端部调整覆盖的问题。",
+        "修复 U 型叠排未计入内侧成员最短长度而导致预览失败的问题。"
+      ]
+    },
+    {
+      "Version": "1.0.0.2",
+      "ReleaseDate": "2026-08-29",
+      "ChangeLevel": "Patch",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 7,
+      "Changes": [
+        "修复垂直搭接 L 排末端未按搭接重合区域收口而向外突出的情况。"
+      ]
+    },
+    {
+      "Version": "1.0.0.1",
+      "ReleaseDate": "2026-08-29",
+      "ChangeLevel": "Initial",
+      "Compatibility": "Baseline",
+      "ProtocolVersion": 7,
+      "Changes": [
+        "建立算法 Worker 四段式版本基线，并统一程序集版本、文件版本和产品版本来源。"
+      ]
+    }
+  ],
+  "SupportsTerminalHoleInput": true,
+  "SupportsTerminalHoleLapConstraints": true,
+  "SupportsSupportBlockReduction": true
+}

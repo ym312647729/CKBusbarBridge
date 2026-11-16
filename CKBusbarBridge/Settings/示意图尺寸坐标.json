@@ -1,0 +1,574 @@
+[
+  {
+    "Id": "0",
+    "ImageName": "示意图1.png",
+    "Dimension": [
+      {
+        "Name": "楼高(D)",
+        "Coordinate1": "46,395",
+        "Coordinate2": "75,414"
+      },
+      {
+        "Name": "柜间距(A)",
+        "Coordinate1": "644,800",
+        "Coordinate2": "665,825"
+      },
+      {
+        "Name": "B",
+        "Coordinate1": "105,445",
+        "Coordinate2": "131,463"
+      },
+      {
+        "Name": "相间距",
+        "Coordinate1": "217,918",
+        "Coordinate2": "241,961"
+      },
+      {
+        "Name": "A-柜深",
+        "Coordinate1": "991,802",
+        "Coordinate2": "1039,824"
+      },
+      {
+        "Name": "B-柜高",
+        "Coordinate1": "146,551",
+        "Coordinate2": "177,588"
+      },
+      {
+        "Name": "B-柜深",
+        "Coordinate1": "320,799",
+        "Coordinate2": "369,828"
+      },
+      {
+        "Name": "B-离地高度(I)",
+        "Coordinate1": "167,757",
+        "Coordinate2": "191,774"
+      }
+    ]
+  },
+  {
+    "Id": "1",
+    "ImageName": "示意图2.png",
+    "Dimension": [
+      {
+        "Name": "柜前孔-距柜前距离",
+        "Coordinate1": "44,671",
+        "Coordinate2": "69,734"
+      },
+      {
+        "Name": "柜前孔-铜排中心至柜前距离",
+        "Coordinate1": "579,621",
+        "Coordinate2": "606,726"
+      },
+      {
+        "Name": "柜前孔-接口固定孔间距",
+        "Coordinate1": "41,434",
+        "Coordinate2": "70,520"
+      },
+      {
+        "Name": "柜前孔-L1",
+        "Coordinate1": "325,563",
+        "Coordinate2": "347,585"
+      },
+      {
+        "Name": "柜前孔-L2",
+        "Coordinate1": "357,583",
+        "Coordinate2": "380,602"
+      },
+      {
+        "Name": "柜前孔-L3",
+        "Coordinate1": "384,597",
+        "Coordinate2": "408,617"
+      },
+      {
+        "Name": "柜后孔-距柜后距离",
+        "Coordinate1": "50,70",
+        "Coordinate2": "77,132"
+      },
+      {
+        "Name": "柜后孔-铜排中心至柜后距离",
+        "Coordinate1": "542,43",
+        "Coordinate2": "570,145"
+      },
+      {
+        "Name": "柜后孔-接口固定孔间距",
+        "Coordinate1": "41,206",
+        "Coordinate2": "70,291"
+      },
+      {
+        "Name": "柜后孔-L1",
+        "Coordinate1": "329,107",
+        "Coordinate2": "349,127"
+      },
+      {
+        "Name": "柜后孔-L2",
+        "Coordinate1": "364,91",
+        "Coordinate2": "384,111"
+      },
+      {
+        "Name": "柜后孔-L3",
+        "Coordinate1": "392,77",
+        "Coordinate2": "412,97"
+      }
+    ]
+  },
+  {
+    "Id": "2",
+    "ImageName": "示意图3.png",
+    "Dimension": [
+      {
+        "Name": "楼高(L)",
+        "Coordinate1": "79,170",
+        "Coordinate2": "111,330"
+      },
+      {
+        "Name": "地面距横梁(B)",
+        "Coordinate1": "184,167",
+        "Coordinate2": "217,332"
+      },
+      {
+        "Name": "柜体离地(I)",
+        "Coordinate1": "316,531",
+        "Coordinate2": "349,652"
+      },
+      {
+        "Name": "柜前距墙(A)",
+        "Coordinate1": "650,533",
+        "Coordinate2": "779,560"
+      },
+      {
+        "Name": "柜后距墙(A)",
+        "Coordinate1": "650,533",
+        "Coordinate2": "779,560"
+      },
+      {
+        "Name": "墙孔边距地面(C)",
+        "Coordinate1": "862,271",
+        "Coordinate2": "891,436"
+      },
+      {
+        "Name": "墙孔高度(E)",
+        "Coordinate1": "1585,184",
+        "Coordinate2": "1614,294"
+      },
+      {
+        "Name": "墙孔宽度(G)",
+        "Coordinate1": "870,779",
+        "Coordinate2": "898,852"
+      },
+      {
+        "Name": "伸出排相间距",
+        "Coordinate1": "480,650",
+        "Coordinate2": "509,706"
+      },
+      {
+        "Name": "柜高",
+        "Coordinate1": "321,333",
+        "Coordinate2": "350,373"
+      },
+      {
+        "Name": "柜深",
+        "Coordinate1": "537,534",
+        "Coordinate2": "578,560"
+      },
+      {
+        "Name": "穿墙套管桩头距墙面距离(H)",
+        "Coordinate1": "846,48",
+        "Coordinate2": "1066,75"
+      },
+      {
+        "Name": "穿墙套管安装板距内侧墙面距离(J)",
+        "Coordinate1": "848,129",
+        "Coordinate2": "1041,158"
+      },
+      {
+        "Name": "套管中心距孔底(D)",
+        "Coordinate1": "1490,190",
+        "Coordinate2": "1536,407"
+      },
+      {
+        "Name": "套管到左侧墙洞(F1)",
+        "Coordinate1": "1058,102",
+        "Coordinate2": "1212,130"
+      },
+      {
+        "Name": "第一、第二套管中心距(F2)",
+        "Coordinate1": "1104,181",
+        "Coordinate2": "1242,214"
+      },
+      {
+        "Name": "第二、第三套管中心距(F3)",
+        "Coordinate1": "1378,181",
+        "Coordinate2": "1517,214"
+      },
+      {
+        "Name": "桩头长度(C1)",
+        "Coordinate1": "1038,580",
+        "Coordinate2": "1067,609"
+      },
+      {
+        "Name": "桩头宽度(C2)",
+        "Coordinate1": "928,613",
+        "Coordinate2": "958,684"
+      },
+      {
+        "Name": "桩头孔到前边的距离(C3)",
+        "Coordinate1": "1038,643",
+        "Coordinate2": "1067,669"
+      },
+      {
+        "Name": "桩头孔垂直距离(C4)",
+        "Coordinate1": "1038,613",
+        "Coordinate2": "1067,639"
+      },
+      {
+        "Name": "桩头孔到上边的距离(C5)",
+        "Coordinate1": "990,613",
+        "Coordinate2": "1018,684"
+      },
+      {
+        "Name": "桩头孔水平距离(C6)",
+        "Coordinate1": "959,613",
+        "Coordinate2": "988,684"
+      },
+      {
+        "Name": "桩头孔径(C7)",
+        "Coordinate1": "1037,748",
+        "Coordinate2": "1105,783"
+      },
+      {
+        "Name": "桩头厚度(C8)",
+        "Coordinate1": "1218,613",
+        "Coordinate2": "1248,684"
+      },
+      {
+        "Name": "中间桩头阵列到上桩头的距离(C9)",
+        "Coordinate1": "1187,613",
+        "Coordinate2": "1217,684"
+      },
+      {
+        "Name": "中间桩头阵列到下桩头的距离(C10)",
+        "Coordinate1": "1156,613",
+        "Coordinate2": "1186,684"
+      }
+    ]
+  },
+  {
+    "Id": "3",
+    "ImageName": "示意图4.png",
+    "Dimension": [
+      {
+        "Name": "柜间距(A)",
+        "Coordinate1": "686,604",
+        "Coordinate2": "764,638"
+      },
+      {
+        "Name": "伸出排相间距",
+        "Coordinate1": "449,735",
+        "Coordinate2": "548,770"
+      },
+      {
+        "Name": "A-柜高",
+        "Coordinate1": "289,314",
+        "Coordinate2": "328,481"
+      },
+      {
+        "Name": "B-柜高",
+        "Coordinate1": "289,314",
+        "Coordinate2": "328,481"
+      },
+      {
+        "Name": "A-柜宽",
+        "Coordinate1": "588,604",
+        "Coordinate2": "655,638"
+      },
+      {
+        "Name": "B-柜宽",
+        "Coordinate1": "588,604",
+        "Coordinate2": "655,638"
+      },
+      {
+        "Name": "A-离地高度(I)",
+        "Coordinate1": "355,566",
+        "Coordinate2": "391,695"
+      },
+      {
+        "Name": "B-离地高度(I)",
+        "Coordinate1": "355,566",
+        "Coordinate2": "391,695"
+      }
+    ]
+  },
+  {
+    "Id": "4",
+    "ImageName": "示意图5.png",
+    "Dimension": [
+      {
+        "Name": "伸出排相间距",
+        "Coordinate1": "667,230",
+        "Coordinate2": "727,266"
+      },
+      {
+        "Name": "柜前孔-接口固定孔间距",
+        "Coordinate1": "751,12",
+        "Coordinate2": "874,46"
+      },
+      {
+        "Name": "柜前孔-L1",
+        "Coordinate1": "407,319",
+        "Coordinate2": "436,346"
+      },
+      {
+        "Name": "柜前孔-L2",
+        "Coordinate1": "351,283",
+        "Coordinate2": "381,311"
+      },
+      {
+        "Name": "柜前孔-L3",
+        "Coordinate1": "277,265",
+        "Coordinate2": "307,293"
+      },
+      {
+        "Name": "柜后孔-接口固定孔间距",
+        "Coordinate1": "724,1031",
+        "Coordinate2": "875,1073"
+      },
+      {
+        "Name": "柜后孔-L1",
+        "Coordinate1": "408,797",
+        "Coordinate2": "437,824"
+      },
+      {
+        "Name": "柜后孔-L2",
+        "Coordinate1": "352,760",
+        "Coordinate2": "381,788"
+      },
+      {
+        "Name": "柜后孔-L3",
+        "Coordinate1": "278,743",
+        "Coordinate2": "307,771"
+      }
+    ]
+  },
+  {
+    "Id": "5",
+    "ImageName": "示意图6.png",
+    "Dimension": [
+      {
+        "Name": "楼高(D)",
+        "Coordinate1": "642,169",
+        "Coordinate2": "677,306"
+      },
+      {
+        "Name": "地面距横梁(B)",
+        "Coordinate1": "696,169",
+        "Coordinate2": "731,306"
+      },
+      {
+        "Name": "柜间距(A)",
+        "Coordinate1": "1122,542",
+        "Coordinate2": "1240,574"
+      },
+      {
+        "Name": "伸出排相间距",
+        "Coordinate1": "900,711",
+        "Coordinate2": "1098,747"
+      },
+      {
+        "Name": "A-柜高",
+        "Coordinate1": "740,372",
+        "Coordinate2": "776,412"
+      },
+      {
+        "Name": "B-柜高",
+        "Coordinate1": "740,372",
+        "Coordinate2": "776,412"
+      },
+      {
+        "Name": "A-柜深",
+        "Coordinate1": "819,813",
+        "Coordinate2": "852,890"
+      },
+      {
+        "Name": "B-柜深",
+        "Coordinate1": "819,813",
+        "Coordinate2": "852,890"
+      },
+      {
+        "Name": "A-柜宽",
+        "Coordinate1": "970,542",
+        "Coordinate2": "1029,574"
+      },
+      {
+        "Name": "B-柜宽",
+        "Coordinate1": "970,542",
+        "Coordinate2": "1029,574"
+      },
+      {
+        "Name": "A-离地高度(I)",
+        "Coordinate1": "807,496",
+        "Coordinate2": "846,624"
+      },
+      {
+        "Name": "B-离地高度(I)",
+        "Coordinate1": "807,496",
+        "Coordinate2": "846,624"
+      }
+    ]
+  },
+  {
+    "Id": "6",
+    "ImageName": "柜前向墙.png",
+    "Dimension": [
+      {
+        "Name": "基座高",
+        "Coordinate1": "204,483",
+        "Coordinate2": "270,617"
+      },
+      {
+        "Name": "基架高度",
+        "Coordinate1": "325,458",
+        "Coordinate2": "391,640"
+      },
+      {
+        "Name": "绝缘子定位",
+        "Coordinate1": "429,437",
+        "Coordinate2": "495,660"
+      }
+    ]
+  },
+  {
+    "Id": "7",
+    "ImageName": "柜前向墙+延长.png",
+    "Dimension": [
+      {
+        "Name": "基座高",
+        "Coordinate1": "102,640",
+        "Coordinate2": "174,789"
+      },
+      {
+        "Name": "绝缘子定位",
+        "Coordinate1": "243,606",
+        "Coordinate2": "314,853"
+      },
+      {
+        "Name": "基架高度",
+        "Coordinate1": "777,326",
+        "Coordinate2": "849,525"
+      },
+      {
+        "Name": "延长基座高",
+        "Coordinate1": "360,606",
+        "Coordinate2": "432,854"
+      }
+    ]
+  },
+  {
+    "Id": "8",
+    "ImageName": "柜后向墙.png",
+    "Dimension": [
+      {
+        "Name": "绝缘子定位",
+        "Coordinate1": "751,483",
+        "Coordinate2": "834,765"
+      },
+      {
+        "Name": "基架高度",
+        "Coordinate1": "876,510",
+        "Coordinate2": "960,739"
+      },
+      {
+        "Name": "基座高",
+        "Coordinate1": "1000,541",
+        "Coordinate2": "1082,711"
+      }
+    ]
+  },
+  {
+    "Id": "9",
+    "ImageName": "柜后向墙+延长.png",
+    "Dimension": [
+      {
+        "Name": "延长基座高",
+        "Coordinate1": "686,536",
+        "Coordinate2": "761,795"
+      },
+      {
+        "Name": "基架高度",
+        "Coordinate1": "309,257",
+        "Coordinate2": "387,466"
+      },
+      {
+        "Name": "绝缘子定位",
+        "Coordinate1": "838,535",
+        "Coordinate2": "914,794"
+      },
+      {
+        "Name": "基座高",
+        "Coordinate1": "984,588",
+        "Coordinate2": "1059,743"
+      }
+    ]
+  },
+  {
+    "Id": "10",
+    "ImageName": "侧对侧基座1.png",
+    "Dimension": [
+      {
+        "Name": "基架高度",
+        "Coordinate1": "244,192",
+        "Coordinate2": "310,374"
+      },
+      {
+        "Name": "绝缘子定位1",
+        "Coordinate1": "677,572",
+        "Coordinate2": "743,813"
+      },
+      {
+        "Name": "绝缘子定位2",
+        "Coordinate1": "765,566",
+        "Coordinate2": "831,813"
+      },
+      {
+        "Name": "绝缘子定位3",
+        "Coordinate1": "859,565",
+        "Coordinate2": "925,813"
+      },
+      {
+        "Name": "基座高",
+        "Coordinate1": "968,623",
+        "Coordinate2": "1034,758"
+      }
+    ]
+  },
+  {
+    "Id": "11",
+    "ImageName": "侧对侧基座2.png",
+    "Dimension": [
+      {
+        "Name": "基座2宽",
+        "Coordinate1": "445,135",
+        "Coordinate2": "601,202"
+      },
+      {
+        "Name": "基架高度",
+        "Coordinate1": "727,34",
+        "Coordinate2": "793,213"
+      },
+      {
+        "Name": "组合基座高",
+        "Coordinate1": "858,26",
+        "Coordinate2": "924,247"
+      },
+      {
+        "Name": "绝缘子定位",
+        "Coordinate1": "722,678",
+        "Coordinate2": "788,899"
+      },
+      {
+        "Name": "增高基座高",
+        "Coordinate1": "818,679",
+        "Coordinate2": "883,900"
+      }
+    ]
+  }
+]

@@ -1,0 +1,17 @@
+{
+  "AColor": "黄色",
+  "BColor": "绿色",
+  "CColor": "红色",
+  "NColor": "蓝色",
+  "PEColor": "黄绿色",
+  "IName": "I型",
+  "LName": "L型",
+  "TName": "T型",
+  "CrossName": "十字型",
+  "Prefix": -1,
+  "WidthIsFst": true,
+  "Suffix": -1,
+  "MergeType": false,
+  "TypeIsFst": false,
+  "OnlyOneTPSize": false
+}

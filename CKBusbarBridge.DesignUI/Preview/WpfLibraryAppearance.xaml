@@ -1,0 +1,22 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/RD.UI.Wpf;component/Themes/Generic.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    <!-- 页面背景与业务几何预览配色；控件外观和密度由 RD.UI.Wpf 主题提供。 -->
+    <SolidColorBrush x:Key="ProcessWhiteBrush" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="ProcessPreviewMainLabelBrush" Color="#659B71" />
+    <SolidColorBrush x:Key="ProcessPreviewBranchLabelBrush" Color="#BC7B9E" />
+    <SolidColorBrush x:Key="ProcessPreviewRangeLabelBrush" Color="#D65D68" />
+    <SolidColorBrush x:Key="ProcessPreviewHoleLabelBrush" Color="#17447D" />
+    <SolidColorBrush x:Key="ProcessPreviewDimensionBrush" Color="#8290A1" />
+    <SolidColorBrush x:Key="ProcessPreviewAxisBrush" Color="#667C96" />
+    <SolidColorBrush x:Key="ProcessPreviewOriginBrush" Color="#D65D68" />
+    <SolidColorBrush x:Key="ProcessMainFillBrush" Color="#EEF7EF" />
+    <SolidColorBrush x:Key="ProcessMainStrokeBrush" Color="#8ABB92" />
+    <SolidColorBrush x:Key="ProcessBranchFillBrush" Color="#CCFBF0F6" />
+    <SolidColorBrush x:Key="ProcessBranchStrokeBrush" Color="#D89AB9" />
+    <SolidColorBrush x:Key="ProcessRangeFillBrush" Color="#55FFF9F9" />
+    <SolidColorBrush x:Key="ProcessRangeStrokeBrush" Color="#D65D68" />
+    <SolidColorBrush x:Key="ProcessHoleBrush" Color="#3185EC" />
+</ResourceDictionary>

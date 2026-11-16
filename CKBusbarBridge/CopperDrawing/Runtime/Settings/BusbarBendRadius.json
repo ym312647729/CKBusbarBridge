@@ -1,0 +1,114 @@
+[
+    {
+        "Id": 1,
+        "BusbarThickness": 10.0,
+        "BusbarWidth": 0.0,
+        "Radius": 10.0,
+        "NormalBendType": true
+    },
+    {
+        "Id": 2,
+        "BusbarThickness": 8.0,
+        "BusbarWidth": 0.0,
+        "Radius": 10.0,
+        "NormalBendType": true
+    },
+    {
+        "Id": 3,
+        "BusbarThickness": 6.0,
+        "BusbarWidth": 0.0,
+        "Radius": 5.0,
+        "NormalBendType": true
+    },
+    {
+        "Id": 4,
+        "BusbarThickness": 5.0,
+        "BusbarWidth": 0.0,
+        "Radius": 5.0,
+        "NormalBendType": true
+    },
+    {
+        "Id": 5,
+        "BusbarThickness": 4.0,
+        "BusbarWidth": 0.0,
+        "Radius": 5.0,
+        "NormalBendType": true
+    },
+    {
+        "Id": 6,
+        "BusbarThickness": 3.0,
+        "BusbarWidth": 0.0,
+        "Radius": 5.0,
+        "NormalBendType": true
+    },
+    {
+        "Id": 7,
+        "BusbarThickness": 12.0,
+        "BusbarWidth": 0.0,
+        "Radius": 10.0,
+        "NormalBendType": true
+    },
+    {
+        "Id": 8,
+        "BusbarThickness": 15.0,
+        "BusbarWidth": 0.0,
+        "Radius": 10.0,
+        "NormalBendType": true
+    },
+    {
+        "Id": 11,
+        "BusbarThickness": 0.0,
+        "BusbarWidth": 100.0,
+        "Radius": 50.0,
+        "NormalBendType": false
+    },
+    {
+        "Id": 12,
+        "BusbarThickness": 0.0,
+        "BusbarWidth": 80.0,
+        "Radius": 40.0,
+        "NormalBendType": false
+    },
+    {
+        "Id": 13,
+        "BusbarThickness": 0.0,
+        "BusbarWidth": 60.0,
+        "Radius": 30.0,
+        "NormalBendType": false
+    },
+    {
+        "Id": 14,
+        "BusbarThickness": 0.0,
+        "BusbarWidth": 50.0,
+        "Radius": 25.0,
+        "NormalBendType": false
+    },
+    {
+        "Id": 15,
+        "BusbarThickness": 0.0,
+        "BusbarWidth": 40.0,
+        "Radius": 20.0,
+        "NormalBendType": false
+    },
+    {
+        "Id": 16,
+        "BusbarThickness": 0.0,
+        "BusbarWidth": 30.0,
+        "Radius": 15.0,
+        "NormalBendType": false
+    },
+    {
+        "Id": 17,
+        "BusbarThickness": 0.0,
+        "BusbarWidth": 120.0,
+        "Radius": 60.0,
+        "NormalBendType": false
+    },
+    {
+        "Id": 18,
+        "BusbarThickness": 0.0,
+        "BusbarWidth": 150.0,
+        "Radius": 75.0,
+        "NormalBendType": false
+    }
+]

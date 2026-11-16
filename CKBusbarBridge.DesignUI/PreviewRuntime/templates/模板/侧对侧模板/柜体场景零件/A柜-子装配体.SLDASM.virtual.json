@@ -1,0 +1,5048 @@
+{
+  "schemaVersion": "dq-virtual-template/1",
+  "captureRevision": 6,
+  "kind": "source-feature-definition",
+  "source": {
+    "path": "模板/侧对侧模板/柜体场景零件/A柜-子装配体.SLDASM",
+    "sha256": "605e101ec7c7945e3570d3b5f6de8597d2375bf9cb90af141a2e36ec93914947",
+    "units": "metre-radian",
+    "solidWorksVersion": "32.0.1"
+  },
+  "configurations": [
+    {
+      "name": "默认",
+      "equations": [],
+      "features": [
+        {
+          "id": "aEIAAAAAAAD//v8AAAAAAA==",
+          "name": "Favorites",
+          "type": "FavoriteFolder",
+          "parent": null,
+          "suppressed": false,
+          "parents": [],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAACQAAAD//v8AAAAAAAgAAAA=",
+          "name": "设计活页夹",
+          "type": "DocsFolder",
+          "parent": null,
+          "suppressed": false,
+          "parents": [],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAABUAAAD//v8AAAAAAAIAAAA=",
+          "name": "注解",
+          "type": "DetailCabinet",
+          "parent": null,
+          "suppressed": false,
+          "parents": [],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAACQAAAD//v8AAAAAABYAAAA=",
+          "name": "Notes",
+          "type": "NotesAreaFtrFolder",
+          "parent": "注解",
+          "suppressed": false,
+          "parents": [],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAACAAAAD//v8AAAAAAMgAAAA=",
+          "name": "Notes Area",
+          "type": "AnnotationViewFeat",
+          "parent": "注解",
+          "suppressed": false,
+          "parents": [],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAACQAAAD//v8AAAAAABcAAAA=",
+          "name": "Notes1___EndTag___",
+          "type": "FtrFolder",
+          "parent": "注解",
+          "suppressed": false,
+          "parents": [],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAACQAAAD//v8AAAAAAAkAAAA=",
+          "name": "备注",
+          "type": "CommentsFolder",
+          "parent": null,
+          "suppressed": false,
+          "parents": [],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAABYAAAD//v8AAAAAABAAAAA=",
+          "name": "方程式",
+          "type": "EqnFolder",
+          "parent": null,
+          "suppressed": false,
+          "parents": [],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAAAEAAAD//v8AAAAAAAMAAAA=",
+          "name": "前视基准面",
+          "type": "RefPlane",
+          "parent": null,
+          "suppressed": false,
+          "parents": [],
+          "dimensions": [],
+          "sketch": null,
+          "definition": {
+            "interfaceName": "IRefPlaneFeatureData",
+            "properties": {
+              "Type": 10,
+              "AutoSize": true,
+              "Angle": 0,
+              "Distance": 0,
+              "ReverseDirection": false,
+              "OriginOnCurve": false,
+              "Selections": null,
+              "ProjectionType": 0,
+              "UseNormalPlane": false,
+              "SolutionIndex": 0,
+              "Type2": 10,
+              "UpdatePlane": false,
+              "constraintReferences": [
+                {
+                  "reference": null,
+                  "constraint": 0,
+                  "angleOrDistance": 0,
+                  "reversedDirection": false
+                },
+                {
+                  "reference": null,
+                  "constraint": 0,
+                  "angleOrDistance": 0,
+                  "reversedDirection": false
+                },
+                {
+                  "reference": null,
+                  "constraint": 0,
+                  "angleOrDistance": 0,
+                  "reversedDirection": false
+                }
+              ]
+            }
+          },
+          "diagnostics": [
+            "IRefPlaneFeatureData.AccessSelections returned false"
+          ],
+          "referenceGeometry": {
+            "id": "aEIAAAEAAAD//v8AAAAAAAMAAAA=",
+            "feature": "前视基准面",
+            "referencePlaneTransform": [
+              1,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "id": "aEIAAAEAAAD//v8AAAAAAAQAAAA=",
+          "name": "上视基准面",
+          "type": "RefPlane",
+          "parent": null,
+          "suppressed": false,
+          "parents": [],
+          "dimensions": [],
+          "sketch": null,
+          "definition": {
+            "interfaceName": "IRefPlaneFeatureData",
+            "properties": {
+              "Type": 10,
+              "AutoSize": true,
+              "Angle": 0,
+              "Distance": 0,
+              "ReverseDirection": false,
+              "OriginOnCurve": false,
+              "Selections": null,
+              "ProjectionType": 0,
+              "UseNormalPlane": false,
+              "SolutionIndex": 0,
+              "Type2": 10,
+              "UpdatePlane": false,
+              "constraintReferences": [
+                {
+                  "reference": null,
+                  "constraint": 0,
+                  "angleOrDistance": 0,
+                  "reversedDirection": false
+                },
+                {
+                  "reference": null,
+                  "constraint": 0,
+                  "angleOrDistance": 0,
+                  "reversedDirection": false
+                },
+                {
+                  "reference": null,
+                  "constraint": 0,
+                  "angleOrDistance": 0,
+                  "reversedDirection": false
+                }
+              ]
+            }
+          },
+          "diagnostics": [
+            "IRefPlaneFeatureData.AccessSelections returned false"
+          ],
+          "referenceGeometry": {
+            "id": "aEIAAAEAAAD//v8AAAAAAAQAAAA=",
+            "feature": "上视基准面",
+            "referencePlaneTransform": [
+              1,
+              0,
+              0,
+              0,
+              0,
+              -1,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "id": "aEIAAAEAAAD//v8AAAAAAAUAAAA=",
+          "name": "右视基准面",
+          "type": "RefPlane",
+          "parent": null,
+          "suppressed": false,
+          "parents": [],
+          "dimensions": [],
+          "sketch": null,
+          "definition": {
+            "interfaceName": "IRefPlaneFeatureData",
+            "properties": {
+              "Type": 10,
+              "AutoSize": true,
+              "Angle": 0,
+              "Distance": 0,
+              "ReverseDirection": false,
+              "OriginOnCurve": false,
+              "Selections": null,
+              "ProjectionType": 0,
+              "UseNormalPlane": false,
+              "SolutionIndex": 0,
+              "Type2": 10,
+              "UpdatePlane": false,
+              "constraintReferences": [
+                {
+                  "reference": null,
+                  "constraint": 0,
+                  "angleOrDistance": 0,
+                  "reversedDirection": false
+                },
+                {
+                  "reference": null,
+                  "constraint": 0,
+                  "angleOrDistance": 0,
+                  "reversedDirection": false
+                },
+                {
+                  "reference": null,
+                  "constraint": 0,
+                  "angleOrDistance": 0,
+                  "reversedDirection": false
+                }
+              ]
+            }
+          },
+          "diagnostics": [
+            "IRefPlaneFeatureData.AccessSelections returned false"
+          ],
+          "referenceGeometry": {
+            "id": "aEIAAAEAAAD//v8AAAAAAAUAAAA=",
+            "feature": "右视基准面",
+            "referencePlaneTransform": [
+              -0,
+              -0,
+              -1,
+              0,
+              1,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "id": "aEIAAAEAAAD//v8AAAAAAAYAAAA=",
+          "name": "原点",
+          "type": "OriginProfileFeature",
+          "parent": null,
+          "suppressed": false,
+          "parents": [
+            "前视基准面"
+          ],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAAAUAAAD//v8NQQDcZ1NPLQAxAEAAQQDcZy0AUFvFiE2RU08EAAAAEAAAAAEAAAABAAAAGQAAAA==",
+          "name": "A柜体-1",
+          "type": "Reference",
+          "parent": null,
+          "suppressed": false,
+          "parents": [],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAACQAAAD//v8AAAAAAFkAAAA=",
+          "name": "A柜前",
+          "type": "FtrFolder",
+          "parent": null,
+          "suppressed": false,
+          "parents": [],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAAAUAAAD//v8UQQDcZ4VROE/6UZJjLQBBANxnTVItADEAQABBANxnLQBQW8WITZFTTwQAAAAQAAAAAQAAAAEAAAA1AAAA",
+          "name": "A柜内伸出排-A柜前-1",
+          "type": "Reference",
+          "parent": null,
+          "suppressed": false,
+          "parents": [],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAACQAAAD//v8AAAAAAFoAAAA=",
+          "name": "文件夹1___EndTag___",
+          "type": "FtrFolder",
+          "parent": null,
+          "suppressed": false,
+          "parents": [],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAACQAAAD//v8AAAAAAGYAAAA=",
+          "name": "A柜后",
+          "type": "FtrFolder",
+          "parent": null,
+          "suppressed": false,
+          "parents": [],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAAAUAAAD//v8UQQDcZ4VROE/6UZJjLQBBANxnDlQtADEAQABBANxnLQBQW8WITZFTTwQAAAAQAAAAAQAAAAEAAABAAAAA",
+          "name": "A柜内伸出排-A柜后-1",
+          "type": "Reference",
+          "parent": null,
+          "suppressed": false,
+          "parents": [],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAACQAAAD//v8AAAAAAGcAAAA=",
+          "name": "文件夹2___EndTag___",
+          "type": "FtrFolder",
+          "parent": null,
+          "suppressed": false,
+          "parents": [],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAABcAAAD//v8AAAAAAAoAAAA=",
+          "name": "配合",
+          "type": "MateGroup",
+          "parent": null,
+          "suppressed": false,
+          "parents": [
+            "A柜体-1",
+            "前视基准面",
+            "上视基准面",
+            "右视基准面",
+            "A柜内伸出排-A柜前-1",
+            "A柜内伸出排-A柜后-1"
+          ],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": []
+        },
+        {
+          "id": "aEIAABgAAAD//v8AAAAAABoAAAA=",
+          "name": "对称1",
+          "type": "MateSymmetric",
+          "parent": "配合",
+          "suppressed": false,
+          "parents": [
+            "A柜体-1",
+            "前视基准面",
+            "配合"
+          ],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": [],
+          "mateDefinition": {
+            "type": 8,
+            "alignment": 0,
+            "flipped": false,
+            "minimumVariation": 0,
+            "maximumVariation": 0,
+            "entities": [
+              {
+                "component": "A柜体-1",
+                "componentId": 25,
+                "referenceType": 3,
+                "parameters": [
+                  0.75,
+                  1.12,
+                  0.5,
+                  -0,
+                  -0,
+                  1,
+                  0,
+                  0
+                ],
+                "reference": {
+                  "id": "aEIAAAMAAAD//v8NQQDcZ1NPLQAxAEAAQQDcZy0AUFvFiE2RU08EAAAAEAAAAAEAAAABAAAAGQAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFABtb0VuZEZhY2VTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/IkUAOgBcAHmY7nZcACdZaFEtAM1rv35laFwALHuMTkhyXABCANxnUFvFiFwAMgBcAEEA3GdTTy4AUwBMAEQAUABSAFQACYD//v8DQQDcZ1NPAgAAMQ1naf/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAAFgAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAFEAAADXDWdpAQAAAAAAAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAABYAIAFEAAADXDWdpAQAAAAyAAAAFgAgAUQAAANcNZ2kCAAAADIAAAAWACABRAAAA1w1naQMAAAAMgAAABYAIAFEAAADXDWdpBAAAAAAAAAAAAAAAAABoQgAAAAAAAAAAAAA=",
+                  "definitionReference": true,
+                  "planeParameters": [
+                    0,
+                    0,
+                    -1,
+                    0,
+                    0,
+                    0.5
+                  ],
+                  "sense": true
+                }
+              },
+              {
+                "component": "A柜体-1",
+                "componentId": 25,
+                "referenceType": 3,
+                "parameters": [
+                  0.75,
+                  1.12,
+                  -0.5,
+                  0,
+                  0,
+                  -1,
+                  0,
+                  0
+                ],
+                "reference": {
+                  "id": "aEIAAAMAAAD//v8NQQDcZ1NPLQAxAEAAQQDcZy0AUFvFiE2RU08EAAAAEAAAAAEAAAABAAAAGQAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFABtb0VuZEZhY2VTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/IkUAOgBcAHmY7nZcACdZaFEtAM1rv35laFwALHuMTkhyXABCANxnUFvFiFwAMgBcAEEA3GdTTy4AUwBMAEQAUABSAFQACYD//v8DQQDcZ1NPAgAAMQ1naf/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAAFgAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAFEAAADXDWdpAAAAAAAAAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAABYAIAFEAAADXDWdpAQAAAAyAAAAFgAgAUQAAANcNZ2kEAAAADIAAAAWACABRAAAA1w1naQMAAAAMgAAABYAIAFEAAADXDWdpAgAAAAAAAAAAAAAAAABoQgAAAAAAAAAAAAA=",
+                  "definitionReference": true,
+                  "planeParameters": [
+                    0,
+                    0,
+                    -1,
+                    0,
+                    0,
+                    -0.5
+                  ],
+                  "sense": false
+                }
+              },
+              {
+                "component": "A柜-子装配体",
+                "componentId": -1,
+                "referenceType": 3,
+                "parameters": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0
+                ],
+                "reference": {
+                  "id": "aEIAAAEAAAD//v8AAAAAAAMAAAA=",
+                  "feature": "前视基准面",
+                  "referencePlaneTransform": [
+                    1,
+                    0,
+                    0,
+                    0,
+                    1,
+                    0,
+                    0,
+                    0,
+                    1,
+                    0,
+                    0,
+                    0,
+                    1,
+                    0,
+                    0,
+                    0
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "aEIAABgAAAD//v8AAAAAABsAAAA=",
+          "name": "重合1",
+          "type": "MateCoincident",
+          "parent": "配合",
+          "suppressed": false,
+          "parents": [
+            "A柜体-1",
+            "上视基准面",
+            "配合"
+          ],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": [],
+          "mateDefinition": {
+            "type": 0,
+            "alignment": 1,
+            "flipped": false,
+            "minimumVariation": 0,
+            "maximumVariation": 0,
+            "entities": [
+              {
+                "component": "A柜体-1",
+                "componentId": 25,
+                "referenceType": 3,
+                "parameters": [
+                  0,
+                  0,
+                  0.5,
+                  -0,
+                  -1,
+                  -0,
+                  0,
+                  0
+                ],
+                "reference": {
+                  "id": "aEIAAAMAAAD//v8NQQDcZ1NPLQAxAEAAQQDcZy0AUFvFiE2RU08EAAAAEAAAAAEAAAABAAAAGQAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/IkUAOgBcAHmY7nZcACdZaFEtAM1rv35laFwALHuMTkhyXABCANxnUFvFiFwAMgBcAEEA3GdTTy4AUwBMAEQAUABSAFQACYD//v8DQQDcZ1NPAgAAMQ1naf/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAAFgAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAFEAAADXDWdpBAAAAP//AQAUAG1vRW5kRmFjZVN1cmZJZFJlcF9jAAAFgAgAUQAAANcNZ2kAAAAAAAAAAAOAAAAFgAgAUQAAANcNZ2kBAAAADIAAAAWACABRAAAA1w1naQEAAAAAAAAAA4AAAAWACABRAAAA1w1naQMAAAAAAAAAAAAAAAAAaEIAAAAAAAAAAAAA",
+                  "definitionReference": true,
+                  "planeParameters": [
+                    0,
+                    1,
+                    0,
+                    -0.75,
+                    -1.12,
+                    0.5
+                  ],
+                  "sense": true
+                }
+              },
+              {
+                "component": "A柜-子装配体",
+                "componentId": -1,
+                "referenceType": 3,
+                "parameters": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0
+                ],
+                "reference": {
+                  "id": "aEIAAAEAAAD//v8AAAAAAAQAAAA=",
+                  "feature": "上视基准面",
+                  "referencePlaneTransform": [
+                    1,
+                    0,
+                    0,
+                    0,
+                    0,
+                    -1,
+                    0,
+                    1,
+                    0,
+                    0,
+                    0,
+                    0,
+                    1,
+                    0,
+                    0,
+                    0
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "aEIAABgAAAD//v8AAAAAABwAAAA=",
+          "name": "重合2",
+          "type": "MateCoincident",
+          "parent": "配合",
+          "suppressed": false,
+          "parents": [
+            "A柜体-1",
+            "右视基准面",
+            "配合"
+          ],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": [],
+          "mateDefinition": {
+            "type": 0,
+            "alignment": 1,
+            "flipped": false,
+            "minimumVariation": 0,
+            "maximumVariation": 0,
+            "entities": [
+              {
+                "component": "A柜体-1",
+                "componentId": 25,
+                "referenceType": 3,
+                "parameters": [
+                  0,
+                  0,
+                  0.5,
+                  -1,
+                  -0,
+                  -0,
+                  0,
+                  0
+                ],
+                "reference": {
+                  "id": "aEIAAAMAAAD//v8NQQDcZ1NPLQAxAEAAQQDcZy0AUFvFiE2RU08EAAAAEAAAAAEAAAABAAAAGQAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/IkUAOgBcAHmY7nZcACdZaFEtAM1rv35laFwALHuMTkhyXABCANxnUFvFiFwAMgBcAEEA3GdTTy4AUwBMAEQAUABSAFQACYD//v8DQQDcZ1NPAgAAMQ1naf/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAAFgAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAFEAAADXDWdpAwAAAP//AQAUAG1vRW5kRmFjZVN1cmZJZFJlcF9jAAAFgAgAUQAAANcNZ2kAAAAAAAAAAAOAAAAFgAgAUQAAANcNZ2kEAAAADIAAAAWACABRAAAA1w1naQEAAAAAAAAAA4AAAAWACABRAAAA1w1naQIAAAAAAAAAAAAAAAAAaEIAAAAAAAAAAAAA",
+                  "definitionReference": true,
+                  "planeParameters": [
+                    1,
+                    0,
+                    0,
+                    -0.75,
+                    -1.12,
+                    0.5
+                  ],
+                  "sense": true
+                }
+              },
+              {
+                "component": "A柜-子装配体",
+                "componentId": -1,
+                "referenceType": 3,
+                "parameters": [
+                  0,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "reference": {
+                  "id": "aEIAAAEAAAD//v8AAAAAAAUAAAA=",
+                  "feature": "右视基准面",
+                  "referencePlaneTransform": [
+                    -0,
+                    -0,
+                    -1,
+                    0,
+                    1,
+                    0,
+                    1,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    1,
+                    0,
+                    0,
+                    0
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "aEIAABgAAAD//v8AAAAAADsAAAA=",
+          "name": "距离2",
+          "type": "MateDistanceDim",
+          "parent": "配合",
+          "suppressed": false,
+          "parents": [
+            "A柜内伸出排-A柜前-1",
+            "A柜体-1",
+            "配合"
+          ],
+          "dimensions": [
+            {
+              "id": null,
+              "name": "柜前-柜内出排高度@距离2@A柜-子装配体.Assembly",
+              "value": 0.3,
+              "dimensionType": 0,
+              "readOnly": false,
+              "drivenState": 2,
+              "annotation": [
+                0.1538532303366753,
+                -0.28989999999999994,
+                -0.8736520029548264
+              ]
+            }
+          ],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": [],
+          "mateDefinition": {
+            "type": 5,
+            "alignment": 0,
+            "flipped": true,
+            "minimumVariation": 0,
+            "maximumVariation": 0,
+            "entities": [
+              {
+                "component": "A柜内伸出排-A柜前-1/A柜内伸出排-C-A柜前-1",
+                "componentId": 25,
+                "referenceType": 3,
+                "parameters": [
+                  0.8694999999999999,
+                  2.54,
+                  0.16999999999999996,
+                  1.2400705805292066E-17,
+                  1,
+                  1.0685623553832532E-17,
+                  0,
+                  0
+                ],
+                "reference": {
+                  "id": "aEIAAAMAAAD//v8uQQDcZ4VROE/6UZJjLQBBANxnTVItADEAQABBANxnLQBQW8WITZFTTy8AQQDcZ4VROE/6UZJjLQBDAC0AQQDcZ01SLQAxAEAAQQDcZ4VROE/6UZJjLQBBANxnTVIEAAAAEAAAAAEAAAACAAAANQAAABkAAAD//wEACwBtb0ZhY2VSZWZfYwEAAAAAAAAABgAAAAADAAAAAAAAfcOUJa1JslR9w5QlrUmyVAAA//8BABgAbW9UaGluQ2xvc2luZ1N1cmZJZFJlcF9jAAD//wEABgBtb0ZSX2P//wEADQBtb0V4dE9iamVjdF9j//8BABEAbW9DU3RyaW5nSGFuZGxlX2P//v8rRQA6AFwAeZjudlwAJ1loUS0AzWu/fmVoXAAse4xOSHJcAEIA3GdQW8WIXAAyAFwAQQDcZ4VROE/6UZJjLQBDAC0AQQDcZ01SLgBTAEwARABQAFIAVAAJgP/+/wxBANxnhVE4T/pRkmMtAEMALQBBANxnTVICAADrXwtm//7/AP/+/wD//v8AAAAAAAAAAAAAAAAAAAAaAAAA//7/AtiepIsAAAAAAAAAAMjgbFYAAAAAXwAAAA5gC2YAAAAAAAAAAP//AQAUAG1vRW5kRmFjZVN1cmZJZFJlcF9jAAAFgAgAXwAAAA5gC2YAAAAAAAAAAP//AQAXAG1vVGhpbk9mZnNldFN1cmZJZFJlcF9jAAAFgAgAXwAAAA5gC2YBAAAADIAAAAWACABfAAAADmALZgEAAAAAAAAA//8BABcAbW9Gcm9tU2t0RW50U3VyZklkUmVwX2MAAAWACABfAAAADmALZgEAAAAAAAAAAAAAAAAAaEIAAAAAAAAAAAAA",
+                  "definitionReference": true,
+                  "planeParameters": [
+                    -1,
+                    0,
+                    0,
+                    0,
+                    0.04,
+                    0
+                  ],
+                  "sense": false
+                }
+              },
+              {
+                "component": "A柜体-1",
+                "componentId": 25,
+                "referenceType": 3,
+                "parameters": [
+                  0,
+                  2.24,
+                  0.5,
+                  -0,
+                  1,
+                  -0,
+                  0,
+                  0
+                ],
+                "reference": {
+                  "id": "aEIAAAMAAAD//v8NQQDcZ1NPLQAxAEAAQQDcZy0AUFvFiE2RU08EAAAAEAAAAAEAAAABAAAAGQAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/IkUAOgBcAHmY7nZcACdZaFEtAM1rv35laFwALHuMTkhyXABCANxnUFvFiFwAMgBcAEEA3GdTTy4AUwBMAEQAUABSAFQACYD//v8DQQDcZ1NPAgAAMQ1naf/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAAFgAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAFEAAADXDWdpAgAAAP//AQAUAG1vRW5kRmFjZVN1cmZJZFJlcF9jAAAFgAgAUQAAANcNZ2kAAAAAAAAAAAOAAAAFgAgAUQAAANcNZ2kDAAAADIAAAAWACABRAAAA1w1naQEAAAAAAAAAA4AAAAWACABRAAAA1w1naQEAAAAAAAAAAAAAAAAAaEIAAAAAAAAAAAAA",
+                  "definitionReference": true,
+                  "planeParameters": [
+                    0,
+                    -1,
+                    0,
+                    -0.75,
+                    1.12,
+                    0.5
+                  ],
+                  "sense": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "aEIAABgAAAD//v8AAAAAAD0AAAA=",
+          "name": "距离3",
+          "type": "MateDistanceDim",
+          "parent": "配合",
+          "suppressed": false,
+          "parents": [
+            "A柜内伸出排-A柜前-1",
+            "A柜体-1",
+            "配合"
+          ],
+          "dimensions": [
+            {
+              "id": null,
+              "name": "铜排中心至柜前距离@距离3@A柜-子装配体.Assembly",
+              "value": 0.6505,
+              "dimensionType": 0,
+              "readOnly": false,
+              "drivenState": 2,
+              "annotation": [
+                -0.5001000000000001,
+                0.13183065834314878,
+                0.8108606263981704
+              ]
+            }
+          ],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": [],
+          "mateDefinition": {
+            "type": 5,
+            "alignment": 0,
+            "flipped": false,
+            "minimumVariation": 0,
+            "maximumVariation": 0,
+            "entities": [
+              {
+                "component": "A柜内伸出排-A柜前-1",
+                "componentId": 53,
+                "referenceType": 3,
+                "parameters": [
+                  0.8494999999999999,
+                  2.29,
+                  2.7755575615628914E-17,
+                  1,
+                  -1.1671051626871047E-17,
+                  0,
+                  0,
+                  0
+                ],
+                "reference": {
+                  "id": "aEIAAAEAAAD//v8UQQDcZ4VROE/6UZJjLQBBANxnTVItADEAQABBANxnLQBQW8WITZFTTwQAAAAQAAAAAQAAAAEAAAA1AAAAAwAAAA==",
+                  "feature": "前视基准面",
+                  "referencePlaneTransform": [
+                    1,
+                    0,
+                    0,
+                    0,
+                    1,
+                    0,
+                    0,
+                    0,
+                    1,
+                    0,
+                    0,
+                    0,
+                    1,
+                    0,
+                    0,
+                    0
+                  ]
+                }
+              },
+              {
+                "component": "A柜体-1",
+                "componentId": 25,
+                "referenceType": 3,
+                "parameters": [
+                  1.5,
+                  0,
+                  0.5,
+                  1,
+                  -0,
+                  -0,
+                  0,
+                  0
+                ],
+                "reference": {
+                  "id": "aEIAAAMAAAD//v8NQQDcZ1NPLQAxAEAAQQDcZy0AUFvFiE2RU08EAAAAEAAAAAEAAAABAAAAGQAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/IkUAOgBcAHmY7nZcACdZaFEtAM1rv35laFwALHuMTkhyXABCANxnUFvFiFwAMgBcAEEA3GdTTy4AUwBMAEQAUABSAFQACYD//v8DQQDcZ1NPAgAAMQ1naf/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAAFgAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAFEAAADXDWdpAQAAAP//AQAUAG1vRW5kRmFjZVN1cmZJZFJlcF9jAAAFgAgAUQAAANcNZ2kAAAAAAAAAAAOAAAAFgAgAUQAAANcNZ2kCAAAADIAAAAWACABRAAAA1w1naQEAAAAAAAAAA4AAAAWACABRAAAA1w1naQQAAAAAAAAAAAAAAAAAaEIAAAAAAAAAAAAA",
+                  "definitionReference": true,
+                  "planeParameters": [
+                    -1,
+                    0,
+                    0,
+                    0.75,
+                    -1.12,
+                    0.5
+                  ],
+                  "sense": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "aEIAABgAAAD//v8AAAAAAD4AAAA=",
+          "name": "重合6",
+          "type": "MateCoincident",
+          "parent": "配合",
+          "suppressed": false,
+          "parents": [
+            "A柜内伸出排-A柜前-1",
+            "前视基准面",
+            "配合"
+          ],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": [],
+          "mateDefinition": {
+            "type": 0,
+            "alignment": 1,
+            "flipped": false,
+            "minimumVariation": 0,
+            "maximumVariation": 0,
+            "entities": [
+              {
+                "component": "A柜内伸出排-A柜前-1/A柜内伸出排-B-A柜前-1",
+                "componentId": 27,
+                "referenceType": 3,
+                "parameters": [
+                  0.8694999999999999,
+                  2.54,
+                  -1.8918847459678908E-19,
+                  -1.3877787807814457E-16,
+                  6.564310614620414E-17,
+                  -1,
+                  0,
+                  0
+                ],
+                "reference": {
+                  "id": "aEIAAAEAAAD//v8uQQDcZ4VROE/6UZJjLQBBANxnTVItADEAQABBANxnLQBQW8WITZFTTy8AQQDcZ4VROE/6UZJjLQBCAC0AQQDcZ01SLQAxAEAAQQDcZ4VROE/6UZJjLQBBANxnTVIEAAAAEAAAAAEAAAACAAAANQAAABsAAAADAAAA",
+                  "feature": "上视基准面",
+                  "referencePlaneTransform": [
+                    1,
+                    0,
+                    0,
+                    0,
+                    0,
+                    -1,
+                    0,
+                    1,
+                    0,
+                    0,
+                    0,
+                    0,
+                    1,
+                    0,
+                    0,
+                    0
+                  ]
+                }
+              },
+              {
+                "component": "A柜-子装配体",
+                "componentId": -1,
+                "referenceType": 3,
+                "parameters": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0
+                ],
+                "reference": {
+                  "id": "aEIAAAEAAAD//v8AAAAAAAMAAAA=",
+                  "feature": "前视基准面",
+                  "referencePlaneTransform": [
+                    1,
+                    0,
+                    0,
+                    0,
+                    1,
+                    0,
+                    0,
+                    0,
+                    1,
+                    0,
+                    0,
+                    0,
+                    1,
+                    0,
+                    0,
+                    0
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "aEIAABgAAAD//v8AAAAAAEIAAAA=",
+          "name": "距离4",
+          "type": "MateDistanceDim",
+          "parent": "配合",
+          "suppressed": false,
+          "parents": [
+            "A柜内伸出排-A柜后-1",
+            "A柜体-1",
+            "配合"
+          ],
+          "dimensions": [
+            {
+              "id": null,
+              "name": "铜排中心距柜后距离@距离4@A柜-子装配体.Assembly",
+              "value": 0.308,
+              "dimensionType": 0,
+              "readOnly": false,
+              "drivenState": 2,
+              "annotation": [
+                -0.5001000000000001,
+                0.551435363568233,
+                -0.3315928518115023
+              ]
+            }
+          ],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": [],
+          "mateDefinition": {
+            "type": 5,
+            "alignment": 1,
+            "flipped": true,
+            "minimumVariation": 0,
+            "maximumVariation": 0,
+            "entities": [
+              {
+                "component": "A柜内伸出排-A柜后-1",
+                "componentId": 64,
+                "referenceType": 3,
+                "parameters": [
+                  0.308,
+                  2.29,
+                  2.7755575615628914E-17,
+                  1,
+                  1.6263032587282567E-19,
+                  0,
+                  0,
+                  0
+                ],
+                "reference": {
+                  "id": "aEIAAAEAAAD//v8UQQDcZ4VROE/6UZJjLQBBANxnDlQtADEAQABBANxnLQBQW8WITZFTTwQAAAAQAAAAAQAAAAEAAABAAAAAAwAAAA==",
+                  "feature": "前视基准面",
+                  "referencePlaneTransform": [
+                    1,
+                    0,
+                    0,
+                    0,
+                    1,
+                    0,
+                    0,
+                    0,
+                    1,
+                    0,
+                    0,
+                    0,
+                    1,
+                    0,
+                    0,
+                    0
+                  ]
+                }
+              },
+              {
+                "component": "A柜体-1",
+                "componentId": 25,
+                "referenceType": 3,
+                "parameters": [
+                  0,
+                  0,
+                  0.5,
+                  -1,
+                  -0,
+                  -0,
+                  0,
+                  0
+                ],
+                "reference": {
+                  "id": "aEIAAAMAAAD//v8NQQDcZ1NPLQAxAEAAQQDcZy0AUFvFiE2RU08EAAAAEAAAAAEAAAABAAAAGQAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/IkUAOgBcAHmY7nZcACdZaFEtAM1rv35laFwALHuMTkhyXABCANxnUFvFiFwAMgBcAEEA3GdTTy4AUwBMAEQAUABSAFQACYD//v8DQQDcZ1NPAgAAMQ1naf/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAAFgAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAFEAAADXDWdpAwAAAP//AQAUAG1vRW5kRmFjZVN1cmZJZFJlcF9jAAAFgAgAUQAAANcNZ2kAAAAAAAAAAAOAAAAFgAgAUQAAANcNZ2kEAAAADIAAAAWACABRAAAA1w1naQEAAAAAAAAAA4AAAAWACABRAAAA1w1naQIAAAAAAAAAAAAAAAAAaEIAAAAAAAAAAAAA",
+                  "definitionReference": true,
+                  "planeParameters": [
+                    1,
+                    0,
+                    0,
+                    -0.75,
+                    -1.12,
+                    0.5
+                  ],
+                  "sense": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "aEIAABgAAAD//v8AAAAAAEQAAAA=",
+          "name": "距离5",
+          "type": "MateDistanceDim",
+          "parent": "配合",
+          "suppressed": false,
+          "parents": [
+            "A柜内伸出排-A柜后-1",
+            "A柜体-1",
+            "配合"
+          ],
+          "dimensions": [
+            {
+              "id": null,
+              "name": "柜后-柜内出排高度@距离5@A柜-子装配体.Assembly",
+              "value": 0.3,
+              "dimensionType": 0,
+              "readOnly": false,
+              "drivenState": 2,
+              "annotation": [
+                0.1489993646844563,
+                -0.28990000000000005,
+                -0.29793723484851026
+              ]
+            }
+          ],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": [],
+          "mateDefinition": {
+            "type": 5,
+            "alignment": 0,
+            "flipped": true,
+            "minimumVariation": 0,
+            "maximumVariation": 0,
+            "entities": [
+              {
+                "component": "A柜内伸出排-A柜后-1/A柜内伸出排-C-A柜后-1",
+                "componentId": 25,
+                "referenceType": 3,
+                "parameters": [
+                  0.296,
+                  2.54,
+                  0.16999999999999996,
+                  -4.669114550815243E-21,
+                  1,
+                  3.919795306784858E-17,
+                  0,
+                  0
+                ],
+                "reference": {
+                  "id": "aEIAAAMAAAD//v8uQQDcZ4VROE/6UZJjLQBBANxnDlQtADEAQABBANxnLQBQW8WITZFTTy8AQQDcZ4VROE/6UZJjLQBDAC0AQQDcZw5ULQAxAEAAQQDcZ4VROE/6UZJjLQBBANxnDlQEAAAAEAAAAAEAAAACAAAAQAAAABkAAAD//wEACwBtb0ZhY2VSZWZfYwEAAAAAAAAABgAAAAADAAAAAAAAfcOUJa1JslR9w5QlrUmyVAAA//8BABgAbW9UaGluQ2xvc2luZ1N1cmZJZFJlcF9jAAD//wEABgBtb0ZSX2P//wEADQBtb0V4dE9iamVjdF9j//8BABEAbW9DU3RyaW5nSGFuZGxlX2P//v8rRQA6AFwAeZjudlwAJ1loUS0AzWu/fmVoXAAse4xOSHJcAEIA3GdQW8WIXAAyAFwAQQDcZ4VROE/6UZJjLQBDAC0AQQDcZw5ULgBTAEwARABQAFIAVAAJgP/+/wxBANxnhVE4T/pRkmMtAEMALQBBANxnDlQCAADrXwtm//7/AP/+/wD//v8AAAAAAAAAAAAAAAAAAAAeAAAA//7/AtiepIsAAAAAAAAAAMjgbFYAAAAAXwAAAA5gC2YAAAAAAAAAAP//AQAUAG1vRW5kRmFjZVN1cmZJZFJlcF9jAAAFgAgAXwAAAA5gC2YAAAAAAAAAAP//AQAXAG1vVGhpbk9mZnNldFN1cmZJZFJlcF9jAAAFgAgAXwAAAA5gC2YBAAAADIAAAAWACABfAAAADmALZgEAAAAAAAAA//8BABcAbW9Gcm9tU2t0RW50U3VyZklkUmVwX2MAAAWACABfAAAADmALZgEAAAAAAAAAAAAAAAAAaEIAAAAAAAAAAAAA",
+                  "definitionReference": true,
+                  "planeParameters": [
+                    -1,
+                    0,
+                    0,
+                    0,
+                    0.04,
+                    0
+                  ],
+                  "sense": false
+                }
+              },
+              {
+                "component": "A柜体-1",
+                "componentId": 25,
+                "referenceType": 3,
+                "parameters": [
+                  0,
+                  2.24,
+                  0.5,
+                  -0,
+                  1,
+                  -0,
+                  0,
+                  0
+                ],
+                "reference": {
+                  "id": "aEIAAAMAAAD//v8NQQDcZ1NPLQAxAEAAQQDcZy0AUFvFiE2RU08EAAAAEAAAAAEAAAABAAAAGQAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/IkUAOgBcAHmY7nZcACdZaFEtAM1rv35laFwALHuMTkhyXABCANxnUFvFiFwAMgBcAEEA3GdTTy4AUwBMAEQAUABSAFQACYD//v8DQQDcZ1NPAgAAMQ1naf/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAAFgAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAFEAAADXDWdpAgAAAP//AQAUAG1vRW5kRmFjZVN1cmZJZFJlcF9jAAAFgAgAUQAAANcNZ2kAAAAAAAAAAAOAAAAFgAgAUQAAANcNZ2kDAAAADIAAAAWACABRAAAA1w1naQEAAAAAAAAAA4AAAAWACABRAAAA1w1naQEAAAAAAAAAAAAAAAAAaEIAAAAAAAAAAAAA",
+                  "definitionReference": true,
+                  "planeParameters": [
+                    0,
+                    -1,
+                    0,
+                    -0.75,
+                    1.12,
+                    0.5
+                  ],
+                  "sense": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "aEIAABgAAAD//v8AAAAAAEUAAAA=",
+          "name": "重合7",
+          "type": "MateCoincident",
+          "parent": "配合",
+          "suppressed": false,
+          "parents": [
+            "A柜内伸出排-A柜后-1",
+            "前视基准面",
+            "配合"
+          ],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": [],
+          "mateDefinition": {
+            "type": 0,
+            "alignment": 1,
+            "flipped": false,
+            "minimumVariation": 0,
+            "maximumVariation": 0,
+            "entities": [
+              {
+                "component": "A柜内伸出排-A柜后-1/A柜内伸出排-B-A柜后-1",
+                "componentId": 27,
+                "referenceType": 3,
+                "parameters": [
+                  0.296,
+                  2.54,
+                  6.938893903907222E-18,
+                  1.3839098292294305E-17,
+                  -1.6313198163409247E-17,
+                  -1,
+                  0,
+                  0
+                ],
+                "reference": {
+                  "id": "aEIAAAEAAAD//v8uQQDcZ4VROE/6UZJjLQBBANxnDlQtADEAQABBANxnLQBQW8WITZFTTy8AQQDcZ4VROE/6UZJjLQBCAC0AQQDcZw5ULQAxAEAAQQDcZ4VROE/6UZJjLQBBANxnDlQEAAAAEAAAAAEAAAACAAAAQAAAABsAAAADAAAA",
+                  "feature": "上视基准面",
+                  "referencePlaneTransform": [
+                    1,
+                    0,
+                    0,
+                    0,
+                    0,
+                    -1,
+                    0,
+                    1,
+                    0,
+                    0,
+                    0,
+                    0,
+                    1,
+                    0,
+                    0,
+                    0
+                  ]
+                }
+              },
+              {
+                "component": "A柜-子装配体",
+                "componentId": -1,
+                "referenceType": 3,
+                "parameters": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0
+                ],
+                "reference": {
+                  "id": "aEIAAAEAAAD//v8AAAAAAAMAAAA=",
+                  "feature": "前视基准面",
+                  "referencePlaneTransform": [
+                    1,
+                    0,
+                    0,
+                    0,
+                    1,
+                    0,
+                    0,
+                    0,
+                    1,
+                    0,
+                    0,
+                    0,
+                    1,
+                    0,
+                    0,
+                    0
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "aEIAABgAAAD//v8AAAAAAEYAAAA=",
+          "name": "宽度1",
+          "type": "MateWidth",
+          "parent": "配合",
+          "suppressed": false,
+          "parents": [
+            "A柜体-1",
+            "配合"
+          ],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": [],
+          "mateDefinition": {
+            "type": 11,
+            "alignment": 1,
+            "flipped": false,
+            "minimumVariation": 0,
+            "maximumVariation": 0,
+            "entities": [
+              {
+                "component": "A柜-子装配体",
+                "componentId": -1,
+                "referenceType": 3,
+                "parameters": [
+                  0.7999999999999963,
+                  3.1400000000000023,
+                  -0.3999999999999753,
+                  -1.3807422905010988E-14,
+                  3.7047467258527353E-16,
+                  -1,
+                  0,
+                  0
+                ],
+                "reference": null
+              },
+              {
+                "component": "A柜-子装配体",
+                "componentId": -1,
+                "referenceType": 3,
+                "parameters": [
+                  0.7999999999999989,
+                  3.1400000000000023,
+                  0.40000000000003016,
+                  -7.248218556637029E-15,
+                  -1.387778780781408E-16,
+                  1,
+                  0,
+                  0
+                ],
+                "reference": null
+              },
+              {
+                "component": "A柜体-1",
+                "componentId": 25,
+                "referenceType": 3,
+                "parameters": [
+                  0.75,
+                  1.12,
+                  0.5,
+                  -0,
+                  -0,
+                  1,
+                  0,
+                  0
+                ],
+                "reference": {
+                  "id": "aEIAAAMAAAD//v8NQQDcZ1NPLQAxAEAAQQDcZy0AUFvFiE2RU08EAAAAEAAAAAEAAAABAAAAGQAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFABtb0VuZEZhY2VTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/IkUAOgBcAHmY7nZcACdZaFEtAM1rv35laFwALHuMTkhyXABCANxnUFvFiFwAMgBcAEEA3GdTTy4AUwBMAEQAUABSAFQACYD//v8DQQDcZ1NPAgAAMQ1naf/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAAFgAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAFEAAADXDWdpAQAAAAAAAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAABYAIAFEAAADXDWdpAQAAAAyAAAAFgAgAUQAAANcNZ2kCAAAADIAAAAWACABRAAAA1w1naQMAAAAMgAAABYAIAFEAAADXDWdpBAAAAAAAAAAAAAAAAABoQgAAAAAAAAAAAAA=",
+                  "definitionReference": true,
+                  "planeParameters": [
+                    0,
+                    0,
+                    -1,
+                    0,
+                    0,
+                    0.5
+                  ],
+                  "sense": true
+                }
+              },
+              {
+                "component": "A柜体-1",
+                "componentId": 25,
+                "referenceType": 3,
+                "parameters": [
+                  0.75,
+                  1.12,
+                  -0.5,
+                  0,
+                  0,
+                  -1,
+                  0,
+                  0
+                ],
+                "reference": {
+                  "id": "aEIAAAMAAAD//v8NQQDcZ1NPLQAxAEAAQQDcZy0AUFvFiE2RU08EAAAAEAAAAAEAAAABAAAAGQAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFABtb0VuZEZhY2VTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/IkUAOgBcAHmY7nZcACdZaFEtAM1rv35laFwALHuMTkhyXABCANxnUFvFiFwAMgBcAEEA3GdTTy4AUwBMAEQAUABSAFQACYD//v8DQQDcZ1NPAgAAMQ1naf/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAAFgAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAFEAAADXDWdpAAAAAAAAAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAABYAIAFEAAADXDWdpAQAAAAyAAAAFgAgAUQAAANcNZ2kEAAAADIAAAAWACABRAAAA1w1naQMAAAAMgAAABYAIAFEAAADXDWdpAgAAAAAAAAAAAAAAAABoQgAAAAAAAAAAAAA=",
+                  "definitionReference": true,
+                  "planeParameters": [
+                    0,
+                    0,
+                    -1,
+                    0,
+                    0,
+                    -0.5
+                  ],
+                  "sense": false
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "aEIAABgAAAD//v8AAAAAAEkAAAA=",
+          "name": "距离6",
+          "type": "MateDistanceDim",
+          "parent": "配合",
+          "suppressed": false,
+          "parents": [
+            "A柜体-1",
+            "配合"
+          ],
+          "dimensions": [
+            {
+              "id": null,
+              "name": "基座-右距柜前距离@距离6@A柜-子装配体.Assembly",
+              "value": 0.45,
+              "dimensionType": 0,
+              "readOnly": false,
+              "drivenState": 2,
+              "annotation": [
+                0.5250093072007183,
+                2.5093251983228018,
+                0.35860000000003184
+              ]
+            }
+          ],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": [],
+          "mateDefinition": {
+            "type": 5,
+            "alignment": 0,
+            "flipped": true,
+            "minimumVariation": 0,
+            "maximumVariation": 0,
+            "entities": [
+              {
+                "component": "A柜体-1",
+                "componentId": 25,
+                "referenceType": 3,
+                "parameters": [
+                  1.5,
+                  0,
+                  0.5,
+                  1,
+                  -0,
+                  -0,
+                  0,
+                  0
+                ],
+                "reference": {
+                  "id": "aEIAAAMAAAD//v8NQQDcZ1NPLQAxAEAAQQDcZy0AUFvFiE2RU08EAAAAEAAAAAEAAAABAAAAGQAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/IkUAOgBcAHmY7nZcACdZaFEtAM1rv35laFwALHuMTkhyXABCANxnUFvFiFwAMgBcAEEA3GdTTy4AUwBMAEQAUABSAFQACYD//v8DQQDcZ1NPAgAAMQ1naf/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAAFgAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAFEAAADXDWdpAQAAAP//AQAUAG1vRW5kRmFjZVN1cmZJZFJlcF9jAAAFgAgAUQAAANcNZ2kAAAAAAAAAAAOAAAAFgAgAUQAAANcNZ2kCAAAADIAAAAWACABRAAAA1w1naQEAAAAAAAAAA4AAAAWACABRAAAA1w1naQQAAAAAAAAAAAAAAAAAaEIAAAAAAAAAAAAA",
+                  "definitionReference": true,
+                  "planeParameters": [
+                    -1,
+                    0,
+                    0,
+                    0.75,
+                    -1.12,
+                    0.5
+                  ],
+                  "sense": true
+                }
+              },
+              {
+                "component": "A柜-子装配体",
+                "componentId": -1,
+                "referenceType": 3,
+                "parameters": [
+                  1.0499999999999994,
+                  3.640000000000003,
+                  0.35850000000003185,
+                  1,
+                  -5.017899568252652E-16,
+                  7.24821855663703E-15,
+                  0,
+                  0
+                ],
+                "reference": null
+              }
+            ]
+          }
+        },
+        {
+          "id": "aEIAABgAAAD//v8AAAAAAEsAAAA=",
+          "name": "宽度2",
+          "type": "MateWidth",
+          "parent": "配合",
+          "suppressed": false,
+          "parents": [
+            "A柜体-1",
+            "配合"
+          ],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": [],
+          "mateDefinition": {
+            "type": 11,
+            "alignment": 1,
+            "flipped": false,
+            "minimumVariation": 0,
+            "maximumVariation": 0,
+            "entities": [
+              {
+                "component": "A柜-子装配体",
+                "componentId": -1,
+                "referenceType": 3,
+                "parameters": [
+                  0.2584999999999992,
+                  3.139999999999997,
+                  0.40000000000003,
+                  -7.248218556637029E-15,
+                  -1.387778780781408E-16,
+                  1,
+                  0,
+                  0
+                ],
+                "reference": null
+              },
+              {
+                "component": "A柜-子装配体",
+                "componentId": -1,
+                "referenceType": 3,
+                "parameters": [
+                  0.2584999999999965,
+                  3.1399999999999975,
+                  -0.3999999999999752,
+                  -1.3807422905010988E-14,
+                  3.7047467258527353E-16,
+                  -1,
+                  0,
+                  0
+                ],
+                "reference": null
+              },
+              {
+                "component": "A柜体-1",
+                "componentId": 25,
+                "referenceType": 3,
+                "parameters": [
+                  0.75,
+                  1.12,
+                  -0.5,
+                  0,
+                  0,
+                  -1,
+                  0,
+                  0
+                ],
+                "reference": {
+                  "id": "aEIAAAMAAAD//v8NQQDcZ1NPLQAxAEAAQQDcZy0AUFvFiE2RU08EAAAAEAAAAAEAAAABAAAAGQAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFABtb0VuZEZhY2VTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/IkUAOgBcAHmY7nZcACdZaFEtAM1rv35laFwALHuMTkhyXABCANxnUFvFiFwAMgBcAEEA3GdTTy4AUwBMAEQAUABSAFQACYD//v8DQQDcZ1NPAgAAMQ1naf/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAAFgAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAFEAAADXDWdpAAAAAAAAAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAABYAIAFEAAADXDWdpAQAAAAyAAAAFgAgAUQAAANcNZ2kEAAAADIAAAAWACABRAAAA1w1naQMAAAAMgAAABYAIAFEAAADXDWdpAgAAAAAAAAAAAAAAAABoQgAAAAAAAAAAAAA=",
+                  "definitionReference": true,
+                  "planeParameters": [
+                    0,
+                    0,
+                    -1,
+                    0,
+                    0,
+                    -0.5
+                  ],
+                  "sense": false
+                }
+              },
+              {
+                "component": "A柜体-1",
+                "componentId": 25,
+                "referenceType": 3,
+                "parameters": [
+                  0.75,
+                  1.12,
+                  0.5,
+                  -0,
+                  -0,
+                  1,
+                  0,
+                  0
+                ],
+                "reference": {
+                  "id": "aEIAAAMAAAD//v8NQQDcZ1NPLQAxAEAAQQDcZy0AUFvFiE2RU08EAAAAEAAAAAEAAAABAAAAGQAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFABtb0VuZEZhY2VTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/IkUAOgBcAHmY7nZcACdZaFEtAM1rv35laFwALHuMTkhyXABCANxnUFvFiFwAMgBcAEEA3GdTTy4AUwBMAEQAUABSAFQACYD//v8DQQDcZ1NPAgAAMQ1naf/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAAFgAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAFEAAADXDWdpAQAAAAAAAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAABYAIAFEAAADXDWdpAQAAAAyAAAAFgAgAUQAAANcNZ2kCAAAADIAAAAWACABRAAAA1w1naQMAAAAMgAAABYAIAFEAAADXDWdpBAAAAAAAAAAAAAAAAABoQgAAAAAAAAAAAAA=",
+                  "definitionReference": true,
+                  "planeParameters": [
+                    0,
+                    0,
+                    -1,
+                    0,
+                    0,
+                    0.5
+                  ],
+                  "sense": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "aEIAABgAAAD//v8AAAAAAE4AAAA=",
+          "name": "距离7",
+          "type": "MateDistanceDim",
+          "parent": "配合",
+          "suppressed": false,
+          "parents": [
+            "A柜体-1",
+            "配合"
+          ],
+          "dimensions": [
+            {
+              "id": null,
+              "name": "基座-右距柜前距离@距离7@A柜-子装配体.Assembly",
+              "value": 0.5085000000000001,
+              "dimensionType": 0,
+              "readOnly": false,
+              "drivenState": 2,
+              "annotation": [
+                -3.1407963182147984,
+                -0.2637611326327811,
+                -0.10159999999997144
+              ]
+            }
+          ],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": [],
+          "mateDefinition": {
+            "type": 5,
+            "alignment": 1,
+            "flipped": true,
+            "minimumVariation": 0,
+            "maximumVariation": 0,
+            "entities": [
+              {
+                "component": "A柜-子装配体",
+                "componentId": -1,
+                "referenceType": 3,
+                "parameters": [
+                  0.5084999999999998,
+                  3.6399999999999975,
+                  0.3585000000000316,
+                  1,
+                  -5.017899568252652E-16,
+                  7.24821855663703E-15,
+                  0,
+                  0
+                ],
+                "reference": null
+              },
+              {
+                "component": "A柜体-1",
+                "componentId": 25,
+                "referenceType": 3,
+                "parameters": [
+                  0,
+                  0,
+                  0.5,
+                  -1,
+                  -0,
+                  -0,
+                  0,
+                  0
+                ],
+                "reference": {
+                  "id": "aEIAAAMAAAD//v8NQQDcZ1NPLQAxAEAAQQDcZy0AUFvFiE2RU08EAAAAEAAAAAEAAAABAAAAGQAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/IkUAOgBcAHmY7nZcACdZaFEtAM1rv35laFwALHuMTkhyXABCANxnUFvFiFwAMgBcAEEA3GdTTy4AUwBMAEQAUABSAFQACYD//v8DQQDcZ1NPAgAAMQ1naf/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAAFgAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAFEAAADXDWdpAwAAAP//AQAUAG1vRW5kRmFjZVN1cmZJZFJlcF9jAAAFgAgAUQAAANcNZ2kAAAAAAAAAAAOAAAAFgAgAUQAAANcNZ2kEAAAADIAAAAWACABRAAAA1w1naQEAAAAAAAAAA4AAAAWACABRAAAA1w1naQIAAAAAAAAAAAAAAAAAaEIAAAAAAAAAAAAA",
+                  "definitionReference": true,
+                  "planeParameters": [
+                    1,
+                    0,
+                    0,
+                    -0.75,
+                    -1.12,
+                    0.5
+                  ],
+                  "sense": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "aEIAABgAAAD//v8AAAAAAFAAAAA=",
+          "name": "重合10",
+          "type": "MateCoincident",
+          "parent": "配合",
+          "suppressed": false,
+          "parents": [
+            "配合"
+          ],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": [],
+          "mateDefinition": {
+            "type": 0,
+            "alignment": 1,
+            "flipped": false,
+            "minimumVariation": 0,
+            "maximumVariation": 0,
+            "entities": [
+              {
+                "component": "A柜-子装配体",
+                "componentId": -1,
+                "referenceType": 3,
+                "parameters": [
+                  0.5914999999999999,
+                  2.640000000000003,
+                  -0.35849999999997256,
+                  1,
+                  -6.122436738002575E-16,
+                  -1.399596486683458E-14,
+                  0,
+                  0
+                ],
+                "reference": null
+              },
+              {
+                "component": "A柜-子装配体",
+                "componentId": -1,
+                "referenceType": 3,
+                "parameters": [
+                  0.5915000000000108,
+                  2.7900000000000005,
+                  0.3900000000000028,
+                  -1,
+                  6.540367933842548E-16,
+                  1.400995583054027E-14,
+                  0,
+                  0
+                ],
+                "reference": null
+              }
+            ]
+          }
+        },
+        {
+          "id": "aEIAABgAAAD//v8AAAAAAFEAAAA=",
+          "name": "宽度3",
+          "type": "MateWidth",
+          "parent": "配合",
+          "suppressed": false,
+          "parents": [
+            "配合"
+          ],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": [],
+          "mateDefinition": {
+            "type": 11,
+            "alignment": 1,
+            "flipped": false,
+            "minimumVariation": 0,
+            "maximumVariation": 0,
+            "entities": [
+              {
+                "component": "A柜-子装配体",
+                "componentId": -1,
+                "referenceType": 3,
+                "parameters": [
+                  0.5499999999999978,
+                  3.1400000000000023,
+                  0.3525000000000256,
+                  1.5777218104420236E-30,
+                  1.757449111033112E-17,
+                  -1,
+                  0,
+                  0
+                ],
+                "reference": null
+              },
+              {
+                "component": "A柜-子装配体",
+                "componentId": -1,
+                "referenceType": 3,
+                "parameters": [
+                  0.5499999999999955,
+                  3.1400000000000023,
+                  -0.35249999999997444,
+                  6.628197161941218E-15,
+                  -2.59981265045958E-16,
+                  1,
+                  0,
+                  0
+                ],
+                "reference": null
+              },
+              {
+                "component": "A柜-子装配体",
+                "componentId": -1,
+                "referenceType": 3,
+                "parameters": [
+                  0.6165000000000119,
+                  2.7400000000000007,
+                  0.3900000000000027,
+                  1.6533189977415625E-14,
+                  1.6653345369382052E-16,
+                  1,
+                  0,
+                  0
+                ],
+                "reference": null
+              },
+              {
+                "component": "A柜-子装配体",
+                "componentId": -1,
+                "referenceType": 3,
+                "parameters": [
+                  0.6165000000000013,
+                  2.7400000000000007,
+                  -0.38999999999999646,
+                  -1.1486721683664917E-14,
+                  -1.6653345369380627E-16,
+                  -1,
+                  0,
+                  0
+                ],
+                "reference": null
+              }
+            ]
+          }
+        },
+        {
+          "id": "aEIAABgAAAD//v8AAAAAAFMAAAA=",
+          "name": "距离8",
+          "type": "MateDistanceDim",
+          "parent": "配合",
+          "suppressed": false,
+          "parents": [
+            "A柜体-1",
+            "配合"
+          ],
+          "dimensions": [
+            {
+              "id": null,
+              "name": "基座绝缘子高度（3垫块）-A柜前@距离8@A柜-子装配体.Assembly",
+              "value": 0.5,
+              "dimensionType": 0,
+              "readOnly": false,
+              "drivenState": 2,
+              "annotation": [
+                0.24810049464972173,
+                -0.6160008494001408,
+                0.2900999999999888
+              ]
+            }
+          ],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": [],
+          "mateDefinition": {
+            "type": 5,
+            "alignment": 1,
+            "flipped": false,
+            "minimumVariation": 0,
+            "maximumVariation": 0,
+            "entities": [
+              {
+                "component": "A柜-子装配体",
+                "componentId": -1,
+                "referenceType": 3,
+                "parameters": [
+                  0.6165000000000018,
+                  2.740000000000002,
+                  0.2100000000000024,
+                  2.83744454545888E-15,
+                  -1,
+                  1.6653345369377348E-16,
+                  0,
+                  0
+                ],
+                "reference": null
+              },
+              {
+                "component": "A柜体-1",
+                "componentId": 25,
+                "referenceType": 3,
+                "parameters": [
+                  0,
+                  2.24,
+                  0.5,
+                  -0,
+                  1,
+                  -0,
+                  0,
+                  0
+                ],
+                "reference": {
+                  "id": "aEIAAAMAAAD//v8NQQDcZ1NPLQAxAEAAQQDcZy0AUFvFiE2RU08EAAAAEAAAAAEAAAABAAAAGQAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/IkUAOgBcAHmY7nZcACdZaFEtAM1rv35laFwALHuMTkhyXABCANxnUFvFiFwAMgBcAEEA3GdTTy4AUwBMAEQAUABSAFQACYD//v8DQQDcZ1NPAgAAMQ1naf/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAAFgAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAFEAAADXDWdpAgAAAP//AQAUAG1vRW5kRmFjZVN1cmZJZFJlcF9jAAAFgAgAUQAAANcNZ2kAAAAAAAAAAAOAAAAFgAgAUQAAANcNZ2kDAAAADIAAAAWACABRAAAA1w1naQEAAAAAAAAAA4AAAAWACABRAAAA1w1naQEAAAAAAAAAAAAAAAAAaEIAAAAAAAAAAAAA",
+                  "definitionReference": true,
+                  "planeParameters": [
+                    0,
+                    -1,
+                    0,
+                    -0.75,
+                    1.12,
+                    0.5
+                  ],
+                  "sense": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "aEIAABgAAAD//v8AAAAAAFUAAAA=",
+          "name": "重合11",
+          "type": "MateCoincident",
+          "parent": "配合",
+          "suppressed": false,
+          "parents": [
+            "配合"
+          ],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": [],
+          "mateDefinition": {
+            "type": 0,
+            "alignment": 1,
+            "flipped": false,
+            "minimumVariation": 0,
+            "maximumVariation": 0,
+            "entities": [
+              {
+                "component": "A柜-子装配体",
+                "componentId": -1,
+                "referenceType": 3,
+                "parameters": [
+                  0.5914999999999999,
+                  2.640000000000003,
+                  -0.3584999999999726,
+                  1,
+                  -6.122436738002575E-16,
+                  -1.399596486683458E-14,
+                  0,
+                  0
+                ],
+                "reference": null
+              },
+              {
+                "component": "A柜-子装配体",
+                "componentId": -1,
+                "referenceType": 3,
+                "parameters": [
+                  0.5915000000000143,
+                  2.864000000000006,
+                  0.3899999999999535,
+                  -1,
+                  6.122436738002575E-16,
+                  1.399596486683458E-14,
+                  0,
+                  0
+                ],
+                "reference": null
+              }
+            ]
+          }
+        },
+        {
+          "id": "aEIAABgAAAD//v8AAAAAAFYAAAA=",
+          "name": "宽度4",
+          "type": "MateWidth",
+          "parent": "配合",
+          "suppressed": false,
+          "parents": [
+            "配合"
+          ],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": [],
+          "mateDefinition": {
+            "type": 11,
+            "alignment": 0,
+            "flipped": false,
+            "minimumVariation": 0,
+            "maximumVariation": 0,
+            "entities": [
+              {
+                "component": "A柜-子装配体",
+                "componentId": -1,
+                "referenceType": 3,
+                "parameters": [
+                  0.6165000000000154,
+                  2.820000000000006,
+                  0.38999999999995394,
+                  1.3027717674866813E-14,
+                  1.7487446205677715E-14,
+                  1,
+                  0,
+                  0
+                ],
+                "reference": null
+              },
+              {
+                "component": "A柜-子装配体",
+                "componentId": -1,
+                "referenceType": 3,
+                "parameters": [
+                  0.6165000000000075,
+                  2.8199999999999927,
+                  -0.3900000000000452,
+                  -7.981249381116104E-15,
+                  -1.748744620567772E-14,
+                  -1,
+                  0,
+                  0
+                ],
+                "reference": null
+              },
+              {
+                "component": "A柜-子装配体",
+                "componentId": -1,
+                "referenceType": 3,
+                "parameters": [
+                  0.5499999999999955,
+                  3.1400000000000023,
+                  -0.3524999999999745,
+                  6.628197161941218E-15,
+                  -2.59981265045958E-16,
+                  1,
+                  0,
+                  0
+                ],
+                "reference": null
+              },
+              {
+                "component": "A柜-子装配体",
+                "componentId": -1,
+                "referenceType": 3,
+                "parameters": [
+                  0.5499999999999978,
+                  3.1400000000000023,
+                  0.35250000000002557,
+                  1.5777218104420236E-30,
+                  1.757449111033112E-17,
+                  -1,
+                  0,
+                  0
+                ],
+                "reference": null
+              }
+            ]
+          }
+        },
+        {
+          "id": "aEIAABgAAAD//v8AAAAAAFgAAAA=",
+          "name": "距离9",
+          "type": "MateDistanceDim",
+          "parent": "配合",
+          "suppressed": false,
+          "parents": [
+            "A柜体-1",
+            "配合"
+          ],
+          "dimensions": [
+            {
+              "id": null,
+              "name": "基座绝缘子高度（4垫块）-A柜前@距离9@A柜-子装配体.Assembly",
+              "value": 0.5,
+              "dimensionType": 0,
+              "readOnly": false,
+              "drivenState": 2,
+              "annotation": [
+                0.25000000000000444,
+                -0.6165000000000151,
+                0.290100000000031
+              ]
+            }
+          ],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": [],
+          "mateDefinition": {
+            "type": 5,
+            "alignment": 1,
+            "flipped": false,
+            "minimumVariation": 0,
+            "maximumVariation": 0,
+            "entities": [
+              {
+                "component": "A柜-子装配体",
+                "componentId": -1,
+                "referenceType": 3,
+                "parameters": [
+                  0.6165000000000125,
+                  2.820000000000003,
+                  0.2099999999999537,
+                  -6.910947408898681E-16,
+                  -1,
+                  1.7487446205677727E-14,
+                  0,
+                  0
+                ],
+                "reference": null
+              },
+              {
+                "component": "A柜体-1",
+                "componentId": 25,
+                "referenceType": 3,
+                "parameters": [
+                  0,
+                  2.24,
+                  0.5,
+                  -0,
+                  1,
+                  -0,
+                  0,
+                  0
+                ],
+                "reference": {
+                  "id": "aEIAAAMAAAD//v8NQQDcZ1NPLQAxAEAAQQDcZy0AUFvFiE2RU08EAAAAEAAAAAEAAAABAAAAGQAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/IkUAOgBcAHmY7nZcACdZaFEtAM1rv35laFwALHuMTkhyXABCANxnUFvFiFwAMgBcAEEA3GdTTy4AUwBMAEQAUABSAFQACYD//v8DQQDcZ1NPAgAAMQ1naf/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAAFgAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAFEAAADXDWdpAgAAAP//AQAUAG1vRW5kRmFjZVN1cmZJZFJlcF9jAAAFgAgAUQAAANcNZ2kAAAAAAAAAAAOAAAAFgAgAUQAAANcNZ2kDAAAADIAAAAWACABRAAAA1w1naQEAAAAAAAAAA4AAAAWACABRAAAA1w1naQEAAAAAAAAAAAAAAAAAaEIAAAAAAAAAAAAA",
+                  "definitionReference": true,
+                  "planeParameters": [
+                    0,
+                    -1,
+                    0,
+                    -0.75,
+                    1.12,
+                    0.5
+                  ],
+                  "sense": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "aEIAABgAAAD//v8AAAAAAF0AAAA=",
+          "name": "重合13",
+          "type": "MateCoincident",
+          "parent": "配合",
+          "suppressed": false,
+          "parents": [
+            "配合"
+          ],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": [],
+          "mateDefinition": {
+            "type": 0,
+            "alignment": 1,
+            "flipped": false,
+            "minimumVariation": 0,
+            "maximumVariation": 0,
+            "entities": [
+              {
+                "component": "A柜-子装配体",
+                "componentId": -1,
+                "referenceType": 3,
+                "parameters": [
+                  0.049999999999992814,
+                  3.6399999999999975,
+                  0.35850000000003535,
+                  1,
+                  6.481172720861001E-15,
+                  7.38748659730565E-15,
+                  0,
+                  0
+                ],
+                "reference": null
+              },
+              {
+                "component": "A柜-子装配体",
+                "componentId": -1,
+                "referenceType": 3,
+                "parameters": [
+                  0.04999999999999839,
+                  2.783999999999998,
+                  0.39000000000001045,
+                  -1,
+                  -6.481172720861001E-15,
+                  -7.38748659730565E-15,
+                  0,
+                  0
+                ],
+                "reference": null
+              }
+            ]
+          }
+        },
+        {
+          "id": "aEIAABgAAAD//v8AAAAAAF4AAAA=",
+          "name": "宽度5",
+          "type": "MateWidth",
+          "parent": "配合",
+          "suppressed": false,
+          "parents": [
+            "配合"
+          ],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": [],
+          "mateDefinition": {
+            "type": 11,
+            "alignment": 0,
+            "flipped": false,
+            "minimumVariation": 0,
+            "maximumVariation": 0,
+            "entities": [
+              {
+                "component": "A柜-子装配体",
+                "componentId": -1,
+                "referenceType": 3,
+                "parameters": [
+                  0.07499999999999964,
+                  2.7399999999999984,
+                  0.3900000000000105,
+                  -8.355733789273404E-15,
+                  -3.896005258462547E-15,
+                  1,
+                  0,
+                  0
+                ],
+                "reference": null
+              },
+              {
+                "component": "A柜-子装配体",
+                "componentId": -1,
+                "referenceType": 3,
+                "parameters": [
+                  0.07500000000000845,
+                  2.740000000000001,
+                  -0.38999999999998863,
+                  1.3402202083024114E-14,
+                  3.896005258462579E-15,
+                  -1,
+                  0,
+                  0
+                ],
+                "reference": null
+              },
+              {
+                "component": "A柜-子装配体",
+                "componentId": -1,
+                "referenceType": 3,
+                "parameters": [
+                  0.008499999999999775,
+                  3.14,
+                  -0.35249999999997433,
+                  6.628197161941218E-15,
+                  -2.59981265045958E-16,
+                  1,
+                  0,
+                  0
+                ],
+                "reference": null
+              },
+              {
+                "component": "A柜-子装配体",
+                "componentId": -1,
+                "referenceType": 3,
+                "parameters": [
+                  0.008500000000002112,
+                  3.14,
+                  0.3525000000000254,
+                  1.5777218104420236E-30,
+                  1.757449111033112E-17,
+                  -1,
+                  0,
+                  0
+                ],
+                "reference": null
+              }
+            ]
+          }
+        },
+        {
+          "id": "aEIAABgAAAD//v8AAAAAAGAAAAA=",
+          "name": "距离10",
+          "type": "MateDistanceDim",
+          "parent": "配合",
+          "suppressed": false,
+          "parents": [
+            "A柜体-1",
+            "配合"
+          ],
+          "dimensions": [
+            {
+              "id": null,
+              "name": "基座绝缘子高度（3垫块）-A柜后@距离10@A柜-子装配体.Assembly",
+              "value": 0.5,
+              "dimensionType": 0,
+              "readOnly": false,
+              "drivenState": 2,
+              "annotation": [
+                0.2499999999999989,
+                -0.07500000000000047,
+                0.29009999999999236
+              ]
+            }
+          ],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": [],
+          "mateDefinition": {
+            "type": 5,
+            "alignment": 1,
+            "flipped": false,
+            "minimumVariation": 0,
+            "maximumVariation": 0,
+            "entities": [
+              {
+                "component": "A柜-子装配体",
+                "componentId": -1,
+                "referenceType": 3,
+                "parameters": [
+                  0.07500000000000041,
+                  2.739999999999999,
+                  0.21000000000001043,
+                  6.402321653771175E-15,
+                  -1,
+                  -3.8960052584624936E-15,
+                  0,
+                  0
+                ],
+                "reference": null
+              },
+              {
+                "component": "A柜体-1",
+                "componentId": 25,
+                "referenceType": 3,
+                "parameters": [
+                  0,
+                  2.24,
+                  0.5,
+                  -0,
+                  1,
+                  -0,
+                  0,
+                  0
+                ],
+                "reference": {
+                  "id": "aEIAAAMAAAD//v8NQQDcZ1NPLQAxAEAAQQDcZy0AUFvFiE2RU08EAAAAEAAAAAEAAAABAAAAGQAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/IkUAOgBcAHmY7nZcACdZaFEtAM1rv35laFwALHuMTkhyXABCANxnUFvFiFwAMgBcAEEA3GdTTy4AUwBMAEQAUABSAFQACYD//v8DQQDcZ1NPAgAAMQ1naf/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAAFgAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAFEAAADXDWdpAgAAAP//AQAUAG1vRW5kRmFjZVN1cmZJZFJlcF9jAAAFgAgAUQAAANcNZ2kAAAAAAAAAAAOAAAAFgAgAUQAAANcNZ2kDAAAADIAAAAWACABRAAAA1w1naQEAAAAAAAAAA4AAAAWACABRAAAA1w1naQEAAAAAAAAAAAAAAAAAaEIAAAAAAAAAAAAA",
+                  "definitionReference": true,
+                  "planeParameters": [
+                    0,
+                    -1,
+                    0,
+                    -0.75,
+                    1.12,
+                    0.5
+                  ],
+                  "sense": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "aEIAABgAAAD//v8AAAAAAGIAAAA=",
+          "name": "重合14",
+          "type": "MateCoincident",
+          "parent": "配合",
+          "suppressed": false,
+          "parents": [
+            "配合"
+          ],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": [],
+          "mateDefinition": {
+            "type": 0,
+            "alignment": 1,
+            "flipped": false,
+            "minimumVariation": 0,
+            "maximumVariation": 0,
+            "entities": [
+              {
+                "component": "A柜-子装配体",
+                "componentId": -1,
+                "referenceType": 3,
+                "parameters": [
+                  0.04999999999999275,
+                  3.6399999999999966,
+                  0.35850000000003535,
+                  1,
+                  6.481172720861001E-15,
+                  7.38748659730565E-15,
+                  0,
+                  0
+                ],
+                "reference": null
+              },
+              {
+                "component": "A柜-子装配体",
+                "componentId": -1,
+                "referenceType": 3,
+                "parameters": [
+                  0.04999999999999528,
+                  2.868961429464355,
+                  0.3900000000000181,
+                  -1,
+                  -6.447867491674976E-15,
+                  -7.372593951929438E-15,
+                  0,
+                  0
+                ],
+                "reference": null
+              }
+            ]
+          }
+        },
+        {
+          "id": "aEIAABgAAAD//v8AAAAAAGMAAAA=",
+          "name": "宽度6",
+          "type": "MateWidth",
+          "parent": "配合",
+          "suppressed": false,
+          "parents": [
+            "配合"
+          ],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": [],
+          "mateDefinition": {
+            "type": 11,
+            "alignment": 0,
+            "flipped": false,
+            "minimumVariation": 0,
+            "maximumVariation": 0,
+            "entities": [
+              {
+                "component": "A柜-子装配体",
+                "componentId": -1,
+                "referenceType": 3,
+                "parameters": [
+                  0.07499999999999675,
+                  2.8189614294643555,
+                  0.39000000000001844,
+                  -4.849359805054081E-15,
+                  -3.05311331771966E-16,
+                  1,
+                  0,
+                  0
+                ],
+                "reference": null
+              },
+              {
+                "component": "A柜-子装配体",
+                "componentId": -1,
+                "referenceType": 3,
+                "parameters": [
+                  0.07500000000000281,
+                  2.8189614294643555,
+                  -0.3899999999999807,
+                  9.89582809880479E-15,
+                  3.053113317720162E-16,
+                  -1,
+                  0,
+                  0
+                ],
+                "reference": null
+              },
+              {
+                "component": "A柜-子装配体",
+                "componentId": -1,
+                "referenceType": 3,
+                "parameters": [
+                  0.008499999999999553,
+                  3.1399999999999992,
+                  -0.35249999999997433,
+                  6.628197161941218E-15,
+                  -2.59981265045958E-16,
+                  1,
+                  0,
+                  0
+                ],
+                "reference": null
+              },
+              {
+                "component": "A柜-子装配体",
+                "componentId": -1,
+                "referenceType": 3,
+                "parameters": [
+                  0.00850000000000189,
+                  3.1399999999999992,
+                  0.3525000000000254,
+                  1.5777218104420236E-30,
+                  1.757449111033112E-17,
+                  -1,
+                  0,
+                  0
+                ],
+                "reference": null
+              }
+            ]
+          }
+        },
+        {
+          "id": "aEIAABgAAAD//v8AAAAAAGUAAAA=",
+          "name": "距离11",
+          "type": "MateDistanceDim",
+          "parent": "配合",
+          "suppressed": false,
+          "parents": [
+            "A柜体-1",
+            "配合"
+          ],
+          "dimensions": [
+            {
+              "id": null,
+              "name": "基座绝缘子高度（4垫块）-A柜后@距离11@A柜-子装配体.Assembly",
+              "value": 0.5,
+              "dimensionType": 0,
+              "readOnly": false,
+              "drivenState": 2,
+              "annotation": [
+                0.24762233480808282,
+                -0.07586554499670603,
+                0.2900999999999784
+              ]
+            }
+          ],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": [],
+          "mateDefinition": {
+            "type": 5,
+            "alignment": 1,
+            "flipped": false,
+            "minimumVariation": 0,
+            "maximumVariation": 0,
+            "entities": [
+              {
+                "component": "A柜-子装配体",
+                "componentId": -1,
+                "referenceType": 3,
+                "parameters": [
+                  0.07499999999999753,
+                  2.82,
+                  0.21000000000002234,
+                  9.93934883051811E-15,
+                  -1,
+                  -3.05311331771918E-16,
+                  0,
+                  0
+                ],
+                "reference": null
+              },
+              {
+                "component": "A柜体-1",
+                "componentId": 25,
+                "referenceType": 3,
+                "parameters": [
+                  0,
+                  2.24,
+                  0.5,
+                  -0,
+                  1,
+                  -0,
+                  0,
+                  0
+                ],
+                "reference": {
+                  "id": "aEIAAAMAAAD//v8NQQDcZ1NPLQAxAEAAQQDcZy0AUFvFiE2RU08EAAAAEAAAAAEAAAABAAAAGQAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/IkUAOgBcAHmY7nZcACdZaFEtAM1rv35laFwALHuMTkhyXABCANxnUFvFiFwAMgBcAEEA3GdTTy4AUwBMAEQAUABSAFQACYD//v8DQQDcZ1NPAgAAMQ1naf/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAAFgAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAFEAAADXDWdpAgAAAP//AQAUAG1vRW5kRmFjZVN1cmZJZFJlcF9jAAAFgAgAUQAAANcNZ2kAAAAAAAAAAAOAAAAFgAgAUQAAANcNZ2kDAAAADIAAAAWACABRAAAA1w1naQEAAAAAAAAAA4AAAAWACABRAAAA1w1naQEAAAAAAAAAAAAAAAAAaEIAAAAAAAAAAAAA",
+                  "definitionReference": true,
+                  "planeParameters": [
+                    0,
+                    -1,
+                    0,
+                    -0.75,
+                    1.12,
+                    0.5
+                  ],
+                  "sense": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "aEIAABgAAAD//v8AAAAAAGkAAAA=",
+          "name": "重合15",
+          "type": "MateCoincident",
+          "parent": "配合",
+          "suppressed": false,
+          "parents": [
+            "A柜体-1",
+            "配合"
+          ],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": [],
+          "mateDefinition": {
+            "type": 0,
+            "alignment": 1,
+            "flipped": false,
+            "minimumVariation": 0,
+            "maximumVariation": 0,
+            "entities": [
+              {
+                "component": "A柜体-1",
+                "componentId": 25,
+                "referenceType": 3,
+                "parameters": [
+                  0,
+                  2.24,
+                  0.5,
+                  -0,
+                  1,
+                  -0,
+                  0,
+                  0
+                ],
+                "reference": {
+                  "id": "aEIAAAMAAAD//v8NQQDcZ1NPLQAxAEAAQQDcZy0AUFvFiE2RU08EAAAAEAAAAAEAAAABAAAAGQAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/IkUAOgBcAHmY7nZcACdZaFEtAM1rv35laFwALHuMTkhyXABCANxnUFvFiFwAMgBcAEEA3GdTTy4AUwBMAEQAUABSAFQACYD//v8DQQDcZ1NPAgAAMQ1naf/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAAFgAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAFEAAADXDWdpAgAAAP//AQAUAG1vRW5kRmFjZVN1cmZJZFJlcF9jAAAFgAgAUQAAANcNZ2kAAAAAAAAAAAOAAAAFgAgAUQAAANcNZ2kDAAAADIAAAAWACABRAAAA1w1naQEAAAAAAAAAA4AAAAWACABRAAAA1w1naQEAAAAAAAAAAAAAAAAAaEIAAAAAAAAAAAAA",
+                  "definitionReference": true,
+                  "planeParameters": [
+                    0,
+                    -1,
+                    0,
+                    -0.75,
+                    1.12,
+                    0.5
+                  ],
+                  "sense": true
+                }
+              },
+              {
+                "component": "A柜-子装配体",
+                "componentId": -1,
+                "referenceType": 3,
+                "parameters": [
+                  0.050000000000002674,
+                  2.24,
+                  0.35849999999999815,
+                  -7.755749524188605E-15,
+                  -1,
+                  -5.827846261524925E-17,
+                  0,
+                  0
+                ],
+                "reference": null
+              }
+            ]
+          }
+        },
+        {
+          "id": "aEIAABgAAAD//v8AAAAAAGoAAAA=",
+          "name": "重合16",
+          "type": "MateCoincident",
+          "parent": "配合",
+          "suppressed": false,
+          "parents": [
+            "配合"
+          ],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": [],
+          "mateDefinition": {
+            "type": 0,
+            "alignment": 0,
+            "flipped": false,
+            "minimumVariation": 0,
+            "maximumVariation": 0,
+            "entities": [
+              {
+                "component": "A柜-子装配体",
+                "componentId": -1,
+                "referenceType": 3,
+                "parameters": [
+                  0.008500000000002117,
+                  3.14,
+                  2.553686207275887E-14,
+                  -1,
+                  5.4595118945932145E-16,
+                  3.3139859643005336E-15,
+                  0,
+                  0
+                ],
+                "reference": null
+              },
+              {
+                "component": "A柜-子装配体",
+                "componentId": -1,
+                "referenceType": 3,
+                "parameters": [
+                  0.008500000000001784,
+                  2.439999999999998,
+                  -2.9513228649846376E-15,
+                  -1,
+                  5.459511894593276E-16,
+                  3.3520733532053267E-15,
+                  0,
+                  0
+                ],
+                "reference": null
+              }
+            ]
+          }
+        },
+        {
+          "id": "aEIAABgAAAD//v8AAAAAAGsAAAA=",
+          "name": "宽度7",
+          "type": "MateWidth",
+          "parent": "配合",
+          "suppressed": false,
+          "parents": [
+            "配合"
+          ],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": [],
+          "mateDefinition": {
+            "type": 11,
+            "alignment": 1,
+            "flipped": false,
+            "minimumVariation": 0,
+            "maximumVariation": 0,
+            "entities": [
+              {
+                "component": "A柜-子装配体",
+                "componentId": -1,
+                "referenceType": 3,
+                "parameters": [
+                  0.25850000000000006,
+                  2.439999999999998,
+                  -0.40000000000000635,
+                  -1.3888007004433496E-14,
+                  -2.523493759104776E-16,
+                  -1,
+                  0,
+                  0
+                ],
+                "reference": null
+              },
+              {
+                "component": "A柜-子装配体",
+                "componentId": -1,
+                "referenceType": 3,
+                "parameters": [
+                  0.2585000000000028,
+                  2.439999999999998,
+                  0.399999999999999,
+                  -7.239371449254088E-15,
+                  9.942601974865003E-18,
+                  1,
+                  0,
+                  0
+                ],
+                "reference": null
+              },
+              {
+                "component": "A柜-子装配体",
+                "componentId": -1,
+                "referenceType": 3,
+                "parameters": [
+                  0.2584999999999992,
+                  3.139999999999997,
+                  0.40000000000003,
+                  -7.248218556637029E-15,
+                  -1.387778780781408E-16,
+                  1,
+                  0,
+                  0
+                ],
+                "reference": null
+              },
+              {
+                "component": "A柜-子装配体",
+                "componentId": -1,
+                "referenceType": 3,
+                "parameters": [
+                  0.2584999999999965,
+                  3.1399999999999975,
+                  -0.3999999999999752,
+                  -1.3807422905010988E-14,
+                  3.7047467258527353E-16,
+                  -1,
+                  0,
+                  0
+                ],
+                "reference": null
+              }
+            ]
+          }
+        },
+        {
+          "id": "aEIAABgAAAD//v8AAAAAAG0AAAA=",
+          "name": "距离12",
+          "type": "MateDistanceDim",
+          "parent": "配合",
+          "suppressed": false,
+          "parents": [
+            "A柜体-1",
+            "配合"
+          ],
+          "dimensions": [
+            {
+              "id": null,
+              "name": "A柜后基座距柜顶高度@距离12@A柜-子装配体.Assembly",
+              "value": 0.4,
+              "dimensionType": 0,
+              "readOnly": false,
+              "drivenState": 2,
+              "annotation": [
+                0.5000999999999748,
+                0.19999999999999812,
+                -0.009999999999999091
+              ]
+            }
+          ],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": [],
+          "mateDefinition": {
+            "type": 5,
+            "alignment": 1,
+            "flipped": false,
+            "minimumVariation": 0,
+            "maximumVariation": 0,
+            "entities": [
+              {
+                "component": "A柜-子装配体",
+                "componentId": -1,
+                "referenceType": 3,
+                "parameters": [
+                  0.04999999999999915,
+                  2.6399999999999975,
+                  0.35850000000002835,
+                  -3.8988828355458705E-16,
+                  -1,
+                  -7.105427357601002E-15,
+                  0,
+                  0
+                ],
+                "reference": null
+              },
+              {
+                "component": "A柜体-1",
+                "componentId": 25,
+                "referenceType": 3,
+                "parameters": [
+                  0,
+                  2.24,
+                  0.5,
+                  -0,
+                  1,
+                  -0,
+                  0,
+                  0
+                ],
+                "reference": {
+                  "id": "aEIAAAMAAAD//v8NQQDcZ1NPLQAxAEAAQQDcZy0AUFvFiE2RU08EAAAAEAAAAAEAAAABAAAAGQAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/IkUAOgBcAHmY7nZcACdZaFEtAM1rv35laFwALHuMTkhyXABCANxnUFvFiFwAMgBcAEEA3GdTTy4AUwBMAEQAUABSAFQACYD//v8DQQDcZ1NPAgAAMQ1naf/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAAFgAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAFEAAADXDWdpAgAAAP//AQAUAG1vRW5kRmFjZVN1cmZJZFJlcF9jAAAFgAgAUQAAANcNZ2kAAAAAAAAAAAOAAAAFgAgAUQAAANcNZ2kDAAAADIAAAAWACABRAAAA1w1naQEAAAAAAAAAA4AAAAWACABRAAAA1w1naQEAAAAAAAAAAAAAAAAAaEIAAAAAAAAAAAAA",
+                  "definitionReference": true,
+                  "planeParameters": [
+                    0,
+                    -1,
+                    0,
+                    -0.75,
+                    1.12,
+                    0.5
+                  ],
+                  "sense": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "aEIAABgAAAD//v8AAAAAAHAAAAA=",
+          "name": "重合17",
+          "type": "MateCoincident",
+          "parent": "配合",
+          "suppressed": false,
+          "parents": [
+            "A柜体-1",
+            "配合"
+          ],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": [],
+          "mateDefinition": {
+            "type": 0,
+            "alignment": 1,
+            "flipped": false,
+            "minimumVariation": 0,
+            "maximumVariation": 0,
+            "entities": [
+              {
+                "component": "A柜体-1",
+                "componentId": 25,
+                "referenceType": 3,
+                "parameters": [
+                  0,
+                  2.24,
+                  0.5,
+                  -0,
+                  1,
+                  -0,
+                  0,
+                  0
+                ],
+                "reference": {
+                  "id": "aEIAAAMAAAD//v8NQQDcZ1NPLQAxAEAAQQDcZy0AUFvFiE2RU08EAAAAEAAAAAEAAAABAAAAGQAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/IkUAOgBcAHmY7nZcACdZaFEtAM1rv35laFwALHuMTkhyXABCANxnUFvFiFwAMgBcAEEA3GdTTy4AUwBMAEQAUABSAFQACYD//v8DQQDcZ1NPAgAAMQ1naf/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAAFgAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAFEAAADXDWdpAgAAAP//AQAUAG1vRW5kRmFjZVN1cmZJZFJlcF9jAAAFgAgAUQAAANcNZ2kAAAAAAAAAAAOAAAAFgAgAUQAAANcNZ2kDAAAADIAAAAWACABRAAAA1w1naQEAAAAAAAAAA4AAAAWACABRAAAA1w1naQEAAAAAAAAAAAAAAAAAaEIAAAAAAAAAAAAA",
+                  "definitionReference": true,
+                  "planeParameters": [
+                    0,
+                    -1,
+                    0,
+                    -0.75,
+                    1.12,
+                    0.5
+                  ],
+                  "sense": true
+                }
+              },
+              {
+                "component": "A柜-子装配体",
+                "componentId": -1,
+                "referenceType": 3,
+                "parameters": [
+                  0.5914999999999973,
+                  2.24,
+                  0.35850000000000315,
+                  1.6596341955945822E-17,
+                  -1,
+                  -2.5288873880029144E-16,
+                  0,
+                  0
+                ],
+                "reference": null
+              }
+            ]
+          }
+        },
+        {
+          "id": "aEIAABgAAAD//v8AAAAAAHEAAAA=",
+          "name": "重合18",
+          "type": "MateCoincident",
+          "parent": "配合",
+          "suppressed": false,
+          "parents": [
+            "配合"
+          ],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": [],
+          "mateDefinition": {
+            "type": 0,
+            "alignment": 0,
+            "flipped": false,
+            "minimumVariation": 0,
+            "maximumVariation": 0,
+            "entities": [
+              {
+                "component": "A柜-子装配体",
+                "componentId": -1,
+                "referenceType": 3,
+                "parameters": [
+                  1.0520000000000018,
+                  2.8889999999999914,
+                  3.030121809812392E-14,
+                  1,
+                  2.652507140460647E-16,
+                  8.9527617370574E-15,
+                  0,
+                  0
+                ],
+                "reference": null
+              },
+              {
+                "component": "A柜-子装配体",
+                "componentId": -1,
+                "referenceType": 3,
+                "parameters": [
+                  1.0519999999999963,
+                  2.439,
+                  -2.1378990539667114E-15,
+                  1,
+                  1.455209315517394E-15,
+                  1.6398464824117456E-15,
+                  0,
+                  0
+                ],
+                "reference": null
+              }
+            ]
+          }
+        },
+        {
+          "id": "aEIAABgAAAD//v8AAAAAAHIAAAA=",
+          "name": "宽度8",
+          "type": "MateWidth",
+          "parent": "配合",
+          "suppressed": false,
+          "parents": [
+            "A柜体-1",
+            "配合"
+          ],
+          "dimensions": [],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": [],
+          "mateDefinition": {
+            "type": 11,
+            "alignment": 1,
+            "flipped": false,
+            "minimumVariation": 0,
+            "maximumVariation": 0,
+            "entities": [
+              {
+                "component": "A柜-子装配体",
+                "componentId": -1,
+                "referenceType": 3,
+                "parameters": [
+                  0.799999999999996,
+                  2.44,
+                  0.40000000000000296,
+                  -1.9103009310533665E-15,
+                  -2.268723019061309E-16,
+                  1,
+                  0,
+                  0
+                ],
+                "reference": null
+              },
+              {
+                "component": "A柜-子装配体",
+                "componentId": -1,
+                "referenceType": 3,
+                "parameters": [
+                  0.799999999999989,
+                  2.44,
+                  -0.40000000000000263,
+                  -1.9217077522634213E-14,
+                  -1.5534472029647265E-17,
+                  -1,
+                  0,
+                  0
+                ],
+                "reference": null
+              },
+              {
+                "component": "A柜体-1",
+                "componentId": 25,
+                "referenceType": 3,
+                "parameters": [
+                  0.75,
+                  1.12,
+                  -0.5,
+                  0,
+                  0,
+                  -1,
+                  0,
+                  0
+                ],
+                "reference": {
+                  "id": "aEIAAAMAAAD//v8NQQDcZ1NPLQAxAEAAQQDcZy0AUFvFiE2RU08EAAAAEAAAAAEAAAABAAAAGQAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFABtb0VuZEZhY2VTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/IkUAOgBcAHmY7nZcACdZaFEtAM1rv35laFwALHuMTkhyXABCANxnUFvFiFwAMgBcAEEA3GdTTy4AUwBMAEQAUABSAFQACYD//v8DQQDcZ1NPAgAAMQ1naf/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAAFgAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAFEAAADXDWdpAAAAAAAAAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAABYAIAFEAAADXDWdpAQAAAAyAAAAFgAgAUQAAANcNZ2kEAAAADIAAAAWACABRAAAA1w1naQMAAAAMgAAABYAIAFEAAADXDWdpAgAAAAAAAAAAAAAAAABoQgAAAAAAAAAAAAA=",
+                  "definitionReference": true,
+                  "planeParameters": [
+                    0,
+                    0,
+                    -1,
+                    0,
+                    0,
+                    -0.5
+                  ],
+                  "sense": false
+                }
+              },
+              {
+                "component": "A柜体-1",
+                "componentId": 25,
+                "referenceType": 3,
+                "parameters": [
+                  0.75,
+                  1.12,
+                  0.5,
+                  -0,
+                  -0,
+                  1,
+                  0,
+                  0
+                ],
+                "reference": {
+                  "id": "aEIAAAMAAAD//v8NQQDcZ1NPLQAxAEAAQQDcZy0AUFvFiE2RU08EAAAAEAAAAAEAAAABAAAAGQAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFABtb0VuZEZhY2VTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/IkUAOgBcAHmY7nZcACdZaFEtAM1rv35laFwALHuMTkhyXABCANxnUFvFiFwAMgBcAEEA3GdTTy4AUwBMAEQAUABSAFQACYD//v8DQQDcZ1NPAgAAMQ1naf/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAAFgAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAFEAAADXDWdpAQAAAAAAAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAABYAIAFEAAADXDWdpAQAAAAyAAAAFgAgAUQAAANcNZ2kCAAAADIAAAAWACABRAAAA1w1naQMAAAAMgAAABYAIAFEAAADXDWdpBAAAAAAAAAAAAAAAAABoQgAAAAAAAAAAAAA=",
+                  "definitionReference": true,
+                  "planeParameters": [
+                    0,
+                    0,
+                    -1,
+                    0,
+                    0,
+                    0.5
+                  ],
+                  "sense": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "aEIAABgAAAD//v8AAAAAAHQAAAA=",
+          "name": "距离13",
+          "type": "MateDistanceDim",
+          "parent": "配合",
+          "suppressed": false,
+          "parents": [
+            "A柜体-1",
+            "配合"
+          ],
+          "dimensions": [
+            {
+              "id": null,
+              "name": "A柜前基座距柜顶高度@距离13@A柜-子装配体.Assembly",
+              "value": 0.4,
+              "dimensionType": 0,
+              "readOnly": false,
+              "drivenState": 2,
+              "annotation": [
+                -0.5000999999999725,
+                0.19999999999999774,
+                1.0499999999999938
+              ]
+            }
+          ],
+          "sketch": null,
+          "definition": null,
+          "diagnostics": [],
+          "mateDefinition": {
+            "type": 5,
+            "alignment": 1,
+            "flipped": false,
+            "minimumVariation": 0,
+            "maximumVariation": 0,
+            "entities": [
+              {
+                "component": "A柜-子装配体",
+                "componentId": -1,
+                "referenceType": 3,
+                "parameters": [
+                  1.0100000000000013,
+                  2.640000000000002,
+                  -0.35849999999996085,
+                  1.0421648288616244E-16,
+                  -1,
+                  -6.9111383282915995E-15,
+                  0,
+                  0
+                ],
+                "reference": null
+              },
+              {
+                "component": "A柜体-1",
+                "componentId": 25,
+                "referenceType": 3,
+                "parameters": [
+                  0,
+                  2.24,
+                  0.5,
+                  -0,
+                  1,
+                  -0,
+                  0,
+                  0
+                ],
+                "reference": {
+                  "id": "aEIAAAMAAAD//v8NQQDcZ1NPLQAxAEAAQQDcZy0AUFvFiE2RU08EAAAAEAAAAAEAAAABAAAAGQAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/IkUAOgBcAHmY7nZcACdZaFEtAM1rv35laFwALHuMTkhyXABCANxnUFvFiFwAMgBcAEEA3GdTTy4AUwBMAEQAUABSAFQACYD//v8DQQDcZ1NPAgAAMQ1naf/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAAFgAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAFEAAADXDWdpAgAAAP//AQAUAG1vRW5kRmFjZVN1cmZJZFJlcF9jAAAFgAgAUQAAANcNZ2kAAAAAAAAAAAOAAAAFgAgAUQAAANcNZ2kDAAAADIAAAAWACABRAAAA1w1naQEAAAAAAAAAA4AAAAWACABRAAAA1w1naQEAAAAAAAAAAAAAAAAAaEIAAAAAAAAAAAAA",
+                  "definitionReference": true,
+                  "planeParameters": [
+                    0,
+                    -1,
+                    0,
+                    -0.75,
+                    1.12,
+                    0.5
+                  ],
+                  "sense": true
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "components": [
+        {
+          "name": "A柜体-1",
+          "id": 25,
+          "path": "模板/侧对侧模板/柜体场景零件/A柜体.SLDPRT",
+          "isVirtual": false,
+          "configuration": "默认",
+          "suppression": 2,
+          "fixedPosition": false,
+          "transform": [
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0.75,
+            1.12,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "mates": [
+            {
+              "type": 8,
+              "alignment": 0,
+              "entities": [
+                {
+                  "component": "A柜体-1",
+                  "referenceType": 3,
+                  "parameters": [
+                    0.75,
+                    1.12,
+                    0.5,
+                    -0,
+                    -0,
+                    1,
+                    0,
+                    0
+                  ],
+                  "reference": {
+                    "id": "aEIAAAMAAAD//v8NQQDcZ1NPLQAxAEAAQQDcZy0AUFvFiE2RU08EAAAAEAAAAAEAAAABAAAAGQAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFABtb0VuZEZhY2VTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/IkUAOgBcAHmY7nZcACdZaFEtAM1rv35laFwALHuMTkhyXABCANxnUFvFiFwAMgBcAEEA3GdTTy4AUwBMAEQAUABSAFQACYD//v8DQQDcZ1NPAgAAMQ1naf/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAAFgAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAFEAAADXDWdpAQAAAAAAAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAABYAIAFEAAADXDWdpAQAAAAyAAAAFgAgAUQAAANcNZ2kCAAAADIAAAAWACABRAAAA1w1naQMAAAAMgAAABYAIAFEAAADXDWdpBAAAAAAAAAAAAAAAAABoQgAAAAAAAAAAAAA=",
+                    "definitionReference": true,
+                    "planeParameters": [
+                      0,
+                      0,
+                      -1,
+                      0,
+                      0,
+                      0.5
+                    ],
+                    "sense": true
+                  }
+                },
+                {
+                  "component": "A柜体-1",
+                  "referenceType": 3,
+                  "parameters": [
+                    0.75,
+                    1.12,
+                    -0.5,
+                    0,
+                    0,
+                    -1,
+                    0,
+                    0
+                  ],
+                  "reference": {
+                    "id": "aEIAAAMAAAD//v8NQQDcZ1NPLQAxAEAAQQDcZy0AUFvFiE2RU08EAAAAEAAAAAEAAAABAAAAGQAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFABtb0VuZEZhY2VTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/IkUAOgBcAHmY7nZcACdZaFEtAM1rv35laFwALHuMTkhyXABCANxnUFvFiFwAMgBcAEEA3GdTTy4AUwBMAEQAUABSAFQACYD//v8DQQDcZ1NPAgAAMQ1naf/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAAFgAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAFEAAADXDWdpAAAAAAAAAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAABYAIAFEAAADXDWdpAQAAAAyAAAAFgAgAUQAAANcNZ2kEAAAADIAAAAWACABRAAAA1w1naQMAAAAMgAAABYAIAFEAAADXDWdpAgAAAAAAAAAAAAAAAABoQgAAAAAAAAAAAAA=",
+                    "definitionReference": true,
+                    "planeParameters": [
+                      0,
+                      0,
+                      -1,
+                      0,
+                      0,
+                      -0.5
+                    ],
+                    "sense": false
+                  }
+                },
+                {
+                  "component": "A柜-子装配体",
+                  "referenceType": 3,
+                  "parameters": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    1,
+                    0,
+                    0
+                  ],
+                  "reference": {
+                    "id": "aEIAAAEAAAD//v8AAAAAAAMAAAA=",
+                    "feature": "前视基准面",
+                    "referencePlaneTransform": [
+                      1,
+                      0,
+                      0,
+                      0,
+                      1,
+                      0,
+                      0,
+                      0,
+                      1,
+                      0,
+                      0,
+                      0,
+                      1,
+                      0,
+                      0,
+                      0
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "type": 0,
+              "alignment": 1,
+              "entities": [
+                {
+                  "component": "A柜体-1",
+                  "referenceType": 3,
+                  "parameters": [
+                    0,
+                    0,
+                    0.5,
+                    -0,
+                    -1,
+                    -0,
+                    0,
+                    0
+                  ],
+                  "reference": {
+                    "id": "aEIAAAMAAAD//v8NQQDcZ1NPLQAxAEAAQQDcZy0AUFvFiE2RU08EAAAAEAAAAAEAAAABAAAAGQAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/IkUAOgBcAHmY7nZcACdZaFEtAM1rv35laFwALHuMTkhyXABCANxnUFvFiFwAMgBcAEEA3GdTTy4AUwBMAEQAUABSAFQACYD//v8DQQDcZ1NPAgAAMQ1naf/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAAFgAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAFEAAADXDWdpBAAAAP//AQAUAG1vRW5kRmFjZVN1cmZJZFJlcF9jAAAFgAgAUQAAANcNZ2kAAAAAAAAAAAOAAAAFgAgAUQAAANcNZ2kBAAAADIAAAAWACABRAAAA1w1naQEAAAAAAAAAA4AAAAWACABRAAAA1w1naQMAAAAAAAAAAAAAAAAAaEIAAAAAAAAAAAAA",
+                    "definitionReference": true,
+                    "planeParameters": [
+                      0,
+                      1,
+                      0,
+                      -0.75,
+                      -1.12,
+                      0.5
+                    ],
+                    "sense": true
+                  }
+                },
+                {
+                  "component": "A柜-子装配体",
+                  "referenceType": 3,
+                  "parameters": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    1,
+                    0,
+                    0,
+                    0
+                  ],
+                  "reference": {
+                    "id": "aEIAAAEAAAD//v8AAAAAAAQAAAA=",
+                    "feature": "上视基准面",
+                    "referencePlaneTransform": [
+                      1,
+                      0,
+                      0,
+                      0,
+                      0,
+                      -1,
+                      0,
+                      1,
+                      0,
+                      0,
+                      0,
+                      0,
+                      1,
+                      0,
+                      0,
+                      0
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "type": 0,
+              "alignment": 1,
+              "entities": [
+                {
+                  "component": "A柜体-1",
+                  "referenceType": 3,
+                  "parameters": [
+                    0,
+                    0,
+                    0.5,
+                    -1,
+                    -0,
+                    -0,
+                    0,
+                    0
+                  ],
+                  "reference": {
+                    "id": "aEIAAAMAAAD//v8NQQDcZ1NPLQAxAEAAQQDcZy0AUFvFiE2RU08EAAAAEAAAAAEAAAABAAAAGQAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/IkUAOgBcAHmY7nZcACdZaFEtAM1rv35laFwALHuMTkhyXABCANxnUFvFiFwAMgBcAEEA3GdTTy4AUwBMAEQAUABSAFQACYD//v8DQQDcZ1NPAgAAMQ1naf/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAAFgAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAFEAAADXDWdpAwAAAP//AQAUAG1vRW5kRmFjZVN1cmZJZFJlcF9jAAAFgAgAUQAAANcNZ2kAAAAAAAAAAAOAAAAFgAgAUQAAANcNZ2kEAAAADIAAAAWACABRAAAA1w1naQEAAAAAAAAAA4AAAAWACABRAAAA1w1naQIAAAAAAAAAAAAAAAAAaEIAAAAAAAAAAAAA",
+                    "definitionReference": true,
+                    "planeParameters": [
+                      1,
+                      0,
+                      0,
+                      -0.75,
+                      -1.12,
+                      0.5
+                    ],
+                    "sense": true
+                  }
+                },
+                {
+                  "component": "A柜-子装配体",
+                  "referenceType": 3,
+                  "parameters": [
+                    0,
+                    0,
+                    0,
+                    1,
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "reference": {
+                    "id": "aEIAAAEAAAD//v8AAAAAAAUAAAA=",
+                    "feature": "右视基准面",
+                    "referencePlaneTransform": [
+                      -0,
+                      -0,
+                      -1,
+                      0,
+                      1,
+                      0,
+                      1,
+                      0,
+                      0,
+                      0,
+                      0,
+                      0,
+                      1,
+                      0,
+                      0,
+                      0
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "type": 5,
+              "alignment": 0,
+              "entities": [
+                {
+                  "component": "A柜内伸出排-A柜前-1/A柜内伸出排-C-A柜前-1",
+                  "referenceType": 3,
+                  "parameters": [
+                    0.8694999999999999,
+                    2.54,
+                    0.16999999999999996,
+                    1.2400705805292066E-17,
+                    1,
+                    1.0685623553832532E-17,
+                    0,
+                    0
+                  ],
+                  "reference": {
+                    "id": "aEIAAAMAAAD//v8uQQDcZ4VROE/6UZJjLQBBANxnTVItADEAQABBANxnLQBQW8WITZFTTy8AQQDcZ4VROE/6UZJjLQBDAC0AQQDcZ01SLQAxAEAAQQDcZ4VROE/6UZJjLQBBANxnTVIEAAAAEAAAAAEAAAACAAAANQAAABkAAAD//wEACwBtb0ZhY2VSZWZfYwEAAAAAAAAABgAAAAADAAAAAAAAfcOUJa1JslR9w5QlrUmyVAAA//8BABgAbW9UaGluQ2xvc2luZ1N1cmZJZFJlcF9jAAD//wEABgBtb0ZSX2P//wEADQBtb0V4dE9iamVjdF9j//8BABEAbW9DU3RyaW5nSGFuZGxlX2P//v8rRQA6AFwAeZjudlwAJ1loUS0AzWu/fmVoXAAse4xOSHJcAEIA3GdQW8WIXAAyAFwAQQDcZ4VROE/6UZJjLQBDAC0AQQDcZ01SLgBTAEwARABQAFIAVAAJgP/+/wxBANxnhVE4T/pRkmMtAEMALQBBANxnTVICAADrXwtm//7/AP/+/wD//v8AAAAAAAAAAAAAAAAAAAAaAAAA//7/AtiepIsAAAAAAAAAAMjgbFYAAAAAXwAAAA5gC2YAAAAAAAAAAP//AQAUAG1vRW5kRmFjZVN1cmZJZFJlcF9jAAAFgAgAXwAAAA5gC2YAAAAAAAAAAP//AQAXAG1vVGhpbk9mZnNldFN1cmZJZFJlcF9jAAAFgAgAXwAAAA5gC2YBAAAADIAAAAWACABfAAAADmALZgEAAAAAAAAA//8BABcAbW9Gcm9tU2t0RW50U3VyZklkUmVwX2MAAAWACABfAAAADmALZgEAAAAAAAAAAAAAAAAAaEIAAAAAAAAAAAAA",
+                    "definitionReference": true,
+                    "planeParameters": [
+                      -1,
+                      0,
+                      0,
+                      0,
+                      0.04,
+                      0
+                    ],
+                    "sense": false
+                  }
+                },
+                {
+                  "component": "A柜体-1",
+                  "referenceType": 3,
+                  "parameters": [
+                    0,
+                    2.24,
+                    0.5,
+                    -0,
+                    1,
+                    -0,
+                    0,
+                    0
+                  ],
+                  "reference": {
+                    "id": "aEIAAAMAAAD//v8NQQDcZ1NPLQAxAEAAQQDcZy0AUFvFiE2RU08EAAAAEAAAAAEAAAABAAAAGQAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/IkUAOgBcAHmY7nZcACdZaFEtAM1rv35laFwALHuMTkhyXABCANxnUFvFiFwAMgBcAEEA3GdTTy4AUwBMAEQAUABSAFQACYD//v8DQQDcZ1NPAgAAMQ1naf/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAAFgAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAFEAAADXDWdpAgAAAP//AQAUAG1vRW5kRmFjZVN1cmZJZFJlcF9jAAAFgAgAUQAAANcNZ2kAAAAAAAAAAAOAAAAFgAgAUQAAANcNZ2kDAAAADIAAAAWACABRAAAA1w1naQEAAAAAAAAAA4AAAAWACABRAAAA1w1naQEAAAAAAAAAAAAAAAAAaEIAAAAAAAAAAAAA",
+                    "definitionReference": true,
+                    "planeParameters": [
+                      0,
+                      -1,
+                      0,
+                      -0.75,
+                      1.12,
+                      0.5
+                    ],
+                    "sense": true
+                  }
+                }
+              ]
+            },
+            {
+              "type": 5,
+              "alignment": 0,
+              "entities": [
+                {
+                  "component": "A柜内伸出排-A柜前-1",
+                  "referenceType": 3,
+                  "parameters": [
+                    0.8494999999999999,
+                    2.29,
+                    2.7755575615628914E-17,
+                    1,
+                    -1.1671051626871047E-17,
+                    0,
+                    0,
+                    0
+                  ],
+                  "reference": {
+                    "id": "aEIAAAEAAAD//v8UQQDcZ4VROE/6UZJjLQBBANxnTVItADEAQABBANxnLQBQW8WITZFTTwQAAAAQAAAAAQAAAAEAAAA1AAAAAwAAAA==",
+                    "feature": "前视基准面",
+                    "referencePlaneTransform": [
+                      1,
+                      0,
+                      0,
+                      0,
+                      1,
+                      0,
+                      0,
+                      0,
+                      1,
+                      0,
+                      0,
+                      0,
+                      1,
+                      0,
+                      0,
+                      0
+                    ]
+                  }
+                },
+                {
+                  "component": "A柜体-1",
+                  "referenceType": 3,
+                  "parameters": [
+                    1.5,
+                    0,
+                    0.5,
+                    1,
+                    -0,
+                    -0,
+                    0,
+                    0
+                  ],
+                  "reference": {
+                    "id": "aEIAAAMAAAD//v8NQQDcZ1NPLQAxAEAAQQDcZy0AUFvFiE2RU08EAAAAEAAAAAEAAAABAAAAGQAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/IkUAOgBcAHmY7nZcACdZaFEtAM1rv35laFwALHuMTkhyXABCANxnUFvFiFwAMgBcAEEA3GdTTy4AUwBMAEQAUABSAFQACYD//v8DQQDcZ1NPAgAAMQ1naf/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAAFgAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAFEAAADXDWdpAQAAAP//AQAUAG1vRW5kRmFjZVN1cmZJZFJlcF9jAAAFgAgAUQAAANcNZ2kAAAAAAAAAAAOAAAAFgAgAUQAAANcNZ2kCAAAADIAAAAWACABRAAAA1w1naQEAAAAAAAAAA4AAAAWACABRAAAA1w1naQQAAAAAAAAAAAAAAAAAaEIAAAAAAAAAAAAA",
+                    "definitionReference": true,
+                    "planeParameters": [
+                      -1,
+                      0,
+                      0,
+                      0.75,
+                      -1.12,
+                      0.5
+                    ],
+                    "sense": true
+                  }
+                }
+              ]
+            },
+            {
+              "type": 5,
+              "alignment": 1,
+              "entities": [
+                {
+                  "component": "A柜内伸出排-A柜后-1",
+                  "referenceType": 3,
+                  "parameters": [
+                    0.308,
+                    2.29,
+                    2.7755575615628914E-17,
+                    1,
+                    1.6263032587282567E-19,
+                    0,
+                    0,
+                    0
+                  ],
+                  "reference": {
+                    "id": "aEIAAAEAAAD//v8UQQDcZ4VROE/6UZJjLQBBANxnDlQtADEAQABBANxnLQBQW8WITZFTTwQAAAAQAAAAAQAAAAEAAABAAAAAAwAAAA==",
+                    "feature": "前视基准面",
+                    "referencePlaneTransform": [
+                      1,
+                      0,
+                      0,
+                      0,
+                      1,
+                      0,
+                      0,
+                      0,
+                      1,
+                      0,
+                      0,
+                      0,
+                      1,
+                      0,
+                      0,
+                      0
+                    ]
+                  }
+                },
+                {
+                  "component": "A柜体-1",
+                  "referenceType": 3,
+                  "parameters": [
+                    0,
+                    0,
+                    0.5,
+                    -1,
+                    -0,
+                    -0,
+                    0,
+                    0
+                  ],
+                  "reference": {
+                    "id": "aEIAAAMAAAD//v8NQQDcZ1NPLQAxAEAAQQDcZy0AUFvFiE2RU08EAAAAEAAAAAEAAAABAAAAGQAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/IkUAOgBcAHmY7nZcACdZaFEtAM1rv35laFwALHuMTkhyXABCANxnUFvFiFwAMgBcAEEA3GdTTy4AUwBMAEQAUABSAFQACYD//v8DQQDcZ1NPAgAAMQ1naf/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAAFgAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAFEAAADXDWdpAwAAAP//AQAUAG1vRW5kRmFjZVN1cmZJZFJlcF9jAAAFgAgAUQAAANcNZ2kAAAAAAAAAAAOAAAAFgAgAUQAAANcNZ2kEAAAADIAAAAWACABRAAAA1w1naQEAAAAAAAAAA4AAAAWACABRAAAA1w1naQIAAAAAAAAAAAAAAAAAaEIAAAAAAAAAAAAA",
+                    "definitionReference": true,
+                    "planeParameters": [
+                      1,
+                      0,
+                      0,
+                      -0.75,
+                      -1.12,
+                      0.5
+                    ],
+                    "sense": true
+                  }
+                }
+              ]
+            },
+            {
+              "type": 5,
+              "alignment": 0,
+              "entities": [
+                {
+                  "component": "A柜内伸出排-A柜后-1/A柜内伸出排-C-A柜后-1",
+                  "referenceType": 3,
+                  "parameters": [
+                    0.296,
+                    2.54,
+                    0.16999999999999996,
+                    -4.669114550815243E-21,
+                    1,
+                    3.919795306784858E-17,
+                    0,
+                    0
+                  ],
+                  "reference": {
+                    "id": "aEIAAAMAAAD//v8uQQDcZ4VROE/6UZJjLQBBANxnDlQtADEAQABBANxnLQBQW8WITZFTTy8AQQDcZ4VROE/6UZJjLQBDAC0AQQDcZw5ULQAxAEAAQQDcZ4VROE/6UZJjLQBBANxnDlQEAAAAEAAAAAEAAAACAAAAQAAAABkAAAD//wEACwBtb0ZhY2VSZWZfYwEAAAAAAAAABgAAAAADAAAAAAAAfcOUJa1JslR9w5QlrUmyVAAA//8BABgAbW9UaGluQ2xvc2luZ1N1cmZJZFJlcF9jAAD//wEABgBtb0ZSX2P//wEADQBtb0V4dE9iamVjdF9j//8BABEAbW9DU3RyaW5nSGFuZGxlX2P//v8rRQA6AFwAeZjudlwAJ1loUS0AzWu/fmVoXAAse4xOSHJcAEIA3GdQW8WIXAAyAFwAQQDcZ4VROE/6UZJjLQBDAC0AQQDcZw5ULgBTAEwARABQAFIAVAAJgP/+/wxBANxnhVE4T/pRkmMtAEMALQBBANxnDlQCAADrXwtm//7/AP/+/wD//v8AAAAAAAAAAAAAAAAAAAAeAAAA//7/AtiepIsAAAAAAAAAAMjgbFYAAAAAXwAAAA5gC2YAAAAAAAAAAP//AQAUAG1vRW5kRmFjZVN1cmZJZFJlcF9jAAAFgAgAXwAAAA5gC2YAAAAAAAAAAP//AQAXAG1vVGhpbk9mZnNldFN1cmZJZFJlcF9jAAAFgAgAXwAAAA5gC2YBAAAADIAAAAWACABfAAAADmALZgEAAAAAAAAA//8BABcAbW9Gcm9tU2t0RW50U3VyZklkUmVwX2MAAAWACABfAAAADmALZgEAAAAAAAAAAAAAAAAAaEIAAAAAAAAAAAAA",
+                    "definitionReference": true,
+                    "planeParameters": [
+                      -1,
+                      0,
+                      0,
+                      0,
+                      0.04,
+                      0
+                    ],
+                    "sense": false
+                  }
+                },
+                {
+                  "component": "A柜体-1",
+                  "referenceType": 3,
+                  "parameters": [
+                    0,
+                    2.24,
+                    0.5,
+                    -0,
+                    1,
+                    -0,
+                    0,
+                    0
+                  ],
+                  "reference": {
+                    "id": "aEIAAAMAAAD//v8NQQDcZ1NPLQAxAEAAQQDcZy0AUFvFiE2RU08EAAAAEAAAAAEAAAABAAAAGQAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/IkUAOgBcAHmY7nZcACdZaFEtAM1rv35laFwALHuMTkhyXABCANxnUFvFiFwAMgBcAEEA3GdTTy4AUwBMAEQAUABSAFQACYD//v8DQQDcZ1NPAgAAMQ1naf/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAAFgAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAFEAAADXDWdpAgAAAP//AQAUAG1vRW5kRmFjZVN1cmZJZFJlcF9jAAAFgAgAUQAAANcNZ2kAAAAAAAAAAAOAAAAFgAgAUQAAANcNZ2kDAAAADIAAAAWACABRAAAA1w1naQEAAAAAAAAAA4AAAAWACABRAAAA1w1naQEAAAAAAAAAAAAAAAAAaEIAAAAAAAAAAAAA",
+                    "definitionReference": true,
+                    "planeParameters": [
+                      0,
+                      -1,
+                      0,
+                      -0.75,
+                      1.12,
+                      0.5
+                    ],
+                    "sense": true
+                  }
+                }
+              ]
+            },
+            {
+              "type": 11,
+              "alignment": 1,
+              "entities": [
+                {
+                  "component": "A柜-子装配体",
+                  "referenceType": 3,
+                  "parameters": [
+                    0.7999999999999963,
+                    3.1400000000000023,
+                    -0.3999999999999753,
+                    -1.3807422905010988E-14,
+                    3.7047467258527353E-16,
+                    -1,
+                    0,
+                    0
+                  ],
+                  "reference": null
+                },
+                {
+                  "component": "A柜-子装配体",
+                  "referenceType": 3,
+                  "parameters": [
+                    0.7999999999999989,
+                    3.1400000000000023,
+                    0.40000000000003016,
+                    -7.248218556637029E-15,
+                    -1.387778780781408E-16,
+                    1,
+                    0,
+                    0
+                  ],
+                  "reference": null
+                },
+                {
+                  "component": "A柜体-1",
+                  "referenceType": 3,
+                  "parameters": [
+                    0.75,
+                    1.12,
+                    0.5,
+                    -0,
+                    -0,
+                    1,
+                    0,
+                    0
+                  ],
+                  "reference": {
+                    "id": "aEIAAAMAAAD//v8NQQDcZ1NPLQAxAEAAQQDcZy0AUFvFiE2RU08EAAAAEAAAAAEAAAABAAAAGQAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFABtb0VuZEZhY2VTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/IkUAOgBcAHmY7nZcACdZaFEtAM1rv35laFwALHuMTkhyXABCANxnUFvFiFwAMgBcAEEA3GdTTy4AUwBMAEQAUABSAFQACYD//v8DQQDcZ1NPAgAAMQ1naf/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAAFgAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAFEAAADXDWdpAQAAAAAAAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAABYAIAFEAAADXDWdpAQAAAAyAAAAFgAgAUQAAANcNZ2kCAAAADIAAAAWACABRAAAA1w1naQMAAAAMgAAABYAIAFEAAADXDWdpBAAAAAAAAAAAAAAAAABoQgAAAAAAAAAAAAA=",
+                    "definitionReference": true,
+                    "planeParameters": [
+                      0,
+                      0,
+                      -1,
+                      0,
+                      0,
+                      0.5
+                    ],
+                    "sense": true
+                  }
+                },
+                {
+                  "component": "A柜体-1",
+                  "referenceType": 3,
+                  "parameters": [
+                    0.75,
+                    1.12,
+                    -0.5,
+                    0,
+                    0,
+                    -1,
+                    0,
+                    0
+                  ],
+                  "reference": {
+                    "id": "aEIAAAMAAAD//v8NQQDcZ1NPLQAxAEAAQQDcZy0AUFvFiE2RU08EAAAAEAAAAAEAAAABAAAAGQAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFABtb0VuZEZhY2VTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/IkUAOgBcAHmY7nZcACdZaFEtAM1rv35laFwALHuMTkhyXABCANxnUFvFiFwAMgBcAEEA3GdTTy4AUwBMAEQAUABSAFQACYD//v8DQQDcZ1NPAgAAMQ1naf/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAAFgAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAFEAAADXDWdpAAAAAAAAAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAABYAIAFEAAADXDWdpAQAAAAyAAAAFgAgAUQAAANcNZ2kEAAAADIAAAAWACABRAAAA1w1naQMAAAAMgAAABYAIAFEAAADXDWdpAgAAAAAAAAAAAAAAAABoQgAAAAAAAAAAAAA=",
+                    "definitionReference": true,
+                    "planeParameters": [
+                      0,
+                      0,
+                      -1,
+                      0,
+                      0,
+                      -0.5
+                    ],
+                    "sense": false
+                  }
+                }
+              ]
+            },
+            {
+              "type": 5,
+              "alignment": 0,
+              "entities": [
+                {
+                  "component": "A柜体-1",
+                  "referenceType": 3,
+                  "parameters": [
+                    1.5,
+                    0,
+                    0.5,
+                    1,
+                    -0,
+                    -0,
+                    0,
+                    0
+                  ],
+                  "reference": {
+                    "id": "aEIAAAMAAAD//v8NQQDcZ1NPLQAxAEAAQQDcZy0AUFvFiE2RU08EAAAAEAAAAAEAAAABAAAAGQAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/IkUAOgBcAHmY7nZcACdZaFEtAM1rv35laFwALHuMTkhyXABCANxnUFvFiFwAMgBcAEEA3GdTTy4AUwBMAEQAUABSAFQACYD//v8DQQDcZ1NPAgAAMQ1naf/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAAFgAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAFEAAADXDWdpAQAAAP//AQAUAG1vRW5kRmFjZVN1cmZJZFJlcF9jAAAFgAgAUQAAANcNZ2kAAAAAAAAAAAOAAAAFgAgAUQAAANcNZ2kCAAAADIAAAAWACABRAAAA1w1naQEAAAAAAAAAA4AAAAWACABRAAAA1w1naQQAAAAAAAAAAAAAAAAAaEIAAAAAAAAAAAAA",
+                    "definitionReference": true,
+                    "planeParameters": [
+                      -1,
+                      0,
+                      0,
+                      0.75,
+                      -1.12,
+                      0.5
+                    ],
+                    "sense": true
+                  }
+                },
+                {
+                  "component": "A柜-子装配体",
+                  "referenceType": 3,
+                  "parameters": [
+                    1.0499999999999994,
+                    3.640000000000003,
+                    0.35850000000003185,
+                    1,
+                    -5.017899568252652E-16,
+                    7.24821855663703E-15,
+                    0,
+                    0
+                  ],
+                  "reference": null
+                }
+              ]
+            },
+            {
+              "type": 11,
+              "alignment": 1,
+              "entities": [
+                {
+                  "component": "A柜-子装配体",
+                  "referenceType": 3,
+                  "parameters": [
+                    0.2584999999999992,
+                    3.139999999999997,
+                    0.40000000000003,
+                    -7.248218556637029E-15,
+                    -1.387778780781408E-16,
+                    1,
+                    0,
+                    0
+                  ],
+                  "reference": null
+                },
+                {
+                  "component": "A柜-子装配体",
+                  "referenceType": 3,
+                  "parameters": [
+                    0.2584999999999965,
+                    3.1399999999999975,
+                    -0.3999999999999752,
+                    -1.3807422905010988E-14,
+                    3.7047467258527353E-16,
+                    -1,
+                    0,
+                    0
+                  ],
+                  "reference": null
+                },
+                {
+                  "component": "A柜体-1",
+                  "referenceType": 3,
+                  "parameters": [
+                    0.75,
+                    1.12,
+                    -0.5,
+                    0,
+                    0,
+                    -1,
+                    0,
+                    0
+                  ],
+                  "reference": {
+                    "id": "aEIAAAMAAAD//v8NQQDcZ1NPLQAxAEAAQQDcZy0AUFvFiE2RU08EAAAAEAAAAAEAAAABAAAAGQAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFABtb0VuZEZhY2VTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/IkUAOgBcAHmY7nZcACdZaFEtAM1rv35laFwALHuMTkhyXABCANxnUFvFiFwAMgBcAEEA3GdTTy4AUwBMAEQAUABSAFQACYD//v8DQQDcZ1NPAgAAMQ1naf/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAAFgAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAFEAAADXDWdpAAAAAAAAAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAABYAIAFEAAADXDWdpAQAAAAyAAAAFgAgAUQAAANcNZ2kEAAAADIAAAAWACABRAAAA1w1naQMAAAAMgAAABYAIAFEAAADXDWdpAgAAAAAAAAAAAAAAAABoQgAAAAAAAAAAAAA=",
+                    "definitionReference": true,
+                    "planeParameters": [
+                      0,
+                      0,
+                      -1,
+                      0,
+                      0,
+                      -0.5
+                    ],
+                    "sense": false
+                  }
+                },
+                {
+                  "component": "A柜体-1",
+                  "referenceType": 3,
+                  "parameters": [
+                    0.75,
+                    1.12,
+                    0.5,
+                    -0,
+                    -0,
+                    1,
+                    0,
+                    0
+                  ],
+                  "reference": {
+                    "id": "aEIAAAMAAAD//v8NQQDcZ1NPLQAxAEAAQQDcZy0AUFvFiE2RU08EAAAAEAAAAAEAAAABAAAAGQAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFABtb0VuZEZhY2VTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/IkUAOgBcAHmY7nZcACdZaFEtAM1rv35laFwALHuMTkhyXABCANxnUFvFiFwAMgBcAEEA3GdTTy4AUwBMAEQAUABSAFQACYD//v8DQQDcZ1NPAgAAMQ1naf/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAAFgAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAFEAAADXDWdpAQAAAAAAAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAABYAIAFEAAADXDWdpAQAAAAyAAAAFgAgAUQAAANcNZ2kCAAAADIAAAAWACABRAAAA1w1naQMAAAAMgAAABYAIAFEAAADXDWdpBAAAAAAAAAAAAAAAAABoQgAAAAAAAAAAAAA=",
+                    "definitionReference": true,
+                    "planeParameters": [
+                      0,
+                      0,
+                      -1,
+                      0,
+                      0,
+                      0.5
+                    ],
+                    "sense": true
+                  }
+                }
+              ]
+            },
+            {
+              "type": 5,
+              "alignment": 1,
+              "entities": [
+                {
+                  "component": "A柜-子装配体",
+                  "referenceType": 3,
+                  "parameters": [
+                    0.5084999999999998,
+                    3.6399999999999975,
+                    0.3585000000000316,
+                    1,
+                    -5.017899568252652E-16,
+                    7.24821855663703E-15,
+                    0,
+                    0
+                  ],
+                  "reference": null
+                },
+                {
+                  "component": "A柜体-1",
+                  "referenceType": 3,
+                  "parameters": [
+                    0,
+                    0,
+                    0.5,
+                    -1,
+                    -0,
+                    -0,
+                    0,
+                    0
+                  ],
+                  "reference": {
+                    "id": "aEIAAAMAAAD//v8NQQDcZ1NPLQAxAEAAQQDcZy0AUFvFiE2RU08EAAAAEAAAAAEAAAABAAAAGQAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/IkUAOgBcAHmY7nZcACdZaFEtAM1rv35laFwALHuMTkhyXABCANxnUFvFiFwAMgBcAEEA3GdTTy4AUwBMAEQAUABSAFQACYD//v8DQQDcZ1NPAgAAMQ1naf/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAAFgAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAFEAAADXDWdpAwAAAP//AQAUAG1vRW5kRmFjZVN1cmZJZFJlcF9jAAAFgAgAUQAAANcNZ2kAAAAAAAAAAAOAAAAFgAgAUQAAANcNZ2kEAAAADIAAAAWACABRAAAA1w1naQEAAAAAAAAAA4AAAAWACABRAAAA1w1naQIAAAAAAAAAAAAAAAAAaEIAAAAAAAAAAAAA",
+                    "definitionReference": true,
+                    "planeParameters": [
+                      1,
+                      0,
+                      0,
+                      -0.75,
+                      -1.12,
+                      0.5
+                    ],
+                    "sense": true
+                  }
+                }
+              ]
+            },
+            {
+              "type": 5,
+              "alignment": 1,
+              "entities": [
+                {
+                  "component": "A柜-子装配体",
+                  "referenceType": 3,
+                  "parameters": [
+                    0.6165000000000018,
+                    2.740000000000002,
+                    0.2100000000000024,
+                    2.83744454545888E-15,
+                    -1,
+                    1.6653345369377348E-16,
+                    0,
+                    0
+                  ],
+                  "reference": null
+                },
+                {
+                  "component": "A柜体-1",
+                  "referenceType": 3,
+                  "parameters": [
+                    0,
+                    2.24,
+                    0.5,
+                    -0,
+                    1,
+                    -0,
+                    0,
+                    0
+                  ],
+                  "reference": {
+                    "id": "aEIAAAMAAAD//v8NQQDcZ1NPLQAxAEAAQQDcZy0AUFvFiE2RU08EAAAAEAAAAAEAAAABAAAAGQAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/IkUAOgBcAHmY7nZcACdZaFEtAM1rv35laFwALHuMTkhyXABCANxnUFvFiFwAMgBcAEEA3GdTTy4AUwBMAEQAUABSAFQACYD//v8DQQDcZ1NPAgAAMQ1naf/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAAFgAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAFEAAADXDWdpAgAAAP//AQAUAG1vRW5kRmFjZVN1cmZJZFJlcF9jAAAFgAgAUQAAANcNZ2kAAAAAAAAAAAOAAAAFgAgAUQAAANcNZ2kDAAAADIAAAAWACABRAAAA1w1naQEAAAAAAAAAA4AAAAWACABRAAAA1w1naQEAAAAAAAAAAAAAAAAAaEIAAAAAAAAAAAAA",
+                    "definitionReference": true,
+                    "planeParameters": [
+                      0,
+                      -1,
+                      0,
+                      -0.75,
+                      1.12,
+                      0.5
+                    ],
+                    "sense": true
+                  }
+                }
+              ]
+            },
+            {
+              "type": 5,
+              "alignment": 1,
+              "entities": [
+                {
+                  "component": "A柜-子装配体",
+                  "referenceType": 3,
+                  "parameters": [
+                    0.6165000000000125,
+                    2.820000000000003,
+                    0.2099999999999537,
+                    -6.910947408898681E-16,
+                    -1,
+                    1.7487446205677727E-14,
+                    0,
+                    0
+                  ],
+                  "reference": null
+                },
+                {
+                  "component": "A柜体-1",
+                  "referenceType": 3,
+                  "parameters": [
+                    0,
+                    2.24,
+                    0.5,
+                    -0,
+                    1,
+                    -0,
+                    0,
+                    0
+                  ],
+                  "reference": {
+                    "id": "aEIAAAMAAAD//v8NQQDcZ1NPLQAxAEAAQQDcZy0AUFvFiE2RU08EAAAAEAAAAAEAAAABAAAAGQAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/IkUAOgBcAHmY7nZcACdZaFEtAM1rv35laFwALHuMTkhyXABCANxnUFvFiFwAMgBcAEEA3GdTTy4AUwBMAEQAUABSAFQACYD//v8DQQDcZ1NPAgAAMQ1naf/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAAFgAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAFEAAADXDWdpAgAAAP//AQAUAG1vRW5kRmFjZVN1cmZJZFJlcF9jAAAFgAgAUQAAANcNZ2kAAAAAAAAAAAOAAAAFgAgAUQAAANcNZ2kDAAAADIAAAAWACABRAAAA1w1naQEAAAAAAAAAA4AAAAWACABRAAAA1w1naQEAAAAAAAAAAAAAAAAAaEIAAAAAAAAAAAAA",
+                    "definitionReference": true,
+                    "planeParameters": [
+                      0,
+                      -1,
+                      0,
+                      -0.75,
+                      1.12,
+                      0.5
+                    ],
+                    "sense": true
+                  }
+                }
+              ]
+            },
+            {
+              "type": 5,
+              "alignment": 1,
+              "entities": [
+                {
+                  "component": "A柜-子装配体",
+                  "referenceType": 3,
+                  "parameters": [
+                    0.07500000000000041,
+                    2.739999999999999,
+                    0.21000000000001043,
+                    6.402321653771175E-15,
+                    -1,
+                    -3.8960052584624936E-15,
+                    0,
+                    0
+                  ],
+                  "reference": null
+                },
+                {
+                  "component": "A柜体-1",
+                  "referenceType": 3,
+                  "parameters": [
+                    0,
+                    2.24,
+                    0.5,
+                    -0,
+                    1,
+                    -0,
+                    0,
+                    0
+                  ],
+                  "reference": {
+                    "id": "aEIAAAMAAAD//v8NQQDcZ1NPLQAxAEAAQQDcZy0AUFvFiE2RU08EAAAAEAAAAAEAAAABAAAAGQAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/IkUAOgBcAHmY7nZcACdZaFEtAM1rv35laFwALHuMTkhyXABCANxnUFvFiFwAMgBcAEEA3GdTTy4AUwBMAEQAUABSAFQACYD//v8DQQDcZ1NPAgAAMQ1naf/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAAFgAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAFEAAADXDWdpAgAAAP//AQAUAG1vRW5kRmFjZVN1cmZJZFJlcF9jAAAFgAgAUQAAANcNZ2kAAAAAAAAAAAOAAAAFgAgAUQAAANcNZ2kDAAAADIAAAAWACABRAAAA1w1naQEAAAAAAAAAA4AAAAWACABRAAAA1w1naQEAAAAAAAAAAAAAAAAAaEIAAAAAAAAAAAAA",
+                    "definitionReference": true,
+                    "planeParameters": [
+                      0,
+                      -1,
+                      0,
+                      -0.75,
+                      1.12,
+                      0.5
+                    ],
+                    "sense": true
+                  }
+                }
+              ]
+            },
+            {
+              "type": 5,
+              "alignment": 1,
+              "entities": [
+                {
+                  "component": "A柜-子装配体",
+                  "referenceType": 3,
+                  "parameters": [
+                    0.07499999999999753,
+                    2.82,
+                    0.21000000000002234,
+                    9.93934883051811E-15,
+                    -1,
+                    -3.05311331771918E-16,
+                    0,
+                    0
+                  ],
+                  "reference": null
+                },
+                {
+                  "component": "A柜体-1",
+                  "referenceType": 3,
+                  "parameters": [
+                    0,
+                    2.24,
+                    0.5,
+                    -0,
+                    1,
+                    -0,
+                    0,
+                    0
+                  ],
+                  "reference": {
+                    "id": "aEIAAAMAAAD//v8NQQDcZ1NPLQAxAEAAQQDcZy0AUFvFiE2RU08EAAAAEAAAAAEAAAABAAAAGQAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/IkUAOgBcAHmY7nZcACdZaFEtAM1rv35laFwALHuMTkhyXABCANxnUFvFiFwAMgBcAEEA3GdTTy4AUwBMAEQAUABSAFQACYD//v8DQQDcZ1NPAgAAMQ1naf/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAAFgAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAFEAAADXDWdpAgAAAP//AQAUAG1vRW5kRmFjZVN1cmZJZFJlcF9jAAAFgAgAUQAAANcNZ2kAAAAAAAAAAAOAAAAFgAgAUQAAANcNZ2kDAAAADIAAAAWACABRAAAA1w1naQEAAAAAAAAAA4AAAAWACABRAAAA1w1naQEAAAAAAAAAAAAAAAAAaEIAAAAAAAAAAAAA",
+                    "definitionReference": true,
+                    "planeParameters": [
+                      0,
+                      -1,
+                      0,
+                      -0.75,
+                      1.12,
+                      0.5
+                    ],
+                    "sense": true
+                  }
+                }
+              ]
+            },
+            {
+              "type": 0,
+              "alignment": 1,
+              "entities": [
+                {
+                  "component": "A柜体-1",
+                  "referenceType": 3,
+                  "parameters": [
+                    0,
+                    2.24,
+                    0.5,
+                    -0,
+                    1,
+                    -0,
+                    0,
+                    0
+                  ],
+                  "reference": {
+                    "id": "aEIAAAMAAAD//v8NQQDcZ1NPLQAxAEAAQQDcZy0AUFvFiE2RU08EAAAAEAAAAAEAAAABAAAAGQAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/IkUAOgBcAHmY7nZcACdZaFEtAM1rv35laFwALHuMTkhyXABCANxnUFvFiFwAMgBcAEEA3GdTTy4AUwBMAEQAUABSAFQACYD//v8DQQDcZ1NPAgAAMQ1naf/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAAFgAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAFEAAADXDWdpAgAAAP//AQAUAG1vRW5kRmFjZVN1cmZJZFJlcF9jAAAFgAgAUQAAANcNZ2kAAAAAAAAAAAOAAAAFgAgAUQAAANcNZ2kDAAAADIAAAAWACABRAAAA1w1naQEAAAAAAAAAA4AAAAWACABRAAAA1w1naQEAAAAAAAAAAAAAAAAAaEIAAAAAAAAAAAAA",
+                    "definitionReference": true,
+                    "planeParameters": [
+                      0,
+                      -1,
+                      0,
+                      -0.75,
+                      1.12,
+                      0.5
+                    ],
+                    "sense": true
+                  }
+                },
+                {
+                  "component": "A柜-子装配体",
+                  "referenceType": 3,
+                  "parameters": [
+                    0.050000000000002674,
+                    2.24,
+                    0.35849999999999815,
+                    -7.755749524188605E-15,
+                    -1,
+                    -5.827846261524925E-17,
+                    0,
+                    0
+                  ],
+                  "reference": null
+                }
+              ]
+            },
+            {
+              "type": 5,
+              "alignment": 1,
+              "entities": [
+                {
+                  "component": "A柜-子装配体",
+                  "referenceType": 3,
+                  "parameters": [
+                    0.04999999999999915,
+                    2.6399999999999975,
+                    0.35850000000002835,
+                    -3.8988828355458705E-16,
+                    -1,
+                    -7.105427357601002E-15,
+                    0,
+                    0
+                  ],
+                  "reference": null
+                },
+                {
+                  "component": "A柜体-1",
+                  "referenceType": 3,
+                  "parameters": [
+                    0,
+                    2.24,
+                    0.5,
+                    -0,
+                    1,
+                    -0,
+                    0,
+                    0
+                  ],
+                  "reference": {
+                    "id": "aEIAAAMAAAD//v8NQQDcZ1NPLQAxAEAAQQDcZy0AUFvFiE2RU08EAAAAEAAAAAEAAAABAAAAGQAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/IkUAOgBcAHmY7nZcACdZaFEtAM1rv35laFwALHuMTkhyXABCANxnUFvFiFwAMgBcAEEA3GdTTy4AUwBMAEQAUABSAFQACYD//v8DQQDcZ1NPAgAAMQ1naf/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAAFgAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAFEAAADXDWdpAgAAAP//AQAUAG1vRW5kRmFjZVN1cmZJZFJlcF9jAAAFgAgAUQAAANcNZ2kAAAAAAAAAAAOAAAAFgAgAUQAAANcNZ2kDAAAADIAAAAWACABRAAAA1w1naQEAAAAAAAAAA4AAAAWACABRAAAA1w1naQEAAAAAAAAAAAAAAAAAaEIAAAAAAAAAAAAA",
+                    "definitionReference": true,
+                    "planeParameters": [
+                      0,
+                      -1,
+                      0,
+                      -0.75,
+                      1.12,
+                      0.5
+                    ],
+                    "sense": true
+                  }
+                }
+              ]
+            },
+            {
+              "type": 0,
+              "alignment": 1,
+              "entities": [
+                {
+                  "component": "A柜体-1",
+                  "referenceType": 3,
+                  "parameters": [
+                    0,
+                    2.24,
+                    0.5,
+                    -0,
+                    1,
+                    -0,
+                    0,
+                    0
+                  ],
+                  "reference": {
+                    "id": "aEIAAAMAAAD//v8NQQDcZ1NPLQAxAEAAQQDcZy0AUFvFiE2RU08EAAAAEAAAAAEAAAABAAAAGQAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/IkUAOgBcAHmY7nZcACdZaFEtAM1rv35laFwALHuMTkhyXABCANxnUFvFiFwAMgBcAEEA3GdTTy4AUwBMAEQAUABSAFQACYD//v8DQQDcZ1NPAgAAMQ1naf/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAAFgAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAFEAAADXDWdpAgAAAP//AQAUAG1vRW5kRmFjZVN1cmZJZFJlcF9jAAAFgAgAUQAAANcNZ2kAAAAAAAAAAAOAAAAFgAgAUQAAANcNZ2kDAAAADIAAAAWACABRAAAA1w1naQEAAAAAAAAAA4AAAAWACABRAAAA1w1naQEAAAAAAAAAAAAAAAAAaEIAAAAAAAAAAAAA",
+                    "definitionReference": true,
+                    "planeParameters": [
+                      0,
+                      -1,
+                      0,
+                      -0.75,
+                      1.12,
+                      0.5
+                    ],
+                    "sense": true
+                  }
+                },
+                {
+                  "component": "A柜-子装配体",
+                  "referenceType": 3,
+                  "parameters": [
+                    0.5914999999999973,
+                    2.24,
+                    0.35850000000000315,
+                    1.6596341955945822E-17,
+                    -1,
+                    -2.5288873880029144E-16,
+                    0,
+                    0
+                  ],
+                  "reference": null
+                }
+              ]
+            },
+            {
+              "type": 11,
+              "alignment": 1,
+              "entities": [
+                {
+                  "component": "A柜-子装配体",
+                  "referenceType": 3,
+                  "parameters": [
+                    0.799999999999996,
+                    2.44,
+                    0.40000000000000296,
+                    -1.9103009310533665E-15,
+                    -2.268723019061309E-16,
+                    1,
+                    0,
+                    0
+                  ],
+                  "reference": null
+                },
+                {
+                  "component": "A柜-子装配体",
+                  "referenceType": 3,
+                  "parameters": [
+                    0.799999999999989,
+                    2.44,
+                    -0.40000000000000263,
+                    -1.9217077522634213E-14,
+                    -1.5534472029647265E-17,
+                    -1,
+                    0,
+                    0
+                  ],
+                  "reference": null
+                },
+                {
+                  "component": "A柜体-1",
+                  "referenceType": 3,
+                  "parameters": [
+                    0.75,
+                    1.12,
+                    -0.5,
+                    0,
+                    0,
+                    -1,
+                    0,
+                    0
+                  ],
+                  "reference": {
+                    "id": "aEIAAAMAAAD//v8NQQDcZ1NPLQAxAEAAQQDcZy0AUFvFiE2RU08EAAAAEAAAAAEAAAABAAAAGQAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFABtb0VuZEZhY2VTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/IkUAOgBcAHmY7nZcACdZaFEtAM1rv35laFwALHuMTkhyXABCANxnUFvFiFwAMgBcAEEA3GdTTy4AUwBMAEQAUABSAFQACYD//v8DQQDcZ1NPAgAAMQ1naf/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAAFgAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAFEAAADXDWdpAAAAAAAAAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAABYAIAFEAAADXDWdpAQAAAAyAAAAFgAgAUQAAANcNZ2kEAAAADIAAAAWACABRAAAA1w1naQMAAAAMgAAABYAIAFEAAADXDWdpAgAAAAAAAAAAAAAAAABoQgAAAAAAAAAAAAA=",
+                    "definitionReference": true,
+                    "planeParameters": [
+                      0,
+                      0,
+                      -1,
+                      0,
+                      0,
+                      -0.5
+                    ],
+                    "sense": false
+                  }
+                },
+                {
+                  "component": "A柜体-1",
+                  "referenceType": 3,
+                  "parameters": [
+                    0.75,
+                    1.12,
+                    0.5,
+                    -0,
+                    -0,
+                    1,
+                    0,
+                    0
+                  ],
+                  "reference": {
+                    "id": "aEIAAAMAAAD//v8NQQDcZ1NPLQAxAEAAQQDcZy0AUFvFiE2RU08EAAAAEAAAAAEAAAABAAAAGQAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFABtb0VuZEZhY2VTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/IkUAOgBcAHmY7nZcACdZaFEtAM1rv35laFwALHuMTkhyXABCANxnUFvFiFwAMgBcAEEA3GdTTy4AUwBMAEQAUABSAFQACYD//v8DQQDcZ1NPAgAAMQ1naf/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAAFgAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAFEAAADXDWdpAQAAAAAAAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAABYAIAFEAAADXDWdpAQAAAAyAAAAFgAgAUQAAANcNZ2kCAAAADIAAAAWACABRAAAA1w1naQMAAAAMgAAABYAIAFEAAADXDWdpBAAAAAAAAAAAAAAAAABoQgAAAAAAAAAAAAA=",
+                    "definitionReference": true,
+                    "planeParameters": [
+                      0,
+                      0,
+                      -1,
+                      0,
+                      0,
+                      0.5
+                    ],
+                    "sense": true
+                  }
+                }
+              ]
+            },
+            {
+              "type": 5,
+              "alignment": 1,
+              "entities": [
+                {
+                  "component": "A柜-子装配体",
+                  "referenceType": 3,
+                  "parameters": [
+                    1.0100000000000013,
+                    2.640000000000002,
+                    -0.35849999999996085,
+                    1.0421648288616244E-16,
+                    -1,
+                    -6.9111383282915995E-15,
+                    0,
+                    0
+                  ],
+                  "reference": null
+                },
+                {
+                  "component": "A柜体-1",
+                  "referenceType": 3,
+                  "parameters": [
+                    0,
+                    2.24,
+                    0.5,
+                    -0,
+                    1,
+                    -0,
+                    0,
+                    0
+                  ],
+                  "reference": {
+                    "id": "aEIAAAMAAAD//v8NQQDcZ1NPLQAxAEAAQQDcZy0AUFvFiE2RU08EAAAAEAAAAAEAAAABAAAAGQAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/IkUAOgBcAHmY7nZcACdZaFEtAM1rv35laFwALHuMTkhyXABCANxnUFvFiFwAMgBcAEEA3GdTTy4AUwBMAEQAUABSAFQACYD//v8DQQDcZ1NPAgAAMQ1naf/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAAFgAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAFEAAADXDWdpAgAAAP//AQAUAG1vRW5kRmFjZVN1cmZJZFJlcF9jAAAFgAgAUQAAANcNZ2kAAAAAAAAAAAOAAAAFgAgAUQAAANcNZ2kDAAAADIAAAAWACABRAAAA1w1naQEAAAAAAAAAA4AAAAWACABRAAAA1w1naQEAAAAAAAAAAAAAAAAAaEIAAAAAAAAAAAAA",
+                    "definitionReference": true,
+                    "planeParameters": [
+                      0,
+                      -1,
+                      0,
+                      -0.75,
+                      1.12,
+                      0.5
+                    ],
+                    "sense": true
+                  }
+                }
+              ]
+            }
+          ],
+          "embeddedDefinition": null,
+          "visibility": {
+            "visibleState": 1,
+            "hiddenWithoutSuppression": false,
+            "hiddenWithSuppression": false,
+            "referencedDisplayState": "<默认>_显示状态 1",
+            "isEnvelope": false,
+            "excludeFromBom": false,
+            "source": "IComponent2.Visible/IsHidden/ReferencedDisplayState2/IsEnvelope/ExcludeFromBOM"
+          }
+        },
+        {
+          "name": "A柜内伸出排-A柜后-1",
+          "id": 64,
+          "path": "模板/侧对侧模板/柜内伸出排/A柜内伸出排-A柜后.SLDASM",
+          "isVirtual": false,
+          "configuration": "默认",
+          "suppression": 2,
+          "fixedPosition": false,
+          "transform": [
+            1.3839098292294305E-17,
+            -1.3877787807814457E-16,
+            -1,
+            -4.669114550813548E-21,
+            1,
+            -8.326672684688674E-17,
+            1,
+            1.6263032587282567E-19,
+            0,
+            0.308,
+            2.29,
+            2.7755575615628914E-17,
+            1,
+            0,
+            0,
+            0
+          ],
+          "mates": [
+            {
+              "type": 5,
+              "alignment": 1,
+              "entities": [
+                {
+                  "component": "A柜内伸出排-A柜后-1",
+                  "referenceType": 3,
+                  "parameters": [
+                    0.308,
+                    2.29,
+                    2.7755575615628914E-17,
+                    1,
+                    1.6263032587282567E-19,
+                    0,
+                    0,
+                    0
+                  ],
+                  "reference": {
+                    "id": "aEIAAAEAAAD//v8UQQDcZ4VROE/6UZJjLQBBANxnDlQtADEAQABBANxnLQBQW8WITZFTTwQAAAAQAAAAAQAAAAEAAABAAAAAAwAAAA==",
+                    "feature": "前视基准面",
+                    "referencePlaneTransform": [
+                      1,
+                      0,
+                      0,
+                      0,
+                      1,
+                      0,
+                      0,
+                      0,
+                      1,
+                      0,
+                      0,
+                      0,
+                      1,
+                      0,
+                      0,
+                      0
+                    ]
+                  }
+                },
+                {
+                  "component": "A柜体-1",
+                  "referenceType": 3,
+                  "parameters": [
+                    0,
+                    0,
+                    0.5,
+                    -1,
+                    -0,
+                    -0,
+                    0,
+                    0
+                  ],
+                  "reference": {
+                    "id": "aEIAAAMAAAD//v8NQQDcZ1NPLQAxAEAAQQDcZy0AUFvFiE2RU08EAAAAEAAAAAEAAAABAAAAGQAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/IkUAOgBcAHmY7nZcACdZaFEtAM1rv35laFwALHuMTkhyXABCANxnUFvFiFwAMgBcAEEA3GdTTy4AUwBMAEQAUABSAFQACYD//v8DQQDcZ1NPAgAAMQ1naf/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAAFgAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAFEAAADXDWdpAwAAAP//AQAUAG1vRW5kRmFjZVN1cmZJZFJlcF9jAAAFgAgAUQAAANcNZ2kAAAAAAAAAAAOAAAAFgAgAUQAAANcNZ2kEAAAADIAAAAWACABRAAAA1w1naQEAAAAAAAAAA4AAAAWACABRAAAA1w1naQIAAAAAAAAAAAAAAAAAaEIAAAAAAAAAAAAA",
+                    "definitionReference": true,
+                    "planeParameters": [
+                      1,
+                      0,
+                      0,
+                      -0.75,
+                      -1.12,
+                      0.5
+                    ],
+                    "sense": true
+                  }
+                }
+              ]
+            },
+            {
+              "type": 5,
+              "alignment": 0,
+              "entities": [
+                {
+                  "component": "A柜内伸出排-A柜后-1/A柜内伸出排-C-A柜后-1",
+                  "referenceType": 3,
+                  "parameters": [
+                    0.296,
+                    2.54,
+                    0.16999999999999996,
+                    -4.669114550815243E-21,
+                    1,
+                    3.919795306784858E-17,
+                    0,
+                    0
+                  ],
+                  "reference": {
+                    "id": "aEIAAAMAAAD//v8uQQDcZ4VROE/6UZJjLQBBANxnDlQtADEAQABBANxnLQBQW8WITZFTTy8AQQDcZ4VROE/6UZJjLQBDAC0AQQDcZw5ULQAxAEAAQQDcZ4VROE/6UZJjLQBBANxnDlQEAAAAEAAAAAEAAAACAAAAQAAAABkAAAD//wEACwBtb0ZhY2VSZWZfYwEAAAAAAAAABgAAAAADAAAAAAAAfcOUJa1JslR9w5QlrUmyVAAA//8BABgAbW9UaGluQ2xvc2luZ1N1cmZJZFJlcF9jAAD//wEABgBtb0ZSX2P//wEADQBtb0V4dE9iamVjdF9j//8BABEAbW9DU3RyaW5nSGFuZGxlX2P//v8rRQA6AFwAeZjudlwAJ1loUS0AzWu/fmVoXAAse4xOSHJcAEIA3GdQW8WIXAAyAFwAQQDcZ4VROE/6UZJjLQBDAC0AQQDcZw5ULgBTAEwARABQAFIAVAAJgP/+/wxBANxnhVE4T/pRkmMtAEMALQBBANxnDlQCAADrXwtm//7/AP/+/wD//v8AAAAAAAAAAAAAAAAAAAAeAAAA//7/AtiepIsAAAAAAAAAAMjgbFYAAAAAXwAAAA5gC2YAAAAAAAAAAP//AQAUAG1vRW5kRmFjZVN1cmZJZFJlcF9jAAAFgAgAXwAAAA5gC2YAAAAAAAAAAP//AQAXAG1vVGhpbk9mZnNldFN1cmZJZFJlcF9jAAAFgAgAXwAAAA5gC2YBAAAADIAAAAWACABfAAAADmALZgEAAAAAAAAA//8BABcAbW9Gcm9tU2t0RW50U3VyZklkUmVwX2MAAAWACABfAAAADmALZgEAAAAAAAAAAAAAAAAAaEIAAAAAAAAAAAAA",
+                    "definitionReference": true,
+                    "planeParameters": [
+                      -1,
+                      0,
+                      0,
+                      0,
+                      0.04,
+                      0
+                    ],
+                    "sense": false
+                  }
+                },
+                {
+                  "component": "A柜体-1",
+                  "referenceType": 3,
+                  "parameters": [
+                    0,
+                    2.24,
+                    0.5,
+                    -0,
+                    1,
+                    -0,
+                    0,
+                    0
+                  ],
+                  "reference": {
+                    "id": "aEIAAAMAAAD//v8NQQDcZ1NPLQAxAEAAQQDcZy0AUFvFiE2RU08EAAAAEAAAAAEAAAABAAAAGQAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/IkUAOgBcAHmY7nZcACdZaFEtAM1rv35laFwALHuMTkhyXABCANxnUFvFiFwAMgBcAEEA3GdTTy4AUwBMAEQAUABSAFQACYD//v8DQQDcZ1NPAgAAMQ1naf/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAAFgAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAFEAAADXDWdpAgAAAP//AQAUAG1vRW5kRmFjZVN1cmZJZFJlcF9jAAAFgAgAUQAAANcNZ2kAAAAAAAAAAAOAAAAFgAgAUQAAANcNZ2kDAAAADIAAAAWACABRAAAA1w1naQEAAAAAAAAAA4AAAAWACABRAAAA1w1naQEAAAAAAAAAAAAAAAAAaEIAAAAAAAAAAAAA",
+                    "definitionReference": true,
+                    "planeParameters": [
+                      0,
+                      -1,
+                      0,
+                      -0.75,
+                      1.12,
+                      0.5
+                    ],
+                    "sense": true
+                  }
+                }
+              ]
+            },
+            {
+              "type": 0,
+              "alignment": 1,
+              "entities": [
+                {
+                  "component": "A柜内伸出排-A柜后-1/A柜内伸出排-B-A柜后-1",
+                  "referenceType": 3,
+                  "parameters": [
+                    0.296,
+                    2.54,
+                    6.938893903907222E-18,
+                    1.3839098292294305E-17,
+                    -1.6313198163409247E-17,
+                    -1,
+                    0,
+                    0
+                  ],
+                  "reference": {
+                    "id": "aEIAAAEAAAD//v8uQQDcZ4VROE/6UZJjLQBBANxnDlQtADEAQABBANxnLQBQW8WITZFTTy8AQQDcZ4VROE/6UZJjLQBCAC0AQQDcZw5ULQAxAEAAQQDcZ4VROE/6UZJjLQBBANxnDlQEAAAAEAAAAAEAAAACAAAAQAAAABsAAAADAAAA",
+                    "feature": "上视基准面",
+                    "referencePlaneTransform": [
+                      1,
+                      0,
+                      0,
+                      0,
+                      0,
+                      -1,
+                      0,
+                      1,
+                      0,
+                      0,
+                      0,
+                      0,
+                      1,
+                      0,
+                      0,
+                      0
+                    ]
+                  }
+                },
+                {
+                  "component": "A柜-子装配体",
+                  "referenceType": 3,
+                  "parameters": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    1,
+                    0,
+                    0
+                  ],
+                  "reference": {
+                    "id": "aEIAAAEAAAD//v8AAAAAAAMAAAA=",
+                    "feature": "前视基准面",
+                    "referencePlaneTransform": [
+                      1,
+                      0,
+                      0,
+                      0,
+                      1,
+                      0,
+                      0,
+                      0,
+                      1,
+                      0,
+                      0,
+                      0,
+                      1,
+                      0,
+                      0,
+                      0
+                    ]
+                  }
+                }
+              ]
+            }
+          ],
+          "embeddedDefinition": null,
+          "visibility": {
+            "visibleState": 1,
+            "hiddenWithoutSuppression": false,
+            "hiddenWithSuppression": false,
+            "referencedDisplayState": "默认_显示状态-1",
+            "isEnvelope": false,
+            "excludeFromBom": false,
+            "source": "IComponent2.Visible/IsHidden/ReferencedDisplayState2/IsEnvelope/ExcludeFromBOM"
+          }
+        },
+        {
+          "name": "A柜内伸出排-A柜前-1",
+          "id": 53,
+          "path": "模板/侧对侧模板/柜内伸出排/A柜内伸出排-A柜前.SLDASM",
+          "isVirtual": false,
+          "configuration": "默认",
+          "suppression": 2,
+          "fixedPosition": false,
+          "transform": [
+            -1.3877787807814457E-16,
+            -5.682157376853121E-17,
+            -1,
+            1.2400705805292052E-17,
+            1.0000000000000002,
+            -1.1177905636090279E-16,
+            1,
+            -1.1671051626871047E-17,
+            0,
+            0.8494999999999999,
+            2.29,
+            2.7755575615628914E-17,
+            1,
+            0,
+            0,
+            0
+          ],
+          "mates": [
+            {
+              "type": 5,
+              "alignment": 0,
+              "entities": [
+                {
+                  "component": "A柜内伸出排-A柜前-1/A柜内伸出排-C-A柜前-1",
+                  "referenceType": 3,
+                  "parameters": [
+                    0.8694999999999999,
+                    2.54,
+                    0.16999999999999996,
+                    1.2400705805292066E-17,
+                    1,
+                    1.0685623553832532E-17,
+                    0,
+                    0
+                  ],
+                  "reference": {
+                    "id": "aEIAAAMAAAD//v8uQQDcZ4VROE/6UZJjLQBBANxnTVItADEAQABBANxnLQBQW8WITZFTTy8AQQDcZ4VROE/6UZJjLQBDAC0AQQDcZ01SLQAxAEAAQQDcZ4VROE/6UZJjLQBBANxnTVIEAAAAEAAAAAEAAAACAAAANQAAABkAAAD//wEACwBtb0ZhY2VSZWZfYwEAAAAAAAAABgAAAAADAAAAAAAAfcOUJa1JslR9w5QlrUmyVAAA//8BABgAbW9UaGluQ2xvc2luZ1N1cmZJZFJlcF9jAAD//wEABgBtb0ZSX2P//wEADQBtb0V4dE9iamVjdF9j//8BABEAbW9DU3RyaW5nSGFuZGxlX2P//v8rRQA6AFwAeZjudlwAJ1loUS0AzWu/fmVoXAAse4xOSHJcAEIA3GdQW8WIXAAyAFwAQQDcZ4VROE/6UZJjLQBDAC0AQQDcZ01SLgBTAEwARABQAFIAVAAJgP/+/wxBANxnhVE4T/pRkmMtAEMALQBBANxnTVICAADrXwtm//7/AP/+/wD//v8AAAAAAAAAAAAAAAAAAAAaAAAA//7/AtiepIsAAAAAAAAAAMjgbFYAAAAAXwAAAA5gC2YAAAAAAAAAAP//AQAUAG1vRW5kRmFjZVN1cmZJZFJlcF9jAAAFgAgAXwAAAA5gC2YAAAAAAAAAAP//AQAXAG1vVGhpbk9mZnNldFN1cmZJZFJlcF9jAAAFgAgAXwAAAA5gC2YBAAAADIAAAAWACABfAAAADmALZgEAAAAAAAAA//8BABcAbW9Gcm9tU2t0RW50U3VyZklkUmVwX2MAAAWACABfAAAADmALZgEAAAAAAAAAAAAAAAAAaEIAAAAAAAAAAAAA",
+                    "definitionReference": true,
+                    "planeParameters": [
+                      -1,
+                      0,
+                      0,
+                      0,
+                      0.04,
+                      0
+                    ],
+                    "sense": false
+                  }
+                },
+                {
+                  "component": "A柜体-1",
+                  "referenceType": 3,
+                  "parameters": [
+                    0,
+                    2.24,
+                    0.5,
+                    -0,
+                    1,
+                    -0,
+                    0,
+                    0
+                  ],
+                  "reference": {
+                    "id": "aEIAAAMAAAD//v8NQQDcZ1NPLQAxAEAAQQDcZy0AUFvFiE2RU08EAAAAEAAAAAEAAAABAAAAGQAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/IkUAOgBcAHmY7nZcACdZaFEtAM1rv35laFwALHuMTkhyXABCANxnUFvFiFwAMgBcAEEA3GdTTy4AUwBMAEQAUABSAFQACYD//v8DQQDcZ1NPAgAAMQ1naf/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAAFgAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAFEAAADXDWdpAgAAAP//AQAUAG1vRW5kRmFjZVN1cmZJZFJlcF9jAAAFgAgAUQAAANcNZ2kAAAAAAAAAAAOAAAAFgAgAUQAAANcNZ2kDAAAADIAAAAWACABRAAAA1w1naQEAAAAAAAAAA4AAAAWACABRAAAA1w1naQEAAAAAAAAAAAAAAAAAaEIAAAAAAAAAAAAA",
+                    "definitionReference": true,
+                    "planeParameters": [
+                      0,
+                      -1,
+                      0,
+                      -0.75,
+                      1.12,
+                      0.5
+                    ],
+                    "sense": true
+                  }
+                }
+              ]
+            },
+            {
+              "type": 5,
+              "alignment": 0,
+              "entities": [
+                {
+                  "component": "A柜内伸出排-A柜前-1",
+                  "referenceType": 3,
+                  "parameters": [
+                    0.8494999999999999,
+                    2.29,
+                    2.7755575615628914E-17,
+                    1,
+                    -1.1671051626871047E-17,
+                    0,
+                    0,
+                    0
+                  ],
+                  "reference": {
+                    "id": "aEIAAAEAAAD//v8UQQDcZ4VROE/6UZJjLQBBANxnTVItADEAQABBANxnLQBQW8WITZFTTwQAAAAQAAAAAQAAAAEAAAA1AAAAAwAAAA==",
+                    "feature": "前视基准面",
+                    "referencePlaneTransform": [
+                      1,
+                      0,
+                      0,
+                      0,
+                      1,
+                      0,
+                      0,
+                      0,
+                      1,
+                      0,
+                      0,
+                      0,
+                      1,
+                      0,
+                      0,
+                      0
+                    ]
+                  }
+                },
+                {
+                  "component": "A柜体-1",
+                  "referenceType": 3,
+                  "parameters": [
+                    1.5,
+                    0,
+                    0.5,
+                    1,
+                    -0,
+                    -0,
+                    0,
+                    0
+                  ],
+                  "reference": {
+                    "id": "aEIAAAMAAAD//v8NQQDcZ1NPLQAxAEAAQQDcZy0AUFvFiE2RU08EAAAAEAAAAAEAAAABAAAAGQAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAMAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/IkUAOgBcAHmY7nZcACdZaFEtAM1rv35laFwALHuMTkhyXABCANxnUFvFiFwAMgBcAEEA3GdTTy4AUwBMAEQAUABSAFQACYD//v8DQQDcZ1NPAgAAMQ1naf/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAAFgAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAAFEAAADXDWdpAQAAAP//AQAUAG1vRW5kRmFjZVN1cmZJZFJlcF9jAAAFgAgAUQAAANcNZ2kAAAAAAAAAAAOAAAAFgAgAUQAAANcNZ2kCAAAADIAAAAWACABRAAAA1w1naQEAAAAAAAAAA4AAAAWACABRAAAA1w1naQQAAAAAAAAAAAAAAAAAaEIAAAAAAAAAAAAA",
+                    "definitionReference": true,
+                    "planeParameters": [
+                      -1,
+                      0,
+                      0,
+                      0.75,
+                      -1.12,
+                      0.5
+                    ],
+                    "sense": true
+                  }
+                }
+              ]
+            },
+            {
+              "type": 0,
+              "alignment": 1,
+              "entities": [
+                {
+                  "component": "A柜内伸出排-A柜前-1/A柜内伸出排-B-A柜前-1",
+                  "referenceType": 3,
+                  "parameters": [
+                    0.8694999999999999,
+                    2.54,
+                    -1.8918847459678908E-19,
+                    -1.3877787807814457E-16,
+                    6.564310614620414E-17,
+                    -1,
+                    0,
+                    0
+                  ],
+                  "reference": {
+                    "id": "aEIAAAEAAAD//v8uQQDcZ4VROE/6UZJjLQBBANxnTVItADEAQABBANxnLQBQW8WITZFTTy8AQQDcZ4VROE/6UZJjLQBCAC0AQQDcZ01SLQAxAEAAQQDcZ4VROE/6UZJjLQBBANxnTVIEAAAAEAAAAAEAAAACAAAANQAAABsAAAADAAAA",
+                    "feature": "上视基准面",
+                    "referencePlaneTransform": [
+                      1,
+                      0,
+                      0,
+                      0,
+                      0,
+                      -1,
+                      0,
+                      1,
+                      0,
+                      0,
+                      0,
+                      0,
+                      1,
+                      0,
+                      0,
+                      0
+                    ]
+                  }
+                },
+                {
+                  "component": "A柜-子装配体",
+                  "referenceType": 3,
+                  "parameters": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    1,
+                    0,
+                    0
+                  ],
+                  "reference": {
+                    "id": "aEIAAAEAAAD//v8AAAAAAAMAAAA=",
+                    "feature": "前视基准面",
+                    "referencePlaneTransform": [
+                      1,
+                      0,
+                      0,
+                      0,
+                      1,
+                      0,
+                      0,
+                      0,
+                      1,
+                      0,
+                      0,
+                      0,
+                      1,
+                      0,
+                      0,
+                      0
+                    ]
+                  }
+                }
+              ]
+            }
+          ],
+          "embeddedDefinition": null,
+          "visibility": {
+            "visibleState": 1,
+            "hiddenWithoutSuppression": false,
+            "hiddenWithSuppression": false,
+            "referencedDisplayState": "默认_显示状态-1",
+            "isEnvelope": false,
+            "excludeFromBom": false,
+            "source": "IComponent2.Visible/IsHidden/ReferencedDisplayState2/IsEnvelope/ExcludeFromBOM"
+          }
+        }
+      ],
+      "validation": {
+        "volumeMm3": 2942934085.142483,
+        "surfaceAreaMm2": 23056950.583646405,
+        "purpose": "validation-only-never-geometry-input",
+        "massPropertyEvidence": {
+          "api": "IMassProperty2",
+          "nativeIncludeHidden": false,
+          "defaultVolumeMm3": 2942934085.142483,
+          "includingHiddenVolumeMm3": 2942934085.142483,
+          "excludingHiddenVolumeMm3": 2942934085.142483,
+          "purpose": "validation-only-never-geometry-input"
+        }
+      },
+      "supplementalCapture": {
+        "revision": 3,
+        "referenceGeometry": true,
+        "mateFeatureBindings": true,
+        "embeddedComponents": true,
+        "featureTypes": [
+          "CoordSys",
+          "CornerFeat",
+          "FlatPattern",
+          "MirrorCompFeat",
+          "RefAxis",
+          "RefPlane",
+          "SheetMetal"
+        ]
+      },
+      "componentStateCapture": {
+        "revision": 6,
+        "componentCount": 3,
+        "visibility": true,
+        "massScope": true
+      }
+    }
+  ],
+  "representation": null,
+  "completion": "captured-uncompiled",
+  "containsMesh": false,
+  "containsBrepSnapshot": false
+}

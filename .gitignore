@@ -1,0 +1,9 @@
+bin/
+obj/
+.vs/
+.codegraph/
+packages/
+*.user
+*.suo
+*.log
+*.pfx

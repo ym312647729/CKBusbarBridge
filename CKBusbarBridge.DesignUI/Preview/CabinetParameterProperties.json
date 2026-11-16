@@ -1,0 +1,1670 @@
+{
+  "side-to-side": [
+    {
+      "path": "ProjectPath",
+      "nullable": false,
+      "name": "项目根目录",
+      "kind": "string"
+    },
+    {
+      "path": "General.FloorHeight",
+      "nullable": false,
+      "name": "楼高(D)",
+      "kind": "number"
+    },
+    {
+      "path": "General.ParameterB",
+      "nullable": false,
+      "name": "地面距横梁(B)",
+      "kind": "number"
+    },
+    {
+      "path": "General.CabinetSpacing",
+      "nullable": false,
+      "name": "柜间距(A)",
+      "kind": "number"
+    },
+    {
+      "path": "General.CabinetEccentricity",
+      "nullable": false,
+      "name": "柜间偏心值",
+      "kind": "number"
+    },
+    {
+      "path": "General.BusbarSpec",
+      "nullable": false,
+      "name": "铜排规格",
+      "kind": "string"
+    },
+    {
+      "path": "General.SinglePhaseRootCount",
+      "nullable": false,
+      "name": "单相根数",
+      "kind": "integer"
+    },
+    {
+      "path": "General.ExposedBusbarPhaseSpacing",
+      "nullable": false,
+      "name": "伸出排相间距",
+      "kind": "number"
+    },
+    {
+      "path": "General.InsulationDistance",
+      "nullable": false,
+      "name": "绝缘距离",
+      "kind": "number"
+    },
+    {
+      "path": "General.BusbarMaterial",
+      "nullable": false,
+      "name": "铜排材质",
+      "kind": "string"
+    },
+    {
+      "path": "General.InsulatorHeight",
+      "nullable": false,
+      "name": "绝缘子+支架高度",
+      "kind": "number"
+    },
+    {
+      "path": "General.ACabinetExposedBusbarPhaseSequence",
+      "nullable": false,
+      "name": "A柜伸出排相序",
+      "kind": "string"
+    },
+    {
+      "path": "General.BCabinetExposedBusbarPhaseSequence",
+      "nullable": false,
+      "name": "B柜伸出排相序",
+      "kind": "string"
+    },
+    {
+      "path": "ACabinet.CabinetHeight",
+      "nullable": false,
+      "name": "A柜柜高",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.CabinetDepth",
+      "nullable": false,
+      "name": "A柜柜深",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.CabinetWidth",
+      "nullable": false,
+      "name": "A柜柜宽",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.GroundHeight",
+      "nullable": false,
+      "name": "A柜离地高度(I)",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.FrontHole.FrontRearOpeningParameters.ToCabinetEdgeDistance",
+      "nullable": false,
+      "name": "A柜前孔前后开孔距柜前距离",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.FrontHole.FrontRearOpeningParameters.BusbarCenterToCabinetEdgeDistance",
+      "nullable": false,
+      "name": "A柜前孔前后开孔铜排中心至柜前距离",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.FrontHole.FrontRearOpeningParameters.FixedHoleSpacing",
+      "nullable": false,
+      "name": "A柜前孔前后开孔接口固定孔间距",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.FrontHole.FrontRearOpeningParameters.L1",
+      "nullable": false,
+      "name": "A柜前孔前后开孔L1",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.FrontHole.FrontRearOpeningParameters.L2",
+      "nullable": false,
+      "name": "A柜前孔前后开孔L2",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.FrontHole.FrontRearOpeningParameters.L3",
+      "nullable": false,
+      "name": "A柜前孔前后开孔L3",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.FrontHole.LeftRightOpeningParameters.ToCabinetEdgeDistance",
+      "nullable": false,
+      "name": "A柜前孔左右开孔距柜前距离",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.FrontHole.LeftRightOpeningParameters.BusbarCenterToCabinetEdgeDistance",
+      "nullable": false,
+      "name": "A柜前孔左右开孔铜排中心至柜前距离",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.FrontHole.LeftRightOpeningParameters.FixedHoleSpacing",
+      "nullable": false,
+      "name": "A柜前孔左右开孔接口固定孔间距",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.FrontHole.LeftRightOpeningParameters.L1",
+      "nullable": false,
+      "name": "A柜前孔左右开孔L1",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.FrontHole.LeftRightOpeningParameters.L2",
+      "nullable": false,
+      "name": "A柜前孔左右开孔L2",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.FrontHole.LeftRightOpeningParameters.L3",
+      "nullable": false,
+      "name": "A柜前孔左右开孔L3",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.FrontHole.Base1.BaseHeight",
+      "nullable": false,
+      "name": "A柜前孔基座1基座高",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.FrontHole.Base1.BaseOpeningHeight",
+      "nullable": false,
+      "name": "A柜前孔基座1基架高度",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.FrontHole.Base1.InsulatorPosition1",
+      "nullable": false,
+      "name": "A柜前孔基座1绝缘子定位1",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.FrontHole.Base1.InsulatorPosition2",
+      "nullable": false,
+      "name": "A柜前孔基座1绝缘子定位2",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.FrontHole.Base1.InsulatorPosition3",
+      "nullable": false,
+      "name": "A柜前孔基座1绝缘子定位3",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.FrontHole.Base2.BaseHeight",
+      "nullable": false,
+      "name": "A柜前孔基座2组合基座高",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.FrontHole.Base2.BaseWidth",
+      "nullable": false,
+      "name": "A柜前孔基座2基座2宽",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.FrontHole.Base2.BaseOpeningHeight",
+      "nullable": false,
+      "name": "A柜前孔基座2基架高度",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.FrontHole.Base2.ElevatedBaseHeight",
+      "nullable": false,
+      "name": "A柜前孔基座2增高基座高",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.FrontHole.Base2.InsulatorPosition",
+      "nullable": false,
+      "name": "A柜前孔基座2绝缘子定位",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.FrontHole.IsEnabled",
+      "nullable": false,
+      "name": "A柜前孔启用",
+      "kind": "boolean"
+    },
+    {
+      "path": "ACabinet.FrontHole.ToCabinetEdgeDistance",
+      "nullable": false,
+      "name": "A柜前孔距柜前距离",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.FrontHole.BusbarCenterToCabinetEdgeDistance",
+      "nullable": false,
+      "name": "A柜前孔铜排中心至柜前距离",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.FrontHole.FixedHoleSpacing",
+      "nullable": false,
+      "name": "A柜前孔接口固定孔间距",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.FrontHole.BusbarCenterToBaseOffset",
+      "nullable": false,
+      "name": "A柜前孔铜排中心至基座偏移",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.FrontHole.L1",
+      "nullable": false,
+      "name": "A柜前孔L1",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.FrontHole.L2",
+      "nullable": false,
+      "name": "A柜前孔L2",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.FrontHole.L3",
+      "nullable": false,
+      "name": "A柜前孔L3",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.BackHole.FrontRearOpeningParameters.ToCabinetEdgeDistance",
+      "nullable": false,
+      "name": "A柜后孔前后开孔距柜后距离",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.BackHole.FrontRearOpeningParameters.BusbarCenterToCabinetEdgeDistance",
+      "nullable": false,
+      "name": "A柜后孔前后开孔铜排中心至柜后距离",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.BackHole.FrontRearOpeningParameters.FixedHoleSpacing",
+      "nullable": false,
+      "name": "A柜后孔前后开孔接口固定孔间距",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.BackHole.FrontRearOpeningParameters.L1",
+      "nullable": false,
+      "name": "A柜后孔前后开孔L1",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.BackHole.FrontRearOpeningParameters.L2",
+      "nullable": false,
+      "name": "A柜后孔前后开孔L2",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.BackHole.FrontRearOpeningParameters.L3",
+      "nullable": false,
+      "name": "A柜后孔前后开孔L3",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.BackHole.LeftRightOpeningParameters.ToCabinetEdgeDistance",
+      "nullable": false,
+      "name": "A柜后孔左右开孔距柜后距离",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.BackHole.LeftRightOpeningParameters.BusbarCenterToCabinetEdgeDistance",
+      "nullable": false,
+      "name": "A柜后孔左右开孔铜排中心至柜后距离",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.BackHole.LeftRightOpeningParameters.FixedHoleSpacing",
+      "nullable": false,
+      "name": "A柜后孔左右开孔接口固定孔间距",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.BackHole.LeftRightOpeningParameters.L1",
+      "nullable": false,
+      "name": "A柜后孔左右开孔L1",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.BackHole.LeftRightOpeningParameters.L2",
+      "nullable": false,
+      "name": "A柜后孔左右开孔L2",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.BackHole.LeftRightOpeningParameters.L3",
+      "nullable": false,
+      "name": "A柜后孔左右开孔L3",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.BackHole.Base1.BaseHeight",
+      "nullable": false,
+      "name": "A柜后孔基座1基座高",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.BackHole.Base1.BaseOpeningHeight",
+      "nullable": false,
+      "name": "A柜后孔基座1基架高度",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.BackHole.Base1.InsulatorPosition1",
+      "nullable": false,
+      "name": "A柜后孔基座1绝缘子定位1",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.BackHole.Base1.InsulatorPosition2",
+      "nullable": false,
+      "name": "A柜后孔基座1绝缘子定位2",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.BackHole.Base1.InsulatorPosition3",
+      "nullable": false,
+      "name": "A柜后孔基座1绝缘子定位3",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.BackHole.Base2.BaseHeight",
+      "nullable": false,
+      "name": "A柜后孔基座2组合基座高",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.BackHole.Base2.BaseWidth",
+      "nullable": false,
+      "name": "A柜后孔基座2基座2宽",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.BackHole.Base2.BaseOpeningHeight",
+      "nullable": false,
+      "name": "A柜后孔基座2基架高度",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.BackHole.Base2.ElevatedBaseHeight",
+      "nullable": false,
+      "name": "A柜后孔基座2增高基座高",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.BackHole.Base2.InsulatorPosition",
+      "nullable": false,
+      "name": "A柜后孔基座2绝缘子定位",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.BackHole.IsEnabled",
+      "nullable": false,
+      "name": "A柜后孔启用",
+      "kind": "boolean"
+    },
+    {
+      "path": "ACabinet.BackHole.ToCabinetEdgeDistance",
+      "nullable": false,
+      "name": "A柜后孔距柜后距离",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.BackHole.BusbarCenterToCabinetEdgeDistance",
+      "nullable": false,
+      "name": "A柜后孔铜排中心至柜后距离",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.BackHole.FixedHoleSpacing",
+      "nullable": false,
+      "name": "A柜后孔接口固定孔间距",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.BackHole.BusbarCenterToBaseOffset",
+      "nullable": false,
+      "name": "A柜后孔铜排中心至基座偏移",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.BackHole.L1",
+      "nullable": false,
+      "name": "A柜后孔L1",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.BackHole.L2",
+      "nullable": false,
+      "name": "A柜后孔L2",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.BackHole.L3",
+      "nullable": false,
+      "name": "A柜后孔L3",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.CabinetHeight",
+      "nullable": false,
+      "name": "B柜柜高",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.CabinetDepth",
+      "nullable": false,
+      "name": "B柜柜深",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.CabinetWidth",
+      "nullable": false,
+      "name": "B柜柜宽",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.GroundHeight",
+      "nullable": false,
+      "name": "B柜离地高度(I)",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.FrontHole.FrontRearOpeningParameters.ToCabinetEdgeDistance",
+      "nullable": false,
+      "name": "B柜前孔前后开孔距柜前距离",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.FrontHole.FrontRearOpeningParameters.BusbarCenterToCabinetEdgeDistance",
+      "nullable": false,
+      "name": "B柜前孔前后开孔铜排中心至柜前距离",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.FrontHole.FrontRearOpeningParameters.FixedHoleSpacing",
+      "nullable": false,
+      "name": "B柜前孔前后开孔接口固定孔间距",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.FrontHole.FrontRearOpeningParameters.L1",
+      "nullable": false,
+      "name": "B柜前孔前后开孔L1",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.FrontHole.FrontRearOpeningParameters.L2",
+      "nullable": false,
+      "name": "B柜前孔前后开孔L2",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.FrontHole.FrontRearOpeningParameters.L3",
+      "nullable": false,
+      "name": "B柜前孔前后开孔L3",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.FrontHole.LeftRightOpeningParameters.ToCabinetEdgeDistance",
+      "nullable": false,
+      "name": "B柜前孔左右开孔距柜前距离",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.FrontHole.LeftRightOpeningParameters.BusbarCenterToCabinetEdgeDistance",
+      "nullable": false,
+      "name": "B柜前孔左右开孔铜排中心至柜前距离",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.FrontHole.LeftRightOpeningParameters.FixedHoleSpacing",
+      "nullable": false,
+      "name": "B柜前孔左右开孔接口固定孔间距",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.FrontHole.LeftRightOpeningParameters.L1",
+      "nullable": false,
+      "name": "B柜前孔左右开孔L1",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.FrontHole.LeftRightOpeningParameters.L2",
+      "nullable": false,
+      "name": "B柜前孔左右开孔L2",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.FrontHole.LeftRightOpeningParameters.L3",
+      "nullable": false,
+      "name": "B柜前孔左右开孔L3",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.FrontHole.Base1.BaseHeight",
+      "nullable": false,
+      "name": "B柜前孔基座1基座高",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.FrontHole.Base1.BaseOpeningHeight",
+      "nullable": false,
+      "name": "B柜前孔基座1基架高度",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.FrontHole.Base1.InsulatorPosition1",
+      "nullable": false,
+      "name": "B柜前孔基座1绝缘子定位1",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.FrontHole.Base1.InsulatorPosition2",
+      "nullable": false,
+      "name": "B柜前孔基座1绝缘子定位2",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.FrontHole.Base1.InsulatorPosition3",
+      "nullable": false,
+      "name": "B柜前孔基座1绝缘子定位3",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.FrontHole.Base2.BaseHeight",
+      "nullable": false,
+      "name": "B柜前孔基座2组合基座高",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.FrontHole.Base2.BaseWidth",
+      "nullable": false,
+      "name": "B柜前孔基座2基座2宽",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.FrontHole.Base2.BaseOpeningHeight",
+      "nullable": false,
+      "name": "B柜前孔基座2基架高度",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.FrontHole.Base2.ElevatedBaseHeight",
+      "nullable": false,
+      "name": "B柜前孔基座2增高基座高",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.FrontHole.Base2.InsulatorPosition",
+      "nullable": false,
+      "name": "B柜前孔基座2绝缘子定位",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.FrontHole.IsEnabled",
+      "nullable": false,
+      "name": "B柜前孔启用",
+      "kind": "boolean"
+    },
+    {
+      "path": "BCabinet.FrontHole.ToCabinetEdgeDistance",
+      "nullable": false,
+      "name": "B柜前孔距柜前距离",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.FrontHole.BusbarCenterToCabinetEdgeDistance",
+      "nullable": false,
+      "name": "B柜前孔铜排中心至柜前距离",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.FrontHole.FixedHoleSpacing",
+      "nullable": false,
+      "name": "B柜前孔接口固定孔间距",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.FrontHole.BusbarCenterToBaseOffset",
+      "nullable": false,
+      "name": "B柜前孔铜排中心至基座偏移",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.FrontHole.L1",
+      "nullable": false,
+      "name": "B柜前孔L1",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.FrontHole.L2",
+      "nullable": false,
+      "name": "B柜前孔L2",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.FrontHole.L3",
+      "nullable": false,
+      "name": "B柜前孔L3",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.BackHole.FrontRearOpeningParameters.ToCabinetEdgeDistance",
+      "nullable": false,
+      "name": "B柜后孔前后开孔距柜后距离",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.BackHole.FrontRearOpeningParameters.BusbarCenterToCabinetEdgeDistance",
+      "nullable": false,
+      "name": "B柜后孔前后开孔铜排中心至柜后距离",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.BackHole.FrontRearOpeningParameters.FixedHoleSpacing",
+      "nullable": false,
+      "name": "B柜后孔前后开孔接口固定孔间距",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.BackHole.FrontRearOpeningParameters.L1",
+      "nullable": false,
+      "name": "B柜后孔前后开孔L1",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.BackHole.FrontRearOpeningParameters.L2",
+      "nullable": false,
+      "name": "B柜后孔前后开孔L2",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.BackHole.FrontRearOpeningParameters.L3",
+      "nullable": false,
+      "name": "B柜后孔前后开孔L3",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.BackHole.LeftRightOpeningParameters.ToCabinetEdgeDistance",
+      "nullable": false,
+      "name": "B柜后孔左右开孔距柜后距离",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.BackHole.LeftRightOpeningParameters.BusbarCenterToCabinetEdgeDistance",
+      "nullable": false,
+      "name": "B柜后孔左右开孔铜排中心至柜后距离",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.BackHole.LeftRightOpeningParameters.FixedHoleSpacing",
+      "nullable": false,
+      "name": "B柜后孔左右开孔接口固定孔间距",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.BackHole.LeftRightOpeningParameters.L1",
+      "nullable": false,
+      "name": "B柜后孔左右开孔L1",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.BackHole.LeftRightOpeningParameters.L2",
+      "nullable": false,
+      "name": "B柜后孔左右开孔L2",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.BackHole.LeftRightOpeningParameters.L3",
+      "nullable": false,
+      "name": "B柜后孔左右开孔L3",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.BackHole.Base1.BaseHeight",
+      "nullable": false,
+      "name": "B柜后孔基座1基座高",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.BackHole.Base1.BaseOpeningHeight",
+      "nullable": false,
+      "name": "B柜后孔基座1基架高度",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.BackHole.Base1.InsulatorPosition1",
+      "nullable": false,
+      "name": "B柜后孔基座1绝缘子定位1",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.BackHole.Base1.InsulatorPosition2",
+      "nullable": false,
+      "name": "B柜后孔基座1绝缘子定位2",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.BackHole.Base1.InsulatorPosition3",
+      "nullable": false,
+      "name": "B柜后孔基座1绝缘子定位3",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.BackHole.Base2.BaseHeight",
+      "nullable": false,
+      "name": "B柜后孔基座2组合基座高",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.BackHole.Base2.BaseWidth",
+      "nullable": false,
+      "name": "B柜后孔基座2基座2宽",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.BackHole.Base2.BaseOpeningHeight",
+      "nullable": false,
+      "name": "B柜后孔基座2基架高度",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.BackHole.Base2.ElevatedBaseHeight",
+      "nullable": false,
+      "name": "B柜后孔基座2增高基座高",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.BackHole.Base2.InsulatorPosition",
+      "nullable": false,
+      "name": "B柜后孔基座2绝缘子定位",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.BackHole.IsEnabled",
+      "nullable": false,
+      "name": "B柜后孔启用",
+      "kind": "boolean"
+    },
+    {
+      "path": "BCabinet.BackHole.ToCabinetEdgeDistance",
+      "nullable": false,
+      "name": "B柜后孔距柜后距离",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.BackHole.BusbarCenterToCabinetEdgeDistance",
+      "nullable": false,
+      "name": "B柜后孔铜排中心至柜后距离",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.BackHole.FixedHoleSpacing",
+      "nullable": false,
+      "name": "B柜后孔接口固定孔间距",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.BackHole.BusbarCenterToBaseOffset",
+      "nullable": false,
+      "name": "B柜后孔铜排中心至基座偏移",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.BackHole.L1",
+      "nullable": false,
+      "name": "B柜后孔L1",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.BackHole.L2",
+      "nullable": false,
+      "name": "B柜后孔L2",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.BackHole.L3",
+      "nullable": false,
+      "name": "B柜后孔L3",
+      "kind": "number"
+    }
+  ],
+  "face-to-wall": [
+    {
+      "path": "ProjectPath",
+      "nullable": false,
+      "name": "项目根目录",
+      "kind": "string"
+    },
+    {
+      "path": "General.WallInstallation.Top",
+      "nullable": false,
+      "name": "墙体安装上间距",
+      "kind": "number"
+    },
+    {
+      "path": "General.WallInstallation.Bottom",
+      "nullable": false,
+      "name": "墙体安装下间距",
+      "kind": "number"
+    },
+    {
+      "path": "General.WallInstallation.Left",
+      "nullable": false,
+      "name": "墙体安装左间距",
+      "kind": "number"
+    },
+    {
+      "path": "General.WallInstallation.Right",
+      "nullable": false,
+      "name": "墙体安装右间距",
+      "kind": "number"
+    },
+    {
+      "path": "General.WallInstallation.EntryDistance",
+      "nullable": false,
+      "name": "墙体安装伸入墙距离",
+      "kind": "number"
+    },
+    {
+      "path": "General.BusbarMaterial",
+      "nullable": false,
+      "name": "铜排材质",
+      "kind": "string"
+    },
+    {
+      "path": "General.IsPhaseSwitched",
+      "nullable": false,
+      "name": "相序切换",
+      "kind": "boolean"
+    },
+    {
+      "path": "General.CabinetToWallDistance",
+      "nullable": false,
+      "name": "柜体距墙距离",
+      "kind": "number"
+    },
+    {
+      "path": "General.CabinetBackToWallDistance",
+      "nullable": false,
+      "name": "柜后距墙距离",
+      "kind": "number"
+    },
+    {
+      "path": "General.FloorToBeamDistance",
+      "nullable": false,
+      "name": "地面距横梁(B)",
+      "kind": "number"
+    },
+    {
+      "path": "General.WallHoleEdgeGroundHeight",
+      "nullable": false,
+      "name": "墙孔边距地面(C)",
+      "kind": "number"
+    },
+    {
+      "path": "General.WallEntryBusbarCenterToHoleBottomDistance",
+      "nullable": false,
+      "name": "套管中心距孔底(D)",
+      "kind": "number"
+    },
+    {
+      "path": "General.WallHoleHeight",
+      "nullable": false,
+      "name": "墙孔高度(E)",
+      "kind": "number"
+    },
+    {
+      "path": "General.ExposedBusbarPhaseSpacing",
+      "nullable": false,
+      "name": "伸出排相间距",
+      "kind": "number"
+    },
+    {
+      "path": "General.InsulationDistance",
+      "nullable": false,
+      "name": "绝缘距离",
+      "kind": "number"
+    },
+    {
+      "path": "General.BusbarSpec",
+      "nullable": false,
+      "name": "铜排规格",
+      "kind": "string"
+    },
+    {
+      "path": "General.SinglePhaseRootCount",
+      "nullable": false,
+      "name": "单相根数",
+      "kind": "integer"
+    },
+    {
+      "path": "General.F1",
+      "nullable": false,
+      "name": "套管到左侧墙洞(F1)",
+      "kind": "number"
+    },
+    {
+      "path": "General.F2",
+      "nullable": false,
+      "name": "第一、二套管中心距(F2)",
+      "kind": "number"
+    },
+    {
+      "path": "General.F3",
+      "nullable": false,
+      "name": "第二、三套管中心距(F3)",
+      "kind": "number"
+    },
+    {
+      "path": "General.J",
+      "nullable": false,
+      "name": "安装板距内侧墙面(J)",
+      "kind": "number"
+    },
+    {
+      "path": "General.WallBushingPhaseSpacing",
+      "nullable": false,
+      "name": "穿墙套管相间距",
+      "kind": "number"
+    },
+    {
+      "path": "General.WallBushingTerminalToWallDistance",
+      "nullable": false,
+      "name": "桩头距墙面距离(H)",
+      "kind": "number"
+    },
+    {
+      "path": "General.WallBushingTerminal.Diameter",
+      "nullable": false,
+      "name": "穿墙套管桩头穿墙套管直径",
+      "kind": "number"
+    },
+    {
+      "path": "General.WallBushingTerminal.C1",
+      "nullable": false,
+      "name": "穿墙套管桩头桩头长度(C1)",
+      "kind": "number"
+    },
+    {
+      "path": "General.WallBushingTerminal.C2",
+      "nullable": false,
+      "name": "穿墙套管桩头桩头宽度(C2)",
+      "kind": "number"
+    },
+    {
+      "path": "General.WallBushingTerminal.C3",
+      "nullable": false,
+      "name": "穿墙套管桩头桩头孔到前边距离(C3)",
+      "kind": "number"
+    },
+    {
+      "path": "General.WallBushingTerminal.C4",
+      "nullable": false,
+      "name": "穿墙套管桩头桩头孔垂直距离(C4)",
+      "kind": "number"
+    },
+    {
+      "path": "General.WallBushingTerminal.C5",
+      "nullable": false,
+      "name": "穿墙套管桩头桩头孔到上边距离(C5)",
+      "kind": "number"
+    },
+    {
+      "path": "General.WallBushingTerminal.C6",
+      "nullable": false,
+      "name": "穿墙套管桩头桩头孔水平距离(C6)",
+      "kind": "number"
+    },
+    {
+      "path": "General.WallBushingTerminal.C7",
+      "nullable": false,
+      "name": "穿墙套管桩头桩头孔径(C7)",
+      "kind": "number"
+    },
+    {
+      "path": "General.WallBushingTerminal.C8",
+      "nullable": false,
+      "name": "穿墙套管桩头桩头厚度(C8)",
+      "kind": "number"
+    },
+    {
+      "path": "General.WallBushingTerminal.C9",
+      "nullable": false,
+      "name": "穿墙套管桩头中间阵列到上桩头距离(C9)",
+      "kind": "number"
+    },
+    {
+      "path": "General.WallBushingTerminal.C10",
+      "nullable": false,
+      "name": "穿墙套管桩头中间阵列到下桩头距离(C10)",
+      "kind": "number"
+    },
+    {
+      "path": "General.WallHoleWidth",
+      "nullable": false,
+      "name": "墙孔宽度(G)",
+      "kind": "number"
+    },
+    {
+      "path": "General.CabinetGroundHeight",
+      "nullable": false,
+      "name": "柜体离地(I)",
+      "kind": "number"
+    },
+    {
+      "path": "General.BuildingHeight",
+      "nullable": false,
+      "name": "楼高(L)",
+      "kind": "number"
+    },
+    {
+      "path": "General.WallCabinetEccentricity",
+      "nullable": false,
+      "name": "墙柜偏心值",
+      "kind": "number"
+    },
+    {
+      "path": "General.InsulatorHeight",
+      "nullable": false,
+      "name": "绝缘子+支架高度",
+      "kind": "number"
+    },
+    {
+      "path": "Cabinet.CabinetHeight",
+      "nullable": false,
+      "name": "柜体柜高",
+      "kind": "number"
+    },
+    {
+      "path": "Cabinet.CabinetDepth",
+      "nullable": false,
+      "name": "柜体柜深",
+      "kind": "number"
+    },
+    {
+      "path": "Cabinet.CabinetWidth",
+      "nullable": false,
+      "name": "柜体柜宽",
+      "kind": "number"
+    },
+    {
+      "path": "Cabinet.FrontHole.BusbarCenterToBaseOffset",
+      "nullable": false,
+      "name": "柜体前孔铜排中心至基座偏移",
+      "kind": "number"
+    },
+    {
+      "path": "Cabinet.FrontHole.IsEnabled",
+      "nullable": false,
+      "name": "柜体前孔启用",
+      "kind": "boolean"
+    },
+    {
+      "path": "Cabinet.FrontHole.BaseToCabinetEdgeDistance",
+      "nullable": false,
+      "name": "柜体前孔基座距柜前距离",
+      "kind": "number"
+    },
+    {
+      "path": "Cabinet.FrontHole.BusbarCenterToCabinetEdgeDistance",
+      "nullable": false,
+      "name": "柜体前孔铜排中心至柜前距离",
+      "kind": "number"
+    },
+    {
+      "path": "Cabinet.FrontHole.FixedHoleSpacing",
+      "nullable": false,
+      "name": "柜体前孔接口固定孔间距",
+      "kind": "number"
+    },
+    {
+      "path": "Cabinet.FrontHole.L1",
+      "nullable": false,
+      "name": "柜体前孔L1",
+      "kind": "number"
+    },
+    {
+      "path": "Cabinet.FrontHole.L2",
+      "nullable": false,
+      "name": "柜体前孔L2",
+      "kind": "number"
+    },
+    {
+      "path": "Cabinet.FrontHole.L3",
+      "nullable": false,
+      "name": "柜体前孔L3",
+      "kind": "number"
+    },
+    {
+      "path": "Cabinet.FrontHole.InsulatorPosition",
+      "nullable": false,
+      "name": "柜体前孔绝缘子定位",
+      "kind": "number"
+    },
+    {
+      "path": "Cabinet.FrontHole.BaseOpeningHeight",
+      "nullable": false,
+      "name": "柜体前孔基架高度",
+      "kind": "number"
+    },
+    {
+      "path": "Cabinet.FrontHole.BaseHeight",
+      "nullable": false,
+      "name": "柜体前孔基座高",
+      "kind": "number"
+    },
+    {
+      "path": "Cabinet.FrontHole.ExtensionBaseHeight",
+      "nullable": false,
+      "name": "柜体前孔延长基座高",
+      "kind": "number"
+    },
+    {
+      "path": "Cabinet.BackHole.BusbarCenterToBaseOffset",
+      "nullable": false,
+      "name": "柜体后孔铜排中心至基座偏移",
+      "kind": "number"
+    },
+    {
+      "path": "Cabinet.BackHole.IsEnabled",
+      "nullable": false,
+      "name": "柜体后孔启用",
+      "kind": "boolean"
+    },
+    {
+      "path": "Cabinet.BackHole.BaseToCabinetEdgeDistance",
+      "nullable": false,
+      "name": "柜体后孔基座距柜后距离",
+      "kind": "number"
+    },
+    {
+      "path": "Cabinet.BackHole.BusbarCenterToCabinetEdgeDistance",
+      "nullable": false,
+      "name": "柜体后孔铜排中心至柜后距离",
+      "kind": "number"
+    },
+    {
+      "path": "Cabinet.BackHole.FixedHoleSpacing",
+      "nullable": false,
+      "name": "柜体后孔接口固定孔间距",
+      "kind": "number"
+    },
+    {
+      "path": "Cabinet.BackHole.L1",
+      "nullable": false,
+      "name": "柜体后孔L1",
+      "kind": "number"
+    },
+    {
+      "path": "Cabinet.BackHole.L2",
+      "nullable": false,
+      "name": "柜体后孔L2",
+      "kind": "number"
+    },
+    {
+      "path": "Cabinet.BackHole.L3",
+      "nullable": false,
+      "name": "柜体后孔L3",
+      "kind": "number"
+    },
+    {
+      "path": "Cabinet.BackHole.InsulatorPosition",
+      "nullable": false,
+      "name": "柜体后孔绝缘子定位",
+      "kind": "number"
+    },
+    {
+      "path": "Cabinet.BackHole.BaseOpeningHeight",
+      "nullable": false,
+      "name": "柜体后孔基架高度",
+      "kind": "number"
+    },
+    {
+      "path": "Cabinet.BackHole.BaseHeight",
+      "nullable": false,
+      "name": "柜体后孔基座高",
+      "kind": "number"
+    },
+    {
+      "path": "Cabinet.BackHole.ExtensionBaseHeight",
+      "nullable": false,
+      "name": "柜体后孔延长基座高",
+      "kind": "number"
+    }
+  ],
+  "face-to-face": [
+    {
+      "path": "ProjectPath",
+      "nullable": false,
+      "name": "项目根目录",
+      "kind": "string"
+    },
+    {
+      "path": "General.FloorHeight",
+      "nullable": false,
+      "name": "楼高(D)",
+      "kind": "number"
+    },
+    {
+      "path": "General.CabinetSpacing",
+      "nullable": false,
+      "name": "柜间距(A)",
+      "kind": "number"
+    },
+    {
+      "path": "General.CabinetEccentricity",
+      "nullable": false,
+      "name": "柜间偏心值",
+      "kind": "number"
+    },
+    {
+      "path": "General.PhaseSpacing",
+      "nullable": false,
+      "name": "相间距",
+      "kind": "number"
+    },
+    {
+      "path": "General.InsulationDistance",
+      "nullable": false,
+      "name": "绝缘距离",
+      "kind": "number"
+    },
+    {
+      "path": "General.ParameterB",
+      "nullable": false,
+      "name": "地面距横梁(B)",
+      "kind": "number"
+    },
+    {
+      "path": "General.BusbarSpec",
+      "nullable": false,
+      "name": "铜排规格",
+      "kind": "string"
+    },
+    {
+      "path": "General.SinglePhaseRootCount",
+      "nullable": false,
+      "name": "单相根数",
+      "kind": "integer"
+    },
+    {
+      "path": "General.ACabinetExposedBusbarPhaseSequence",
+      "nullable": false,
+      "name": "A柜伸出排相序",
+      "kind": "string"
+    },
+    {
+      "path": "General.BCabinetExposedBusbarPhaseSequence",
+      "nullable": false,
+      "name": "B柜伸出排相序",
+      "kind": "string"
+    },
+    {
+      "path": "General.BusbarMaterial",
+      "nullable": false,
+      "name": "铜排材质",
+      "kind": "string"
+    },
+    {
+      "path": "General.InsulatorHeight",
+      "nullable": false,
+      "name": "绝缘子+支架高度",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.CabinetHeight",
+      "nullable": false,
+      "name": "A柜柜高",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.CabinetDepth",
+      "nullable": false,
+      "name": "A柜柜深",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.CabinetWidth",
+      "nullable": false,
+      "name": "A柜柜宽",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.GroundHeight",
+      "nullable": false,
+      "name": "A柜离地高度(I)",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.FrontHole.BusbarCenterToBaseOffset",
+      "nullable": false,
+      "name": "A柜前孔铜排中心至基座偏移",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.FrontHole.IsEnabled",
+      "nullable": false,
+      "name": "A柜前孔启用",
+      "kind": "boolean"
+    },
+    {
+      "path": "ACabinet.FrontHole.InsulatorPosition",
+      "nullable": false,
+      "name": "A柜前孔绝缘子定位",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.FrontHole.BaseHeight",
+      "nullable": false,
+      "name": "A柜前孔基座高",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.FrontHole.BaseOpeningHeight",
+      "nullable": false,
+      "name": "A柜前孔基架高度",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.FrontHole.ExtensionBaseHeight",
+      "nullable": false,
+      "name": "A柜前孔延长基座高",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.FrontHole.ToCabinetEdgeDistance",
+      "nullable": false,
+      "name": "A柜前孔距柜前距离",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.FrontHole.BusbarCenterToCabinetEdgeDistance",
+      "nullable": false,
+      "name": "A柜前孔铜排中心至柜前距离",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.FrontHole.FixedHoleSpacing",
+      "nullable": false,
+      "name": "A柜前孔接口固定孔间距",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.FrontHole.L1",
+      "nullable": false,
+      "name": "A柜前孔L1",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.FrontHole.L2",
+      "nullable": false,
+      "name": "A柜前孔L2",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.FrontHole.L3",
+      "nullable": false,
+      "name": "A柜前孔L3",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.BackHole.BusbarCenterToBaseOffset",
+      "nullable": false,
+      "name": "A柜后孔铜排中心至基座偏移",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.BackHole.IsEnabled",
+      "nullable": false,
+      "name": "A柜后孔启用",
+      "kind": "boolean"
+    },
+    {
+      "path": "ACabinet.BackHole.InsulatorPosition",
+      "nullable": false,
+      "name": "A柜后孔绝缘子定位",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.BackHole.BaseHeight",
+      "nullable": false,
+      "name": "A柜后孔基座高",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.BackHole.BaseOpeningHeight",
+      "nullable": false,
+      "name": "A柜后孔基架高度",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.BackHole.ExtensionBaseHeight",
+      "nullable": false,
+      "name": "A柜后孔延长基座高",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.BackHole.ToCabinetEdgeDistance",
+      "nullable": false,
+      "name": "A柜后孔距柜后距离",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.BackHole.BusbarCenterToCabinetEdgeDistance",
+      "nullable": false,
+      "name": "A柜后孔铜排中心至柜后距离",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.BackHole.FixedHoleSpacing",
+      "nullable": false,
+      "name": "A柜后孔接口固定孔间距",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.BackHole.L1",
+      "nullable": false,
+      "name": "A柜后孔L1",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.BackHole.L2",
+      "nullable": false,
+      "name": "A柜后孔L2",
+      "kind": "number"
+    },
+    {
+      "path": "ACabinet.BackHole.L3",
+      "nullable": false,
+      "name": "A柜后孔L3",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.CabinetHeight",
+      "nullable": false,
+      "name": "B柜柜高",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.CabinetDepth",
+      "nullable": false,
+      "name": "B柜柜深",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.CabinetWidth",
+      "nullable": false,
+      "name": "B柜柜宽",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.GroundHeight",
+      "nullable": false,
+      "name": "B柜离地高度(I)",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.FrontHole.BusbarCenterToBaseOffset",
+      "nullable": false,
+      "name": "B柜前孔铜排中心至基座偏移",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.FrontHole.IsEnabled",
+      "nullable": false,
+      "name": "B柜前孔启用",
+      "kind": "boolean"
+    },
+    {
+      "path": "BCabinet.FrontHole.InsulatorPosition",
+      "nullable": false,
+      "name": "B柜前孔绝缘子定位",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.FrontHole.BaseHeight",
+      "nullable": false,
+      "name": "B柜前孔基座高",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.FrontHole.BaseOpeningHeight",
+      "nullable": false,
+      "name": "B柜前孔基架高度",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.FrontHole.ExtensionBaseHeight",
+      "nullable": false,
+      "name": "B柜前孔延长基座高",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.FrontHole.ToCabinetEdgeDistance",
+      "nullable": false,
+      "name": "B柜前孔距柜前距离",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.FrontHole.BusbarCenterToCabinetEdgeDistance",
+      "nullable": false,
+      "name": "B柜前孔铜排中心至柜前距离",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.FrontHole.FixedHoleSpacing",
+      "nullable": false,
+      "name": "B柜前孔接口固定孔间距",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.FrontHole.L1",
+      "nullable": false,
+      "name": "B柜前孔L1",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.FrontHole.L2",
+      "nullable": false,
+      "name": "B柜前孔L2",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.FrontHole.L3",
+      "nullable": false,
+      "name": "B柜前孔L3",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.BackHole.BusbarCenterToBaseOffset",
+      "nullable": false,
+      "name": "B柜后孔铜排中心至基座偏移",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.BackHole.IsEnabled",
+      "nullable": false,
+      "name": "B柜后孔启用",
+      "kind": "boolean"
+    },
+    {
+      "path": "BCabinet.BackHole.InsulatorPosition",
+      "nullable": false,
+      "name": "B柜后孔绝缘子定位",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.BackHole.BaseHeight",
+      "nullable": false,
+      "name": "B柜后孔基座高",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.BackHole.BaseOpeningHeight",
+      "nullable": false,
+      "name": "B柜后孔基架高度",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.BackHole.ExtensionBaseHeight",
+      "nullable": false,
+      "name": "B柜后孔延长基座高",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.BackHole.ToCabinetEdgeDistance",
+      "nullable": false,
+      "name": "B柜后孔距柜后距离",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.BackHole.BusbarCenterToCabinetEdgeDistance",
+      "nullable": false,
+      "name": "B柜后孔铜排中心至柜后距离",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.BackHole.FixedHoleSpacing",
+      "nullable": false,
+      "name": "B柜后孔接口固定孔间距",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.BackHole.L1",
+      "nullable": false,
+      "name": "B柜后孔L1",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.BackHole.L2",
+      "nullable": false,
+      "name": "B柜后孔L2",
+      "kind": "number"
+    },
+    {
+      "path": "BCabinet.BackHole.L3",
+      "nullable": false,
+      "name": "B柜后孔L3",
+      "kind": "number"
+    }
+  ]
+}

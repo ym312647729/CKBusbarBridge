@@ -1,0 +1,169 @@
+{
+  "EndPointReverse": [
+    "SPC_L2"
+  ],
+  "BusbarDefaultDimNames": [
+    {
+      "BusbarStyle": "L",
+      "VerticalOrParallel": "垂直",
+      "IsMiddleFace": false,
+      "DimNameAndValues": [
+        {
+          "Name": "D1@形状草图",
+          "DisplayName": "L1",
+          "DefaultValue": 100.0
+        },
+        {
+          "Name": "D2@形状草图",
+          "DisplayName": "L2",
+          "DefaultValue": 100.0
+        }
+      ]
+    },
+    {
+      "BusbarStyle": "I",
+      "VerticalOrParallel": "平行",
+      "IsMiddleFace": false,
+      "DimNameAndValues": [
+        {
+          "Name": "D1@形状草图",
+          "DisplayName": "L1",
+          "DefaultValue": 100.0
+        }
+      ]
+    },
+    {
+      "BusbarStyle": "N",
+      "VerticalOrParallel": "平行",
+      "IsMiddleFace": false,
+      "DimNameAndValues": [
+        {
+          "Name": "D1@形状草图",
+          "DisplayName": "L1",
+          "DefaultValue": 100.0
+        },
+        {
+          "Name": "D2@形状草图",
+          "DisplayName": "L2",
+          "DefaultValue": 150.0
+        },
+        {
+          "Name": "D3@形状草图",
+          "DisplayName": "L3",
+          "DefaultValue": 260.0
+        },
+        {
+          "Name": "D4@形状草图",
+          "DisplayName": "L4",
+          "DefaultValue": 350.0
+        }
+      ]
+    },
+    {
+      "BusbarStyle": "NL",
+      "VerticalOrParallel": "平行",
+      "IsMiddleFace": false,
+      "DimNameAndValues": [
+        {
+          "Name": "D1@形状草图",
+          "DisplayName": "L1",
+          "DefaultValue": 250.0
+        },
+        {
+          "Name": "D2@形状草图",
+          "DisplayName": "L2",
+          "DefaultValue": 190.0
+        },
+        {
+          "Name": "D3@形状草图",
+          "DisplayName": "L3",
+          "DefaultValue": 120.0
+        },
+        {
+          "Name": "D4@形状草图",
+          "DisplayName": "L4",
+          "DefaultValue": 51.0
+        },
+        {
+          "Name": "D5@形状草图",
+          "DisplayName": "A1",
+          "DefaultValue": 135.0
+        }
+      ]
+    },
+    {
+      "BusbarStyle": "N_V",
+      "VerticalOrParallel": "平行",
+      "IsMiddleFace": true,
+      "MiddleVerticalOrParallel": "垂直",
+      "DimNameAndValues": [
+        {
+          "Name": "D1@形状草图",
+          "DisplayName": "L1",
+          "DefaultValue": 105.0
+        },
+        {
+          "Name": "D2@形状草图",
+          "DisplayName": "L2",
+          "DefaultValue": 310.0
+        },
+        {
+          "Name": "D3@形状草图",
+          "DisplayName": "L3",
+          "DefaultValue": 110.0
+        }
+      ]
+    },
+    {
+      "BusbarStyle": "U",
+      "VerticalOrParallel": "平行",
+      "IsMiddleFace": true,
+      "MiddleVerticalOrParallel": "垂直",
+      "DimNameAndValues": [
+        {
+          "Name": "D1@形状草图",
+          "DisplayName": "L1",
+          "DefaultValue": 170.0
+        },
+        {
+          "Name": "D2@形状草图",
+          "DisplayName": "L2",
+          "DefaultValue": 225.0
+        },
+        {
+          "Name": "D3@形状草图",
+          "DisplayName": "L3",
+          "DefaultValue": 170.0
+        }
+      ]
+    },
+    {
+      "BusbarStyle": "G",
+      "VerticalOrParallel": "垂直",
+      "IsMiddleFace": true,
+      "MiddleVerticalOrParallel": "平行",
+      "DimNameAndValues": ""
+    },
+    {
+      "BusbarStyle": "G2",
+      "VerticalOrParallel": "垂直",
+      "IsMiddleFace": true,
+      "MiddleVerticalOrParallel": "平行",
+      "DimNameAndValues": ""
+    },
+    {
+      "BusbarStyle": "G6",
+      "VerticalOrParallel": "垂直",
+      "IsMiddleFace": true,
+      "MiddleVerticalOrParallel": "垂直平行",
+      "DimNameAndValues": ""
+    },
+    {
+      "BusbarStyle": "SPC_L1",
+      "VerticalOrParallel": "垂直",
+      "IsMiddleFace": true,
+      "MiddleVerticalOrParallel": "平行",
+      "DimNameAndValues": ""
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+{
+    "Phase": [
+        {
+            "Origin": "空相序",
+            "Named": "空相序"
+        },
+        {
+            "Origin": "A相",
+            "Named": "L1"
+        },
+        {
+            "Origin": "B相",
+            "Named": "L2"
+        },
+        {
+            "Origin": "C相",
+            "Named": "L3"
+        },
+        {
+            "Origin": "N相",
+            "Named": "N相"
+        },
+        {
+            "Origin": "PE相",
+            "Named": "PE相"
+        }
+    ],
+    "PartType": [
+        {
+            "Origin": "未知",
+            "Named": "未知"
+        },
+        {
+            "Origin": "元器件",
+            "Named": "元器件"
+        },
+        {
+            "Origin": "母线框",
+            "Named": "母线框"
+        },
+        {
+            "Origin": "绝缘子",
+            "Named": "绝缘子"
+        },
+        {
+            "Origin": "接地器件",
+            "Named": "接地器件"
+        },
+        {
+            "Origin": "套管",
+            "Named": "套管"
+        },
+        {
+            "Origin": "穿心式",
+            "Named": "穿心式"
+        },
+        {
+            "Origin": "软连接",
+            "Named": "软连接"
+        },
+        {
+            "Origin": "垫块",
+            "Named": "垫块"
+        },
+        {
+            "Origin": "始端",
+            "Named": "始端"
+        },
+        {
+            "Origin": "铜排",
+            "Named": "铜排"
+        },
+        {
+            "Origin": "分支排",
+            "Named": "垂直母排"
+        },
+        {
+            "Origin": "主母排",
+            "Named": "水平母排"
+        },
+        {
+            "Origin": "柜顶伸出排",
+            "Named": "柜顶伸出排"
+        },
+        {
+            "Origin": "联络排",
+            "Named": "联络排"
+        },
+        {
+            "Origin": "转接块",
+            "Named": "转接块"
+        }
+    ]
+}

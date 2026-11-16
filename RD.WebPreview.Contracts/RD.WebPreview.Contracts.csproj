@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <ProjectGuid>{B17E2F24-6D30-4D18-8A9D-4C2B9D6E7F51}</ProjectGuid>
+    <Platforms>AnyCPU;x64</Platforms>
+    <RootNamespace>RD.WebPreview.Contracts</RootNamespace>
+    <AssemblyName>RD.WebPreview.Contracts</AssemblyName>
+    <LangVersion>latest</LangVersion>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+</Project>

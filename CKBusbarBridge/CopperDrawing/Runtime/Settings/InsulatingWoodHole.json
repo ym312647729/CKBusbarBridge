@@ -1,0 +1,42 @@
+[
+    {
+        "Id": 0,
+        "LinkBusbarWidth": 80.0,
+        "HoleCount": 2,
+        "HoleSize": 13.0,
+        "HoleSpacing": 40.0,
+        "Comment": ""
+    },
+    {
+        "Id": 1,
+        "LinkBusbarWidth": 100.0,
+        "HoleCount": 2,
+        "HoleSize": 13.0,
+        "HoleSpacing": 50.0,
+        "Comment": ""
+    },
+    {
+        "Id": 2,
+        "LinkBusbarWidth": 120.0,
+        "HoleCount": 2,
+        "HoleSize": 13.0,
+        "HoleSpacing": 60.0,
+        "Comment": ""
+    },
+    {
+        "Id": 3,
+        "LinkBusbarWidth": 125.0,
+        "HoleCount": 2,
+        "HoleSize": 13.0,
+        "HoleSpacing": 60.0,
+        "Comment": ""
+    },
+    {
+        "Id": 4,
+        "LinkBusbarWidth": 150.0,
+        "HoleCount": 2,
+        "HoleSize": 13.0,
+        "HoleSpacing": 75.0,
+        "Comment": ""
+    }
+]

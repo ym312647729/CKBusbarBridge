@@ -1,0 +1,583 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7ACEDAA9-2DE8-4485-837A-E7D58812A6DC}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>CKBusbarBridge</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>CKBusbarBridge</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <DisableFastUpToDateCheck>true</DisableFastUpToDateCheck>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>5</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+    <PlatformTarget>x64</PlatformTarget>
+    <IncludePackageReferencesDuringMarkupCompilation>false</IncludePackageReferencesDuringMarkupCompilation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System.Web">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoOpeningHoleBase, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoOpeningHoleBase.1.3.0\lib\net48\AutoOpeningHoleBase.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoOpeningHoleDataModel, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoOpeningHoleBase.1.3.0\lib\net48\AutoOpeningHoleDataModel.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenHoleLib.Controls, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>dll\OpenHoleLib.Controls.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ExpandableGridView, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>dll\ExpandableGridView.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="BusbarTools.DataModel, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>dll\BusbarTools.DataModel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="BusbarTools.Shared, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>dll\BusbarTools.Shared.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="unvell.ReoGrid, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>dll\unvell.ReoGrid.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GeometRi, Version=1.4.0.5, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\GeometRi.1.4.0.5\lib\net20\GeometRi.dll</HintPath>
+    </Reference>
+    <Reference Include="HandyControl, Version=3.5.1.0, Culture=neutral, PublicKeyToken=45be8712787a1e5b, processorArchitecture=MSIL">
+      <HintPath>..\packages\HandyControl.3.5.1\lib\net48\HandyControl.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.WebView2.Core, Version=1.0.4129.50, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.4129.50\lib\net462\Microsoft.Web.WebView2.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebView2.Wpf, Version=1.0.4129.50, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.4129.50\lib\net462\Microsoft.Web.WebView2.Wpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1001\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.7.14\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI">
+      <HintPath>..\packages\NPOI.2.5.6\lib\net45\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML">
+      <HintPath>..\packages\NPOI.2.5.6\lib\net45\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net">
+      <HintPath>..\packages\NPOI.2.5.6\lib\net45\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats">
+      <HintPath>..\packages\NPOI.2.5.6\lib\net45\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\packages\SharpZipLib.1.3.3\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="BouncyCastle.Crypto">
+      <HintPath>..\packages\Portable.BouncyCastle.1.9.0\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="SolidWorks.Interop.sldworks, Version=26.5.0.66, Culture=neutral, PublicKeyToken=7c4797c3e4eeac03, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoOpeningHoleBase.1.3.0\lib\net48\SolidWorks.Interop.sldworks.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SolidWorks.Interop.swcommands, Version=26.5.0.66, Culture=neutral, PublicKeyToken=0fda92720ba7919f, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoOpeningHoleBase.1.3.0\lib\net48\SolidWorks.Interop.swcommands.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SolidWorks.Interop.swconst, Version=26.5.0.66, Culture=neutral, PublicKeyToken=19f43e188e4269d8, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoOpeningHoleBase.1.3.0\lib\net48\SolidWorks.Interop.swconst.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SolidWorks.Interop.swpublished, Version=26.5.0.66, Culture=neutral, PublicKeyToken=89a97bdc5284e6d8, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoOpeningHoleBase.1.3.0\lib\net48\SolidWorks.Interop.swpublished.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SolidWorksTools, Version=2.0.0.0, Culture=neutral, PublicKeyToken=bd18593873b4686d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CopperBarLinkage\CopperBarLinkage\ReferenceDLL\SolidWorksTools.dll</HintPath>
+    </Reference>
+    <Reference Include="SunnyUI.Common, Version=3.8.8.0, Culture=neutral, PublicKeyToken=27d7d2e821d97aeb, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoOpeningHoleBase.1.3.0\lib\net48\SunnyUI.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.XML">
+      <Name>System.XML</Name>
+    </Reference>
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Services\BridgeUpstreamBaseOwnership.cs" />
+    <Compile Include="Services\BridgeGenerationRecordPaths.cs" />
+    <Compile Include="Services\BridgeRepairPlanning.cs" />
+    <Compile Include="Services\BridgeModelState.cs" />
+    <Compile Include="Services\BridgeTransformComparison.cs" />
+    <Compile Include="Drivers\SolidWorksBridgeModelStateReader.cs" />
+    <Compile Include="Services\BridgeFrameGenerationValidator.cs" />
+    <Compile Include="Services\BridgeUniversalInsulatorValidator.cs" />
+    <Compile Include="Services\BridgeBusinessReadback.cs" />
+    <Compile Include="Services\BridgeBusinessGeometry.cs" />
+    <Compile Include="Services\BridgeCopperBusinessRecovery.cs" />
+    <Compile Include="Services\SideToSideZeroOffsetPhaseChangeReadback.cs" />
+    <Compile Include="Services\SideToSideZeroOffsetPhaseChangeValidator.cs" />
+    <Compile Include="Drivers\BridgeReferencedModelParameters.cs" />
+    <Compile Include="Drivers\SolidWorksBridgeBusinessReader.cs" />
+    <Compile Include="Drivers\BridgeCopperGenerationContext.cs" />
+    <Compile Include="Drivers\BridgeGenerationFileBackup.cs" />
+    <Compile Include="Drivers\BridgeHangerGeometryReader.cs" />
+    <Compile Include="Drivers\BridgeHangerModelOperations.cs" />
+    <Compile Include="Drivers\BridgeHangerFileCleanup.cs" />
+    <Compile Include="Drivers\SolidWorksBridgeHangerCleanupSession.cs" />
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Drivers\BomExportDriver.cs" />
+    <Compile Include="Drivers\BusbarBomExportDriver.cs" />
+    <Compile Include="Drivers\CopperDrawingAssemblyDriver.cs" />
+    <Compile Include="Drivers\AlgorithmBusbarGenerationProgram.cs" />
+    <Compile Include="Drivers\AlgorithmBusbarGenerationService.cs" />
+    <Compile Include="Drivers\AlgorithmBusbarGenerationService.Geometry.cs" />
+    <Compile Include="Drivers\AlgorithmBusbarGenerationService.Secondary.cs" />
+    <Compile Include="Drivers\BusbarDriver.cs" />
+    <Compile Include="Drivers\BusBridgeDriver.cs" />
+    <Compile Include="Drivers\ExtensionBusbarPhaseDrivePlan.cs" />
+    <Compile Include="Drivers\CabinetDriverChangeAnalyzer.cs" />
+    <Compile Include="Drivers\FaceToWallCabinetChangeAnalyzer.cs" />
+    <Compile Include="Drivers\FaceToWallCabinetSecondaryDriveService.cs" />
+    <Compile Include="Drivers\BaseModelFirstGenerationPlanner.cs" />
+    <Compile Include="Drivers\BaseModelLifecycleTransaction.cs" />
+    <Compile Include="Drivers\BaseModelNaming.cs" />
+    <Compile Include="Drivers\BaseModelReusePlanner.cs" />
+    <Compile Include="Drivers\FaceToWallSingleBaseParameterAdapter.cs" />
+    <Compile Include="Drivers\SideToSideFrameReadbackValidator.cs" />
+    <Compile Include="Drivers\SideToSideFrameTransition.cs" />
+    <Compile Include="Drivers\SideToSideCabinetChangeAnalyzer.cs" />
+    <Compile Include="Drivers\SideToSideCabinetSecondaryDriveService.cs" />
+    <Compile Include="Drivers\SideToSideProjectSecondaryTransaction.cs" />
+    <Compile Include="Drivers\SideToSideBaseLifecycleAdapter.cs" />
+    <Compile Include="Drivers\SideToSideBaseSecondaryDrivePlanner.cs" />
+    <Compile Include="Drivers\SideToSideBaseSecondaryDriveService.cs" />
+    <Compile Include="models\BaseInstallationChange.cs" />
+    <Compile Include="Services\BridgeCabinetConnectionTransition.cs" />
+    <Compile Include="Drivers\SolidWorksSideToSideBaseSecondaryOperations.cs" />
+    <Compile Include="Drivers\SideToSideBaseDriver.cs" />
+    <Compile Include="Drivers\SideToSideBaseInsulatorDriver.cs" />
+    <Compile Include="Drivers\SideToSideBaseAssembler.cs" />
+    <Compile Include="Drivers\SideToSideBaseGenerationService.cs" />
+    <Compile Include="Drivers\ExportDrawingDriver.cs" />
+    <Compile Include="Drivers\FaceToWallSpecialBusbarAssembler.cs" />
+    <Compile Include="Drivers\FaceToFaceBaseLifecycleAdapter.cs" />
+    <Compile Include="Drivers\FaceToFaceBaseSecondaryDrivePlanner.cs" />
+    <Compile Include="Drivers\FaceToFaceBaseSecondaryDriveContracts.cs" />
+    <Compile Include="Drivers\FaceToFaceBaseSecondaryDriveService.cs" />
+    <Compile Include="Drivers\FaceToFaceFrameChainAnalyzer.cs" />
+    <Compile Include="Drivers\FaceToFaceFrameAssemblyReader.cs" />
+    <Compile Include="Drivers\FaceToFaceFrameLogicalProjection.cs" />
+    <Compile Include="Drivers\FaceToFaceLargeOffsetFrameReadbackAnalyzer.cs" />
+    <Compile Include="Drivers\FaceToFaceFramePreviewPosePlanner.cs" />
+    <Compile Include="Drivers\FaceToFaceFrameTopViewPlanner.cs" />
+    <Compile Include="Drivers\FaceToFaceLargeOffsetFramePlanner.cs" />
+    <Compile Include="Drivers\FaceToFaceOffsetFrameLengthRules.cs" />
+    <Compile Include="Drivers\FaceToFaceFrameSecondaryDrivePlanner.cs" />
+    <Compile Include="Drivers\FaceToFaceFrameSecondaryDriveService.cs" />
+    <Compile Include="Drivers\FaceToFaceFrameModelReadService.cs" />
+    <Compile Include="Drivers\FaceToFaceFrameModelPreparationService.cs" />
+    <Compile Include="Drivers\FaceToFaceFramePathClassifier.cs" />
+    <Compile Include="Drivers\FaceToFaceFrameDocumentCleanup.cs" />
+    <Compile Include="Drivers\FaceToFaceFrameGenerationContracts.cs" />
+    <Compile Include="Drivers\FaceToFaceFrameInitialGenerationSession.cs" />
+    <Compile Include="Drivers\FaceToFaceFrameSecondaryDriveContracts.cs" />
+    <Compile Include="Drivers\FaceToFaceFrameDriver.cs" />
+    <Compile Include="Drivers\FaceToFaceFrameDriver.Angles.cs" />
+    <Compile Include="Drivers\FrameAngleFileDriver.cs" />
+    <Compile Include="Drivers\ParentDimensionDependency.cs" />
+    <Compile Include="Drivers\SolidWorksParentDimensionDriver.cs" />
+    <Compile Include="Drivers\BaseBridgeAngleClearancePlan.cs" />
+    <Compile Include="Drivers\SolidWorksBaseBridgeAngleDriver.cs" />
+    <Compile Include="Drivers\NativeModelConfiguration.cs" />
+    <Compile Include="Drivers\FrameAngleIndependenceValidator.cs" />
+    <Compile Include="Drivers\FaceToFaceFrameDriver.AngleValidation.cs" />
+    <Compile Include="Drivers\FaceToFaceFrameExistingModelUpdater.cs" />
+    <Compile Include="Drivers\FaceToFaceFrameInsulatorDriver.cs" />
+    <Compile Include="Drivers\FaceToFaceFrameInsulatorDriver.Hanging.cs" />
+    <Compile Include="Drivers\FrameInsulatorPositionReadback.cs" />
+    <Compile Include="Drivers\FaceToFaceFrameAssembler.cs" />
+    <Compile Include="Drivers\FrameBaseComponentResolver.cs" />
+    <Compile Include="Drivers\FaceToFaceFrameGenerationService.cs" />
+    <Compile Include="Drivers\SolidWorksFaceToFaceBaseSecondaryOperations.cs" />
+    <Compile Include="Drivers\SolidWorksFaceToFaceFrameSecondaryOperations.cs" />
+    <Compile Include="Drivers\FaceToFaceBaseAssembler.cs" />
+    <Compile Include="Drivers\FaceToFaceBaseDirectoryCleaner.cs" />
+    <Compile Include="Drivers\FaceToFaceBaseDriver.cs" />
+    <Compile Include="Drivers\FaceToFaceBaseExistingModelUpdater.cs" />
+    <Compile Include="Drivers\FaceToFaceBaseModelPreparation.cs" />
+    <Compile Include="Drivers\FaceToFaceBaseGenerationService.cs" />
+    <Compile Include="Drivers\FaceToFaceBaseGenerationContracts.cs" />
+    <Compile Include="Drivers\FaceToFaceBaseOperationGuard.cs" />
+    <Compile Include="Drivers\FaceToFaceBaseTemplateCopier.cs" />
+    <Compile Include="Drivers\FaceToWallFrameGenerationService.cs" />
+    <Compile Include="Drivers\FaceToWallSpecialBusbarDimensionCalculator.cs" />
+    <Compile Include="Drivers\FaceToWallSpecialBusbarDimensionCalculators.cs" />
+    <Compile Include="Drivers\FaceToWallSpecialBusbarPhysicalSpecStrategies.cs" />
+    <Compile Include="Drivers\FaceToWallSpecialBusbarTemplateLocator.cs" />
+    <Compile Include="Drivers\InsulatorDriver.cs" />
+    <Compile Include="Drivers\InsulatorDriver.LBracket.cs" />
+    <Compile Include="Drivers\InsulatorDriver.Universal.cs" />
+    <Compile Include="Drivers\InsulatorDriveDiagnostics.cs" />
+    <Compile Include="Drivers\InsulatorDriveRecoverySession.cs" />
+    <Compile Include="Drivers\InsulatorOutputReferenceRepair.cs" />
+    <Compile Include="Drivers\UniversalInsulatorDrivePlan.cs" />
+    <Compile Include="Drivers\LBracketInsulatorDrivePlan.cs" />
+    <Compile Include="Drivers\MilledBarEntryCoordinateSelection.cs" />
+    <Compile Include="Helpers\GenerationProgress.cs" />
+    <Compile Include="Helpers\ProjectLocalTestLog.cs" />
+    <Compile Include="Helpers\BusbarGenerationDurationProfileStore.cs" />
+    <Compile Include="Helpers\SolidWorksProgressToast.cs" />
+    <Compile Include="Helpers\FaceToFaceProjectTemplateCopier.cs" />
+    <Compile Include="Helpers\FaceToWallProjectTemplateCopier.cs" />
+    <Compile Include="Helpers\ProjectTemplateCopier.cs" />
+    <Compile Include="Helpers\ProjectDirectoryPathBuilder.cs" />
+    <Compile Include="Helpers\ProjectRootPreferenceStore.cs" />
+    <Compile Include="Helpers\SideToSideProjectTemplateCopier.cs" />
+    <Compile Include="Helpers\OpenHoleHelper.cs" />
+    <Compile Include="Helpers\SolidWorksFileHelper.cs" />
+    <Compile Include="Helpers\TemplateCacheManager.cs" />
+    <Compile Include="Helpers\TemplateArchiveCacheManager.cs" />
+    <Compile Include="Helpers\FaceToFaceFrameModelMappingHelper.cs" />
+    <Compile Include="Helpers\DrawingNumberMetadataHelper.cs" />
+    <Compile Include="Helpers\SolidWorksCabinetDrawingNumberMetadataStore.cs" />
+    <Compile Include="Helpers\FaceToWallPhasePreviewDataFactory.cs" />
+    <Compile Include="Helpers\MiddleBusbarSpecificationMetadata.cs" />
+    <Compile Include="Helpers\ListExtention.cs" />
+    <Compile Include="Helpers\StringExtensions.cs" />
+    <Compile Include="Helpers\SwExtention.cs" />
+    <Compile Include="Helpers\SWHelper.cs" />
+    <Compile Include="Helpers\TransformHelper.cs" />
+    <Compile Include="models\BusbarBomExportResult.cs" />
+    <Compile Include="models\BusbarBomItem.cs" />
+    <Compile Include="models\BusbarBreakpointItem.cs" />
+    <Compile Include="models\BusbarBreakpointProtectionMarkerItem.cs" />
+    <Compile Include="models\BusbarMassPropertyRefreshResult.cs" />
+    <Compile Include="models\BusbarGenerationPreparationResult.cs" />
+    <Compile Include="models\BusbarSegmentInfo.cs" />
+    <Compile Include="models\SideToSideCabinetParameterSnapshot.cs" />
+    <Compile Include="models\BaseModelLifecycleModels.cs" />
+    <Compile Include="models\SideToSideBaseSecondaryGenerationModels.cs" />
+    <Compile Include="models\FaceToFaceBaseSecondaryGenerationModels.cs" />
+    <Compile Include="models\FaceToWallCabinetParameterSnapshot.cs" />
+    <Compile Include="models\FaceToWallSpecialBusbarGeometryPlan.cs" />
+    <Compile Include="models\FaceToWallSpecialBusbarLongitudinalLayout.cs" />
+    <Compile Include="models\FaceToWallSpecialBusbarPhasePlan.cs" />
+    <Compile Include="models\FaceToWallSpecialBusbarPlanner.cs" />
+    <Compile Include="models\FaceToWallSpecialBusbarTemplateKind.cs" />
+    <Compile Include="models\SceneConfigurationId.cs" />
+    <Compile Include="models\CurrBusBridgeItem.cs" />
+    <Compile Include="models\FrameItem.cs" />
+    <Compile Include="models\LBusbarData.cs" />
+    <Compile Include="mvvmbase\DelegateCommand.cs" />
+    <Compile Include="mvvmbase\RelayCommand.cs" />
+    <Compile Include="Drivers\SolidWorksDriver.cs" />
+    <Compile Include="Helpers\CopperDrawingRuntimeHost.cs" />
+    <Compile Include="Drivers\SolidWorksDocumentConflictGuard.cs" />
+    <Compile Include="Drivers\SolidWorksDocumentConflictGuard.CloseRecovery.cs" />
+    <Compile Include="Drivers\SolidWorksDocumentPersistence.cs" />
+    <Compile Include="Drivers\SolidWorksDocumentSavePolicy.cs" />
+    <Compile Include="SwAddin.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="viewmodels\DimensionHighlightViewModel.cs" />
+    <Compile Include="viewmodels\CabinetDriverWindowVM.cs" />
+    <Compile Include="viewmodels\SideToSideCabinetDriverWindowVM.cs" />
+    <Compile Include="viewmodels\CabinetDrawingNumberMetadataSession.cs" />
+    <Compile Include="viewmodels\FaceToWallCabinetDriverWindowVM.cs" />
+    <Compile Include="viewmodels\DrawingNumberMetadataSnapshot.cs" />
+    <Compile Include="views\CabinetDraftWindowWorkflow.cs" />
+    <Compile Include="views\CabinetDriverWindow.xaml.cs">
+      <DependentUpon>CabinetDriverWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\SideToSideCabinetDriverWindow.xaml.cs">
+      <DependentUpon>SideToSideCabinetDriverWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\DrawingNumberDialogLauncher.cs" />
+    <Compile Include="views\ProjectRootFolderDialog.cs" />
+    <Compile Include="views\GenerateDrawingNumberWindow.xaml.cs">
+      <DependentUpon>GenerateDrawingNumberWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\FaceToWallCabinetDriverWindow.xaml.cs">
+      <DependentUpon>FaceToWallCabinetDriverWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\SmallCornerWindowResources.xaml.cs">
+      <DependentUpon>SmallCornerWindowResources.xaml</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="icons\mainicon_20.png" />
+    <EmbeddedResource Include="icons\mainicon_32.png" />
+    <EmbeddedResource Include="icons\mainicon_40.png" />
+    <EmbeddedResource Include="icons\mainicon_64.png" />
+    <EmbeddedResource Include="icons\mainicon_96.png" />
+    <EmbeddedResource Include="icons\mainicon_128.png" />
+    <EmbeddedResource Include="icons\toolbar20x.png" />
+    <EmbeddedResource Include="icons\toolbar32x.png" />
+    <EmbeddedResource Include="icons\toolbar40x.png" />
+    <EmbeddedResource Include="icons\toolbar64x.png" />
+    <EmbeddedResource Include="icons\toolbar96x.png" />
+    <EmbeddedResource Include="icons\toolbar128x.png" />
+    <EmbeddedResource Include="icons\AddinIcon.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="views\CabinetDriverWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="views\SideToSideCabinetDriverWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="views\GenerateDrawingNumberWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="views\FaceToWallCabinetDriverWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="views\SmallCornerWindowResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\docs\版本更新文档.md">
+      <Link>版本更新文档.md</Link>
+      <TargetPath>版本更新文档.md</TargetPath>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <!-- Web 预览 Worker 同样按独立运行包整体替换。只要协议 v1 不变，
+         后续可直接覆盖 WebPreviewWorker 目录，无需修改宿主调用代码。 -->
+    <Resource Include="images\侧对侧基座1.png" />
+    <Resource Include="images\侧对侧基座2.png" />
+    <Resource Include="images\柜前向墙+延长.png" />
+    <Resource Include="images\柜前向墙.png" />
+    <Resource Include="images\柜后向墙+延长.png" />
+    <Resource Include="images\柜后向墙.png" />
+    <Content Include="WebPreviewWorker\**\*.*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <!-- 自由折弯铜排零件及普通段子装配体模板随本项目管理，
+         避免部署和提交时依赖其他仓库中的未跟踪文件。 -->
+    <None Include="NLog.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Settings\BaseDimSizeDefine.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Settings\FrameDimSizeDefine.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Settings\示意图尺寸坐标.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\示意图1.png" />
+    <Resource Include="images\示意图2.png" />
+    <Resource Include="images\示意图3.png" />
+    <Resource Include="images\示意图4.png" />
+    <Resource Include="images\示意图6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AddinIcon.bmp" />
+    <Content Include="dll\AutoOpeningHoleBase.dll" />
+    <Content Include="dll\AutoOpeningHoleDataModel.dll" />
+    <Content Include="dll\SolidWorks.Interop.sldworks.dll" />
+    <Content Include="dll\SolidWorks.Interop.swcommands.dll" />
+    <Content Include="dll\SolidWorks.Interop.swconst.dll" />
+    <Content Include="dll\SolidWorks.Interop.swpublished.dll" />
+    <Content Include="dll\SolidWorksTools.dll" />
+    <Content Include="dll\SunnyUI.Common.dll" />
+    <Content Include="dll\SunnyUI.dll" />
+    <Content Include="dll\OpenHoleLib.Controls.dll" />
+    <Content Include="dll\ExpandableGridView.dll" />
+    <Content Include="dll\BusbarTools.DataModel.dll" />
+    <Content Include="dll\BusbarTools.Shared.dll" />
+    <Content Include="dll\unvell.ReoGrid.dll" />
+    <Content Include="CopperDrawing\lib\*.dll.bin">
+      <Link>CopperDrawing\%(Filename)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CopperDrawing\Runtime\Settings\**\*.*">
+      <Link>Settings\%(RecursiveDir)%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CopperDrawing\Runtime\templates\Drawings\**\*.*">
+      <Link>templates\Drawings\%(RecursiveDir)%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RD.WebPreview.Contracts\RD.WebPreview.Contracts.csproj">
+      <Project>{B17E2F24-6D30-4D18-8A9D-4C2B9D6E7F51}</Project>
+      <Name>RD.WebPreview.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RD.WebPreview.Client\RD.WebPreview.Client.csproj">
+      <Project>{C28F3045-7E41-4E29-9BAE-5D3CAE7F8062}</Project>
+      <Name>RD.WebPreview.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CKBusbarBridgePreview\CKBusbarBridgePreview.csproj">
+      <Project>{57ed8d95-e516-496b-bb1d-fc50f81cee86}</Project>
+      <Name>CKBusbarBridgePreview</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="CopperDrawing\" />
+    <Folder Include="Settings\FeatLib\" />
+    <Folder Include="templates\Drawings\" />
+    <None Include="AlgorithmWorkerDelivery\**\*" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Drivers\SolidWorksBridgeDesignHost.cs" />
+    <Compile Include="Services\BusbarWorkerAuthorization.cs" />
+    <ProjectReference Include="..\CKBusbarBridge.DesignUI\CKBusbarBridge.DesignUI.csproj">
+      <Project>{73B3DCB7-012F-4E59-9609-CA1FD3FA9148}</Project>
+      <Name>CKBusbarBridge.DesignUI</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\tools\AlgorithmWorkerCompatibility\Build-Worker.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\WPF\Microsoft.WinFX.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\WPF\Microsoft.WinFX.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Sdks\Microsoft.NET.Sdk.WindowsDesktop\targets\Microsoft.WinFX.targets" Condition="Exists('$(MSBuildToolsPath)\Sdks\Microsoft.NET.Sdk.WindowsDesktop\targets\Microsoft.WinFX.targets')" />
+  <Target Name="SkipBuildComUnregistration" BeforeTargets="PrepareForBuild" Condition="'$(SkipSolidWorksRegistration)' == 'true'">
+    <Delete Files="@(_UnmanagedRegistrationCache)" />
+  </Target>
+  <Import Project="..\packages\Microsoft.Web.WebView2.1.0.4129.50\build\Microsoft.Web.WebView2.targets" Condition="Exists('..\packages\Microsoft.Web.WebView2.1.0.4129.50\build\Microsoft.Web.WebView2.targets')" />
+  <Target Name="CopyAddinIcon" AfterTargets="Build">
+    <Copy Condition="Exists('$(ProjectDir)AddinIcon.bmp') And !Exists('$(TargetDir)$(TargetName).bmp')" SourceFiles="$(ProjectDir)AddinIcon.bmp" DestinationFiles="$(TargetDir)$(TargetName).bmp" />
+  </Target>
+  <ItemGroup>
+    <Compile Include="Drivers\BridgeParameterDraftDocuments.cs" />
+    <Compile Include="viewmodels\CabinetDraftWorkflowBindings.cs" />
+    <Compile Include="Services\BridgeCabinetRepairPlanner.cs" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <ProjectGuid>{C28F3045-7E41-4E29-9BAE-5D3CAE7F8062}</ProjectGuid>
+    <Platforms>AnyCPU;x64</Platforms>
+    <RootNamespace>RD.WebPreview.Client</RootNamespace>
+    <AssemblyName>RD.WebPreview.Client</AssemblyName>
+    <LangVersion>latest</LangVersion>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RD.WebPreview.Contracts\RD.WebPreview.Contracts.csproj" />
+  </ItemGroup>
+</Project>

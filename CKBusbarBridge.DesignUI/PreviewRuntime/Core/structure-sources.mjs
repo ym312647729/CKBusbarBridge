@@ -1,0 +1,2 @@
+export const baseTemplatePaths={Base:'模板/基座模板/基座/5GX.355.020.SLDASM',ElevatedBase:'模板/基座模板/增高基座/5GX.355.021.SLDASM',Base1:'模板/基座模板/侧对侧基座1/5GX.355.030.SLDASM',Base2:'模板/基座模板/侧对侧基座2/5GX.355.031.SLDASM'};
+export const frameTemplatePaths={Regular024:'模板/基架模板/常规基架/5GX.355.024.SLDASM',FaceToFaceSmallOffset032:'模板/基架模板/小偏移基架/5GX.355.032.SLDASM',FaceToFaceLargeOffsetCorner028:'模板/基架模板/大偏移基架/5GX.355.028.SLDASM',FaceToWallLarge1:'模板/基架模板/大基架1/5GX.355.026.SLDASM',FaceToWallLarge2:'模板/基架模板/大基架2/5GX.355.027.SLDASM',SideToSidePhaseChange029:'模板/基架模板/侧对侧换相基架/5GX.355.029.SLDASM'};

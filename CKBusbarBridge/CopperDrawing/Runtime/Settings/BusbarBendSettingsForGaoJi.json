@@ -1,0 +1,827 @@
+[
+  {
+    "FactoryName": "高机(V7.02)",
+    "BusbarBendSettingsForGaoJiInfos": [
+      {
+        "BusbarThickness": 3.0,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 40,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 4.0,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 40,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 5.0,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 40,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 6.0,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 10,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 6.5,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 40,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 7.0,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 40,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 8.0,
+        "TumoR": 10,
+        "AoMoJieYuan": 20,
+        "TumoJieJu": 80,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 10.0,
+        "TumoR": 10,
+        "AoMoJieYuan": 20,
+        "TumoJieJu": 80,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 12.0,
+        "TumoR": 10,
+        "AoMoJieYuan": 20,
+        "TumoJieJu": 80,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 15.0,
+        "TumoR": 10,
+        "AoMoJieYuan": 20,
+        "TumoJieJu": 80,
+        "XiuZhengValue": 0
+      }
+    ]
+  },
+  {
+    "FactoryName": "高机(V2021)",
+    "BusbarBendSettingsForGaoJiInfos": [
+      {
+        "BusbarThickness": 3.0,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 40,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 4.0,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 40,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 5.0,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 40,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 6.0,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 40,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 6.5,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 40,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 7.0,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 40,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 8.0,
+        "TumoR": 10,
+        "AoMoJieYuan": 20,
+        "TumoJieJu": 80,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 10.0,
+        "TumoR": 10,
+        "AoMoJieYuan": 20,
+        "TumoJieJu": 80,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 12.0,
+        "TumoR": 10,
+        "AoMoJieYuan": 20,
+        "TumoJieJu": 80,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 15.0,
+        "TumoR": 10,
+        "AoMoJieYuan": 20,
+        "TumoJieJu": 80,
+        "XiuZhengValue": 0
+      }
+    ]
+  },
+  {
+    "FactoryName": "高机(V1.0)",
+    "BusbarBendSettingsForGaoJiInfos": [
+      {
+        "BusbarThickness": 3.0,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 40,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 4.0,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 40,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 5.0,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 40,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 6.0,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 40,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 6.5,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 40,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 7.0,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 40,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 8.0,
+        "TumoR": 10,
+        "AoMoJieYuan": 20,
+        "TumoJieJu": 85,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 10.0,
+        "TumoR": 10,
+        "AoMoJieYuan": 20,
+        "TumoJieJu": 85,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 12.0,
+        "TumoR": 10,
+        "AoMoJieYuan": 20,
+        "TumoJieJu": 85,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 15.0,
+        "TumoR": 10,
+        "AoMoJieYuan": 20,
+        "TumoJieJu": 85,
+        "XiuZhengValue": 0
+      }
+    ]
+  },
+  {
+    "FactoryName": "高机(V1.0#9)",
+    "BusbarBendSettingsForGaoJiInfos": [
+      {
+        "BusbarThickness": 3.0,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 40,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 4.0,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 40,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 5.0,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 40,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 6.0,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 40,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 6.5,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 40,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 7.0,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 40,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 8.0,
+        "TumoR": 10,
+        "AoMoJieYuan": 20,
+        "TumoJieJu": 80,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 10.0,
+        "TumoR": 10,
+        "AoMoJieYuan": 20,
+        "TumoJieJu": 80,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 12.0,
+        "TumoR": 10,
+        "AoMoJieYuan": 20,
+        "TumoJieJu": 80,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 15.0,
+        "TumoR": 10,
+        "AoMoJieYuan": 20,
+        "TumoJieJu": 80,
+        "XiuZhengValue": 0
+      }
+    ]
+  },
+  {
+    "FactoryName": "高机(V1.0#19)",
+    "BusbarBendSettingsForGaoJiInfos": [
+      {
+        "BusbarThickness": 3.0,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 40,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 4.0,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 40,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 5.0,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 40,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 6.0,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 40,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 6.5,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 40,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 7.0,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 40,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 8.0,
+        "TumoR": 10,
+        "AoMoJieYuan": 20,
+        "TumoJieJu": 80,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 10.0,
+        "TumoR": 10,
+        "AoMoJieYuan": 20,
+        "TumoJieJu": 80,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 12.0,
+        "TumoR": 10,
+        "AoMoJieYuan": 20,
+        "TumoJieJu": 80,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 15.0,
+        "TumoR": 10,
+        "AoMoJieYuan": 20,
+        "TumoJieJu": 80,
+        "XiuZhengValue": 0
+      }
+    ]
+  },
+  {
+    "FactoryName": "博融",
+    "BusbarBendSettingsForGaoJiInfos": [
+      {
+        "BusbarThickness": 3.0,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 40,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 4.0,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 40,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 5.0,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 40,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 6.0,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 40,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 6.5,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 40,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 7.0,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 40,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 8.0,
+        "TumoR": 10,
+        "AoMoJieYuan": 20,
+        "TumoJieJu": 80,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 10.0,
+        "TumoR": 10,
+        "AoMoJieYuan": 20,
+        "TumoJieJu": 80,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 12.0,
+        "TumoR": 10,
+        "AoMoJieYuan": 20,
+        "TumoJieJu": 80,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 15.0,
+        "TumoR": 10,
+        "AoMoJieYuan": 20,
+        "TumoJieJu": 80,
+        "XiuZhengValue": 0
+      }
+    ]
+  },
+  {
+    "FactoryName": "慧工云c3d",
+    "BusbarBendSettingsForGaoJiInfos": [
+      {
+        "BusbarThickness": 3.0,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 40,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 4.0,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 40,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 5.0,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 40,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 6.0,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 40,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 6.5,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 40,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 7.0,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 40,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 8.0,
+        "TumoR": 10,
+        "AoMoJieYuan": 20,
+        "TumoJieJu": 80,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 10.0,
+        "TumoR": 10,
+        "AoMoJieYuan": 20,
+        "TumoJieJu": 80,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 12.0,
+        "TumoR": 10,
+        "AoMoJieYuan": 20,
+        "TumoJieJu": 80,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 15.0,
+        "TumoR": 10,
+        "AoMoJieYuan": 20,
+        "TumoJieJu": 80,
+        "XiuZhengValue": 0
+      }
+    ]
+  },
+  {
+    "FactoryName": "高机(V1.0#5.7 7模具)",
+    "BusbarBendSettingsForGaoJiInfos": [
+      {
+        "BusbarThickness": 3.0,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 40,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 4.0,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 40,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 5.0,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 40,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 6.0,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 40,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 6.5,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 40,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 7.0,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 40,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 8.0,
+        "TumoR": 10,
+        "AoMoJieYuan": 20,
+        "TumoJieJu": 80,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 10.0,
+        "TumoR": 10,
+        "AoMoJieYuan": 20,
+        "TumoJieJu": 80,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 12.0,
+        "TumoR": 10,
+        "AoMoJieYuan": 20,
+        "TumoJieJu": 80,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 15.0,
+        "TumoR": 10,
+        "AoMoJieYuan": 20,
+        "TumoJieJu": 80,
+        "XiuZhengValue": 0
+      }
+    ]
+  },
+  {
+    "FactoryName": "高机(V1.0#5.7 8模具)",
+    "BusbarBendSettingsForGaoJiInfos": [
+      {
+        "BusbarThickness": 3.0,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 40,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 4.0,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 40,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 5.0,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 40,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 6.0,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 40,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 6.5,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 40,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 7.0,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 40,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 8.0,
+        "TumoR": 10,
+        "AoMoJieYuan": 20,
+        "TumoJieJu": 80,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 10.0,
+        "TumoR": 10,
+        "AoMoJieYuan": 20,
+        "TumoJieJu": 80,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 12.0,
+        "TumoR": 10,
+        "AoMoJieYuan": 20,
+        "TumoJieJu": 80,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 15.0,
+        "TumoR": 10,
+        "AoMoJieYuan": 20,
+        "TumoJieJu": 80,
+        "XiuZhengValue": 0
+      }
+    ]
+  },
+  {
+    "FactoryName": "金方圆MZ40",
+    "BusbarBendSettingsForGaoJiInfos": [
+      {
+        "BusbarThickness": 3.0,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 63,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 4.0,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 63,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 5.0,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 63,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 6.0,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 63,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 6.5,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 63,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 7.0,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 63,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 8.0,
+        "TumoR": 10,
+        "AoMoJieYuan": 20,
+        "TumoJieJu": 63,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 10.0,
+        "TumoR": 10,
+        "AoMoJieYuan": 20,
+        "TumoJieJu": 63,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 12.0,
+        "TumoR": 10,
+        "AoMoJieYuan": 20,
+        "TumoJieJu": 63,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 15.0,
+        "TumoR": 10,
+        "AoMoJieYuan": 20,
+        "TumoJieJu": 63,
+        "XiuZhengValue": 0
+      }
+    ]
+  },
+  {
+    "FactoryName": "力建XML",
+    "BusbarBendSettingsForGaoJiInfos": [
+      {
+        "BusbarThickness": 3.0,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 63,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 4.0,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 63,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 5.0,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 63,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 6.0,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 63,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 6.5,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 63,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 7.0,
+        "TumoR": 5,
+        "AoMoJieYuan": 8,
+        "TumoJieJu": 63,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 8.0,
+        "TumoR": 10,
+        "AoMoJieYuan": 20,
+        "TumoJieJu": 63,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 10.0,
+        "TumoR": 10,
+        "AoMoJieYuan": 20,
+        "TumoJieJu": 63,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 12.0,
+        "TumoR": 10,
+        "AoMoJieYuan": 20,
+        "TumoJieJu": 63,
+        "XiuZhengValue": 0
+      },
+      {
+        "BusbarThickness": 15.0,
+        "TumoR": 10,
+        "AoMoJieYuan": 20,
+        "TumoJieJu": 63,
+        "XiuZhengValue": 0
+      }
+    ]
+  }
+]
