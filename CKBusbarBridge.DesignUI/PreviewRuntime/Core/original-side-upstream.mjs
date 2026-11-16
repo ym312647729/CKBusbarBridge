@@ -16,7 +16,7 @@ export async function buildOriginalSideUpstream(project,read,{kernel}={}){
   const design=(await buildDesignExport(clean,{readTemplate:read})).design,record=design.inputs,values=record.values,base1=values['General.CabinetTopOpeningMode']==='LeftRight';
   const fronts=['A','B'].map(side=>{const prefix=side+'Cabinet';if(values[prefix+'.FrontHole.IsEnabled']===values[prefix+'.BackHole.IsEnabled'])throw new DefinitionError(side+'柜必须且只能启用一个柜顶孔');return values[prefix+'.FrontHole.IsEnabled'];});
   if(fronts[0]!==fronts[1])throw new DefinitionError('侧对侧当前只允许前↔前、后↔后连接，不能交叉连接柜顶孔');
-  const position=fronts[0]?'前':'后',cabinetSource=await read(design.cabinet.templatePath),derived=await deriveCabinetScene(cabinetSource,design.cabinet.configuration,project.scenario,record,read),root=derived.template.configurations.find(row=>row.name===design.cabinet.configuration),nominals=[],fields=[],sides=[];
+  const position=fronts[0]?'前':'后',cabinetSource=await read(design.cabinet.templatePath),derived=await deriveCabinetScene(cabinetSource,design.cabinet.configuration,project.scenario,record,read),root=derived.template.configurations.find(row=>row.name===design.cabinet.configuration),nominals=[],fields=[],sides=[],basePreviewPoses=[];
   const fieldsPoint=(name,value,source)=>value.forEach((component,index)=>fields.push({name:name+'XYZ'[index],value:String(component)+' mm',source}));
   async function structure(model){
     const source=await read(model.templatePath),original=source.configurations.find(row=>row.name===model.configuration),configuration=structuredClone(original),graph=one(model.structure.models.filter(row=>row.templatePath===model.templatePath&&row.configuration===model.configuration),'基座受驱尺寸');
@@ -31,10 +31,12 @@ export async function buildOriginalSideUpstream(project,read,{kernel}={}){
     const prefix=side+'Cabinet',group=one(design.cabinet.groups.filter(row=>row.group===prefix),side+'柜参数组'),component=one(root.components.filter(row=>row.name===group.instancePath[0]),side+'柜实例'),child=await derived.loadTemplate(component.path),body=one(child.configurations.find(row=>row.name===component.configuration).components.filter(row=>row.name===group.instancePath[1]),side+'柜体实例'),bodyPose=multiplyMatrix(swMatrix(component.transform),swMatrix(body.transform));
     nominals.push({id:'cabinet-'+side.toLowerCase(),name:side+'柜',kind:'Cabinet',pose:bodyPose,center:[0,0,0],dimensions:[values[prefix+'.CabinetDepth'],values[prefix+'.CabinetHeight'],values[prefix+'.CabinetWidth']]});
     const base=bases[index],globals=base.model.globalVariables,openingLocal=base.coordinate('基座安装坐标系').slice(12,15);
+    basePreviewPoses.push({positionName:base.model.positionName,role:'base',transform:multiplyMatrix(nativeSceneToPreview,base.pose)});
     nominals.push({id:'base-'+side.toLowerCase(),name:side+'侧普通基座',kind:'Base',pose:base.pose,center:[openingLocal[0]-globals['基座深']/2,openingLocal[1]-(globals['基座高']-globals['基座开孔高度'])/2,openingLocal[2]],dimensions:[globals['基座深'],globals['基座高'],globals['基座宽']]});
     let raised=null;
     if(!base1){
       raised=await structure(one(design.bases.models.filter(row=>row.positionName===base.model.positionName&&row.kind==='ElevatedBase'),side+'柜增高基座'));
+      basePreviewPoses.push({positionName:raised.model.positionName,role:'elevated',transform:multiplyMatrix(nativeSceneToPreview,raised.pose)});
       const lower=raised.coordinate('下'),upper=raised.coordinate('上'),height=raised.model.globalVariables['高度'],depth=raised.model.globalVariables['深度'],width=raised.model.globalVariables['宽度'];
       for(const [matrix,x]of [[lower,height/2],[upper,-height/2]]){
         if([0,1,0,-1,0,0,0,0,1].some((value,i)=>Math.abs(value-matrix[[0,1,2,4,5,6,8,9,10][i]])>1e-6)||Math.abs(matrix[12]-x)>.01||Math.abs(matrix[13]-(-depth/2+21.5))>.01||Math.abs(matrix[14])>.01)throw new DefinitionError('增高基座上下安装坐标与原模板关系不一致');
@@ -51,5 +53,5 @@ export async function buildOriginalSideUpstream(project,read,{kernel}={}){
   }
   if(Math.abs(sides[0].openingHeight-sides[1].openingHeight)>.001)throw new DefinitionError('侧对侧A/B柜同位置基架高度必须相同');
   const specification=/^\s*(\d+(?:\.\d+)?)\s*[xX×*]\s*(\d+(?:\.\d+)?)\s*$/.exec(values['General.BusbarSpec']);if(!specification)throw new DefinitionError('中间排规格缺少原排宽或板厚');
-  return {version:'original-design-upstream/1',scenario:'side-to-side',modelName:project.name||'母线桥',rootCount:values['General.SinglePhaseRootCount'],fields,coordinates,nominals,sides,position,fixedPhaseChange:base1,cabinetEccentricity:values['General.CabinetEccentricity'],phaseSpacing:values['General.ExposedBusbarPhaseSpacing'],width:Number(specification[1]),thickness:Number(specification[2]),clearance:values['General.InsulationDistance'],frameInsulatorBodyHeight:Math.round((values['General.InsulatorHeight']-25+(base1?6:0))*1000)/1000,source:'original side-to-side upstream reader / driven sidecar datums'};
+  return {version:'original-design-upstream/1',scenario:'side-to-side',modelName:project.name||'母线桥',rootCount:values['General.SinglePhaseRootCount'],fields,coordinates,nominals,sides,basePreviewPoses,position,fixedPhaseChange:base1,cabinetEccentricity:values['General.CabinetEccentricity'],phaseSpacing:values['General.ExposedBusbarPhaseSpacing'],width:Number(specification[1]),thickness:Number(specification[2]),clearance:values['General.InsulationDistance'],frameInsulatorBodyHeight:Math.round((values['General.InsulatorHeight']-25+(base1?6:0))*1000)/1000,source:'original side-to-side upstream reader / driven sidecar datums'};
 }

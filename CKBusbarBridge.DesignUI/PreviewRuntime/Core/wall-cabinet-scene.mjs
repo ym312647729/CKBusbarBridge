@@ -1,6 +1,6 @@
 import {assignCabinetRenderRoles} from './cabinet-render-roles.mjs';
 import {DefinitionError,solveEquations} from './expressions.mjs';
-import {buildFixedCabinetCopper} from './cabinet-fixed-copper.mjs';
+import {buildFixedCabinetCopper,cabinetRoofConductors} from './cabinet-fixed-copper.mjs';
 import {equationInitialValues,resolveDimensionReference} from './equation-context.mjs';
 import {buildWallBushingDesign,wallBushingEquationInitialValues,bindWallBushingExternalDimensions} from './wall-bushing-design.mjs';
 import {deriveWallBushing,wallBushingDimensionParameters} from './wall-bushing-preview.mjs';
@@ -97,5 +97,6 @@ export async function deriveWallCabinetScene(sourceTemplate,configurationName,re
   for(const [name,label]of [['General.WallHoleWidth','墙洞开口宽度'],['General.WallHoleHeight','墙洞开口高度']]){const value=values[name],edges=wallProfile.sketch.segments.filter(segment=>!segment.construction&&segment.type===0&&Math.abs(Math.hypot(...segment.geometry.end.map((coordinate,axis)=>coordinate-segment.geometry.start[axis]))*1000-value)<1e-5).map(segment=>[segment.geometry.start,segment.geometry.end].map(point=>transformPoint(point.map(coordinate=>coordinate*1000),wallPlacement)));if(!edges.length)throw new DefinitionError('墙洞业务尺寸没有原孔轮廓边');parameters.push({name,label,value,editable:true,annotationComponentChain:[wallComponent.name],annotationEdges:edges,source:'native-wall-opening-edge-bound-to-original-ui-group'});}
   diagnostics.push({message:'面对墙基座、自由铜排及接口属于后续业务组，尚未生成'});
   const fixedCopper=values['General.ExposedBusbarPhaseSpacing']?await buildFixedCabinetCopper({scenario:'face-to-wall',record,children:[{childSource,bodyComponent,body,prefix:'Cabinet',component:childComponent}],rootConfiguration:configuration,read}):null;
-  return {template,loadTemplate:read,parameters,fixedCopper,evidence:[...evidence,{rootInstallation:installation,globals,dimensionValues}],diagnostics,source:'original-wall-cabinet-profiles-and-captured-mates',nativeGeometryEquivalenceVerified:false};
+  const roofConductors=new Map([[bodyComponent.path,cabinetRoofConductors(fixedCopper,childComponent.name,placement)]]);
+  return {template,loadTemplate:read,parameters,fixedCopper,roofConductors,evidence:[...evidence,{rootInstallation:installation,globals,dimensionValues}],diagnostics,source:'original-wall-cabinet-profiles-and-captured-mates',nativeGeometryEquivalenceVerified:false};
 }

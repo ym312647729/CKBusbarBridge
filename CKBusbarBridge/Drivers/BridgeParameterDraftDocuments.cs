@@ -228,6 +228,7 @@ namespace CKBusbarBridge.Drivers
         private object _parameters;
         private bool _computing, _queued, _disposed, _suspended, _installing, _detached, _drawFailed;
         private bool _parametersDirty;
+        private string _lastInspectionWarning;
         private bool _recommendRequested;
         private bool _viewFitted;
         private readonly List<TaskCompletionSource<bool>> _readyWaiters = new List<TaskCompletionSource<bool>>();
@@ -576,7 +577,7 @@ namespace CKBusbarBridge.Drivers
                         if (_parametersDirty && _editor?.Editor.CurrentSample != null && _previousUpstream != null)
                         {
                             if (_editor.HasPendingInput) { _timer.Start(); return false; }
-                            if (Session.Scenario == "face-to-face") cabinetOnlyFrame = frame;
+                            cabinetOnlyFrame = frame;
                             var recommendation = _recommendRequested;
                             UpdateEditor(upstream, logicalUpstream); _parametersDirty = false; _recommendRequested = false;
                             _bridgeGeometry = ExportBridgeGeometry(_editor.Editor, upstream);
@@ -586,7 +587,7 @@ namespace CKBusbarBridge.Drivers
                         }
                         if (_parametersDirty && _editor == null && !string.IsNullOrWhiteSpace(_recipe))
                         {
-                            if (Session.Scenario == "face-to-face") cabinetOnlyFrame = frame;
+                            cabinetOnlyFrame = frame;
                             if (_previousUpstream == null) throw new InvalidOperationException("桥体草稿缺少原参数接口基线。");
                             var offlineEditor = new BusbarBridgeDraftEditor(); offlineEditor.Load(RestoreRecipe(_previousUpstream));
                             var planner = new BridgeCabinetPlanBuilder(authorization: CKBusbarBridge.Services.BusbarWorkerAuthorization.Resolve);
@@ -604,7 +605,14 @@ namespace CKBusbarBridge.Drivers
                         _viewport.Install(frame); _viewport.IsStale = false; SelectionChanged(this, EventArgs.Empty); _viewport.RequestRedraw();
                         if (!_viewFitted) { Fit(frame); _viewFitted = true; }
                         _logicalUpstream = (JObject)response["upstream"]; _previousUpstream = upstream; ParametersChanged?.Invoke(this, EventArgs.Empty);
-                        if (_editor != null) { _editor.NativePreviewBusy = false; _editor.GenerationBlocked = false; }
+                        if (_editor != null)
+                        {
+                            var inspection = (string)response["inspectionWarning"];
+                            _editor.NativePreviewBusy = false; _editor.GenerationBlocked = !string.IsNullOrEmpty(inspection);
+                            if (!string.IsNullOrEmpty(inspection) || _editor.Message == _lastInspectionWarning)
+                                _editor.Message = inspection ?? string.Empty;
+                            _lastInspectionWarning = inspection;
+                        }
                         return _queued && !_disposed;
                     }).Task.ConfigureAwait(false);
                     if (!repeat) break;

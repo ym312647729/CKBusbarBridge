@@ -4,10 +4,14 @@ import {createInsulatorDraft} from './insulator-planning.mjs';
 import {evaluatePreview} from './preview-quality.mjs';
 import {swMatrix,inverseRigidMatrix,transformPoint,multiplyMatrix} from './geometry.mjs';
 import {solveAssemblyTranslations} from './assembly-translations.mjs';
-import {ribbedInsulator,supportRailTemplate} from './fixed-structure-templates.mjs';
+import {ribbedInsulator,supportBracketHalfDepth,supportRailTemplate} from './fixed-structure-templates.mjs';
 
 const shifted=(matrix,delta)=>{const updated=[...matrix];for(let axis=0;axis<3;axis++)updated[12+axis]+=delta[axis];return updated;};
 const one=(rows,label)=>{if(rows.length!==1)throw new DefinitionError(label+'未唯一对应');return rows[0];};
+
+export function fixedInsulatorBody(kernel,height,segments){
+  return ribbedInsulator(kernel,{min:[-50,0,-50],max:[50,height,50]},height,segments);
+}
 
 export async function deriveInsulatorAssembly(input,read){
   const recipe=await buildUniversalInsulatorDesign(input,read),root=await read(universalInsulatorTemplatePath),sourceBody=await read(recipe.shared.body.templatePath),sourcePad=await read(recipe.shared.pads.templatePath),sourceChild=await read(recipe.shared.templatePath),childConfiguration=structuredClone(sourceChild.configurations.find(configuration=>configuration.name===recipe.shared.configuration));
@@ -37,16 +41,15 @@ export async function evaluateInsulatorDesign(kernel,input,read,settings={}){
     const top=root.configurations.find(configuration=>configuration.name===recipe.configuration);
     const bracketComponent=top.components.find(component=>component.id===recipe.bracket.componentId);
     const halfLength=recipe.bracket.lengthMm/2,bodyHeight=recipe.shared.body.heightMm;
-    const rail=supportRailTemplate(kernel,{min:[-50,-25,-halfLength],max:[50,0,halfLength]},recipe.layout,recipe.bracket.useLBracket);
+    const rail=supportRailTemplate(kernel,{min:[-supportBracketHalfDepth,-25,-halfLength],max:[supportBracketHalfDepth,0,halfLength]},recipe.layout,recipe.bracket.useLBracket);
     for(const solid of rail.solids){solidSources.push({path:'fixed-support',componentChain:[bracketComponent.name],bodyIndex:solidSources.length,appearanceRole:'bracket',previewMaterial:'bracket'});solids.push(solid);}
-    const bodyBounds={min:[-50,0,-50],max:[50,bodyHeight,50]};
     for(const group of recipe.groups.filter(group=>!group.suppressed)){
       const sourceGroup=top.components.find(component=>component.id===group.componentId),groupPlacement=swMatrix(sourceGroup.transform);groupPlacement[14]=recipe.layout.groupLocalZ[group.group-1];
       for(const component of childConfiguration.components){const isBody=component.id===recipe.shared.body.componentId,role=recipe.shared.pads.roles.find(role=>role.componentId===component.id);if(!isBody&&!role?.enabled)continue;
         const motion=solution.translations.find(row=>row.componentId===component.id),componentPlacement=shifted(swMatrix(component.transform),motion?.delta??[0,0,0]),copies=isBody?0:recipe.shared.pads.stackPattern.copiesPerEnabledSeed;
         for(let copy=0;copy<=copies;copy++){
           const placement=multiplyMatrix(groupPlacement,shifted(componentPlacement,[0,copy*recipe.shared.pads.stackPattern.spacingMm,0]));
-          const generated=isBody?[ribbedInsulator(kernel,bodyBounds,recipe.shared.body.heightMm,settings.complexArcSegments??settings.arcSegments??24)]:
+          const generated=isBody?[fixedInsulatorBody(kernel,bodyHeight,settings.complexArcSegments??settings.arcSegments??24)]:
             parts[0].solids.map(source=>source.scale([1,thicknessRatio,1]));
           try{for(const solid of generated){solids.push(solid.transform(placement));solidSources.push({path:isBody?'fixed-insulator':sourcePad.source.path,componentChain:[sourceGroup.name,component.name],bodyIndex:solidSources.length,patternCopy:copy,appearanceRole:isBody?'insulator':'pad',previewMaterial:isBody?'insulator':'pad'});}}
           finally{generated.forEach(solid=>solid.delete());}

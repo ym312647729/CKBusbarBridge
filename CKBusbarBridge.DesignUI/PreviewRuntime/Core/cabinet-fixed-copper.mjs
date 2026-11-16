@@ -10,6 +10,17 @@ const direction=(vector,matrix)=>sub(transformPoint(vector,matrix),transformPoin
 const cross=(a,b)=>[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]];
 const canonical=name=>name.split('@').slice(0,-1).join('@');
 
+export function cabinetRoofConductors(fixedCopper,rootComponentName,bodyPose){
+  const inverse=inverseRigidMatrix(bodyPose);
+  return (fixedCopper?.bars??[]).filter(bar=>bar.source.componentChain[0]===rootComponentName).map(bar=>{
+    const {data,segments}=planFreeCopper(bar.freeCopper),segment=segments[0];
+    if(segments.length!==1)throw new DefinitionError('柜顶让位口需要原伸出排的直段截面');
+    const width=direction(segment.width,inverse),thickness=direction(segment.thickness,inverse);
+    return {points:data.points.map(point=>transformPoint(point,inverse)),
+      halfExtent:width.map((value,axis)=>(Math.abs(value)*data.widthMm+Math.abs(thickness[axis])*data.thicknessMm)/2)};
+  });
+}
+
 // The cabinet's outgoing bars are fixed design products. The captured shape
 // sketch supplies their drawing line; original cabinet mates locate the group.
 // No manually entered route or new copper template is required.

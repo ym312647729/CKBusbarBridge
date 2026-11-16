@@ -21,6 +21,8 @@ msbuild CKBusbarBridge.sln /restore /t:Build /p:RestorePackagesConfig=true /p:Co
 
 SolidWorks 的面对面常规预览中，基架骨架在顶板、侧板和底板内侧。外壳两端根据已安装基座的顶面和左右侧面定位；两端宽度不同时外壳平滑衔接，不改铜排或支撑坐标。基座与基架侧板按中压预览的冲压百叶样式生成向下的开口。A、B 柜的基座总高分别沿用各自参数，包含顶盖。若两端接口不再等高，视口仍显示当前柜体与基座，并暂停显示旧桥体，直到参数允许重新规划。增量编译后可运行 `node tools/Test-FacingRegularPreview.mjs --solidworks-preview` 离线核查 SolidWorks 预览几何，无需启动 SolidWorks 或浏览器。
 
+换相、小偏移、大偏移、侧对侧和面对墙也使用同一套实体板件。小偏移与面对墙宽高过渡保留端部封板和有效通口；大偏移拐角保留两个相邻通口；侧装换相架根据模板姿态转换顶、底和侧板。侧对侧基座使用铜排规划已确认的同一套安装坐标，增高基座保留贯通。运行 `node tools/Test-StructurePreviewVariants.mjs` 可离线核对各模板外壳、通口及板件干涉。桥体的绝缘净距和干涉不足会显示在设计窗口；保留原母线规划和净距标准。
+
 ## 面对面常规虚拟测试
 
 Debug 增量编译解决方案后，启动 `CKBusbarBridge.WebTest/bin/Debug/net48/CKBusbarBridge.WebTest.exe`。程序只监听本机回环地址并打开默认浏览器；关闭控制台即退出。参数页复用柜体业务字段，三维视图支持中键旋转、Ctrl + 中键平移、滚轮缩放、视图切换和双击尺寸修改。模型页可分组或逐件隐藏、隔离显示及恢复全部。屋面和地面等环境参照默认隐藏；基座和基架的平盖板默认显示，可在「模型 → 盖板」独立开关。

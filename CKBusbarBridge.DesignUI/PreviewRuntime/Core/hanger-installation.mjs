@@ -1,6 +1,6 @@
 import {DefinitionError} from './expressions.mjs';
 import {hangerRules} from './hanger-planning.mjs';
-import {swMatrix,inverseRigidMatrix,multiplyMatrix} from './geometry.mjs';
+import {swMatrix,inverseRigidMatrix,multiplyMatrix,transformPoint} from './geometry.mjs';
 import {validateInstallationMatrix} from './installation-pose.mjs';
 export const hangerTemplatePath='模板/吊杆模板/5GX.000.001.SLDASM';
 
@@ -40,4 +40,30 @@ export function resolveHangerInstances(objects,drafts){
     if(used.has(key))throw new DefinitionError('同一位置不能重复安装受控吊杆');used.add(key);
     return {...object,...createHangerInstances({...draft,plans:[plan]},reference,[object])[0],id:object.id,name:object.name,visible:object.visible};
   });
+}
+
+// Keep the lower attachment and planned component pose. The generated rods
+// stop under the lowest actual horizontal roof part they cross, including an
+// intersecting secondary beam absent from the primary roof datum.
+export function installedHangerHeights(objects,results){
+  const roofParts=objects.filter(object=>object.cabinetBinding).flatMap(object=>
+    (results.get(object.id)?.meshes??[]).filter(mesh=>['beam','roof'].includes(mesh.partSource?.appearanceRole))
+      .map(mesh=>({mesh,pose:mesh.partSource?.transform?multiplyMatrix(object.transform,mesh.partSource.transform):object.transform})));
+  const fitted=new Map();
+  for(const object of objects.filter(object=>object.hangerDimensions)){
+    const {width,angleLength}=object.hangerDimensions,original=angleLength+hangerRules.fixedHeight;
+    const inv=inverseRigidMatrix(multiplyMatrix(object.transform,object.hangerBinding.templateReference.localTransform));
+    let height=original;
+    for(const {mesh,pose} of roofParts){
+      const transform=multiplyMatrix(inv,pose),points=mesh.outlinePositions,low=[Infinity,Infinity,Infinity],high=[-Infinity,-Infinity,-Infinity];
+      for(let index=0;index<points.length;index+=3)for(const [axis,value] of transformPoint(points.slice(index,index+3),transform).entries()){
+        low[axis]=Math.min(low[axis],value);high[axis]=Math.max(high[axis],value);
+      }
+      const halfSpan=width/2+100;
+      if(low[0]<30&&high[0]>-30&&low[2]<halfSpan&&high[2]>-halfSpan&&low[1]>24)
+        height=Math.min(height,low[1]);
+    }
+    if(original-height>.001)fitted.set(object.id,height);
+  }
+  return fitted;
 }

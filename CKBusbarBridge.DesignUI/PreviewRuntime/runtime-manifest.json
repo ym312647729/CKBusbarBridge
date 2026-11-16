@@ -1,7 +1,7 @@
 {
   "schema": "dq-preview-runtime-manifest/1",
   "calculatorVersion": "dq-sw-mesh/1",
-  "packageSha256": "188319442e10d292419ddf8cb2e662c7fd3e22482c8790c4cb0448bed2ef3605",
+  "packageSha256": "0504a460f7f7561fa2d4e2103e2619b59fa1518f4c6d799d6a33ab2c72c862f9",
   "reference": {
     "project": "CKBusbarBridgeVirtualDesigner",
     "commit": "511d64b1248e1c26bf27430e9016fecdc5e9ce5f",
@@ -77,7 +77,7 @@
     },
     {
       "path": "Core/cabinet-binding.mjs",
-      "sha256": "6a40fd75448f514cfd3cbbfd0276710d6095648c6462c8a9d0a8ea3a6337a3e1"
+      "sha256": "eb7ccfd4c953c565c7de496f3803702882eabae9a07976ec37c11cec49744aea"
     },
     {
       "path": "Core/cabinet-body.mjs",
@@ -85,7 +85,7 @@
     },
     {
       "path": "Core/cabinet-fixed-copper.mjs",
-      "sha256": "8842f0797446e350bc9c776a3e983dbe981db22efb6a5de2b0cc10058f68c10c"
+      "sha256": "5858ec0c1c3b999915c8d901a73a6a401a00fc5d3dc11d5de1179b7443696094"
     },
     {
       "path": "Core/cabinet-mount-coordinates.mjs",
@@ -105,7 +105,7 @@
     },
     {
       "path": "Core/cabinet-scene.mjs",
-      "sha256": "e584b37eaf50b4eb3972ee1f3e2f8aa8f5f6709ba97afa024585098ca3610620"
+      "sha256": "194e904e59140fdc845727be2c989606665a7908fef721f9635de2e4f6ad40bf"
     },
     {
       "path": "Core/clearance-state.mjs",
@@ -193,7 +193,7 @@
     },
     {
       "path": "Core/fixed-structure-datums.mjs",
-      "sha256": "4963020f93581115f22ba34d6db93b0e21ee8b142cc88c39fed6f50bd3b48d4a"
+      "sha256": "fb90bfe2f78300b77bf945917ad11ca7d2003052b6349decdf5c83a4d2b49300"
     },
     {
       "path": "Core/fixed-structure-louvers.mjs",
@@ -201,7 +201,7 @@
     },
     {
       "path": "Core/fixed-structure-templates.mjs",
-      "sha256": "3a2fa5a812a02d0f7803855acad15ae7c78bf84ae7f308b3ab35830d72787355"
+      "sha256": "81ea0418e330c6f0d6fc8ebaa10d4802f6d22e1a87cbc3b26f045ffd618918a5"
     },
     {
       "path": "Core/frame-binding.mjs",
@@ -229,7 +229,7 @@
     },
     {
       "path": "Core/hanger-installation.mjs",
-      "sha256": "6662d600ff854cfa5dc7c52257d7a6673fccb672d3e48e9ab41dfc3f1b5d7ba8"
+      "sha256": "d4ddf836c508e51a79fff3fbc6f44baa04e6ecdee16ffc4630937726b0dde6b5"
     },
     {
       "path": "Core/hanger-planning.mjs",
@@ -253,7 +253,7 @@
     },
     {
       "path": "Core/insulator-preview.mjs",
-      "sha256": "a27305b1e398892a0fe2fe189a5e78595161a6481df25ffe742781f56bf24899"
+      "sha256": "e6d96e852f97f81d2dfc4b092b46bbe96d0eee73eb98feb1bd099a25270ee654"
     },
     {
       "path": "Core/linear-sketch-drive.mjs",
@@ -309,7 +309,7 @@
     },
     {
       "path": "Core/original-side-upstream.mjs",
-      "sha256": "d450c617ac4c589be30eea6dd10a2778a59b67b1f85e9a16fbb471babfb96fcf"
+      "sha256": "fbc26ae0996a2ccc7c0ff42500888bb09601432f6f44e94f6364a457187ae2ba"
     },
     {
       "path": "Core/original-wall-upstream.mjs",
@@ -349,7 +349,7 @@
     },
     {
       "path": "Core/regular-frame-casing.mjs",
-      "sha256": "a7cc6fd333d3734674d634440cafe29f1ef5a076e9d3eca067bb96402fa54a58"
+      "sha256": "051e903686eda3362da1e76bf9f90a2a77f9bf8fcac56eeec5f168f1e04fb0fb"
     },
     {
       "path": "Core/regular-frame-coordinates.mjs",
@@ -413,7 +413,7 @@
     },
     {
       "path": "Core/structure-preview-placement.mjs",
-      "sha256": "7c871a8e8af68e092483453cfc9c3a3de48d0be204476887540a4e4ba9c45fc2"
+      "sha256": "5b43e24c3b14f0b3a68ae1bc4b1f080e0ff26363cd9ae70bc9f670dc3d7978bb"
     },
     {
       "path": "Core/structure-sources.mjs",
@@ -437,7 +437,7 @@
     },
     {
       "path": "Core/upstream-insulator-geometry.mjs",
-      "sha256": "7ad1396ee3cdf1cbfc4e20f54ad46b31c8632bbd083089cd89a35f5b899bd34a"
+      "sha256": "f54ac0a712b5df7a50131e3cfaab59cdf6238dca6787fcfac91bbbaa761a0e90"
     },
     {
       "path": "Core/upstream-planar-faces.mjs",
@@ -465,7 +465,7 @@
     },
     {
       "path": "Core/wall-cabinet-scene.mjs",
-      "sha256": "1d1b0e22ca7fc36e7d6d8c9b4bba7e2e9c471d281ec740e4358b75c8fcb1a54e"
+      "sha256": "0cbfe2c4c9c8f3e7e37fcbfe040adad6d74feac81e8a0ccff8fc2c9d7695bf8a"
     },
     {
       "path": "Core/wall-scene-parts.mjs",
@@ -481,7 +481,7 @@
     },
     {
       "path": "session-worker.mjs",
-      "sha256": "7dba70f9e8d962dec5748bfdda081da8f0f410a6f7cc70444ae343127742d37a"
+      "sha256": "4132d8e884a79399cdbc30e0df318e3c023d770df8e4bd749393173d21a9e717"
     },
     {
       "path": "templates/模板/侧对侧模板/柜内伸出排/A柜内伸出排-A-A柜后.SLDPRT.virtual.json",
@@ -1613,7 +1613,7 @@
     },
     {
       "path": "Web/src/geometry-worker.js",
-      "sha256": "ea24212a4d385076ed4d9002003e91834a7b3d66046da5a28acc2b6cc14ac00f"
+      "sha256": "ca984c4ede28d41664f53ab9c6a464cf5084b06f7ac20818f0eeb32e4e87425f"
     },
     {
       "path": "Web/src/kernel.js",
@@ -1947,7 +1947,7 @@
     },
     {
       "path": "CKBusbarBridge/Drivers/BridgeParameterDraftDocuments.cs",
-      "sha256": "82fb9e59bbbd55cfeb1e7c62f581f9d8c6a396eab842b2b9d5fa70a7015aacf8"
+      "sha256": "3168b3066bfbf382055465e58d7853b8d264e3414d8ccd6f18ba02e1bbf00d98"
     },
     {
       "path": "CKBusbarBridge/Drivers/BridgeParameterDraftGeometry.cs",

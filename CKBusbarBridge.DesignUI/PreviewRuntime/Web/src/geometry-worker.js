@@ -11,14 +11,13 @@ import {evaluateCopperObject} from '../../Core/original-copper.mjs';
 import {deriveCabinetScene} from '../../Core/cabinet-scene.mjs';
 import {collectOriginalRoofPlanes} from '../../Core/original-roof-planes.mjs';
 import {evaluateInsulatorDraftPreview,evaluateInsulatorDesign} from '../../Core/insulator-preview.mjs';
-import {deriveStructureAssembly} from '../../Core/structure-assembly.mjs';
 import {basePreviewParameters} from '../../Core/base-binding.mjs';
 import {appendFixedCabinetCopper} from '../../Core/cabinet-fixed-copper.mjs';
 import {PreviewMeshCache} from './preview-mesh-cache.js';
 import {originalCabinetPartName} from '../../Core/cabinet-openings.mjs';
 import {cabinetNominalBounds} from '../../Core/cabinet-body.mjs';
-import {applyFixedStructureParts,baseTemplate,cabinetTemplate,frameTemplate,hangerTemplate,unionBounds} from '../../Core/fixed-structure-templates.mjs';
-import {deriveFixedStructureDatums,generateFromFixedDatums,hasFixedStructureDatums} from '../../Core/fixed-structure-datums.mjs';
+import {cabinetTemplate,hangerTemplate} from '../../Core/fixed-structure-templates.mjs';
+import {deriveFixedStructureDatums,generateFromFixedDatums} from '../../Core/fixed-structure-datums.mjs';
 const definitions=new Map(),definitionReadMetrics=new Map();
 const previewMeshCache=new PreviewMeshCache();
 let resolveCompiledKernel,rejectCompiledKernel,kernelCompilationMs;
@@ -40,7 +39,7 @@ async function loadTemplate(templatePath){
 self.onmessage=async event=>{
   if(event.data.type==='initialize-kernel'){kernelCompilationMs=event.data.initializationMs;resolveCompiledKernel(event.data.module);return;}
   if(event.data.type==='initialize-kernel-error'){rejectCompiledKernel(new Error(event.data.message));return;}
-  const {object,revision,requestId,signature,settings,purpose,casing}=event.data;
+  const {object,revision,requestId,signature,settings,purpose,casing,hangerHeight}=event.data;
   const started=performance.now(),meshCacheBefore=previewMeshCache.snapshot(),meshCacheMetrics=()=>{const current=previewMeshCache.snapshot();return {...current,hits:current.hits-meshCacheBefore.hits,misses:current.misses-meshCacheBefore.misses};};let parameters=[],coordinates={interfaces:[],diagnostics:[]},roofPlanes={complete:false,planes:[],diagnostics:[]},hangerFrame=null,interfaceReadMs=0,driveMs=0,derivedGeometry=null,businessParameters=null,fixedCopper=null;let result;
   try{
     if(['free-copper','original-copper'].includes(object.kind)){
@@ -66,12 +65,12 @@ self.onmessage=async event=>{
     }
     if(object.frameBinding||object.baseBinding){
       const driveStart=performance.now(),input=object.structurePlanInput;
-      if(hasFixedStructureDatums(object.templatePath))fixedDatums=await deriveFixedStructureDatums(sourceTemplate,object.configuration,input,loadTemplate);
-      const derived=fixedDatums??await deriveStructureAssembly(sourceTemplate,object.configuration,input.globalVariables,loadTemplate,{rootDimensions:input.rootDimensions,businessDrive:input.businessDrive});
-      template=derived.template;templateLoader=derived.loadTemplate??loadTemplate;
-      businessParameters=object.baseBinding?basePreviewParameters(input,template.configurations.find(row=>row.name===object.configuration)):derived.parameters;
-      driveMs=performance.now()-driveStart;derivedGeometry={kind:object.baseBinding?'base-model':'frame-model',installationStatus:input.installationStatus,sourceName:input.sourceName,diagnostics:derived.diagnostics??[],drivenDocuments:derived.evidence?.length??derived.graph.models.length,nativeModelValidationRequired:false,
-        ...(fixedDatums?{envelope:fixedDatums.box,port:fixedDatums.port}:{})};
+      fixedDatums=await deriveFixedStructureDatums(sourceTemplate,object.configuration,input,loadTemplate);
+      template=fixedDatums.template;
+      businessParameters=object.baseBinding?basePreviewParameters(input,template.configurations.find(row=>row.name===object.configuration)):fixedDatums.parameters;
+      driveMs=performance.now()-driveStart;derivedGeometry={kind:object.baseBinding?'base-model':'frame-model',installationStatus:input.installationStatus,sourceName:input.sourceName,
+        drivenDocuments:fixedDatums.graph.models.length,nativeModelValidationRequired:false,envelope:fixedDatums.box,
+        port:fixedDatums.port,structureKind:fixedDatums.kind,shapeToNative:fixedDatums.shapeToNative};
     }
     parameters=fixedDatums?fixedDatums.parameters:listParameters(template,object.configuration);
     if(purpose!=='interaction-lod'&&!object.insulatorBinding&&!object.structureSupportBinding){
@@ -88,26 +87,10 @@ self.onmessage=async event=>{
         roofConductors?.get(part.source.path),object.cabinetSceneInput.values['General.InsulationDistance']):null;
     }}:settings;
     result=fixedDatums?generateFromFixedDatums(kernel,fixedDatums,casing):object.hangerDimensions?hangerTemplate(kernel,object.hangerDimensions.width,
-      object.hangerDimensions.angleLength+hangerRules.fixedHeight,object.hangerBinding.templateReference.localTransform):
+      hangerHeight??(object.hangerDimensions.angleLength+hangerRules.fixedHeight),object.hangerBinding.templateReference.localTransform):
       object.structureSupportBinding?await evaluateInsulatorDesign(kernel,object.insulatorPlanInput,loadTemplate,settings):
       object.insulatorBinding?await evaluateInsulatorDraftPreview(kernel,object.insulatorPlanInput,loadTemplate,settings):
       await evaluatePreview(kernel,template,object.configuration,object.parameters,previewSettings,templateLoader);
-    if(!fixedDatums&&(object.frameBinding||object.baseBinding)){
-      const bounds=unionBounds(result.solids);
-      const input=object.structurePlanInput;
-      const port=coordinates.interfaces.find(row=>row.componentChain.length===0&&row.featureName==='基座安装坐标系')?.localTransform?.slice(12,15);
-      const mounts=coordinates.interfaces.flatMap(row=>{
-        if(row.componentChain.length)return [];
-        const match=/^绝缘子(支架|吊装)坐标系([1-3])$/.exec(row.featureName);
-        if(!match)return [];
-        const suspended=match[1]==='吊装',key='D'+match[2]+'@绝缘子吊装控制草图';
-        if(suspended!==Object.hasOwn(input.rootDimensions,key)||
-          !Object.hasOwn(input.rootDimensions,'D'+match[2]+'@草图3'))return [];
-        return [{point:row.localTransform.slice(12,15),suspended}];
-      });
-      applyFixedStructureParts(result,object.frameBinding?frameTemplate(kernel,bounds,mounts):
-        baseTemplate(kernel,bounds,input.globalVariables['基座开孔高度'],port));
-    }
     if(fixedCopper)appendFixedCabinetCopper(kernel,result,fixedCopper,settings);
     if(object.insulatorBinding)derivedGeometry={kind:'insulator-group',plans:result.recipes,evidence:result.evidence,nativeModelValidationRequired:false};
     parameters=businessParameters??result.parameters;

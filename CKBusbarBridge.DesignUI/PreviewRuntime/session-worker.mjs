@@ -15,8 +15,8 @@ import {transformPoint} from './Core/geometry.mjs';
 import packageManifest from './runtime-manifest.json' with {type:'json'};
 import {createKernelFromModule} from './Web/src/kernel.js';
 import {measureFixedStructureClearance} from './Core/fixed-structure-clearance.mjs';
-import {fixedHangerDatumDefinition,hangerTemplatePath} from './Core/hanger-installation.mjs';
-import {facingRegularFrameCasings} from './Core/regular-frame-casing.mjs';
+import {fixedHangerDatumDefinition,hangerTemplatePath,installedHangerHeights} from './Core/hanger-installation.mjs';
+import {attachedStraightFrameCasings,facingRegularFrameCasings} from './Core/regular-frame-casing.mjs';
 
 const calculatorVersion=packageManifest.calculatorVersion+':'+packageManifest.packageSha256;
 const definitions=new Map(),shapeCache=new Map();let shapeBytes=0;
@@ -41,9 +41,9 @@ kernelModule.then(module=>geometry.postMessage({type:'initialize-kernel',module}
 geometry.onmessage=event=>{const pending=jobs.get(event.data.requestId);if(!pending)return;jobs.delete(event.data.requestId);event.data.ok?pending.resolve(event.data):pending.reject(Object.assign(new Error(event.data.error),{source:event.data.source,detail:event.data.detail}));};
 geometry.onerror=event=>{for(const pending of jobs.values())pending.reject(new Error(event.message));jobs.clear();self.postMessage({type:'fatal',ok:false,error:event.message});};
 const hash=text=>{let value=2166136261;for(let index=0;index<text.length;index++)value=Math.imul(value^text.charCodeAt(index),16777619);return (value>>>0).toString(16);};
-function evaluate(object,settings,casing){
+function evaluate(object,settings,casing,hangerHeight){
   // Full canonical inputs verify a hash hit. Revision, installation and styling are absent.
-  const canonical=geometrySignature(object)+JSON.stringify([calculatorVersion,settings.arcSegments,settings.complexArcSegments,settings.chordToleranceMm,settings.objectTriangleBudget,casing]);
+  const canonical=geometrySignature(object)+JSON.stringify([calculatorVersion,settings.arcSegments,settings.complexArcSegments,settings.chordToleranceMm,settings.objectTriangleBudget,casing,hangerHeight]);
   const key=hash(canonical),cached=shapeCache.get(key);
   if(cached?.canonical===canonical){shapeCache.delete(key);shapeCache.set(key,cached);return Promise.resolve(cached.result);}
   return new Promise((resolve,reject)=>{
@@ -54,7 +54,7 @@ function evaluate(object,settings,casing){
       if(bytes<=maxShapeBytes){while(shapeBytes+bytes>maxShapeBytes&&shapeCache.size){const oldest=shapeCache.keys().next().value;shapeBytes-=shapeCache.get(oldest).bytes;shapeCache.delete(oldest);}shapeCache.set(key,{canonical,result,bytes});shapeBytes+=bytes;}
       resolve(result);
     },reject});
-    geometry.postMessage({requestId,revision:0,object,settings,signature:canonical,purpose:'native-sw',casing});
+    geometry.postMessage({requestId,revision:0,object,settings,signature:canonical,purpose:'native-sw',casing,hangerHeight});
   });
 }
 function at(source,path){return path.split('.').reduce((object,key)=>object?.[key],source);}
@@ -104,28 +104,33 @@ async function prepare(request){
   }
   const results=new Map();
   for(const object of project.objects)results.set(object.id,await evaluate(object,project.settings));
-  const installed=structurePreviewPlacements(project,results);
+  const installed=structurePreviewPlacements(project,results,upstream.basePreviewPoses);
   if(installed.diagnostics.length)throw new Error(installed.diagnostics.map(row=>row.message).join('；'));
   for(const assignment of installed.assignments)project.objects.find(row=>row.id===assignment.objectId).transform=assignment.transform;
   const regularBridge=request.bridge&&project.scenario==='face-to-face'&&project.frameDesign?.plans.length&&
     project.frameDesign.plans.every(frame=>frame.model.templateIdentity==='Regular024');
-  const casings=regularBridge?facingRegularFrameCasings(project.objects,results):new Map();
-  for(const object of project.objects)if(casings.has(object.id))
-    results.set(object.id,await evaluate(object,project.settings,casings.get(object.id)));
+  const casings=regularBridge?facingRegularFrameCasings(project.objects,results):
+    attachedStraightFrameCasings(project.objects,results);
+  const hangerHeights=installedHangerHeights(project.objects,results);
+  for(const object of project.objects)if(casings.has(object.id)||hangerHeights.has(object.id))
+    results.set(object.id,await evaluate(object,project.settings,casings.get(object.id),hangerHeights.get(object.id)));
   const triangleTotal=()=>[...results.values()].reduce((sum,result)=>sum+result.meshes.reduce((count,mesh)=>count+mesh.triangleCount,0),0);
   // The shared scene budget refines complex faces before falling back to the existing contour display.
   if(triangleTotal()>project.settings.sceneTriangleBudget){
     const perObject=Math.max(1,Math.floor(project.settings.sceneTriangleBudget/project.objects.length));
     for(const object of project.objects){const result=results.get(object.id);if(result.preview?.complexFeatureCount&&result.preview.triangleCount>perObject)
-      results.set(object.id,await evaluate(object,{...project.settings,objectTriangleBudget:Math.min(project.settings.objectTriangleBudget,perObject)},casings.get(object.id)));}
+      results.set(object.id,await evaluate(object,{...project.settings,objectTriangleBudget:Math.min(project.settings.objectTriangleBudget,perObject)},casings.get(object.id),hangerHeights.get(object.id)));}
   }
-  const clearance=(request.checkClearance===true||regularBridge)&&request.bridge
+  const inspectBridge=!!request.bridge&&(request.checkClearance===true||project.frameDesign?.plans.length>0);
+  const knownPhases=new Set(project.objects.flatMap(object=>results.get(object.id).meshes.map(mesh=>object.phase??mesh.partSource?.phase)));
+  const clearance=inspectBridge&&['A','B','C'].every(phase=>knownPhases.has(phase))
     ?measureFixedStructureClearance(await upstreamKernel,project.objects,results,
       project.cabinetInputs[project.scenario].values['General.InsulationDistance']):null;
-  const instances=[],interactionInstances=[],warnings=[],dimensions=[],web=request.renderer==='webgl';
-  if(clearance&&!clearance.passed)warnings.push('绝缘净距不满足 '+clearance.requiredMm+
+  const instances=[],interactionInstances=[],inspection=[],warnings=[],dimensions=[],web=request.renderer==='webgl';
+  if(inspectBridge&&!clearance)inspection.push('当前草稿未形成完整三相实体，无法核对绝缘净距');
+  if(clearance&&!clearance.passed)inspection.push('绝缘净距不满足 '+clearance.requiredMm+
     ' mm：相间 '+clearance.phases.minimumMm.toFixed(2)+' mm，母线对金属 '+clearance.grounded.minimumMm.toFixed(2)+' mm');
-  if(clearance?.assembly.count)warnings.push('检测到 '+clearance.assembly.count+' 处实体装配干涉：'+
+  if(clearance?.assembly.count)inspection.push('检测到 '+clearance.assembly.count+' 处实体装配干涉：'+
     clearance.assembly.largest[0].parts.join(' ↔ '));
   const contourObjects=new Set();
   let solidTriangles=triangleTotal();
@@ -142,7 +147,7 @@ async function prepare(request){
       let interaction=result;
       if(result.preview?.complexFeatureCount&&!outline){
         const candidate=await evaluate(object,{...project.settings,complexArcSegments:12,chordToleranceMm:project.settings.chordToleranceMm*4,
-          objectTriangleBudget:Math.max(1,Math.floor(project.settings.objectTriangleBudget/4))},casings.get(object.id));
+          objectTriangleBudget:Math.max(1,Math.floor(project.settings.objectTriangleBudget/4))},casings.get(object.id),hangerHeights.get(object.id));
         if(candidate.preview.topologySignature===result.preview.topologySignature&&candidate.preview.triangleCount<result.preview.triangleCount)interaction=candidate;
       }
       interactionInstances.push(...meshInstances(object,interaction,pose,known,outline,false));
@@ -158,7 +163,8 @@ async function prepare(request){
         edges:parameter.annotationEdges.map(edge=>edge.map(point=>transformPoint(point,pose).map(Math.fround)))});
     }
   }
-  return {project,upstream,instances,interactionInstances,dimensions,clearance,warning:warnings.join('；')};
+  return {project,upstream,instances,interactionInstances,dimensions,clearance,
+    inspectionWarning:inspection.join('；'),warning:[...inspection,...warnings].join('；')};
 }
 // Only real crease/boundary edges are emitted, never triangulation diagonals.
 function contour(mesh){

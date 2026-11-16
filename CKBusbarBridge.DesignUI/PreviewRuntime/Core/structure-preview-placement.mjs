@@ -52,7 +52,7 @@ export function orderedFrameInstallationPlans(frames){
 
 // Local geometry/coordinates come from the current Worker revision. Placement
 // is derived state, so this does not create an extra user undo transaction.
-export function structurePreviewPlacements(project,results){
+export function structurePreviewPlacements(project,results,basePreviewPoses=[]){
   const assignments=[],diagnostics=[],placements=new Map();
   const objectBy=(test,label)=>{const found=project.objects.filter(test);if(found.length>1)throw new DefinitionError('结构安装对象重复：'+label);return found[0];};
   const coordinate=(object,name)=>{
@@ -66,7 +66,13 @@ export function structurePreviewPlacements(project,results){
     if(!child)return false;
     const parentPose=placements.get(parent?.id)??parent?.transform,parentCoordinate=coordinate(parent,parentName),childCoordinate=coordinate(child,childName);
     if(!parentPose||!parentCoordinate||!childCoordinate){diagnostics.push({objectId:child.id,message:'安装端点尚未就绪：'+parentName+' → '+childName});return false;}
-    let transform=coordinateInstallation(parentPose,parentCoordinate,childCoordinate);const originalInput=child.frameBinding?project.frameDesign.inputs.find(input=>input.originalObjectId===child.originalDesignBinding?.objectId):null;
+    // Side-to-side copper was planned from these same driven base poses. Do not
+    // solve the visible bases again from the schematic cabinet interface.
+    const upstreamBase=child.baseBinding&&basePreviewPoses.find(row=>
+      row.positionName===child.baseBinding.positionName&&row.role===child.baseBinding.role);
+    let transform=upstreamBase?[...upstreamBase.transform]:coordinateInstallation(parentPose,parentCoordinate,childCoordinate);
+    validateInstallationMatrix(transform);
+    const originalInput=child.frameBinding?project.frameDesign.inputs.find(input=>input.originalObjectId===child.originalDesignBinding?.objectId):null;
     if(originalInput?.originalPreviewPorts){const plan=project.frameDesign.plans.find(row=>row.positionKey===child.frameBinding.positionKey),outlet=coordinate(child,plan.outletCoordinateName);if(!outlet)return false;transform=originalFrameInstallation(originalInput,childCoordinate,outlet);}
     placements.set(child.id,transform);assignments.push({objectId:child.id,transform,parentId:parent.id,parentCoordinateName:parentName,childCoordinateName:childName,originalPlannerPorts:!!originalInput?.originalPreviewPorts});return true;
   };
