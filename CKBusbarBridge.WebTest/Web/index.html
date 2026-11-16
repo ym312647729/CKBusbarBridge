@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>母线桥 · 虚拟测试</title>
+  <link href="./dimensions.css" rel="stylesheet">
+  <link href="./workbench.css" rel="stylesheet">
+</head>
+<body>
+  <header><strong>母线桥虚拟测试</strong><span>面对面 · 常规</span><button id="settingsButton">设置</button></header>
+  <main>
+    <section id="stage" aria-label="母线桥三维预览">
+      <canvas id="viewport"></canvas>
+      <div class="tools">
+        <button data-view="iso">等轴测</button><button data-view="front">主视</button>
+        <button data-view="top">俯视</button><button data-view="side">侧视</button>
+        <button data-view="fit">适窗</button>
+        <select id="displayStyle" aria-label="显示样式">
+          <option value="edges">着色带边线</option><option value="solid">着色</option><option value="outline">轮廓线</option>
+        </select>
+        <label><input id="showDimensions" type="checkbox" checked> 尺寸</label>
+      </div>
+      <div class="controls-hint">中键旋转 · Ctrl + 中键平移 · 滚轮缩放 · 双击尺寸修改</div>
+      <div id="toast" role="status" hidden></div>
+    </section>
+    <aside>
+      <nav><button data-tab="parameters" class="active">参数</button><button data-tab="visibility">模型</button></nav>
+      <section id="parameters" class="tab">
+        <div id="fields"></div>
+      </section>
+      <section id="visibility" class="tab" hidden>
+        <div class="actions"><button id="showAll">全部显示</button><button id="isolate">仅显示选中</button></div>
+        <div id="visibilityRows"></div>
+      </section>
+      <footer><div id="report" aria-live="polite">正在加载几何内核…</div><button id="generate" class="primary" disabled>生成预览并检查净距</button></footer>
+    </aside>
+  </main>
+  <dialog id="settingsDialog">
+    <form id="settingsForm">
+      <h2>绝缘设置</h2><label>默认绝缘净距 (mm)<input id="clearance" type="number" min="0.001" step="any" required></label>
+      <p>用于当前虚拟检查和新建草稿。</p>
+      <div class="actions"><button type="button" data-close="settingsDialog">取消</button><button class="primary">保存</button></div>
+    </form>
+  </dialog>
+  <dialog id="dimensionDialog">
+    <form id="dimensionForm">
+      <h2 id="dimensionName">修改尺寸</h2><label>尺寸 (mm)<input id="dimensionValue" type="number" step="any" required></label>
+      <div class="actions"><button type="button" data-close="dimensionDialog">取消</button><button class="primary">应用</button></div>
+    </form>
+  </dialog>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

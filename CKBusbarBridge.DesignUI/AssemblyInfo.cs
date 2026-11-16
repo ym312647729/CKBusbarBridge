@@ -6,3 +6,4 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 [assembly: InternalsVisibleTo("CKBusbarBridge")]
 [assembly: InternalsVisibleTo("UnitTestProject1")]
+[assembly: InternalsVisibleTo("CKBusbarBridge.WebTest")]

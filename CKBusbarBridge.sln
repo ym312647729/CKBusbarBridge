@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RD.WebPreview.Client", "RD.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CKBusbarBridge.DesignUI", "CKBusbarBridge.DesignUI\CKBusbarBridge.DesignUI.csproj", "{73B3DCB7-012F-4E59-9609-CA1FD3FA9148}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CKBusbarBridge.WebTest", "CKBusbarBridge.WebTest\CKBusbarBridge.WebTest.csproj", "{CF5834B4-F7F2-4B1B-A302-7326D8B25065}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{C28F3045-7E41-4E29-9BAE-5D3CAE7F8062}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C28F3045-7E41-4E29-9BAE-5D3CAE7F8062}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C28F3045-7E41-4E29-9BAE-5D3CAE7F8062}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF5834B4-F7F2-4B1B-A302-7326D8B25065}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF5834B4-F7F2-4B1B-A302-7326D8B25065}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF5834B4-F7F2-4B1B-A302-7326D8B25065}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF5834B4-F7F2-4B1B-A302-7326D8B25065}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
