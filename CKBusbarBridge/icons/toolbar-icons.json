@@ -1,12 +1,12 @@
 [
-  { "index": 0, "name": "cabinet-driver", "label": "柜体驱动", "member": "CabinetDriver" },
+  { "index": 0, "name": "cabinet-driver", "label": "柜体设计", "member": "CabinetDriver" },
   { "index": 1, "name": "bridge-design", "label": "母线桥设计", "member": "BridgeDesign" },
   { "index": 2, "name": "busbar-settings", "label": "母排设置", "member": "BusbarSettings", "reserved": true },
-  { "index": 3, "name": "drill-holes", "label": "铜排开孔", "member": "DrillHoles" },
+  { "index": 3, "name": "drill-holes", "label": "铜排开孔", "member": "DrillHoles", "reserved": true },
   { "index": 4, "name": "engineering-drawing", "label": "出工程图", "member": "EngineeringDrawing" },
-  { "index": 5, "name": "copper-drawing", "label": "铜排图纸", "member": "CopperDrawing" },
-  { "index": 6, "name": "export-bom", "label": "一键导出BOM", "member": "ExportBom" },
-  { "index": 7, "name": "busbar-list", "label": "铜排清单", "member": "BusbarList" },
-  { "index": 8, "name": "hole-library-settings", "label": "开孔工艺库设置", "member": "HoleLibrarySettings" },
+  { "index": 5, "name": "copper-drawing", "label": "铜排出图", "member": "CopperDrawing" },
+  { "index": 6, "name": "export-bom", "label": "一键导出BOM", "member": "ExportBom", "reserved": true },
+  { "index": 7, "name": "busbar-list", "label": "铜排清单", "member": "BusbarList", "reserved": true },
+  { "index": 8, "name": "hole-library-settings", "label": "项目设置", "member": "HoleLibrarySettings" },
   { "index": 9, "name": "about", "label": "关于", "member": "About" }
 ]
