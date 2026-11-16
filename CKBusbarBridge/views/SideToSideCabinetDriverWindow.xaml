@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:hc="https://handyorg.github.io/handycontrol"
              xmlns:rd="clr-namespace:RD.UI.Wpf.Controls;assembly=RD.UI.Wpf"
              xmlns:local="clr-namespace:CKBusbarBridge.views"
              xmlns:designUi="clr-namespace:CKBusbarBridge.views;assembly=CKBusbarBridge.DesignUI"
@@ -341,7 +340,7 @@
                                                 </Grid.ColumnDefinitions>
 
                                                 <TextBlock Grid.Column="0" Text="柜前孔" FontSize="18" FontWeight="SemiBold" VerticalAlignment="Center" />
-                                                <ToggleButton x:Name="AFrontHoleToggleButton" Grid.Column="2" IsChecked="{Binding Parameters.ACabinet.FrontHole.IsEnabled, UpdateSourceTrigger=PropertyChanged}" Margin="0,2,0,0" Style="{StaticResource ToggleButtonSwitch}" />
+                                                <rd:RDToggleSwitch x:Name="AFrontHoleToggleButton" Grid.Column="2" IsChecked="{Binding Parameters.ACabinet.FrontHole.IsEnabled, UpdateSourceTrigger=PropertyChanged}" Margin="0,2,0,0" />
                                             </Grid>
 
                                             <Grid Margin="22,0,0,24" IsEnabled="{Binding IsChecked, ElementName=AFrontHoleToggleButton}">
@@ -398,7 +397,7 @@
                                                 </Grid.ColumnDefinitions>
 
                                                 <TextBlock Grid.Column="0" Text="柜后孔" FontSize="18" FontWeight="SemiBold" VerticalAlignment="Center" />
-                                                <ToggleButton x:Name="ABackHoleToggleButton" Grid.Column="2" IsChecked="{Binding Parameters.ACabinet.BackHole.IsEnabled, UpdateSourceTrigger=PropertyChanged}" Margin="0,2,0,0" Style="{StaticResource ToggleButtonSwitch}" />
+                                                <rd:RDToggleSwitch x:Name="ABackHoleToggleButton" Grid.Column="2" IsChecked="{Binding Parameters.ACabinet.BackHole.IsEnabled, UpdateSourceTrigger=PropertyChanged}" Margin="0,2,0,0" />
                                             </Grid>
 
                                             <Grid Margin="22,0,0,0" IsEnabled="{Binding IsChecked, ElementName=ABackHoleToggleButton}" Visibility="Collapsed">
@@ -521,7 +520,7 @@
                                                 </Grid.ColumnDefinitions>
 
                                                 <TextBlock Grid.Column="0" Text="柜前孔" FontSize="18" FontWeight="SemiBold" VerticalAlignment="Center" />
-                                                <ToggleButton x:Name="BFrontHoleToggleButton" Grid.Column="2" IsChecked="{Binding Parameters.BCabinet.FrontHole.IsEnabled, UpdateSourceTrigger=PropertyChanged}" Margin="0,2,0,0" Style="{StaticResource ToggleButtonSwitch}" />
+                                                <rd:RDToggleSwitch x:Name="BFrontHoleToggleButton" Grid.Column="2" IsChecked="{Binding Parameters.BCabinet.FrontHole.IsEnabled, UpdateSourceTrigger=PropertyChanged}" Margin="0,2,0,0" />
                                             </Grid>
 
                                             <Grid Margin="22,0,0,24" IsEnabled="{Binding IsChecked, ElementName=BFrontHoleToggleButton}">
@@ -578,7 +577,7 @@
                                                 </Grid.ColumnDefinitions>
 
                                                 <TextBlock Grid.Column="0" Text="柜后孔" FontSize="18" FontWeight="SemiBold" VerticalAlignment="Center" />
-                                                <ToggleButton x:Name="BBackHoleToggleButton" Grid.Column="2" IsChecked="{Binding Parameters.BCabinet.BackHole.IsEnabled, UpdateSourceTrigger=PropertyChanged}" Margin="0,2,0,0" Style="{StaticResource ToggleButtonSwitch}" />
+                                                <rd:RDToggleSwitch x:Name="BBackHoleToggleButton" Grid.Column="2" IsChecked="{Binding Parameters.BCabinet.BackHole.IsEnabled, UpdateSourceTrigger=PropertyChanged}" Margin="0,2,0,0" />
                                             </Grid>
 
                                             <Grid Margin="22,0,0,0" IsEnabled="{Binding IsChecked, ElementName=BBackHoleToggleButton}" Visibility="Collapsed">
