@@ -75,6 +75,10 @@ if(workerData){
       const {clearance,instances}=await calculate('bridge',bridge);
       for(const part of ['cabinet','base','frame','insulator','hanger','copper'])
         assert.ok(instances.some(row=>row.category===part),title+' 缺少 '+part);
+      const covers=instances.filter(row=>row.appearanceRole==='cover');
+      assert.equal(covers.filter(row=>row.category==='base').length,2);
+      assert.equal(covers.filter(row=>row.category==='frame').length,bridge.objects.filter(row=>row.kind==='Frame').length);
+      assert.ok(covers.every(row=>row.quads.length===24&&row.triangles.length===0),'盖板应是六个矩形面的平板');
       assert.equal(clearance.assembly.solids,instances.length);
       assert.ok(clearance.assembly.testedPairs>0);
       assert.equal(clearance.assembly.count,0,JSON.stringify(clearance.assembly.largest));

@@ -121,9 +121,9 @@ const camera=new THREE.OrthographicCamera(-1,1,1,-1,0.01,120);camera.up.set(0,0,
 const lamp=new THREE.DirectionalLight(0xffffff,2.15);lamp.position.set(2,-4,7);scene.add(lamp,new THREE.HemisphereLight(0xffffff,0x617386,1.9));
 const world=new THREE.Group();scene.add(world);
 const ray=new THREE.Raycaster();
-const colors={cabinet:0xa6b3bf,'cabinet-trim':0x486571,base:0x8199a8,frame:0x648295,bracket:0x92a9b3,hanger:0x8096a1,insulator:0xb86d51,pad:0x9fa9b0,beam:0xb6c2c9,roof:0xcbd4da};
+const colors={cabinet:0xa6b3bf,'cabinet-trim':0x486571,base:0x8199a8,frame:0x648295,cover:0xbac7ce,bracket:0x92a9b3,hanger:0x8096a1,insulator:0xb86d51,pad:0x9fa9b0,beam:0xb6c2c9,roof:0xcbd4da};
 const phaseColors={A:0xd3a944,B:0x498f78,C:0xbc6a51};
-const categoryNames={cabinet:'柜体',base:'基座',raisedBase:'增高基座',frame:'基架',copper:'母线',insulator:'绝缘支撑',hanger:'吊架',reference:'环境参照'};
+const categoryNames={cabinet:'柜体',base:'基座',raisedBase:'增高基座',frame:'基架',cover:'盖板',copper:'母线',insulator:'绝缘支撑',hanger:'吊架',reference:'环境参照'};
 const layers=new Map(),hidden=new Set(),modelGroups=new Map();let isolateId=null;
 const toPoint=point=>[point[0]/1000,-point[2]/1000,point[1]/1000];
 const swToWeb=new THREE.Matrix4().set(.001,0,0,0, 0,0,-.001,0, 0,.001,0,0, 0,0,0,1);
@@ -173,11 +173,12 @@ function setScene(result){
   world.clear();layers.clear();
   const objectLabels=new Map(result.project.objects.filter(object=>!object.cabinetBinding).map(object=>[object.id,object.name]));
   for(const item of result.instances){
-    const id=item.designObjectId;
-    const name=objectLabels.get(item.id.slice(0,item.id.lastIndexOf(':')))??item.displayName.split(' / ').at(-1);
+    const cover=item.appearanceRole==='cover', id=cover?item.designObjectId+':cover':item.designObjectId;
+    const assemblyName=objectLabels.get(item.id.slice(0,item.id.lastIndexOf(':')));
+    const name=cover?assemblyName+' · '+item.displayName:assemblyName??item.displayName.split(' / ').at(-1);
     const reference=item.category==='cabinet'&&(['beam','roof'].includes(item.appearanceRole)||name==='地面-1');
     if(!layers.has(id)){
-      layers.set(id,{id,name,category:reference?'reference':item.category,parts:[]});
+      layers.set(id,{id,name,category:cover?'cover':reference?'reference':item.category,parts:[]});
       if(reference&&!displayed)hidden.add(id);
     }
     const color=phaseColors[item.phase]??colors[item.partSource?.previewMaterial]??colors[item.appearanceRole]??colors[item.category]??0x98a6b1;

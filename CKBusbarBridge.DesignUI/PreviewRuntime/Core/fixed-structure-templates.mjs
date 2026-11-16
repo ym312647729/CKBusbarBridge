@@ -2,7 +2,7 @@ import {DefinitionError} from './expressions.mjs';
 
 // Millimetres in the existing model's local axes. These are preview templates;
 // the assembly and copper planners continue to own all mating datums.
-export const fixedStructureVersion='bridge-structure-b/2';
+export const fixedStructureVersion='bridge-structure-b/3';
 const board=2;
 const range=(box,axis)=>box.max[axis]-box.min[axis];
 export function makeBlock(kernel,min,max){
@@ -109,6 +109,7 @@ export function baseTemplate(kernel,box,openingHeight,port){
       if(lo>y+t)block('侧法兰下沿',[face[0],y+t,z+t],[face[1],Math.min(lo,Y-t),Z-t],'base');
       if(hi<Y-t)block('侧法兰上沿',[face[0],Math.max(hi,y+t),z+t],[face[1],Y-t,Z-t],'base');
     }
+    block('基座顶盖',[x,Y,z],[X,Y+board,Z],'cover');
   });
 }
 
@@ -138,6 +139,7 @@ export function frameTemplate(kernel,{min:[x,y,z],max:[X,Y,Z]},mounts=[]){
           block('安装横梁接板',[tabStart,tabBottom,side],[tabEnd,tabTop,side+beam],'frame');
       }
     }
+    block('基架盖板',[x,Y,z],[X,Y+board,Z],'cover');
   });
 }
 
