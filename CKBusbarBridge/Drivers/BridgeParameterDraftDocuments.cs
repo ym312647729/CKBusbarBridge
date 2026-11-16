@@ -166,7 +166,7 @@ namespace CKBusbarBridge.Drivers
                 attempts.Add(source + "文件存在，但新建接口未返回装配体：" + template);
                 return null;
             }
-            if (root is AssemblyDoc assembly && ((assembly.GetComponents(false) as object[])?.Length ?? 0) == 0)
+            if (root is AssemblyDoc assembly && assembly.GetComponentCount(false) == 0)
                 return root;
 
             _application.CloseDoc(root.GetTitle());

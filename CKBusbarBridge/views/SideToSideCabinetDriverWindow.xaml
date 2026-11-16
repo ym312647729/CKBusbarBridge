@@ -172,6 +172,7 @@
 
                 <StackPanel Grid.Row="0" Margin="0,0,0,16">
             <TextBlock Text="{Binding ScenarioDisplayName}" Style="{StaticResource RDText.H3}" Margin="0,0,0,12" />
+            <WrapPanel x:Name="CabinetScenarioSelectorHost" Margin="0,0,0,8" />
             <TextBlock Text="项目根目录" Style="{StaticResource RDText.Caption}" Margin="0,0,0,4" />
             <rd:RDInput x:Name="ProjectPathTextBox"
                         Text="{Binding ProjectPath, UpdateSourceTrigger=LostFocus}" />
@@ -653,9 +654,7 @@
             </ScrollViewer>
         </Grid>
 
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,8,0,0">
-            <rd:RDButton x:Name="GenerateButton" Content="生成" Width="100" Height="32" Margin="0" Visibility="{Binding GenerateButtonVisibility}" Variant="Primary" Command="{Binding GenerateCommand}" />
-        </StackPanel>
+        <Grid x:Name="CabinetDraftFooter" Grid.Row="2" Margin="0,8,0,0" />
 
     </Grid>
 </rd:RDWindow>

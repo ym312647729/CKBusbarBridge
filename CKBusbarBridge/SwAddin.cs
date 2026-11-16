@@ -235,7 +235,7 @@ namespace CKBusbarBridge
                     draft.Session.Scenario == "side-to-side" ? DesignScenarioId.SideToSide : DesignScenarioId.FaceToFace;
                 FaceToWallCabinetOrientation? orientation = scenario == DesignScenarioId.FaceToWall
                     ? (FaceToWallCabinetOrientation?)Enum.Parse(typeof(FaceToWallCabinetOrientation), draft.Orientation) : null;
-                OpenCabinetDesign(scenario, orientation);
+                OpenCabinetDesign(scenario, orientation, activeDraft: draft);
             }
             catch (Exception ex)
             {
@@ -245,7 +245,7 @@ namespace CKBusbarBridge
         }
 
         private void OpenCabinetDesign(DesignScenarioId scenario, FaceToWallCabinetOrientation? orientation,
-            CabinetDraftWindowWorkflow previous = null)
+            CabinetDraftWindowWorkflow previous = null, BridgeParameterDraftDocument activeDraft = null)
         {
             Window window;
             switch (scenario)
@@ -261,19 +261,28 @@ namespace CKBusbarBridge
                     break;
             }
 
+            if (previous == null && activeDraft != null)
+                ((CKBusbarBridge.viewmodels.ICabinetDraftWorkflow)window.DataContext).RestoreDraftInputs(activeDraft);
             var workflow = new CabinetDraftWindowWorkflow(window, scenario, orientation, SwitchCabinetScenario,
                 OpenBridgeAfterCabinetDraft, previous);
-            if (previous == null && BridgeParameterDraftDocuments.For(iSwApp).Active is BridgeParameterDraftDocument activeDraft)
-                ((CKBusbarBridge.viewmodels.ICabinetDraftWorkflow)window.DataContext).RestoreDraftInputs(activeDraft);
-            UiFeedback.AssignWindowOwner(window);
             window.Closed += (sender, args) =>
             {
                 if (!ReferenceEquals(_cabinetDriverWindow, window)) return;
                 _cabinetDriverWindow = null; _cabinetDraftWorkflow = null;
             };
+            try
+            {
+                workflow.PreparePreview(activeDraft);
+                UiFeedback.AssignWindowOwner(window);
+                window.Show();
+            }
+            catch
+            {
+                workflow.CloseWithoutPrompt();
+                throw;
+            }
             _cabinetDriverWindow = window; _cabinetDraftWorkflow = workflow;
             previous?.CloseWithoutPrompt();
-            window.Show();
             UiFeedback.ActivateWindow(window);
         }
 

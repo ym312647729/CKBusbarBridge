@@ -24,9 +24,9 @@ namespace CKBusbarBridge.views
         private readonly Action<BridgeParameterDraftDocument> _next;
         private readonly bool _resetScenario;
         private readonly BridgeParameterDraftDocument _expectedDraft;
-        private RDButton _confirm;
-        private TextBlock _status;
-        private ScrollViewer _statusScroll;
+        private readonly RDButton _confirm;
+        private readonly TextBlock _status;
+        private readonly ScrollViewer _statusScroll;
         private DispatcherOperation _previewOperation;
         private bool _closing, _saving, _changingScenario;
         private Action _discardOpeningSettings;
@@ -43,23 +43,9 @@ namespace CKBusbarBridge.views
             _resetScenario = previous != null;
             _discardOpeningSettings = previous?._discardOpeningSettings;
             if (previous != null) _model.CarryDraftProject(previous._model.ProjectPath, previous._model.DrawingNumberSession.CommittedMetadataJson);
-            _window.Loaded += Loaded; _window.Closing += Closing; _window.Closed += Closed;
-        }
-
-        internal BridgeParameterDraftDocument DraftDocument => _cabinetDesignDraft;
-        internal void CloseWithoutPrompt() { _closing = true; _window.Close(); }
-
-        private void Loaded(object sender, RoutedEventArgs args)
-        {
-            _window.Loaded -= Loaded;
-            InstallScenarioSelector();
-            var oldButton = (Button)_window.FindName("GenerateButton");
-            var oldFooter = (Panel)oldButton.Parent;
-            var layout = (Grid)oldFooter.Parent;
-            var row = Grid.GetRow(oldFooter);
-            var buttonStyle = oldButton.Style;
-            layout.Children.Remove(oldFooter);
-            var footer = new Grid { Margin = oldFooter.Margin };
+            var choices = RequireLayoutHost<WrapPanel>("CabinetScenarioSelectorHost");
+            var footer = RequireLayoutHost<Grid>("CabinetDraftFooter");
+            InstallScenarioSelector(choices);
             footer.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
             footer.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto, MinHeight = 40 });
             _status = new TextBlock { TextWrapping = TextWrapping.Wrap, Foreground = Brushes.DarkRed };
@@ -68,24 +54,33 @@ namespace CKBusbarBridge.views
             footer.Children.Add(_statusScroll);
             _confirm = new RDButton
             {
-                Content = "确定参数，下一步", Style = buttonStyle, Height = 36, MinWidth = 148,
+                Content = "确定参数，下一步", Variant = RDButtonVariant.Primary, Height = 36, MinWidth = 148,
                 Padding = new Thickness(16, 0, 16, 0), Margin = new Thickness(0, 2, 0, 2),
                 HorizontalAlignment = HorizontalAlignment.Right, VerticalAlignment = VerticalAlignment.Center,
                 HorizontalContentAlignment = HorizontalAlignment.Center, VerticalContentAlignment = VerticalAlignment.Center
             };
             _confirm.Click += Confirm;
-            Grid.SetRow(_confirm, 1); footer.Children.Add(_confirm); Grid.SetRow(footer, row); layout.Children.Add(footer);
+            Grid.SetRow(_confirm, 1); footer.Children.Add(_confirm);
+            _window.Closing += Closing; _window.Closed += Closed;
             _model.DraftPreviewChanged += Changed;
             if (_model is INotifyPropertyChanged changes) changes.PropertyChanged += ModelChanged;
             Changed(this, EventArgs.Empty);
-            if (_resetScenario || _model.DraftDocument == null) StartPreview(_expectedDraft, _resetScenario);
         }
 
-        private void InstallScenarioSelector()
+        internal BridgeParameterDraftDocument DraftDocument => _cabinetDesignDraft;
+        internal void CloseWithoutPrompt() { _closing = true; _window.Close(); }
+
+        // 首次入口必须绑定活动总装才显示面板，不能依赖窗口 Loaded 的时机建文档。
+        internal void PreparePreview(BridgeParameterDraftDocument activeDraft)
+            => _model.PreviewCabinetInputs(_expectedDraft ?? activeDraft, _resetScenario);
+
+        private T RequireLayoutHost<T>(string name) where T : FrameworkElement
+            => _window.FindName(name) as T ?? throw new InvalidOperationException("柜体窗口缺少布局区域：" + name + "。");
+
+        private void InstallScenarioSelector(WrapPanel choices)
         {
-            var badge = (Border)_window.FindName("CabinetScenarioBadge");
-            var choices = new StackPanel { Orientation = Orientation.Horizontal, VerticalAlignment = VerticalAlignment.Center };
-            var scenarioPicker = new RDComboBox { Height = 28, MinWidth = 105, SelectedValuePath = "Tag", ToolTip = "选择柜体设计场景" };
+            var scenarioPicker = new RDComboBox { Height = 28, MinWidth = 105, Margin = new Thickness(0, 0, 8, 4),
+                SelectedValuePath = "Tag", ToolTip = "选择柜体设计场景" };
             foreach (var scenario in new[] { DesignScenarioId.FaceToFace, DesignScenarioId.SideToSide, DesignScenarioId.FaceToWall })
                 scenarioPicker.Items.Add(new ComboBoxItem { Tag = scenario, Content = DesignScenarioDefaults.GetDisplayName(scenario) });
             scenarioPicker.SelectedValue = _scenario;
@@ -99,7 +94,7 @@ namespace CKBusbarBridge.views
             };
             if (_scenario == DesignScenarioId.FaceToWall)
             {
-                var orientationPicker = new RDComboBox { Height = 28, MinWidth = 94, Margin = new Thickness(8, 0, 0, 0), SelectedValuePath = "Tag" };
+                var orientationPicker = new RDComboBox { Height = 28, MinWidth = 94, Margin = new Thickness(0, 0, 0, 4), SelectedValuePath = "Tag" };
                 orientationPicker.Items.Add(new ComboBoxItem { Tag = FaceToWallCabinetOrientation.CabinetFrontToWall, Content = "柜前向墙" });
                 orientationPicker.Items.Add(new ComboBoxItem { Tag = FaceToWallCabinetOrientation.CabinetRearToWall, Content = "柜后向墙" });
                 orientationPicker.SelectedValue = _orientation;
@@ -110,7 +105,6 @@ namespace CKBusbarBridge.views
                         SwitchScenario(_scenario, nextOrientation, () => orientationPicker.SelectedValue = _orientation);
                 };
             }
-            badge.Padding = new Thickness(0); badge.BorderThickness = new Thickness(0); badge.Background = null; badge.Child = choices;
         }
 
         private void SwitchScenario(DesignScenarioId scenario, FaceToWallCabinetOrientation? orientation, Action restoreSelection)
