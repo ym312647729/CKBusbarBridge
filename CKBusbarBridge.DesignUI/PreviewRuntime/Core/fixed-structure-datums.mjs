@@ -22,8 +22,11 @@ export async function deriveFixedStructureDatums(source,name,input,read){
   if(source.source.path===baseTemplatePaths.Base){
     const [depth,height,width]=['基座深','基座高','基座宽'].map(name=>globals[name]);
     const centerZ=coordinate('安装坐标系')[2];
-    box={min:[-depth/2,-height/2,centerZ-width/2],max:[depth/2+12,height/2+12,centerZ+width/2]};
     port=coordinate('基座安装坐标系');openingHeight=globals['基座开孔高度'];
+    // The installed bridge begins at the port plane. A flange cannot extend past
+    // that plane into the first frame, or below the cabinet's mating roof.
+    const [low,high]=port[0]>0?[port[0]-depth,port[0]]:[port[0],port[0]+depth];
+    box={min:[low,-height/2,centerZ-width/2],max:[high,height/2,centerZ+width/2]};
   }else{
     const [length,height,width]=['基架长度','基架高度','基架宽度'].map(name=>globals[name]);
     box={min:[-length/2,0,-width/2],max:[length/2,height+12,width/2]};

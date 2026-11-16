@@ -121,6 +121,8 @@ async function prepare(request){
   const instances=[],interactionInstances=[],warnings=[],dimensions=[];
   if(clearance&&!clearance.passed)warnings.push('绝缘净距不满足 '+clearance.requiredMm+
     ' mm：相间 '+clearance.phases.minimumMm.toFixed(2)+' mm，母线对金属 '+clearance.grounded.minimumMm.toFixed(2)+' mm');
+  if(clearance?.assembly.count)warnings.push('检测到 '+clearance.assembly.count+' 处实体装配干涉：'+
+    clearance.assembly.largest[0].parts.join(' ↔ '));
   const contourObjects=new Set();
   let solidTriangles=triangleTotal();
   for(const object of [...project.objects].sort((left,right)=>results.get(right.id).preview.triangleCount-results.get(left.id).preview.triangleCount)){

@@ -2,7 +2,7 @@ import {DefinitionError} from './expressions.mjs';
 
 // Millimetres in the existing model's local axes. These are preview templates;
 // the assembly and copper planners continue to own all mating datums.
-export const fixedStructureVersion='bridge-structure-b/1';
+export const fixedStructureVersion='bridge-structure-b/2';
 const board=2;
 const range=(box,axis)=>box.max[axis]-box.min[axis];
 export function makeBlock(kernel,min,max){
@@ -30,10 +30,29 @@ function plateAt(kernel,solids,min,max){
     return panels.splice(0);
   }finally{slab.delete();panels.forEach(panel=>panel.delete());}
 }
+function roofRelief(kernel,roof,thickness,conductors,clearance){
+  if(!conductors?.length)return null;
+  if(!(Number.isFinite(clearance)&&clearance>0))throw new DefinitionError('柜顶让位口缺少绝缘净距设置');
+  const {min:[x,,z],max:[X,Y,Z]}=roof;
+  // Leave an attachment rim. If that rim or some other part is too close,
+  // the separate solid-to-solid clearance test still reports the shortfall.
+  const rim=3*thickness,cutters=[];
+  try{
+    for(const {points:[start,end],halfExtent} of conductors){
+      if(Math.min(start[1],end[1])-halfExtent[1]>Y+clearance||
+        Math.max(start[1],end[1])+halfExtent[1]<Y-thickness-clearance)continue;
+      const low=(axis,edge)=>Math.max(edge+rim,Math.min(start[axis],end[axis])-halfExtent[axis]-clearance);
+      const high=(axis,edge)=>Math.min(edge-rim,Math.max(start[axis],end[axis])+halfExtent[axis]+clearance);
+      const min=[low(0,x),Y-thickness-1,low(2,z)],max=[high(0,X),Y+1,high(2,Z)];
+      if(min[0]<max[0]&&min[2]<max[2])cutters.push(makeBlock(kernel,min,max));
+    }
+    return cutters.length?kernel.Manifold.union(cutters):null;
+  }finally{cutters.forEach(solid=>solid.delete());}
+}
 // The old reference feature is used solely as a cutter boundary on the roof
 // plate. The cabinet carcass and the three separate doors are authored here.
-export function cabinetTemplate(kernel,datumSolids,faceSign){
-  const box=unionBounds(datumSolids),{min:[x,y,z],max:[X,Y,Z]}=box;
+export function cabinetTemplate(kernel,datumSolids,bounds,faceSign,conductors,clearance){
+  const {min:[x,y,z],max:[X,Y,Z]}=bounds;
   const depth=X-x,height=Y-y,width=Z-z,t=Math.min(board,depth/30,height/30,width/30);
   const front=faceSign>0?X:x,back=faceSign>0?x:X;
   const doorSpan=(a,b)=>[front-faceSign*a,front-faceSign*b].sort((m,n)=>m-n);
@@ -44,7 +63,16 @@ export function cabinetTemplate(kernel,datumSolids,faceSign){
     block('柜底板',[x,y,z],[X,y+t,Z],'cabinet');
     const [b0,b1]=[back,back+faceSign*t].sort((m,n)=>m-n);
     block('后封板',[b0,y+t,z+t],[b1,Y-t,Z-t],'cabinet');
-    for(const panel of plateAt(kernel,datumSolids,[x-t,Y-t,z-t],[X+t,Y+t,Z+t]))append('柜顶接口板',panel,'cabinet');
+    const relief=roofRelief(kernel,bounds,t,conductors,clearance);
+    try{
+      for(const panel of plateAt(kernel,datumSolids,[x,Y-t,z],[X,Y,Z])){
+        if(!relief){append('柜顶接口板',panel,'cabinet');continue;}
+        try{
+          const cut=panel.subtract(relief);
+          if(cut.isEmpty())cut.delete();else append('柜顶接口板',cut,'cabinet');
+        }finally{panel.delete();}
+      }
+    }finally{relief?.delete();}
     const [door0,door1]=doorSpan(1,4),[handle0,handle1]=doorSpan(0,1);
     const levels=[y+rail,y+height*.28,y+height*.65,Y-rail];
     for(const [index,name] of ['电缆室门','手车室门','仪表门'].entries()){
@@ -54,7 +82,7 @@ export function cabinetTemplate(kernel,datumSolids,faceSign){
       block(name+'把手',[handle0,mid-(hi-lo)*.13,Z-inset-width*.058],[handle1,mid+(hi-lo)*.13,Z-inset-width*.036],'cabinet-trim');
       if(index===2)block('仪表面板',[handle0,mid,z+width*.22],[handle1,mid+(hi-lo)*.28,z+width*.49],'cabinet-trim');
     }
-    block('顶部饰板',[door0,Y-rail,z],[door1,Y-t,Z],'cabinet-trim');
+    block('顶部饰板',[door0,Y-rail,z+t],[door1,Y-t,Z-t],'cabinet-trim');
   });
   for(const source of result.solidSources){
     source.partName=source.componentChain[0];
@@ -65,20 +93,21 @@ export function cabinetTemplate(kernel,datumSolids,faceSign){
 
 export function baseTemplate(kernel,box,openingHeight,port){
   const {min:[x,y,z],max:[X,Y,Z]}=box,t=Math.min(board,range(box,0)/25,range(box,1)/25,range(box,2)/25),e=3*t;
+  const isHighPort=port&&port[0]>(x+X)/2,back=isHighPort?[x,x+t]:[X-t,X];
+  const backFlange=isHighPort?[x,x+e]:[X-e,X];
   return emit(kernel,block=>{
-    block('左侧折边板',[x,y,z],[X,Y,z+t],'base');
-    block('右侧折边板',[x,y,Z-t],[X,Y,Z],'base');
+    block('左侧折边板',[x,y+t,z],[X,Y-t,z+t],'base');
+    block('右侧折边板',[x,y+t,Z-t],[X,Y-t,Z],'base');
     for(const at of [y,Y-t]) {
       for(const side of [z,Z-e])block('法兰长边',[x,at,side],[X,at+t,side+e],'base');
       // The bridge-facing side is open. No solid crosses the incoming copper.
-      block('法兰后边',[x,at,z+e],[x+e,at+t,Z-e],'base');
+      block('法兰后边',[backFlange[0],at,z+e],[backFlange[1],at+t,Z-e],'base');
     }
-    const isHighPort=port&&port[0]>(x+X)/2, back=isHighPort?[x,x+t]:[X-t,X];
-    block('检修背板',[back[0],y,z+t],[back[1],Y,Z-t],'base');
+    block('检修背板',[back[0],y+t,z+t],[back[1],Y-t,Z-t],'base');
     if(port&&Number.isFinite(openingHeight)){
       const face=isHighPort?[X-t,X]:[x,x+t],lo=Math.max(y,port[1]-openingHeight/2),hi=Math.min(Y,port[1]+openingHeight/2);
-      if(lo>y+1e-6)block('侧法兰下沿',[face[0],y,z+t],[face[1],lo,Z-t],'base');
-      if(hi<Y-1e-6)block('侧法兰上沿',[face[0],hi,z+t],[face[1],Y,Z-t],'base');
+      if(lo>y+t)block('侧法兰下沿',[face[0],y+t,z+t],[face[1],Math.min(lo,Y-t),Z-t],'base');
+      if(hi<Y-t)block('侧法兰上沿',[face[0],Math.max(hi,y+t),z+t],[face[1],Y-t,Z-t],'base');
     }
   });
 }
@@ -94,17 +123,21 @@ export function frameTemplate(kernel,{min:[x,y,z],max:[X,Y,Z]},mounts=[]){
     for(const end of [x,X-beam])for(const side of [z,Z-beam])
       block('角柱',[end,y+beam,side],[end+beam,Y-beam,side+beam],'frame');
     for(const {point:[station,level],suspended} of mounts){
-      const half=Math.min(beam/2,station-x,X-station);
+      const start=Math.max(x,station-beam/2),end=Math.min(X,station+beam/2);
       const bottom=suspended?level:level-beam,top=suspended?level+beam:level;
-      if(half<=0||bottom<y||top>Y)continue;
-      block('绝缘支架安装横梁',[station-half,bottom,z+beam],[station+half,top,Z-beam],'frame');
+      if(start>=end||bottom<y||top>Y)continue;
+      const tabBottom=suspended?Math.max(bottom,y+beam):y+beam;
+      const tabTop=suspended?Y-beam:Math.min(top,Y-beam);
+      // A crossbeam meeting an end rail is notched to its inboard face.
+      const crossStart=bottom<y+beam||top>Y-beam?Math.max(start,x+beam):start;
+      const crossEnd=bottom<y+beam||top>Y-beam?Math.min(end,X-beam):end;
+      if(crossStart<crossEnd)block('绝缘支架安装横梁',[crossStart,bottom,z+beam],[crossEnd,top,Z-beam],'frame');
       for(const side of [z,Z-beam]){
-        if(!suspended&&bottom>y)block('安装横梁接板',[station-half,y,side],[station+half,top,side+beam],'frame');
-        if(suspended&&top<Y)block('安装横梁接板',[station-half,bottom,side],[station+half,Y,side+beam],'frame');
+        const tabStart=Math.max(start,x+beam),tabEnd=Math.min(end,X-beam);
+        if(tabBottom<tabTop&&tabStart<tabEnd)
+          block('安装横梁接板',[tabStart,tabBottom,side],[tabEnd,tabTop,side+beam],'frame');
       }
     }
-    for(const end of [x,X-2*beam])for(const vertical of [y,Y-beam])for(const side of [z,Z-beam/5])
-      block('端板',[end,vertical,side],[end+2*beam,vertical+beam,side+beam/5],'frame');
   });
 }
 
@@ -114,9 +147,11 @@ export function supportRailTemplate(kernel,bracket,layout,lBracket){
   return emit(kernel,block=>{
     block('横担上板',[x,Y-thickness,z],[X,Y,Z],'bracket');
     for(const side of [x,X-thickness])block('横担折边',[side,y,z],[side+thickness,Y-thickness,Z],'bracket');
-    for(const end of [z,Z-thickness])block('横担端板',[x,y,end],[X,Y-thickness,end+thickness],'bracket');
-    if(lBracket)for(const station of layout.groupLocalZ)
-      block('侧装垫板',[x,Y-thickness,Math.max(z,station-10)],[x+thickness,Y,Math.min(Z,station+10)],'bracket');
+    for(const end of [z,Z-thickness])block('横担端板',[x+thickness,y,end],[X-thickness,Y-thickness,end+thickness],'bracket');
+    if(lBracket)for(const station of layout.groupLocalZ){
+      const start=Math.max(z+thickness,station-10),end=Math.min(Z-thickness,station+10);
+      if(start<end)block('侧装垫板',[x+thickness,y,start],[x+3*thickness,y+thickness,end],'bracket');
+    }
   });
 }
 
@@ -149,7 +184,7 @@ export function ribbedInsulator(kernel,bounds,height,segments){
 export function hangerTemplate(kernel,width,height,datum){
   const W=width/2+100,r=7,t=12;
   if(![W,height].every(value=>Number.isFinite(value)&&value>2*t))throw new DefinitionError('吊架外形尺寸无效');
-  return emit(kernel,(block,append)=>{
+  return emit(kernel,(_block,append)=>{
     function piece(name,min,max){
       const solid=makeBlock(kernel,min,max);
       try{append(name,solid.transform(datum),'hanger');}finally{solid.delete();}
@@ -159,7 +194,11 @@ export function hangerTemplate(kernel,width,height,datum){
     for(const z of [-W+25,W-25]){
       const rod=cylindricalLayer(kernel,0,height-t,r,r,20),positioned=rod.translate([0,0,z]);
       try{append('吊杆',positioned.transform(datum),'hanger');}finally{positioned.delete();rod.delete();}
-      piece('连接件',[-11,height-2*t,z-11],[11,height-t,z+11]);
+      const connector=makeBlock(kernel,[-11,height-2*t,z-11],[11,height-t,z+11]);
+      const bore=cylindricalLayer(kernel,height-2*t-1,t+2,r+.25,r+.25,20),positionedBore=bore.translate([0,0,z]);
+      const drilled=connector.subtract(positionedBore);
+      try{append('连接件',drilled.transform(datum),'hanger');}
+      finally{drilled.delete();positionedBore.delete();bore.delete();connector.delete();}
     }
   });
 }

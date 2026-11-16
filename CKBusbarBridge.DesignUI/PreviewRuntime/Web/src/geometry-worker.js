@@ -16,6 +16,7 @@ import {basePreviewParameters} from '../../Core/base-binding.mjs';
 import {appendFixedCabinetCopper} from '../../Core/cabinet-fixed-copper.mjs';
 import {PreviewMeshCache} from './preview-mesh-cache.js';
 import {originalCabinetPartName} from '../../Core/cabinet-openings.mjs';
+import {cabinetNominalBounds} from '../../Core/cabinet-body.mjs';
 import {applyFixedStructureParts,baseTemplate,cabinetTemplate,frameTemplate,hangerTemplate,unionBounds} from '../../Core/fixed-structure-templates.mjs';
 import {deriveFixedStructureDatums,generateFromFixedDatums,hasFixedStructureDatums} from '../../Core/fixed-structure-datums.mjs';
 const definitions=new Map(),definitionReadMetrics=new Map();
@@ -53,10 +54,10 @@ self.onmessage=async event=>{
       return;
     }
     const cachedDefinition=definitions.has(object.templatePath),readStart=performance.now();let kernelWaitMs;
-    const [kernel,sourceTemplate]=await Promise.all([kernelReady.then(kernel=>{kernelWaitMs=performance.now()-readStart;return kernel;}),loadTemplate(object.templatePath)]);let template=sourceTemplate,templateLoader=loadTemplate,fixedDatums=null;
+    const [kernel,sourceTemplate]=await Promise.all([kernelReady.then(kernel=>{kernelWaitMs=performance.now()-readStart;return kernel;}),loadTemplate(object.templatePath)]);let template=sourceTemplate,templateLoader=loadTemplate,fixedDatums=null,roofConductors;
     const rootDefinitionRead=cachedDefinition?{cached:true,totalReadMs:0}:{...definitionReadMetrics.get(object.templatePath),cached:false},readMs=rootDefinitionRead.totalReadMs;
     if(object.sourceSha256&&template.source.sha256!==object.sourceSha256)throw new Error('模板签名已变化，请核对来源后重新关联');
-    if(object.cabinetBinding){const driveStart=performance.now(),derived=await deriveCabinetScene(sourceTemplate,object.configuration,object.cabinetBinding.scenario,object.cabinetSceneInput,loadTemplate);template=derived.template;templateLoader=derived.loadTemplate;businessParameters=derived.parameters;fixedCopper=derived.fixedCopper;roofPlanes=await collectOriginalRoofPlanes(derived,object.configuration);driveMs=performance.now()-driveStart;derivedGeometry={kind:'cabinet-scene',stage:'cabinet-with-fixed-outgoing-copper',fixedCopper,diagnostics:derived.diagnostics.filter(row=>!fixedCopper||!/伸出.*尚未生成|伸出.*待求解/.test(row.message)),drivenSubsystems:derived.evidence.filter(row=>row.kind).map(row=>({kind:row.kind,modelId:row.modelId,modelCount:row.models?.length})),nativeGeometryEquivalenceVerified:false};}
+    if(object.cabinetBinding){const driveStart=performance.now(),derived=await deriveCabinetScene(sourceTemplate,object.configuration,object.cabinetBinding.scenario,object.cabinetSceneInput,loadTemplate);template=derived.template;templateLoader=derived.loadTemplate;businessParameters=derived.parameters;fixedCopper=derived.fixedCopper;roofConductors=derived.roofConductors;roofPlanes=await collectOriginalRoofPlanes(derived,object.configuration);driveMs=performance.now()-driveStart;derivedGeometry={kind:'cabinet-scene',stage:'cabinet-with-fixed-outgoing-copper',fixedCopper,diagnostics:derived.diagnostics.filter(row=>!fixedCopper||!/伸出.*尚未生成|伸出.*待求解/.test(row.message)),drivenSubsystems:derived.evidence.filter(row=>row.kind).map(row=>({kind:row.kind,modelId:row.modelId,modelCount:row.models?.length})),nativeGeometryEquivalenceVerified:false};}
     if(object.hangerDimensions){
       const reference=hangerTemplateReference(sourceTemplate,object.configuration),saved=object.hangerBinding?.templateReference;
       if(!saved||saved.featureId!==reference.featureId||saved.sourceSha256!==reference.sourceSha256||!Array.isArray(saved.localTransform)||saved.localTransform.length!==16||saved.localTransform.some((value,index)=>Math.abs(value-reference.localTransform[index])>1e-7))throw new Error('吊杆保存的原始安装坐标系与当前定义不符');
@@ -78,9 +79,11 @@ self.onmessage=async event=>{
       hangerFrame=hangerFrameDefinition(object.templatePath,parameters);interfaceReadMs=performance.now()-interfaceStart;
     }
     const evaluationStart=performance.now();
-    const previewSettings=object.cabinetBinding?{...settings,fixedPartTemplate:(engine,part,configuration,previous)=>{
+    const previewSettings=object.cabinetBinding?{...settings,fixedPartTemplate:(engine,part,configurationName,previous)=>{
       const cabinetName=originalCabinetPartName(part.source.path);
-      return cabinetName?cabinetTemplate(engine,previous.solids,1):null;
+      return cabinetName?cabinetTemplate(engine,previous.solids,
+        cabinetNominalBounds(part.configurations.find(configuration=>configuration.name===configurationName)),1,
+        roofConductors?.get(part.source.path),object.cabinetSceneInput.values['General.InsulationDistance']):null;
     }}:settings;
     result=fixedDatums?generateFromFixedDatums(kernel,fixedDatums):object.hangerDimensions?hangerTemplate(kernel,object.hangerDimensions.width,
       object.hangerDimensions.angleLength+hangerRules.fixedHeight,object.hangerBinding.templateReference.localTransform):

@@ -1,7 +1,7 @@
 {
   "schema": "dq-preview-runtime-manifest/1",
   "calculatorVersion": "dq-sw-mesh/1",
-  "packageSha256": "9a065a9fdcb890ec8e8c166627d3b57732d602e320aa5d5a8719a2ed36e4ee3b",
+  "packageSha256": "64f49af976755ed1be9fac1001f72341774e83b412d37f89d4b2aaac9cfa390a",
   "reference": {
     "project": "CKBusbarBridgeVirtualDesigner",
     "commit": "511d64b1248e1c26bf27430e9016fecdc5e9ce5f",
@@ -77,11 +77,11 @@
     },
     {
       "path": "Core/cabinet-binding.mjs",
-      "sha256": "2ca258e24b2353bd8d695a62d1fedbbf6f81fe6309fb735207d83d409fab1144"
+      "sha256": "6a40fd75448f514cfd3cbbfd0276710d6095648c6462c8a9d0a8ea3a6337a3e1"
     },
     {
       "path": "Core/cabinet-body.mjs",
-      "sha256": "7f738a83c556acbf3f6469824a8649dd2d456d11fca773aa90d41450f9af95b5"
+      "sha256": "803067ef442f656b074ab360c0f5ac74f624e9277874839911dd0d344cbb7757"
     },
     {
       "path": "Core/cabinet-fixed-copper.mjs",
@@ -105,7 +105,7 @@
     },
     {
       "path": "Core/cabinet-scene.mjs",
-      "sha256": "b22427a6c2df5d6c404491394a478f346f9ab457517bced322260368d97c9b60"
+      "sha256": "e584b37eaf50b4eb3972ee1f3e2f8aa8f5f6709ba97afa024585098ca3610620"
     },
     {
       "path": "Core/clearance-state.mjs",
@@ -189,15 +189,15 @@
     },
     {
       "path": "Core/fixed-structure-clearance.mjs",
-      "sha256": "a363641ef1846c84779fbd9a5db4e1c8820c84eb6ef768fc83393a49d7d6515e"
+      "sha256": "9e0cdecf22ff69a4227cc280b1dfb9c6259a31871f5cb4a63e55e00221dce05e"
     },
     {
       "path": "Core/fixed-structure-datums.mjs",
-      "sha256": "88880408cd90e82201d2c0ac0f66006f64d748747a1c8452ad7c54cca3e98883"
+      "sha256": "d7ab6f5493df44976f846f3a66fd3e69708c366be7f85b5ef15cc17ce37d66cc"
     },
     {
       "path": "Core/fixed-structure-templates.mjs",
-      "sha256": "d6cdc82b0dda4253af084450b0740f1584cee552ea23cfab7ef04b9ba9cf56db"
+      "sha256": "f56252b0e887fb95926cdfdf060ca83ec363e2208930e6ba5be76fcc0494f4b4"
     },
     {
       "path": "Core/frame-binding.mjs",
@@ -473,7 +473,7 @@
     },
     {
       "path": "session-worker.mjs",
-      "sha256": "b21c849b396f65a3a65f0b6f88fe874ee4f9add57af37578518189693913ffe8"
+      "sha256": "fbeef6f6057c2246e166d9d82a3731c29d91d0d0598e1f8bfb5e3a9d19bf060e"
     },
     {
       "path": "templates/模板/侧对侧模板/柜内伸出排/A柜内伸出排-A-A柜后.SLDPRT.virtual.json",
@@ -1605,7 +1605,7 @@
     },
     {
       "path": "Web/src/geometry-worker.js",
-      "sha256": "3c3dd9d7e8f4066a5b9a3ad8c83564db083114903aec2e4a97adbaa03c8fddbc"
+      "sha256": "a07b8d6b78d57bf6367afabcf4bb8416faa6bcdab67bee0150a46c164963915c"
     },
     {
       "path": "Web/src/kernel.js",

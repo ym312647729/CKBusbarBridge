@@ -11,6 +11,7 @@ import {deriveWallCabinetScene} from './wall-cabinet-scene.mjs';
 import {driveCabinetMountCoordinates} from './cabinet-mount-coordinates.mjs';
 import {buildFixedCabinetCopper} from './cabinet-fixed-copper.mjs';
 import {cabinetOffsetDimension} from './cabinet-offset-dimensions.mjs';
+import {planFreeCopper} from './free-copper.mjs';
 export {cabinetScenePaths} from './cabinet-binding.mjs';
 
 const canonical=name=>name.split('@').slice(0,-1).join('@');
@@ -91,5 +92,18 @@ export async function deriveCabinetScene(sourceTemplate,configurationName,scenar
     for(const [suffix,axis,label]of [['CabinetDepth',0,'柜深'],['CabinetHeight',1,'柜高'],['CabinetWidth',2,'柜宽']]){const name=child.prefix+'.'+suffix,value=values[name],edge=base.edges.map(pair=>pair.target).find(edge=>Math.abs(Math.abs(edge.end[axis]-edge.start[axis])*1000-value)<1e-5&&[0,1,2].filter(index=>index!==axis).every(index=>Math.abs(edge.end[index]-edge.start[index])<1e-8));if(!edge)throw new DefinitionError('柜体业务尺寸缺少实际原轮廓见证边');parameters.push({name,label:(child.prefix==='ACabinet'?'A柜':'B柜')+label,value,editable:true,annotationComponentChain:cabinetComponentChains.get(id),annotationEdges:[[transformPoint(edge.start.map(value=>value*1000),placement),transformPoint(edge.end.map(value=>value*1000),placement)]],source:'native-profile-incidence-bound-to-original-ui-field'});}
   }
   const fixedCopper=values['General.BusbarSpec']?await buildFixedCabinetCopper({scenario,record,children:[...children.values()],rootConfiguration:configuration,read}):null;
-  return {template,loadTemplate:read,parameters,fixedCopper,evidence:[...evidence,{rootInstallation:installation,globals,dimensionValues}],diagnostics,source:'original-cabinet-part-sketches-and-captured-mate-layout',nativeGeometryEquivalenceVerified:false};
+  const roofConductors=new Map();
+  if(scenario==='face-to-face'&&fixedCopper)for(const [id,child] of children){
+    const component=configuration.components.find(candidate=>candidate.id===id);
+    const inverse=inverseRigidMatrix(multiplyMatrix(swMatrix(component.transform),swMatrix(child.updatedTransform)));
+    const conductors=fixedCopper.bars.filter(bar=>bar.source.componentChain[0]===component.name).map(bar=>{
+      const {data,segments}=planFreeCopper(bar.freeCopper),segment=segments[0];
+      if(segments.length!==1)throw new DefinitionError('柜顶让位口需要原伸出排的直段截面');
+      const width=directionTransform(segment.width,inverse),thickness=directionTransform(segment.thickness,inverse);
+      return {points:data.points.map(point=>transformPoint(point,inverse)),
+        halfExtent:width.map((value,axis)=>(Math.abs(value)*data.widthMm+Math.abs(thickness[axis])*data.thicknessMm)/2)};
+    });
+    roofConductors.set(child.bodyComponent.path,conductors);
+  }
+  return {template,loadTemplate:read,parameters,fixedCopper,roofConductors,evidence:[...evidence,{rootInstallation:installation,globals,dimensionValues}],diagnostics,source:'original-cabinet-part-sketches-and-captured-mate-layout',nativeGeometryEquivalenceVerified:false};
 }

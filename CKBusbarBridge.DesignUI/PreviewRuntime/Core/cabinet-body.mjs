@@ -2,10 +2,20 @@ import {DefinitionError} from './expressions.mjs';
 import {axisSketchDrive} from './axis-sketch-drive.mjs';
 import {driveCompleteSketchRegions} from './driven-sketch-regions.mjs';
 import {originalCabinetPartName} from './cabinet-openings.mjs';
-import {pairedExtrudedTopology,mapExtrudedPlane} from './extruded-topology.mjs';
+import {extrudedTopology,pairedExtrudedTopology,mapExtrudedPlane} from './extruded-topology.mjs';
 import {sketchSupportPlane,movedSketchMatrix,mapSketchReference} from './sketch-dependencies.mjs';
 
 const canonical=name=>name.split('@').slice(0,-1).join('@');
+
+export function cabinetNominalBounds(configuration){
+  // Only the driven carcass sets the dimensions. The old raised front feature
+  // reaches into the base's envelope and is only used to solve captured mates.
+  const bases=configuration.features.filter(feature=>feature.type==='Extrusion'&&feature.parents.includes('草图1'));
+  if(bases.length!==1)throw new DefinitionError('柜体名义外形缺少唯一基础拉伸');
+  const points=extrudedTopology(configuration,bases[0]).vertices.map(({point})=>point.map(value=>value*1000));
+  return {min:[0,1,2].map(axis=>Math.min(...points.map(point=>point[axis]))),
+    max:[0,1,2].map(axis=>Math.max(...points.map(point=>point[axis])))};
+}
 
 export function deriveCabinetBody(sourceTemplate,configurationName,specification){
   if(!originalCabinetPartName(sourceTemplate.source.path))throw new DefinitionError('柜体实体驱动未对应本项目原业务模板');

@@ -80,15 +80,16 @@ async function generate(){
     if(firstPreview){setScene(cabinet);fit('iso');}
     message.textContent='正在规划常规母线桥…';
     const bridge=await api('./api/plan',cabinet.upstream);
-    message.textContent='正在生成桥体并测量绝缘净距…';
+    message.textContent='正在生成桥体并检查净距与装配干涉…';
     const result=await calculate(current,parameters,bridge);
     setScene(result);
     if(firstPreview)fit('iso');
-    const report=result.clearance,issues=bridge.planningMessages??[];
-    message.className=report?.passed&&!issues.length?'ok':'fail';
+    const report=result.clearance,issues=bridge.planningMessages??[],assembly=report.assembly;
+    message.className=report.passed&&assembly.passed&&!issues.length?'ok':'fail';
     const mm=row=>row?`${row.isLowerBound?'≥ ':''}${formatParameter(row.minimumMm)} mm`:'未测量';
-    message.textContent=`要求 ≥ ${report.requiredMm} mm · ${report.passed&&!issues.length?'通过':'未通过'}\n相间：${mm(report.phases)}\n母线对金属：${mm(report.grounded)}`
+    message.textContent=`装配干涉：${assembly.count} 处\n净距要求 ≥ ${report.requiredMm} mm · ${report.passed?'通过':'未通过'}\n相间：${mm(report.phases)}\n母线对金属：${mm(report.grounded)}`
       +(issues.length?'\n'+issues.join('；'):'')
+      +(assembly.passed?'':'\n'+assembly.largest.map(hit=>hit.parts.join(' ↔ ')+'（'+formatParameter(hit.volumeMm3)+' mm³）').join('\n'))
       +(!report.passed?'\n最近：'+[report.phases,report.grounded].filter(row=>row.below).map(row=>row.nearest?.join(' ↔ ')).join('；'):'');
     window.bridgeTestResult={clearance:report,issues,instances:result.instances.length,categories:[...new Set(result.instances.map(item=>item.category))]};
   }catch(error){fail(error);}
