@@ -19,6 +19,8 @@ msbuild CKBusbarBridge.sln /restore /t:Build /p:RestorePackagesConfig=true /p:Co
 
 本地包源在 `.nuget/local-feed`。面对墙等调用算法 Worker 的方案需单独配置本项目获准使用的授权（进程环境变量 `CK_BUSBAR_WORKER_AUTHORIZATION`）；仓库和默认产物不包含旧项目授权。预览源码或运行资源修改后执行 `pwsh -File tools/Update-ParameterPreviewManifest.ps1`。不把原项目客户模型、模板压缩包、试验记录或用户设置复制到该仓库。
 
+SolidWorks 的面对面常规预览中，基架骨架在顶板、侧板和底板内侧。外壳两端根据已安装基座的顶面和左右侧面定位；两端宽度不同时外壳平滑衔接，不改铜排或支撑坐标。基座与基架侧板按中压预览的冲压百叶样式生成向下的开口。A、B 柜的基座总高分别沿用各自参数，包含顶盖。增量编译后可运行 `node tools/Test-FacingRegularPreview.mjs --solidworks-preview` 离线核查 SolidWorks 预览几何，无需启动 SolidWorks 或浏览器。
+
 ## 面对面常规虚拟测试
 
 Debug 增量编译解决方案后，启动 `CKBusbarBridge.WebTest/bin/Debug/net48/CKBusbarBridge.WebTest.exe`。程序只监听本机回环地址并打开默认浏览器；关闭控制台即退出。参数页复用柜体业务字段，三维视图支持中键旋转、Ctrl + 中键平移、滚轮缩放、视图切换和双击尺寸修改。模型页可分组或逐件隐藏、隔离显示及恢复全部。屋面和地面等环境参照默认隐藏；基座和基架的平盖板默认显示，可在「模型 → 盖板」独立开关。

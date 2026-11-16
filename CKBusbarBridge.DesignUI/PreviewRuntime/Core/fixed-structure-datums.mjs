@@ -43,7 +43,7 @@ export async function deriveFixedStructureDatums(source,name,input,read){
   return {template,parameters,box,port,openingHeight,mounts,graph};
 }
 
-export function generateFromFixedDatums(kernel,derived){
+export function generateFromFixedDatums(kernel,derived,casing){
   return derived.port?baseTemplate(kernel,derived.box,derived.openingHeight,derived.port):
-    frameTemplate(kernel,derived.box,derived.mounts);
+    frameTemplate(kernel,derived.box,derived.mounts,casing);
 }

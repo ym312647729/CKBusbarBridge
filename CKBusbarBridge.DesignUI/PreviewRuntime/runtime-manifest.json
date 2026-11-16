@@ -1,7 +1,7 @@
 {
   "schema": "dq-preview-runtime-manifest/1",
   "calculatorVersion": "dq-sw-mesh/1",
-  "packageSha256": "468a572e1c05121971e93535602cdefadbb53ebc14f866b8c37fc27e6ff3032a",
+  "packageSha256": "9f3767d0bc42e280a62743476b78460b16f69ae40f05e1535589db55ee077ff7",
   "reference": {
     "project": "CKBusbarBridgeVirtualDesigner",
     "commit": "511d64b1248e1c26bf27430e9016fecdc5e9ce5f",
@@ -193,11 +193,15 @@
     },
     {
       "path": "Core/fixed-structure-datums.mjs",
-      "sha256": "d7ab6f5493df44976f846f3a66fd3e69708c366be7f85b5ef15cc17ce37d66cc"
+      "sha256": "4963020f93581115f22ba34d6db93b0e21ee8b142cc88c39fed6f50bd3b48d4a"
+    },
+    {
+      "path": "Core/fixed-structure-louvers.mjs",
+      "sha256": "31c291f32ce3ead6b35bc8bdf7f0e50eb522f2f8f499ce497c1c5995229ac47f"
     },
     {
       "path": "Core/fixed-structure-templates.mjs",
-      "sha256": "113e972557730ff9c3d3a0b5bf9b517acd27aedcf60caed68c67e26430216aa8"
+      "sha256": "3a2fa5a812a02d0f7803855acad15ae7c78bf84ae7f308b3ab35830d72787355"
     },
     {
       "path": "Core/frame-binding.mjs",
@@ -344,6 +348,10 @@
       "sha256": "5376512a2c65c88ac981a44af950c528923d9284f7bdc050f19506a303a25ae2"
     },
     {
+      "path": "Core/regular-frame-casing.mjs",
+      "sha256": "a7cc6fd333d3734674d634440cafe29f1ef5a076e9d3eca067bb96402fa54a58"
+    },
+    {
       "path": "Core/regular-frame-coordinates.mjs",
       "sha256": "70bcbe70f121d8ea6fd43992999fc413b9c7bef1968eb176509acddd5de7826a"
     },
@@ -473,7 +481,7 @@
     },
     {
       "path": "session-worker.mjs",
-      "sha256": "eb8643a6050516350567da1d88b417fef5635bacddbf76ad8af008b987a922eb"
+      "sha256": "7dba70f9e8d962dec5748bfdda081da8f0f410a6f7cc70444ae343127742d37a"
     },
     {
       "path": "templates/模板/侧对侧模板/柜内伸出排/A柜内伸出排-A-A柜后.SLDPRT.virtual.json",
@@ -1605,7 +1613,7 @@
     },
     {
       "path": "Web/src/geometry-worker.js",
-      "sha256": "aec0227920eeb07ebb52d93a838fdc6dd120e4c9701c128a436b02930c074eaa"
+      "sha256": "ea24212a4d385076ed4d9002003e91834a7b3d66046da5a28acc2b6cc14ac00f"
     },
     {
       "path": "Web/src/kernel.js",

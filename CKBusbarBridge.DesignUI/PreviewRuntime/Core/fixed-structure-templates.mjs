@@ -1,8 +1,9 @@
 import {DefinitionError} from './expressions.mjs';
+import {panelPrism,ventedSidePanel} from './fixed-structure-louvers.mjs';
 
 // Millimetres in the existing model's local axes. These are preview templates;
 // the assembly and copper planners continue to own all mating datums.
-export const fixedStructureVersion='bridge-structure-b/3';
+export const fixedStructureVersion='bridge-structure-b/4';
 const board=2;
 const range=(box,axis)=>box.max[axis]-box.min[axis];
 export function makeBlock(kernel,min,max){
@@ -95,28 +96,49 @@ export function baseTemplate(kernel,box,openingHeight,port){
   const {min:[x,y,z],max:[X,Y,Z]}=box,t=Math.min(board,range(box,0)/25,range(box,1)/25,range(box,2)/25),e=3*t;
   const isHighPort=port&&port[0]>(x+X)/2,back=isHighPort?[x,x+t]:[X-t,X];
   const backFlange=isHighPort?[x,x+e]:[X-e,X];
-  return emit(kernel,block=>{
-    block('左侧折边板',[x,y+t,z],[X,Y-t,z+t],'base');
-    block('右侧折边板',[x,y+t,Z-t],[X,Y-t,Z],'base');
-    for(const at of [y,Y-t]) {
+  return emit(kernel,(block,append)=>{
+    const wallTop=Y-2*t;
+    for(const [name,edge,outward] of [['基座左侧板',z,-1],['基座右侧板',Z,1]])
+      append(name,ventedSidePanel(kernel,{start:x,end:X,bottom:y+t,topStart:wallTop,topEnd:wallTop,
+        outerStart:edge,outerEnd:edge,outward,thickness:t}),'base');
+    for(const at of [y,wallTop]) {
       for(const side of [z,Z-e])block('法兰长边',[x,at,side],[X,at+t,side+e],'base');
       // The bridge-facing side is open. No solid crosses the incoming copper.
       block('法兰后边',[backFlange[0],at,z+e],[backFlange[1],at+t,Z-e],'base');
     }
-    block('检修背板',[back[0],y+t,z+t],[back[1],Y-t,Z-t],'base');
+    block('检修背板',[back[0],y+t,z+t],[back[1],wallTop,Z-t],'base');
     if(port&&Number.isFinite(openingHeight)){
       const face=isHighPort?[X-t,X]:[x,x+t],lo=Math.max(y,port[1]-openingHeight/2),hi=Math.min(Y,port[1]+openingHeight/2);
-      if(lo>y+t)block('侧法兰下沿',[face[0],y+t,z+t],[face[1],Math.min(lo,Y-t),Z-t],'base');
-      if(hi<Y-t)block('侧法兰上沿',[face[0],Math.max(hi,y+t),z+t],[face[1],Y-t,Z-t],'base');
+      if(lo>y+t)block('侧法兰下沿',[face[0],y+t,z+t],[face[1],Math.min(lo,wallTop),Z-t],'base');
+      if(hi<wallTop)block('侧法兰上沿',[face[0],Math.max(hi,y+t),z+t],[face[1],wallTop,Z-t],'base');
     }
-    block('基座顶盖',[x,Y,z],[X,Y+board,Z],'cover');
+    // Nominal base height is the overall height, including the lid.
+    block('基座顶盖',[x,Y-t,z],[X,Y,Z],'cover');
   });
 }
 
-export function frameTemplate(kernel,{min:[x,y,z],max:[X,Y,Z]},mounts=[]){
-  // Keep the structural bars in the outer belt; do not consume the opening.
+export function frameTemplate(kernel,box,mounts=[],casing=null){
+  const {min:[x,floor,minZ],max:[X,nominalTop,maxZ]}=box;
+  let y=floor,Y=nominalTop,z=minZ,Z=maxZ;
+  if(casing){
+    y+=board;Y=Math.min(casing.start.top,casing.end.top)-board;
+    z=Math.max(casing.start.left,casing.end.left)+board;Z=Math.min(casing.start.right,casing.end.right)-board;
+    if(Y<=y||Z<=z)throw new DefinitionError('基架外壳空间不足，无法容纳内架');
+  }
   const beam=Math.min(16,(X-x)/8,(Y-y)/8,(Z-z)/8);
-  return emit(kernel,block=>{
+  return emit(kernel,(block,append)=>{
+    if(casing){
+      const {start,end}=casing,footprint=[[x,start.left],[X,end.left],[X,end.right],[x,start.right]];
+      const topSlope=(end.top-start.top)/(X-x);
+      // Extrude the same exterior outline for the two flat decks; their
+      // outer faces meet the side skins and the neighboring base's faces.
+      append('基架底板',panelPrism(kernel,footprint,board,[1,0,0,0,0,0,1,0,0,1,0,0,0,floor,0,1]),'frame');
+      append('基架盖板',panelPrism(kernel,footprint,board,
+        [1,topSlope,0,0,0,0,1,0,0,1,0,0,0,start.top-board-topSlope*x,0,1]),'cover');
+      for(const [name,side,outward] of [['基架左侧板','left',-1],['基架右侧板','right',1]])
+        append(name,ventedSidePanel(kernel,{start:x,end:X,bottom:y,topStart:start.top-board,topEnd:end.top-board,
+          outerStart:start[side],outerEnd:end[side],outward,thickness:board}),'frame');
+    }
     for(const height of [y,Y-beam]){
       for(const side of [z,Z-beam])block('纵梁',[x,height,side],[X,height+beam,side+beam],'frame');
       for(const end of [x,X-beam])block('端框横梁',[end,height,z+beam],[end+beam,height+beam,Z-beam],'frame');
@@ -125,8 +147,9 @@ export function frameTemplate(kernel,{min:[x,y,z],max:[X,Y,Z]},mounts=[]){
       block('角柱',[end,y+beam,side],[end+beam,Y-beam,side+beam],'frame');
     for(const {point:[station,level],suspended} of mounts){
       const start=Math.max(x,station-beam/2),end=Math.min(X,station+beam/2);
-      const bottom=suspended?level:level-beam,top=suspended?level+beam:level;
-      if(start>=end||bottom<y||top>Y)continue;
+      const bottom=suspended?level:casing?Math.max(y,level-beam):level-beam;
+      const top=suspended?(casing?Math.min(Y,level+beam):level+beam):level;
+      if(start>=end||bottom<y||top>Y||bottom>=top)continue;
       const tabBottom=suspended?Math.max(bottom,y+beam):y+beam;
       const tabTop=suspended?Y-beam:Math.min(top,Y-beam);
       // A crossbeam meeting an end rail is notched to its inboard face.
@@ -139,7 +162,7 @@ export function frameTemplate(kernel,{min:[x,y,z],max:[X,Y,Z]},mounts=[]){
           block('安装横梁接板',[tabStart,tabBottom,side],[tabEnd,tabTop,side+beam],'frame');
       }
     }
-    block('基架盖板',[x,Y,z],[X,Y+board,Z],'cover');
+    if(!casing)block('基架盖板',[x,Y,z],[X,Y+board,Z],'cover');
   });
 }
 

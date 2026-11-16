@@ -40,7 +40,7 @@ async function loadTemplate(templatePath){
 self.onmessage=async event=>{
   if(event.data.type==='initialize-kernel'){kernelCompilationMs=event.data.initializationMs;resolveCompiledKernel(event.data.module);return;}
   if(event.data.type==='initialize-kernel-error'){rejectCompiledKernel(new Error(event.data.message));return;}
-  const {object,revision,requestId,signature,settings,purpose}=event.data;
+  const {object,revision,requestId,signature,settings,purpose,casing}=event.data;
   const started=performance.now(),meshCacheBefore=previewMeshCache.snapshot(),meshCacheMetrics=()=>{const current=previewMeshCache.snapshot();return {...current,hits:current.hits-meshCacheBefore.hits,misses:current.misses-meshCacheBefore.misses};};let parameters=[],coordinates={interfaces:[],diagnostics:[]},roofPlanes={complete:false,planes:[],diagnostics:[]},hangerFrame=null,interfaceReadMs=0,driveMs=0,derivedGeometry=null,businessParameters=null,fixedCopper=null;let result;
   try{
     if(['free-copper','original-copper'].includes(object.kind)){
@@ -70,7 +70,8 @@ self.onmessage=async event=>{
       const derived=fixedDatums??await deriveStructureAssembly(sourceTemplate,object.configuration,input.globalVariables,loadTemplate,{rootDimensions:input.rootDimensions,businessDrive:input.businessDrive});
       template=derived.template;templateLoader=derived.loadTemplate??loadTemplate;
       businessParameters=object.baseBinding?basePreviewParameters(input,template.configurations.find(row=>row.name===object.configuration)):derived.parameters;
-      driveMs=performance.now()-driveStart;derivedGeometry={kind:object.baseBinding?'base-model':'frame-model',installationStatus:input.installationStatus,sourceName:input.sourceName,diagnostics:derived.diagnostics??[],drivenDocuments:derived.evidence?.length??derived.graph.models.length,nativeModelValidationRequired:false};
+      driveMs=performance.now()-driveStart;derivedGeometry={kind:object.baseBinding?'base-model':'frame-model',installationStatus:input.installationStatus,sourceName:input.sourceName,diagnostics:derived.diagnostics??[],drivenDocuments:derived.evidence?.length??derived.graph.models.length,nativeModelValidationRequired:false,
+        ...(fixedDatums?{envelope:fixedDatums.box,port:fixedDatums.port}:{})};
     }
     parameters=fixedDatums?fixedDatums.parameters:listParameters(template,object.configuration);
     if(purpose!=='interaction-lod'&&!object.insulatorBinding&&!object.structureSupportBinding){
@@ -86,7 +87,7 @@ self.onmessage=async event=>{
         cabinetNominalBounds(part.configurations.find(configuration=>configuration.name===configurationName)),1,
         roofConductors?.get(part.source.path),object.cabinetSceneInput.values['General.InsulationDistance']):null;
     }}:settings;
-    result=fixedDatums?generateFromFixedDatums(kernel,fixedDatums):object.hangerDimensions?hangerTemplate(kernel,object.hangerDimensions.width,
+    result=fixedDatums?generateFromFixedDatums(kernel,fixedDatums,casing):object.hangerDimensions?hangerTemplate(kernel,object.hangerDimensions.width,
       object.hangerDimensions.angleLength+hangerRules.fixedHeight,object.hangerBinding.templateReference.localTransform):
       object.structureSupportBinding?await evaluateInsulatorDesign(kernel,object.insulatorPlanInput,loadTemplate,settings):
       object.insulatorBinding?await evaluateInsulatorDraftPreview(kernel,object.insulatorPlanInput,loadTemplate,settings):

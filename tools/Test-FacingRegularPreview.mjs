@@ -21,6 +21,60 @@ function assertClosedTriangles({displayName,positions,triangles}){
   assert.ok([...edges.values()].every(([forward,reverse])=>forward===1&&reverse===1),displayName+' 三角面边界未闭合');
 }
 
+function worldPoints({positions,transform}){
+  const points=[];
+  for(let index=0;index<positions.length;index+=3)points.push([0,1,2].map(axis=>transform[12+axis]+
+    transform[axis]*positions[index]+transform[4+axis]*positions[index+1]+transform[8+axis]*positions[index+2]));
+  return points;
+}
+const span=(points,axis)=>[Math.min(...points.map(point=>point[axis])),Math.max(...points.map(point=>point[axis]))];
+const aligned=(a,b)=>Math.abs(a-b)<.002;
+function assertCasing(instances,covers,frameCount){
+  const panels=covers.map(row=>worldPoints(row)).sort((a,b)=>span(a,0)[0]-span(b,0)[0]);
+  for(let index=1;index<panels.length;index++){
+    const previous=panels[index-1],current=panels[index],station=span(previous,0)[1];
+    assert.ok(aligned(station,span(current,0)[0]),'相邻顶盖之间有间隙');
+    const from=previous.filter(point=>aligned(point[0],station)),to=current.filter(point=>aligned(point[0],station));
+    assert.ok(aligned(span(from,1)[1],span(to,1)[1]),'顶盖外表面未齐平');
+    assert.ok(span(from,2).every((coordinate,axis)=>aligned(coordinate,span(to,2)[axis])),'侧板外表面未齐平');
+  }
+  const bottom=instances.filter(row=>row.displayName==='基架底板');
+  assert.equal(bottom.length,frameCount);
+  for(const lid of covers.filter(row=>row.category==='frame')){
+    const related=instances.filter(row=>row.designObjectId===lid.designObjectId),outline=worldPoints(lid),edges=span(outline,0);
+    for(const name of ['基架左侧板','基架右侧板']){
+      const panel=worldPoints(related.find(row=>row.displayName===name));
+      for(const station of edges){
+        const wallEnd=span(panel.filter(point=>aligned(point[0],station)),2);
+        const lidEnd=span(outline.filter(point=>aligned(point[0],station)),2);
+        // The frame may face either assembly direction; compare absolute sheet fit.
+        assert.ok(wallEnd.some(value=>lidEnd.some(border=>aligned(value,border))),name+' 没有贴合顶板侧边');
+      }
+      assert.ok(span(panel,2)[1]-span(panel,2)[0]>6.9,name+' 缺少百叶窗外伸');
+    }
+    for(const rail of related.filter(row=>row.displayName==='纵梁')){
+      const railPoints=worldPoints(rail);
+      for(const station of edges){
+        const railBounds=span(railPoints.filter(point=>aligned(point[0],station)),2);
+        const shellBounds=span(outline.filter(point=>aligned(point[0],station)),2);
+        assert.ok(railBounds[0]>=shellBounds[0]+1.99&&railBounds[1]<=shellBounds[1]-1.99,'纵梁露出侧板');
+      }
+    }
+  }
+  assert.equal(instances.filter(row=>/^基座[左右]侧板$/.test(row.displayName)&&
+    span(worldPoints(row),2)[1]-span(worldPoints(row),2)[0]>6.9).length,4);
+}
+
+function parameterTree(values){
+  const parameters={};
+  for(const [path,value] of Object.entries(values)){
+    const keys=path.split('.');let target=parameters;
+    for(const key of keys.slice(0,-1))target=target[key]??={};
+    target[keys.at(-1)]=value;
+  }
+  return parameters;
+}
+
 if(workerData){
   const moduleUrl=new URL(workerData.moduleUrl);
   globalThis.fetch=async relative=>{
@@ -63,14 +117,10 @@ if(workerData){
     requestFile=join(caseFolder,'upstream.json');
     for(const [caseIndex,[title,changes]] of [
       ['默认参数',{}],
-      ['A 柜宽 1010 mm，柜间距 3600 mm',{'ACabinet.CabinetWidth':1010,'General.CabinetSpacing':3600}]
+      ['A 柜宽 1010 mm，柜间距 3600 mm',{'ACabinet.CabinetWidth':1010,'General.CabinetSpacing':3600}],
+      ['A、B 柜基座同调至 1040 mm',{'ACabinet.FrontHole.BaseHeight':1040,'BCabinet.FrontHole.BaseHeight':1040}]
     ].entries()){
-      const values={...createOriginalCabinetInput(scenario).values,...changes,'General.InsulationDistance':125},parameters={};
-      for(const [key,value] of Object.entries(values)){
-        const keys=key.split('.');let target=parameters;
-        for(const name of keys.slice(0,-1))target=target[name]??={};
-        target[keys.at(-1)]=value;
-      }
+      const parameters=parameterTree({...createOriginalCabinetInput(scenario).values,...changes,'General.InsulationDistance':125});
       const request={sessionId:'facing-regular',revision:caseIndex+1,scenario,modelName:'面对面常规回归',parameters};
       const calculate=(stage,bridge,renderer)=>{
         const requestId=caseIndex+':'+stage;
@@ -89,15 +139,17 @@ if(workerData){
         assert.ok(instances.some(row=>row.category===part),title+' 缺少 '+part);
       const covers=instances.filter(row=>row.appearanceRole==='cover');
       assert.equal(covers.filter(row=>row.category==='base').length,2);
-      assert.equal(covers.filter(row=>row.category==='frame').length,bridge.objects.filter(row=>row.kind==='Frame').length);
+      const frameCount=bridge.objects.filter(row=>row.kind==='Frame').length;
+      assert.equal(covers.filter(row=>row.category==='frame').length,frameCount);
       assert.ok(covers.every(row=>row.quads.length===24&&row.triangles.length===0),'盖板应是六个矩形面的平板');
+      assertCasing(instances,covers,frameCount);
       assert.equal(clearance.assembly.solids,instances.length);
       assert.ok(clearance.assembly.testedPairs>0);
       assert.equal(clearance.assembly.count,0,JSON.stringify(clearance.assembly.largest));
       assert.equal(clearance.requiredMm,125);
       assert.ok(clearance.passed,JSON.stringify(clearance));
       assert.ok(Math.min(clearance.phases.minimumMm,clearance.grounded.minimumMm)>=125-1e-5);
-      if(caseIndex===0){
+      if(caseIndex===0&&!process.argv.includes('--solidworks-preview')){
         const web=await calculate('webgl',bridge,'webgl');
         assert.equal(web.interactionInstances.length,0);
         assert.equal(web.instances.length,instances.length);
@@ -111,6 +163,21 @@ if(workerData){
       }
       console.log(`${title}：${clearance.assembly.solids} 个实体，干涉 ${clearance.assembly.count} 处，`+
         `相间 ${clearance.phases.minimumMm.toFixed(2)} mm，母线对金属 ${clearance.grounded.minimumMm.toFixed(2)} mm`);
+    }
+    for(const [cabinet,height] of [['A',1060],['B',970]]){
+      const input=createOriginalCabinetInput(scenario);
+      input.values[cabinet+'Cabinet.FrontHole.BaseHeight']=height;
+      const parameters=parameterTree(input.values);
+      const draft=await receive(row=>row.requestId===cabinet,()=>session.postMessage({
+        sessionId:'facing-regular',revision:cabinet==='A'?4:5,requestId:cabinet,scenario,modelName:'单侧基座高度回归',parameters
+      }));
+      for(const side of ['A','B']){
+        const base=draft.project.objects.find(row=>row.baseBinding?.positionName===side+'柜前');
+        const points=draft.instances.filter(row=>row.designObjectId===base.id).flatMap(worldPoints);
+        const [bottom,top]=span(points,1);
+        assert.ok(aligned(top-bottom,side===cabinet?height:1000),side+' 柜基座预览高度有误');
+      }
+      console.log(`独立调整 ${cabinet} 柜基座：实际预览 ${height} mm，另一侧仍为 1000 mm。`);
     }
   }finally{
     await session.terminate();
