@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -79,10 +79,25 @@ namespace CKBusbarBridge.DesignPreview
         internal void Dimensions(IEnumerable<BridgePreviewDimension> dimensions)
         { _dispatcher.VerifyAccess(); _dimensions = dimensions.ToArray(); _hits = Array.Empty<Hit>(); ResetDimensionHover(); }
         private string _focusedCabinetParameter;
+        private BridgePreviewDimension _editedDimension;
         internal void HighlightCabinetParameter(string path)
         {
             if (string.Equals(_focusedCabinetParameter, path, StringComparison.Ordinal)) return;
             _focusedCabinetParameter = path; RequestRedraw();
+        }
+        internal void HighlightEditedDimension(BridgePreviewDimension dimension)
+        { _editedDimension = dimension; RequestRedraw(); }
+        internal bool IsEmptyDimensionViewport(System.Windows.Point screen)
+        {
+            if (_stop || IsStale || IsPreviewOnly || _picker == null || _inverseViewProjection == null || _viewport[2] <= 0 || _viewport[3] <= 0) return false;
+            var point = new NativePoint { X = (int)screen.X, Y = (int)screen.Y };
+            var hitWindow = WindowFromPoint(point);
+            var viewportWindow = _messages.Handle;
+            if (viewportWindow == IntPtr.Zero || (hitWindow != viewportWindow && !IsChild(viewportWindow, hitWindow)) ||
+                !ScreenToClient(viewportWindow, ref point) || point.X < _viewport[0] || point.Y < _viewport[1] ||
+                point.X >= _viewport[0] + _viewport[2] || point.Y >= _viewport[1] + _viewport[3]) return false;
+            return DimensionAt(point.X, point.Y) == null && MarkerAt(point.X, point.Y) == null &&
+                _picker.Pick(ViewportMatrix.ScreenRay(_inverseViewProjection, _viewport, point.X, point.Y), IsInstanceVisible) == null;
         }
         internal void Clear() { _dispatcher.VerifyAccess(); _frame = null; _picker = null; _dimensions = Array.Empty<BridgePreviewDimension>(); _hits = Array.Empty<Hit>(); ResetDimensionHover(); }
 
@@ -259,7 +274,9 @@ namespace CKBusbarBridge.DesignPreview
             {
                 if (!IsDimensionVisible(dimension)) continue;
                 bool focused = !IsPreviewOnly && (dimension.MatchesField(_viewModel?.FocusedDimensionField) ||
-                    dimension.ParameterPath != null && dimension.ParameterPath == _focusedCabinetParameter);
+                    dimension.ParameterPath != null && dimension.ParameterPath == _focusedCabinetParameter ||
+                    _editedDimension != null && dimension.ObjectId == _editedDimension.ObjectId &&
+                    dimension.ParameterPath == _editedDimension.ParameterPath && dimension.Field == _editedDimension.Field);
                 if (dimension.IsReadOnly) Gl.glColor4f(.45f, .45f, .45f, 1f); else Gl.glColor4f(.12f, .12f, .12f, 1f);
                 var edges = dimension.Edges.Select(edge => new { Edge = edge, Points = edge.Points.Select(Project).ToArray() }).Where(edge => edge.Points.All(p => p.Visible)).ToArray();
                 if (edges.Length == 0) continue;
@@ -499,6 +516,9 @@ namespace CKBusbarBridge.DesignPreview
         [StructLayout(LayoutKind.Sequential)] private struct NativePoint { internal int X, Y; }
         [StructLayout(LayoutKind.Sequential)] private struct GlyphMetrics { internal float BlackBoxX, BlackBoxY, OriginX, OriginY, CellIncX, CellIncY; }
         [DllImport("user32.dll")] private static extern bool ClientToScreen(IntPtr window, ref NativePoint point);
+        [DllImport("user32.dll")] private static extern bool ScreenToClient(IntPtr window, ref NativePoint point);
+        [DllImport("user32.dll")] private static extern IntPtr WindowFromPoint(NativePoint point);
+        [DllImport("user32.dll")] private static extern bool IsChild(IntPtr parent, IntPtr window);
         [DllImport("user32.dll")] private static extern IntPtr SetCapture(IntPtr window);
         [DllImport("user32.dll")] private static extern IntPtr SetFocus(IntPtr window);
         [DllImport("user32.dll")] private static extern bool ReleaseCapture();

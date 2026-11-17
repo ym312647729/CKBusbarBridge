@@ -761,39 +761,45 @@ namespace CKBusbarBridge.Drivers
                 if (request.Dimension.Revision != Session.ReadyRevision || _editor?.HasPendingInput == true) return;
                 if (_parameters == null) BindParameters(BridgeCabinetParameterBinding.Restore(Session.Scenario, Session.Parameters()));
                 var expectedRevision = Session.Revision;
-                var openingInputs = Session.Parameters();
-                Func<string, Task<string>> apply = async text =>
+                Func<string, Func<bool>, Task<string>> apply = async (text, isOpen) =>
                 {
-                    if (expectedRevision != Session.Revision) return "参数已改变，请重新双击当前尺寸。";
+                    if (!isOpen() || _disposed || _detached || expectedRevision != Session.Revision || !ReferenceEquals(_application.IActiveDoc2, Document))
+                        return "参数或活动总装已改变，请重新双击当前尺寸。";
                     var before = Session.Parameters();
                     var error = BridgeCabinetParameterBinding.Commit(_parameters, request.Dimension.ParameterPath, text);
                     if (error != null) return error;
                     expectedRevision = Session.Revision;
-                    try { await EnsureReady(); expectedRevision = Session.Revision; return null; }
+                    try
+                    {
+                        await EnsureReady();
+                        if (!isOpen() || !ReferenceEquals(_application.IActiveDoc2, Document)) throw new OperationCanceledException("尺寸修改已取消。");
+                        expectedRevision = Session.Revision;
+                        return null;
+                    }
                     catch (Exception failure)
                     {
+                        if (_disposed || _detached) return failure.Message;
                         RestoreCabinetInputs(before, _orientation, _drawingMetadata);
                         await EnsureReady(); expectedRevision = Session.Revision;
                         return failure.Message;
                     }
                 };
-                _dimensionEditor.Show(request.Dimension.Label, request.Dimension.Value, request.ScreenX, request.ScreenY, _viewport.WindowHandle,
+                _dimensionEditor.Show(request, _viewport,
                     value => expectedRevision != Session.Revision ? "参数已改变，请重新双击当前尺寸。" : BridgeCabinetParameterBinding.Validate(_parameters, request.Dimension.ParameterPath, value),
-                    apply, () => RestoreCabinetInputs(openingInputs, _orientation, _drawingMetadata));
+                    apply);
                 return;
             }
             if (_editor == null || _editor.HasPendingInput || _editor.Editor.Revision != request.Dimension.Revision) return;
             var field = _editor.Fields.SingleOrDefault(row => row.ObjectId == request.Dimension.ObjectId && row.Field == request.Dimension.Field && !row.IsReadOnly);
             if (field == null) return;
             var revision = _editor.Editor.Revision;
-            var restoreOpening = _editor.Editor.CaptureDraftCheckpoint();
-            Func<string, Task<string>> applyField = async text =>
+            Func<string, Func<bool>, Task<string>> applyField = async (text, isOpen) =>
             {
-                if (_editor.Editor.Revision != revision) return "草稿已改变，请重新双击当前尺寸。";
+                if (!isOpen() || _disposed || _detached || _editor == null || _editor.Editor.Revision != revision || !ReferenceEquals(_application.IActiveDoc2, Document))
+                    return "草稿或活动总装已改变，请重新双击当前尺寸。";
                 var restorePrevious = _editor.Editor.CaptureDraftCheckpoint();
                 try
                 {
-                    restoreOpening();
                     var currentField = _editor.Fields.SingleOrDefault(row => row.ObjectId == request.Dimension.ObjectId && row.Field == request.Dimension.Field && !row.IsReadOnly);
                     if (currentField == null) throw new InvalidOperationException("当前参数已不可编辑，请重新选择。");
                     // Reuse the parameter table's setter, business validation, linked
@@ -801,20 +807,21 @@ namespace CKBusbarBridge.Drivers
                     currentField.Text = text; currentField.Commit();
                     if (_editor.PlanningBusy) await _editor.PlanningCompletion;
                     if (!string.IsNullOrEmpty(currentField.Error)) throw new InvalidOperationException(currentField.Error);
-                    await EnsureReady(); revision = _editor.Editor.Revision;
+                    await EnsureReady();
+                    if (!isOpen() || !ReferenceEquals(_application.IActiveDoc2, Document)) throw new OperationCanceledException("尺寸修改已取消。");
+                    revision = _editor.Editor.Revision;
                     return null;
                 }
                 catch (Exception failure)
                 {
-                    FaceToWallPreviewTrace.Error("视口尺寸沿原参数入口修改失败", failure);
+                    if (!(failure is OperationCanceledException)) FaceToWallPreviewTrace.Error("视口尺寸沿原参数入口修改失败", failure);
+                    if (_disposed || _detached || _editor == null) return failure.Message;
                     restorePrevious(); revision = _editor.Editor.Revision;
                     await EnsureReady(); revision = _editor.Editor.Revision;
                     return failure.Message;
                 }
             };
-            _dimensionEditor.Show(field.Label, request.Dimension.Value, request.ScreenX, request.ScreenY, _viewport.WindowHandle,
-                value => _editor.Editor.Revision != revision ? "草稿已改变，请重新双击当前尺寸。" : null,
-                applyField, restoreOpening);
+            _dimensionEditor.Show(request, _viewport, null, applyField);
         }
         private int Draw(PreviewViewBinding binding)
         {

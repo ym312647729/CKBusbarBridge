@@ -389,6 +389,7 @@
   <ItemGroup>
     <Compile Include="Preview\*.cs" />
     <EmbeddedResource Include="Preview\CabinetParameterProperties.json"><LogicalName>CKBusbarBridge.CabinetParameterProperties.json</LogicalName></EmbeddedResource>
+    <EmbeddedResource Include="Preview\DimensionConfirm.cur"><LogicalName>CKBusbarBridge.DimensionConfirm.cur</LogicalName></EmbeddedResource>
     <None Include="packages.config" />
     <Page Include="Preview\ManualDrawDimensionWindow.xaml"><Generator>MSBuild:Compile</Generator></Page>
     <Page Include="Preview\WpfLibraryAppearance.xaml"><Generator>MSBuild:Compile</Generator></Page>

@@ -10,29 +10,30 @@ namespace CKBusbarBridge.DesignPreview
     internal sealed class BridgeBusinessDimensionEditor : IDisposable
     {
         private ManualDrawDimensionWindow _window;
-        internal void Show(string label, float currentValue, int screenX, int screenY,
-            IntPtr viewportWindow, Func<float, string> validate, Func<string, Task<string>> commit, Action cancel)
+        internal void Show(BridgeDimensionEditRequest request, BridgeOpenGlViewport viewport,
+            Func<float, string> validate, Func<string, Func<bool>, Task<string>> commit)
         {
             if (_window != null) throw new InvalidOperationException("当前尺寸编辑尚未结束。");
-            var window = new ManualDrawDimensionWindow(label, currentValue, true, screenX, screenY)
+            var window = new ManualDrawDimensionWindow(request.Dimension.Label, request.Dimension.Value,
+                request.ScreenX, request.ScreenY, viewport.IsEmptyDimensionViewport)
             {
                 Validate = validate,
-                CommitRequested = value => commit(value.ToString("R", CultureInfo.InvariantCulture)),
-                PreviewRequested = value => commit(value.ToString("R", CultureInfo.InvariantCulture))
+                CommitRequested = (value, isOpen) => commit(value.ToString("R", CultureInfo.InvariantCulture), isOpen)
             };
-            var owner = GetAncestor(viewportWindow, 2);
+            var owner = GetAncestor(viewport.WindowHandle, 2);
             if (owner == IntPtr.Zero) throw new InvalidOperationException("无法取得尺寸编辑窗口的SolidWorks宿主窗口。");
             new WindowInteropHelper(window).Owner = owner;
             _window = window;
-            var accepted = false;
-            try { accepted = window.ShowDialog() == true; }
-            finally
+            window.Closed += (sender, args) =>
             {
-                try { if (!accepted) cancel?.Invoke(); }
-                finally { window.Close(); _window = null; }
-            }
+                if (ReferenceEquals(_window, window)) _window = null;
+                viewport.HighlightEditedDimension(null);
+            };
+            viewport.HighlightEditedDimension(request.Dimension);
+            try { window.Show(); }
+            catch { window.Close(); throw; }
         }
-        public void Dispose() { _window?.Close(); }
+        public void Dispose() { _window?.Cancel(); }
         [DllImport("user32.dll")] private static extern IntPtr GetAncestor(IntPtr window, uint flags);
     }
     internal static class DimensionFeedback
