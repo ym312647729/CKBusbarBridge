@@ -14,6 +14,7 @@ namespace CKBusbarBridge.views
     {
         private bool _parameterDraftMode;
         private RDProgressToast _draftProgressToast;
+        private const double SideBySideListMinimumWidth = 850d;
 
         private void InitializePreviewLayout()
         {
@@ -21,42 +22,28 @@ namespace CKBusbarBridge.views
             DraftViewportToolbar.Visibility = Visibility.Visible;
             DraftPreviousButton.Visibility = _parameterDraftMode ? Visibility.Visible : Visibility.Collapsed;
             GenerateModelButton.Content = "生成";
-            DesignLayout.MinWidth = 0;
-            DesignLayout.ColumnDefinitions[0].MinWidth = 0;
-            DesignLayout.ColumnDefinitions[0].Width = new GridLength(0);
-            DesignLayout.ColumnDefinitions[1].Width = new GridLength(0);
-            DesignLayout.ColumnDefinitions[2].MinWidth = 0;
-            DesignLayout.ColumnDefinitions[2].Width = new GridLength(1, GridUnitType.Star);
-            DesignLayout.ColumnDefinitions[3].Width = new GridLength(0);
-            DesignLayout.ColumnDefinitions[4].MinWidth = 0;
-            DesignLayout.ColumnDefinitions[4].Width = new GridLength(0);
-            DesignLayout.Width = double.NaN;
-            DesignLayout.Height = double.NaN;
-            DesignLayout.MinHeight = 0;
-            DesignLayout.RowDefinitions[1].Height = new GridLength(280);
-            DesignLayout.RowDefinitions.Add(new RowDefinition { Height = new GridLength(280) });
-            foreach (UIElement child in DesignLayout.Children)
-            {
-                if (child is GridSplitter && Grid.GetColumn(child) == 3)
-                    child.Visibility = Visibility.Collapsed;
-                if (child is Border && Grid.GetColumn(child) == 4)
-                {
-                    Grid.SetColumn(child, 2);
-                    Grid.SetRow(child, 3);
-                }
-                else if (child is Border && Grid.GetColumn(child) == 2 && Grid.GetColumnSpan(child) == 3)
-                    Grid.SetColumnSpan(child, 1);
-            }
-            foreach (UIElement child in DesignLayout.Children)
-                if (child is Border && Grid.GetColumn(child) == 2 && Grid.GetRowSpan(child) == 3)
-                    Grid.SetRowSpan(child, 4);
             ObjectDetailsExpander.IsExpanded = true;
-            RightSidePanelLayout.Apply(this);
-            LayoutScroll.HorizontalScrollBarVisibility = ScrollBarVisibility.Disabled;
+            RightSidePanelLayout.Apply(this, halfWidth: true);
+            UpdateObjectListLayout(Width - LayoutScroll.Margin.Left - LayoutScroll.Margin.Right);
             DesignStatus.Height = double.NaN;
             DesignStatus.TextWrapping = TextWrapping.Wrap;
             _viewModel.PropertyChanged += DraftProgressChanged;
             DraftProgressChanged(this, new System.ComponentModel.PropertyChangedEventArgs(null));
+        }
+
+        private void DesignLayout_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (e.WidthChanged) UpdateObjectListLayout(e.NewSize.Width);
+        }
+
+        private void UpdateObjectListLayout(double width)
+        {
+            bool stacked = width < SideBySideListMinimumWidth;
+            Grid.SetColumnSpan(CopperListPanel, stacked ? 3 : 1);
+            Grid.SetColumn(SupportListPanel, stacked ? 0 : 2);
+            Grid.SetColumnSpan(SupportListPanel, stacked ? 3 : 1);
+            Grid.SetRow(SupportListPanel, stacked ? 2 : 1);
+            DesignLayout.RowDefinitions[2].Height = stacked ? DesignLayout.RowDefinitions[1].Height : new GridLength(0);
         }
         private void DraftProgressChanged(object sender, System.ComponentModel.PropertyChangedEventArgs args)
         {

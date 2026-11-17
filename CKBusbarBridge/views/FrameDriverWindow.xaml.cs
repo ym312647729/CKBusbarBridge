@@ -363,6 +363,7 @@ namespace CKBusbarBridge.views
         }
         private void Window_Closed(object sender, EventArgs e)
         {
+            _viewModel.FocusedDimensionField = null;
             if (_host is IBridgeParameterDraftHost parameterHost)
             { parameterHost.ParameterDraftChanged -= ParameterDraftChanged; parameterHost.DetachDraftEditor(_viewModel); }
             HideReadLoadingIndicator();
@@ -516,7 +517,15 @@ namespace CKBusbarBridge.views
         }
         private void Field_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
-            ((sender as FrameworkElement)?.DataContext as BridgeDesignFieldVM)?.Commit();
+            var field = (sender as FrameworkElement)?.DataContext as BridgeDesignFieldVM;
+            if (ReferenceEquals(_viewModel.FocusedDimensionField, field)) _viewModel.FocusedDimensionField = null;
+            field?.Commit();
+        }
+        private void Field_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            var field = (sender as FrameworkElement)?.DataContext as BridgeDesignFieldVM;
+            if (field != null && !field.IsReadOnly && DesignPreview.BridgePreviewDimensionFactory.IsDimension(field.Field))
+                _viewModel.FocusedDimensionField = field;
         }
         private void FieldChoice_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

@@ -844,6 +844,18 @@ namespace CKBusbarBridge.Prototype
                 else Fields.Add(next[index]);
             }
             while (Fields.Count > next.Count) Fields.RemoveAt(Fields.Count - 1);
+            if (FocusedDimensionField != null && !Fields.Contains(FocusedDimensionField)) FocusedDimensionField = null;
+        }
+        private BridgeDesignFieldVM _focusedDimensionField;
+        internal BridgeDesignFieldVM FocusedDimensionField
+        {
+            get => _focusedDimensionField;
+            set
+            {
+                if (ReferenceEquals(_focusedDimensionField, value)) return;
+                _focusedDimensionField = value;
+                RaisePropertyChanged(nameof(FocusedDimensionField));
+            }
         }
         private IReadOnlyList<BridgeDesignFieldVM> BuildFields()
         {

@@ -141,21 +141,6 @@
    <Style x:Key="BridgePreviewViewHeading" TargetType="Border" BasedOn="{StaticResource BridgeToolbarBorderStyle}">
     <Setter Property="Padding" Value="8,5"/>
    </Style>
-   <Style x:Key="BridgeSplitterStyle" TargetType="GridSplitter">
-    <Setter Property="Background" Value="#BCC9D8"/>
-    <Setter Property="Template"><Setter.Value><ControlTemplate TargetType="GridSplitter">
-     <Grid Background="Transparent">
-      <Border x:Name="Grip" Width="3" Height="32" CornerRadius="1" Background="{TemplateBinding Background}"
-              HorizontalAlignment="Center" VerticalAlignment="Center"/>
-     </Grid>
-     <ControlTemplate.Triggers>
-      <Trigger Property="ResizeDirection" Value="Rows">
-       <Setter TargetName="Grip" Property="Width" Value="32"/><Setter TargetName="Grip" Property="Height" Value="3"/>
-      </Trigger>
-      <Trigger Property="IsMouseOver" Value="True"><Setter TargetName="Grip" Property="Background" Value="#6A91C0"/></Trigger>
-     </ControlTemplate.Triggers>
-    </ControlTemplate></Setter.Value></Setter>
-   </Style>
    <Style x:Key="BridgeDetailsStyle" TargetType="Expander">
     <Setter Property="Template"><Setter.Value><ControlTemplate TargetType="Expander">
      <DockPanel>
@@ -187,7 +172,8 @@
    <!-- 带事件的模板独立声明，Style仅引用资源，避免MC4007事件连接限制。 -->
    <DataTemplate x:Key="BridgeNumericFieldTemplate">
     <rd:RDInput Text="{Binding Text, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding IsReadOnly}"
-     KeyDown="Field_KeyDown" LostKeyboardFocus="Field_LostKeyboardFocus" ToolTip="Enter/失焦提交，Esc取消；定位为距基架模型起始端的距离，小数使用点。">
+     MinHeight="27" GotKeyboardFocus="Field_GotKeyboardFocus" KeyDown="Field_KeyDown" LostKeyboardFocus="Field_LostKeyboardFocus"
+     ToolTip="Enter/失焦提交，Esc取消；定位为距基架模型起始端的距离，小数使用点。">
      <rd:RDInput.Style><Style TargetType="rd:RDInput"><Style.Triggers>
       <DataTrigger Binding="{Binding IsReadOnly}" Value="True">
        <Setter Property="IsEnabled" Value="False"/><Setter Property="Focusable" Value="False"/><Setter Property="IsTabStop" Value="False"/>
@@ -245,21 +231,19 @@
    </WrapPanel>
   </StackPanel>
  </Border>
- <ScrollViewer x:Name="LayoutScroll" Grid.Row="2" Margin="10,10,10,0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-  <Grid x:Name="DesignLayout" IsEnabled="{Binding IsEditingEnabled}" MinWidth="985" MinHeight="440" Width="{Binding ViewportWidth, ElementName=LayoutScroll}" Height="{Binding ViewportHeight, ElementName=LayoutScroll}">
+ <ScrollViewer x:Name="LayoutScroll" Grid.Row="2" Margin="10,10,10,0" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+  <Grid x:Name="DesignLayout" IsEnabled="{Binding IsEditingEnabled}" SizeChanged="DesignLayout_SizeChanged"
+        Width="{Binding ViewportWidth, ElementName=LayoutScroll}">
    <Grid.ColumnDefinitions>
-    <ColumnDefinition Width="39*" MinWidth="320"/><ColumnDefinition Width="7"/>
-    <ColumnDefinition Width="26*" MinWidth="225"/><ColumnDefinition Width="10"/><ColumnDefinition Width="35*" MinWidth="420"/>
+    <ColumnDefinition Width="43*"/><ColumnDefinition Width="10"/><ColumnDefinition Width="57*"/>
    </Grid.ColumnDefinitions>
-  <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*" MinHeight="165"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
-  <Border Grid.Column="2" Grid.ColumnSpan="3" Grid.RowSpan="3" Style="{StaticResource BridgeCardStyle}"/>
-  <Border Grid.Column="2" Grid.ColumnSpan="3" Style="{StaticResource BridgeToolbarBorderStyle}"
-          Background="Transparent" MinHeight="36" Margin="1,1,1,0" Padding="10,4">
+  <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="238"/><RowDefinition Height="0"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+  <Border Grid.ColumnSpan="3" Grid.RowSpan="4" Style="{StaticResource BridgeCardStyle}"/>
+  <Border Grid.ColumnSpan="3" Style="{StaticResource BridgeToolbarBorderStyle}"
+          Background="Transparent" MinHeight="34" Margin="1,1,1,0" Padding="10,4">
    <TextBlock Text="设计参数" Style="{StaticResource BridgePanelHeading}"/>
   </Border>
-  <GridSplitter Grid.Row="1" Grid.Column="3" Width="10" HorizontalAlignment="Stretch" ResizeDirection="Columns"
-                ResizeBehavior="PreviousAndNext" Style="{StaticResource BridgeSplitterStyle}"/>
-  <Border Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="3" Margin="1,0,1,1" ClipToBounds="True">
+  <Border Grid.Row="3" Grid.ColumnSpan="3" Margin="1,0,1,1" ClipToBounds="True">
    <Expander x:Name="ObjectDetailsExpander" IsExpanded="False" Style="{StaticResource BridgeDetailsStyle}">
     <Expander.Header>
      <DockPanel>
@@ -319,15 +303,17 @@
       <DataTrigger Binding="{Binding ShowFrameActions}" Value="True"><Setter Property="Visibility" Value="Collapsed"/></DataTrigger>
      </Style.Triggers></Style></TextBlock.Style>
     </TextBlock>
-     <rd:RDDataGrid ItemsSource="{Binding Fields}" MaxHeight="121" RowHeight="30" ColumnHeaderHeight="28" CanUserSortColumns="False" Margin="0,3,0,0">
+     <rd:RDDataGrid x:Name="ObjectParameterGrid" AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding Fields}" MaxHeight="304" RowHeight="34"
+                    ColumnHeaderHeight="32" CanUserSortColumns="False" Margin="0,3,0,0">
      <rd:RDDataGrid.Style><Style TargetType="rd:RDDataGrid" BasedOn="{StaticResource BridgeDataGridStyle}"><Style.Triggers>
       <DataTrigger Binding="{Binding Fields.Count}" Value="0"><Setter Property="Visibility" Value="Collapsed"/></DataTrigger>
      </Style.Triggers></Style></rd:RDDataGrid.Style>
      <rd:RDDataGrid.Columns>
-      <DataGridTextColumn Header="参数" Binding="{Binding Label}" Width="2*" MinWidth="105"/>
-      <DataGridTextColumn Header="推荐值" Binding="{Binding RecommendedText}" Width="*" MinWidth="62"/>
+      <DataGridTextColumn Header="参数" Binding="{Binding Label}" Width="2*" MinWidth="105" ElementStyle="{StaticResource BridgeListCellText}"/>
+      <DataGridTextColumn Header="推荐值" Binding="{Binding RecommendedText}" Width="*" MinWidth="62"
+                          ElementStyle="{StaticResource BridgeNumericCellText}" HeaderStyle="{StaticResource BridgeNumericColumnHeader}"/>
       <DataGridTemplateColumn Header="当前值" Width="*" MinWidth="95"><DataGridTemplateColumn.CellTemplate><DataTemplate>
-       <ContentControl Content="{Binding}" ToolTip="{Binding Error}" HorizontalAlignment="Stretch"><ContentControl.Style><Style TargetType="ContentControl">
+       <ContentControl Content="{Binding}" ToolTip="{Binding Error}" HorizontalAlignment="Stretch" Margin="3,1"><ContentControl.Style><Style TargetType="ContentControl">
        <Setter Property="ContentTemplate" Value="{StaticResource BridgeNumericFieldTemplate}"/>
        <Style.Triggers><DataTrigger Binding="{Binding IsChoice}" Value="True">
         <Setter Property="ContentTemplate" Value="{StaticResource BridgeChoiceFieldTemplate}"/>
@@ -363,14 +349,15 @@
      <rd:RDButton Content="移除断点" Command="{Binding RemoveBreakpointCommand}" ToolTip="将前后普通段排合为一段；合并后超过3000 mm或涉及特殊段、固定接口时禁止移除，可撤销。"/>
     </WrapPanel>
    </StackPanel></Expander></Border>
-  <Border Grid.Row="1" Grid.Column="2" Margin="12,4,0,10" ClipToBounds="True">
+  <Border x:Name="CopperListPanel" Grid.Row="1" Margin="10,4,4,8" ClipToBounds="True">
    <DockPanel>
     <Border DockPanel.Dock="Top" Style="{StaticResource BridgeListHeadingBar}">
      <TextBlock Text="铜排" Margin="1,0,0,0" VerticalAlignment="Center" FontSize="14" FontWeight="SemiBold"/>
     </Border>
     <DockPanel Margin="0,2,0,0">
       <TextBlock DockPanel.Dock="Top" Text="段排 · ABC三相联动" Style="{StaticResource BridgeListContext}" ToolTip="长度含搭接；点断点数值查看末端断点，右键断点列可查看起端"/>
-      <rd:RDDataGrid x:Name="CopperSectionGrid" ItemsSource="{Binding CopperRows}" IsSynchronizedWithCurrentItem="False"
+      <rd:RDDataGrid x:Name="CopperSectionGrid" AutoGenerateColumns="False" IsReadOnly="True" Style="{StaticResource BridgeDataGridStyle}"
+                      ItemsSource="{Binding CopperRows}" IsSynchronizedWithCurrentItem="False"
                 SelectionChanged="CopperSectionGrid_SelectionChanged">
        <rd:RDDataGrid.Columns>
         <DataGridTextColumn Header="序号" Binding="{Binding Index, StringFormat=D2}" Width="54" MinWidth="54"
@@ -429,7 +416,7 @@
     </DockPanel>
    </DockPanel>
   </Border>
-  <Border Grid.Row="1" Grid.Column="4" Margin="0,4,12,10" ClipToBounds="True">
+  <Border x:Name="SupportListPanel" Grid.Row="1" Grid.Column="2" Margin="4,4,10,8" ClipToBounds="True">
    <DockPanel>
     <Border DockPanel.Dock="Top" Style="{StaticResource BridgeListHeadingBar}">
      <DockPanel>
@@ -461,7 +448,8 @@
        <Trigger Property="Text" Value=""><Setter Property="Visibility" Value="Collapsed"/></Trigger>
       </Style.Triggers></Style></TextBlock.Style>
      </TextBlock>
-     <rd:RDDataGrid x:Name="FrameGrid" SelectionMode="Extended" SelectionChanged="FrameGrid_SelectionChanged" Sorting="FrameGrid_Sorting">
+     <rd:RDDataGrid x:Name="FrameGrid" AutoGenerateColumns="False" IsReadOnly="True" Style="{StaticResource BridgeDataGridStyle}"
+                     SelectionMode="Extended" SelectionChanged="FrameGrid_SelectionChanged" Sorting="FrameGrid_Sorting">
       <rd:RDDataGrid.Columns>
        <DataGridTextColumn Header="序号" Binding="{Binding FramePositionIndex, StringFormat=D2}" Width="54" MinWidth="54"
                            CellStyle="{StaticResource BridgeFirstCellStyle}" ElementStyle="{StaticResource BridgeSequenceCellText}"/>
@@ -532,7 +520,8 @@
      <rd:RDButton Content="确认当前首节起始边" HorizontalAlignment="Left" Click="ConfirmHangerStart_Click"
              Visibility="{Binding CanConfirmHangerStart, Converter={StaticResource FrameSelectionVisibility}}"/>
     </StackPanel>
-    <rd:RDDataGrid x:Name="HangerGrid" ItemsSource="{Binding HangerRows}" SelectedValuePath="Id" RowHeight="38"
+    <rd:RDDataGrid x:Name="HangerGrid" AutoGenerateColumns="False" IsReadOnly="True" Style="{StaticResource BridgeDataGridStyle}"
+                    ItemsSource="{Binding HangerRows}" SelectedValuePath="Id" RowHeight="38"
               SelectedValue="{Binding SelectedHangerId, Mode=TwoWay}" CanUserSortColumns="False">
      <rd:RDDataGrid.Columns>
       <DataGridTextColumn Header="编号" Binding="{Binding Name}" Width="58" CellStyle="{StaticResource BridgeFirstCellStyle}"/>

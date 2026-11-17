@@ -252,6 +252,7 @@ namespace CKBusbarBridge.DesignPreview
             foreach (var dimension in _dimensions)
             {
                 if (!IsDimensionVisible(dimension)) continue;
+                bool focused = !IsPreviewOnly && dimension.MatchesField(_viewModel?.FocusedDimensionField);
                 if (dimension.IsReadOnly) Gl.glColor4f(.45f, .45f, .45f, 1f); else Gl.glColor4f(.12f, .12f, .12f, 1f);
                 var edges = dimension.Edges.Select(edge => new { Edge = edge, Points = edge.Points.Select(Project).ToArray() }).Where(edge => edge.Points.All(p => p.Visible)).ToArray();
                 if (edges.Length == 0) continue;
@@ -266,7 +267,7 @@ namespace CKBusbarBridge.DesignPreview
                 var tangentLength = (float)Math.Sqrt(Square(b.X - a.X) + Square(b.Y - a.Y));
                 if (tangentLength < 1f)
                 {
-                    if (dimension.ParameterPath != "General.CabinetEccentricity" && dimension.ParameterPath != "General.WallCabinetEccentricity") continue;
+                    if (!focused && dimension.ParameterPath != "General.CabinetEccentricity" && dimension.ParameterPath != "General.WallCabinetEccentricity") continue;
                     // Zero offset (or an end-on view) still needs an editable value.
                     // Draw a leader to the real mate datum, without inventing a model dimension line.
                     var callout = new ManualDrawAnnotationLabel { OriginX = a.X + 16f, OriginY = a.Y + 16f,
@@ -274,8 +275,7 @@ namespace CKBusbarBridge.DesignPreview
                     callout = ManualDrawAnnotationLayout.Avoid(callout, bodies.TryGetValue(dimension.ObjectId, out var offsetBody) ? offsetBody : System.Windows.Rect.Empty,
                         labels, _viewport[2], _viewport[3]);
                     Line(a.X, a.Y, callout.OriginX, callout.OriginY); labels.Add(callout);
-                    Gl.glPushMatrix(); Gl.glTranslatef(callout.OriginX, callout.OriginY, 0f);
-                    Gl.glScalef(20f, 20f, 1f); resources.Text(dimension.Text); Gl.glPopMatrix();
+                    DrawDimensionText(resources, dimension.Text, callout, focused);
                     hits.Add(new Hit { Dimension = dimension, Label = callout, SessionId = frame.SessionId, Revision = frame.Revision, ProjectionRevision = _projectionRevision });
                     continue;
                 }
@@ -308,12 +308,29 @@ namespace CKBusbarBridge.DesignPreview
                     ManualDrawAnnotationLayout.Line(annotationPoints[index - 1].X, annotationPoints[index - 1].Y, annotationPoints[index].X, annotationPoints[index].Y, label, Line);
                 Arrow(annotationPoints[0], annotationPoints[1], label);
                 Arrow(annotationPoints[annotationPoints.Length - 1], annotationPoints[annotationPoints.Length - 2], label);
-                Gl.glPushMatrix(); Gl.glTranslatef(label.OriginX, label.OriginY, 0f);
-                Gl.glMultMatrixf(new[] { label.TangentX, label.TangentY, 0f, 0f, -label.TangentY, label.TangentX, 0f, 0f, 0f, 0f, 1f, 0f, 0f, 0f, 0f, 1f });
-                Gl.glScalef(20f, 20f, 1f); resources.Text(dimension.Text); Gl.glPopMatrix();
+                DrawDimensionText(resources, dimension.Text, label, focused);
                 hits.Add(new Hit { Dimension = dimension, Label = label, SessionId = frame.SessionId, Revision = frame.Revision, ProjectionRevision = _projectionRevision });
             }
             _hits = hits.ToArray();
+        }
+        private static void DrawDimensionText(ContextResources resources, string text, ManualDrawAnnotationLabel label, bool focused)
+        {
+            Gl.glPushMatrix(); Gl.glTranslatef(label.OriginX, label.OriginY, 0f);
+            Gl.glMultMatrixf(new[] { label.TangentX, label.TangentY, 0f, 0f, -label.TangentY, label.TangentX, 0f, 0f, 0f, 0f, 1f, 0f, 0f, 0f, 0f, 1f });
+            Gl.glPushMatrix(); Gl.glScalef(20f, 20f, 1f); resources.Text(text); Gl.glPopMatrix();
+            if (focused)
+            {
+                // Reuse the rendered label's axes and extents; focus changes only the overlay.
+                const float padding = 3f;
+                var right = label.Width + padding;
+                var top = ManualDrawAnnotationLabel.Height + padding;
+                Gl.glColor4f(.88f, .14f, .11f, 1f); Gl.glLineWidth(2f);
+                Gl.glBegin(2); // GL_LINE_LOOP
+                Gl.glVertex3f(-padding, -padding, 0f); Gl.glVertex3f(right, -padding, 0f);
+                Gl.glVertex3f(right, top, 0f); Gl.glVertex3f(-padding, top, 0f);
+                Gl.glEnd(); Gl.glLineWidth(1f);
+            }
+            Gl.glPopMatrix();
         }
         private static void Line(float x1, float y1, float x2, float y2)
         { Gl.glBegin(1); Gl.glVertex3f(x1, y1, 0); Gl.glVertex3f(x2, y2, 0); Gl.glEnd(); }

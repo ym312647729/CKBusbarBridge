@@ -9,12 +9,12 @@ namespace CKBusbarBridge.views
         public const double EdgeSpacing = 8d;
         public const double ProgressAreaHeight = 176d;
 
-        public static void Apply(Window panelWindow, double? preferredHeight = null)
+        public static void Apply(Window panelWindow, double? preferredHeight = null, bool halfWidth = false)
         {
             if (panelWindow == null) throw new ArgumentNullException(nameof(panelWindow));
             var screenWorkArea = SystemParameters.WorkArea;
             var panelWidth = Math.Min(screenWorkArea.Width - EdgeSpacing * 2d,
-                Math.Max(320d, screenWorkArea.Width / 4d));
+                Math.Max(320d, screenWorkArea.Width / (halfWidth ? 2d : 4d)));
             var availableHeight = Math.Max(320d,
                 screenWorkArea.Height - ProgressAreaHeight - EdgeSpacing);
             var panelHeight = preferredHeight.HasValue

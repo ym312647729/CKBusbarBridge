@@ -43,6 +43,8 @@ namespace CKBusbarBridge.DesignPreview
         }
         private void EditorStateChanged(object sender, System.ComponentModel.PropertyChangedEventArgs args)
         {
+            if (args.PropertyName == nameof(BusbarBridgeDesignWindowVM.FocusedDimensionField))
+            { ScheduleRedraw(); return; }
             if (args.PropertyName == nameof(BusbarBridgeDesignWindowVM.SelectedTab))
             { CancelObjectInput(); RefreshMarkers(); ScheduleRedraw(); return; }
             if (args.PropertyName != nameof(BusbarBridgeDesignWindowVM.PlanningBusy) &&

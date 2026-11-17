@@ -25,6 +25,8 @@ namespace CKBusbarBridge.DesignPreview
         internal string ParameterPath { get; }
         internal bool IsReadOnly { get; }
         internal IReadOnlyList<BridgeDimensionEdge> Edges { get; }
+        internal bool MatchesField(BridgeDesignFieldVM field) => field != null && ParameterPath == null &&
+            Field == field.Field && string.Equals(ObjectId, field.ObjectId, StringComparison.Ordinal);
         internal string Text => Value.ToString("0.#", CultureInfo.InvariantCulture);
         internal static string DimensionName(string label) => label.Replace(" (mm)", "").Replace("（mm）", "")
             .Replace("，mm）", "）").Replace(" (°)", "").Replace("（°）", "");
