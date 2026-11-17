@@ -49,7 +49,7 @@ namespace CKBusbarBridge
                 installed.SetValue("Description", AboutInformation.ProductName);
             }
             using (var startup = Registry.CurrentUser.CreateSubKey(@"Software\SolidWorks\AddInsStartup\" + addinType.GUID.ToString("B")))
-                startup.SetValue(null, 0, RegistryValueKind.DWord);
+                startup.SetValue(null, 1, RegistryValueKind.DWord);
         }
 
         [ComUnregisterFunction]
@@ -105,6 +105,13 @@ namespace CKBusbarBridge
 
         private void RegisterCommands()
         {
+            var documentTypes = new[] { swDocumentTypes_e.swDocASSEMBLY, swDocumentTypes_e.swDocPART, swDocumentTypes_e.swDocDRAWING };
+            foreach (var type in documentTypes)
+            {
+                var oldTab = _commands.GetCommandTab((int)type, "中压母线桥项目 · 试用版");
+                if (oldTab != null && !_commands.RemoveCommandTab(oldTab))
+                    Logger.Warn("无法移除旧名称的母线桥命令页：" + type);
+            }
             var status = 0;
             var group = _commands.CreateCommandGroup2(CommandGroupId, AboutInformation.ProductName,
                 AboutInformation.ProductName, "", -1, false, ref status)
@@ -130,7 +137,7 @@ namespace CKBusbarBridge
             group.HasMenu = true;
             group.HasToolbar = true;
             if (!group.Activate()) throw new InvalidOperationException("母线桥项目命令组激活失败。");
-            foreach (var type in new[] { swDocumentTypes_e.swDocASSEMBLY, swDocumentTypes_e.swDocPART, swDocumentTypes_e.swDocDRAWING })
+            foreach (var type in documentTypes)
             {
                 var tab = _commands.GetCommandTab((int)type, AboutInformation.ProductName);
                 if (tab != null) continue;

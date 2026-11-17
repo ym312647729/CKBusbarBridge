@@ -26,7 +26,7 @@ msbuild CKBusbarBridge.sln /restore /t:Build /p:RestorePackagesConfig=true /p:Co
 ## Visual Studio 调试
 
 1. 在 VS 打开 `CKBusbarBridge.sln`，将 `CKBusbarBridge` 设为启动项目，生成 `Debug | Any CPU`。插件实际编译为 x64，输出位于 `CKBusbarBridge/bin/Debug`。
-2. 保存工作并退出已运行的 SolidWorks。用同一个 Windows 帐号以管理员身份运行 [Register-Debug.bat](../tools/registration/Register-Debug.bat)。脚本注册固定 Debug 目录中的 64 位插件，并为当前用户开启这一个插件的启动加载。
+2. 保存工作并退出已运行的 SolidWorks。用同一个 Windows 帐号以管理员身份运行 [Register-Debug.bat](../tools/registration/Register-Debug.bat)。脚本先卸载此插件的旧 COM 注册，再注册固定 Debug 目录中的 64 位插件。加载项和命令页显示为「中压母线桥」，默认随 SolidWorks 启动加载。
 3. 在项目属性的「调试」页选择「启动外部程序」，指向本机的 `SLDWORKS.exe`，再按 F5。配置保存在自己的 `.csproj.user` 中。例如本机 SW 2024 为 `D:\sw2024\SOLIDWORKS\SLDWORKS.exe`。
 
 之后在同一目录编译时不必重新注册。结束当前 SolidWorks 调试会话，修改代码后按 F5 即可。仅在换工作副本、改输出目录或其他版本覆盖了注册时重跑脚本。断点未绑定时，在 VS「调试 → 窗口 → 模块」核对 `CKBusbarBridge.dll` 的加载路径与符号状态。
