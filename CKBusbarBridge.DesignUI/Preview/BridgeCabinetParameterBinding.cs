@@ -8,6 +8,17 @@ namespace CKBusbarBridge.Prototype
 {
     internal static class BridgeCabinetParameterBinding
     {
+        internal static bool MatchesInput(object parameters, string dimensionPath, object boundOwner, string boundProperty)
+        {
+            if (parameters == null || boundOwner == null || string.IsNullOrEmpty(dimensionPath) || string.IsNullOrEmpty(boundProperty)) return false;
+            var parts = dimensionPath.Split('.');
+            if (!string.Equals(parts[parts.Length - 1], boundProperty, StringComparison.Ordinal)) return false;
+            var owner = parameters;
+            for (var index = 0; owner != null && index < parts.Length - 1; index++)
+                owner = owner.GetType().GetProperty(parts[index], BindingFlags.Public | BindingFlags.Instance)?.GetValue(owner, null);
+            return ReferenceEquals(owner, boundOwner);
+        }
+
         internal static object Restore(string scenario, JObject snapshot)
         {
             if (scenario == "face-to-face") return snapshot.ToObject<CabinetDriverParameters>();

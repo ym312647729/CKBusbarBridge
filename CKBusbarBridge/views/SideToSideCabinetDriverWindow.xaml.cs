@@ -15,7 +15,7 @@ namespace CKBusbarBridge.views
     /// <summary>
     /// 侧对侧场景的独立柜体选配窗口。
     /// </summary>
-    public partial class SideToSideCabinetDriverWindow : RDWindow
+    public partial class SideToSideCabinetDriverWindow : UserControl
     {
         /// <summary>
         /// 使用侧对侧场景的独立参数打开选配窗口。
@@ -28,7 +28,6 @@ namespace CKBusbarBridge.views
         public SideToSideCabinetDriverWindow(ISldWorks swApp)
         {
             InitializeComponent();
-            RightSidePanelLayout.Apply(this);
             CompactParameterGridLayout.Apply(this);
             var viewModel = new SideToSideCabinetDriverWindowVM(swApp);
             var projectRootPath = ProjectRootPreferenceStore.Default
@@ -104,7 +103,7 @@ namespace CKBusbarBridge.views
             }
 
             DrawingNumberDialogLauncher.Show(
-                this,
+                Window.GetWindow(this),
                 viewModel.DrawingNumberMetadataSession);
         }
 

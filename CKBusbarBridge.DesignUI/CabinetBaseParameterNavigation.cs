@@ -5,7 +5,7 @@ namespace CKBusbarBridge.views
 {
     internal static class CabinetBaseParameterNavigation
     {
-        internal static void Locate(Window window, string validationMessage)
+        internal static void Locate(FrameworkElement window, string validationMessage)
         {
             if (string.IsNullOrEmpty(validationMessage)
                 || !validationMessage.Contains("基架高度"))

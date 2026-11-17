@@ -16,12 +16,11 @@ namespace CKBusbarBridge.views
     /// <summary>
     /// 面对面场景的柜体驱动窗口。
     /// </summary>
-    public partial class CabinetDriverWindow : RDWindow
+    public partial class CabinetDriverWindow : UserControl
     {
         public CabinetDriverWindow(ISldWorks swApp)
         {
             InitializeComponent();
-            RightSidePanelLayout.Apply(this);
             CompactParameterGridLayout.Apply(this);
             var viewModel = new CabinetDriverWindowVM(swApp);
             var projectRoot = ProjectRootPreferenceStore.Default.LoadExistingProjectRoot();
@@ -187,7 +186,7 @@ namespace CKBusbarBridge.views
             }
 
             DrawingNumberDialogLauncher.Show(
-                this,
+                Window.GetWindow(this),
                 viewModel.DrawingNumberMetadataSession);
         }
 

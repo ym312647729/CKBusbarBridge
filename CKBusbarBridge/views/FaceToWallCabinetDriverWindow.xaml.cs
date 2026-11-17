@@ -16,7 +16,7 @@ namespace CKBusbarBridge.views
     /// <summary>
     /// 面对墙场景的柜体驱动窗口。
     /// </summary>
-    public partial class FaceToWallCabinetDriverWindow : RDWindow
+    public partial class FaceToWallCabinetDriverWindow : UserControl
     {
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
         /// <summary>
@@ -27,7 +27,6 @@ namespace CKBusbarBridge.views
             FaceToWallCabinetOrientation cabinetOrientation)
         {
             InitializeComponent();
-            RightSidePanelLayout.Apply(this);
             CompactParameterGridLayout.Apply(this);
             var viewModel = new FaceToWallCabinetDriverWindowVM(
                 swApp,
@@ -217,7 +216,7 @@ namespace CKBusbarBridge.views
             }
 
             DrawingNumberDialogLauncher.Show(
-                this,
+                Window.GetWindow(this),
                 viewModel.DrawingNumberMetadataSession);
         }
     }

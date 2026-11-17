@@ -48,8 +48,6 @@ namespace CKBusbarBridge.viewmodels
         {
             _swApp = swApp;
             CabinetOrientation = cabinetOrientation;
-            WallDistanceDisplayName =
-                FaceToWallCabinetOrientationDefaults.GetWallDistanceDisplayName(cabinetOrientation);
             _drawingNumberMetadataSession = new CabinetDrawingNumberMetadataSession(
                 new SolidWorksCabinetDrawingNumberMetadataStore(_swApp));
             ScenarioDisplayName = DesignScenarioDefaults.GetDisplayName(ScenarioId);
@@ -74,12 +72,20 @@ namespace CKBusbarBridge.viewmodels
         /// <summary>
         /// 当前面对墙项目选定的安装朝向，用于模板路由和总装属性持久化。
         /// </summary>
-        public FaceToWallCabinetOrientation CabinetOrientation { get; }
+        public FaceToWallCabinetOrientation CabinetOrientation { get; private set; }
 
         /// <summary>
         /// 当前朝向对应的 A 参数标签，界面无需自行判断柜前或柜后。
         /// </summary>
-        public string WallDistanceDisplayName { get; }
+        public string WallDistanceDisplayName => FaceToWallCabinetOrientationDefaults.GetWallDistanceDisplayName(CabinetOrientation);
+
+        internal void SetOrientation(FaceToWallCabinetOrientation orientation)
+        {
+            if (CabinetOrientation == orientation) return;
+            CabinetOrientation = orientation;
+            RaisePropertyChanged(nameof(CabinetOrientation));
+            RaisePropertyChanged(nameof(WallDistanceDisplayName));
+        }
 
         /// <summary>
         /// 柜体驱动窗口使用的参数对象。

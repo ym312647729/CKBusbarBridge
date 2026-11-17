@@ -602,6 +602,7 @@ namespace CKBusbarBridge.Drivers
                         _cabinetDimensions = response["dimensions"].OfType<JObject>().Select(value => new BridgePreviewDimension(
                             (string)value["objectId"], (string)value["field"], (string)value["label"], SinglePrecision.Number(value["value"]), revision, (bool)value["editable"],
                             value["edges"].Select(edge => new BridgeDimensionEdge(edge.Select(point => new PreviewPoint3(SinglePrecision.Number(point[0]) / 1000f, SinglePrecision.Number(point[1]) / 1000f, SinglePrecision.Number(point[2]) / 1000f)))))).ToArray();
+                        RefreshCabinetInputHighlight();
                         _viewport.Install(frame); _viewport.IsStale = false; SelectionChanged(this, EventArgs.Empty); _viewport.RequestRedraw();
                         if (!_viewFitted) { Fit(frame); _viewFitted = true; }
                         _logicalUpstream = (JObject)response["upstream"]; _previousUpstream = upstream; ParametersChanged?.Invoke(this, EventArgs.Empty);
@@ -894,6 +895,21 @@ namespace CKBusbarBridge.Drivers
         private int _cabinetDesignWindows;
         internal void CabinetDesignOpened() { _cabinetDesignWindows++; RefreshDimensions(); }
         internal void CabinetDesignClosed() { if (_cabinetDesignWindows > 0) _cabinetDesignWindows--; RefreshDimensions(); }
+        private object _cabinetInputOwner;
+        private string _cabinetInputProperty;
+        internal void HighlightCabinetInput(object owner, string property)
+        {
+            if (_disposed || _detached || ReferenceEquals(_cabinetInputOwner, owner) && _cabinetInputProperty == property) return;
+            _cabinetInputOwner = owner;
+            _cabinetInputProperty = property;
+            RefreshCabinetInputHighlight();
+        }
+        private void RefreshCabinetInputHighlight()
+        {
+            var path = _cabinetDimensions.FirstOrDefault(dimension =>
+                BridgeCabinetParameterBinding.MatchesInput(_parameters, dimension.ParameterPath, _cabinetInputOwner, _cabinetInputProperty))?.ParameterPath;
+            _viewport.HighlightCabinetParameter(path);
+        }
         private void RefreshDimensions() { if (!_detached && !_disposed) SelectionChanged(this, EventArgs.Empty); }
         private IEnumerable<BridgePreviewDimension> VisibleCabinetDimensions()
             => BridgeCabinetDimensionVisibility.Visible(_cabinetDimensions, _editor != null && _cabinetDesignWindows == 0 && !_editor.ShowCabinetDimensions,

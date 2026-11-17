@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -78,6 +78,12 @@ namespace CKBusbarBridge.DesignPreview
         }
         internal void Dimensions(IEnumerable<BridgePreviewDimension> dimensions)
         { _dispatcher.VerifyAccess(); _dimensions = dimensions.ToArray(); _hits = Array.Empty<Hit>(); ResetDimensionHover(); }
+        private string _focusedCabinetParameter;
+        internal void HighlightCabinetParameter(string path)
+        {
+            if (string.Equals(_focusedCabinetParameter, path, StringComparison.Ordinal)) return;
+            _focusedCabinetParameter = path; RequestRedraw();
+        }
         internal void Clear() { _dispatcher.VerifyAccess(); _frame = null; _picker = null; _dimensions = Array.Empty<BridgePreviewDimension>(); _hits = Array.Empty<Hit>(); ResetDimensionHover(); }
 
         // Invoked only inside SW BufferSwapNotify, using its current GL matrices/context.
@@ -252,7 +258,8 @@ namespace CKBusbarBridge.DesignPreview
             foreach (var dimension in _dimensions)
             {
                 if (!IsDimensionVisible(dimension)) continue;
-                bool focused = !IsPreviewOnly && dimension.MatchesField(_viewModel?.FocusedDimensionField);
+                bool focused = !IsPreviewOnly && (dimension.MatchesField(_viewModel?.FocusedDimensionField) ||
+                    dimension.ParameterPath != null && dimension.ParameterPath == _focusedCabinetParameter);
                 if (dimension.IsReadOnly) Gl.glColor4f(.45f, .45f, .45f, 1f); else Gl.glColor4f(.12f, .12f, .12f, 1f);
                 var edges = dimension.Edges.Select(edge => new { Edge = edge, Points = edge.Points.Select(Project).ToArray() }).Where(edge => edge.Points.All(p => p.Visible)).ToArray();
                 if (edges.Length == 0) continue;

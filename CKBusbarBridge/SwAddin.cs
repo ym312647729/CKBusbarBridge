@@ -17,6 +17,8 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows;
+using System.Windows.Controls;
+using RD.UI.Wpf.Controls;
 using UiFeedback = CKBusbarBridgePreview.UiFeedback;
 
 namespace CKBusbarBridge
@@ -245,26 +247,22 @@ namespace CKBusbarBridge
         }
 
         private void OpenCabinetDesign(DesignScenarioId scenario, FaceToWallCabinetOrientation? orientation,
-            CabinetDraftWindowWorkflow previous = null, BridgeParameterDraftDocument activeDraft = null)
+            BridgeParameterDraftDocument activeDraft)
         {
-            Window window;
-            switch (scenario)
+            var window = new RDWindow { Title = "柜体设计", WindowKey = "CabinetDriverWindow",
+                IsPlacementPersistenceEnabled = false, UseLayoutRounding = true };
+            window.Resources.MergedDictionaries.Add(new ResourceDictionary
             {
-                case DesignScenarioId.FaceToWall:
-                    window = new FaceToWallCabinetDriverWindow(iSwApp, orientation.Value);
-                    break;
-                case DesignScenarioId.SideToSide:
-                    window = new SideToSideCabinetDriverWindow(iSwApp);
-                    break;
-                default:
-                    window = new CabinetDriverWindow(iSwApp);
-                    break;
+                Source = new Uri("pack://application:,,,/RD.UI.Wpf;component/Themes/Generic.xaml")
+            });
+            RightSidePanelLayout.Apply(window);
+            UserControl CreatePage(DesignScenarioId target)
+            {
+                if (target == DesignScenarioId.FaceToWall)
+                    return new FaceToWallCabinetDriverWindow(iSwApp, FaceToWallCabinetOrientation.CabinetFrontToWall);
+                return target == DesignScenarioId.SideToSide ? (UserControl)new SideToSideCabinetDriverWindow(iSwApp) : new CabinetDriverWindow(iSwApp);
             }
-
-            if (previous == null && activeDraft != null)
-                ((CKBusbarBridge.viewmodels.ICabinetDraftWorkflow)window.DataContext).RestoreDraftInputs(activeDraft);
-            var workflow = new CabinetDraftWindowWorkflow(window, scenario, orientation, SwitchCabinetScenario,
-                OpenBridgeAfterCabinetDraft, previous);
+            var workflow = new CabinetDraftWindowWorkflow(window, scenario, orientation, CreatePage, ValidateCabinetScenarioSwitch, OpenBridgeAfterCabinetDraft);
             window.Closed += (sender, args) =>
             {
                 if (!ReferenceEquals(_cabinetDriverWindow, window)) return;
@@ -282,20 +280,15 @@ namespace CKBusbarBridge
                 throw;
             }
             _cabinetDriverWindow = window; _cabinetDraftWorkflow = workflow;
-            previous?.CloseWithoutPrompt();
             UiFeedback.ActivateWindow(window);
         }
 
-        private void SwitchCabinetScenario(CabinetDraftWindowWorkflow source, DesignScenarioId scenario,
-            FaceToWallCabinetOrientation? orientation)
+        private void ValidateCabinetScenarioSwitch(BridgeParameterDraftDocument draft)
         {
-            if (!ReferenceEquals(_cabinetDraftWorkflow, source)) return;
-            var draft = source.DraftDocument;
-            if (draft != null && !ReferenceEquals(iSwApp.IActiveDoc2, draft.Document))
+            if (draft == null || !ReferenceEquals(iSwApp.IActiveDoc2, draft.Document))
                 throw new InvalidOperationException("请先激活当前柜体设计对应的总装。");
-            if (draft != null && _bridgeDesignController?.LeaveDraftForCabinet(draft.Document) == false)
+            if (_bridgeDesignController?.LeaveDraftForCabinet(draft.Document) == false)
                 throw new InvalidOperationException("请先结束当前的母线桥设计操作。");
-            OpenCabinetDesign(scenario, orientation, source);
         }
 
         public int EnableCabinetDriverWindow()

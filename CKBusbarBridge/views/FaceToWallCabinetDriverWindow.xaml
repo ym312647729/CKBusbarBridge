@@ -1,4 +1,4 @@
-<rd:RDWindow x:Class="CKBusbarBridge.views.FaceToWallCabinetDriverWindow"
+<UserControl x:Class="CKBusbarBridge.views.FaceToWallCabinetDriverWindow"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
@@ -8,16 +8,12 @@
              xmlns:local="clr-namespace:CKBusbarBridge.views"
              xmlns:designUi="clr-namespace:CKBusbarBridge.views;assembly=CKBusbarBridge.DesignUI"
              mc:Ignorable="d"
-        WindowKey="FaceToWallCabinetDriverWindow" UseLayoutRounding="True" IsPlacementPersistenceEnabled="False"
-        Title="柜体驱动 - 面对墙场景"
-        Width="360" Height="700"
-        MinWidth="320" MinHeight="320"
-        WindowStartupLocation="Manual"
+        UseLayoutRounding="True"
         PreviewKeyDown="InputTextBox_PreviewKeyDown"
         Background="#F7F8FA"
         Foreground="#1F2937">
 
-    <rd:RDWindow.Resources>
+    <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/RD.UI.Wpf;component/Themes/Generic.xaml" />
@@ -56,7 +52,7 @@
             </Style>
 
         </ResourceDictionary>
-    </rd:RDWindow.Resources>
+    </UserControl.Resources>
 
     <Grid Margin="12">
         <Grid.RowDefinitions>
@@ -67,7 +63,6 @@
 
                 <StackPanel Grid.Row="0" Margin="0,0,0,16">
             <TextBlock Text="{Binding ScenarioDisplayName}" Style="{StaticResource RDText.H3}" Margin="0,0,0,12" />
-            <WrapPanel x:Name="CabinetScenarioSelectorHost" Margin="0,0,0,8" />
             <TextBlock Text="项目根目录" Style="{StaticResource RDText.Caption}" Margin="0,0,0,4" />
             <rd:RDInput x:Name="ProjectPathTextBox"
                         Text="{Binding ProjectPath, UpdateSourceTrigger=LostFocus}" />
@@ -650,7 +645,6 @@
             </rd:RDTabControl>
         </Grid>
 
-        <Grid x:Name="CabinetDraftFooter" Grid.Row="2" Margin="0,8,0,0" />
 
     </Grid>
-</rd:RDWindow>
+</UserControl>
