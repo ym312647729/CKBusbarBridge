@@ -19,6 +19,14 @@ msbuild CKBusbarBridge.sln /restore /t:Build /p:RestorePackagesConfig=true /p:Co
 
 本地包源在 `.nuget/local-feed`。面对墙等方案所需的默认算法授权随母线桥试用版提供，无需安装联络排。需要单独配置时，在运行 SolidWorks 的 Windows 账号下执行 `pwsh -File tools/Set-WorkerAuthorization.ps1`，本机加密授权优先于内置授权；进程环境变量 `CK_BUSBAR_WORKER_AUTHORIZATION` 优先级最高，可用于临时覆盖。预览源码或运行资源修改后执行 `pwsh -File tools/Update-ParameterPreviewManifest.ps1`。不把原项目客户模型、模板压缩包、试验记录或用户设置复制到该仓库。
 
+## Visual Studio 调试
+
+1. 在 VS 打开 `CKBusbarBridge.sln`，将 `CKBusbarBridge` 设为启动项目，生成 `Debug | Any CPU`。插件实际编译为 x64，输出位于 `CKBusbarBridge/bin/Debug`。
+2. 保存工作并退出已运行的 SolidWorks。用同一个 Windows 帐号以管理员身份运行 [Register-Debug.bat](../tools/registration/Register-Debug.bat)。脚本注册固定 Debug 目录中的 64 位插件，并为当前用户开启这一个插件的启动加载。
+3. 在项目属性的「调试」页选择「启动外部程序」，指向本机的 `SLDWORKS.exe`，再按 F5。配置保存在自己的 `.csproj.user` 中。例如本机 SW 2024 为 `D:\sw2024\SOLIDWORKS\SLDWORKS.exe`。
+
+之后在同一目录编译时不必重新注册。结束当前 SolidWorks 调试会话，修改代码后按 F5 即可。仅在换工作副本、改输出目录或其他版本覆盖了注册时重跑脚本。断点未绑定时，在 VS「调试 → 窗口 → 模块」核对 `CKBusbarBridge.dll` 的加载路径与符号状态。
+
 SolidWorks 的面对面常规预览中，基架骨架在顶板、侧板和底板内侧。外壳两端根据已安装基座的顶面和左右侧面定位；两端宽度不同时外壳平滑衔接，不改铜排或支撑坐标。基座与基架侧板按中压预览的冲压百叶样式生成向下的开口。A、B 柜的基座总高分别沿用各自参数，包含顶盖。若两端接口不再等高，视口仍显示当前柜体与基座，并暂停显示旧桥体，直到参数允许重新规划。增量编译后可运行 `node tools/Test-FacingRegularPreview.mjs --solidworks-preview` 离线核查 SolidWorks 预览几何，无需启动 SolidWorks 或浏览器。
 
 换相、小偏移、大偏移、侧对侧和面对墙也使用同一套实体板件。小偏移与面对墙宽高过渡保留端部封板和有效通口；大偏移拐角保留两个相邻通口；侧装换相架根据模板姿态转换顶、底和侧板。侧对侧基座使用铜排规划已确认的同一套安装坐标，增高基座保留贯通。运行 `node tools/Test-StructurePreviewVariants.mjs` 可离线核对各模板外壳、通口及板件干涉。桥体的绝缘净距和干涉不足会显示在设计窗口；保留原母线规划和净距标准。
