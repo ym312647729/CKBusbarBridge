@@ -40,7 +40,14 @@ export function objectDimensionBinding(project,objectId,field){
   if(object?.baseBinding?.scenario===project.scenario&&object.structurePlanInput.fields.some(input=>input.name===field)){const input=originalCabinetScenario(project.scenario).fields.find(input=>input.path===field);if(input)return {kind:'cabinet',scenario:project.scenario,group:cabinetFieldGroup(input),field};}
   if(object?.frameBinding&&/^frame\.(?:width|length|height)$/.test(field)){const position=project.frameDesign?.plans.find(plan=>plan.positionKey===object.frameBinding.positionKey);if(position)return {kind:'frame',objectId,sourceName:position.model.sourceName,field};}
   if(object?.insulatorBinding){const draft=project.supportPlans.find(plan=>plan.id===object.insulatorBinding.planId);if(draft&&insulatorDimensionFields(draft).some(input=>input.name===field))return {kind:'insulator',objectId,planId:draft.id,field};}
-  if(object?.cabinetBinding?.scenario===project.scenario&&(/^(?:[AB]Cabinet|Cabinet)\.(CabinetHeight|CabinetDepth|CabinetWidth)$/.test(field)||field===(project.scenario==='face-to-wall'?'General.WallCabinetEccentricity':'General.CabinetEccentricity')||project.scenario==='face-to-wall'&&/^General\.(?:WallBushingTerminal\.(?:Diameter|C(?:[1-9]|10))|WallHole(?:Width|Height))$/.test(field))){const definition=originalCabinetScenario(project.scenario),input=definition.fields.find(candidate=>candidate.path===field);if(input)return {kind:'cabinet',scenario:project.scenario,group:cabinetFieldGroup(input),field};}
+  if(object?.cabinetBinding&&object.cabinetBinding.scenario===project.scenario){
+    const wall=project.scenario==='face-to-wall';
+    const placementField=wall?/^General\.(CabinetToWallDistance|WallCabinetEccentricity)$/:/^General\.(CabinetSpacing|CabinetEccentricity)$/;
+    if(placementField.test(field)||/^(?:[AB]Cabinet|Cabinet)\.(CabinetHeight|CabinetDepth|CabinetWidth)$/.test(field)||wall&&/^General\.(?:WallBushingTerminal\.(?:Diameter|C(?:[1-9]|10))|WallHole(?:Width|Height))$/.test(field)){
+      const input=originalCabinetScenario(project.scenario).fields.find(candidate=>candidate.path===field);
+      if(input)return {kind:'cabinet',scenario:project.scenario,group:cabinetFieldGroup(input),field};
+    }
+  }
   return object?.kind==='free-copper'&&copperDimensionFields.some(([name])=>name===field)?{kind:'copper',objectId,groupId:object.copperGroupId??object.id,field}:null;
 }
 export function applyCopperGroupDimensions(project,objectId,patch){

@@ -277,7 +277,7 @@ namespace CKBusbarBridge.DesignPreview
                     dimension.ParameterPath != null && dimension.ParameterPath == _focusedCabinetParameter ||
                     _editedDimension != null && dimension.ObjectId == _editedDimension.ObjectId &&
                     dimension.ParameterPath == _editedDimension.ParameterPath && dimension.Field == _editedDimension.Field);
-                if (dimension.IsReadOnly) Gl.glColor4f(.45f, .45f, .45f, 1f); else Gl.glColor4f(.12f, .12f, .12f, 1f);
+                SetDimensionColor(dimension);
                 var edges = dimension.Edges.Select(edge => new { Edge = edge, Points = edge.Points.Select(Project).ToArray() }).Where(edge => edge.Points.All(p => p.Visible)).ToArray();
                 if (edges.Length == 0) continue;
                 var selected = edges.OrderBy(edge => edge.Points.Average(p => p.Z)).First();
@@ -289,16 +289,21 @@ namespace CKBusbarBridge.DesignPreview
                 var anchor = new PreviewPoint3((start.X + end.X) * .5f, (start.Y + end.Y) * .5f, (start.Z + end.Z) * .5f);
                 var projectedAnchor = Project(anchor);
                 var tangentLength = (float)Math.Sqrt(Square(b.X - a.X) + Square(b.Y - a.Y));
-                if (tangentLength < 1f)
+                var textWidth = resources.Width(dimension.Text);
+                if (tangentLength < 1f || dimension.IsCabinetSpacing && tangentLength < textWidth + 18f)
                 {
-                    if (!focused && dimension.ParameterPath != "General.CabinetEccentricity" && dimension.ParameterPath != "General.WallCabinetEccentricity") continue;
-                    // Zero offset (or an end-on view) still needs an editable value.
-                    // Draw a leader to the real mate datum, without inventing a model dimension line.
-                    var callout = new ManualDrawAnnotationLabel { OriginX = a.X + 16f, OriginY = a.Y + 16f,
-                        TangentX = 1f, TangentY = 0f, Width = resources.Width(dimension.Text) };
+                    if (!focused && !dimension.IsCabinetSpacing && !dimension.IsCabinetOffset) continue;
+                    // Short or end-on dimensions need a callout so the number does not cover the entire span.
+                    var callout = new ManualDrawAnnotationLabel { OriginX = projectedAnchor.X + 12f, OriginY = projectedAnchor.Y + 12f,
+                        TangentX = 1f, TangentY = 0f, Width = textWidth };
                     callout = ManualDrawAnnotationLayout.Avoid(callout, bodies.TryGetValue(dimension.ObjectId, out var offsetBody) ? offsetBody : System.Windows.Rect.Empty,
-                        labels, _viewport[2], _viewport[3]);
-                    Line(a.X, a.Y, callout.OriginX, callout.OriginY); labels.Add(callout);
+                        labels, _viewport[2], _viewport[3], 7f);
+                    if (tangentLength >= 1f)
+                    {
+                        ManualDrawAnnotationLayout.Line(a.X, a.Y, b.X, b.Y, callout, Line);
+                        Arrow(a, b, callout); Arrow(b, a, callout);
+                    }
+                    Line(projectedAnchor.X, projectedAnchor.Y, callout.OriginX, callout.OriginY); labels.Add(callout);
                     DrawDimensionText(resources, dimension.Text, callout, focused);
                     hits.Add(new Hit { Dimension = dimension, Label = callout, SessionId = frame.SessionId, Revision = frame.Revision, ProjectionRevision = _projectionRevision });
                     continue;
@@ -308,11 +313,11 @@ namespace CKBusbarBridge.DesignPreview
                 foreach (var offset in new[] { new PreviewPoint3(anchor.X + .001f, anchor.Y, anchor.Z),
                     new PreviewPoint3(anchor.X, anchor.Y + .001f, anchor.Z), new PreviewPoint3(anchor.X, anchor.Y, anchor.Z + .001f) })
                 { var projected = Project(offset); scaleSquared += Square((projected.X - projectedAnchor.X) * normalX + (projected.Y - projectedAnchor.Y) * normalY); }
-                var label = ManualDrawAnnotationLayout.Length(a.X, a.Y, b.X, b.Y, resources.Width(dimension.Text), .5f * (float)Math.Sqrt(scaleSquared));
+                var label = ManualDrawAnnotationLayout.Length(a.X, a.Y, b.X, b.Y, textWidth, .5f * (float)Math.Sqrt(scaleSquared));
                 if (label == null) continue;
                 var bodyArea = bodies.TryGetValue(dimension.ObjectId, out var ownerArea) ? ownerArea : System.Windows.Rect.Empty;
                 var placed = ManualDrawAnnotationLayout.Avoid(label, bodyArea, labels, _viewport[2], _viewport[3],
-                    10f + .5f * (float)Math.Sqrt(scaleSquared));
+                    7f + .5f * (float)Math.Sqrt(scaleSquared));
                 var shiftX = bodyArea.IsEmpty ? 0f : placed.OriginX - label.OriginX;
                 var shiftY = bodyArea.IsEmpty ? 0f : placed.OriginY - label.OriginY;
                 var annotationPoints = selected.Points.Select(point => new ScreenPoint {
@@ -324,9 +329,9 @@ namespace CKBusbarBridge.DesignPreview
                 label = placed; labels.Add(label);
                 if (!bodyArea.IsEmpty)
                 {
-                    Line(selected.Points[0].X, selected.Points[0].Y, annotationPoints[0].X, annotationPoints[0].Y);
+                    DrawDimensionExtension(selected.Points[0], annotationPoints[0]);
                     var last = selected.Points.Length - 1;
-                    Line(selected.Points[last].X, selected.Points[last].Y, annotationPoints[last].X, annotationPoints[last].Y);
+                    DrawDimensionExtension(selected.Points[last], annotationPoints[last]);
                 }
                 for (var index = 1; index < annotationPoints.Length; index++)
                     ManualDrawAnnotationLayout.Line(annotationPoints[index - 1].X, annotationPoints[index - 1].Y, annotationPoints[index].X, annotationPoints[index].Y, label, Line);
@@ -337,6 +342,48 @@ namespace CKBusbarBridge.DesignPreview
             }
             _hits = hits.ToArray();
         }
+        private static void SetDimensionColor(BridgePreviewDimension dimension)
+        {
+            var path = dimension.ParameterPath;
+            (float Red, float Green, float Blue) color;
+            if (dimension.IsReadOnly) color = (.33f, .36f, .41f);
+            else if (dimension.IsCabinetSpacing) color = (0f, .30f, .76f);
+            else if (dimension.IsCabinetOffset) color = (.50f, .06f, .71f);
+            else if (path != null)
+            {
+                if (path.StartsWith("General.Wall", StringComparison.Ordinal)) color = (0f, .39f, .51f);
+                else if (path.Contains(".Base") || path.Contains(".FrontHole.") || path.Contains(".BackHole.")) color = (.59f, .20f, .43f);
+                else if (path == "General.InsulatorHeight" || path == "General.PhaseSpacing" || path == "General.ExposedBusbarPhaseSpacing")
+                    color = (.46f, .32f, .05f);
+                else color = (0f, .42f, .27f);
+            }
+            else
+            {
+                switch (dimension.Field)
+                {
+                    case DesignField.CopperSegmentLength: color = (.73f, .20f, .01f); break;
+                    case DesignField.JointDistanceFromPrevious:
+                    case DesignField.BaseJointEdgeDistance: color = (.54f, .17f, .16f); break;
+                    case DesignField.InsulatorPosition:
+                    case DesignField.InsulatorDistanceFromPrevious: color = (.46f, .32f, .05f); break;
+                    case DesignField.WallEntryDistance:
+                    case DesignField.WallVerticalClearance:
+                    case DesignField.WallHorizontalClearance: color = (0f, .39f, .51f); break;
+                    default: color = (.25f, .32f, .56f); break;
+                }
+            }
+            Gl.glColor4f(color.Red, color.Green, color.Blue, 1f);
+        }
+
+        private static void DrawDimensionExtension(ScreenPoint source, ScreenPoint dimensionEnd)
+        {
+            var dx = source.X - dimensionEnd.X; var dy = source.Y - dimensionEnd.Y;
+            var length = (float)Math.Sqrt(dx * dx + dy * dy);
+            if (length < 1f) return;
+            var scale = Math.Min(1f, 22f / length);
+            Line(dimensionEnd.X + dx * scale, dimensionEnd.Y + dy * scale, dimensionEnd.X, dimensionEnd.Y);
+        }
+
         private static void DrawDimensionText(ContextResources resources, string text, ManualDrawAnnotationLabel label, bool focused)
         {
             Gl.glPushMatrix(); Gl.glTranslatef(label.OriginX, label.OriginY, 0f);
@@ -364,10 +411,12 @@ namespace CKBusbarBridge.DesignPreview
             var dx = toward.X - tip.X; var dy = toward.Y - tip.Y; var length = (float)Math.Sqrt(dx * dx + dy * dy);
             if (length < 1f) return;
             dx /= length; dy /= length;
-            if (label.Contains(tip.X, tip.Y, 4f) || label.Contains(tip.X + dx * 8f, tip.Y + dy * 8f, 4f)) return;
+            var arrowLength = Math.Min(6f, length * .4f);
+            var arrowHalfWidth = arrowLength * .30f;
+            if (label.Contains(tip.X, tip.Y, 3f) || label.Contains(tip.X + dx * arrowLength, tip.Y + dy * arrowLength, 3f)) return;
             Gl.glBegin(4); Gl.glVertex3f(tip.X, tip.Y, 0f);
-            Gl.glVertex3f(tip.X + dx * 8f - dy * 2.2f, tip.Y + dy * 8f + dx * 2.2f, 0f);
-            Gl.glVertex3f(tip.X + dx * 8f + dy * 2.2f, tip.Y + dy * 8f - dx * 2.2f, 0f); Gl.glEnd();
+            Gl.glVertex3f(tip.X + dx * arrowLength - dy * arrowHalfWidth, tip.Y + dy * arrowLength + dx * arrowHalfWidth, 0f);
+            Gl.glVertex3f(tip.X + dx * arrowLength + dy * arrowHalfWidth, tip.Y + dy * arrowLength - dx * arrowHalfWidth, 0f); Gl.glEnd();
         }
         private bool HandleMessage(int message, IntPtr buttons, IntPtr parameter)
         {

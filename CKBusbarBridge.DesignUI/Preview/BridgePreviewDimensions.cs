@@ -24,6 +24,8 @@ namespace CKBusbarBridge.DesignPreview
         internal long Revision { get; }
         internal string ParameterPath { get; }
         internal bool IsReadOnly { get; }
+        internal bool IsCabinetSpacing => ParameterPath == "General.CabinetSpacing" || ParameterPath == "General.CabinetToWallDistance";
+        internal bool IsCabinetOffset => ParameterPath == "General.CabinetEccentricity" || ParameterPath == "General.WallCabinetEccentricity";
         internal IReadOnlyList<BridgeDimensionEdge> Edges { get; }
         internal bool MatchesField(BridgeDesignFieldVM field) => field != null && ParameterPath == null &&
             Field == field.Field && string.Equals(ObjectId, field.ObjectId, StringComparison.Ordinal);

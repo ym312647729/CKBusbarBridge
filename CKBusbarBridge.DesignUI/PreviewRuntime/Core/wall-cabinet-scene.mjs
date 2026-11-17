@@ -14,7 +14,7 @@ import {solveAssemblyTranslations} from './assembly-translations.mjs';
 import {swMatrix,inverseRigidMatrix,multiplyMatrix,transformPoint} from './geometry.mjs';
 import {cabinetScenePath} from './cabinet-binding.mjs';
 import {driveCabinetMountCoordinates} from './cabinet-mount-coordinates.mjs';
-import {cabinetOffsetDimension} from './cabinet-offset-dimensions.mjs';
+import {cabinetOffsetDimension,cabinetSpacingDimension} from './cabinet-offset-dimensions.mjs';
 
 const canonical=name=>name.split('@').slice(0,-1).join('@');
 const shifted=(transform,delta)=>{const updated=[...transform];for(let axis=0;axis<3;axis++)updated[9+axis]+=delta[axis]/1000;return updated;};
@@ -88,7 +88,10 @@ export async function deriveWallCabinetScene(sourceTemplate,configurationName,re
   for(const feature of configuration.features)for(const dimension of feature.dimensions??[])if(Object.hasOwn(dimensionValues,canonical(dimension.name)))dimension.value=dimensionValues[canonical(dimension.name)]/1000;
   const mountCoordinates=driveCabinetMountCoordinates(source,configuration,[{rootComponent:childComponent,originalBodyTransform:bodyComponent.transform,updatedBodyTransform:updatedBodyTransform,original:bodySource,derived:opened.template.configurations.find(row=>row.name===bodyComponent.configuration)}]);configuration.offlineAssemblySolution=installation;definitions.set(sourceTemplate.source.path,template);evidence.push({kind:'cabinet-mount-coordinates',...mountCoordinates});
   const cabinetComponentChain=[childComponent.name,bodyComponent.name],cabinetComponentChains=new Map([[childComponent.id,cabinetComponentChain]]);
-  const placement=multiplyMatrix(swMatrix(configuration.components.find(component=>component.id===childComponent.id).transform),swMatrix(updatedBodyTransform)),parameters=[await cabinetOffsetDimension({source,scenario:'face-to-wall',value:eccentricity,globals,initialValues:wallBushingEquationInitialValues(initial,bushingPlan),solved,installation,geometryDisplacement,cabinetComponentChains})];
+  const placement=multiplyMatrix(swMatrix(configuration.components.find(component=>component.id===childComponent.id).transform),swMatrix(updatedBodyTransform)),parameters=[
+    await cabinetSpacingDimension({source,scenario:'face-to-wall',wallRear:rear,value:values['General.CabinetToWallDistance'],installation,geometryDisplacement,cabinetComponentChains}),
+    await cabinetOffsetDimension({source,scenario:'face-to-wall',value:eccentricity,globals,initialValues:wallBushingEquationInitialValues(initial,bushingPlan),solved,installation,geometryDisplacement,cabinetComponentChains})
+  ];
   for(const [suffix,axis,label]of [['CabinetDepth',0,'柜深'],['CabinetHeight',1,'柜高'],['CabinetWidth',2,'柜宽']]){const name='Cabinet.'+suffix,value=values[name],edge=body.topologies[0].edges.map(pair=>pair.target).find(edge=>Math.abs(Math.abs(edge.end[axis]-edge.start[axis])*1000-value)<1e-5&&[0,1,2].filter(index=>index!==axis).every(index=>Math.abs(edge.end[index]-edge.start[index])<1e-8));if(!edge)throw new DefinitionError('面对墙柜体缺少原轮廓尺寸见证边');parameters.push({name,label,value,editable:true,annotationComponentChain:cabinetComponentChain,annotationEdges:[[transformPoint(edge.start.map(value=>value*1000),placement),transformPoint(edge.end.map(value=>value*1000),placement)]],source:'native-profile-incidence-bound-to-original-ui-field'});}
   const bushingPlacement=bushingPlan.placements[0],bushingModel=bushingPlan.models.find(model=>model.modelId===bushingPlacement.modelId),installedBushing=configuration.components.find(component=>component.id===bushingPlacement.componentId);
   parameters.push(...wallBushingDimensionParameters(bushingPreviews.get(bushingModel.modelId),bushingModel,swMatrix(installedBushing.transform))

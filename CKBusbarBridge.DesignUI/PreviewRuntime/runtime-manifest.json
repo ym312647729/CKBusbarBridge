@@ -1,7 +1,7 @@
 {
   "schema": "dq-preview-runtime-manifest/1",
   "calculatorVersion": "dq-sw-mesh/1",
-  "packageSha256": "0504a460f7f7561fa2d4e2103e2619b59fa1518f4c6d799d6a33ab2c72c862f9",
+  "packageSha256": "961aaf36b28eb3dc958f4ddb5b600afe5fbb03b9298267af3c6f115f0d6629cb",
   "reference": {
     "project": "CKBusbarBridgeVirtualDesigner",
     "commit": "511d64b1248e1c26bf27430e9016fecdc5e9ce5f",
@@ -69,7 +69,7 @@
     },
     {
       "path": "Core/business-dimensions.mjs",
-      "sha256": "fa400ef94c04760b8303b8796b2b9132a460102950b66dd7bc098efb0015d46b"
+      "sha256": "7c2e2c92d0766586c7796313a87d4d47890236e56c2ecdca8e52cf9ad8541203"
     },
     {
       "path": "Core/cabinet-base-planning.mjs",
@@ -93,7 +93,7 @@
     },
     {
       "path": "Core/cabinet-offset-dimensions.mjs",
-      "sha256": "d702b281e0c346e50fa344fbbeb1c896df72e1c5282cefcec4992112b4010c17"
+      "sha256": "c2e1d68f6fc88ba939f4744a7a4671fe6052165504fc82d1e3495b08360579b4"
     },
     {
       "path": "Core/cabinet-openings.mjs",
@@ -105,7 +105,7 @@
     },
     {
       "path": "Core/cabinet-scene.mjs",
-      "sha256": "194e904e59140fdc845727be2c989606665a7908fef721f9635de2e4f6ad40bf"
+      "sha256": "7c65bc547db9a84a50af9166471a309e862a5197eb3488a55f6fc1518d0230ff"
     },
     {
       "path": "Core/clearance-state.mjs",
@@ -465,7 +465,7 @@
     },
     {
       "path": "Core/wall-cabinet-scene.mjs",
-      "sha256": "0cbfe2c4c9c8f3e7e37fcbfe040adad6d74feac81e8a0ccff8fc2c9d7695bf8a"
+      "sha256": "04e5ea02f7fe71bbd5c7d7d4b6d0c8a8e52061ec118a268d7ea405920cf715c1"
     },
     {
       "path": "Core/wall-scene-parts.mjs",
@@ -1627,7 +1627,7 @@
   "managedSources": [
     {
       "path": "CKBusbarBridge.DesignUI/AboutInformation.cs",
-      "sha256": "f0a4c8a29317009f7bbdb6b461979d68b43ae97bfe32d1e41db8624a8b754e78"
+      "sha256": "5db485c36b493b48f8ea347c92968ac0d9e34f7946a5329fbc95e9442e009e33"
     },
     {
       "path": "CKBusbarBridge.DesignUI/AboutWindow.cs",
@@ -1755,7 +1755,7 @@
     },
     {
       "path": "CKBusbarBridge.DesignUI/CabinetBaseParameterNavigation.cs",
-      "sha256": "13e4d6709ad375a4ad08d44976e8adf464b8d62a583d0e1028c8cda0e0ba1228"
+      "sha256": "b2cc195c8448a3189947055e18d6a48230fb2e0cc4a258b16cb50c3e6fd767e4"
     },
     {
       "path": "CKBusbarBridge.DesignUI/CabinetHoleModelContract.cs",
@@ -1803,15 +1803,15 @@
     },
     {
       "path": "CKBusbarBridge.DesignUI/FrameDriverWindow.PreviewLayout.cs",
-      "sha256": "ce5678d0c69904edb77e368eb5572f102f0922f1897f565a5538c8a897087012"
+      "sha256": "71fec40c25a7bba4a89d43b5d91eef408c86c651699a2eb1b0638d87df5b5dab"
     },
     {
       "path": "CKBusbarBridge.DesignUI/Preview/BridgeBusinessDimensionEditor.cs",
-      "sha256": "936b95021f59dd5868b307c86e902492326c75a36c81c6a10092d0f908b890f5"
+      "sha256": "818d50a010a50aa36c7a9bad185f01c058c72f19fd4fa9aed0f3d47c382256c1"
     },
     {
       "path": "CKBusbarBridge.DesignUI/Preview/BridgeCabinetParameterBinding.cs",
-      "sha256": "5fb6a197a78c7ebf59dbddb5cfe8aba79d054ebb822d1794e2b96d8abc5ee888"
+      "sha256": "5b9305424d4e018f5a61e2af16425767f333c67477d7ab9f6255b563011bfef4"
     },
     {
       "path": "CKBusbarBridge.DesignUI/Preview/BridgeDesignSession.cs",
@@ -1839,7 +1839,7 @@
     },
     {
       "path": "CKBusbarBridge.DesignUI/Preview/BridgeOpenGlViewport.cs",
-      "sha256": "1bb767c7cae7b8a020137d3a488582da4ba2ded5a89c34b425ec4c1c8ed0859a"
+      "sha256": "160d13c934d0fce926c66f05dd15aae4e508c80602ee3d4a9f6b9dabf5207ca6"
     },
     {
       "path": "CKBusbarBridge.DesignUI/Preview/BridgeParameterDraftAccess.cs",
@@ -1855,7 +1855,7 @@
     },
     {
       "path": "CKBusbarBridge.DesignUI/Preview/BridgePreviewDimensions.cs",
-      "sha256": "31886d76da85ab57567fe892e3fd1050732477775aab198e505d8560578e3057"
+      "sha256": "1ffda62cb5fe3352cf6cb0dbc0483358219ec6e8d4def5c9eeca72e14919f78e"
     },
     {
       "path": "CKBusbarBridge.DesignUI/Preview/BridgeViewFraming.cs",
@@ -1879,7 +1879,7 @@
     },
     {
       "path": "CKBusbarBridge.DesignUI/Preview/BridgeViewportInteraction.cs",
-      "sha256": "b289d8bdb8124baff89535f5e2470036f21796468279a79acf98b8d97940c7fe"
+      "sha256": "5f9cb6c3eb55ca3edc302cb291417bab65a19ab84c5e766ca78964ebbba07ba1"
     },
     {
       "path": "CKBusbarBridge.DesignUI/Preview/BridgeViewportMarkers.cs",
@@ -1915,11 +1915,11 @@
     },
     {
       "path": "CKBusbarBridge.DesignUI/Preview/ManualDrawDimensionWindow.xaml",
-      "sha256": "a3689473332a56a18913a351b59584e913813e8b025e0ae474d716507bddfd23"
+      "sha256": "6d00d7730eb8273306a2f76a3f927e30684d9d926ef897f6b8c4e0aec198a780"
     },
     {
       "path": "CKBusbarBridge.DesignUI/Preview/ManualDrawDimensionWindow.xaml.cs",
-      "sha256": "614174f7f7160c7176d7595fc1482797a961c4b4d32266f1e9354d6907a22b0b"
+      "sha256": "81e91e3ab90d15afc746085e962573cb32abec6f4b77757a77ca29261697a447"
     },
     {
       "path": "CKBusbarBridge.DesignUI/Preview/WpfLibraryAppearance.xaml",
@@ -1935,7 +1935,7 @@
     },
     {
       "path": "CKBusbarBridge.DesignUI/RightSidePanelLayout.cs",
-      "sha256": "55b01538bc986e5acf2b7d954b6edccf8f5e3e87b782f2a6f720c92434e6d815"
+      "sha256": "703b5aa340ade116659c7749354366f74273be9d8eebfd25edd27267f7502e48"
     },
     {
       "path": "CKBusbarBridge.DesignUI/SideToSideSchemeRules.cs",
@@ -1947,7 +1947,7 @@
     },
     {
       "path": "CKBusbarBridge/Drivers/BridgeParameterDraftDocuments.cs",
-      "sha256": "3168b3066bfbf382055465e58d7853b8d264e3414d8ccd6f18ba02e1bbf00d98"
+      "sha256": "168e38cddb3dbde1674f4a6ac23434bce41d9a2dad39cee4a2394b9d34ae5108"
     },
     {
       "path": "CKBusbarBridge/Drivers/BridgeParameterDraftGeometry.cs",
@@ -2307,7 +2307,7 @@
     },
     {
       "path": "CKBusbarBridge/viewmodels/BusbarBridgeDesignWindowVM.cs",
-      "sha256": "2523c4a3fe1a0152b3c16b67438b7bc93981a36979cbecd5c609f9aedda6fbbf"
+      "sha256": "6c43400ef1f3ff83c49fac542bb2fdf3b7182c33629b8b465786dae7078906f6"
     },
     {
       "path": "CKBusbarBridge/viewmodels/BusbarBridgeDesignWindowVM.FaceToWall.cs",
@@ -2335,7 +2335,7 @@
     },
     {
       "path": "CKBusbarBridge/views/FrameDriverWindow.xaml.cs",
-      "sha256": "1c9794d98b7bdbd53e5fe31ebde087667f4efc0382abf82d48eafdcf29ff6f74"
+      "sha256": "c3ea2fddf79ee829ce60652295295b773be2dff9657b881126b547195307efda"
     },
     {
       "path": "CKBusbarBridge/WorkerInterop/LinkageRouteWorkerContracts.cs",

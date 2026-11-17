@@ -10,7 +10,7 @@ import {cabinetScenePaths} from './cabinet-binding.mjs';
 import {deriveWallCabinetScene} from './wall-cabinet-scene.mjs';
 import {driveCabinetMountCoordinates} from './cabinet-mount-coordinates.mjs';
 import {buildFixedCabinetCopper,cabinetRoofConductors} from './cabinet-fixed-copper.mjs';
-import {cabinetOffsetDimension} from './cabinet-offset-dimensions.mjs';
+import {cabinetOffsetDimension,cabinetSpacingDimension} from './cabinet-offset-dimensions.mjs';
 export {cabinetScenePaths} from './cabinet-binding.mjs';
 
 const canonical=name=>name.split('@').slice(0,-1).join('@');
@@ -86,7 +86,10 @@ export async function deriveCabinetScene(sourceTemplate,configurationName,scenar
   for(const coordinate of mountCoordinates.pending)diagnostics.push({coordinate,message:'柜内伸出排接口控制草图待求解，未返回旧坐标'});
   definitions.set(sourceTemplate.source.path,template);
   const cabinetComponentChains=new Map([...children].map(([id,child])=>[id,[child.component.name,child.bodyComponent.name]]));
-  const parameters=[await cabinetOffsetDimension({source,scenario,value:eccentricity,globals,initialValues:context.initialValues,solved,installation,geometryDisplacement,cabinetComponentChains})];
+  const parameters=[
+    await cabinetSpacingDimension({source,scenario,value:values['General.CabinetSpacing'],installation,geometryDisplacement,cabinetComponentChains}),
+    await cabinetOffsetDimension({source,scenario,value:eccentricity,globals,initialValues:context.initialValues,solved,installation,geometryDisplacement,cabinetComponentChains})
+  ];
   for(const [id,child]of children){const component=configuration.components.find(candidate=>candidate.id===id),placement=multiplyMatrix(swMatrix(component.transform),swMatrix(child.updatedTransform)),base=child.body.topologies[0];
     for(const [suffix,axis,label]of [['CabinetDepth',0,'柜深'],['CabinetHeight',1,'柜高'],['CabinetWidth',2,'柜宽']]){const name=child.prefix+'.'+suffix,value=values[name],edge=base.edges.map(pair=>pair.target).find(edge=>Math.abs(Math.abs(edge.end[axis]-edge.start[axis])*1000-value)<1e-5&&[0,1,2].filter(index=>index!==axis).every(index=>Math.abs(edge.end[index]-edge.start[index])<1e-8));if(!edge)throw new DefinitionError('柜体业务尺寸缺少实际原轮廓见证边');parameters.push({name,label:(child.prefix==='ACabinet'?'A柜':'B柜')+label,value,editable:true,annotationComponentChain:cabinetComponentChains.get(id),annotationEdges:[[transformPoint(edge.start.map(value=>value*1000),placement),transformPoint(edge.end.map(value=>value*1000),placement)]],source:'native-profile-incidence-bound-to-original-ui-field'});}
   }
