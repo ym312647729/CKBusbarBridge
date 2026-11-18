@@ -32,9 +32,8 @@ namespace CKBusbarBridge.Services
         public int MaximumClearanceRepairCandidatesPerState { get; set; } = 64;
         public int MaximumSolutionsPerAlgorithm { get; set; } = 10;
         public int BeamWidth { get; set; } = 24;
-        public int MaximumDegreeOfParallelism { get; set; } = Math.Max(
-            1,
-            System.Environment.ProcessorCount - 1);
+        public int MaximumDegreeOfParallelism { get; set; } =
+            CKBusbarBridge.Computation.CalculationConcurrency.RoutingWorkers;
         public double MinimumAdaptiveRepairStep { get; set; } = 0.5;
 
         public static BusbarAlgorithmWorkerRequestOptions CreateDefault()

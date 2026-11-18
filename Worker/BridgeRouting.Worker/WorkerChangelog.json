@@ -1,0 +1,22 @@
+{
+  "SchemaVersion": 1,
+  "WorkerName": "RouteLinkBar.Algorithm.Worker",
+  "WorkerVersion": "1.13.0.1",
+  "ProtocolVersion": 16,
+  "Releases": [
+    {
+      "Version": "1.13.0.1",
+      "ReleaseDate": "2026-11-18",
+      "ChangeLevel": "Major",
+      "Compatibility": "BackwardCompatible",
+      "ProtocolVersion": 16,
+      "Changes": [
+        "母线桥独立 Worker 源码随本项目维护；移除方案库、数据库及无关宿主功能。",
+        "保持锁定算法版本的母线桥路径搜索、制造及绝缘净距校验。"
+      ]
+    }
+  ],
+  "SupportsTerminalHoleInput": true,
+  "SupportsTerminalHoleLapConstraints": true,
+  "SupportsSupportBlockReduction": true
+}

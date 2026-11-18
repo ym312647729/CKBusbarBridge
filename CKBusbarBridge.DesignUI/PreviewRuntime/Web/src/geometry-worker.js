@@ -18,6 +18,7 @@ import {originalCabinetPartName} from '../../Core/cabinet-openings.mjs';
 import {cabinetNominalBounds} from '../../Core/cabinet-body.mjs';
 import {cabinetTemplate,hangerTemplate} from '../../Core/fixed-structure-templates.mjs';
 import {deriveFixedStructureDatums,generateFromFixedDatums} from '../../Core/fixed-structure-datums.mjs';
+import {measureFixedStructureClearance} from '../../Core/fixed-structure-clearance.mjs';
 const definitions=new Map(),definitionReadMetrics=new Map();
 const previewMeshCache=new PreviewMeshCache();
 let resolveCompiledKernel,rejectCompiledKernel,kernelCompilationMs;
@@ -39,6 +40,14 @@ async function loadTemplate(templatePath){
 self.onmessage=async event=>{
   if(event.data.type==='initialize-kernel'){kernelCompilationMs=event.data.initializationMs;resolveCompiledKernel(event.data.module);return;}
   if(event.data.type==='initialize-kernel-error'){rejectCompiledKernel(new Error(event.data.message));return;}
+  if(event.data.type==='inspect-clearance'){
+    try{
+      const {objects,meshes,required,partition,requestId}=event.data;
+      const clearance=measureFixedStructureClearance(await kernelReady,objects,new Map(meshes),required,partition);
+      self.postMessage({requestId,ok:true,clearance});
+    }catch(error){self.postMessage({requestId:event.data.requestId,ok:false,error:error.message,detail:error.stack});}
+    return;
+  }
   const {object,revision,requestId,signature,settings,purpose,casing,hangerHeight}=event.data;
   const started=performance.now(),meshCacheBefore=previewMeshCache.snapshot(),meshCacheMetrics=()=>{const current=previewMeshCache.snapshot();return {...current,hits:current.hits-meshCacheBefore.hits,misses:current.misses-meshCacheBefore.misses};};let parameters=[],coordinates={interfaces:[],diagnostics:[]},roofPlanes={complete:false,planes:[],diagnostics:[]},hangerFrame=null,interfaceReadMs=0,driveMs=0,derivedGeometry=null,businessParameters=null,fixedCopper=null;let result;
   try{
@@ -82,7 +91,7 @@ self.onmessage=async event=>{
     const evaluationStart=performance.now();
     const previewSettings=object.cabinetBinding?{...settings,fixedPartTemplate:(engine,part,configurationName,previous)=>{
       const cabinetName=originalCabinetPartName(part.source.path);
-      return cabinetName?cabinetTemplate(engine,previous.solids,
+      return cabinetName?cabinetTemplate(engine,part.configurations.find(configuration=>configuration.name===configurationName),
         cabinetNominalBounds(part.configurations.find(configuration=>configuration.name===configurationName)),1,
         roofConductors?.get(part.source.path),object.cabinetSceneInput.values['General.InsulationDistance']):null;
     }}:settings;

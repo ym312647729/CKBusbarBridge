@@ -11,6 +11,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Reflection;
 using System.Text;
 
 namespace CKBusbarBridge.WebTest
@@ -24,6 +25,7 @@ namespace CKBusbarBridge.WebTest
         internal static int Main(string[] args)
         {
             Console.OutputEncoding = Utf8;
+            AppDomain.CurrentDomain.AssemblyResolve += ResolveCalculationAssembly;
             try
             {
                 if (args.Length == 2 && args[0] == "--plan")
@@ -31,7 +33,7 @@ namespace CKBusbarBridge.WebTest
                     Console.WriteLine(Plan(JObject.Parse(File.ReadAllText(args[1], Utf8))).ToString(Formatting.None));
                     return 0;
                 }
-                if (!Directory.Exists(Path.Combine(OutputFolder, "PreviewRuntime")))
+                if (!Directory.Exists(Path.Combine(OutputFolder, "Worker", "PreviewRuntime")))
                     throw new DirectoryNotFoundException("缺少同一构建的 PreviewRuntime 目录。");
                 using (var listener = new HttpListener())
                 {
@@ -50,6 +52,15 @@ namespace CKBusbarBridge.WebTest
                 return 0;
             }
             catch (Exception error) { Console.Error.WriteLine(error.Message); return 1; }
+        }
+
+        private static Assembly ResolveCalculationAssembly(object sender, ResolveEventArgs request)
+        {
+            var requested = new AssemblyName(request.Name);
+            if (requested.Name != "CKBusbarBridge.Computation") return null;
+            var path = Path.Combine(OutputFolder, "Worker", requested.Name + ".dll");
+            if (!File.Exists(path) || AssemblyName.GetAssemblyName(path).FullName != requested.FullName) return null;
+            return Assembly.LoadFrom(path);
         }
 
         private static JObject Plan(JObject upstream)
@@ -112,7 +123,7 @@ namespace CKBusbarBridge.WebTest
                     }
                     if (request.HttpMethod != "GET") { response.StatusCode = 405; return; }
                     var isRuntime = path.StartsWith("runtime/", StringComparison.Ordinal);
-                    var root = Path.Combine(OutputFolder, isRuntime ? "PreviewRuntime" : "Web");
+                    var root = isRuntime ? Path.Combine(OutputFolder, "Worker", "PreviewRuntime") : Path.Combine(OutputFolder, "Web");
                     var asset = Path.GetFullPath(Path.Combine(root, isRuntime ? path.Substring(8) : path.Length == 0 ? "index.html" : path));
                     if (!asset.StartsWith(root + Path.DirectorySeparatorChar, StringComparison.OrdinalIgnoreCase) || !File.Exists(asset))
                     { response.StatusCode = 404; return; }

@@ -1,0 +1,24 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup><BridgeWorkerRoot>$(MSBuildThisFileDirectory)</BridgeWorkerRoot></PropertyGroup>
+  <Target Name="DeployBridgeComputation" AfterTargets="CopyFilesToOutputDirectory" Condition="'$(DesignTimeBuild)' != 'true'">
+    <PropertyGroup>
+      <BridgeRoutingOutput>$(BridgeWorkerRoot)BridgeRouting.Worker\bin\$(Configuration)\net48\</BridgeRoutingOutput>
+      <BridgeRoutingOutput Condition="'$(OutDirWasSpecified)' == 'true'">$(TargetDir)</BridgeRoutingOutput>
+      <BridgeCalculationOutput>$(BridgeWorkerRoot)CKBusbarBridge.Computation\bin\$(Configuration)\net48\</BridgeCalculationOutput>
+      <BridgeCalculationOutput Condition="'$(OutDirWasSpecified)' == 'true'">$(TargetDir)</BridgeCalculationOutput>
+    </PropertyGroup>
+    <ItemGroup>
+      <_BridgeComputationFiles Include="$(BridgeCalculationOutput)CKBusbarBridge.Computation.dll;$(BridgeCalculationOutput)CKBusbarBridge.Computation.pdb" />
+      <_BridgeComputationDependencies Include="$(TargetDir)Newtonsoft.Json.dll;$(TargetDir)GeometRi.dll" />
+      <_BridgeRuntime Include="$(BridgeWorkerRoot)..\CKBusbarBridge.DesignUI\PreviewRuntime\**\*" />
+      <_BridgeRoutingRuntime Include="$(BridgeRoutingOutput)RouteLinkBar.Algorithm.Worker.exe;$(BridgeRoutingOutput)RouteLinkBar.Algorithm.Worker.exe.config;$(BridgeRoutingOutput)RouteLinkBar.Algorithm.Worker.pdb;$(BridgeRoutingOutput)RouteLinkBar.Algorithm.dll;$(BridgeRoutingOutput)RouteLinkBar.Algorithm.pdb;$(BridgeRoutingOutput)Newtonsoft.Json.dll;$(BridgeRoutingOutput)GeometRi.dll" />
+    </ItemGroup>
+    <Copy SourceFiles="@(_BridgeComputationFiles)" DestinationFolder="$(TargetDir)Worker\" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_BridgeComputationDependencies)" DestinationFolder="$(TargetDir)Worker\" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_BridgeRuntime)" DestinationFiles="@(_BridgeRuntime->'$(TargetDir)Worker\PreviewRuntime\%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_BridgeRoutingRuntime)" DestinationFolder="$(TargetDir)Worker\Algorithm\" SkipUnchangedFiles="true" />
+    <Delete Files="$(TargetDir)CKBusbarBridge.Computation.dll;$(TargetDir)CKBusbarBridge.Computation.pdb" Condition="'$(OutDirWasSpecified)' != 'true'" />
+    <Exec Command="powershell.exe -NoProfile -NonInteractive -ExecutionPolicy Bypass -File &quot;$(BridgeWorkerRoot)Copy-NodeRuntime.ps1&quot; -OutputDirectory &quot;$(TargetDir)Worker\Runtime&quot;" />
+    <Exec Command="powershell.exe -NoProfile -NonInteractive -ExecutionPolicy Bypass -File &quot;$(BridgeWorkerRoot)Clean-LegacyOutputs.ps1&quot; -OutputDirectory &quot;$(TargetDir).&quot;" />
+  </Target>
+</Project>

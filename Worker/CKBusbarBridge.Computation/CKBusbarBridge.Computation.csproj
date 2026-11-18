@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>latest</LangVersion>
+    <AssemblyName>CKBusbarBridge.Computation</AssemblyName>
+    <RootNamespace>CKBusbarBridge.Computation</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json"><HintPath>..\..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath></Reference>
+    <Reference Include="GeometRi"><HintPath>..\..\packages\GeometRi.1.4.0.5\lib\net20\GeometRi.dll</HintPath></Reference>
+  </ItemGroup>
+</Project>

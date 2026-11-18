@@ -167,7 +167,8 @@ namespace CKBusbarBridge
                 return null;
             }
 
-            string candidatePath = Path.Combine(addinDirectory, requestedAssemblyFile);
+            string candidatePath = Path.Combine(addinDirectory,
+                assemblyName.Name == "CKBusbarBridge.Computation" ? "Worker" : "", requestedAssemblyFile);
             if (!File.Exists(candidatePath))
             {
                 return null;

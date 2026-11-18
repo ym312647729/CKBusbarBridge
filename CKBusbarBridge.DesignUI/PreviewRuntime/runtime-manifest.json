@@ -1,7 +1,7 @@
 {
   "schema": "dq-preview-runtime-manifest/1",
   "calculatorVersion": "dq-sw-mesh/1",
-  "packageSha256": "961aaf36b28eb3dc958f4ddb5b600afe5fbb03b9298267af3c6f115f0d6629cb",
+  "packageSha256": "f0a8ae6082a632aa460927c01a231e4282d76a222da3fce7844c6a1a5a58f17a",
   "reference": {
     "project": "CKBusbarBridgeVirtualDesigner",
     "commit": "511d64b1248e1c26bf27430e9016fecdc5e9ce5f",
@@ -189,7 +189,7 @@
     },
     {
       "path": "Core/fixed-structure-clearance.mjs",
-      "sha256": "9e0cdecf22ff69a4227cc280b1dfb9c6259a31871f5cb4a63e55e00221dce05e"
+      "sha256": "7dc202d1521b8ea76c09f3be05c3d8caa7be03500f4b43d9b6efe058ec694f5e"
     },
     {
       "path": "Core/fixed-structure-datums.mjs",
@@ -480,1108 +480,12 @@
       "sha256": "43535574c9ea4d83bcdf49c2ee3325b0250a0a9422fbf028d6a380e4e9161f5a"
     },
     {
+      "path": "node-host.mjs",
+      "sha256": "beddef1ba558a5c5821fad15f8457ebe2ae72048ce56aecddc87dd4699ceed46"
+    },
+    {
       "path": "session-worker.mjs",
-      "sha256": "4132d8e884a79399cdbc30e0df318e3c023d770df8e4bd749393173d21a9e717"
-    },
-    {
-      "path": "templates/模板/侧对侧模板/柜内伸出排/A柜内伸出排-A-A柜后.SLDPRT.virtual.json",
-      "sha256": "cda4ec4c249f4d59e7cd4fa1dc93f94fa2914e61100fee5dee67f99a7a7620d5"
-    },
-    {
-      "path": "templates/模板/侧对侧模板/柜内伸出排/A柜内伸出排-A-A柜前.SLDPRT.virtual.json",
-      "sha256": "cdac2d61c96f99617c4ab0aea289d92d2bcab94b99f86d64e409d64a2b852739"
-    },
-    {
-      "path": "templates/模板/侧对侧模板/柜内伸出排/A柜内伸出排-A柜后.SLDASM.virtual.json",
-      "sha256": "7169fe1554cebb9782ac37cdf246b5c351b513bcdbaef24bf5ef1192b60db21f"
-    },
-    {
-      "path": "templates/模板/侧对侧模板/柜内伸出排/A柜内伸出排-A柜前.SLDASM.virtual.json",
-      "sha256": "dd4ae4abf664ff9ea7f18f26e38fc8ca6e3b97fe46ce1ffab95ccb43738b0879"
-    },
-    {
-      "path": "templates/模板/侧对侧模板/柜内伸出排/A柜内伸出排-B-A柜后.SLDPRT.virtual.json",
-      "sha256": "5324001df35231a913346379afb7272c8ed987a039e1e930414fc53f4086f5ee"
-    },
-    {
-      "path": "templates/模板/侧对侧模板/柜内伸出排/A柜内伸出排-B-A柜前.SLDPRT.virtual.json",
-      "sha256": "493331eace8a485bdc80deb819c7b57dd1a3a7f13a17c0254669a93bccf9a1c3"
-    },
-    {
-      "path": "templates/模板/侧对侧模板/柜内伸出排/A柜内伸出排-C-A柜后.SLDPRT.virtual.json",
-      "sha256": "1d2e32a1ebe4f371d2162f435efff67634771467eaf02019613a640be5a4aaa8"
-    },
-    {
-      "path": "templates/模板/侧对侧模板/柜内伸出排/A柜内伸出排-C-A柜前.SLDPRT.virtual.json",
-      "sha256": "22e5c82d70a6414815dfe8ed97d205e60928df2f872a180ff66fa831187340a8"
-    },
-    {
-      "path": "templates/模板/侧对侧模板/柜内伸出排/B柜内伸出排-A-B柜后.SLDPRT.virtual.json",
-      "sha256": "246801af73880fae7b4755b95135e852f8351205d8dc84559ffd71cf2d852111"
-    },
-    {
-      "path": "templates/模板/侧对侧模板/柜内伸出排/B柜内伸出排-A-B柜前.SLDPRT.virtual.json",
-      "sha256": "683646c0f9395ed19aaa89b8de7304e138e4ab074b0d209a85a166582f7d85c2"
-    },
-    {
-      "path": "templates/模板/侧对侧模板/柜内伸出排/B柜内伸出排-B-B柜后.SLDPRT.virtual.json",
-      "sha256": "878872e68142e4cbd4491190ba35192647168918dcd4253112acf518c6a6c30b"
-    },
-    {
-      "path": "templates/模板/侧对侧模板/柜内伸出排/B柜内伸出排-B-B柜前.SLDPRT.virtual.json",
-      "sha256": "28f8fa9b3dc0c2d3d5f330c09a6cc3cdf0fafa6aa70482cb886ce5085a9152a9"
-    },
-    {
-      "path": "templates/模板/侧对侧模板/柜内伸出排/B柜内伸出排-B柜后.SLDASM.virtual.json",
-      "sha256": "32c24f27631a6634cbdf3405a385cb44b2bae80450f459f4414b12cb6f9d33c8"
-    },
-    {
-      "path": "templates/模板/侧对侧模板/柜内伸出排/B柜内伸出排-B柜前.SLDASM.virtual.json",
-      "sha256": "621df9e338178803eeb51fd040b8417c6205b7b54d9d6c5215fb50c1ea2bd038"
-    },
-    {
-      "path": "templates/模板/侧对侧模板/柜内伸出排/B柜内伸出排-C-B柜后.SLDPRT.virtual.json",
-      "sha256": "89f547883e1bf7454d12e6c43dc9fa06b8d04a1045457aca4725e440e0ab6a0e"
-    },
-    {
-      "path": "templates/模板/侧对侧模板/柜内伸出排/B柜内伸出排-C-B柜前.SLDPRT.virtual.json",
-      "sha256": "9e8417591b18252b0ae8aab90a8e57a89304e46547520eec1c4193286980de12"
-    },
-    {
-      "path": "templates/模板/侧对侧模板/柜体场景零件/地面.SLDPRT.virtual.json",
-      "sha256": "92502222dee88a53b872e6853cdcbbc5bfb5e6d2491ff8687a4c0dd324c75bc4"
-    },
-    {
-      "path": "templates/模板/侧对侧模板/柜体场景零件/横梁.SLDPRT.virtual.json",
-      "sha256": "5d5a7658f20e191cb1f25fbf614acd94484fb4527987e9f3ed66d5a9559fa1b0"
-    },
-    {
-      "path": "templates/模板/侧对侧模板/柜体场景零件/梁.SLDPRT.virtual.json",
-      "sha256": "ed1d46d682b18b270695e902259769d909a9f6615c8db8e174d8f9f1a1162053"
-    },
-    {
-      "path": "templates/模板/侧对侧模板/柜体场景零件/A柜-子装配体.SLDASM.virtual.json",
-      "sha256": "6b1c6b59b1280bb6ca115e2c684f1ba95e4d596264ec07505a66978ebf47b49e"
-    },
-    {
-      "path": "templates/模板/侧对侧模板/柜体场景零件/A柜体.SLDPRT.virtual.json",
-      "sha256": "b9ab40705deeaf0d33e627a0b13055c3b09d0717249c7290003b44308c6d76ae"
-    },
-    {
-      "path": "templates/模板/侧对侧模板/柜体场景零件/B柜-子装配体.SLDASM.virtual.json",
-      "sha256": "21500d25b5043db94ba40cae52f2b9b9b4986727675e558726424c7f83bd8bfd"
-    },
-    {
-      "path": "templates/模板/侧对侧模板/柜体场景零件/B柜体.SLDPRT.virtual.json",
-      "sha256": "49e5927afb565b89b2aa26acc5b0dd109640e00f0bbaf0510f9feba46258afec"
-    },
-    {
-      "path": "templates/模板/侧对侧模板/柜体装配.SLDASM.virtual.json",
-      "sha256": "0f167c3b1dc6047e73d36adf0b6945da6cbd0cba1f902f95c090aaea3a605a35"
-    },
-    {
-      "path": "templates/模板/基架模板/侧对侧换相基架/5GX.355.029.SLDASM.virtual.json",
-      "sha256": "a361029004bfd514118c3d5a66ed924c7902ea06b2204a5d19e2310a6d84ae1d"
-    },
-    {
-      "path": "templates/模板/基架模板/侧对侧换相基架/6GX.355.029.SLDASM.virtual.json",
-      "sha256": "cc70fab6d77b362876d2e25ce31b9bb486ce7481c44def386a58545d8d54e3f8"
-    },
-    {
-      "path": "templates/模板/基架模板/侧对侧换相基架/8GX.017.222.SLDPRT.virtual.json",
-      "sha256": "22c3861bc6cd3645661335ff05016b45f52e811c1a8a6ac4e3b54a6c4f1cf0f4"
-    },
-    {
-      "path": "templates/模板/基架模板/侧对侧换相基架/8GX.017.230.SLDPRT.virtual.json",
-      "sha256": "35bf6c93586eef4b1f8e81bbb2464540b2427ce106a0f6dca7d7f78df48b6d51"
-    },
-    {
-      "path": "templates/模板/基架模板/侧对侧换相基架/8GX.051.027.SLDPRT.virtual.json",
-      "sha256": "aa4c73f519880b4fb35bbab3c2ba409fc3f1e19137281656d00c23a655a36d83"
-    },
-    {
-      "path": "templates/模板/基架模板/侧对侧换相基架/8GX.055.026.SLDPRT.virtual.json",
-      "sha256": "b3eb8707a6385614a58f35e7877773ddbb31121f8a64acc8014713e2a26b7bb1"
-    },
-    {
-      "path": "templates/模板/基架模板/侧对侧换相基架/8GX.160.001.SLDPRT.virtual.json",
-      "sha256": "ea3ecc6f45f3a10e217b7826b1424f4d69da2fc885c0a9ce7e5abf642d92e9a0"
-    },
-    {
-      "path": "templates/模板/基架模板/侧对侧换相基架/8GX.160.002.SLDPRT.virtual.json",
-      "sha256": "d86cebb0d3309bc3a3e637c9166078a73317fa355a6fd4c93d1b6b5e50143e21"
-    },
-    {
-      "path": "templates/模板/基架模板/侧对侧换相基架/8GX.160.003.SLDPRT.virtual.json",
-      "sha256": "07b22912c945c66af2b569e880b30fe4cc224e0224d3ef0cc85d8f0f4aac1802"
-    },
-    {
-      "path": "templates/模板/基架模板/侧对侧换相基架/8GX.160.004.SLDPRT.virtual.json",
-      "sha256": "c283c775b4de12b7c5aec160ecda59fb0d1beb85bf0e4a56526bbcb82cc20db0"
-    },
-    {
-      "path": "templates/模板/基架模板/侧对侧换相基架/8K8.932.001.SLDPRT.virtual.json",
-      "sha256": "d8d0d063efbb50dae4d8531e410041926127f72dc20c532156bc0a63e0f1484c"
-    },
-    {
-      "path": "templates/模板/基架模板/常规基架/5GX.355.024.SLDASM.virtual.json",
-      "sha256": "7b3ed8be6b5dfc1878df574994d8e351af96a340ecef4167a07edcf3b961800e"
-    },
-    {
-      "path": "templates/模板/基架模板/常规基架/6GX.355.024.SLDASM.virtual.json",
-      "sha256": "e5370c1fd508b7a645b414467f5e416cc0c5786e64efd96cebc29e4b1f57d1bf"
-    },
-    {
-      "path": "templates/模板/基架模板/常规基架/8GX.017.222.SLDPRT.virtual.json",
-      "sha256": "99217df5b907f5020ccb939c4f3655bca742fb11e242206999f65880e8b47ac2"
-    },
-    {
-      "path": "templates/模板/基架模板/常规基架/8GX.051.022.SLDPRT.virtual.json",
-      "sha256": "12a4cf138b13e5e72ce9c8114e127ca7f98b1cfe81ae2aef3f841572a48d2063"
-    },
-    {
-      "path": "templates/模板/基架模板/常规基架/8GX.055.001.SLDPRT.virtual.json",
-      "sha256": "d9b4e5db4539e397ea87ad0403877304e7d3bbcc929e719259ccd009cde67fd3"
-    },
-    {
-      "path": "templates/模板/基架模板/常规基架/8GX.160.001.SLDPRT.virtual.json",
-      "sha256": "78a1e2b8edc8fa44c3bfc058d612f6806e26148ead3cc62dec1a6ee6a636723b"
-    },
-    {
-      "path": "templates/模板/基架模板/常规基架/8GX.160.002.SLDPRT.virtual.json",
-      "sha256": "d469e99cab5d98ff67cae835cce54bd0d6bd9703d9496d50155cf4ff2e6234a2"
-    },
-    {
-      "path": "templates/模板/基架模板/常规基架/8GX.160.003.SLDPRT.virtual.json",
-      "sha256": "ef0517ce6dfb985d8b95a6efb0f8828b8d68b40ec4a52c2555d138cc009986e5"
-    },
-    {
-      "path": "templates/模板/基架模板/常规基架/8GX.160.004.SLDPRT.virtual.json",
-      "sha256": "aff19efdcd4272141ae5abc22852cf5b1a9bd2d6d88e23e93af00f178cc31d25"
-    },
-    {
-      "path": "templates/模板/基架模板/常规基架/8K8.932.001.SLDPRT.virtual.json",
-      "sha256": "23ce9f76da17f883dd63b22c5d789f67f0ed58667eed304f77e4ee6fdf081505"
-    },
-    {
-      "path": "templates/模板/基架模板/大基架1/5GX.355.026.SLDASM.virtual.json",
-      "sha256": "753f8f924da2fde6f51adad7a225b515bd6ebca668c319539f37ea56a777181a"
-    },
-    {
-      "path": "templates/模板/基架模板/大基架1/6GX.355.026.SLDASM.virtual.json",
-      "sha256": "17950a69f05e54a279fb2ee3c8754772537c72ca151f57ee2138d476399f256b"
-    },
-    {
-      "path": "templates/模板/基架模板/大基架1/8GX.017.224.SLDPRT.virtual.json",
-      "sha256": "2b5630af04165ac4860782f04a6729683842362dd739444e41133d8182299196"
-    },
-    {
-      "path": "templates/模板/基架模板/大基架1/8GX.017.225.SLDPRT.virtual.json",
-      "sha256": "a60df82a09e927f4759fcc4f62a2d1832a1088e1ebbfaebfbebdb01974f26ec0"
-    },
-    {
-      "path": "templates/模板/基架模板/大基架1/8GX.017.226.SLDPRT.virtual.json",
-      "sha256": "f3fad009d9820d676bfbc70f2cfb0bc5899d34f494771cab3c83751596da7f45"
-    },
-    {
-      "path": "templates/模板/基架模板/大基架1/8GX.017.227.SLDPRT.virtual.json",
-      "sha256": "237aa56fc800a4889cb5a24b38b0524e3077e7e38d11c3db927754cd33c80b2c"
-    },
-    {
-      "path": "templates/模板/基架模板/大基架1/8GX.051.023.SLDPRT.virtual.json",
-      "sha256": "8f194ce1de28e69f2eb2d96fa98ed70830376ea44682b7e8d20d3655556b449a"
-    },
-    {
-      "path": "templates/模板/基架模板/大基架1/8GX.055.024.SLDPRT.virtual.json",
-      "sha256": "d238ea10b200fc0afd505935b8f86722c602790e2bab1f65df3cc15f229d731a"
-    },
-    {
-      "path": "templates/模板/基架模板/大基架1/8GX.160.128.SLDPRT.virtual.json",
-      "sha256": "52ce600cfda2108640c37f073c8b3fb866611b33e714f3c0fddc2c4ad1c032e9"
-    },
-    {
-      "path": "templates/模板/基架模板/大基架1/8GX.160.129.SLDPRT.virtual.json",
-      "sha256": "8c7eefbf70181ccede487a967656ea5772ea0388c5a3bda3983bc356f910eb0d"
-    },
-    {
-      "path": "templates/模板/基架模板/大基架1/8GX.160.130.SLDPRT.virtual.json",
-      "sha256": "291dc2fea141a8072faeff2084e80d3b208d9fdcaf09f4c6429a48d195269f2f"
-    },
-    {
-      "path": "templates/模板/基架模板/大基架1/8GX.160.131.SLDPRT.virtual.json",
-      "sha256": "c78c809b1531fef66ef8afb7374c22e73c70688c0d40c9843e91451139f6be41"
-    },
-    {
-      "path": "templates/模板/基架模板/大基架1/8GX.160.132.SLDPRT.virtual.json",
-      "sha256": "9a667b5e41542f753ac89fe58d2dbfdc914b67f33eda8315bd13a1b3badab2da"
-    },
-    {
-      "path": "templates/模板/基架模板/大基架1/8GX.160.133.SLDPRT.virtual.json",
-      "sha256": "814cf793634aed2dd4ccdd4a1782e75a5e66bc3a3284f131a191edca5d64cffe"
-    },
-    {
-      "path": "templates/模板/基架模板/大基架1/8GX.160.134.SLDPRT.virtual.json",
-      "sha256": "4a501308fe5787102f41f1129454efdf9fcb2b34a9e4a2eb234008fa1b1ec3f7"
-    },
-    {
-      "path": "templates/模板/基架模板/大基架1/8GX.160.135.SLDPRT.virtual.json",
-      "sha256": "564c67443f68d85b2a227a173a6b01b476bcf348dc7241dedb680c7fb5b3aecf"
-    },
-    {
-      "path": "templates/模板/基架模板/大基架1/8GX.160.149.SLDPRT.virtual.json",
-      "sha256": "a1d006b36aa6acbae7bf757d2faa67d4be7272c8b4dcf1627488fce79c4c04c1"
-    },
-    {
-      "path": "templates/模板/基架模板/大基架1/8GX.160.150.SLDPRT.virtual.json",
-      "sha256": "b175ffb6726d81e030fcfbf06d21cdaa67ce2671bc9da5a74aea061c71c582f8"
-    },
-    {
-      "path": "templates/模板/基架模板/大基架1/8K8.932.001.SLDPRT.virtual.json",
-      "sha256": "f3f8c3b0e8e2caf3ffa19de00e63601b383e5394bcaad58647c1187fb7656b23"
-    },
-    {
-      "path": "templates/模板/基架模板/大基架2/5GX.355.027.SLDASM.virtual.json",
-      "sha256": "29ae0a0016f5950ff47c6e6d0d89ad224475547aa699ccd2c4e9165837b45514"
-    },
-    {
-      "path": "templates/模板/基架模板/大基架2/6GX.355.027.SLDASM.virtual.json",
-      "sha256": "2bbb73f272258a95d1f8b3738b3fae78d93e264ee1b6389f10bfe3602195d536"
-    },
-    {
-      "path": "templates/模板/基架模板/大基架2/8GX.017.224.SLDPRT.virtual.json",
-      "sha256": "c07f58f98ef317b186214179c0f8ebc88dd604e1b98cfcf84775fa1af0d559a1"
-    },
-    {
-      "path": "templates/模板/基架模板/大基架2/8GX.017.227.SLDPRT.virtual.json",
-      "sha256": "9a9cdca291487e52955286526c07e5898ffd728cdb7f919e202d2de0d0bd25a6"
-    },
-    {
-      "path": "templates/模板/基架模板/大基架2/8GX.017.228.SLDPRT.virtual.json",
-      "sha256": "8c1a0c4b036dfa15600843a64561c0164a1259cc8cae9146b77caf4e5e6dc4ae"
-    },
-    {
-      "path": "templates/模板/基架模板/大基架2/8GX.051.023.SLDPRT.virtual.json",
-      "sha256": "1694a6e4fe0440f4715e01976cf66fe6359b4d755a2af20055edb7baad631557"
-    },
-    {
-      "path": "templates/模板/基架模板/大基架2/8GX.055.024.SLDPRT.virtual.json",
-      "sha256": "1ffce4c755ab8dad6db4ddec7cd81fbae3bffb001a067689484563218e5e999f"
-    },
-    {
-      "path": "templates/模板/基架模板/大基架2/8GX.160.128.SLDPRT.virtual.json",
-      "sha256": "18f9b7e44e4d32a6c7f9adf85cac61b61e8fb576cf6087e809d3943ac17fdbf0"
-    },
-    {
-      "path": "templates/模板/基架模板/大基架2/8GX.160.129.SLDPRT.virtual.json",
-      "sha256": "5a8f6c4c92db26198b2f23ce37980c33691cdd9ddb4711be1e9d9056e6a4a2db"
-    },
-    {
-      "path": "templates/模板/基架模板/大基架2/8GX.160.130.SLDPRT.virtual.json",
-      "sha256": "c5aaf2f2c8ff3c8a22147a14a3b0591c5d9a0a972a03102f5c06e33779848812"
-    },
-    {
-      "path": "templates/模板/基架模板/大基架2/8GX.160.131.SLDPRT.virtual.json",
-      "sha256": "9f936a8c540ae8a2e7bbf7b5a7eb30bc0880349320a5ec5c6ca5b56e79624d88"
-    },
-    {
-      "path": "templates/模板/基架模板/大基架2/8GX.160.133.SLDPRT.virtual.json",
-      "sha256": "2216961e0eefc96e7ae5a70c94e54272afb505f3c85e74003deeb379c7af0053"
-    },
-    {
-      "path": "templates/模板/基架模板/大基架2/8GX.160.134.SLDPRT.virtual.json",
-      "sha256": "0f9c341d9c4f224e969db279e0a8ac2adf22c1d5f2fb961471397cd13c70e327"
-    },
-    {
-      "path": "templates/模板/基架模板/大基架2/8GX.160.135.SLDPRT.virtual.json",
-      "sha256": "d34fde4a28c2afa6fcf84e97bd1f193738c08e4a4f86d047078de513c762405a"
-    },
-    {
-      "path": "templates/模板/基架模板/大基架2/8GX.160.136.SLDPRT.virtual.json",
-      "sha256": "c6fc4ea0a75fc1d8e0f8a32babcbbcdc7b5666c0a1b785299c4eb4048803e58b"
-    },
-    {
-      "path": "templates/模板/基架模板/大基架2/8GX.160.137.SLDPRT.virtual.json",
-      "sha256": "316424940680d877d02b1b4a34686b2383d66012053b658b8e5b73114b7fbc88"
-    },
-    {
-      "path": "templates/模板/基架模板/大基架2/8GX.160.138.SLDPRT.virtual.json",
-      "sha256": "e66e884245ffa4d906de35d9121225f46ffd3a1694e6206810fdc538479dd50a"
-    },
-    {
-      "path": "templates/模板/基架模板/大基架2/8K8.932.001.SLDPRT.virtual.json",
-      "sha256": "951765a558242575e25e9291fa1de3ffbeb8b9ed482fd99ca69a97fcd8344f4e"
-    },
-    {
-      "path": "templates/模板/基架模板/大偏移基架/5GX.355.028.SLDASM.virtual.json",
-      "sha256": "d61ef660fc28faea4b8b29f7656caebb2554003997b5a88b154859a412a4ef13"
-    },
-    {
-      "path": "templates/模板/基架模板/大偏移基架/6GX.355.028.SLDASM.virtual.json",
-      "sha256": "8656f813c8e355f90c8c5d6c87bae1327224ed205076cd474b9a3563f8d7c9ad"
-    },
-    {
-      "path": "templates/模板/基架模板/大偏移基架/8GX.017.229.SLDPRT.virtual.json",
-      "sha256": "c0cc4ead9d40fd901b9f2fc9b4c8379f35c4e8d474033b6946b7b709d2d4e6b5"
-    },
-    {
-      "path": "templates/模板/基架模板/大偏移基架/8GX.051.024.SLDPRT.virtual.json",
-      "sha256": "df26340d382d52297a06e303dbd211564ee26ba44a1bf08541d9a0ba6a11bd07"
-    },
-    {
-      "path": "templates/模板/基架模板/大偏移基架/8GX.055.025.SLDPRT.virtual.json",
-      "sha256": "317b08c06ef9bdfcf784017d6740770556378fbab5b7854c0d7b535fb5e7a6cb"
-    },
-    {
-      "path": "templates/模板/基架模板/大偏移基架/8GX.160.139.SLDPRT.virtual.json",
-      "sha256": "3e439ca67cb50f1d5f4ebf41fa1f2ef1f4a0bbbcec01df0d8051458cc05386e0"
-    },
-    {
-      "path": "templates/模板/基架模板/大偏移基架/8GX.160.140.SLDPRT.virtual.json",
-      "sha256": "a12f18d5346a5e13d122461ae1934f3bbfbc240dcc186480026752060db82aa4"
-    },
-    {
-      "path": "templates/模板/基架模板/大偏移基架/8GX.160.141.SLDPRT.virtual.json",
-      "sha256": "a791f1552c4faa0224055bfd06ef68219a80fc592d66671e3231c56b0a4c8e2b"
-    },
-    {
-      "path": "templates/模板/基架模板/大偏移基架/8GX.160.142.SLDPRT.virtual.json",
-      "sha256": "bcf7ecf09349cb0563b984f5f15adeac5bafa9915efe432cdabb05599e1e409d"
-    },
-    {
-      "path": "templates/模板/基架模板/大偏移基架/8GX.160.143.SLDPRT.virtual.json",
-      "sha256": "f0dbe336f4859ade0fce68320c91a45145b2aea65bf962f8ac9656380d38bea4"
-    },
-    {
-      "path": "templates/模板/基架模板/大偏移基架/8GX.160.144.SLDPRT.virtual.json",
-      "sha256": "a9ae5fd54c17ac4fc818c6be5abb7e1fce7b0aab1ab62bbdf80389d46007a88f"
-    },
-    {
-      "path": "templates/模板/基架模板/大偏移基架/8GX.160.145.SLDPRT.virtual.json",
-      "sha256": "1096aed348af1a4432cbcf17b958697a30121ca941b077d93acc2154d862be0f"
-    },
-    {
-      "path": "templates/模板/基架模板/大偏移基架/8GX.160.146.SLDPRT.virtual.json",
-      "sha256": "da5f7de5569591f85dcd8d41e90af7f3ef6b2032bc6aa1073f284925f47cd260"
-    },
-    {
-      "path": "templates/模板/基架模板/大偏移基架/8GX.160.147.SLDPRT.virtual.json",
-      "sha256": "7d730979f8b90ce0d3e3dcbacd03f9c3099ea4589093b060d409a799f97f18ed"
-    },
-    {
-      "path": "templates/模板/基架模板/大偏移基架/8GX.160.148.SLDPRT.virtual.json",
-      "sha256": "c9af6463b54d1ab157efc6c90fb17ef664e33af95041876cca4822a5af0f39e6"
-    },
-    {
-      "path": "templates/模板/基架模板/大偏移基架/8K8.932.001.SLDPRT.virtual.json",
-      "sha256": "8aff08e79e8c9b8afd514e6f51451622f69b6f8d4e239d4faae9a208cf753768"
-    },
-    {
-      "path": "templates/模板/基架模板/小偏移基架/01/8GX.017.224.SLDPRT.virtual.json",
-      "sha256": "f8bd23ab4740c7754b66131a5ad599f19bcbc7b4eba67debe94305418bafe571"
-    },
-    {
-      "path": "templates/模板/基架模板/小偏移基架/01/8GX.017.227.SLDPRT.virtual.json",
-      "sha256": "c3d5f2b34b9991f2a4bbe176b0d6cfde885b7a68c8e4dcf8fbcc5929411594b6"
-    },
-    {
-      "path": "templates/模板/基架模板/小偏移基架/01/8GX.160.128.SLDPRT.virtual.json",
-      "sha256": "e4cb1825b27114ed5df9f33916a67698b113ffaba3b11355c61867a97262005b"
-    },
-    {
-      "path": "templates/模板/基架模板/小偏移基架/01/8GX.160.133.SLDPRT.virtual.json",
-      "sha256": "a47beec72092dc03b3f2a6c7f6a4903031a596eb26e15ad83f02d19284c89bdf"
-    },
-    {
-      "path": "templates/模板/基架模板/小偏移基架/01/8GX.160.134.SLDPRT.virtual.json",
-      "sha256": "0d7d0b65c4cda5b45af53fa6bf7cb5a477968effb21f502304f67855ee59c0a8"
-    },
-    {
-      "path": "templates/模板/基架模板/小偏移基架/01/8GX.160.135.SLDPRT.virtual.json",
-      "sha256": "527c94d3e0ac0ef80934847dfbb26027c56f7960e3a41afa6eaab234594647e3"
-    },
-    {
-      "path": "templates/模板/基架模板/小偏移基架/5GX.355.032.SLDASM.virtual.json",
-      "sha256": "326c35e54522f876784daa8370dfee9bdbf0f43c81a2d381e6a0e05f66bece24"
-    },
-    {
-      "path": "templates/模板/基架模板/小偏移基架/6GX.355.032.SLDASM.virtual.json",
-      "sha256": "f9d903f4524ae47273559eed54cab89b18be7665abf185412a8065e977275ce4"
-    },
-    {
-      "path": "templates/模板/基架模板/小偏移基架/8GX.017.222.SLDPRT.virtual.json",
-      "sha256": "e283926fc314b6a82d07ed2bc9ff884e301df80bc0b58c0f684fda2f58e9b944"
-    },
-    {
-      "path": "templates/模板/基架模板/小偏移基架/8GX.017.236.SLDPRT.virtual.json",
-      "sha256": "0193f012c32d8b82d210b29e131d51ae32c3f8c5112b5a74c3ee876af10a32e6"
-    },
-    {
-      "path": "templates/模板/基架模板/小偏移基架/8GX.017.237.SLDPRT.virtual.json",
-      "sha256": "14e193f8867c47d671aca03770e9d5890b841de193b5120adc1e558451d5156d"
-    },
-    {
-      "path": "templates/模板/基架模板/小偏移基架/8GX.051.022.SLDPRT.virtual.json",
-      "sha256": "f2750b4f65e37721157b66721e2a611aa8bffadcb1f07efaf19cf10c70f44128"
-    },
-    {
-      "path": "templates/模板/基架模板/小偏移基架/8GX.055.001.SLDPRT.virtual.json",
-      "sha256": "c5457e4ffb61e50cf5bdf5d3604361e91af315a7a350a9d1a689d0ac43058813"
-    },
-    {
-      "path": "templates/模板/基架模板/小偏移基架/8GX.160.001.SLDPRT.virtual.json",
-      "sha256": "93e22dd74189fb72c029988ca254623c71dd3e3c7ad3b741f0f169997094a9c3"
-    },
-    {
-      "path": "templates/模板/基架模板/小偏移基架/8GX.160.002.SLDPRT.virtual.json",
-      "sha256": "b90afc766edc09d0efb7ec5a68a0c8a104a9757dd4da7e520fc3f54a1a1c5cfd"
-    },
-    {
-      "path": "templates/模板/基架模板/小偏移基架/8GX.160.003.SLDPRT.virtual.json",
-      "sha256": "3bc92f67dd790f12937eb30f067630297801228511c99a4b6044588efaa5d35f"
-    },
-    {
-      "path": "templates/模板/基架模板/小偏移基架/8GX.160.163.SLDPRT.virtual.json",
-      "sha256": "d7bd1959f3e4283b3f3b246f9dfd4592067237b22cea53118b2a465090217c71"
-    },
-    {
-      "path": "templates/模板/基架模板/小偏移基架/8GX.160.164.SLDPRT.virtual.json",
-      "sha256": "6c04aae68e8311403a37556dbd6c4a58cf827a028c01cb5eb3fa4aa1c971623d"
-    },
-    {
-      "path": "templates/模板/基架模板/小偏移基架/8GX.160.165.SLDPRT.virtual.json",
-      "sha256": "50804e6e76d6a8ea4f789bca048c98ef4b3a5a97f6008324d896e5bd64cd5e4b"
-    },
-    {
-      "path": "templates/模板/基架模板/小偏移基架/8GX.160.166.SLDPRT.virtual.json",
-      "sha256": "ab176b6869023aff9b17bb9f479a390d9beb78b93f8a429560b4e63423f03f83"
-    },
-    {
-      "path": "templates/模板/基架模板/小偏移基架/8GX.160.167.SLDPRT.virtual.json",
-      "sha256": "0c4ed1fb034fa28f160d301830106f9501f7ff71f639b68a92d98d39d2233c44"
-    },
-    {
-      "path": "templates/模板/基架模板/小偏移基架/8GX.A60.001.SLDPRT.virtual.json",
-      "sha256": "54b159cef9830fbedc725d46d7e8eab2d3f523ff098d49f52430965414b567dd"
-    },
-    {
-      "path": "templates/模板/基架模板/小偏移基架/8K8.932.001.SLDPRT.virtual.json",
-      "sha256": "1b9a783054ea8a5c45cdad2b8625b7243a1e691b64411a399cb5d75ae861d9e4"
-    },
-    {
-      "path": "templates/模板/基座模板/侧对侧基座1/5GX.355.030.SLDASM.virtual.json",
-      "sha256": "ed5c828a71f3874674d429a8bd7871cd5f3d929e05fcc187d6b8431c052c8a3a"
-    },
-    {
-      "path": "templates/模板/基座模板/侧对侧基座1/6GX.355.030.SLDASM.virtual.json",
-      "sha256": "7f7bce6f74b3130b7224e4222dfaf438d68daa67a13b4a7179654c94d8e6c20c"
-    },
-    {
-      "path": "templates/模板/基座模板/侧对侧基座1/8GX.017.215.SLDPRT.virtual.json",
-      "sha256": "dd8d79b99ea14c10e6fc0d7fee285590758d4e71646cee242a78cff8b83cefd8"
-    },
-    {
-      "path": "templates/模板/基座模板/侧对侧基座1/8GX.017.216.SLDPRT.virtual.json",
-      "sha256": "dc2cd6a2a227961d154b7cc47f388d523b4513a16cad0fb6481db0915d443c12"
-    },
-    {
-      "path": "templates/模板/基座模板/侧对侧基座1/8GX.017.217.SLDPRT.virtual.json",
-      "sha256": "c0c5f80a49fe8ebd8d6d150f85bdfc92ea905d643d4b13a95105e3d30f03c1ee"
-    },
-    {
-      "path": "templates/模板/基座模板/侧对侧基座1/8GX.017.231.SLDPRT.virtual.json",
-      "sha256": "e49abbb2bb27e8dc5eeab9dc49742c78159bbbfdd0b6f4d658981b7131ed2e81"
-    },
-    {
-      "path": "templates/模板/基座模板/侧对侧基座1/8GX.051.028.SLDPRT.virtual.json",
-      "sha256": "6eacb8afad5a7b6185ccbae944cd199c29456416734670eb2197083cfd5cf060"
-    },
-    {
-      "path": "templates/模板/基座模板/侧对侧基座1/8GX.055.027.SLDPRT.virtual.json",
-      "sha256": "f8f415fea815c447fd0513708e9d701ede749bd47fd107135df5a603fc075ab1"
-    },
-    {
-      "path": "templates/模板/基座模板/侧对侧基座1/8GX.160.001.SLDPRT.virtual.json",
-      "sha256": "2938734b75af834071e2b75361c022e180a2e9670c66d78af80bd3527a3d901a"
-    },
-    {
-      "path": "templates/模板/基座模板/侧对侧基座1/8GX.160.003.SLDPRT.virtual.json",
-      "sha256": "f920680c053614a6212b927a7c3620fd96c75a6105c0e9bbc4b95bfb0f29cb1a"
-    },
-    {
-      "path": "templates/模板/基座模板/侧对侧基座1/8GX.160.004.SLDPRT.virtual.json",
-      "sha256": "806c9cb981ee2b29582073ac3dd4a9ad0b2e5fa75758841f528cf8e0ecf228ce"
-    },
-    {
-      "path": "templates/模板/基座模板/侧对侧基座1/8GX.160.026.SLDPRT.virtual.json",
-      "sha256": "c047c178129ba7d34e60db7f69872be1980b8fb9e06bdd283339496be4643aee"
-    },
-    {
-      "path": "templates/模板/基座模板/侧对侧基座1/8GX.160.120.SLDPRT.virtual.json",
-      "sha256": "73d04e912cbba604dcd396cdd6b4447c16e517e89006bf2d7de38d0952f5c937"
-    },
-    {
-      "path": "templates/模板/基座模板/侧对侧基座1/8GX.160.151.SLDPRT.virtual.json",
-      "sha256": "29cfd1eaa8e5f67e0f6fe2eee8cef98f22e0a8ef506aa83158465778456eac1b"
-    },
-    {
-      "path": "templates/模板/基座模板/侧对侧基座1/8GX.160.152.SLDPRT.virtual.json",
-      "sha256": "23257daaac2d294e71b5cdd67d61dc68bfed4136666d1f2688f6ee8748961229"
-    },
-    {
-      "path": "templates/模板/基座模板/侧对侧基座1/8GX.160.153.SLDPRT.virtual.json",
-      "sha256": "f6a7d3030d70edebdce648a59d4885c7caaccf21ec9377f83e3dab4bf9ef1a09"
-    },
-    {
-      "path": "templates/模板/基座模板/侧对侧基座1/8GX.160.154.SLDPRT.virtual.json",
-      "sha256": "89457e72ec26319cc12a18118a34404909a811287ef7cf0a91f5464d158f490e"
-    },
-    {
-      "path": "templates/模板/基座模板/侧对侧基座1/8GX.160.155.SLDPRT.virtual.json",
-      "sha256": "469d9ceee5f4e2926f7ec9cfd0fc0be8751e26142fde4a7c70887560eebe121d"
-    },
-    {
-      "path": "templates/模板/基座模板/侧对侧基座1/8GX.160.201.SLDPRT.virtual.json",
-      "sha256": "aaf0f2846be5a57072a5a1209f0cdc5b75d12d79674201bdc463bddd67b5ed24"
-    },
-    {
-      "path": "templates/模板/基座模板/侧对侧基座1/8GX.160.203.SLDPRT.virtual.json",
-      "sha256": "9c56c590bcc2e3a2ee9d2af8eecbe4ecf7c6f9c6497eaf1eaba89116af32cf4a"
-    },
-    {
-      "path": "templates/模板/基座模板/侧对侧基座1/8K8.932.001.SLDPRT.virtual.json",
-      "sha256": "127ddcb12a61fdb2b51588e82eab57e2508a8e76ea3f379a4ce7cbb77c54b5a7"
-    },
-    {
-      "path": "templates/模板/基座模板/侧对侧基座2/5GX.355.031.SLDASM.virtual.json",
-      "sha256": "b2b87376664596d196f23a77ccc9a5c69eb2b7680612d10da13e324448a16bbc"
-    },
-    {
-      "path": "templates/模板/基座模板/侧对侧基座2/6GX.355.031.SLDASM.virtual.json",
-      "sha256": "df77189d9f79486786841d06da621977276eea021e828b707e13955fdf9278c5"
-    },
-    {
-      "path": "templates/模板/基座模板/侧对侧基座2/8GX.017.216.SLDPRT.virtual.json",
-      "sha256": "e7bffffefc0ee6e9e1f11800b69573fd2ddb3f6c27c54626523a406bd4a35f11"
-    },
-    {
-      "path": "templates/模板/基座模板/侧对侧基座2/8GX.017.217.SLDPRT.virtual.json",
-      "sha256": "843e1a854be039ac6277a8c8d76f96251d55c87595aa8a516b74ff572c7720dd"
-    },
-    {
-      "path": "templates/模板/基座模板/侧对侧基座2/8GX.017.232.SLDPRT.virtual.json",
-      "sha256": "398b960daa6e12c42c3b182446793cfeb41b8b26872746cecb0a60aef3245b4b"
-    },
-    {
-      "path": "templates/模板/基座模板/侧对侧基座2/8GX.017.233.SLDPRT.virtual.json",
-      "sha256": "d7db9098477b72eddc20d65232b5778f80d6b39d2ccdcef325f6d7dd3bf7951b"
-    },
-    {
-      "path": "templates/模板/基座模板/侧对侧基座2/8GX.017.234.SLDPRT.virtual.json",
-      "sha256": "6567cfec95cfd104051c451f9b7821c97c6988e008381b1783ca906f13641df3"
-    },
-    {
-      "path": "templates/模板/基座模板/侧对侧基座2/8GX.017.235.SLDPRT.virtual.json",
-      "sha256": "374943a6b7bdd0b827e95097f94e2c758c753ab3ce5ef62c72dc560b43788fc9"
-    },
-    {
-      "path": "templates/模板/基座模板/侧对侧基座2/8GX.051.030.SLDPRT.virtual.json",
-      "sha256": "c02ea8c89b1a03a5188ae531d4cc69790ad08a84cd0f5708d05a67842e4d5aac"
-    },
-    {
-      "path": "templates/模板/基座模板/侧对侧基座2/8GX.055.001.SLDPRT.virtual.json",
-      "sha256": "6cc7febc245f633455c8ebb31180ae3808a9711f62546a2c975dc75c9784ae02"
-    },
-    {
-      "path": "templates/模板/基座模板/侧对侧基座2/8GX.160.002.SLDPRT.virtual.json",
-      "sha256": "681ec743c531905d8017ce42c2f8279d24e21c22418b680cf87b7dbb750e1fbb"
-    },
-    {
-      "path": "templates/模板/基座模板/侧对侧基座2/8GX.160.004.SLDPRT.virtual.json",
-      "sha256": "46b4bc985fa5a93636a1bac17612996ac9db4b66b93af33ef64aada96c64d28e"
-    },
-    {
-      "path": "templates/模板/基座模板/侧对侧基座2/8GX.160.006.SLDPRT.virtual.json",
-      "sha256": "ea1a6c645852f9420f8bc1ef138a338d90070a81313936b0cda4b7b506b9f832"
-    },
-    {
-      "path": "templates/模板/基座模板/侧对侧基座2/8GX.160.008.SLDPRT.virtual.json",
-      "sha256": "4b8f03c0088d4208fde54bc1bec0e4eae62d1febfccd5a60e45e5ec325ae7a06"
-    },
-    {
-      "path": "templates/模板/基座模板/侧对侧基座2/8GX.160.026.SLDPRT.virtual.json",
-      "sha256": "77d6f14ac5763485ef422281e6f737c24924f2c1134c0f44abc5c0af69dc15d3"
-    },
-    {
-      "path": "templates/模板/基座模板/侧对侧基座2/8GX.160.156.SLDPRT.virtual.json",
-      "sha256": "be5303855f6ab8e8678ee468a25fcae18b241163a03cc461abdf618144b7ebcc"
-    },
-    {
-      "path": "templates/模板/基座模板/侧对侧基座2/8GX.160.157.SLDPRT.virtual.json",
-      "sha256": "11464b7ed86cd076b626403b0e63d9032872904bdba951e4ff8b5735e6db1b52"
-    },
-    {
-      "path": "templates/模板/基座模板/侧对侧基座2/8GX.160.158.SLDPRT.virtual.json",
-      "sha256": "067794fb8c56ad0013353e8a3b50342ffb8dc255dcff9720477f1f14ce288655"
-    },
-    {
-      "path": "templates/模板/基座模板/侧对侧基座2/8GX.160.159.SLDPRT.virtual.json",
-      "sha256": "7355bae27ad276c87f50b73cba289309adae34d4458251b59b85e34b2b3e0fdb"
-    },
-    {
-      "path": "templates/模板/基座模板/侧对侧基座2/8GX.160.160.SLDPRT.virtual.json",
-      "sha256": "b54005f7c67dc96d8498ecb7dc48f08132f2b0edf1773f7e8f0be947f2674c06"
-    },
-    {
-      "path": "templates/模板/基座模板/侧对侧基座2/8GX.160.161.SLDPRT.virtual.json",
-      "sha256": "8104957eee98aaba349d18810a1c9e60a2a9babd3bb9f268c5a948d48fe70a01"
-    },
-    {
-      "path": "templates/模板/基座模板/侧对侧基座2/8GX.160.162.SLDPRT.virtual.json",
-      "sha256": "f5db9c1823394827e5dcb1436548d74ca4249ab7a15a1fcb808a514b80448731"
-    },
-    {
-      "path": "templates/模板/基座模板/侧对侧基座2/8GX.160.A08.SLDPRT.virtual.json",
-      "sha256": "644ced3bc14c88b5ad8a9a402eedba1e91b62fff6ad1daecb050fb231079f567"
-    },
-    {
-      "path": "templates/模板/基座模板/侧对侧基座2/8K8.932.001.SLDPRT.virtual.json",
-      "sha256": "ea68399d6a92511805a36141847bafbf37cabb7550a24bca3e1a95bd63e48573"
-    },
-    {
-      "path": "templates/模板/基座模板/基座/5GX.355.020.SLDASM.virtual.json",
-      "sha256": "020a94c1a384f20d39ebe211ac096025c3e3b608f4a7fc6096bc89b9dd85a034"
-    },
-    {
-      "path": "templates/模板/基座模板/基座/6GX.355.020.SLDASM.virtual.json",
-      "sha256": "b2ed6e3136f51bcd640add3ceaa868c77b943f08e0032a3f561a995b027fcf23"
-    },
-    {
-      "path": "templates/模板/基座模板/基座/8GX.017.215.SLDPRT.virtual.json",
-      "sha256": "0e02b3434d104010708e21dd7e295869df79ffa51566a75843aa23da9ff38e18"
-    },
-    {
-      "path": "templates/模板/基座模板/基座/8GX.017.216.SLDPRT.virtual.json",
-      "sha256": "d89d33b2222b8a86b6eb71bc4efda320a5e0085a20d7b18be6fb3aff0fa5fe9c"
-    },
-    {
-      "path": "templates/模板/基座模板/基座/8GX.017.217.SLDPRT.virtual.json",
-      "sha256": "af4fe2979269404494d0b65e4a425f0c5475df1a529e0abc8953650b723395dd"
-    },
-    {
-      "path": "templates/模板/基座模板/基座/8GX.051.025.SLDPRT.virtual.json",
-      "sha256": "9cee1856fdc81e61a5f5400961d600ed2ff8257b4f89787b6c1a2468ac3fe121"
-    },
-    {
-      "path": "templates/模板/基座模板/基座/8GX.051.026.SLDPRT.virtual.json",
-      "sha256": "b0cb81e37687e18784de119723ac0acdc8a4cca739c31f646034daf040ee066f"
-    },
-    {
-      "path": "templates/模板/基座模板/基座/8GX.055.001.SLDPRT.virtual.json",
-      "sha256": "a5b24817effce6cf5691f97eae037799d1708c2a8c2055e8068c88a5735e41aa"
-    },
-    {
-      "path": "templates/模板/基座模板/基座/8GX.160.001.SLDPRT.virtual.json",
-      "sha256": "bb1cb4a22dbce304c540a29fc2129546d96ad42cf6402406d593159591fb08e2"
-    },
-    {
-      "path": "templates/模板/基座模板/基座/8GX.160.002.SLDPRT.virtual.json",
-      "sha256": "17f85a92144c06f72fc333598cd9c6a546d3c8fffe86c5d465cb845be8539c0c"
-    },
-    {
-      "path": "templates/模板/基座模板/基座/8GX.160.003.SLDPRT.virtual.json",
-      "sha256": "de86861dc7d8ceebaa330a95138cf6039973d132f42304d781a0471e13e2c037"
-    },
-    {
-      "path": "templates/模板/基座模板/基座/8GX.160.004.SLDPRT.virtual.json",
-      "sha256": "e4ee3430ce374b9d2a8645b4aea2e76c9f186c5496c09ba31b6c1f64e75939dc"
-    },
-    {
-      "path": "templates/模板/基座模板/基座/8GX.160.006.SLDPRT.virtual.json",
-      "sha256": "2bce2344a2e519eaca4f425c190adcf9876d48d1026f68a0e6a3d50b7b984e40"
-    },
-    {
-      "path": "templates/模板/基座模板/基座/8GX.160.008.SLDPRT.virtual.json",
-      "sha256": "1f09b1e588368f44a29ab9b0598fe55bdbc72cb9efe0fcaf86de3d2710b26447"
-    },
-    {
-      "path": "templates/模板/基座模板/基座/8GX.160.026.SLDPRT.virtual.json",
-      "sha256": "0413e89cbe0a616664c6c201d6f7729706d1590209ec249f1e06f1ad4859532b"
-    },
-    {
-      "path": "templates/模板/基座模板/基座/8GX.160.120.SLDPRT.virtual.json",
-      "sha256": "75a4bbb1425a4f6d93fe724fa1121855787087a812555b5aad58de77a73f06c5"
-    },
-    {
-      "path": "templates/模板/基座模板/基座/8GX.160.201.SLDPRT.virtual.json",
-      "sha256": "080499cb6a67ca4a125c611690613c7a991a03e746e1e457dc283a7cdd89c730"
-    },
-    {
-      "path": "templates/模板/基座模板/基座/8GX.160.203.SLDPRT.virtual.json",
-      "sha256": "6e5873ab4cc1c2a9f2f3a5486ae34db7bf6ed057aecacb0361344cdaac58efd7"
-    },
-    {
-      "path": "templates/模板/基座模板/基座/8GX.160.A08.SLDPRT.virtual.json",
-      "sha256": "c048541e9116a7df0511bbb6bb6822d5904d7dc5544a052f0c37fd44a8627f47"
-    },
-    {
-      "path": "templates/模板/基座模板/基座/8K8.932.001.SLDPRT.virtual.json",
-      "sha256": "430613769854007908b3ea3893dc770c656fc826c67ebefb53c1bf037a8e4e4c"
-    },
-    {
-      "path": "templates/模板/基座模板/增高基座/5GX.355.021.SLDASM.virtual.json",
-      "sha256": "80e91a4f457274a4d9f90706318cdd4957f60724b5148af541bafe1752984d1c"
-    },
-    {
-      "path": "templates/模板/基座模板/增高基座/6GX.355.021.SLDASM.virtual.json",
-      "sha256": "ddbaf71f220e15de4c83e8350e5a2789ba100ac941b833a1745c9e0f1638d9c5"
-    },
-    {
-      "path": "templates/模板/基座模板/增高基座/8GX.051.020.SLDPRT.virtual.json",
-      "sha256": "5c852b4d5a5869af77bd10490a7bfa07e25c6424f54827fa76b54dd840a95cc8"
-    },
-    {
-      "path": "templates/模板/基座模板/增高基座/8GX.051.021.SLDPRT.virtual.json",
-      "sha256": "db214b5509007c2108df9e6b63b09c026d71d497838c66fa0e12fa7353c6848b"
-    },
-    {
-      "path": "templates/模板/基座模板/增高基座/8GX.055.020.SLDPRT.virtual.json",
-      "sha256": "79c49e36639811a4e812eb55980beb632f23ad08e73d0c5d64efed7b1e8594d1"
-    },
-    {
-      "path": "templates/模板/基座模板/增高基座/8GX.160.001.SLDPRT.virtual.json",
-      "sha256": "c33f010e5becb75f9d6b0eb33f2ba41c23d3a2e7407ca942f07fe7eb42e98a53"
-    },
-    {
-      "path": "templates/模板/基座模板/增高基座/8GX.160.003.SLDPRT.virtual.json",
-      "sha256": "dbed25d09ef5844f01d2231102627ee63991601672166b08f51b8a22e9d994fb"
-    },
-    {
-      "path": "templates/模板/基座模板/增高基座/8GX.160.120.SLDPRT.virtual.json",
-      "sha256": "b25bccc03b397db1601f5b24b77bd4f3fd55771c8b40905bb969d614b59fb336"
-    },
-    {
-      "path": "templates/模板/基座模板/增高基座/8GX.160.121.SLDPRT.virtual.json",
-      "sha256": "2178390352a81d41729a8802bd9bcaa0a639d05a70bb12d585d093dc3b5340c5"
-    },
-    {
-      "path": "templates/模板/基座模板/增高基座/8GX.160.126.SLDPRT.virtual.json",
-      "sha256": "f31a40d2f1ec280652a68215b17663875cdcacfe8ea03431207ae442389e6e4d"
-    },
-    {
-      "path": "templates/模板/基座模板/增高基座/8K8.932.001.SLDPRT.virtual.json",
-      "sha256": "1ed20234bc2b77e555d1ce497d20c9087e5126e95c19337e8e00cdb20c4ff843"
-    },
-    {
-      "path": "templates/模板/绝缘子模板/绝缘子通用模板/8GX.043.002.SLDPRT.virtual.json",
-      "sha256": "ccad947f1036cbec3b056564fffc086034a7546bba75f6f549bb1fe0b60bc656"
-    },
-    {
-      "path": "templates/模板/绝缘子模板/绝缘子通用模板/8GX.043.021.SLDPRT.virtual.json",
-      "sha256": "d9304e11d9df7319126fec7a95b89b0627b52127d6378da5b09aee7d14e4ffc9"
-    },
-    {
-      "path": "templates/模板/绝缘子模板/绝缘子通用模板/8UQ.584.013.SLDPRT.virtual.json",
-      "sha256": "4cb03ba07c8641d5fe0c1ae6883352419c7b51a8ca421541dc7a2b1863698943"
-    },
-    {
-      "path": "templates/模板/绝缘子模板/绝缘子通用模板/绝缘子.SLDPRT.virtual.json",
-      "sha256": "8faf2d09823d8f36681a2912eedb4dc56256636387953c2f2468bd4045b79624"
-    },
-    {
-      "path": "templates/模板/绝缘子模板/绝缘子通用模板/绝缘子+垫片+支架（3垫块）.SLDASM.virtual.json",
-      "sha256": "7f1f2b3c0de40110a2ee6ecc4697ae40057da9013cc5a1d1f8298c001b4b2d2e"
-    },
-    {
-      "path": "templates/模板/绝缘子模板/绝缘子通用模板/绝缘子垫块.SLDASM.virtual.json",
-      "sha256": "7c6e9dafcf7f3d9dfb167e3169ce1d1585870940b0f7d6147986e9d2543bf8e5"
-    },
-    {
-      "path": "templates/模板/面对面模板/柜内伸出排/A柜内伸出排-A-A柜后.SLDPRT.virtual.json",
-      "sha256": "98179e32f89dcadd1df90ced56800af0f70c4bc78ad06817de2f977d15486864"
-    },
-    {
-      "path": "templates/模板/面对面模板/柜内伸出排/A柜内伸出排-A-A柜前.SLDPRT.virtual.json",
-      "sha256": "1a3eb1017c5b0e394599b242d7398f5e42deee36730a52325e25ef40054e48d7"
-    },
-    {
-      "path": "templates/模板/面对面模板/柜内伸出排/A柜内伸出排-A柜后.SLDASM.virtual.json",
-      "sha256": "87d1efce19bfcbc68c9757c1a8b124f69e733ab5dbabea89345504a4148c9eee"
-    },
-    {
-      "path": "templates/模板/面对面模板/柜内伸出排/A柜内伸出排-A柜前.SLDASM.virtual.json",
-      "sha256": "2a61c38dbceed95f3bbf28a318784ed2437214c9876fc61f5f6b37f8f7acde8f"
-    },
-    {
-      "path": "templates/模板/面对面模板/柜内伸出排/A柜内伸出排-B-A柜后.SLDPRT.virtual.json",
-      "sha256": "e5a735de3afe6bf00620c167558179b824bf09aafbc0330a5223a67ffb74d7cf"
-    },
-    {
-      "path": "templates/模板/面对面模板/柜内伸出排/A柜内伸出排-B-A柜前.SLDPRT.virtual.json",
-      "sha256": "0779eadd633388832f5910d35d1f7256fbfc1446155288d89fdabef16efb413f"
-    },
-    {
-      "path": "templates/模板/面对面模板/柜内伸出排/A柜内伸出排-C-A柜后.SLDPRT.virtual.json",
-      "sha256": "d5eb44db10a171c40dcac793693c3a67348f9ef700714c2543658dcd036a4506"
-    },
-    {
-      "path": "templates/模板/面对面模板/柜内伸出排/A柜内伸出排-C-A柜前.SLDPRT.virtual.json",
-      "sha256": "8c197b437dd7cfefb19eed8b37d36d275269e29f0c4985e249d5ee29f061e316"
-    },
-    {
-      "path": "templates/模板/面对面模板/柜内伸出排/B柜内伸出排-A-B柜后.SLDPRT.virtual.json",
-      "sha256": "a64b782b1012c1c66b459f987eaf5685be2d6c5f2c55d09bd70f5473f606b3fd"
-    },
-    {
-      "path": "templates/模板/面对面模板/柜内伸出排/B柜内伸出排-A-B柜前.SLDPRT.virtual.json",
-      "sha256": "dbd32488c93d7ed50a124bee8c87d828bc319d592f47578756e79bf5c8b0d5ab"
-    },
-    {
-      "path": "templates/模板/面对面模板/柜内伸出排/B柜内伸出排-B-B柜后.SLDPRT.virtual.json",
-      "sha256": "23957b0ffcb6abc36e0cbda97355b8c0c60c735bd6580461ffdebdd2e7d196d0"
-    },
-    {
-      "path": "templates/模板/面对面模板/柜内伸出排/B柜内伸出排-B-B柜前.SLDPRT.virtual.json",
-      "sha256": "6a6fe88d3b815de98829e0f70e61d006b124139401ee7987276a453942980814"
-    },
-    {
-      "path": "templates/模板/面对面模板/柜内伸出排/B柜内伸出排-B柜后.SLDASM.virtual.json",
-      "sha256": "6d6f88fc6f044c497e45d4aa50d6a3d913d365879a02c391c575de3fc7c144c1"
-    },
-    {
-      "path": "templates/模板/面对面模板/柜内伸出排/B柜内伸出排-B柜前.SLDASM.virtual.json",
-      "sha256": "2a20390aeffd6c31be8f5d00521abe263aab66c34c82f96e1c90f1ad7b36b31e"
-    },
-    {
-      "path": "templates/模板/面对面模板/柜内伸出排/B柜内伸出排-C-B柜后.SLDPRT.virtual.json",
-      "sha256": "8e95d684d09f47bc8ca006366acb6b10e82048345ace65f3fdd69be2eda18437"
-    },
-    {
-      "path": "templates/模板/面对面模板/柜内伸出排/B柜内伸出排-C-B柜前.SLDPRT.virtual.json",
-      "sha256": "df30a9bbbfd3b4c6540d6398698e3530e5952bfa9c9e6b4cfb801c2fd48f8474"
-    },
-    {
-      "path": "templates/模板/面对面模板/柜体/地面.SLDPRT.virtual.json",
-      "sha256": "337552d69502f9e9abb0172e637bbc0079f607d8e7cadd5bf3114862c808987e"
-    },
-    {
-      "path": "templates/模板/面对面模板/柜体/横梁.SLDPRT.virtual.json",
-      "sha256": "08b2e2e05679c1a686563f3d300d2a3a096779f7958187b6fcc1c896a671340f"
-    },
-    {
-      "path": "templates/模板/面对面模板/柜体/梁.SLDPRT.virtual.json",
-      "sha256": "3ee00d69b2bcc73b934ba2ec59b67cbedcb6739e68db631587482291ad8d34a7"
-    },
-    {
-      "path": "templates/模板/面对面模板/柜体/A柜-子装配体.SLDASM.virtual.json",
-      "sha256": "214126b84f6df85dc0d919bcc07374d10a68e24a4c5e9657f8a52f24bfe38102"
-    },
-    {
-      "path": "templates/模板/面对面模板/柜体/A柜体.SLDPRT.virtual.json",
-      "sha256": "d4f5c1cdd57e22452c78577bfec0ae361780384a26430cba747c56f5e3443b4a"
-    },
-    {
-      "path": "templates/模板/面对面模板/柜体/B柜-子装配体.SLDASM.virtual.json",
-      "sha256": "a2b1c0596f69008b9ab696db734526062ffefa637f32c6cf8fcf9c8c45998386"
-    },
-    {
-      "path": "templates/模板/面对面模板/柜体/B柜体.SLDPRT.virtual.json",
-      "sha256": "3aa8dbcba9211129d0008cf80cc0ae80ba4d6bef99431762e07e580658311a1d"
-    },
-    {
-      "path": "templates/模板/面对面模板/柜体装配.SLDASM.virtual.json",
-      "sha256": "eced8430b049ac4be52a9398654332a090ed508414b3c65d95d37a6002835571"
-    },
-    {
-      "path": "templates/模板/面对墙模板(柜后向墙)/柜内伸出排/柜内伸出排-柜后.SLDASM.virtual.json",
-      "sha256": "d370e3117e1c93ac4b82a3e8c4d88e421a77a682f7b67302ee35a9930e7e06a5"
-    },
-    {
-      "path": "templates/模板/面对墙模板(柜后向墙)/柜内伸出排/柜内伸出排-柜前.SLDASM.virtual.json",
-      "sha256": "a7068f76c5557907c81e2c4fedb568bd577cd5ae5fa07a5ab2fd2f8de237cfcd"
-    },
-    {
-      "path": "templates/模板/面对墙模板(柜后向墙)/柜内伸出排/柜内伸出排-A-柜后.SLDPRT.virtual.json",
-      "sha256": "1e217b63058f6ac708cfc648e6606ca4573363f0d805e74b7ed1cd3f931a439d"
-    },
-    {
-      "path": "templates/模板/面对墙模板(柜后向墙)/柜内伸出排/柜内伸出排-A-柜前.SLDPRT.virtual.json",
-      "sha256": "bd032af30b00c0a71b6bc92dd8016685ec4972d4a60bdf5711ee920fb602a60c"
-    },
-    {
-      "path": "templates/模板/面对墙模板(柜后向墙)/柜内伸出排/柜内伸出排-B-柜后.SLDPRT.virtual.json",
-      "sha256": "c6d1bb24284e903b009708bf59a2e3ab2be087de5012dca9b134b9ad83eb6006"
-    },
-    {
-      "path": "templates/模板/面对墙模板(柜后向墙)/柜内伸出排/柜内伸出排-B-柜前.SLDPRT.virtual.json",
-      "sha256": "21b39789ad28a8fe814cab8b599f7503825b43338dc6b99c88ea0349a4567e56"
-    },
-    {
-      "path": "templates/模板/面对墙模板(柜后向墙)/柜内伸出排/柜内伸出排-C-柜后.SLDPRT.virtual.json",
-      "sha256": "5f1cfee14d6d7d35c4dfd07e56a80f146fef15e2884a6c2680de5e2f09143146"
-    },
-    {
-      "path": "templates/模板/面对墙模板(柜后向墙)/柜内伸出排/柜内伸出排-C-柜前.SLDPRT.virtual.json",
-      "sha256": "ea22c0200f116da552b4fdb79bb1dd8e193a1d8cf16e8ad865e8b1e1a8b337a7"
-    },
-    {
-      "path": "templates/模板/面对墙模板(柜后向墙)/柜体场景示意/穿墙套管.SLDPRT.virtual.json",
-      "sha256": "bad6c514178e09fb4df4aa7328efb8a11b72726bd7992ed0a6a7929f129ccbf8"
-    },
-    {
-      "path": "templates/模板/面对墙模板(柜后向墙)/柜体场景示意/穿墙套管安装板.SLDPRT.virtual.json",
-      "sha256": "e727cd8e1382c96697190c841638802571cd3645b27b2c7382e40d4ad8c8fbe1"
-    },
-    {
-      "path": "templates/模板/面对墙模板(柜后向墙)/柜体场景示意/地面.SLDPRT.virtual.json",
-      "sha256": "936c81c26c9b01c34a23ed9b5c30ec0cc8a63d5c7a7cf2351a2a8494a30d4498"
-    },
-    {
-      "path": "templates/模板/面对墙模板(柜后向墙)/柜体场景示意/柜体.SLDPRT.virtual.json",
-      "sha256": "ccd9def56edbbdc4f414a5c3fe79c216b96ea20d4a52f8b8229949d1436d9777"
-    },
-    {
-      "path": "templates/模板/面对墙模板(柜后向墙)/柜体场景示意/柜子装配体.SLDASM.virtual.json",
-      "sha256": "6a093dc1a37ce309bf80eb40054993b3f548d5b5255b8f83862f13658315e51c"
-    },
-    {
-      "path": "templates/模板/面对墙模板(柜后向墙)/柜体场景示意/梁.SLDPRT.virtual.json",
-      "sha256": "d49d39e181cef199d0c37bd2822f4b2d4173f4f90feb5fe7a73d231109b224ec"
-    },
-    {
-      "path": "templates/模板/面对墙模板(柜后向墙)/柜体场景示意/墙.SLDPRT.virtual.json",
-      "sha256": "27ef3e2d462a2c4fa97db31e4edad389e7fc4f73bc17e8725869300ca861b247"
-    },
-    {
-      "path": "templates/模板/面对墙模板(柜后向墙)/柜体场景示意/屋顶.SLDPRT.virtual.json",
-      "sha256": "82bf72275bd35b68616dea04c059173cafacb6687212f797d556df5753b0484e"
-    },
-    {
-      "path": "templates/模板/面对墙模板(柜后向墙)/面对墙柜体装配.SLDASM.virtual.json",
-      "sha256": "fefe43d9f6c37552ca3a408ec23c0ed909515d79922e8e9ebeacd5d8db6deb2e"
-    },
-    {
-      "path": "templates/模板/面对墙模板(柜后向墙)/支架/5GX.000.002.SLDASM.virtual.json",
-      "sha256": "d483277334dd5e63ed4bd6d330f616244ea387f5454a0fa55af17fda87e0b7a9"
-    },
-    {
-      "path": "templates/模板/面对墙模板(柜后向墙)/支架/6ZX.204.323.SLDASM.virtual.json",
-      "sha256": "36e5fd20f9fba4c6827a7ba7201eb3e69edd2e6c064dd288a9ee034ead407730"
-    },
-    {
-      "path": "templates/模板/面对墙模板(柜后向墙)/支架/8GX.160.024.SLDPRT.virtual.json",
-      "sha256": "550bdcb2bf1e0af34de87c189ecbb5c1cb868d3f1192b686553819b53b483002"
-    },
-    {
-      "path": "templates/模板/面对墙模板(柜后向墙)/支架/8GX.160.025.SLDPRT.virtual.json",
-      "sha256": "9f13e2f8a3745bcacb3b85f29f20deb02e75388106908fd1f472110a619a2c18"
-    },
-    {
-      "path": "templates/模板/面对墙模板(柜后向墙)/支架/8ZX.202.520.SLDPRT.virtual.json",
-      "sha256": "7f31a8ca28216cd0d1733c58c556a131e321b619dddc80238a996875a052ab64"
-    },
-    {
-      "path": "templates/模板/面对墙模板(柜后向墙)/支架/8ZX.204.001.SLDPRT.virtual.json",
-      "sha256": "e80b9bd5a4efb2f9084deabb1ddccd95a65224563439f8eb8b280f6b7f336da0"
-    },
-    {
-      "path": "templates/模板/面对墙模板(柜后向墙)/支架/8ZX.204.002.SLDPRT.virtual.json",
-      "sha256": "d9d7517e94f41e556ee200877d1f3a3bc08ead823e64e1d0664ad87516c6a1e7"
-    },
-    {
-      "path": "templates/模板/面对墙模板(柜前向墙)/柜内伸出排/柜内伸出排-柜后.SLDASM.virtual.json",
-      "sha256": "cdb1b5c41f0f1f0298d890d4357618b52c0f5835fbcf0bcb81d6e9b6a2d6d777"
-    },
-    {
-      "path": "templates/模板/面对墙模板(柜前向墙)/柜内伸出排/柜内伸出排-柜前.SLDASM.virtual.json",
-      "sha256": "69e740f1e5fa9e48eb4bb67312d774892b74420301f8eb90204132417fea7e62"
-    },
-    {
-      "path": "templates/模板/面对墙模板(柜前向墙)/柜内伸出排/柜内伸出排-A-柜后.SLDPRT.virtual.json",
-      "sha256": "59f72b652c3f3bac32ebc7c9d3b014ef91b94111363066d88356237cfb3b3bd5"
-    },
-    {
-      "path": "templates/模板/面对墙模板(柜前向墙)/柜内伸出排/柜内伸出排-A-柜前.SLDPRT.virtual.json",
-      "sha256": "b0e4b999f02af37a2532b48da664aaba76f926f47c7214c4efe20658cb1c6e01"
-    },
-    {
-      "path": "templates/模板/面对墙模板(柜前向墙)/柜内伸出排/柜内伸出排-B-柜后.SLDPRT.virtual.json",
-      "sha256": "80fb0d48f57979735dab5f77a456cdcb511ebca0638b7b59d371e4a8ded59753"
-    },
-    {
-      "path": "templates/模板/面对墙模板(柜前向墙)/柜内伸出排/柜内伸出排-B-柜前.SLDPRT.virtual.json",
-      "sha256": "601967d0dd9b1d5248f35bcaebb06a4ce37fad09e9ef06b9be970bf01da8949c"
-    },
-    {
-      "path": "templates/模板/面对墙模板(柜前向墙)/柜内伸出排/柜内伸出排-C-柜后.SLDPRT.virtual.json",
-      "sha256": "9b8709386531640c652a0628f4bad3f39302e965bb28a46a370bace7a462412c"
-    },
-    {
-      "path": "templates/模板/面对墙模板(柜前向墙)/柜内伸出排/柜内伸出排-C-柜前.SLDPRT.virtual.json",
-      "sha256": "c21c24393203a6198fbbd49fa4b6647eff1376b51e2a93378c2be7f71b9cf1ee"
-    },
-    {
-      "path": "templates/模板/面对墙模板(柜前向墙)/柜体场景示意/穿墙套管.SLDPRT.virtual.json",
-      "sha256": "b54fe760f56af66f41beadd46eaabc6bc51c02f8af244f620a757e374bc1a900"
-    },
-    {
-      "path": "templates/模板/面对墙模板(柜前向墙)/柜体场景示意/穿墙套管安装板.SLDPRT.virtual.json",
-      "sha256": "9726c0777691ad97c76a3ae3a431beb530530647dc43060a47c10e5f4cfacaf8"
-    },
-    {
-      "path": "templates/模板/面对墙模板(柜前向墙)/柜体场景示意/地面.SLDPRT.virtual.json",
-      "sha256": "70590dacd51c6c626812d55ff9c9263dfdd1b523808eab6cf8ec221a43cf0ba1"
-    },
-    {
-      "path": "templates/模板/面对墙模板(柜前向墙)/柜体场景示意/柜体.SLDPRT.virtual.json",
-      "sha256": "08910e210ac85beb0aba560a0cdc381a3f19516a253396b5cc546d44c24827bd"
-    },
-    {
-      "path": "templates/模板/面对墙模板(柜前向墙)/柜体场景示意/柜子装配体.SLDASM.virtual.json",
-      "sha256": "17245b94ed6d40568a12c6888705af1b6d055c89c79c596947e46072e91eef8c"
-    },
-    {
-      "path": "templates/模板/面对墙模板(柜前向墙)/柜体场景示意/梁.SLDPRT.virtual.json",
-      "sha256": "f444a0e127a09997f92b614eaee71df4658381a176bd253b4287d62f266418f9"
-    },
-    {
-      "path": "templates/模板/面对墙模板(柜前向墙)/柜体场景示意/墙.SLDPRT.virtual.json",
-      "sha256": "60c78f9534c6d3c3b47a829f37daf09029bf586611887e0e53a6dfbab54cfc10"
-    },
-    {
-      "path": "templates/模板/面对墙模板(柜前向墙)/柜体场景示意/屋顶.SLDPRT.virtual.json",
-      "sha256": "097dc7f0da4b6d2b3c8a4c0e05cce5a2ab5800079872019e9ade6be9821116c0"
-    },
-    {
-      "path": "templates/模板/面对墙模板(柜前向墙)/面对墙柜体装配.SLDASM.virtual.json",
-      "sha256": "350bd630b868c83b22011e7f7edb1671094f09a6496ab895e7361f981a631780"
-    },
-    {
-      "path": "templates/模板/面对墙模板(柜前向墙)/支架/5GX.000.002.SLDASM.virtual.json",
-      "sha256": "7aaf04cfd889753bc894acd99575f843af3b474b3a9f3ff07575f1c525f223ca"
-    },
-    {
-      "path": "templates/模板/面对墙模板(柜前向墙)/支架/6ZX.204.323.SLDASM.virtual.json",
-      "sha256": "51dd32444c585c5977702c5ad0ece3e267fa1dd08451e045f755189b618cc1f8"
-    },
-    {
-      "path": "templates/模板/面对墙模板(柜前向墙)/支架/8GX.160.024.SLDPRT.virtual.json",
-      "sha256": "c2dff35f5a010ba4340d27edbcb674cc08b546d55b049bb0da0434f2537f574e"
-    },
-    {
-      "path": "templates/模板/面对墙模板(柜前向墙)/支架/8GX.160.025.SLDPRT.virtual.json",
-      "sha256": "4975fb7ae38b15adfeb904b0f571f3afa0ecba495f6ff9ac46dd85a08d91a394"
-    },
-    {
-      "path": "templates/模板/面对墙模板(柜前向墙)/支架/8ZX.202.520.SLDPRT.virtual.json",
-      "sha256": "c0a698d84a8b198197cefc3834bcb1b56f900bf9471874b643fbc63387e368fc"
-    },
-    {
-      "path": "templates/模板/面对墙模板(柜前向墙)/支架/8ZX.204.001.SLDPRT.virtual.json",
-      "sha256": "3bd098abab455919068f90f296cd5fec78e557f253e3201545c6b64358601eb8"
-    },
-    {
-      "path": "templates/模板/面对墙模板(柜前向墙)/支架/8ZX.204.002.SLDPRT.virtual.json",
-      "sha256": "3cf7b79621f05a518eadf959fbd5e259d31fc5b93c900418d5fbfe4bd53eacb9"
+      "sha256": "ef82e11484edf8576b73eb529b5f803fb15b42bd131dceb1a791184d324477e2"
     },
     {
       "path": "vendor/earcut/earcut.mjs",
@@ -1613,7 +517,7 @@
     },
     {
       "path": "Web/src/geometry-worker.js",
-      "sha256": "ca984c4ede28d41664f53ab9c6a464cf5084b06f7ac20818f0eeb32e4e87425f"
+      "sha256": "7ed53de4f1ee08d138083cc4f376ca9c95b09ba2c6ae2768e5c47b9b95ab91c3"
     },
     {
       "path": "Web/src/kernel.js",
@@ -1827,7 +731,7 @@
     },
     {
       "path": "CKBusbarBridge.DesignUI/Preview/BridgeGeometryRuntime.cs",
-      "sha256": "466937b6e7c855bcc67d586ea4205937a8aba43432949eeac0b30695acf1a694"
+      "sha256": "4b0f7a8bc00354055447a61060da84f3055c8b669a6d7a6a714b22d88bcacd8f"
     },
     {
       "path": "CKBusbarBridge.DesignUI/Preview/BridgeMeshPicking.cs",
@@ -2239,11 +1143,11 @@
     },
     {
       "path": "CKBusbarBridge/Services/BusbarAlgorithmWorkerClient.cs",
-      "sha256": "15b89ba44446a96da26018206b09f5c3ec977d5ed5217a149efcc8983693b8e5"
+      "sha256": "cd8ed1dda63b3a55bcc9837ce21c15b5789c4678892c7ea87e082c72357b0360"
     },
     {
       "path": "CKBusbarBridge/Services/BusbarAlgorithmWorkerRequestFactory.cs",
-      "sha256": "160f23843fc69d204eb0a3d0953caa92ad561a7ccbe2a7ea4c01494768924865"
+      "sha256": "bc5d4a1e798ffb644e3c1c53f63358c0442818a7fd0d50b0018f1d5e96b9373a"
     },
     {
       "path": "CKBusbarBridge/Services/BusbarBridgeDraftEditor.cs",
@@ -2608,6 +1512,418 @@
     {
       "path": "CKBusbarBridgePreview/WallBushingBusbarReader.cs",
       "sha256": "d8f80d1494455376709a2a0f10f82f239408723995ae033c7f854f9509d6be6f"
+    },
+    {
+      "path": "Worker/BridgeRouting.Worker/BridgeRouting.Worker.csproj",
+      "sha256": "3c02f2f9b0702ed3d25c87f147f3a6cd53a1d05b65c78cf026f7f1f45fd53a2c"
+    },
+    {
+      "path": "Worker/BridgeRouting.Worker/CompatibilityInputReader.cs",
+      "sha256": "fb9d763b696fc09944e9eb1b1aba1c3ea5bead962eaf5c19865cb8f07dc618f8"
+    },
+    {
+      "path": "Worker/BridgeRouting.Worker/LinkageRouteWorkerAuthorizationValidator.cs",
+      "sha256": "78695a6e7004ae1d04c72f37fee7ca47f82459eac8775cfcf0999d97a265b0d1"
+    },
+    {
+      "path": "Worker/BridgeRouting.Worker/LinkageRouteWorkerCommandLoop.cs",
+      "sha256": "87e8a85f01bf58d37f52fd7b8681df9ff46658577d276348c8fa3c4333d3b585"
+    },
+    {
+      "path": "Worker/BridgeRouting.Worker/LinkageRouteWorkerInformationProvider.cs",
+      "sha256": "3186f467d7f9fca02b01b2693e0517fc4c072b3edae132aec5bde677e6c76839"
+    },
+    {
+      "path": "Worker/BridgeRouting.Worker/Program.cs",
+      "sha256": "c8743c5d7b067682dfbe60e7715ecbb3b1d99964669e5179aea2188f16888022"
+    },
+    {
+      "path": "Worker/BridgeRouting.Worker/WorkerChangelog.json",
+      "sha256": "e81724a5ad7771331eec899dc40010291859eba15e3606d80b979d909dcadb43"
+    },
+    {
+      "path": "Worker/BridgeRouting/BridgeRouting.csproj",
+      "sha256": "d0615877b0da81c8fbe9a5c735e688d3a7a225c7af1f2bcbc113b9eba5c2f952"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/CompositeLapMigration/MathUtility/PlanarBendBusbarSetting.cs",
+      "sha256": "688af9af37198d805a6372100189280a30968f115db9f52aed9b95cd0b4f5ff4"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Contracts/LinkageMultiGroupRouteRequest.cs",
+      "sha256": "565772fd467fb20b2a1e53c3988bf4d9d45c434d4318d40cc1aed77e4f857155"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Contracts/LinkageRouteResults.cs",
+      "sha256": "b9a4450c7198118cc74eda431cf41db4b59edb1e20362cbe9cde5633323cd1da"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Contracts/LinkageRouteSearchRuntimeControl.cs",
+      "sha256": "c2ce1eab1c9fc29e2f8dcc7c15c1d7097f6136435ae2f08b6a82829dd6ec23c3"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Contracts/LinkageSchemeLibraryMatchingContracts.cs",
+      "sha256": "1c1d2f2cbaae41f9568593f1754301f0e69783b690b9892156199df0af88eaad"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Contracts/LinkageTerminalHoleInfo.cs",
+      "sha256": "55fddae3f4923b55df0b74cf44858354fbbca99475170cd970e8794c8cd0df26"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Geometry/GeometRiMethod.cs",
+      "sha256": "aa2919ab13b8a2df1ddbe251fff13f3ba69fc81bbd3ce0f905f4128ad71e74ae"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Geometry/LinkageRouteClearanceEvaluator.cs",
+      "sha256": "2490910231ced1c681a2005d160b000749e1061a8c080795fc900641da01a07b"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Geometry/LinkageRouteFixedTerminalEndLapValidator.cs",
+      "sha256": "e727b4a86c0974329cdf7374d9088895e6b61bb414056d08dbcf6003879edafa"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Geometry/LinkageRouteGeometryTolerances.cs",
+      "sha256": "b10e38994003fbfbede898c85de60c004eb2f168a3aa5de84f58e1bfa25f310f"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Geometry/LinkageRouteLapValidator.cs",
+      "sha256": "1576c4c035bbe5d18e208cd6b1b39c0461ce20ed58d231ffb80bb9d4b34d2689"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Geometry/LinkageRouteRoundedLapGeometry.cs",
+      "sha256": "5f21a74e7c3431a9925b7353824bc9848450120994258294896ceb27323d1b49"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Geometry/LinkageRouteSolidDistance.cs",
+      "sha256": "4eb0fa6cf01f14773a96c010eea5731a48f91f9258258b1bb2b37d7a98ab37e1"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Geometry/LinkageRouteSolidGeometry.cs",
+      "sha256": "fb132d83166a91a8e581e22699549ff01596139f70e1f4790554b7d7094174de"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Geometry/LinkageRouteStackGeometry.cs",
+      "sha256": "3061f6efa02678c47c4bf969b648d2252ceb5bcd800ffb06813600ab79a11458"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Geometry/LinkageRouteTerminalHoleLapGeometry.cs",
+      "sha256": "acab3954fb6c93cff5b43d304d25ae11373f4864feedc2a3a580114317e780cf"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Geometry/LinkageRouteTerminalHoleLapGeometry.PerpendicularRows.cs",
+      "sha256": "98e36d8e3161f8e7fb387eff15f7fefe06c683abf93a58147bc18ea5ede0fe2e"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Geometry/LinkageRouteTerminalLapRegionValidator.cs",
+      "sha256": "0310269b7af49956e2c14fac15defabca7e246bf3b910b53f9103e4df1b48c19"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Geometry/LinkageSupportProjectionPartition.cs",
+      "sha256": "4534da83a92ec99995bba6e543f01334c4bf62d13e48729c9f05cab7484aef1a"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/Algorithms/LinkageMultiGroupRouteEngine.CommonPhaseCorridors.cs",
+      "sha256": "a2a8642d1347a9067099a9a7f5edd32f35e5df208a2f7389102327e56febc5cb"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/Algorithms/LinkageMultiGroupRouteEngine.Continuation.cs",
+      "sha256": "b8f50ece3c69118bf18bf44948ef00be5b7eb2d82d030be24bcfcb2e44dfaecd"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/Algorithms/LinkageMultiGroupRouteEngine.cs",
+      "sha256": "aa9838366c0f44a2933f001f13799e6fc7dcd0ac8adb9d37996b87c9534df6aa"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/Algorithms/LinkageMultiGroupRouteEngine.ObstacleAwareGrid.cs",
+      "sha256": "fda6061c2287c1d666b36685f5deb793454fb57623bd44a3bd044a7cd4e8fad0"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/Algorithms/LinkageMultiGroupRouteEngine.PrioritizedReplanning.cs",
+      "sha256": "ced73b5d793a53fd5851af957232cc29f4042e25aa9b5dbd86e6c9fd2808db8c"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/Algorithms/SweptRepairLinkageRouteSolver.cs",
+      "sha256": "771f5904a67dee61e0b5541a9c29eaf291dd89c5348567d2978f53ad6e2819fe"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/ILinkageMultiGroupRouteSolver.cs",
+      "sha256": "68e54a87f1ba9d5d8497f8599cc88b5bf48c50b6b1d8037d0ef7e5d4cc8d6331"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageHistoricalStackContext.cs",
+      "sha256": "2359b8d73b0fbec16da39ea9e5e593163f3fbbba8eba1bdf3b944e1c1f2aa24e"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageMultiGroupRouteComparisonRunner.cs",
+      "sha256": "2ab4030d31d058b3bfdcab98fdcbbc482e995dd8ba7d63ccb2c0690bf5516a4a"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageRouteAxisPathBuilder.cs",
+      "sha256": "3fed8a630a0ca3ed077304db8dd7b147af9389d0c61bd8772c26d427f4b95f3d"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageRouteAxisPathBuilder.DetourShortcuts.cs",
+      "sha256": "ae44fa88fe74e341f740a0e0b698f14aec76a79adbb7f433d89072ff1b846f77"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageRouteAxisPathBuilder.PhysicalLayers.cs",
+      "sha256": "2ef5248681fff36c704ab7d0e27da6af13c71740717e822906a65a54e1cbefb2"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageRouteAxisPathBuilder.SectionPlacementSiblings.cs",
+      "sha256": "94589ffe63ffeb6188bdf2a29b58776ad8e299ab7c1c39b5f4a17dc8413be908"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageRouteAxisPathBuilder.TerminalHoles.cs",
+      "sha256": "4667e8f89dd8ca881203b1570ca77bb8935e86abef5b5064ce45475da94d38b4"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageRouteBendGeometry.cs",
+      "sha256": "db256761d0952b1772343242a29eaa9d1611d6cf51dbcda0153fd9046b501d0b"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageRouteBendParity.cs",
+      "sha256": "938aa27c7126faab51b16719a1abc93629d870a05fcb51c551eabc2e832eca33"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageRouteCabinetBridgeBuilder.cs",
+      "sha256": "34145e3d50950511135b9a565d4e59c1b31a5eef61a2d9e43a5c53a2be946200"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageRouteCandidateFactory.CommonPhaseCorridors.cs",
+      "sha256": "44db2a1f9eb8432e74e45b2d0931bb7471212b2e1560b48315e2ff16740c7532"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageRouteCandidateFactory.cs",
+      "sha256": "f03e73a9046441a997b825702f766d35c0f3d87ca5cacde3d09375b08ffea55e"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageRouteCandidateFactory.DetourShortcuts.cs",
+      "sha256": "a955db1c84fec80c742a23ba79676b52b10091871c727f67b9d19e1ba5dea221"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageRouteCandidateFactory.EmptyPoolCriticalRepair.cs",
+      "sha256": "4c8fc4c642f7162c2204d6e0d4784246a76d15fcb0ea1013be5c41c0a56b840a"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageRouteCandidateFactory.HistoricalSupportBlocks.cs",
+      "sha256": "2a16cb16196e0c1933a63fa706c90dfe3fe8850491c9667e8490f4a431b22180"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageRouteCandidateFactory.LinkedLapTrial.cs",
+      "sha256": "03dc3a1abc6c37da8e7ff66c009bb9c9ab19395ba10f9bf91c94e357a8b99877"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageRouteCandidateFactory.ObstacleAwareGrid.cs",
+      "sha256": "8b0e637e6ee68b58a67b88617af8e4fe11d619c18b32db2e1a29d824bef1f60f"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageRouteCandidateFactory.Optimization.cs",
+      "sha256": "493a2240a1bd7c3141e07a46d1f8b2bc95b7c7f9b584181084b45383b9bcee30"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageRouteCandidateFactory.PhysicalLayers.cs",
+      "sha256": "826d485eb02843b4430c25b1d61309239d380f65495ba3c8f38008c7402175d1"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageRouteCandidateFactory.SectionPlacementSiblings.cs",
+      "sha256": "83d2e0b642d56b97a8f1e1236a9f6bd37f1ba42c024f60020e4d9da41f0b5f85"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageRouteCandidateFactory.Signatures.cs",
+      "sha256": "2f5c41010ecdbbeabda76a02edbc8c5bea34fba5c6a037d49c85ade8a24431cc"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageRouteCandidateFactory.SupportReduction.cs",
+      "sha256": "8202fbb4b800ce2e372deea82240ff40a2574b7832cca0fdca4aed3f4f61c23f"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageRouteCandidateFactory.TerminalDirectLapOptimization.cs",
+      "sha256": "f7a7b9d9e66f17b38ebb87b70657afe7bc1c54346cd73492d2569b8f0884ed2b"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageRouteCandidateFactory.VirtualDiagnostics.cs",
+      "sha256": "d00b4af97252127d3ac9932790941411c77b093ae0647dba1ce8fa5641210b1f"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageRouteConversionCandidate.cs",
+      "sha256": "4c54082813d2495476101aecc6e4cf7a39401cd8fee4ab50ea2872454277b2ba"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageRouteCopperLength.cs",
+      "sha256": "adf8fdbffc4330da660d501870a60df9c5e8af1e0fa234cc8752958d1bf067ef"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageRouteDoubleStartLapGeometry.cs",
+      "sha256": "2a9b683e466410bab9778344b45adbc876efc8ec9ac69d077cd5de76b4029dab"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageRoutePlanarConverter.cs",
+      "sha256": "ca45d72cc82f72757d12ee95dd05661bf0982283e249a669899eda580e7b1f96"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageRoutePoolContinuation.cs",
+      "sha256": "1bcbceab03e92406357b51df194a8e15a6eee39c379a089db7d61f5556a9d70c"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageRouteSectionSpecificationPostProcessor.ContactLayers.cs",
+      "sha256": "84a3a63348069f0c9ad7b5e62a978aadc9a840d2c5c65f9712db92b1f20e9923"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageRouteSectionSpecificationPostProcessor.cs",
+      "sha256": "9b1ea5e5402b9a1c2947cee1210d911abf02243f3f1b3834ecda3b7bb1bb7124"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageRouteSectionSpecificationPostProcessor.InternalInterfaceSlide.cs",
+      "sha256": "27c9dea52f7eaabcdd550f5a485a6e09edeb8ea5536511d3b8a59a5a52f416bf"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageRouteSectionSpecificationPostProcessor.LinkedLayerPacking.cs",
+      "sha256": "954f7df1c3b366de3ae9d8436ac5674a5791f68d929c28158534b5bb0284d2ff"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageRouteSectionSpecificationPostProcessor.LinkedRoundedTrial.cs",
+      "sha256": "ed0e4e17c754033aed7aaf908033782db821d3b8473d00a65f0df87e33eab654"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageRouteSectionSpecificationPostProcessor.RoundedLap.cs",
+      "sha256": "6f2fc3eec5a28932b669c43b54601459023271db8ac3dd5679e1d43c0cc58158"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageRouteSectionSpecificationPostProcessor.StackGapCompaction.cs",
+      "sha256": "f5050e0423b8499b8a1a813999004d93383f9cbb0a5dfa1627cc3d61cc1e7f43"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageRouteStackedCenterlineOffsetter.cs",
+      "sha256": "5fb64d2fb41495d55fe940d85e444b5e53d48a9d42d6e7cc20b521a9c43e5dfb"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageRouteStackPlacementSolver.cs",
+      "sha256": "0cf2e1a95b623e747f099637196ccb5c3e33c167bf291303ed94cfbc243dfde5"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageRouteSupportBlockLayers.cs",
+      "sha256": "4fb42ec1ebdfce56938dcb6774ec4747223ac870085798f9d946f5d95fe80b9f"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageRouteTerminalAccessoryBuilder.cs",
+      "sha256": "fb1e098a782fdb5b9107e5a80ddf6a9de4035cae55e0f94c8276d8f5cfb87f3b"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageRouteTerminalAccessoryBuilder.ProtrudingBridgeSupports.cs",
+      "sha256": "9604a6114499a3b8ab4610427c0abc044b44a0368c420d06ce56a92d2fc51c57"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageRouteTerminalHoleLapValidator.cs",
+      "sha256": "f9f304144f6fb46dcb352d3910ef426726d3870505adf7c84ff1820279e1f761"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageRouteTerminalHoleLapValidator.ParallelLength.cs",
+      "sha256": "60b6c6169091148ab8b96d91e14874ab4b4be87d74918c284b286d706420e092"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageRouteTerminalPoseFactory.cs",
+      "sha256": "cc5da84eb3830fd1adaaae0c8f598dfa1b01416da7bf71a365e7b5db52185139"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageRouteTopologySignature.cs",
+      "sha256": "6784834ca95a916ffb5dc675fc019e9e6bd2d292cc823de089253a898e455ec1"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageRouteTraversalDirection.cs",
+      "sha256": "4dafb00cc9a7bce2b30243f1e33eb0bc7021313d83938945ef888c546dcdb5f4"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageRouteUShapeOutputTransformer.cs",
+      "sha256": "fab5d3470a37a6deaa5daa931662e3275bbf51eb09680098cbaa66b8a7b8a96e"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageRouteUShapeOutputTransformer.LengthPolicy.cs",
+      "sha256": "344456a395b94bcb14398b3a057bef5c918000a1ffeb1382ff1ea868d8414f99"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageSchemeLibraryRouteRebuilder.Branches.cs",
+      "sha256": "15cca7e0135627e38dab3dc0f6b708c019350022df8ec2452b36872c8a6cc63b"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageSchemeLibraryRouteRebuilder.cs",
+      "sha256": "b2cca8c34bea7cb3be735ed5321913f54e2760f6ac0ab57c18dc972761cf69d6"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageSchemeLibraryRouteRebuilder.DirectPlacement.cs",
+      "sha256": "a1a1ae36f73bfa9747aa3e9b46797ed0bf91a3021f9f6a89cbae63068d47de52"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageSchemeLibraryRouteRebuilder.EndpointAlignment.cs",
+      "sha256": "a9583d651c1737ace63f0dd5aee85494b5dfa89d76e01cc69af8a2207616496e"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageSchemeLibraryRouteRebuilder.HistoricalPath.cs",
+      "sha256": "0948c5ba1cec5df2a655590fa82e68072d69fffebdcd83c1eb101f018bcf1606"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageSchemeLibraryRouteRebuilder.ILengthAdjustment.cs",
+      "sha256": "1d428144f6db39e2f7ff99fbf1855d682e1913fb12791f64d03a0706d48521a4"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageSchemeLibraryRouteRebuilder.SharedState.cs",
+      "sha256": "45babaaabe5c8b575c977a4c22f3663b5a5f5c44385580ba80cf6d7d551239c0"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageSchemeLibraryRouteRebuilder.StackTopology.cs",
+      "sha256": "a3602b7e9e09c6f3e5acc88cf2fbb998609f9087e27ddfb53313a18ac79b0ee2"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Routing/LinkageSchemeLibraryRouteRebuilder.SupportBlocks.cs",
+      "sha256": "4f35bea81d2ffc027cf52c13121e7e9df1f0e0eb77bec6b979884915ba8581cc"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Transport/LinkageRouteWorkerContractMapper.cs",
+      "sha256": "94928d8d4260d491c660507e93d51689a7858760864a927d929b0338d83c78c5"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Transport/LinkageRouteWorkerContracts.cs",
+      "sha256": "1cc41ffeebdd61dc62a185c469ed9e21e86c0c95482428ef4c5fdd86939fdbd9"
+    },
+    {
+      "path": "Worker/BridgeRouting/Source/Transport/LinkageRouteWorkerMessageCodec.cs",
+      "sha256": "1ca95c21d35da470e73891e5abc1e2a6225ae9753a13f642e44549b0316eb270"
+    },
+    {
+      "path": "Worker/CKBusbarBridge.Computation/CalculationConcurrency.cs",
+      "sha256": "a34603954b938226cc7fd2fb49611d7c39a33f06aa3424b92a02758cd70870b7"
+    },
+    {
+      "path": "Worker/CKBusbarBridge.Computation/CKBusbarBridge.Computation.csproj",
+      "sha256": "cc0d9e3e2e5db1d6279aa36f0c9a24e54e87baad298f6233af17439705b0e4c0"
+    },
+    {
+      "path": "Worker/CKBusbarBridge.Computation/PreviewCalculator.cs",
+      "sha256": "eaa1d5b6ccd0f5c3f3c1e4d2f98d2f3004963c79dcdf2afe0994878cd53c975c"
+    },
+    {
+      "path": "Worker/CKBusbarBridge.Computation/WallConductorCalculator.cs",
+      "sha256": "1985c130fb8d4398ba17fdeb5665156f11023899fe4035c53f9b6ec8cb49672b"
+    },
+    {
+      "path": "Worker/CKBusbarBridge.Computation/WallGeometry/BusbarBridgeAxisSetting.cs",
+      "sha256": "6821468aaa7b51f09f5661a2dd65c5194176b2e4f519b65a2ea0f53705d8b76f"
+    },
+    {
+      "path": "Worker/CKBusbarBridge.Computation/WallGeometry/BusbarGeometryUtility.cs",
+      "sha256": "3092a984beef906ed1169916517352ec8f3f24a84a4e52889cb637dbfe8ec826"
+    },
+    {
+      "path": "Worker/CKBusbarBridge.Computation/WallGeometry/PlanarBendBusbarSetting.cs",
+      "sha256": "533fe08268505002ca8ddaa2a80c014ebda0a67de9e01ba08ee7b18b9df9906e"
+    },
+    {
+      "path": "Worker/CKBusbarBridge.Computation/WallGeometry/SnapshotGeometry.cs",
+      "sha256": "daaaeee467dd11f858c24cd2045946c53a7c7dc1446152e4e145bfd26c707fbe"
+    },
+    {
+      "path": "Worker/CKBusbarBridge.Computation/WallGeometry/WallBushingBusbarReader.cs",
+      "sha256": "1972393f3c443ba87367e99afc365dfe96c3d91149248bd6151e4dffccb889fe"
     }
   ]
 }

@@ -10,10 +10,13 @@
     <SkipSolidWorksRegistration>true</SkipSolidWorksRegistration>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="WindowsBase" />
     <ProjectReference Include="..\CKBusbarBridge.DesignUI\CKBusbarBridge.DesignUI.csproj" />
+    <ProjectReference Include="..\Worker\BridgeRouting.Worker\BridgeRouting.Worker.csproj" ReferenceOutputAssembly="false" />
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Content Include="Web\**\*" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
+  <Import Project="..\Worker\Deploy-Worker.targets" />
 </Project>

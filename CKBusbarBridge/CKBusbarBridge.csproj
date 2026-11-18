@@ -557,7 +557,6 @@
     <Folder Include="CopperDrawing\" />
     <Folder Include="Settings\FeatLib\" />
     <Folder Include="templates\Drawings\" />
-    <None Include="AlgorithmWorkerDelivery\**\*" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Drivers\SolidWorksBridgeDesignHost.cs" />
@@ -568,7 +567,7 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\tools\AlgorithmWorkerCompatibility\Build-Worker.targets" />
+  <Import Project="..\Worker\Deploy-Worker.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\WPF\Microsoft.WinFX.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\WPF\Microsoft.WinFX.targets')" />
   <Import Project="$(MSBuildToolsPath)\Sdks\Microsoft.NET.Sdk.WindowsDesktop\targets\Microsoft.WinFX.targets" Condition="Exists('$(MSBuildToolsPath)\Sdks\Microsoft.NET.Sdk.WindowsDesktop\targets\Microsoft.WinFX.targets')" />
   <Target Name="SkipBuildComUnregistration" BeforeTargets="PrepareForBuild" Condition="'$(SkipSolidWorksRegistration)' == 'true'">
@@ -582,5 +581,8 @@
     <Compile Include="Drivers\BridgeParameterDraftDocuments.cs" />
     <Compile Include="viewmodels\CabinetDraftWorkflowBindings.cs" />
     <Compile Include="Services\BridgeCabinetRepairPlanner.cs" />
+    <ProjectReference Include="..\Worker\BridgeRouting.Worker\BridgeRouting.Worker.csproj">
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly><Name>BridgeRouting.Worker</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

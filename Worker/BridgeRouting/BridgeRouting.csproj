@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework><PlatformTarget>x64</PlatformTarget><LangVersion>latest</LangVersion>
+    <AssemblyName>RouteLinkBar.Algorithm</AssemblyName><RootNamespace>RouteLinkBar.Algorithm</RootNamespace>
+    <AssemblyVersion>1.13.0.1</AssemblyVersion><FileVersion>1.13.0.1</FileVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="GeometRi"><HintPath>..\..\packages\GeometRi.1.4.0.5\lib\net20\GeometRi.dll</HintPath></Reference>
+    <Reference Include="System.Runtime.Serialization" />
+  </ItemGroup>
+</Project>

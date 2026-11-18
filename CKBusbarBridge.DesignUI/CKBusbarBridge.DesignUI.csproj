@@ -38,10 +38,7 @@
     <Compile Include="BridgeInsulatorMountPlan.cs" />
     <Compile Include="BridgeSmallOffsetSupportPlanner.cs" />
     <Compile Include="BridgePhaseChangeSupportPlanner.cs" />
-    <Reference Include="RouteLinkBar.Algorithm">
-      <HintPath>..\CKBusbarBridge\AlgorithmWorkerDelivery\RouteLinkBar.Algorithm.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
+    <ProjectReference Include="..\Worker\BridgeRouting\BridgeRouting.csproj"><Name>BridgeRouting</Name></ProjectReference>
     <Reference Include="GeometRi, Version=1.4.0.5, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\CKBusbarBridge\..\packages\GeometRi.1.4.0.5\lib\net20\GeometRi.dll</HintPath>
     </Reference>
@@ -89,6 +86,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Worker\CKBusbarBridge.Computation\CKBusbarBridge.Computation.csproj"><Name>CKBusbarBridge.Computation</Name><Private>False</Private></ProjectReference>
     <ProjectReference Include="..\RD.WebPreview.Contracts\RD.WebPreview.Contracts.csproj">
       <Project>{B17E2F24-6D30-4D18-8A9D-4C2B9D6E7F51}</Project>
       <Name>RD.WebPreview.Contracts</Name>
@@ -393,7 +391,7 @@
     <None Include="packages.config" />
     <Page Include="Preview\ManualDrawDimensionWindow.xaml"><Generator>MSBuild:Compile</Generator></Page>
     <Page Include="Preview\WpfLibraryAppearance.xaml"><Generator>MSBuild:Compile</Generator></Page>
-    <Content Include="PreviewRuntime\**\*"><CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory></Content>
+    <Content Include="PreviewRuntime\**\*"><Link>Worker\PreviewRuntime\%(RecursiveDir)%(Filename)%(Extension)</Link><CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory></Content>
     <Content Include="PreviewAssets\EmptyAssembly.asmdot"><CopyToOutputDirectory>Always</CopyToOutputDirectory></Content>
   </ItemGroup>
 </Project>

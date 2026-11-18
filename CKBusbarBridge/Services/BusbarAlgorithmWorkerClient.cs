@@ -68,31 +68,36 @@ namespace CKBusbarBridge.Services
 
             ThrowIfDisposed();
             await CancelActiveSearchAsync().ConfigureAwait(false);
-
-            for (var workerStartAttemptIndex = 0;
-                 workerStartAttemptIndex < 2;
-                 workerStartAttemptIndex++)
+            using (CKBusbarBridge.Computation.CalculationConcurrency.BeginRouting())
             {
-                cancellationToken.ThrowIfCancellationRequested();
-                try
+                workerRequest.SearchOptions.MaximumDegreeOfParallelism = Math.Max(1, Math.Min(
+                    workerRequest.SearchOptions.MaximumDegreeOfParallelism,
+                    CKBusbarBridge.Computation.CalculationConcurrency.RoutingWorkers));
+                for (var workerStartAttemptIndex = 0;
+                     workerStartAttemptIndex < 2;
+                     workerStartAttemptIndex++)
                 {
-                    return await SolveOnceAsync(
-                            workerRequest,
-                            workerProgress,
-                            cancellationToken,
-                            projectAssemblyPath)
-                        .ConfigureAwait(false);
+                    cancellationToken.ThrowIfCancellationRequested();
+                    try
+                    {
+                        return await SolveOnceAsync(
+                                workerRequest,
+                                workerProgress,
+                                cancellationToken,
+                                projectAssemblyPath)
+                            .ConfigureAwait(false);
+                    }
+                    catch (BusbarAlgorithmWorkerUnavailableException)
+                        when (workerStartAttemptIndex == 0 &&
+                              !cancellationToken.IsCancellationRequested)
+                    {
+                        StopOwnedWorkerImmediately();
+                    }
                 }
-                catch (BusbarAlgorithmWorkerUnavailableException)
-                    when (workerStartAttemptIndex == 0 &&
-                          !cancellationToken.IsCancellationRequested)
-                {
-                    StopOwnedWorkerImmediately();
-                }
-            }
 
-            throw new BusbarAlgorithmWorkerUnavailableException(
-                "独立算法进程重启后仍无法完成搜索。");
+                throw new BusbarAlgorithmWorkerUnavailableException(
+                    "独立算法进程重启后仍无法完成搜索。");
+            }
         }
 
         public Task CancelActiveSearchAsync()
@@ -991,7 +996,7 @@ namespace CKBusbarBridge.Services
 
             return Path.Combine(
                 ResolveHostAssemblyDirectory(),
-                "AlgorithmWorker",
+                "Worker", "Algorithm",
                 WorkerExecutableName);
         }
 

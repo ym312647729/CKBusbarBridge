@@ -34,10 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- 使用仓库随附的算法程序集，避免依赖开发机上的外部源码目录。 -->
-    <Reference Include="RouteLinkBar.Algorithm">
-      <HintPath>..\CKBusbarBridge\AlgorithmWorkerDelivery\RouteLinkBar.Algorithm.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
+    <ProjectReference Include="..\Worker\BridgeRouting\BridgeRouting.csproj"><Name>BridgeRouting</Name></ProjectReference>
     <Reference Include="HandyControl, Version=3.5.1.0, Culture=neutral, PublicKeyToken=45be8712787a1e5b, processorArchitecture=MSIL">
       <HintPath>..\packages\HandyControl.3.5.1\lib\net48\HandyControl.dll</HintPath>
     </Reference>

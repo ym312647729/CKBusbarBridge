@@ -3,7 +3,7 @@ $manifestRoot = Split-Path -Parent $PSScriptRoot
 $runtimeRoot = Join-Path $manifestRoot 'CKBusbarBridge.DesignUI/PreviewRuntime'
 function Get-PreviewManifestHash([string]$Path) {
     $extension = [IO.Path]::GetExtension($Path)
-    if ($extension -notin @('.cs', '.xaml', '.json', '.js', '.mjs', '.html') -and [IO.Path]::GetFileName($Path) -notlike '*LICENSE') {
+    if ($extension -notin @('.cs', '.csproj', '.xaml', '.json', '.js', '.mjs', '.html') -and [IO.Path]::GetFileName($Path) -notlike '*LICENSE') {
         return (Get-FileHash -LiteralPath $Path -Algorithm SHA256).Hash.ToLowerInvariant()
     }
     # Preserve every byte except CRLF in text. Git may materialize LF or CRLF on checkout.
@@ -21,6 +21,10 @@ $runtimeEntries = @(Get-ChildItem -LiteralPath $runtimeRoot -Recurse -File | Whe
 })
 $managedPaths = @(Get-ChildItem -LiteralPath (Join-Path $manifestRoot 'CKBusbarBridge.DesignUI/Preview') -File | Where-Object Extension -in @('.cs','.xaml','.json') | ForEach-Object FullName)
 $managedPaths += @('models/BridgeGenerationContracts.cs','Services/BridgeDraftGenerationPlanFactory.cs','Services/BridgeGenerationRecipeCodec.cs','Services/BridgeCabinetPlanBuilder.cs','Services/BridgeCabinetChangeAnalyzer.cs','Drivers/BridgeParameterDraftGeometry.cs','Drivers/BridgeParameterDraftDocuments.cs','viewmodels/CabinetDraftWorkflowBindings.cs') | ForEach-Object { Join-Path $manifestRoot ('CKBusbarBridge/' + $_) }
+foreach ($workerSourceFolder in @('CKBusbarBridge.Computation','BridgeRouting','BridgeRouting.Worker')) {
+    $managedPaths += @(Get-ChildItem -LiteralPath (Join-Path $manifestRoot ('Worker/' + $workerSourceFolder)) -Recurse -File |
+        Where-Object { $_.FullName -notmatch '\\(bin|obj)\\' -and $_.Extension -in @('.cs','.csproj','.json') } | ForEach-Object FullName)
+}
 foreach ($manifestProject in @('CKBusbarBridge.DesignUI/CKBusbarBridge.DesignUI.csproj','CKBusbarBridgePreview/CKBusbarBridgePreview.csproj')) {
     $manifestProjectPath = Join-Path $manifestRoot $manifestProject
     [xml]$manifestProjectXml = [IO.File]::ReadAllText($manifestProjectPath)

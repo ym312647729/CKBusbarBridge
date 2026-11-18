@@ -14,12 +14,14 @@ import {objectDimensionBinding,prepareBusinessDimensionEdit} from './Core/busine
 import {transformPoint} from './Core/geometry.mjs';
 import packageManifest from './runtime-manifest.json' with {type:'json'};
 import {createKernelFromModule} from './Web/src/kernel.js';
-import {measureFixedStructureClearance} from './Core/fixed-structure-clearance.mjs';
+import {mergeClearancePartitions} from './Core/fixed-structure-clearance.mjs';
 import {fixedHangerDatumDefinition,hangerTemplatePath,installedHangerHeights} from './Core/hanger-installation.mjs';
 import {attachedStraightFrameCasings,facingRegularFrameCasings} from './Core/regular-frame-casing.mjs';
 
 const calculatorVersion=packageManifest.calculatorVersion+':'+packageManifest.packageSha256;
 const definitions=new Map(),shapeCache=new Map();let shapeBytes=0;
+const meshPackets=new WeakMap();
+const geometryIdentities=new WeakMap();let geometryIdentitySequence=0,clearanceCache;
 let roofCache;
 const maxShapeBytes=192*1024*1024;
 async function read(path){
@@ -36,26 +38,46 @@ const upstreamKernel=kernelModule.then(createKernelFromModule);
 upstreamKernel.then(()=>self.postMessage({type:'ready'}),error=>self.postMessage({type:'fatal',ok:false,error:error.message}));
 const managedRequests=new Map();let managedSequence=0;
 function managed(method,input){return new Promise((resolve,reject)=>{const managedId=++managedSequence;managedRequests.set(managedId,{resolve,reject});self.postMessage({type:'managed-request',managedId,method,input});});}
-const geometry=new Worker('./Web/src/geometry-worker.js',{type:'module'}),jobs=new Map();let geometrySequence=0;
-kernelModule.then(module=>geometry.postMessage({type:'initialize-kernel',module}),error=>geometry.postMessage({type:'initialize-kernel-error',message:error.message}));
-geometry.onmessage=event=>{const pending=jobs.get(event.data.requestId);if(!pending)return;jobs.delete(event.data.requestId);event.data.ok?pending.resolve(event.data):pending.reject(Object.assign(new Error(event.data.error),{source:event.data.source,detail:event.data.detail}));};
-geometry.onerror=event=>{for(const pending of jobs.values())pending.reject(new Error(event.message));jobs.clear();self.postMessage({type:'fatal',ok:false,error:event.message});};
+const geometryPool=[],geometryQueue=[],pendingShapes=new Map();let geometrySequence=0,maximumWorkers=1;
+function scheduleGeometry(){
+  while(geometryQueue.length){
+    let slot=geometryPool.slice(0,maximumWorkers).find(row=>!row.pending);
+    if(!slot&&geometryPool.length<maximumWorkers){
+      const worker=new Worker('./Web/src/geometry-worker.js',{type:'module'});slot={worker,pending:null};geometryPool.push(slot);
+      kernelModule.then(module=>worker.postMessage({type:'initialize-kernel',module}),error=>worker.postMessage({type:'initialize-kernel-error',message:error.message}));
+      worker.onmessage=event=>{
+        const pending=slot.pending;if(!pending||event.data.requestId!==pending.message.requestId)return;
+        slot.pending=null;
+        event.data.ok?pending.resolve(event.data):pending.reject(Object.assign(new Error(event.data.error),{source:event.data.source,detail:event.data.detail}));
+        scheduleGeometry();
+      };
+      worker.onerror=event=>{
+        slot.pending?.reject(new Error(event.message));slot.pending=null;
+        for(const pending of geometryQueue.splice(0))pending.reject(new Error(event.message));
+        self.postMessage({type:'fatal',ok:false,error:event.message});
+      };
+    }
+    if(!slot)return;
+    slot.pending=geometryQueue.shift();slot.worker.postMessage(slot.pending.message);
+  }
+}
+function geometryJob(message){
+  return new Promise((resolve,reject)=>{geometryQueue.push({message:{...message,requestId:++geometrySequence},resolve,reject});scheduleGeometry();});
+}
 const hash=text=>{let value=2166136261;for(let index=0;index<text.length;index++)value=Math.imul(value^text.charCodeAt(index),16777619);return (value>>>0).toString(16);};
 function evaluate(object,settings,casing,hangerHeight){
   // Full canonical inputs verify a hash hit. Revision, installation and styling are absent.
   const canonical=geometrySignature(object)+JSON.stringify([calculatorVersion,settings.arcSegments,settings.complexArcSegments,settings.chordToleranceMm,settings.objectTriangleBudget,casing,hangerHeight]);
   const key=hash(canonical),cached=shapeCache.get(key);
   if(cached?.canonical===canonical){shapeCache.delete(key);shapeCache.set(key,cached);return Promise.resolve(cached.result);}
-  return new Promise((resolve,reject)=>{
-    const requestId=++geometrySequence;
-    jobs.set(requestId,{resolve:result=>{
+  if(pendingShapes.has(canonical))return pendingShapes.get(canonical);
+  const pending=geometryJob({revision:0,object,settings,signature:canonical,purpose:'native-sw',casing,hangerHeight}).then(result=>{
       const bytes=result.meshes.reduce((sum,mesh)=>sum+mesh.positions.byteLength+mesh.indices.byteLength+(mesh.outlinePositions?.byteLength??0)+(mesh.outlineTriangles?.byteLength??0)+mesh.patches.quads.byteLength+mesh.patches.triangles.byteLength,0);
       if(cached){shapeCache.delete(key);shapeBytes-=cached.bytes;}
       if(bytes<=maxShapeBytes){while(shapeBytes+bytes>maxShapeBytes&&shapeCache.size){const oldest=shapeCache.keys().next().value;shapeBytes-=shapeCache.get(oldest).bytes;shapeCache.delete(oldest);}shapeCache.set(key,{canonical,result,bytes});shapeBytes+=bytes;}
-      resolve(result);
-    },reject});
-    geometry.postMessage({requestId,revision:0,object,settings,signature:canonical,purpose:'native-sw',casing,hangerHeight});
-  });
+      return result;
+  }).finally(()=>pendingShapes.delete(canonical));
+  pendingShapes.set(canonical,pending);return pending;
 }
 function at(source,path){return path.split('.').reduce((object,key)=>object?.[key],source);}
 function sceneReferenceId(sceneId,componentChain){return sceneId+':reference:'+JSON.stringify(componentChain);}
@@ -87,6 +109,8 @@ async function readDraftRoof(project,source){
   roofCache={key,result};return result;
 }
 async function prepare(request){
+  const started=performance.now(),timings={};
+  maximumWorkers=Math.max(1,Math.floor(request.maximumWorkers??1));timings.maximumWorkers=maximumWorkers;
   let project=createProject(request.scenario);project.id=request.sessionId;project.name=request.modelName;
   project.revision=request.revision;project.cabinetInputs={[request.scenario]:inputs(request)};
   project.settings={...project.settings,...request.settings,captureLocalMeshes:true,includeCopperHoles:true};project.designModules={cabinet:true};
@@ -95,6 +119,7 @@ async function prepare(request){
   project.objects=[{id:request.sessionId+':cabinet',name:'原柜体及环境',category:'cabinet',parentId:null,templatePath:path,configuration:source.configuration,sourceSha256:source.sha256,parameters:{},suppression:{},transform:[...nativeSceneToPreview],visible:true,cabinetBinding:{version:'original-cabinet-scene/1',scenario:project.scenario}}];
   project=validateProject(project);
   const upstream=await buildOriginalDesignUpstream(project,read,{kernel:await upstreamKernel,readWallConductors:input=>managed('wall-conductors',input)});
+  timings.upstreamMs=performance.now()-started;
   const {metadata:roofPlanes,...hangerRoof}=await readDraftRoof(project,source);
   upstream.hangerRoof=hangerRoof;
   if(request.bridge){
@@ -102,8 +127,8 @@ async function prepare(request){
     project=validateProject(project);
     project=await installOriginalJointHangers(project,read,{roofPlanes});
   }
-  const results=new Map();
-  for(const object of project.objects)results.set(object.id,await evaluate(object,project.settings));
+  const geometryStarted=performance.now(),results=new Map();
+  await Promise.all(project.objects.map(async object=>results.set(object.id,await evaluate(object,project.settings))));
   const installed=structurePreviewPlacements(project,results,upstream.basePreviewPoses);
   if(installed.diagnostics.length)throw new Error(installed.diagnostics.map(row=>row.message).join('；'));
   for(const assignment of installed.assignments)project.objects.find(row=>row.id===assignment.objectId).transform=assignment.transform;
@@ -112,8 +137,8 @@ async function prepare(request){
   const casings=regularBridge?facingRegularFrameCasings(project.objects,results):
     attachedStraightFrameCasings(project.objects,results);
   const hangerHeights=installedHangerHeights(project.objects,results);
-  for(const object of project.objects)if(casings.has(object.id)||hangerHeights.has(object.id))
-    results.set(object.id,await evaluate(object,project.settings,casings.get(object.id),hangerHeights.get(object.id)));
+  await Promise.all(project.objects.filter(object=>casings.has(object.id)||hangerHeights.has(object.id))
+    .map(async object=>results.set(object.id,await evaluate(object,project.settings,casings.get(object.id),hangerHeights.get(object.id)))));
   const triangleTotal=()=>[...results.values()].reduce((sum,result)=>sum+result.meshes.reduce((count,mesh)=>count+mesh.triangleCount,0),0);
   // The shared scene budget refines complex faces before falling back to the existing contour display.
   if(triangleTotal()>project.settings.sceneTriangleBudget){
@@ -121,12 +146,35 @@ async function prepare(request){
     for(const object of project.objects){const result=results.get(object.id);if(result.preview?.complexFeatureCount&&result.preview.triangleCount>perObject)
       results.set(object.id,await evaluate(object,{...project.settings,objectTriangleBudget:Math.min(project.settings.objectTriangleBudget,perObject)},casings.get(object.id),hangerHeights.get(object.id)));}
   }
-  const inspectBridge=!!request.bridge&&(request.checkClearance===true||project.frameDesign?.plans.length>0);
+  timings.geometryMs=performance.now()-geometryStarted;
+  const clearanceStarted=performance.now(),inspectBridge=!!request.bridge&&(request.checkClearance===true||project.frameDesign?.plans.length>0);
   const knownPhases=new Set(project.objects.flatMap(object=>results.get(object.id).meshes.map(mesh=>object.phase??mesh.partSource?.phase)));
-  const clearance=inspectBridge&&['A','B','C'].every(phase=>knownPhases.has(phase))
-    ?measureFixedStructureClearance(await upstreamKernel,project.objects,results,
-      project.cabinetInputs[project.scenario].values['General.InsulationDistance']):null;
-  const instances=[],interactionInstances=[],inspection=[],warnings=[],dimensions=[],web=request.renderer==='webgl';
+  let clearance=null;
+  if(inspectBridge&&['A','B','C'].every(phase=>knownPhases.has(phase))){
+    const required=project.cabinetInputs[project.scenario].values['General.InsulationDistance'];
+    // Only reuse a completed inspection for the exact immutable geometry, installation and required distance.
+    const signature=JSON.stringify([required,project.objects.map(object=>{
+      const geometry=results.get(object.id);
+      if(!geometryIdentities.has(geometry))geometryIdentities.set(geometry,++geometryIdentitySequence);
+      return [object.id,object.category,object.phase,object.transform,geometryIdentities.get(geometry)];
+    })]);
+    timings.inspectionReused=clearanceCache?.signature===signature;
+    if(timings.inspectionReused)clearance=clearanceCache.result;
+    else{
+      const objects=project.objects.map(object=>({id:object.id,name:object.name,category:object.category,
+        phase:object.phase,transform:object.transform,cabinetBinding:!!object.cabinetBinding}));
+      const meshes=objects.map(object=>[object.id,{meshes:results.get(object.id).meshes.map(mesh=>({
+        outlinePositions:mesh.outlinePositions,outlineTriangles:mesh.outlineTriangles,
+        partSource:mesh.partSource&&Object.fromEntries(['phase','transform','appearanceRole','previewMaterial','componentChain','partName']
+          .map(key=>[key,mesh.partSource[key]]))}))}]);
+      const count=Math.min(maximumWorkers,Math.max(1,Math.ceil(meshes.reduce((sum,[,result])=>sum+result.meshes.length,0)/40)));
+      clearance=mergeClearancePartitions(await Promise.all(Array.from({length:count},(_,index)=>
+        geometryJob({type:'inspect-clearance',objects,meshes,required,partition:{index,count}}).then(result=>result.clearance))));
+      clearanceCache={signature,result:clearance};
+    }
+  }
+  timings.clearanceMs=performance.now()-clearanceStarted;
+  const outputStarted=performance.now(),instances=[],interactionInstances=[],inspection=[],warnings=[],dimensions=[],web=request.renderer==='webgl';
   if(inspectBridge&&!clearance)inspection.push('当前草稿未形成完整三相实体，无法核对绝缘净距');
   if(clearance&&!clearance.passed)inspection.push('绝缘净距不满足 '+clearance.requiredMm+
     ' mm：相间 '+clearance.phases.minimumMm.toFixed(2)+' mm，母线对金属 '+clearance.grounded.minimumMm.toFixed(2)+' mm');
@@ -142,7 +190,7 @@ async function prepare(request){
   for(const object of project.objects){
     const result=results.get(object.id),pose=multiplyMatrix(inverseRigidMatrix(nativeSceneToPreview),object.transform);
     const outline=contourObjects.has(object.id),known=request.knownShapes??{};
-    instances.push(...meshInstances(object,result,pose,known,outline,web));if(result.qualityWarning)warnings.push(result.qualityWarning);
+    instances.push(...await meshInstances(object,result,pose,known,outline,web));if(result.qualityWarning)warnings.push(result.qualityWarning);
     if(!web){
       let interaction=result;
       if(result.preview?.complexFeatureCount&&!outline){
@@ -150,7 +198,7 @@ async function prepare(request){
           objectTriangleBudget:Math.max(1,Math.floor(project.settings.objectTriangleBudget/4))},casings.get(object.id),hangerHeights.get(object.id));
         if(candidate.preview.topologySignature===result.preview.topologySignature&&candidate.preview.triangleCount<result.preview.triangleCount)interaction=candidate;
       }
-      interactionInstances.push(...meshInstances(object,interaction,pose,known,outline,false));
+      interactionInstances.push(...await meshInstances(object,interaction,pose,known,outline,false));
     }
     for(const parameter of result.parameters??[]){
       const binding=objectDimensionBinding(project,object.id,parameter.name);
@@ -163,7 +211,8 @@ async function prepare(request){
         edges:parameter.annotationEdges.map(edge=>edge.map(point=>transformPoint(point,pose).map(Math.fround)))});
     }
   }
-  return {project,upstream,instances,interactionInstances,dimensions,clearance,
+  timings.outputMs=performance.now()-outputStarted;timings.totalMs=performance.now()-started;
+  return {project,upstream,instances,interactionInstances,dimensions,clearance,timings,
     inspectionWarning:inspection.join('；'),warning:[...inspection,...warnings].join('；')};
 }
 // Only real crease/boundary edges are emitted, never triangulation diagonals.
@@ -190,9 +239,11 @@ function contour(mesh){
   const groups=new Map();for(const edge of shared.values()){const key=root(edge);if(!groups.has(key))groups.set(key,[]);groups.get(key).push(...edge.normals);}
   return [...shared.values()].filter(edge=>{const normals=groups.get(root(edge));return normals.length===1||normals.some(normal=>normal.reduce((sum,value,index)=>sum+value*normals[0][index],0)<Math.cos(Math.PI/6));}).flatMap(edge=>[edge.a,edge.b]);
 }
-function meshInstances(object,result,pose,known,outline,web){
-  return result.meshes.map((mesh,index)=>{
+async function meshInstances(object,result,pose,known,outline,web){
+  return Promise.all(result.meshes.map(async(mesh,index)=>{
     const source=mesh.partSource??{},installed=source.transform?multiplyMatrix(pose,source.transform):pose;
+    let packet=meshPackets.get(mesh)?.get(web);
+    if(!packet){
     const edgePositions=Array.from(mesh.outlinePositions??mesh.positions,Math.fround),edges=contour(mesh);
     for(const [first,second] of mesh.bendEdges??[]){
       const start=edgePositions.length/3;
@@ -204,7 +255,14 @@ function meshInstances(object,result,pose,known,outline,web){
       {quads:Array.from(mesh.patches.quads),triangles:Array.from(mesh.patches.triangles)};
     const geometry={positions:Array.from(mesh.positions,Math.fround),...faces,edgePositions,edges};
     // GPU shape inputs are body-local and verified in full. Parent component pose and appearance are independent instances.
-    const signature=JSON.stringify([calculatorVersion,source.path,source.configuration,source.sha256,source.shapeInputSignature,geometry]),key=hash(signature);
+    const canonical=JSON.stringify([calculatorVersion,source.path,source.configuration,source.sha256,source.shapeInputSignature,geometry]);
+    const digest=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(canonical));
+    const signature=calculatorVersion+':'+Array.from(new Uint8Array(digest),value=>value.toString(16).padStart(2,'0')).join('');
+    packet={geometry,signature,key:signature};
+    if(!meshPackets.has(mesh))meshPackets.set(mesh,new Map());
+    meshPackets.get(mesh).set(web,packet);
+    }
+    const {geometry,signature,key}=packet;
     const shape=known[key]===signature?{}:geometry;
     const binding=object.originalDesignBinding;
     // Explicit original design bindings own bridge identity. References retain the exact exported component chain;
@@ -214,7 +272,7 @@ function meshInstances(object,result,pose,known,outline,web){
     const category=object.cabinetBinding&&source.phase?'copper':object.category;
     return {id:object.id+':'+index,designObjectId,groupId:binding?.rowId??object.id,memberIds:binding?.memberIds??[designObjectId],displayName:source.componentChain?.length?source.componentChain.join(' / '):object.name,sourcePath:source.path??object.templatePath,geometryKey:key,geometrySignature:signature,category,appearanceRole:source.phase?'copper':source.appearanceRole??null,phase:object.phase??mesh.partSource?.phase??null,
       transform:installed.map(Math.fround),...shape,outlineOnly:outline||result.previewDisplayMode==='outline',partSource:mesh.partSource};
-  });
+  }));
 }
 let latest=null,running=false;
 self.onmessage=event=>{
