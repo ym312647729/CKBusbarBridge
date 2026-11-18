@@ -10,6 +10,7 @@ namespace CKBusbarBridge.Prototype
     {
         private const double Tolerance = 1.0;
         internal static bool IsSupport(BridgeDesignObject item) => item?.MountPlan?.IsFloorStanding == true;
+        internal static bool IsSupportFrame(BridgeDesignObject frame) => frame?.FrameTemplateKey == "SmallOffset" || BridgeLargeOffsetSupportPlanner.IsConnector(frame);
 
         internal BridgeDesignObject[] Apply(BridgeDesignSample sample, IReadOnlyList<BridgeDesignObject> objects)
         {
@@ -17,7 +18,7 @@ namespace CKBusbarBridge.Prototype
                 (sample.ScenarioKey != "FaceToFace" && sample.ScenarioKey != "SideToSideBase2"))
                 return objects.ToArray();
             var frames = objects.Where(o => o.Kind == DesignObjectKind.Frame && o.FrameTemplateKey == "SmallOffset").ToArray();
-            if (frames.Length == 0) return objects.ToArray();
+            if (frames.Length == 0) return new BridgeLargeOffsetSupportPlanner().Apply(sample, objects);
             var nodes = objects.ToDictionary(o => o.Id);
             var geometry = new BusbarBridgeDraftPreviewSceneFactory();
             var middle = sample.Routes.Where(r => r.IsPhysicalGeometry &&
@@ -87,7 +88,7 @@ namespace CKBusbarBridge.Prototype
                 result[result.FindIndex(o => o.Id == frame.Id)] = frame.WithValues(driven);
                 result.AddRange(supports);
             }
-            return result.ToArray();
+            return new BridgeLargeOffsetSupportPlanner().Apply(sample, result);
         }
 
         internal IReadOnlyList<BridgeDesignIssue> Validate(BridgeDesignSample sample, IReadOnlyList<BridgeDesignObject> objects)
@@ -103,7 +104,7 @@ namespace CKBusbarBridge.Prototype
                 if (actual.Length != 3 || actual.Any(o => !IsSupport(o)) ||
                     actual.Select(o => o.InsulatorGroupId).Distinct().Count() != 3)
                 {
-                    issues.Add(new BridgeDesignIssue(frame.Name + "的小偏移搭接需要三组支架各安装一个绝缘子，请重新规划支撑。", frame.Id, "小偏移单相支撑"));
+                    issues.Add(new BridgeDesignIssue(frame.Name + "的偏移搭接需要三组支架各安装一个绝缘子，请重新规划支撑。", frame.Id, "偏移单相支撑"));
                     continue;
                 }
                 foreach (var target in required)
@@ -114,7 +115,7 @@ namespace CKBusbarBridge.Prototype
                     if (matches.Length != 1 || Math.Sqrt(geometry.WorldPosition(matches[0], objects)
                         .Select((v, i) => (v - position[i]) * (v - position[i])).Sum()) > Tolerance ||
                         Math.Abs(matches[0].MountPlan.BodyHeights[matches[0].MountGroupIndex] - target.MountPlan.BodyHeights[target.MountGroupIndex]) > Tolerance)
-                        issues.Add(new BridgeDesignIssue(frame.Name + "的" + phase + "相绝缘子未对准中间偏移搭接排中心或承托面。", frame.Id, "小偏移单相支撑"));
+                        issues.Add(new BridgeDesignIssue(frame.Name + "的" + phase + "相绝缘子未对准中间偏移搭接排中心或承托面。", frame.Id, "偏移单相支撑"));
                 }
             }
             return issues;

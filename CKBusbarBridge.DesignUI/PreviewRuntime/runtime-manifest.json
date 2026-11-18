@@ -1,7 +1,7 @@
 {
   "schema": "dq-preview-runtime-manifest/1",
   "calculatorVersion": "dq-sw-mesh/1",
-  "packageSha256": "73720ac5811ef11a7c3edc3879a4df706d29d52ec10d9dc68dd1864146204c1d",
+  "packageSha256": "173e022f84fcb9727fb7e462c83cb667ceee90d6f6b30430be0a2475da0181a0",
   "reference": {
     "project": "CKBusbarBridgeVirtualDesigner",
     "commit": "511d64b1248e1c26bf27430e9016fecdc5e9ce5f",
@@ -1690,6 +1690,10 @@
       "sha256": "a394275744f2e49e6adbee110edbd5a23a50cd81322282348ace660c7ffebe84"
     },
     {
+      "path": "CKBusbarBridge.DesignUI/BridgeLargeOffsetSupportPlanner.cs",
+      "sha256": "c5202d8013e54888281ce520dc1f3f59bfb6aee4ec7629bbf76e0f886346588c"
+    },
+    {
       "path": "CKBusbarBridge.DesignUI/BridgeModelReadOperations.cs",
       "sha256": "1f47fa3a7a90c4d186d21eb179b39c7f0f093de73052efc9168c589aa53f6f48"
     },
@@ -1727,7 +1731,7 @@
     },
     {
       "path": "CKBusbarBridge.DesignUI/BridgeSmallOffsetSupportPlanner.cs",
-      "sha256": "4958a61a087b3546027686237339d6891b09158b1523bbcb900d2d42e438ea97"
+      "sha256": "61a9f11e95530aa5c9b2e27255964377910274bd6118f34e2a30f29d60686aca"
     },
     {
       "path": "CKBusbarBridge.DesignUI/BridgeSupportPreviewGeometry.cs",
@@ -1767,7 +1771,7 @@
     },
     {
       "path": "CKBusbarBridge.DesignUI/BusbarBridgeDraftEditor.Insulators.cs",
-      "sha256": "938318b24637de3e831aa3a469cfe3ed5ba5181fb704b53a76c0c9d9bd68e82d"
+      "sha256": "6795da011efd3caa8fe0d55acc96f003dbb5e6a02f51117c5b2f6a86e094e4cb"
     },
     {
       "path": "CKBusbarBridge.DesignUI/CabinetBaseParameterNavigation.cs",
@@ -2231,7 +2235,7 @@
     },
     {
       "path": "CKBusbarBridge/Services/BridgeDraftGenerationPlanFactory.cs",
-      "sha256": "fc8d1cb5b7252dc8cf322e4ed17ec99591f093b79dc026ed72da4255d6257bca"
+      "sha256": "0f8920a984a8014992307d528a177391adc1211ca3c1a43d3eb8037543e75b5d"
     },
     {
       "path": "CKBusbarBridge/Services/BridgeDraftNativePreview.cs",
@@ -2267,7 +2271,7 @@
     },
     {
       "path": "CKBusbarBridge/Services/BusbarBridgeDraftEditor.cs",
-      "sha256": "8899edad5fdadd539743f66d90bfa037310da58d8c554db18d7e5dbc503eb993"
+      "sha256": "0f5fe6839443ae831e53819c532d6eb15a6af9018ff262de781a1d2198ac7986"
     },
     {
       "path": "CKBusbarBridge/Services/BusbarBridgeDraftEditor.LargeOffset.cs",

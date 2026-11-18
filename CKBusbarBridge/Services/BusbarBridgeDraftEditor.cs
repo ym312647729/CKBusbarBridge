@@ -355,6 +355,8 @@ namespace CKBusbarBridge.Prototype
                 result = Array.AsReadOnly(NumberBreakpoints(result));
                 if (CurrentSample?.ReadbackBaseline == null || _state.CopperGeometry != null)
                     result = Array.AsReadOnly(new BridgeSmallOffsetSupportPlanner().Apply(CurrentSample, result));
+                else
+                    result = Array.AsReadOnly(new BridgeLargeOffsetSupportPlanner().Apply(CurrentSample, result));
                 if (CurrentSample?.ScenarioKey == "FaceToFace" && (CurrentSample.ReadbackBaseline == null ||
                     _state.DeriveHangingSupports || _state.HangingSupportEdits.Count > 0))
                     result = Array.AsReadOnly(new BridgePhaseChangeSupportPlanner(CurrentSample, result).Apply(result,
@@ -1059,7 +1061,7 @@ namespace CKBusbarBridge.Prototype
             if (node == null) return new BridgeEditResult(false, "对象不存在，未提交修改。");
             if (BridgeSmallOffsetSupportPlanner.IsSupport(node) || node.Kind == DesignObjectKind.Frame &&
                 changes.ContainsKey(DesignField.InsulatorCount) && EffectivePlan.Any(o => o.ParentId == node.Id && BridgeSmallOffsetSupportPlanner.IsSupport(o)))
-                return new BridgeEditResult(false, "小偏移搭接的三组单相绝缘子由中间搭接排中心定位，请调整铜排参数。");
+                return new BridgeEditResult(false, "偏移搭接的三组单相绝缘子由中间搭接排定位，请调整铜排参数。");
             if (node.Kind == DesignObjectKind.Frame && IsLocked(node.Id) && changes.ContainsKey(DesignField.Length))
                 return new BridgeEditResult(false, "当前基架长度已锁定，请先解锁再修改长度。");
             if (IsPositionLocked(node.Id) || IsPositionLocked(node.ParentId))
@@ -2398,7 +2400,7 @@ namespace CKBusbarBridge.Prototype
         {
             var node = Find(id);
             if (node != null && BridgeSmallOffsetSupportPlanner.IsSupport(node))
-                return new BridgeEditResult(false, "小偏移搭接需要三组单相支撑，不能单独删除绝缘子。");
+                return new BridgeEditResult(false, "偏移搭接需要三组单相支撑，不能单独删除绝缘子。");
             var frame = Find(node?.ParentId);
             if (node?.Kind != DesignObjectKind.Insulator || frame?.Kind != DesignObjectKind.Frame)
                 return new BridgeEditResult(false, "只允许删除桥体基架内的绝缘子，基座固定绝缘子为只读。");

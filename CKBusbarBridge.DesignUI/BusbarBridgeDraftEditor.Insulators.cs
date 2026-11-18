@@ -21,10 +21,12 @@ namespace CKBusbarBridge.Prototype
                 if (_recommendedSupportObjects != null) return _recommendedSupportObjects;
                 // 推荐值来自本轮未叠加人工覆盖的目标，不能把 EffectivePlan 当前值作为恢复来源。
                 var objects = BaseObjects().ToArray();
-                var incomplete = objects.Where(o => o.Kind == DesignObjectKind.Frame && o.FrameTemplateKey == "SmallOffset")
+                var incomplete = objects.Where(o => o.Kind == DesignObjectKind.Frame && BridgeSmallOffsetSupportPlanner.IsSupportFrame(o))
                     .Any(frame => objects.Count(o => o.ParentId == frame.Id && BridgeSmallOffsetSupportPlanner.IsSupport(o)) != 9);
                 if (incomplete && (CurrentSample?.ReadbackBaseline == null || _state.CopperGeometry != null))
                     objects = new BridgeSmallOffsetSupportPlanner().Apply(CurrentSample, objects);
+                else if (incomplete)
+                    objects = new BridgeLargeOffsetSupportPlanner().Apply(CurrentSample, objects);
                 _recommendedSupportsById = objects.Where(o => o.Kind == DesignObjectKind.Frame || o.Kind == DesignObjectKind.Insulator)
                     .ToDictionary(o => o.Id, StringComparer.Ordinal);
                 return _recommendedSupportObjects = Array.AsReadOnly(objects);

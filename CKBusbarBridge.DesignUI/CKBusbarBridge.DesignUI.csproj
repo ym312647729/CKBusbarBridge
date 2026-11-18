@@ -37,6 +37,7 @@
     <Compile Include="UniversalInsulatorLayout.cs" />
     <Compile Include="BridgeInsulatorMountPlan.cs" />
     <Compile Include="BridgeSmallOffsetSupportPlanner.cs" />
+    <Compile Include="BridgeLargeOffsetSupportPlanner.cs" />
     <Compile Include="BridgePhaseChangeSupportPlanner.cs" />
     <ProjectReference Include="..\Worker\BridgeRouting\BridgeRouting.csproj"><Name>BridgeRouting</Name></ProjectReference>
     <Reference Include="GeometRi, Version=1.4.0.5, Culture=neutral, processorArchitecture=MSIL">

@@ -56,7 +56,7 @@ namespace CKBusbarBridge.Prototype
             {
                 var supportIssues = new BridgeSmallOffsetSupportPlanner().Validate(frozenSample, frozenSample.Objects);
                 if (supportIssues.Count > 0)
-                    throw new InvalidOperationException("正式生成存在小偏移支撑问题：" + string.Join("；", supportIssues.Select(issue => issue.Message)));
+                    throw new InvalidOperationException("正式生成存在偏移支撑问题：" + string.Join("；", supportIssues.Select(issue => issue.Message)));
                 var checkedGeometry = new BridgeRaisedLapPlanner().Apply(frozenSample, frozenSample.Objects, allowLift: false, keepNotchPlan: true);
                 var lapIssues = checkedGeometry.Issues;
                 if (lapIssues.Count > 0)
@@ -303,8 +303,8 @@ namespace CKBusbarBridge.Prototype
                         floorSupport ? member.MountPlan.Transverse[member.MountGroupIndex] :
                         (i - 1) * frame.InsulatorPhaseSpacing + transverseOffset, draftRoundingTolerance);
                 }
-                if (floorSupport && (frame.FrameTemplateKey != "SmallOffset" || members.Count(o => !o.IsSuppressedInsulator) != 1))
-                    throw new InvalidOperationException("小偏移搭接支架必须每套只安装一个绝缘子：" + group.Key);
+                if (floorSupport && (!BridgeSmallOffsetSupportPlanner.IsSupportFrame(frame) || members.Count(o => !o.IsSuppressedInsulator) != 1))
+                    throw new InvalidOperationException("偏移搭接支架必须每套只安装一个绝缘子：" + group.Key);
             }
             var positions = groups.Select((g, i) => frame.ComponentBinding?.InsulatorPositions != null &&
                 i < frame.ComponentBinding.InsulatorPositions.Length &&
