@@ -574,6 +574,9 @@
   <Target Name="CopyAddinIcon" AfterTargets="Build">
     <Copy Condition="Exists('$(ProjectDir)AddinIcon.bmp') And !Exists('$(TargetDir)$(TargetName).bmp')" SourceFiles="$(ProjectDir)AddinIcon.bmp" DestinationFiles="$(TargetDir)$(TargetName).bmp" />
   </Target>
+  <Target Name="RegisterSolidWorksAddinAfterBuild" AfterTargets="Build" Condition="'$(DesignTimeBuild)' != 'true' And '$(SkipSolidWorksRegistration)' != 'true'">
+    <Exec Command="call &quot;$(ProjectDir)..\tools\registration\Register-Debug.bat&quot; &quot;$(TargetPath)&quot; --no-pause" StdOutEncoding="utf-8" StdErrEncoding="utf-8" />
+  </Target>
   <ItemGroup>
     <Compile Include="Drivers\BridgeParameterDraftDocuments.cs" />
     <Compile Include="viewmodels\CabinetDraftWorkflowBindings.cs" />

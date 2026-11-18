@@ -17,7 +17,7 @@
 
 ## 增量编译
 
-需要 .NET Framework 4.8 开发包、支持 WPF 的 VS MSBuild、.NET SDK 及 Node.js 22 或以上。首次拉取用 VS MSBuild 执行以下命令，编译不会注册 COM：
+需要 .NET Framework 4.8 开发包、支持 WPF 的 VS MSBuild、.NET SDK 及 Node.js 22 或以上。普通生成和重新生成成功后，主插件自动卸载旧注册、注册本次输出并启用启动时加载；需要以管理员身份运行 VS，且先退出 SolidWorks。离线编译校验可用以下命令显式跳过注册：
 
 ```powershell
 msbuild CKBusbarBridge.sln /restore /t:Build /p:RestorePackagesConfig=true /p:Configuration=Debug /p:Platform="Any CPU" /p:RegisterForComInterop=false /p:SkipSolidWorksRegistration=true
@@ -42,11 +42,11 @@ msbuild CKBusbarBridge.sln /restore /t:Build /p:RestorePackagesConfig=true /p:Co
 
 ## Visual Studio 调试
 
-1. 在 VS 打开 `CKBusbarBridge.sln`，将 `CKBusbarBridge` 设为启动项目，生成 `Debug | Any CPU`。插件实际编译为 x64，输出位于 `CKBusbarBridge/bin/Debug`。
-2. 保存工作并退出已运行的 SolidWorks。用同一个 Windows 帐号以管理员身份运行 [Register-Debug.bat](../tools/registration/Register-Debug.bat)。脚本先卸载此插件的旧 COM 注册，再注册固定 Debug 目录中的 64 位插件。加载项和命令页显示为「中压母线桥」，默认随 SolidWorks 启动加载。
-3. 在项目属性的「调试」页选择「启动外部程序」，指向本机的 `SLDWORKS.exe`，再按 F5。配置保存在自己的 `.csproj.user` 中。例如本机 SW 2024 为 `D:\sw2024\SOLIDWORKS\SLDWORKS.exe`。
+1. 以管理员身份打开 VS 和 `CKBusbarBridge.sln`，将 `CKBusbarBridge` 设为启动项目，选择 `Debug | Any CPU`。插件实际编译为 x64，输出位于 `CKBusbarBridge/bin/Debug`。
+2. 保存工作并退出已运行的 SolidWorks，再生成、重新生成或按 F5。生成后自动调用 [Register-Debug.bat](../tools/registration/Register-Debug.bat) 的无暂停模式：先卸载本插件旧 COM 注册，再注册本次实际输出的 64 位 DLL，并将当前 Windows 账号的启动加载值设为 1。加载项和命令页显示为「中压母线桥」。注册失败会使生成失败，错误以中文输出；不会自动结束 SolidWorks 或静默提权。
+3. 在项目属性的「调试」页选择「启动外部程序」，指向本机的 `SLDWORKS.exe`，再按 F5。配置保存在自己的 `.csproj.user` 中。本机已配置为 `D:\sw2024\SOLIDWORKS\SLDWORKS.exe`。
 
-之后在同一目录编译时不必重新注册。结束当前 SolidWorks 调试会话，修改代码后按 F5 即可。仅在换工作副本、改输出目录或其他版本覆盖了注册时重跑脚本。断点未绑定时，在 VS「调试 → 窗口 → 模块」核对 `CKBusbarBridge.dll` 的加载路径与符号状态。
+之后结束当前 SolidWorks 调试会话，修改代码后按 F5 即可；主插件已关闭快速跳过生成，F5 的生成流程同样会完成卸载和注册。无需手动运行脚本；独立双击脚本仍可注册固定 Debug 目录并保留暂停。显式传入 `/p:SkipSolidWorksRegistration=true` 时完全跳过注册，设计期构建也不执行。断点未绑定时，在 VS「调试 → 窗口 → 模块」核对 `CKBusbarBridge.dll` 的加载路径与符号状态。
 
 SolidWorks 的面对面常规预览中，基架骨架在顶板、侧板和底板内侧。外壳两端根据已安装基座的顶面和左右侧面定位；两端宽度不同时外壳平滑衔接，不改铜排或支撑坐标。基座与基架侧板按中压预览的冲压百叶样式生成向下的开口。A、B 柜的基座总高分别沿用各自参数，包含顶盖。若两端接口不再等高，视口仍显示当前柜体与基座，并暂停显示旧桥体，直到参数允许重新规划。增量编译后可运行 `node tools/Test-FacingRegularPreview.mjs --solidworks-preview` 离线核查 SolidWorks 预览几何，无需启动 SolidWorks 或浏览器。
 
