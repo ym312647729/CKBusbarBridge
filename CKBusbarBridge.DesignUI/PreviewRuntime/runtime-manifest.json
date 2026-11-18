@@ -1,7 +1,7 @@
 {
   "schema": "dq-preview-runtime-manifest/1",
   "calculatorVersion": "dq-sw-mesh/1",
-  "packageSha256": "3a4ddbf340f9516da05628bbed113d048d0030e6dd5cefe1f56c3d2fd416ec7b",
+  "packageSha256": "888c7154ded01ef562a690c8fc90a70f610cfcf764bda56f560050f9240cae3d",
   "reference": {
     "project": "CKBusbarBridgeVirtualDesigner",
     "commit": "511d64b1248e1c26bf27430e9016fecdc5e9ce5f",
@@ -1859,7 +1859,7 @@
     },
     {
       "path": "CKBusbarBridge.DesignUI/Preview/BridgeOpenGlViewport.cs",
-      "sha256": "160d13c934d0fce926c66f05dd15aae4e508c80602ee3d4a9f6b9dabf5207ca6"
+      "sha256": "cd880291f7ebd502d2797ca83eeb7e3e1ce0bee666aa774065e0aedadbd6dfaf"
     },
     {
       "path": "CKBusbarBridge.DesignUI/Preview/BridgeParameterDraftAccess.cs",
@@ -1903,7 +1903,7 @@
     },
     {
       "path": "CKBusbarBridge.DesignUI/Preview/BridgeViewportMarkers.cs",
-      "sha256": "f31ade996947c4e41a75ee43c0840fda152af2ad6085300cb27e3b5b8b1abe80"
+      "sha256": "bf1d1f68fcea9ef92869893bf87c12c58c6169ebed0ec7a8c14754b95cdff432"
     },
     {
       "path": "CKBusbarBridge.DesignUI/Preview/BridgeViewportReferences.cs",

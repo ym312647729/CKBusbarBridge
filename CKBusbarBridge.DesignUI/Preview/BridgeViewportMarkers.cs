@@ -33,7 +33,10 @@ namespace CKBusbarBridge.DesignPreview
             {
                 if (!_viewModel.IsPreviewObjectVisible(node)) continue;
                 if (node.Kind == DesignObjectKind.Frame)
-                    markers.Add(new Marker { ObjectId = node.Id, Point = ObjectWorldPosition(node), Text = node.PositionLabel });
+                {
+                    if (TryGetFrameCoverCenter(node.Id, out var coverCenter))
+                        markers.Add(new Marker { ObjectId = node.Id, Point = coverCenter, Text = node.PositionLabel });
+                }
                 else if (_viewModel.ShowHandles && _viewModel.Editor.CanDragObject(node.Id, _viewModel.SameSource) && node.Kind != DesignObjectKind.Insulator)
                     markers.Add(new Marker { ObjectId = node.Id, Point = ObjectWorldPosition(node), Text = "", Handle = true });
             }
@@ -60,6 +63,37 @@ namespace CKBusbarBridge.DesignPreview
             }
             _markers = markers.ToArray();
         }
+        private bool TryGetFrameCoverCenter(string objectId, out ViewportVector center)
+        {
+            // 直接使用本次冻结帧中所属盖板的上表面，不能用基架原点或屏幕偏移代替。
+            double totalArea = 0, centerX = 0, centerY = 0, centerZ = 0;
+            foreach (var cover in (_frame?.Instances ?? Array.Empty<BridgeMeshInstance>()).Where(instance =>
+                instance.Category == "frame" && instance.AppearanceRole == "cover" &&
+                (instance.DesignObjectId == objectId || instance.GroupId == objectId || instance.MemberIds.Contains(objectId))))
+            {
+                ViewportVector Position(int index) => ViewportMatrix.Transform(cover.Transform,
+                    new ViewportVector(cover.Positions[index * 3], cover.Positions[index * 3 + 1], cover.Positions[index * 3 + 2]));
+                void AddTriangle(int first, int second, int third)
+                {
+                    var a = Position(first); var b = Position(second); var c = Position(third);
+                    var area = (double)ViewportVector.Cross(b - a, c - a).Y;
+                    if (area <= 0) return;
+                    totalArea += area;
+                    centerX += area * ((double)a.X + b.X + c.X) / 3d;
+                    centerY += area * ((double)a.Y + b.Y + c.Y) / 3d;
+                    centerZ += area * ((double)a.Z + b.Z + c.Z) / 3d;
+                }
+                for (var index = 0; index < cover.Quads.Length; index += 4)
+                {
+                    AddTriangle(cover.Quads[index], cover.Quads[index + 1], cover.Quads[index + 2]);
+                    AddTriangle(cover.Quads[index], cover.Quads[index + 2], cover.Quads[index + 3]);
+                }
+                for (var index = 0; index < cover.Triangles.Length; index += 3)
+                    AddTriangle(cover.Triangles[index], cover.Triangles[index + 1], cover.Triangles[index + 2]);
+            }
+            center = totalArea > 0 ? new ViewportVector((float)(centerX / totalArea), (float)(centerY / totalArea), (float)(centerZ / totalArea)) : default;
+            return totalArea > 0;
+        }
         private void DrawMarkers(ContextResources resources)
         {
             var hits = new List<MarkerHit>(); var cells = new Dictionary<long, int>();
@@ -76,7 +110,17 @@ namespace CKBusbarBridge.DesignPreview
                     Line(screen.X + 5, screen.Y, screen.X, screen.Y - 5); Line(screen.X, screen.Y - 5, screen.X - 5, screen.Y);
                     hits.Add(new MarkerHit { Bounds = new Rect(screen.X - 7, screen.Y - 7, 14, 14), Marker = marker }); continue;
                 }
-                var text = marker.Text ?? ""; var width = resources.Width(text) * .7f + 12f;
+                var text = marker.Text ?? "";
+                if (marker.Issue == null)
+                {
+                    var label = new ManualDrawAnnotationLabel { OriginX = screen.X - resources.Width(text) * .5f,
+                        OriginY = screen.Y - ManualDrawAnnotationLabel.Height * .5f, TangentX = 1f, Width = resources.Width(text) };
+                    Gl.glColor4f(.08f, .16f, .32f, 1f);
+                    DrawDimensionText(resources, text, label, false);
+                    hits.Add(new MarkerHit { Bounds = label.Bounds, Marker = marker });
+                    continue;
+                }
+                var width = resources.Width(text) * .7f + 12f;
                 var key = ((long)(int)(screen.X / 80f) << 32) | (uint)(int)(screen.Y / 24f);
                 cells.TryGetValue(key, out var row); cells[key] = row + 1;
                 var x = screen.X + 8f; var y = screen.Y + 10f + row * 24f;

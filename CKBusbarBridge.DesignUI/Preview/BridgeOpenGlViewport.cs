@@ -75,6 +75,7 @@ namespace CKBusbarBridge.DesignPreview
             if (!ReferenceEquals(_frame, frame)) _picker = new BridgeMeshPicker(frame.InteractionInstances);
             _frame = frame; _hits = Array.Empty<Hit>(); ResetDimensionHover(); RefreshVisibleIdentities();
             if (_viewModel != null) _viewModel.UpdateViewportReferences(frame.Instances);
+            RefreshMarkers();
         }
         internal void Dimensions(IEnumerable<BridgePreviewDimension> dimensions)
         { _dispatcher.VerifyAccess(); _dimensions = dimensions.ToArray(); _hits = Array.Empty<Hit>(); ResetDimensionHover(); }
