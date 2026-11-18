@@ -21,5 +21,9 @@ for(const count of [1,2,3,17]){
   const actual=mergeClearancePartitions(Array.from({length:count},(_,index)=>
     measureFixedStructureClearance(kernel,objects,results,125,{index,count})));
   assert.deepEqual(actual,expected,'并行分区漏检净距或干涉');
+  const workQueue=new SharedArrayBuffer(Int32Array.BYTES_PER_ELEMENT*3);
+  const shared=mergeClearancePartitions(Array.from({length:count},(_,index)=>
+    measureFixedStructureClearance(kernel,objects,results,125,{index,count,workQueue})));
+  assert.deepEqual(shared,expected,'动态领取任务漏检净距或干涉');
 }
 console.log('并行检查通过：含相间冲突、对地冲突、实体干涉及空分区；与单线程完全一致。');

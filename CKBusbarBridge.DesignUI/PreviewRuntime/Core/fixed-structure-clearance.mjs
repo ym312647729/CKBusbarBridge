@@ -6,11 +6,26 @@ import {measureSolidSets} from './hanger-clearance.mjs';
 const contactToleranceMm=0.001;
 const hasThickness=box=>box.min.every((low,axis)=>box.max[axis]-low>contactToleranceMm);
 
+function* assignedPairs(total,lane,partition){
+  if(partition?.workQueue&&total<2147483647-(partition.count??1)*32){
+    const counters=new Int32Array(partition.workQueue),batch=32;
+    if(counters.length!==3)throw new Error('实体检查任务队列无效');
+    while(true){
+      const start=Atomics.add(counters,lane,batch);if(start>=total)return;
+      for(let order=start;order<Math.min(total,start+batch);order++)yield order;
+    }
+  }else for(let order=partition?.index??0;order<total;order+=partition?.count??1)yield order;
+}
+
 function measureAssemblyInterference(parts,partition){
   let testedPairs=0,count=0;
-  const largest=[];let pairIndex=0;
-  for(let left=0;left<parts.length-1;left++)for(let right=left+1;right<parts.length;right++){
-    const order=pairIndex++;if(partition&&order%partition.count!==partition.index)continue;
+  const largest=[],size=parts.length;
+  for(const order of assignedPairs(size*(size-1)/2,2,partition)){
+    // 扁平任务号还原为原有左/右零件顺序，保留最近对象和干涉排序的确定性。
+    let left=Math.floor((2*size-1-Math.sqrt((2*size-1)**2-8*order))/2);
+    while(left*(2*size-left-1)/2>order)left--;
+    while((left+1)*(2*size-left-2)/2<=order)left++;
+    const right=left+1+order-left*(2*size-left-1)/2;
     const first=parts[left],second=parts[right];
     if(first.box.min.some((min,axis)=>Math.min(first.box.max[axis],second.box.max[axis])-Math.max(min,second.box.min[axis])<=contactToleranceMm))continue;
     testedPairs++;
@@ -58,10 +73,9 @@ export function measureFixedStructureClearance(kernel,objects,results,required,p
     }
     if(new Set(copper.map(row=>row.phase)).size!==3||!metal.length)
       throw new Error('绝缘净距检查缺少三相母线或金属结构');
-    function measure(pairs){
+    function measure(pairs,lane){
       const search=Math.max(300,required+1);let minimum=search,nearest=null,below=0,checked=0,nearestOrder=Infinity;
-      for(let order=0;order<pairs.length;order++){
-        if(partition&&order%partition.count!==partition.index)continue;
+      for(const order of assignedPairs(pairs.length,lane,partition)){
         const [a,b]=pairs[order];checked++;
         const distance=measureSolidSets([a.solid],[b.solid],required,search).gapMm;
         if(distance<minimum){minimum=distance;nearest=[a.name,b.name];nearestOrder=order;}
@@ -69,8 +83,8 @@ export function measureFixedStructureClearance(kernel,objects,results,required,p
       }
       return {minimumMm:minimum,isLowerBound:nearest===null,nearest,below,pairs:checked,nearestOrder};
     }
-    const phases=measure(copper.flatMap((first,index)=>copper.slice(index+1).filter(other=>first.phase!==other.phase).map(other=>[first,other])));
-    const grounded=measure(copper.flatMap(first=>metal.map(other=>[first,other])));
+    const phases=measure(copper.flatMap((first,index)=>copper.slice(index+1).filter(other=>first.phase!==other.phase).map(other=>[first,other])),0);
+    const grounded=measure(copper.flatMap(first=>metal.map(other=>[first,other])),1);
     const result={requiredMm:required,passed:!phases.below&&!grounded.below,phases,grounded,assembly:measureAssemblyInterference(parts,partition),
       scope:'三相母线相间、母线对柜体和桥体金属结构；排除同相搭接和绝缘支撑接触'};
     return partition?result:mergeClearancePartitions([result]);

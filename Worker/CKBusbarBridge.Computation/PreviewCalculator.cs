@@ -69,7 +69,7 @@ namespace CKBusbarBridge.Computation
             if (!File.Exists(engine) || !File.Exists(host)) throw new FileNotFoundException("Worker 运行文件不完整，请重新生成 Debug。");
             var ready = _ready = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
             var process = new Process { StartInfo = new ProcessStartInfo(engine,
-                "\"" + host + "\" --parent " + Process.GetCurrentProcess().Id)
+                "\"" + host + "\" --compact-meshes --parent " + Process.GetCurrentProcess().Id)
             {
                 WorkingDirectory = _workerDirectory, UseShellExecute = false, CreateNoWindow = true,
                 RedirectStandardInput = true, RedirectStandardOutput = true, RedirectStandardError = true,
@@ -90,7 +90,15 @@ namespace CKBusbarBridge.Computation
                     string line;
                     while ((line = await process.StandardOutput.ReadLineAsync().ConfigureAwait(false)) != null)
                     {
+                        var parseWatch = Stopwatch.StartNew();
                         var response = JObject.Parse(line);
+                        var parseMilliseconds = parseWatch.Elapsed.TotalMilliseconds;
+                        MeshTransport.Expand(response);
+                        if (response["timings"] is JObject responseTimings)
+                        {
+                            responseTimings["clientParseMs"] = parseMilliseconds;
+                            responseTimings["clientDecodeMs"] = parseWatch.Elapsed.TotalMilliseconds - parseMilliseconds;
+                        }
                         if ((string)response["type"] == "ready") { ready.TrySetResult(true); continue; }
                         if ((string)response["type"] == "managed-request") { _ = ReplyManagedAsync(response); continue; }
                         if ((string)response["type"] == "fatal") throw new InvalidOperationException((string)response["error"]);

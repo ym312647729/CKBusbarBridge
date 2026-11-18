@@ -39,16 +39,24 @@ const upstreamKernel=kernelModule.then(createKernelFromModule);
 upstreamKernel.then(()=>self.postMessage({type:'ready'}),error=>self.postMessage({type:'fatal',ok:false,error:error.message}));
 const managedRequests=new Map();let managedSequence=0;
 function managed(method,input){return new Promise((resolve,reject)=>{const managedId=++managedSequence;managedRequests.set(managedId,{resolve,reject});self.postMessage({type:'managed-request',managedId,method,input});});}
-const geometryPool=[],geometryQueue=[],pendingShapes=new Map();let geometrySequence=0,maximumWorkers=1;
+const geometryPool=[],geometryQueue=[],pendingShapes=new Map();let geometrySequence=0,maximumWorkers=1,schedulingProfile=null;
 function scheduleGeometry(){
   while(geometryQueue.length){
-    let slot=geometryPool.slice(0,maximumWorkers).find(row=>!row.pending);
+    const rank=pending=>pending.message.datumsOnly?5:pending.message.object?.frameBinding?4:
+      pending.message.type==='inspect-clearance'?0:pending.message.object?.category==='copper'?1:3;
+    let next=0;for(let index=1;index<geometryQueue.length;index++)if(rank(geometryQueue[index])>rank(geometryQueue[next]))next=index;
+    const affinity=geometryQueue[next].message.object?.templatePath;
+    const available=geometryPool.slice(0,maximumWorkers).filter(row=>!row.pending);
+    let slot=available.find(row=>affinity&&row.templates?.has(affinity))??available[0];
     if(!slot&&geometryPool.length<maximumWorkers){
-      const worker=new Worker('./Web/src/geometry-worker.js',{type:'module'});slot={worker,pending:null};geometryPool.push(slot);
+      const worker=new Worker('./Web/src/geometry-worker.js',{type:'module'});slot={worker,pending:null,index:geometryPool.length};geometryPool.push(slot);
       kernelModule.then(module=>worker.postMessage({type:'initialize-kernel',module}),error=>worker.postMessage({type:'initialize-kernel-error',message:error.message}));
       worker.onmessage=event=>{
         const pending=slot.pending;if(!pending||event.data.requestId!==pending.message.requestId)return;
         slot.pending=null;
+        if(schedulingProfile)schedulingProfile.push({worker:slot.index,kind:pending.message.type??pending.message.object?.category,
+          queuedMs:pending.startedAt-pending.queuedAt,elapsedMs:performance.now()-pending.startedAt,
+          datumsOnly:pending.message.datumsOnly,workerMs:event.data.metrics?.workerMs,driveMs:event.data.metrics?.driveMs,readMs:event.data.metrics?.readMs});
         event.data.ok?pending.resolve(event.data):pending.reject(Object.assign(new Error(event.data.error),{source:event.data.source,detail:event.data.detail}));
         scheduleGeometry();
       };
@@ -59,24 +67,26 @@ function scheduleGeometry(){
       };
     }
     if(!slot)return;
-    slot.pending=geometryQueue.shift();slot.worker.postMessage(slot.pending.message);
+    slot.pending=geometryQueue.splice(next,1)[0];slot.pending.startedAt=performance.now();
+    if(affinity){slot.templates??=new Set();slot.templates.add(affinity);}
+    slot.worker.postMessage(slot.pending.message);
   }
 }
 function geometryJob(message){
-  return new Promise((resolve,reject)=>{geometryQueue.push({message:{...message,requestId:++geometrySequence},resolve,reject});scheduleGeometry();});
+  return new Promise((resolve,reject)=>{geometryQueue.push({message:{...message,requestId:++geometrySequence},resolve,reject,queuedAt:performance.now()});scheduleGeometry();});
 }
 const hash=text=>{let value=2166136261;for(let index=0;index<text.length;index++)value=Math.imul(value^text.charCodeAt(index),16777619);return (value>>>0).toString(16);};
-function evaluate(object,settings,casing,hangerHeight){
+function evaluate(object,settings,casing,hangerHeight,datumsOnly=false,preparedDatums){
   // Full canonical inputs verify a hash hit. Revision, installation and styling are absent.
-  const canonical=geometrySignature(object)+JSON.stringify([calculatorVersion,settings.arcSegments,settings.complexArcSegments,settings.chordToleranceMm,settings.objectTriangleBudget,casing,hangerHeight]);
+  const canonical=geometrySignature(object)+JSON.stringify([calculatorVersion,settings.arcSegments,settings.complexArcSegments,settings.chordToleranceMm,settings.objectTriangleBudget,casing,hangerHeight,datumsOnly]);
   const key=hash(canonical),cached=shapeCache.get(key);
   if(cached?.canonical===canonical){shapeCache.delete(key);shapeCache.set(key,cached);return Promise.resolve(cached.result);}
   if(pendingShapes.has(canonical))return pendingShapes.get(canonical);
-  const pending=geometryJob({revision:0,object,settings,signature:canonical,purpose:'native-sw',casing,hangerHeight}).then(result=>{
+  const pending=geometryJob({revision:0,object,settings,signature:canonical,purpose:'native-sw',casing,hangerHeight,datumsOnly,preparedDatums}).then(result=>{
       const bytes=result.meshes.reduce((sum,mesh)=>sum+mesh.positions.byteLength+mesh.indices.byteLength+(mesh.outlinePositions?.byteLength??0)+(mesh.outlineTriangles?.byteLength??0)+mesh.patches.quads.byteLength+mesh.patches.triangles.byteLength,0);
       const replaced=shapeCache.get(key);
       if(replaced){shapeCache.delete(key);shapeBytes-=replaced.bytes;}
-      if(bytes<=maxShapeBytes){while(shapeBytes+bytes>maxShapeBytes&&shapeCache.size){const oldest=shapeCache.keys().next().value;shapeBytes-=shapeCache.get(oldest).bytes;shapeCache.delete(oldest);}shapeCache.set(key,{canonical,result,bytes});shapeBytes+=bytes;}
+      if(bytes<=maxShapeBytes){while((shapeBytes+bytes>maxShapeBytes||shapeCache.size>=512)&&shapeCache.size){const oldest=shapeCache.keys().next().value;shapeBytes-=shapeCache.get(oldest).bytes;shapeCache.delete(oldest);}shapeCache.set(key,{canonical,result,bytes});shapeBytes+=bytes;}
       return result;
   }).finally(()=>pendingShapes.delete(canonical));
   pendingShapes.set(canonical,pending);return pending;
@@ -122,6 +132,7 @@ async function readDraftRoof(project,source){
 }
 async function prepare(request){
   const started=performance.now(),timings={};
+  schedulingProfile=request.profileScheduling?[]:null;
   maximumWorkers=Math.max(1,Math.floor(request.maximumWorkers??1));timings.maximumWorkers=maximumWorkers;
   let project=createProject(request.scenario);project.id=request.sessionId;project.name=request.modelName;
   project.revision=request.revision;project.cabinetInputs={[request.scenario]:inputs(request)};
@@ -130,6 +141,10 @@ async function prepare(request){
   if(!source)throw new Error('场景没有已核验的缓存模板身份');
   project.objects=[{id:request.sessionId+':cabinet',name:'原柜体及环境',category:'cabinet',parentId:null,templatePath:path,configuration:source.configuration,sourceSha256:source.sha256,parameters:{},suppression:{},transform:[...nativeSceneToPreview],visible:true,cabinetBinding:{version:'original-cabinet-scene/1',scenario:project.scenario}}];
   project=validateProject(project);
+  // 已确认需要桥体时，在上游及吊架规划阶段准备计算线程，避免排到实体阶段才启动。
+  const warmups=[];
+  if(request.bridge)while(geometryPool.length<maximumWorkers)warmups.push(geometryJob({type:'warm-kernel'}));
+  const warmed=Promise.all(warmups);warmed.catch(()=>{});
   const upstream=await buildOriginalDesignUpstream(project,read,{kernel:await upstreamKernel,readWallConductors:input=>managed('wall-conductors',input)});
   timings.upstreamMs=performance.now()-started;
   const {metadata:roofPlanes,...hangerRoof}=await readDraftRoof(project,source);
@@ -140,7 +155,14 @@ async function prepare(request){
     project=await installOriginalJointHangers(project,read,{roofPlanes});
   }
   const geometryStarted=performance.now(),results=new Map();
-  await Promise.all(project.objects.map(async object=>results.set(object.id,await evaluate(object,project.settings))));
+  const copperJobs=[];const structureJobs=[];
+  for(const object of [...project.objects].sort((left,right)=>(right.frameBinding?2:right.category==='copper'?0:1)-(left.frameBinding?2:left.category==='copper'?0:1))){
+    const pending=evaluate(object,project.settings,undefined,undefined,!!object.frameBinding).then(result=>results.set(object.id,result));
+    (object.category==='copper'?copperJobs:structureJobs).push(pending);
+  }
+  // 安装只依赖柜体、基座、基架基准与支撑；铜排几何可继续在其他线程计算。
+  const copperReady=Promise.all(copperJobs);copperReady.catch(()=>{});
+  await Promise.all(structureJobs);
   const installed=structurePreviewPlacements(project,results,upstream.basePreviewPoses);
   if(installed.diagnostics.length)throw new Error(installed.diagnostics.map(row=>row.message).join('；'));
   for(const assignment of installed.assignments)project.objects.find(row=>row.id===assignment.objectId).transform=assignment.transform;
@@ -149,8 +171,8 @@ async function prepare(request){
   const casings=regularBridge?facingRegularFrameCasings(project.objects,results):
     attachedStraightFrameCasings(project.objects,results);
   const hangerHeights=installedHangerHeights(project.objects,results);
-  await Promise.all(project.objects.filter(object=>casings.has(object.id)||hangerHeights.has(object.id))
-    .map(async object=>results.set(object.id,await evaluate(object,project.settings,casings.get(object.id),hangerHeights.get(object.id)))));
+  await Promise.all([copperReady,...project.objects.filter(object=>results.get(object.id)?.datumsOnly||casings.has(object.id)||hangerHeights.has(object.id))
+    .map(async object=>results.set(object.id,await evaluate(object,project.settings,casings.get(object.id),hangerHeights.get(object.id),false,results.get(object.id)?.preparedDatums)))]);
   const triangleTotal=()=>[...results.values()].reduce((sum,result)=>sum+result.meshes.reduce((count,mesh)=>count+mesh.triangleCount,0),0);
   // The shared scene budget refines complex faces before falling back to the existing contour display.
   if(triangleTotal()>project.settings.sceneTriangleBudget){
@@ -163,7 +185,7 @@ async function prepare(request){
     results.set(object.id,withFixedCopperPhases(results.get(object.id),upstream.fixedCopperPhases));
   const clearanceStarted=performance.now(),inspectBridge=!!request.bridge&&(request.checkClearance===true||project.frameDesign?.plans.length>0);
   const knownPhases=new Set(project.objects.flatMap(object=>results.get(object.id).meshes.map(mesh=>object.phase??mesh.partSource?.phase)));
-  let clearance=null;
+  let clearance=null,clearanceTask=Promise.resolve();
   if(inspectBridge&&['A','B','C'].every(phase=>knownPhases.has(phase))){
     const required=project.cabinetInputs[project.scenario].values['General.InsulationDistance'];
     // Only reuse a completed inspection for the exact immutable geometry, installation and required distance.
@@ -181,19 +203,17 @@ async function prepare(request){
         outlinePositions:mesh.outlinePositions,outlineTriangles:mesh.outlineTriangles,
         partSource:mesh.partSource&&Object.fromEntries(['phase','transform','appearanceRole','previewMaterial','componentChain','partName']
           .map(key=>[key,mesh.partSource[key]]))}))}]);
-      const count=Math.min(maximumWorkers,Math.max(1,Math.ceil(meshes.reduce((sum,[,result])=>sum+result.meshes.length,0)/40)));
-      clearance=mergeClearancePartitions(await Promise.all(Array.from({length:count},(_,index)=>
-        geometryJob({type:'inspect-clearance',objects,meshes,required,partition:{index,count}}).then(result=>result.clearance))));
-      clearanceCache={signature,result:clearance};
+      const parts=meshes.reduce((sum,[,result])=>sum+result.meshes.length,0);
+      const count=Math.min(maximumWorkers,Math.max(1,Math.ceil(parts*(parts-1)/2/512)));
+      const workQueue=typeof SharedArrayBuffer==='function'?new SharedArrayBuffer(Int32Array.BYTES_PER_ELEMENT*3):null;
+      clearanceTask=Promise.all(Array.from({length:count},(_,index)=>
+        geometryJob({type:'inspect-clearance',objects,meshes,required,partition:{index,count,...workQueue?{workQueue}:{}}}).then(result=>result.clearance)))
+        .then(partitions=>{clearance=mergeClearancePartitions(partitions);clearanceCache={signature,result:clearance};});
     }
   }
-  timings.clearanceMs=performance.now()-clearanceStarted;
+  clearanceTask=clearanceTask.then(()=>{timings.clearanceMs=performance.now()-clearanceStarted;});
+  clearanceTask.catch(()=>{});
   const outputStarted=performance.now(),instances=[],interactionInstances=[],inspection=[],warnings=[],dimensions=[],web=request.renderer==='webgl';
-  if(inspectBridge&&!clearance)inspection.push('当前草稿未形成完整三相实体，无法核对绝缘净距');
-  if(clearance&&!clearance.passed)inspection.push('绝缘净距不满足 '+clearance.requiredMm+
-    ' mm：相间 '+clearance.phases.minimumMm.toFixed(2)+' mm，母线对金属 '+clearance.grounded.minimumMm.toFixed(2)+' mm');
-  if(clearance?.assembly.count)inspection.push('检测到 '+clearance.assembly.count+' 处实体装配干涉：'+
-    clearance.assembly.largest[0].parts.join(' ↔ '));
   const contourObjects=new Set();
   let solidTriangles=triangleTotal();
   for(const object of [...project.objects].sort((left,right)=>results.get(right.id).preview.triangleCount-results.get(left.id).preview.triangleCount)){
@@ -204,7 +224,7 @@ async function prepare(request){
   for(const object of project.objects){
     const result=results.get(object.id),pose=multiplyMatrix(inverseRigidMatrix(nativeSceneToPreview),object.transform);
     const outline=contourObjects.has(object.id),known=request.knownShapes??{};
-    instances.push(...await meshInstances(object,result,pose,known,outline,web));if(result.qualityWarning)warnings.push(result.qualityWarning);
+    instances.push(...await meshInstances(object,result,pose,known,outline,web,request.includePartSources!==false));if(result.qualityWarning)warnings.push(result.qualityWarning);
     if(!web){
       let interaction=result;
       if(result.preview?.complexFeatureCount&&!outline){
@@ -212,7 +232,7 @@ async function prepare(request){
           objectTriangleBudget:Math.max(1,Math.floor(project.settings.objectTriangleBudget/4))},casings.get(object.id),hangerHeights.get(object.id));
         if(candidate.preview.topologySignature===result.preview.topologySignature&&candidate.preview.triangleCount<result.preview.triangleCount)interaction=withFixedCopperPhases(candidate,upstream.fixedCopperPhases);
       }
-      interactionInstances.push(...await meshInstances(object,interaction,pose,known,outline,false));
+      interactionInstances.push(...await meshInstances(object,interaction,pose,known,outline,false,request.includePartSources!==false));
     }
     for(const parameter of result.parameters??[]){
       const binding=objectDimensionBinding(project,object.id,parameter.name);
@@ -225,7 +245,15 @@ async function prepare(request){
         edges:parameter.annotationEdges.map(edge=>edge.map(point=>transformPoint(point,pose).map(Math.fround)))});
     }
   }
-  timings.outputMs=performance.now()-outputStarted;timings.totalMs=performance.now()-started;
+  timings.outputMs=performance.now()-outputStarted;
+  await clearanceTask;
+  await warmed;
+  if(inspectBridge&&!clearance)inspection.push('当前草稿未形成完整三相实体，无法核对绝缘净距');
+  if(clearance&&!clearance.passed)inspection.push('绝缘净距不满足 '+clearance.requiredMm+
+    ' mm：相间 '+clearance.phases.minimumMm.toFixed(2)+' mm，母线对金属 '+clearance.grounded.minimumMm.toFixed(2)+' mm');
+  if(clearance?.assembly.count)inspection.push('检测到 '+clearance.assembly.count+' 处实体装配干涉：'+clearance.assembly.largest[0].parts.join(' ↔ '));
+  timings.totalMs=performance.now()-started;
+  if(schedulingProfile)timings.scheduling={poolSize:geometryPool.length,jobs:schedulingProfile};
   return {project,upstream,instances,interactionInstances,dimensions,clearance,timings,
     inspectionWarning:inspection.join('；'),warning:[...inspection,...warnings].join('；')};
 }
@@ -253,7 +281,7 @@ function contour(mesh){
   const groups=new Map();for(const edge of shared.values()){const key=root(edge);if(!groups.has(key))groups.set(key,[]);groups.get(key).push(...edge.normals);}
   return [...shared.values()].filter(edge=>{const normals=groups.get(root(edge));return normals.length===1||normals.some(normal=>normal.reduce((sum,value,index)=>sum+value*normals[0][index],0)<Math.cos(Math.PI/6));}).flatMap(edge=>[edge.a,edge.b]);
 }
-async function meshInstances(object,result,pose,known,outline,web){
+async function meshInstances(object,result,pose,known,outline,web,includePartSources){
   return Promise.all(result.meshes.map(async(mesh,index)=>{
     const source=mesh.partSource??{},installed=source.transform?multiplyMatrix(pose,source.transform):pose;
     let packet=meshPackets.get(mesh)?.get(web);
@@ -285,7 +313,7 @@ async function meshInstances(object,result,pose,known,outline,web){
     if(!designObjectId)throw new Error('网格缺少设计对象身份：'+object.id);
     const category=object.cabinetBinding&&source.phase?'copper':object.category;
     return {id:object.id+':'+index,designObjectId,groupId:binding?.rowId??object.id,memberIds:binding?.memberIds??[designObjectId],displayName:source.componentChain?.length?source.componentChain.join(' / '):object.name,sourcePath:source.path??object.templatePath,geometryKey:key,geometrySignature:signature,category,appearanceRole:source.phase?'copper':source.appearanceRole??null,phase:object.phase??mesh.partSource?.phase??null,
-      transform:installed.map(Math.fround),...shape,outlineOnly:outline||result.previewDisplayMode==='outline',partSource:mesh.partSource};
+      transform:installed.map(Math.fround),...shape,outlineOnly:outline||result.previewDisplayMode==='outline',partSource:includePartSources?mesh.partSource:undefined};
   }));
 }
 let latest=null,running=false;

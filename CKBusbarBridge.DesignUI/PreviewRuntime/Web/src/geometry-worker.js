@@ -21,6 +21,7 @@ import {deriveFixedStructureDatums,generateFromFixedDatums} from '../../Core/fix
 import {measureFixedStructureClearance} from '../../Core/fixed-structure-clearance.mjs';
 const definitions=new Map(),definitionReadMetrics=new Map();
 const previewMeshCache=new PreviewMeshCache();
+const structureDatumsCache=new Map();
 let resolveCompiledKernel,rejectCompiledKernel,kernelCompilationMs;
 const compiledKernelReady=new Promise((resolve,reject)=>{resolveCompiledKernel=resolve;rejectCompiledKernel=reject;});
 const kernelReady=compiledKernelReady.then(createKernelFromModule);kernelReady.catch(()=>{});
@@ -40,6 +41,11 @@ async function loadTemplate(templatePath){
 self.onmessage=async event=>{
   if(event.data.type==='initialize-kernel'){kernelCompilationMs=event.data.initializationMs;resolveCompiledKernel(event.data.module);return;}
   if(event.data.type==='initialize-kernel-error'){rejectCompiledKernel(new Error(event.data.message));return;}
+  if(event.data.type==='warm-kernel'){
+    try{await kernelReady;self.postMessage({requestId:event.data.requestId,ok:true});}
+    catch(error){self.postMessage({requestId:event.data.requestId,ok:false,error:error.message});}
+    return;
+  }
   if(event.data.type==='inspect-clearance'){
     try{
       const {objects,meshes,required,partition,requestId}=event.data;
@@ -48,7 +54,7 @@ self.onmessage=async event=>{
     }catch(error){self.postMessage({requestId:event.data.requestId,ok:false,error:error.message,detail:error.stack});}
     return;
   }
-  const {object,revision,requestId,signature,settings,purpose,casing,hangerHeight}=event.data;
+  const {object,revision,requestId,signature,settings,purpose,casing,hangerHeight,datumsOnly,preparedDatums}=event.data;
   const started=performance.now(),meshCacheBefore=previewMeshCache.snapshot(),meshCacheMetrics=()=>{const current=previewMeshCache.snapshot();return {...current,hits:current.hits-meshCacheBefore.hits,misses:current.misses-meshCacheBefore.misses};};let parameters=[],coordinates={interfaces:[],diagnostics:[]},roofPlanes={complete:false,planes:[],diagnostics:[]},hangerFrame=null,interfaceReadMs=0,driveMs=0,derivedGeometry=null,businessParameters=null,fixedCopper=null;let result;
   try{
     if(['free-copper','original-copper'].includes(object.kind)){
@@ -62,9 +68,12 @@ self.onmessage=async event=>{
       self.postMessage({revision,requestId,purpose,objectId:object.id,signature,ok:true,finishedAt:performance.timeOrigin+performance.now(),meshes,parameters:result.parameters,interfaces:[],interfaceDiagnostics:[],roofPlanes:{complete:false,planes:[],diagnostics:[]},derivedGeometry:result.derivedGeometry,preview:{...result.preview,triangleCount},previewDisplayMode:overBudget?'outline':'solid',qualityWarning:overBudget?'铜排超过预览预算，保留完整轮廓':null,schematic:[],deferred:[],metrics:{readMs:0,driveMs:0,parameterMs:0,kernelWaitMs,kernelCompilationMs,definitionReads:[],cutFeatureMs:result.geometryTimings.cutFeatureMs,constructionFeatureMs:result.geometryTimings.otherFeatureMs,evaluationAndHolesMs:evaluationMs,meshMs,meshCache:meshCacheMetrics(),interfaceReadMs:0,workerMs:performance.now()-started,triangleCount}},transfers);
       return;
     }
+    if(preparedDatums&&preparedDatums.inputKey!==JSON.stringify([object.sourceSha256,object.configuration,object.structurePlanInput]))
+      throw new Error('基架基准快照与当前输入不一致');
     const cachedDefinition=definitions.has(object.templatePath),readStart=performance.now();let kernelWaitMs;
-    const [kernel,sourceTemplate]=await Promise.all([kernelReady.then(kernel=>{kernelWaitMs=performance.now()-readStart;return kernel;}),loadTemplate(object.templatePath)]);let template=sourceTemplate,templateLoader=loadTemplate,fixedDatums=null,roofConductors;
-    const rootDefinitionRead=cachedDefinition?{cached:true,totalReadMs:0}:{...definitionReadMetrics.get(object.templatePath),cached:false},readMs=rootDefinitionRead.totalReadMs;
+    const [kernel,sourceTemplate]=await Promise.all([kernelReady.then(kernel=>{kernelWaitMs=performance.now()-readStart;return kernel;}),
+      preparedDatums?preparedDatums.datums.template:loadTemplate(object.templatePath)]);let template=sourceTemplate,templateLoader=loadTemplate,fixedDatums=null,roofConductors;
+    const rootDefinitionRead=cachedDefinition||preparedDatums?{cached:true,totalReadMs:0}:{...definitionReadMetrics.get(object.templatePath),cached:false},readMs=rootDefinitionRead.totalReadMs;
     if(object.sourceSha256&&template.source.sha256!==object.sourceSha256)throw new Error('模板签名已变化，请核对来源后重新关联');
     if(object.cabinetBinding){const driveStart=performance.now(),derived=await deriveCabinetScene(sourceTemplate,object.configuration,object.cabinetBinding.scenario,object.cabinetSceneInput,loadTemplate);template=derived.template;templateLoader=derived.loadTemplate;businessParameters=derived.parameters;fixedCopper=derived.fixedCopper;roofConductors=derived.roofConductors;roofPlanes=await collectOriginalRoofPlanes(derived,object.configuration);driveMs=performance.now()-driveStart;derivedGeometry={kind:'cabinet-scene',stage:'cabinet-with-fixed-outgoing-copper',fixedCopper,diagnostics:derived.diagnostics.filter(row=>!fixedCopper||!/伸出.*尚未生成|伸出.*待求解/.test(row.message)),drivenSubsystems:derived.evidence.filter(row=>row.kind).map(row=>({kind:row.kind,modelId:row.modelId,modelCount:row.models?.length})),nativeGeometryEquivalenceVerified:false};}
     if(object.hangerDimensions){
@@ -74,7 +83,13 @@ self.onmessage=async event=>{
     }
     if(object.frameBinding||object.baseBinding){
       const driveStart=performance.now(),input=object.structurePlanInput;
-      fixedDatums=await deriveFixedStructureDatums(sourceTemplate,object.configuration,input,loadTemplate);
+      const datumKey=JSON.stringify([sourceTemplate.source.sha256,object.configuration,input]);
+      fixedDatums=structureDatumsCache.get(datumKey)??preparedDatums?.datums;
+      if(!fixedDatums){
+        fixedDatums=await deriveFixedStructureDatums(sourceTemplate,object.configuration,input,loadTemplate);
+        while(structureDatumsCache.size>=32)structureDatumsCache.delete(structureDatumsCache.keys().next().value);
+        structureDatumsCache.set(datumKey,fixedDatums);
+      }
       template=fixedDatums.template;
       businessParameters=object.baseBinding?basePreviewParameters(input,template.configurations.find(row=>row.name===object.configuration)):fixedDatums.parameters;
       driveMs=performance.now()-driveStart;derivedGeometry={kind:object.baseBinding?'base-model':'frame-model',installationStatus:input.installationStatus,sourceName:input.sourceName,
@@ -87,6 +102,16 @@ self.onmessage=async event=>{
       try{coordinates=await collectTemplateInterfaces(template,object.configuration,templateLoader,object.parameters);}catch(error){coordinates.diagnostics.push({message:error.message});}
       if(!object.cabinetBinding&&!fixedDatums)roofPlanes=await collectTemplatePlanes(template,object.configuration,templateLoader,object.parameters);
       hangerFrame=hangerFrameDefinition(object.templatePath,parameters);interfaceReadMs=performance.now()-interfaceStart;
+    }
+    if(datumsOnly){
+      if(!object.frameBinding||!fixedDatums)throw new Error('仅基架安装阶段允许返回基准快照');
+      self.postMessage({revision,requestId,purpose,objectId:object.id,signature,ok:true,datumsOnly:true,meshes:[],
+        parameters:businessParameters??parameters,interfaces:coordinates.interfaces,interfaceDiagnostics:coordinates.diagnostics,
+        derivedGeometry,preparedDatums:{inputKey:JSON.stringify([object.sourceSha256,object.configuration,object.structurePlanInput]),
+          datums:{...fixedDatums,graph:{models:fixedDatums.graph.models.map(model=>({templatePath:model.templatePath,configuration:model.configuration}))}}},
+        preview:{triangleCount:0,complexFeatureCount:0},
+        metrics:{readMs,driveMs,workerMs:performance.now()-started}});
+      return;
     }
     const evaluationStart=performance.now();
     const previewSettings=object.cabinetBinding?{...settings,fixedPartTemplate:(engine,part,configurationName,previous)=>{

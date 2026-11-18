@@ -1,7 +1,7 @@
 {
   "schema": "dq-preview-runtime-manifest/1",
   "calculatorVersion": "dq-sw-mesh/1",
-  "packageSha256": "8ce4164a6dda8ae726862dd275c6a6850b5d897a64192bab92ecc236da677797",
+  "packageSha256": "8516a65f915ea2ab460800f1656af644ed79e6a280332ad5ce50ac932cace259",
   "reference": {
     "project": "CKBusbarBridgeVirtualDesigner",
     "commit": "511d64b1248e1c26bf27430e9016fecdc5e9ce5f",
@@ -189,7 +189,7 @@
     },
     {
       "path": "Core/fixed-structure-clearance.mjs",
-      "sha256": "d6f95a54786cf683e514e55875c33ca1360b2b316c7d715b48718290c70d6e56"
+      "sha256": "3ed2afa1c621feb7834cceb685b20fb9ab95e877e110f1a05a1a51244182a2e8"
     },
     {
       "path": "Core/fixed-structure-datums.mjs",
@@ -488,12 +488,16 @@
       "sha256": "43535574c9ea4d83bcdf49c2ee3325b0250a0a9422fbf028d6a380e4e9161f5a"
     },
     {
+      "path": "mesh-transport.mjs",
+      "sha256": "3f807ec0cc447806e7124a92c316a8541e67bc4bf87a6b27c7c829248e885069"
+    },
+    {
       "path": "node-host.mjs",
-      "sha256": "beddef1ba558a5c5821fad15f8457ebe2ae72048ce56aecddc87dd4699ceed46"
+      "sha256": "5d2e4e97e058014ea2a09ea6e6ea1d1c8a1cf81ba1fda25943a9c7faf08578dc"
     },
     {
       "path": "session-worker.mjs",
-      "sha256": "d20566b88afc9e9a299727f40a9f11e2b3b450a6c921a372183f360238c151a3"
+      "sha256": "ff23025264bcf0402a69a6aabe17077f50ac8b16d52c79f1def9a36d3cf54f14"
     },
     {
       "path": "templates/模板/侧对侧模板/柜内伸出排/A柜内伸出排-A-A柜后.SLDPRT.virtual.json",
@@ -1625,7 +1629,7 @@
     },
     {
       "path": "Web/src/geometry-worker.js",
-      "sha256": "7ed53de4f1ee08d138083cc4f376ca9c95b09ba2c6ae2768e5c47b9b95ab91c3"
+      "sha256": "53bee1924476cd6302bb2ca43c0673b597304bc0c34c3b1772361ba338a81cfb"
     },
     {
       "path": "Web/src/kernel.js",
@@ -1843,7 +1847,7 @@
     },
     {
       "path": "CKBusbarBridge.DesignUI/Preview/BridgeGeometryRuntime.cs",
-      "sha256": "4b0f7a8bc00354055447a61060da84f3055c8b669a6d7a6a714b22d88bcacd8f"
+      "sha256": "b0f9922eee5da534cc021b148682592498571314fe4e2b8c3ab79af0ae623502"
     },
     {
       "path": "CKBusbarBridge.DesignUI/Preview/BridgeMeshPicking.cs",
@@ -3010,8 +3014,12 @@
       "sha256": "cc0d9e3e2e5db1d6279aa36f0c9a24e54e87baad298f6233af17439705b0e4c0"
     },
     {
+      "path": "Worker/CKBusbarBridge.Computation/MeshTransport.cs",
+      "sha256": "7b670b5a0999dd91a33d03d8a90fc24ee00066a60778676d60088207430892ce"
+    },
+    {
       "path": "Worker/CKBusbarBridge.Computation/PreviewCalculator.cs",
-      "sha256": "d2db5293850d6983e03b83ecc6353e8b339dad0febf654c454c8653e783a1639"
+      "sha256": "683af5b2152680b3f4cef2fb0cc9dbf24e839831400fc0ecdf68655ea34c6335"
     },
     {
       "path": "Worker/CKBusbarBridge.Computation/WallConductorCalculator.cs",

@@ -2,6 +2,7 @@ import {Worker,parentPort,workerData} from 'node:worker_threads';
 import {readFile} from 'node:fs/promises';
 import {createInterface} from 'node:readline';
 import {fileURLToPath} from 'node:url';
+import {compactMeshResponse} from './mesh-transport.mjs';
 
 if(workerData){
   const moduleUrl=new URL(workerData.module);
@@ -29,7 +30,13 @@ if(workerData){
   parentPort.on('close',()=>{for(const child of children)child.terminate();});
 }else{
   const engine=new Worker(new URL(import.meta.url),{workerData:{module:new URL('./session-worker.mjs',import.meta.url).href}});
-  engine.on('message',data=>process.stdout.write(JSON.stringify(data)+'\n'));
+  const compactMeshes=process.argv.includes('--compact-meshes');
+  engine.on('message',data=>{
+    const started=performance.now(),packed=compactMeshes?compactMeshResponse(data):null;
+    const encoded=performance.now(),payload=JSON.stringify(data),serialized=performance.now();
+    const transport=data.timings?JSON.stringify({packingMs:encoded-started,serializeMs:serialized-encoded,characters:payload.length,...packed}):null;
+    process.stdout.write((transport?'{"transportTimings":'+transport+','+payload.slice(1):payload)+'\n');
+  });
   engine.on('error',error=>{process.stdout.write(JSON.stringify({type:'fatal',ok:false,error:error.message})+'\n');process.exitCode=1;});
   const input=createInterface({input:process.stdin,crlfDelay:Infinity});
   input.on('line',line=>{try{engine.postMessage(JSON.parse(line));}catch(error){process.stderr.write(error.message+'\n');}});
