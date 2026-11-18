@@ -172,7 +172,47 @@ export function evaluateOriginalCopper(kernel,setting,settings={},holes=[]){
   result.derivedGeometry={...result.derivedGeometry,kind:'original-planar-bend-copper',drawingDevelopedLengthMm:originalCopperDevelopedLength(setting),drawingReferenceConvention:setting.pathContract==='native-material'?'native-material-section-center':'original-IsCenter-minus-half-thickness-offset',groupKey:setting.groupKey,planningSegmentIndex:setting.planningSegmentIndex};return result;
 }
 
+// 对照原 VerticalBendPreviewAdapter：原路径始终按截面中心解释；其 -半厚
+// 侧面偏移在 VerticalBendPreviewBody 的单侧拉伸中抵消，不能再次偏移中心线。
+// GetWidthVector 使用 路径方向 × 起始排厚方向；之后沿平弯、立弯连续传递截面。
+export function planOriginalVerticalCopper(setting){
+  if(setting?.version!==originalCopperVersion||!setting.isVerticalBend||setting.isMilledBar||typeof setting.isCenter!=='boolean')
+    throw new DefinitionError('原立弯铜排定义无效');
+  if(!Array.isArray(setting.pointList)||setting.pointList.length<2)throw new DefinitionError('原立弯铜排路径至少需要两个点');
+  const points=setting.pointList.map(point=>vector(point,'原立弯铜排路径点')),start=vector(setting.startBusbarVector,'原立弯起始排厚方向'),
+    first=sub(points[1],points[0]),width=cross(first,start);
+  if(norm(first)<=1e-8||norm(start)<=1e-8||norm(width)<=1e-8)throw new DefinitionError('原立弯起始路径和排厚方向无效');
+  const map=point=>[point[0],(setting.coordinateFrame==='solidworks'?-1:1)*point[2],point[1]];
+  return planFreeCopper({version:freeCopperVersion,points:points.map(map),widthDirection:map(unit(width)),
+    widthMm:setting.busBarWidth,thicknessMm:setting.busBarThickness,flatRadiusMm:setting.barBendingRadius,
+    edgeRadiusMm:setting.verticalBendingRadius>0?setting.verticalBendingRadius:setting.barBendingRadius,holes:[]});
+}
+
+function evaluateOriginalVerticalCopper(kernel,object,settings){
+  const definition=planOriginalVerticalCopper(object.originalCopper).data,origin=definition.points[0],
+    localDefinition={...definition,points:definition.points.map(point=>sub(point,origin))},
+    result=evaluateFreeCopper(kernel,{freeCopper:localDefinition,parameters:{}},settings);
+  let installed;
+  try{
+    const local=result.solids[0],components=local.decompose();
+    try{if(components.length!==1)throw new DefinitionError('立弯铜排的直段与圆弧未形成连续实体');}
+    finally{components.forEach(component=>component.delete());}
+    const localMesh=solidToMesh(local);
+    installed=local.translate(origin);
+    // 切线边线与网格都在同一个局部坐标系，安装平移在显示和物理检查边界统一应用。
+    return {...result,solids:[installed],parameters:[],solidSources:[{path:'original-vertical-copper-body',bodyIndex:0,
+      componentChain:[],localMesh,transform:[1,0,0,0,0,1,0,0,0,0,1,0,...origin,1],
+      shapeInputSignature:JSON.stringify(object.originalCopper)}],derivedGeometry:{...result.derivedGeometry,
+      kind:'original-mixed-copper',source:'VerticalBendPreviewBody section placement / continuous rectangular-section sweep',
+      drawingDevelopedLengthMm:originalCopperDevelopedLength(object.originalCopper),drawingReferenceConvention:'original-vertical-section-centre'}};
+  }catch(error){installed?.delete();throw error;}
+  finally{result.solids.forEach(solid=>solid.delete());}
+}
+
 export function evaluateCopperObject(kernel,object,settings={}){
+  if(object.kind==='original-copper'&&object.originalCopper.isVerticalBend&&!object.originalCopper.isMilledBar){
+    validateOriginalCopperObject(object);return evaluateOriginalVerticalCopper(kernel,object,settings);
+  }
   if(object.kind==='original-copper'){
     validateOriginalCopperObject(object);const started=performance.now(),solids=[],solidSources=[];
     try{
@@ -207,6 +247,9 @@ export function exportCopperDesign(object){
 
 export function originalCopperSectionFrames(setting){
   if(setting?.version!==originalCopperVersion||typeof setting.isCenter!=='boolean')throw new DefinitionError('原混合工艺铜排定义无效');
+  if(setting.isVerticalBend&&!setting.isMilledBar)return planOriginalVerticalCopper(setting).segments.map(segment=>({
+    center:scale(add(segment.start,segment.end),.5),direction:segment.direction,width:segment.width,
+    thickness:segment.thickness,length:segment.lengthMm}));
   positive(setting.busBarWidth,'原铜排排宽');positive(setting.busBarThickness,'原铜排板厚');
   if(!Array.isArray(setting.pointList)||setting.pointList.length<2||setting.pointList.length>512)throw new DefinitionError('原铜排路径点无效');
   const points=setting.pointList.map(point=>vector(point,'原铜排路径点')),widthSource=vector(setting.widthVector,'原排宽方向'),start=vector(setting.startBusbarVector,'原板厚方向');

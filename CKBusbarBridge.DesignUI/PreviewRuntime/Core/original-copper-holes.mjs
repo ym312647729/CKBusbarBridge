@@ -1,6 +1,6 @@
 import {DefinitionError} from './expressions.mjs';
 import {originalCopperSectionFrames} from './original-copper.mjs';
-import {solidToMesh} from './geometry.mjs';
+import {solidToMesh,inverseRigidMatrix} from './geometry.mjs';
 
 const add=(a,b)=>a.map((v,i)=>v+b[i]),sub=(a,b)=>a.map((v,i)=>v-b[i]),scale=(a,s)=>a.map(v=>v*s),
   dot=(a,b)=>a.reduce((sum,v,i)=>sum+v*b[i],0),length=a=>Math.hypot(...a),unit=a=>scale(a,1/length(a)),
@@ -67,8 +67,14 @@ export function cutCopperPreviewHoles(kernel,result,object,settings){
     cutter=kernel.Manifold.union(cutters);
     for(let index=0;index<result.solids.length;index++){const solid=result.solids[index],cut=solid.subtract(cutter);result.solids[index]=cut;solid.delete();}
     // Cached local meshes must include the cut, rather than bypass it with the uncut source mesh.
-    result.solidSources=result.solids.map((solid,index)=>({path:object.templatePath,bodyIndex:index,componentChain:[],localMesh:solidToMesh(solid),
-      shapeInputSignature:JSON.stringify([object.originalCopper,holes,index])}));
+    result.solidSources=result.solids.map((solid,index)=>{
+      const source=result.solidSources?.[index];
+      if(!source?.transform)return {path:object.templatePath,bodyIndex:index,componentChain:[],localMesh:solidToMesh(solid),
+        shapeInputSignature:JSON.stringify([object.originalCopper,holes,index])};
+      const local=solid.transform(inverseRigidMatrix(source.transform));
+      try{return {...source,localMesh:solidToMesh(local),shapeInputSignature:JSON.stringify([object.originalCopper,holes,index])};}
+      finally{local.delete();}
+    });
     result.derivedGeometry={...result.derivedGeometry,holes:holes.length};return result;
   }finally{cutter?.delete();cutters.forEach(part=>part.delete());}
 }

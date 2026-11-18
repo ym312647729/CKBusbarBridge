@@ -1,7 +1,7 @@
 {
   "schema": "dq-preview-runtime-manifest/1",
   "calculatorVersion": "dq-sw-mesh/1",
-  "packageSha256": "ed671d3b890ed8618f17f7b7a79aaad17f57a4f861dce311f4117a9b615ef252",
+  "packageSha256": "73720ac5811ef11a7c3edc3879a4df706d29d52ec10d9dc68dd1864146204c1d",
   "reference": {
     "project": "CKBusbarBridgeVirtualDesigner",
     "commit": "511d64b1248e1c26bf27430e9016fecdc5e9ce5f",
@@ -285,11 +285,11 @@
     },
     {
       "path": "Core/original-copper-holes.mjs",
-      "sha256": "89a6a2a1a6e26f2a85bd7d7f09d2c1ab11d77684e9d83543f96ccdddb8d3936e"
+      "sha256": "f16ad68abd54c32452de89fce4de8c8cd9c9ad83eca29d878cb9865f47ddf8f3"
     },
     {
       "path": "Core/original-copper.mjs",
-      "sha256": "0e26bdbeadd57a8e03251222a5f32d92dccbcd8c0302577c46fa5b6ed3da1fe2"
+      "sha256": "806b59e58b77c7fb53f6c74c30a83c7cb3fbd8a3dae1f32742c8f827c7608596"
     },
     {
       "path": "Core/original-design-upstream.mjs",
