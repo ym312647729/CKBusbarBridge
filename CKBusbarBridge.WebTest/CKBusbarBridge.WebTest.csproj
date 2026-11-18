@@ -11,6 +11,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="RD.UI.Wpf"><HintPath>..\packages\RD.UI.Wpf.1.7.4\lib\net462\RD.UI.Wpf.dll</HintPath></Reference>
     <Reference Include="GeometRi"><HintPath>..\packages\GeometRi.1.4.0.5\lib\net20\GeometRi.dll</HintPath></Reference>
     <ProjectReference Include="..\CKBusbarBridge.DesignUI\CKBusbarBridge.DesignUI.csproj" />
     <ProjectReference Include="..\Worker\BridgeRouting.Worker\BridgeRouting.Worker.csproj" ReferenceOutputAssembly="false" />

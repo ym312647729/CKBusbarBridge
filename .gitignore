@@ -7,3 +7,7 @@ packages/
 *.suo
 *.log
 *.pfx
+
+# 本机导入的历史参数和验证报告不随代码分发。
+/tools/verification/data/
+/tools/verification/results/
