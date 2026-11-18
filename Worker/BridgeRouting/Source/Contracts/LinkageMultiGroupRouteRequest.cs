@@ -1000,7 +1000,7 @@ namespace RouteLinkBar.Algorithm.Contracts
         /// <summary>请求允许算法使用的最大工作并行度；最终还会扣除调度发布保留线程。</summary>
         public int MaximumDegreeOfParallelism { get; set; } = Math.Max(
             1,
-            System.Environment.ProcessorCount - 1);
+            System.Environment.ProcessorCount - 3);
 
         /// <summary>连续坐标逼近和局部修复允许停止细分的最小步长，单位毫米。</summary>
         public double MinimumAdaptiveRepairStep { get; set; } = 0.5d;

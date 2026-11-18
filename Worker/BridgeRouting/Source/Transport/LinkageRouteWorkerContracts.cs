@@ -179,7 +179,7 @@ namespace RouteLinkBar.Algorithm.Transport
         public int BeamWidth { get; set; } = 24;
         public int MaximumDegreeOfParallelism { get; set; } = Math.Max(
             1,
-            System.Environment.ProcessorCount - 1);
+            System.Environment.ProcessorCount - 3);
         public double MinimumAdaptiveRepairStep { get; set; } = 0.5d;
         public int FastSearchStageLimitMilliseconds { get; set; } = 3000;
         public int ExtendedFastSearchStageLimitMilliseconds { get; set; } = 5000;

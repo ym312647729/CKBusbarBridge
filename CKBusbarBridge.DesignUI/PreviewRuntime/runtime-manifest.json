@@ -1,7 +1,7 @@
 {
   "schema": "dq-preview-runtime-manifest/1",
   "calculatorVersion": "dq-sw-mesh/1",
-  "packageSha256": "4626ed44ef6597ae788827b3cdc79ad803b54e5d2e8bdf7738b0d8bd0121cc41",
+  "packageSha256": "dfebd09965cc30ef464677578568eb03353469dfa7e3882d5127e316dea8c240",
   "reference": {
     "project": "CKBusbarBridgeVirtualDesigner",
     "commit": "511d64b1248e1c26bf27430e9016fecdc5e9ce5f",
@@ -1555,7 +1555,7 @@
     },
     {
       "path": "Worker/BridgeRouting/Source/Contracts/LinkageMultiGroupRouteRequest.cs",
-      "sha256": "565772fd467fb20b2a1e53c3988bf4d9d45c434d4318d40cc1aed77e4f857155"
+      "sha256": "263fe9d37e86b9c65fb116cf91170858f23799a86d460e5d67fa86dbf6be9a9a"
     },
     {
       "path": "Worker/BridgeRouting/Source/Contracts/LinkageRouteResults.cs",
@@ -1635,7 +1635,7 @@
     },
     {
       "path": "Worker/BridgeRouting/Source/Routing/Algorithms/LinkageMultiGroupRouteEngine.cs",
-      "sha256": "aa9838366c0f44a2933f001f13799e6fc7dcd0ac8adb9d37996b87c9534df6aa"
+      "sha256": "3afa08d19b2de14b0c5985200f8fe6f692b29be5c750878eade6fdeb1898382c"
     },
     {
       "path": "Worker/BridgeRouting/Source/Routing/Algorithms/LinkageMultiGroupRouteEngine.ObstacleAwareGrid.cs",
@@ -1887,7 +1887,7 @@
     },
     {
       "path": "Worker/BridgeRouting/Source/Transport/LinkageRouteWorkerContracts.cs",
-      "sha256": "1cc41ffeebdd61dc62a185c469ed9e21e86c0c95482428ef4c5fdd86939fdbd9"
+      "sha256": "306cff58a857a6e0536b1418c0a217beb517141a7adab13773adb6f72cf1b175"
     },
     {
       "path": "Worker/BridgeRouting/Source/Transport/LinkageRouteWorkerMessageCodec.cs",

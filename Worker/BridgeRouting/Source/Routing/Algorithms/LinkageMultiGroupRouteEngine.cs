@@ -4649,8 +4649,8 @@ namespace RouteLinkBar.Algorithm.Routing.Algorithms
                     Math.Max(
                         1,
                         System.Environment.ProcessorCount -
-                            routeRequest.SearchOptions
-                                .SchedulingAndPublishingWorkerReserve),
+                            Math.Max(3, routeRequest.SearchOptions
+                                .SchedulingAndPublishingWorkerReserve)),
                     routeRequest.SearchOptions.MaximumDegreeOfParallelism));
         }
 
