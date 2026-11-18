@@ -173,12 +173,13 @@ namespace CKBusbarBridge.views
             { FaceToWallPreviewTrace.Error("面对墙方案选择失败", ex); _viewModel.Message = "方案选择失败，当前草稿保留：" + ex.Message; }
         }
         /// <summary>只读反读上游，不初始化旧VM、不运行路径算法或生成模型。</summary>
-        public bool ReloadFromActiveModel()
+        public bool ReloadFromActiveModel() => ReloadFromActiveModel(false);
+        private bool ReloadFromActiveModel(bool replan)
         {
             if (_closed || _readingUpstream) return false;
             if (_host is IBridgeParameterDraftHost draftHost && draftHost.HasParameterDraft)
             {
-                ReloadParameterDraft(draftHost);
+                ReloadParameterDraft(draftHost, replan);
                 return false;
             }
             _readingUpstream = true;
@@ -192,14 +193,14 @@ namespace CKBusbarBridge.views
                 HideReadLoadingIndicator();
             }
         }
-        private async void ReloadParameterDraft(IBridgeParameterDraftHost draftHost)
+        private async void ReloadParameterDraft(IBridgeParameterDraftHost draftHost, bool replan)
         {
             _readingUpstream = true;
             _viewModel.NativePreviewBusy = true;
-            _viewModel.Message = "正在读取参数草稿…";
+            _viewModel.Message = replan ? "正在按当前输入重新设计母排和基架…" : "正在读取参数草稿…";
             try
             {
-                await draftHost.EnsureParameterDraftReady(_viewModel.Editor.CurrentSample != null);
+                await draftHost.EnsureParameterDraftReady(replan);
                 if (!_closed)
                 {
                     if (_viewModel.Editor.CurrentSample == null) ReloadFromActiveModelCore();
@@ -295,9 +296,9 @@ namespace CKBusbarBridge.views
         private void ReloadUpstream_Click(object sender, RoutedEventArgs e)
         {
             if (_viewModel.HasUnsavedChanges && UiFeedback.Show(this,
-                "重读并规划将替换当前草稿、未提交输入、锁定和未生成的吊架修改。是否继续？", "母线桥设计",
+                "重新规划将按当前输入重新设计母排和基架，并清除旧人工位置、长度、锁定和未生成的吊架方案。是否继续？", "母线桥设计",
                 MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No) != MessageBoxResult.Yes) return;
-            ReloadFromActiveModel();
+            ReloadFromActiveModel(true);
         }
         internal void CloseForAddinShutdown() { _forceClose = true; Close(); }
         internal bool LeaveDraftForCabinet()

@@ -1,7 +1,7 @@
 {
   "schema": "dq-preview-runtime-manifest/1",
   "calculatorVersion": "dq-sw-mesh/1",
-  "packageSha256": "173e022f84fcb9727fb7e462c83cb667ceee90d6f6b30430be0a2475da0181a0",
+  "packageSha256": "745932007e583c812b311a1b4c3346bbb57fad76ba11f593d8d09dc4c46db213",
   "reference": {
     "project": "CKBusbarBridgeVirtualDesigner",
     "commit": "511d64b1248e1c26bf27430e9016fecdc5e9ce5f",
@@ -1751,7 +1751,7 @@
     },
     {
       "path": "CKBusbarBridge.DesignUI/BusbarBridgeDesignWindowVM.Generation.cs",
-      "sha256": "9839d0099c738a788faaee2ace27073a4e9000aaf2a400b62f5b1614468f3924"
+      "sha256": "2e8f68440275c7b781772282011a9d1feefd2d8a4bee05728fa6ebc8af2ae5a3"
     },
     {
       "path": "CKBusbarBridge.DesignUI/BusbarBridgeDesignWindowVM.Hangers.cs",
@@ -1919,7 +1919,7 @@
     },
     {
       "path": "CKBusbarBridge.DesignUI/Preview/BusbarBridgeDraftEditor.ParameterDraft.cs",
-      "sha256": "fed033652c3fc548524be69e6d2bf4df27e64158d9a7b436a76f43e35e3208a3"
+      "sha256": "aa73cb1002ca2447645bd02f52171d67e70de7f0c772027f1927e65d58bfb559"
     },
     {
       "path": "CKBusbarBridge.DesignUI/Preview/CabinetDraftSavePath.cs",
@@ -1971,7 +1971,7 @@
     },
     {
       "path": "CKBusbarBridge/Drivers/BridgeParameterDraftDocuments.cs",
-      "sha256": "e062fe4e4804eacf108b53346cf88f224a10dd68830ad60273cc61ef6c7460e9"
+      "sha256": "f4631f1ff500e2a4b380fe1dfafc812ef5164aec106eeb29bab7fbde1c350b9b"
     },
     {
       "path": "CKBusbarBridge/Drivers/BridgeParameterDraftGeometry.cs",
@@ -2227,7 +2227,7 @@
     },
     {
       "path": "CKBusbarBridge/Services/BridgeCabinetPlanBuilder.cs",
-      "sha256": "a92996090489da984daf22e1e66b51bbc66d6e0f2ba88b62b229f78efea72b62"
+      "sha256": "6864075b6f7c018e078169cfca99d7be8bd3e30433c981c0d86b1610af0d92f7"
     },
     {
       "path": "CKBusbarBridge/Services/BridgeCopperRoundedProjection.cs",
@@ -2359,7 +2359,7 @@
     },
     {
       "path": "CKBusbarBridge/views/FrameDriverWindow.xaml.cs",
-      "sha256": "d63ac2731fd356690ea7e0839b31589fdc6736efb2f456ff80fef762fa0b4898"
+      "sha256": "84c919878ae2f05759f3982d0dcbc5bfe875fefb28ddbea4f8eba5bb6d5196d5"
     },
     {
       "path": "CKBusbarBridge/WorkerInterop/LinkageRouteWorkerContracts.cs",

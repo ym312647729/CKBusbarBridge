@@ -42,7 +42,8 @@ namespace CKBusbarBridge.Prototype
                     return result.AsReadOnly();
                 }
                 if (Editor.CurrentSample?.SupportsFormalGeneration != true) condition("当前方案尚不支持正式模型生成。");
-                else if (GenerationBlocked) condition("正式生成暂不可用，请先处理现场并重读模型。" + Message);
+                else if (GenerationBlocked) condition((IsParameterDraftMode ? "当前参数方案未通过预览校验，可点击“重新规划”重新设计母排和基架。" :
+                    "正式生成暂不可用，请先处理现场并重读模型。") + Message);
                 var baseline = Editor.CurrentSample?.ReadbackBaseline;
                 if (baseline?.RequiresBridgeRepair == true && !baseline.RepairPlanned)
                 {

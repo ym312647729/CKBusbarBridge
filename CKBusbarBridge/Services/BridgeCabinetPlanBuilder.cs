@@ -61,87 +61,13 @@ namespace CKBusbarBridge.Prototype
 
         internal BridgeDesignSample CreateDraftRecommendation(BridgeUpstreamSnapshot upstream, BridgeDesignSample previous)
         {
-            var notices = new List<string>();
             var fresh = CreateTarget(upstream, previous, BridgeCabinetUpdateKind.WholeBridge, 0,
-                message => notices.Add(message), preservePreviousLayout: false);
-            var transition = new BridgeSupportTransition(); var effective = previous;
-            var target = fresh;
-            var savedLengths = previous.SavedFrameLengthEditing ?? new BridgeFrameLengthEditing(previous.FrameLengthBaseline,
-                Array.Empty<string>(), Array.Empty<string>(), Array.Empty<string>());
-            if (savedLengths != null)
-            {
-                target = target.WithFrameLengthEditing(new BridgeFrameLengthEditing(target.FrameLengthBaseline,
-                    transition.RemapIds(previous, target, savedLengths.IndependentFrames),
-                    transition.RemapIds(previous, target, savedLengths.FixedEndFrames),
-                    transition.RemapIds(previous, target, savedLengths.LengthAdjustedFrames),
-                    target.SavedFrameLengthEditing?.OffsetCopperMinimumLengthMm ?? savedLengths.OffsetCopperMinimumLengthMm).RetainFor(target.Objects));
-                foreach (var id in savedLengths.IndependentFrames.Concat(savedLengths.LengthAdjustedFrames)
-                    .Concat(previous.Objects.Where(node => node.Kind == DesignObjectKind.Frame && previous.SavedLockedObjectIds.Contains(node.Id)).Select(node => node.Id)).Distinct())
-                {
-                    var original = previous.Objects.Single(frame => frame.Id == id);
-                    var mapped = transition.RemapIds(previous, target, new[] { id }).SingleOrDefault();
-                    var next = target.Objects.SingleOrDefault(frame => frame.Id == mapped);
-                    if (next == null) { notices.Add("放弃已无对应基架的长度修改：" + original.Name); continue; }
-                    if (savedLengths.IndependentFrames.Contains(id))
-                        target = target.WithGeometry(target.Objects.Select(frame => frame.Id == mapped ? frame.WithSourceName(original.SourceName) : frame), target.Routes);
-                    if (Math.Abs((float)next.Length - (float)original.Length) <= 1.0f) continue;
-                    var editing = new BusbarBridgeDraftEditor(); editing.Load(target);
-                    var result = editing.SetText(mapped, DesignField.Length, ((float)original.Length).ToString("R", CultureInfo.InvariantCulture), false);
-                    if (!result.Success) { notices.Add("放弃基架“" + original.Name + "”的旧长度：" + result.Message); continue; }
-                    var candidate = editing.CaptureSavedSample();
-                    try { RequireValidPlanning(candidate, "保留长度修改失败："); target = candidate; }
-                    catch (InvalidOperationException error)
-                    { FaceToWallPreviewTrace.Error("重读推荐无法保留基架长度：" + original.Id, error); notices.Add("放弃基架“" + original.Name + "”的旧长度：" + error.Message); }
-                }
-            }
-            foreach (var removedId in previous.SavedManualJointIds.Where(id => !previous.Objects.Any(node => node.Id == id)))
-            {
-                var editing = new BusbarBridgeDraftEditor(); editing.Load(target);
-                if (editing.Find(removedId) == null) { target = target.WithSavedManualJoints(target.SavedManualJointIds.Concat(new[] { removedId })); continue; }
-                var result = editing.RemoveBreakpoint(removedId);
-                if (result.Success) target = editing.CaptureSavedSample();
-                else notices.Add("放弃断点“" + editing.Find(removedId).Name + "”的人工删除：" + result.Message);
-            }
-            var restoredGroups = new HashSet<string>(StringComparer.Ordinal);
-            foreach (var point in previous.Objects.Where(node => node.IsJointGroup &&
-                (previous.SavedManualJointIds.Contains(node.Id) || previous.SavedLockedObjectIds.Contains(node.Id))))
-            {
-                var next = target.Objects.FirstOrDefault(node => node.Id == point.Id);
-                if (next == null)
-                {
-                    if (!restoredGroups.Add(point.JointGroupId)) continue;
-                    var addition = new BusbarBridgeDraftEditor(); addition.Load(target);
-                    var additionResult = addition.RestoreAddedDraftJoint(previous.Objects.Where(node => node.IsJointGroup && node.JointGroupId == point.JointGroupId).ToArray());
-                    if (additionResult.Success) target = addition.CaptureSavedSample();
-                    else notices.Add("放弃断点“" + point.Name + "”的人工添加或位置：" + additionResult.Message);
-                    continue;
-                }
-                var editing = new BusbarBridgeDraftEditor(); editing.Load(target);
-                var result = editing.SetValues(next.Id, new Dictionary<DesignField, double> {
-                    [DesignField.X] = (float)point.X }, false);
-                if (!result.Success) { notices.Add("放弃断点“" + point.Name + "”的人工位置：" + result.Message); continue; }
-                target = editing.CaptureSavedSample().WithSavedManualJoints(target.SavedManualJointIds.Concat(new[] { next.Id }));
-            }
-            var editedGeometry = target;
-            while (true)
-            {
-                target = transition.Preserve(effective, editedGeometry, explicitEditsOnly: true);
-                var conflicts = transition.Inspect(effective, target);
-                if (conflicts.Count == 0) break;
-                var released = new HashSet<string>(conflicts.SelectMany(conflict => conflict.MemberIds), StringComparer.Ordinal);
-                notices.AddRange(conflicts.Select(conflict => "放弃不适用于当前参数的修改：" + conflict.Description));
-                var remainingLocks = effective.SavedLockedObjectIds.Where(id => !released.Contains(id)).ToArray();
-                var remainingManual = effective.SavedManualInsulatorIds.Where(id => !released.Contains(id)).ToArray();
-                if (remainingLocks.Length == effective.SavedLockedObjectIds.Count && remainingManual.Length == effective.SavedManualInsulatorIds.Count)
-                    throw new InvalidOperationException("重新推荐未能解除已识别冲突：" + string.Join("；", conflicts.Select(conflict => conflict.Description)));
-                effective = effective.WithSavedLocks(remainingLocks).WithSavedManualInsulators(remainingManual);
-            }
-            target = BridgeFrameSourceIsolation.Apply(target);
-            RequireValidPlanning(target, "当前参数的推荐方案无效：");
-            notices.Add("已按当前参数重新推荐；旧参数下的撤销和重做记录已清空。");
-            return new BridgeGenerationRecipeCodec().PreserveSupportReplanning(target).WithReadbackBaselineWarning(string.Join("\n", notices.Distinct()));
+                null, preservePreviousLayout: false);
+            fresh = BridgeFrameSourceIsolation.Apply(fresh);
+            RequireValidPlanning(fresh, "当前参数的全新方案未通过校验：");
+            return new BridgeGenerationRecipeCodec().PreserveSupportReplanning(fresh)
+                .WithReadbackBaselineWarning("已按当前输入重新设计母排、基架及绝缘子；旧人工位置、长度、锁定和撤销记录已清空。");
         }
-
         private BridgeDesignSample CreateCore(BridgeUpstreamSnapshot before, BridgeUpstreamSnapshot after,
             BridgeDesignSample previous, Action<string> progress)
         {

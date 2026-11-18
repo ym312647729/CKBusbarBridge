@@ -233,6 +233,7 @@ namespace CKBusbarBridge.Drivers
         private bool _parametersDirty;
         private string _lastInspectionWarning;
         private bool _recommendRequested;
+        private bool _offerCabinetReplan;
         private bool _viewFitted;
         private readonly List<TaskCompletionSource<bool>> _readyWaiters = new List<TaskCompletionSource<bool>>();
         private BusbarBridgeDesignWindowVM _editor;
@@ -501,6 +502,7 @@ namespace CKBusbarBridge.Drivers
             _parameterBinding = new BridgeParameterSnapshotBinding(parameters); _parameterBinding.Changed += ParameterChanged;
             var revision = Session.Revision; Session.UpdateParameters(BridgeParameterDraftDocuments.Capture(parameters));
             _parametersDirty |= Session.Revision != revision;
+            _offerCabinetReplan |= Session.Revision != revision;
         }
         internal void UpdateContext(string orientation, string drawingMetadata)
         {
@@ -515,6 +517,7 @@ namespace CKBusbarBridge.Drivers
             if (Session.Revision == revision) return;
             _editor?.CancelWallPlanningForParameterChange();
             _parametersDirty = true;
+            _offerCabinetReplan = true;
             _timer.Stop(); _timer.Start();
         }
         private void SessionChanged(object sender, EventArgs args)
@@ -527,13 +530,30 @@ namespace CKBusbarBridge.Drivers
         internal Task EnsureReady(bool recommend = false)
         {
             if (_previewClosed) return Task.FromCanceled(new CancellationToken(true));
-            if (recommend) { _recommendRequested = true; _parametersDirty = true; Session.Invalidate(); }
+            if (recommend) { _recommendRequested = true; _offerCabinetReplan = false; _lastInspectionWarning = null; _parametersDirty = true; Session.Invalidate(); }
             if (Session.IsReady) return Task.CompletedTask;
             if (_disposed || Session.RecoveryBlocked) return Task.FromException(new InvalidOperationException(Session.Failure ?? "参数草稿已关闭。"));
             var completion = new TaskCompletionSource<bool>();
             _readyWaiters.Add(completion);
             if (!_computing) { _timer.Stop(); Session.Invalidate(); Recompute(); }
-            return completion.Task;
+            return recommend ? ValidateReplannedPreview(completion.Task) : completion.Task;
+        }
+        private async Task ValidateReplannedPreview(Task ready)
+        {
+            await ready;
+            if (!string.IsNullOrWhiteSpace(_lastInspectionWarning))
+                throw new InvalidOperationException("已按当前输入重新设计母排和基架，但完整校验仍未通过：" + _lastInspectionWarning);
+        }
+        private bool TryRequestCabinetReplan(string reason, Guid sessionId, long revision)
+        {
+            if (!_offerCabinetReplan || _editor == null || Session.Scenario == "face-to-wall" ||
+                _disposed || Session.Id != sessionId || Session.Revision != revision) return false;
+            _offerCabinetReplan = false;
+            if (!_editor.ConfirmCabinetParameterReplan(reason)) return false;
+            if (_disposed || Session.Id != sessionId || Session.Revision != revision) return false;
+            _recommendRequested = true; _parametersDirty = true; _lastInspectionWarning = null;
+            Session.Invalidate(); _queued = true;
+            return true;
         }
         private void TimerTick(object sender, EventArgs args) { _timer.Stop(); Recompute(); }
         private int ConfigurationChanged()
@@ -594,16 +614,24 @@ namespace CKBusbarBridge.Drivers
                             finally { _installing = false; }
                             _recipe = null; _bridgeGeometry = null; _parametersDirty = false; _recommendRequested = false;
                         }
-                        if (_parametersDirty && _editor?.Editor.CurrentSample != null && _previousUpstream != null)
+                        if (_parametersDirty && _editor != null && upstream.FaceToWall == null &&
+                            (_recommendRequested || _editor.Editor.CurrentSample != null && _previousUpstream != null))
                         {
                             if (_editor.HasPendingInput) { _timer.Start(); return false; }
                             cabinetOnlyFrame = frame;
                             var recommendation = _recommendRequested;
-                            UpdateEditor(upstream, logicalUpstream); _parametersDirty = false; _recommendRequested = false;
+                            try { UpdateEditor(upstream, logicalUpstream); }
+                            catch (InvalidOperationException error)
+                            {
+                                if (!recommendation && TryRequestCabinetReplan(error.Message, id, revision)) return true;
+                                throw;
+                            }
+                            _parametersDirty = false; _recommendRequested = false;
                             _bridgeGeometry = ExportBridgeGeometry(_editor.Editor, upstream);
                             var updatedRecipe = new BridgeGenerationRecipeCodec().Encode(_editor.Editor);
                             _recipe = updatedRecipe;
-                            _logicalUpstream = (JObject)response["upstream"]; _previousUpstream = upstream; Session.Invalidate(); _queued = true; return _queued && !_disposed;
+                            _logicalUpstream = (JObject)response["upstream"]; _previousUpstream = upstream;
+                            Session.UpdateDraft(_editor.Editor.Revision, _recipe); _queued = true; return _queued && !_disposed;
                         }
                         if (_parametersDirty && _editor == null && !string.IsNullOrWhiteSpace(_recipe))
                         {
@@ -633,7 +661,9 @@ namespace CKBusbarBridge.Drivers
                             if (!string.IsNullOrEmpty(inspection) || _editor.Message == _lastInspectionWarning)
                                 _editor.Message = inspection ?? string.Empty;
                             _lastInspectionWarning = inspection;
+                            if (!string.IsNullOrWhiteSpace(inspection) && TryRequestCabinetReplan(inspection, id, revision)) return true;
                         }
+                        _offerCabinetReplan = false;
                         return _queued && !_disposed;
                     }).Task.ConfigureAwait(false);
                     if (!repeat) break;

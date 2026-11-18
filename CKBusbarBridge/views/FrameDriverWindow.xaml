@@ -593,8 +593,8 @@
    <WrapPanel DockPanel.Dock="Bottom" Margin="0,2,0,0">
     <rd:RDButton x:Name="DraftPreviousButton" Content="上一步" Visibility="Collapsed" Click="DraftPrevious_Click"
             IsEnabled="{Binding IsEditingEnabled}"/>
-    <rd:RDButton Content="重读并规划" IsEnabled="{Binding HasUpstreamReader}" Click="ReloadUpstream_Click"
-            ToolTipService.ShowOnDisabled="True" ToolTip="以当前SolidWorks总装重新读取并规划，替换当前草稿、锁定及未生成的吊架修改"/>
+    <rd:RDButton Content="重新规划" IsEnabled="{Binding HasUpstreamReader}" Click="ReloadUpstream_Click"
+            ToolTipService.ShowOnDisabled="True" ToolTip="按当前输入重新设计母排、基架及绝缘子，清除旧人工调整、锁定和吊架方案，并重新完整校验"/>
     <rd:RDButton Content="撤销" Command="{Binding UndoCommand}" ToolTipService.ShowOnDisabled="True"
             ToolTip="撤销上一步草稿修改；没有可撤销操作或输入尚未提交时不可用"/>
     <rd:RDButton Content="重做" Command="{Binding RedoCommand}" ToolTipService.ShowOnDisabled="True"

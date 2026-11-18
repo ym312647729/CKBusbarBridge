@@ -68,12 +68,15 @@ namespace CKBusbarBridge.Prototype
             if (HasPendingInput) throw new InvalidOperationException("尚有未确认输入，参数派生结果等待提交后应用。");
             var previousUpstream = Upstream;
             Upstream = upstream;
-            try { if (recommend) Editor.Load(planner(Editor.CaptureSavedSample())); else Editor.RebaseParameterDraft(planner); }
+            try { if (recommend) Editor.Load(planner(Editor.CurrentSample == null ? null : Editor.CaptureSavedSample())); else Editor.RebaseParameterDraft(planner); }
             catch { Upstream = previousUpstream; throw; }
             GenerationBlocked = false;
             RaisePropertyChanged(nameof(Upstream)); RaisePropertyChanged(nameof(SourceSummary)); RaisePropertyChanged(nameof(Status));
             RaisePropertyChanged(nameof(SceneAndSpanSummary)); RaisePropertyChanged(nameof(DisplayOverlapLengthMm));
             if (recommend) Message = Editor.CurrentSample.ReadbackBaselineWarning ?? "已按当前参数草稿重新推荐方案。";
         }
+        internal bool ConfirmCabinetParameterReplan(string reason) => _confirm(
+            "柜体参数已修改，当前母排或基架未通过联动校验：\n" + reason +
+            "\n\n是否按当前输入重新规划母排和基架？\n确认后重新设计母排、基架及绝缘子，并清除旧人工位置、长度、锁定和吊架方案；仍按当前绝缘净距完整检查。");
     }
 }
