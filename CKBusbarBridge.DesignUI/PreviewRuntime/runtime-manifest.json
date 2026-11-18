@@ -1,7 +1,7 @@
 {
   "schema": "dq-preview-runtime-manifest/1",
   "calculatorVersion": "dq-sw-mesh/1",
-  "packageSha256": "f0a8ae6082a632aa460927c01a231e4282d76a222da3fce7844c6a1a5a58f17a",
+  "packageSha256": "d0b72f89f17f8f5feada8cd9f078110c37daa85fe75f93cb4658b5d4cae41e82",
   "reference": {
     "project": "CKBusbarBridgeVirtualDesigner",
     "commit": "511d64b1248e1c26bf27430e9016fecdc5e9ce5f",
@@ -69,7 +69,7 @@
     },
     {
       "path": "Core/business-dimensions.mjs",
-      "sha256": "7c2e2c92d0766586c7796313a87d4d47890236e56c2ecdca8e52cf9ad8541203"
+      "sha256": "903ee2ceaef0bb9d6e48d917b503cc28370d0f8e42656143274e017968fa9021"
     },
     {
       "path": "Core/cabinet-base-planning.mjs",
@@ -97,7 +97,7 @@
     },
     {
       "path": "Core/cabinet-openings.mjs",
-      "sha256": "0071970901bd1f5f63dbce7b707ea7537e5c30df161fed8525c1d2e7058de56c"
+      "sha256": "392a9945bceb1ab890e936857d78e024b41d47dd9e7c1f0dfd1fed4d122a2bde"
     },
     {
       "path": "Core/cabinet-render-roles.mjs",
@@ -201,7 +201,7 @@
     },
     {
       "path": "Core/fixed-structure-templates.mjs",
-      "sha256": "81ea0418e330c6f0d6fc8ebaa10d4802f6d22e1a87cbc3b26f045ffd618918a5"
+      "sha256": "bcbc6fde7de8ea8bc255edd747e39e8ecaa679ac647a8172d0e115dce5c7a1b5"
     },
     {
       "path": "Core/frame-binding.mjs",
@@ -217,7 +217,7 @@
     },
     {
       "path": "Core/geometry.mjs",
-      "sha256": "d08e10a7be509c394f75c11042d3ea7c9ca2804f971c860f2a4586f181c6fc42"
+      "sha256": "10e6c299ef55aa2efcf5ab3106c66b6a90af00ae595e704f0efbfa872b02f8b1"
     },
     {
       "path": "Core/hanger-clearance.mjs",
@@ -453,7 +453,7 @@
     },
     {
       "path": "Core/wall-bracket-preview.mjs",
-      "sha256": "6be493ba23bab4c565cca98e5bb62b065c4fe2a4b99a317c4b26fa2490541fec"
+      "sha256": "2c14b690707593717fbb37b83ad3dab6b43b183c223a433826ca30bb0013e980"
     },
     {
       "path": "Core/wall-bushing-design.mjs",
@@ -710,6 +710,10 @@
       "sha256": "71fec40c25a7bba4a89d43b5d91eef408c86c651699a2eb1b0638d87df5b5dab"
     },
     {
+      "path": "CKBusbarBridge.DesignUI/FrameDriverWindow.Unified.cs",
+      "sha256": "a87a4384213e36e40860bc9591a0fdec67b11664c5792882bd06e3df66652d92"
+    },
+    {
       "path": "CKBusbarBridge.DesignUI/Preview/BridgeBusinessDimensionEditor.cs",
       "sha256": "818d50a010a50aa36c7a9bad185f01c058c72f19fd4fa9aed0f3d47c382256c1"
     },
@@ -851,7 +855,7 @@
     },
     {
       "path": "CKBusbarBridge/Drivers/BridgeParameterDraftDocuments.cs",
-      "sha256": "168e38cddb3dbde1674f4a6ac23434bce41d9a2dad39cee4a2394b9d34ae5108"
+      "sha256": "be0112046bcc7aeeff83b6a2d80a313d08070db21ca90ca419714d28dac6f321"
     },
     {
       "path": "CKBusbarBridge/Drivers/BridgeParameterDraftGeometry.cs",
@@ -1239,7 +1243,7 @@
     },
     {
       "path": "CKBusbarBridge/views/FrameDriverWindow.xaml.cs",
-      "sha256": "c3ea2fddf79ee829ce60652295295b773be2dff9657b881126b547195307efda"
+      "sha256": "d63ac2731fd356690ea7e0839b31589fdc6736efb2f456ff80fef762fa0b4898"
     },
     {
       "path": "CKBusbarBridge/WorkerInterop/LinkageRouteWorkerContracts.cs",

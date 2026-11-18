@@ -42,7 +42,14 @@ export function deriveCabinetOpenings(sourceTemplate,configurationName,specifica
     for(const key of dimensions)if(!Number.isFinite(input[key])||input[key]<=0)throw new DefinitionError('柜体开孔尺寸必须是正有限数：'+key);
     const mapping=cabinetOpeningDimensionMap(original,isFront,mode),drive=axisSketchDrive(original,contract.sketchName),values=Object.fromEntries(dimensions.map(key=>[mapping.map[key],input[key]])),solved=drive.solve(values),profile=configuration.features.find(row=>row.name===contract.sketchName);
     const selection=driveCompleteSketchRegions(mapping.profile.sketch,solved.sketch,feature.definition.properties.Contours);
-    feature.definition.properties.Contours=selection.selections;profile.sketch=solved.sketch;profile.suppressed=false;
+    // Installation circles are deliberately omitted. Keep the driven rectangular roof opening.
+    const lines=new Set(solved.sketch.segments.filter(segment=>segment.type===0).map(segment=>segment.id));
+    const regions=selection.selections??solved.sketch.contours.filter(contour=>contour.closed).map(contour=>({id:contour.id,closed:true,contourSegments:contour.segments}));
+    feature.definition.properties.Contours=regions.filter(region=>
+      region.contourSegments?.every(id=>lines.has(id)) ||
+      region.loops?.length&&region.loops.every(loop=>loop.edges.every(edge=>edge.lineParameters&&!edge.circleParameters)));
+    if(!feature.definition.properties.Contours.length)throw new DefinitionError('柜顶矩形通口未保留：'+name);
+    profile.sketch=solved.sketch;profile.suppressed=false;
     for(const owner of configuration.features)for(const dimension of owner.dimensions??[])if(Object.hasOwn(values,canonical(dimension.name)))dimension.value=values[canonical(dimension.name)]/1000;
     for(const relation of profile.sketch.relations)if(relation.dimension&&Object.hasOwn(values,canonical(relation.dimension.name)))relation.dimension.value=values[canonical(relation.dimension.name)]/1000;
     evidence.push({feature:name,enabled:true,sketch:contract.sketchName,values,aliases:mapping.aliases,equationCount:solved.equationCount,variableCount:solved.variableCount,freeConstructionCoordinates:solved.freeConstructionCoordinates,selectionProof:selection.evidence});

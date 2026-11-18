@@ -1,9 +1,10 @@
 import {DefinitionError} from './expressions.mjs';
 import {panelPrism,ventedSidePanel} from './fixed-structure-louvers.mjs';
+import {inverseRigidMatrix,swMatrix,transformPoint} from './geometry.mjs';
 
 // Millimetres in the existing model's local axes. These are preview templates;
 // the assembly and copper planners continue to own all mating datums.
-export const fixedStructureVersion='bridge-structure-b/5';
+export const fixedStructureVersion='bridge-structure-b/6';
 const board=2;
 export const supportBracketHalfDepth=50;
 const range=(box,axis)=>box.max[axis]-box.min[axis];
@@ -19,13 +20,6 @@ function emit(kernel,run){
   const block=(name,min,max,role)=>append(name,makeBlock(kernel,min,max),role);
   try{run(block,append);return {solids,solidSources,parameters:[],parameterMs:0,deferred:[],schematic:[],preview:{triangleCount:solids.reduce((count,solid)=>count+solid.numTri(),0),complexFeatureCount:0},previewDisplayMode:'solid'};}
   catch(error){solids.forEach(solid=>solid.delete());throw error;}
-}
-function plateAt(kernel,solids,min,max){
-  const slab=makeBlock(kernel,min,max),panels=[];
-  try{
-    for(const source of solids){const piece=source.intersect(slab);if(piece.isEmpty())piece.delete();else panels.push(piece);}
-    return panels.splice(0);
-  }finally{slab.delete();panels.forEach(panel=>panel.delete());}
 }
 function roofRelief(kernel,roof,thickness,conductors,clearance){
   if(!conductors?.length)return null;
@@ -48,7 +42,7 @@ function roofRelief(kernel,roof,thickness,conductors,clearance){
 }
 // The old reference feature is used solely as a cutter boundary on the roof
 // plate. The cabinet carcass and the three separate doors are authored here.
-export function cabinetTemplate(kernel,datumSolids,bounds,faceSign,conductors,clearance){
+export function cabinetTemplate(kernel,configuration,bounds,faceSign,conductors,clearance){
   const {min:[x,y,z],max:[X,Y,Z]}=bounds;
   const depth=X-x,height=Y-y,width=Z-z,t=Math.min(board,depth/30,height/30,width/30);
   const front=faceSign>0?X:x,back=faceSign>0?x:X;
@@ -62,13 +56,33 @@ export function cabinetTemplate(kernel,datumSolids,bounds,faceSign,conductors,cl
     block('后封板',[b0,y+t,z+t],[b1,Y-t,Z-t],'cabinet');
     const relief=roofRelief(kernel,bounds,t,conductors,clearance);
     try{
-      for(const panel of plateAt(kernel,datumSolids,[x,Y-t,z],[X,Y,Z])){
-        if(!relief){append('柜顶接口板',panel,'cabinet');continue;}
-        try{
-          const cut=panel.subtract(relief);
-          if(cut.isEmpty())cut.delete();else append('柜顶接口板',cut,'cabinet');
-        }finally{panel.delete();}
-      }
+      let panel=makeBlock(kernel,[x,Y-t,z],[X,Y,Z]);
+      try{
+        // Only rectangular through openings are authored; no legacy fixing circles or bottom holes.
+        for(const feature of configuration.features.filter(row=>row.type==='Cut'&&!row.suppressed&&row.name.includes('顶开孔')))
+          for(const region of feature.definition.properties.Contours){
+              let points;
+              if(region.loops){
+                const loops=region.loops.filter(row=>row.outer);
+                if(loops.length!==1||loops[0].edges.some(edge=>!edge.lineParameters||edge.circleParameters))throw new DefinitionError('柜顶通口不是已核验的矩形');
+                points=loops[0].edges.flatMap(edge=>[edge.start,edge.end]).filter(Boolean).map(point=>point.map(value=>value*1000));
+              }else{
+                const profile=configuration.features.find(row=>feature.parents.includes(row.name)&&row.sketch)?.sketch;
+                if(!profile)throw new DefinitionError('柜顶通口缺少受驱草图');
+                const edges=region.contourSegments.map(id=>profile.segments.find(segment=>segment.id===id));
+                if(edges.some(edge=>!edge||edge.type!==0))throw new DefinitionError('柜顶通口不是直线闭环');
+                const pose=inverseRigidMatrix(swMatrix(profile.modelToSketch));
+                points=edges.flatMap(edge=>[edge.geometry.start,edge.geometry.end]).map(point=>transformPoint(point.map(value=>value*1000),pose));
+              }
+              if(points.length!==8)throw new DefinitionError('柜顶通口不是四边矩形');
+              const min=[Math.min(...points.map(point=>point[0])),Y-t-1,Math.min(...points.map(point=>point[2]))];
+              const max=[Math.max(...points.map(point=>point[0])),Y+1,Math.max(...points.map(point=>point[2]))];
+              const cutter=makeBlock(kernel,min,max);
+              try{const cut=panel.subtract(cutter);panel.delete();panel=cut;}finally{cutter.delete();}
+          }
+        if(relief){const cut=panel.subtract(relief);panel.delete();panel=cut;}
+        if(panel.isEmpty())panel.delete();else{append('柜顶接口板',panel,'cabinet');panel=null;}
+      }finally{panel?.delete();}
     }finally{relief?.delete();}
     const [door0,door1]=doorSpan(1,4),[handle0,handle1]=doorSpan(0,1);
     const levels=[y+rail,y+height*.28,y+height*.65,Y-rail];

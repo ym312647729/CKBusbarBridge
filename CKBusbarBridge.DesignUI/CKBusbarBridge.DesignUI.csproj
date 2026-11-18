@@ -175,6 +175,7 @@
     <Compile Include="..\CKBusbarBridge\models\BridgeBusinessBinding.cs"><Link>models\BridgeBusinessBinding.cs</Link></Compile>
     <Compile Include="BridgeDesignWindowController.cs" />
     <Compile Include="FrameDriverWindow.PreviewLayout.cs" />
+    <Compile Include="FrameDriverWindow.Unified.cs" />
     <Compile Include="BridgeObjectListValueConverter.cs" />
     <Compile Include="BridgeInsulatorObjects.cs" />
     <Compile Include="BridgeSupportTransition.cs" />

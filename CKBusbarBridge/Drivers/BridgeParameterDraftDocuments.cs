@@ -353,10 +353,13 @@ namespace CKBusbarBridge.Drivers
         }
         internal void ResetCabinetScenario(object parameters, string scenario, string orientation, string drawingMetadata)
         {
-            if (_disposed || _detached || _editor != null || Session.Generating || Session.RecoveryBlocked)
+            if (_disposed || _detached || Session.Generating || Session.RecoveryBlocked || _editor?.HasPendingInput == true)
                 throw new InvalidOperationException("当前草稿无法切换场景，请先结束母线桥设计或生成。");
             var snapshot = BridgeParameterDraftDocuments.Capture(parameters);
             _timer.Stop();
+            _installing = true;
+            try { _editor?.Editor.Load(null); }
+            finally { _installing = false; }
             _recipe = null; _bridgeGeometry = null; _logicalUpstream = null; _previousUpstream = null; _selectionState = null;
             _recommendRequested = false; _parametersDirty = true; _viewFitted = false; _lastFitBounds = null;
             _cabinetDimensions = Array.Empty<BridgePreviewDimension>();

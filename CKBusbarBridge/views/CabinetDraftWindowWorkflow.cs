@@ -34,11 +34,24 @@ namespace CKBusbarBridge.views
         private bool _closing, _saving, _syncingSelection;
         private Action _discardOpeningSettings;
         private BridgeParameterDraftDocument _cabinetDesignDraft;
+        private readonly bool _embedded;
+        internal Action ScenarioChanged { get; set; }
+        internal void PrepareIntegratedSave()
+        {
+            Keyboard.ClearFocus();
+            if (HasInvalidInput(_window)) throw new InvalidOperationException("请先修正窗口中标出的输入错误。");
+            if (!Directory.Exists(_model.ProjectPath)) throw new InvalidOperationException("请先设置有效的项目根目录。");
+            if (!_model.DrawingNumberSession.HasCommittedMetadata)
+                DrawingNumberDialogLauncher.Show(_window, _model.DrawingNumberSession);
+            if (!_model.DrawingNumberSession.HasCommittedMetadata) throw new InvalidOperationException("请先补齐项目图号信息。");
+            _model.SubmitCabinetInputs();
+        }
 
         internal CabinetDraftWindowWorkflow(Window window, DesignScenarioId scenario, FaceToWallCabinetOrientation? orientation,
             Func<DesignScenarioId, UserControl> createPage, Action<BridgeParameterDraftDocument> validateSwitch,
-            Action<BridgeParameterDraftDocument> next)
+            Action<BridgeParameterDraftDocument> next, ContentControl embeddedHost = null)
         {
+            _embedded = embeddedHost != null;
             _window = window; _scenario = scenario; _createPage = createPage; _validateSwitch = validateSwitch; _next = next;
             _wallOrientation = orientation ?? FaceToWallCabinetOrientation.CabinetFrontToWall;
             var layout = new DockPanel();
@@ -54,23 +67,32 @@ namespace CKBusbarBridge.views
                 Height = 36, MinWidth = 148, Padding = new Thickness(16, 0, 16, 0),
                 HorizontalAlignment = HorizontalAlignment.Right, VerticalAlignment = VerticalAlignment.Center };
             _confirm.Click += Confirm;
+            if (_embedded) _confirm.Visibility = Visibility.Collapsed;
             Grid.SetRow(_confirm, 1); footer.Children.Add(_confirm);
             foreach (var id in new[] { DesignScenarioId.FaceToFace, DesignScenarioId.FaceToWall, DesignScenarioId.SideToSide })
-                _scenarioTabs.Items.Add(new TabItem { Header = DesignScenarioDefaults.GetDisplayName(id), Tag = id });
+                _scenarioTabs.Items.Add(new TabItem { Header = id == DesignScenarioId.FaceToFace ? "面对面" :
+                    id == DesignScenarioId.FaceToWall ? "面对墙" : "侧对侧", Tag = id });
             _orientationPicker.Items.Add(new ComboBoxItem { Tag = FaceToWallCabinetOrientation.CabinetFrontToWall, Content = "柜前向墙" });
             _orientationPicker.Items.Add(new ComboBoxItem { Tag = FaceToWallCabinetOrientation.CabinetRearToWall, Content = "柜后向墙" });
             _orientationPicker.Margin = new Thickness(12, 8, 0, 0);
-            layout.Children.Add(_scenarioTabs); _window.Content = layout;
+            layout.Children.Add(_scenarioTabs);
+            if (_embedded) embeddedHost.Content = layout; else _window.Content = layout;
             AlignSelection();
             _scenarioTabs.SelectionChanged += ScenarioSelectionChanged;
             _orientationPicker.SelectionChanged += ScenarioSelectionChanged;
-            _window.Closing += Closing; _window.Closed += Closed;
+            if (!_embedded) _window.Closing += Closing;
+            _window.Closed += Closed;
             _window.AddHandler(Keyboard.GotKeyboardFocusEvent, new KeyboardFocusChangedEventHandler(InputFocusChanged), true);
             _window.AddHandler(Keyboard.LostKeyboardFocusEvent, new KeyboardFocusChangedEventHandler(InputFocusChanged), true);
             _window.Deactivated += (sender, args) => _cabinetDesignDraft?.HighlightCabinetInput(null, null);
         }
 
-        internal void CloseWithoutPrompt() { _closing = true; _window.Close(); }
+        internal void CloseWithoutPrompt()
+        {
+            _closing = true;
+            if (_embedded && _window is FrameDriverWindow bridge) bridge.CloseForAddinShutdown();
+            else _window.Close();
+        }
 
         // Keep the same window and SW document; only the tab's parameter view is exchanged.
         internal void PreparePreview(BridgeParameterDraftDocument activeDraft)
@@ -161,6 +183,7 @@ namespace CKBusbarBridge.views
                     nextModel.PreviewCabinetInputs(_cabinetDesignDraft, true);
                     _scenario = selected; _wallOrientation = orientation;
                     SetModel(nextModel);
+                    ScenarioChanged?.Invoke();
                 }
                 catch (Exception error)
                 {

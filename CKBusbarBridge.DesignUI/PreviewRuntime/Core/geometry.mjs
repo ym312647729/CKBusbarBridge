@@ -142,11 +142,12 @@ export function listParameters(template,configurationName){
   return [...values.values()];
 }
 export async function evaluateTemplate(kernel,template,configurationName,overrides={},settings={},loadTemplate,ancestry=[]){
-  let result=await evaluateTemplateCore(kernel,template,configurationName,overrides,settings,loadTemplate,ancestry);
+  const authored=settings.fixedPartTemplate?.(kernel,template,configurationName,null);
+  let result=authored??await evaluateTemplateCore(kernel,template,configurationName,overrides,settings,loadTemplate,ancestry);
   try{
-    const replacement=settings.fixedPartTemplate?.(kernel,template,configurationName,result);
+    const replacement=authored??settings.fixedPartTemplate?.(kernel,template,configurationName,result);
     if(replacement){
-      result.solids.forEach(solid=>solid.delete());
+      if(!authored)result.solids.forEach(solid=>solid.delete());
       result={...result,...replacement,parameters:result.parameters,parameterMs:result.parameterMs};
       if(settings.captureLocalMeshes)result.solidSources=result.solidSources.map((source,index)=>
         ({...source,transform:[...identityMatrix],localMesh:solidToMesh(result.solids[index])}));
@@ -315,7 +316,7 @@ async function evaluateTemplateCore(kernel,template,configurationName,overrides=
       let tool;
       if(feature.type==='SMBaseFlange'&&sketchFeature.sketch.contours?.some(contour=>!contour.closed)){
         const orientationWitnesses=[];
-        for(const cut of configuration.features.filter(candidate=>!suppressedInTree(candidate,configuration)&&candidate.type==='Cut'&&candidate.parents.includes(feature.name)&&candidate.definition?.properties.NormalCut)){
+        for(const cut of configuration.features.filter(candidate=>(candidate.previewOmittedHole||!suppressedInTree(candidate,configuration))&&candidate.type==='Cut'&&candidate.parents.includes(feature.name)&&candidate.definition?.properties.NormalCut)){
           const attachedSketches=configuration.features.filter(candidate=>candidate.sketch&&cut.parents.includes(candidate.name)&&candidate.parents.length===1&&candidate.parents[0]===feature.name);
           for(const attached of attachedSketches){
             const attachedToBase=multiplyMatrix(swMatrix(sketchFeature.sketch.modelToSketch),inverseRigidMatrix(swMatrix(attached.sketch.modelToSketch)));

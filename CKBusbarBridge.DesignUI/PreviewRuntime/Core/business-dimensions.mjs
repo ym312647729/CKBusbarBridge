@@ -16,6 +16,7 @@ export function cabinetFieldState(record,scenario,field){
   const values=record.values,hole=/^((?:A|B)?Cabinet\.(?:FrontHole|BackHole))\./.exec(field.path)?.[1];
   const mode=values['General.CabinetTopOpeningMode'];
   let visible=!(scenario==='side-to-side'&&(field.path.includes('.Base1.')&&mode!=='LeftRight'||field.path.includes('.Base2.')&&mode!=='FrontRear'));
+  visible&&=!/\.L[12]$/.test(field.path);
   for(const condition of field.conditions){
     if(condition.visibility==='Collapsed'){
       // These panels are opened by the original window's code behind at height > 1400.

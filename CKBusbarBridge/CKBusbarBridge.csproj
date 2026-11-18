@@ -493,9 +493,6 @@
     </None>
     <None Include="app.config" />
     <None Include="packages.config" />
-    <None Include="Settings\BaseDimSizeDefine.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Settings\FrameDimSizeDefine.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -580,6 +577,7 @@
   <ItemGroup>
     <Compile Include="Drivers\BridgeParameterDraftDocuments.cs" />
     <Compile Include="viewmodels\CabinetDraftWorkflowBindings.cs" />
+    <Compile Include="views\UnifiedCabinetParameters.cs" />
     <Compile Include="Services\BridgeCabinetRepairPlanner.cs" />
     <ProjectReference Include="..\Worker\BridgeRouting.Worker\BridgeRouting.Worker.csproj">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly><Name>BridgeRouting.Worker</Name>

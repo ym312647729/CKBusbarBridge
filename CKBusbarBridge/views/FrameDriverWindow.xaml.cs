@@ -351,6 +351,7 @@ namespace CKBusbarBridge.views
             try
             {
                 System.Windows.Input.Keyboard.ClearFocus();
+                PrepareCabinetSave?.Invoke();
                 if (_viewModel.PlanningBusy) await _viewModel.PlanningCompletion;
                 if (_viewModel.HasPendingInput || _viewModel.Fields.Any(field => !string.IsNullOrEmpty(field.Error)))
                     throw new InvalidOperationException("请先修正并提交参数表中的输入。");

@@ -63,5 +63,33 @@ export async function deriveWallBracket(source,plan,readSource){
     const chain=entity.component.split('/');if(chain.length!==2)throw new DefinitionError('总装穿墙支架配合实例链不一致');const component=one(original.components.filter(component=>component.name===chain[1]),'总装边框实例'),part=driven.get(component.id);if(!part?.referenceDisplacement)throw new DefinitionError('总装穿墙支架未引用原边框面');
     const delta=vector(part.referenceDisplacement(entity),swMatrix(component.transform)),motion=installation.translations.find(row=>row.componentId===component.id).delta;return delta.map((value,axis)=>value+motion[axis]);
   }
-  return {template,loadTemplate:read,definitions,referenceDisplacement,evidence:[...evidence,{installation}],source:'captured-wall-bracket-profiles-and-original-mates',nativeModelValidationRequired:false};
+  // Keep positioning metadata for the captured joints; omit physical installation holes from the steelwork.
+  const visited=new Set();
+  async function omitInstallationHoles(definition){
+    if(visited.has(definition.source.path))return;
+    visited.add(definition.source.path);
+    for(const config of definition.configurations){
+      if(!config.components.length)
+        for(const feature of config.features)if(['Cut','HoleWzd','LPattern','CirPattern'].includes(feature.type)){
+          feature.suppressed=true;feature.previewOmittedHole=true;
+        }
+      let changed=true;
+      while(changed){
+        changed=false;
+        for(const feature of config.features.filter(row=>!row.previewOmittedHole&&row.type==='MirrorPattern')){
+          const seeds=feature.definition?.properties.PatternFeatureArray;
+          if(seeds?.length&&seeds.every(seed=>config.features.some(row=>(row.id===seed.id||row.name===seed.feature)&&row.previewOmittedHole))){
+            feature.suppressed=true;feature.previewOmittedHole=true;changed=true;
+          }
+        }
+      }
+      for(const component of config.components.filter(row=>row.suppression!==0)){
+        if(!component.path)continue;
+        if(!definitions.has(component.path))definitions.set(component.path,structuredClone(await readSource(component.path)));
+        await omitInstallationHoles(definitions.get(component.path));
+      }
+    }
+  }
+  await omitInstallationHoles(template);
+  return {template,loadTemplate:read,definitions,referenceDisplacement,evidence:[...evidence,{installation,installationHolesOmitted:true}],source:'captured-wall-bracket-profiles-and-original-mates',nativeModelValidationRequired:false};
 }

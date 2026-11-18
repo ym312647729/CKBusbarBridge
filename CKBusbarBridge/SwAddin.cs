@@ -1,8 +1,9 @@
-using CKBusbarBridge.Drivers;
+﻿using CKBusbarBridge.Drivers;
 using CKBusbarBridge.Helpers;
 using CKBusbarBridge.Models;
 using CKBusbarBridge.Prototype;
 using CKBusbarBridge.views;
+using CKBusbarBridge.viewmodels;
 using CKBusbarBridgePreview;
 using CKBusbarBridgePreview.OpenHole;
 using Microsoft.Win32;
@@ -257,20 +258,27 @@ namespace CKBusbarBridge
         private void OpenCabinetDesign(DesignScenarioId scenario, FaceToWallCabinetOrientation? orientation,
             BridgeParameterDraftDocument activeDraft)
         {
-            var window = new RDWindow { Title = "柜体设计", WindowKey = "CabinetDriverWindow",
-                IsPlacementPersistenceEnabled = false, UseLayoutRounding = true };
-            window.Resources.MergedDictionaries.Add(new ResourceDictionary
-            {
-                Source = new Uri("pack://application:,,,/RD.UI.Wpf;component/Themes/Generic.xaml")
-            });
-            RightSidePanelLayout.Apply(window);
+            var pages = new System.Collections.Generic.Dictionary<DesignScenarioId, UserControl>();
             UserControl CreatePage(DesignScenarioId target)
             {
-                if (target == DesignScenarioId.FaceToWall)
-                    return new FaceToWallCabinetDriverWindow(iSwApp, FaceToWallCabinetOrientation.CabinetFrontToWall);
-                return target == DesignScenarioId.SideToSide ? (UserControl)new SideToSideCabinetDriverWindow(iSwApp) : new CabinetDriverWindow(iSwApp);
+                if (pages.TryGetValue(target, out var cached)) return cached;
+                UserControl page = target == DesignScenarioId.FaceToWall
+                    ? (UserControl)new FaceToWallCabinetDriverWindow(iSwApp, FaceToWallCabinetOrientation.CabinetFrontToWall)
+                    : target == DesignScenarioId.SideToSide ? (UserControl)new SideToSideCabinetDriverWindow(iSwApp) : new CabinetDriverWindow(iSwApp);
+                UnifiedCabinetParameters.Apply(page, target); pages.Add(target, page); return page;
             }
-            var workflow = new CabinetDraftWindowWorkflow(window, scenario, orientation, CreatePage, ValidateCabinetScenarioSwitch, OpenBridgeAfterCabinetDraft);
+            // Bind the empty assembly before constructing the bridge host.
+            var initialModel = (ICabinetDraftWorkflow)CreatePage(scenario).DataContext;
+            if (initialModel is FaceToWallCabinetDriverWindowVM wall && orientation.HasValue) wall.SetOrientation(orientation.Value);
+            if (activeDraft != null) initialModel.RestoreDraftInputs(activeDraft);
+            initialModel.PreviewCabinetInputs(activeDraft, false);
+            var draft = initialModel.DraftDocument;
+            var window = new FrameDriverWindow(new SolidWorksBridgeDesignHost(iSwApp));
+            var panel = window.AddCabinetDesignPanel();
+            var workflow = new CabinetDraftWindowWorkflow(window, scenario, orientation, CreatePage,
+                ValidateCabinetScenarioSwitch, null, panel);
+            workflow.ScenarioChanged = window.RefreshUnifiedScenario;
+            window.PrepareCabinetSave = workflow.PrepareIntegratedSave;
             window.Closed += (sender, args) =>
             {
                 if (!ReferenceEquals(_cabinetDriverWindow, window)) return;
@@ -278,15 +286,11 @@ namespace CKBusbarBridge
             };
             try
             {
-                workflow.PreparePreview(activeDraft);
+                workflow.PreparePreview(null);
                 UiFeedback.AssignWindowOwner(window);
                 window.Show();
             }
-            catch
-            {
-                workflow.CloseWithoutPrompt();
-                throw;
-            }
+            catch { window.CloseForAddinShutdown(); throw; }
             _cabinetDriverWindow = window; _cabinetDraftWorkflow = workflow;
             UiFeedback.ActivateWindow(window);
         }
@@ -311,7 +315,7 @@ namespace CKBusbarBridge
             {
                 if (_cabinetDraftWorkflow != null || BridgeParameterDraftDocuments.For(iSwApp).Active == null)
                 { ShowCabinetDriverWindow(); return; }
-                ShowUnifiedBridgeDesign(false);
+                ShowCabinetDriverWindow();
             }
             catch (Exception error)
             {
@@ -324,7 +328,7 @@ namespace CKBusbarBridge
         {
             try
             {
-                BridgeDesignController().Show(activateBusbarTab);
+                ShowCabinetDriverWindow();
             }
             catch (Exception ex)
             {
