@@ -353,6 +353,7 @@ namespace CKBusbarBridge.Drivers
         }
         internal void ResetCabinetScenario(object parameters, string scenario, string orientation, string drawingMetadata)
         {
+            _editor?.CancelWallPlanningForParameterChange();
             if (_disposed || _detached || Session.Generating || Session.RecoveryBlocked || _editor?.HasPendingInput == true)
                 throw new InvalidOperationException("当前草稿无法切换场景，请先结束母线桥设计或生成。");
             var snapshot = BridgeParameterDraftDocuments.Capture(parameters);
@@ -509,6 +510,7 @@ namespace CKBusbarBridge.Drivers
             if (_disposed || Session.Generating) return;
             var revision = Session.Revision; Session.UpdateParameters(parameters);
             if (Session.Revision == revision) return;
+            _editor?.CancelWallPlanningForParameterChange();
             _parametersDirty = true;
             _timer.Stop(); _timer.Start();
         }
@@ -577,6 +579,14 @@ namespace CKBusbarBridge.Drivers
                         var upstream = !_parametersDirty && _previousUpstream != null ? _previousUpstream :
                             BridgeOfflineUpstreamAdapter.Read((JObject)response["upstream"], Document.GetPathName(), Document.ConfigurationManager.ActiveConfiguration.Name, material);
                         var frame = _runtime.CreateFrame(id, revision, response);
+                        if (_parametersDirty && upstream.FaceToWall != null && _editor?.Editor.CurrentSample != null)
+                        {
+                            if (_editor.HasPendingInput) { _timer.Start(); return false; }
+                            _installing = true;
+                            try { _editor.ReplanWallParameterDraft(upstream); }
+                            finally { _installing = false; }
+                            _recipe = null; _bridgeGeometry = null; _parametersDirty = false; _recommendRequested = false;
+                        }
                         if (_parametersDirty && _editor?.Editor.CurrentSample != null && _previousUpstream != null)
                         {
                             if (_editor.HasPendingInput) { _timer.Start(); return false; }

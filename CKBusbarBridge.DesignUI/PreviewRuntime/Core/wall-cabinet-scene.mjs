@@ -3,7 +3,7 @@ import {DefinitionError,solveEquations} from './expressions.mjs';
 import {buildFixedCabinetCopper,cabinetRoofConductors} from './cabinet-fixed-copper.mjs';
 import {equationInitialValues,resolveDimensionReference} from './equation-context.mjs';
 import {buildWallBushingDesign,wallBushingEquationInitialValues,bindWallBushingExternalDimensions} from './wall-bushing-design.mjs';
-import {deriveWallBushing,wallBushingDimensionParameters} from './wall-bushing-preview.mjs';
+import {deriveWallBushing,wallBushingDimensionParameters,wallBushingMountPassage} from './wall-bushing-preview.mjs';
 import {buildWallBracketDesign} from './wall-bracket-design.mjs';
 import {deriveWallBracket} from './wall-bracket-preview.mjs';
 import {deriveCabinetBody} from './cabinet-body.mjs';
@@ -51,7 +51,8 @@ export async function deriveWallCabinetScene(sourceTemplate,configurationName,re
   const childComponent=childComponents[0],childTemplate=await read(childComponent.path),childSource=childTemplate.configurations.find(configuration=>configuration.name===childComponent.configuration),bodyComponents=childSource.components.filter(component=>originalCabinetPartName(component.path)==='柜');
   if(bodyComponents.length!==1)throw new DefinitionError('面对墙子装配体缺少唯一原柜体');
   const bodyComponent=bodyComponents[0],bodyTemplate=await read(bodyComponent.path),body=deriveCabinetBody(bodyTemplate,bodyComponent.configuration,{height:values['Cabinet.CabinetHeight'],depth:values['Cabinet.CabinetDepth'],width:values['Cabinet.CabinetWidth']}),bodySource=bodyTemplate.configurations.find(configuration=>configuration.name===bodyComponent.configuration);
-  const hole=side=>Object.fromEntries(Object.entries({enabled:'IsEnabled',edgeDistance:'BusbarCenterToCabinetEdgeDistance',fixedSpacing:'FixedHoleSpacing',l1:'L1',l2:'L2',l3:'L3'}).map(([name,field])=>[name,values['Cabinet.'+side+'.'+field]]));
+  // 与 FaceToWallSingleBaseParameterAdapter 一致：基座/通口和铜排中心分别定位。
+  const hole=side=>Object.fromEntries(Object.entries({enabled:'IsEnabled',edgeDistance:'BaseToCabinetEdgeDistance',fixedSpacing:'FixedHoleSpacing',l1:'L1',l2:'L2',l3:'L3'}).map(([name,field])=>[name,values['Cabinet.'+side+'.'+field]]));
   const opened=deriveCabinetOpenings(body.template,bodyComponent.configuration,{mode:'front-back',front:hole('FrontHole'),back:hole('BackHole')});definitions.set(bodyComponent.path,opened.template);
   const bodyDelta=entity=>mapDrivenReferencePlane(entity.reference,bodySource,body.topologies).delta.map(value=>value*1000);
   const bodyMates=childSource.features.filter(feature=>!feature.suppressed&&feature.mateDefinition&&feature.mateDefinition.entities.some(entity=>entity.component===bodyComponent.name)&&feature.mateDefinition.entities.every(entity=>entity.reference&&(entity.component===bodyComponent.name||entity.componentId===-1)));
@@ -87,6 +88,12 @@ export async function deriveWallCabinetScene(sourceTemplate,configurationName,re
   for(const equation of configuration.equations){const name=/^\s*"([^"]+)"\s*=/.exec(equation.expression)?.[1];if(equation.globalVariable&&Object.hasOwn(globals,name))equation.expression='"'+name+'" = '+globals[name];}
   for(const feature of configuration.features)for(const dimension of feature.dimensions??[])if(Object.hasOwn(dimensionValues,canonical(dimension.name)))dimension.value=dimensionValues[canonical(dimension.name)]/1000;
   const mountCoordinates=driveCabinetMountCoordinates(source,configuration,[{rootComponent:childComponent,originalBodyTransform:bodyComponent.transform,updatedBodyTransform:updatedBodyTransform,original:bodySource,derived:opened.template.configurations.find(row=>row.name===bodyComponent.configuration)}]);configuration.offlineAssemblySolution=installation;definitions.set(sourceTemplate.source.path,template);evidence.push({kind:'cabinet-mount-coordinates',...mountCoordinates});
+  const mountingPlate=configuration.components.filter(component=>component.path?.endsWith('/穿墙套管安装板.SLDPRT'));
+  if(mountingPlate.length!==1)throw new DefinitionError('面对墙套管安装板身份不唯一');
+  configuration.previewBushingPassages={plateComponentId:mountingPlate[0].id,ports:bushingPlan.placements.map(placement=>{
+    const model=bushingPlan.models.find(row=>row.modelId===placement.modelId),component=configuration.components.find(row=>row.id===placement.componentId);
+    return wallBushingMountPassage(bushingPreviews.get(model.modelId),model,swMatrix(component.transform));
+  })};
   const cabinetComponentChain=[childComponent.name,bodyComponent.name],cabinetComponentChains=new Map([[childComponent.id,cabinetComponentChain]]);
   const placement=multiplyMatrix(swMatrix(configuration.components.find(component=>component.id===childComponent.id).transform),swMatrix(updatedBodyTransform)),parameters=[
     await cabinetSpacingDimension({source,scenario:'face-to-wall',wallRear:rear,value:values['General.CabinetToWallDistance'],installation,geometryDisplacement,cabinetComponentChains}),

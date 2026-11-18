@@ -284,50 +284,97 @@ namespace CKBusbarBridge.Prototype
         {
             var previous = Editor.CurrentSample == null ? null : Editor.CaptureSavedSample();
             var revision = Editor.Revision;
+            var firstPublished = false;
+            Task publicationTask = Task.CompletedTask;
+            var publications = new Queue<LinkageRouteWorkerSolutionDto>();
+            var publishing = false;
             try
             {
-                // COM 反读已在宿主线程完成；这里仅传递值快照给独立算法进程。
                 if (snapshot.FaceToWall == null)
-                    throw new InvalidOperationException("面对墙固定接口反读不完整，请查看设计输入中的具体缺项及来源后重读。");
-                var options = _wallWorkerOptions;
+                    throw new InvalidOperationException("面对墙固定接口反读不完整，请核对设计输入。");
+                var options = _wallWorkerOptions ?? BusbarAlgorithmWorkerRequestOptions.CreateDefault();
                 var planning = new FaceToWallPreviewPlanning().CreateInputWithOptions(snapshot.FaceToWall, null, specialStartX, options);
                 var request = planning.Request;
+                request.SearchOptions.TotalSearchLimitMilliseconds = 60000;
+                request.SearchOptions.EnableAutomaticTotalSearchLimit = true;
                 if (_wallWorker == null) _wallWorker = new BusbarAlgorithmWorkerClient(ResolveWorkerAuthorization);
+
+                FaceToWallMinimumSpanPlan Complete(LinkageRouteWorkerComparisonResultDto candidates) =>
+                    new FaceToWallMinimumSpanPlanning().Complete(snapshot.FaceToWall, planning, candidates, options,
+                        (finalPlanning, solution) =>
+                        {
+                            var candidate = _provider.CreateFaceToWallPreview(snapshot, finalPlanning.Request, solution, finalPlanning);
+                            return previous?.ReadbackBaseline?.RequiresCabinetSynchronization == true
+                                ? _provider.CompleteFaceToWallCabinetReplan(snapshot, previous, candidate) : candidate;
+                        }, cancellation.Token);
+
+                bool Install(FaceToWallMinimumSpanPlan completed, bool first)
+                {
+                    if (!IsCurrentWallPlanning(snapshot, cancellation) || Editor.Revision != revision) return false;
+                    var solutions = completed.Candidates.Select(candidate => candidate.Solution).ToArray();
+                    var sample = completed.Candidates[0].Sample;
+                    sample.WallPlanningState.RuntimeCandidates = solutions;
+                    // 后台结果替换自己发布的临时方案时，同步采用已校验的新分节；没有用户修订才会进入这里。
+                    var committed = CommitWallReplanning(sample, revision, specialStartX.HasValue || firstPublished);
+                    if (!committed.Success)
+                    { Message = firstPublished ? "保留已显示的有效方案：" + committed.Message : committed.Message; return false; }
+                    revision = Editor.Revision;
+                    _wallRequest = completed.Planning.Request; _wallPlanningInput = completed.Planning; _wallSolutions = solutions;
+                    _wallBoundaryEdited = specialStartX.HasValue;
+                    LoadWallSampleStatus(sample, 0);
+                    WallSpecialStartText = (completed.Planning.SpecialStartX - snapshot.FaceToWall.Cabinet.Opening.X)
+                        .ToString("0.###", CultureInfo.CurrentCulture);
+                    _wallCommittedSpecialStartText = WallSpecialStartText;
+                    Message = first ? "首个通过完整校验的铜排方案已显示，后台继续搜索至 1 分钟。"
+                        : "面对墙后台搜索完成，已显示通过完整校验的推荐方案。";
+                    RaisePropertyChanged(nameof(HasUnsavedChanges));
+                    return true;
+                }
+
+                async Task PublishFirst()
+                {
+                    publishing = true;
+                    try
+                    {
+                        while (!firstPublished && publications.Count != 0 && IsCurrentWallPlanning(snapshot, cancellation))
+                        {
+                            var solution = publications.Dequeue();
+                            try
+                            {
+                                var completed = await Task.Run(() => Complete(new LinkageRouteWorkerComparisonResultDto
+                                    { RankedSolutions = new[] { solution } }), cancellation.Token);
+                                firstPublished = Install(completed, true);
+                            }
+                            catch (OperationCanceledException) { return; }
+                            catch (Exception error) when (error is InvalidOperationException || error is ArgumentException)
+                            {
+                                FaceToWallPreviewTrace.Error("已发布铜排候选未通过完整安装校验，继续等待下一方案", error);
+                            }
+                        }
+                    }
+                    finally { publishing = false; }
+                }
                 var progress = new Progress<BusbarAlgorithmWorkerUpdate>(update =>
                 {
-                    if (IsCurrentWallPlanning(snapshot, cancellation) && update.Progress != null)
-                        Message = "面对墙 Worker：" + update.Progress.Message;
+                    if (!IsCurrentWallPlanning(snapshot, cancellation)) return;
+                    if (update.Progress != null)
+                        Message = (firstPublished ? "当前方案已预览，后台继续计算：" : "柜体、基座与支架已预览，正在计算铜排：") + update.Progress.Message;
+                    if (firstPublished || update.PublishedSolution?.IsSuccess != true || update.PublishedSolution.IsRelaxedClearanceSolution) return;
+                    publications.Enqueue(update.PublishedSolution);
+                    if (!publishing) publicationTask = PublishFirst();
                 });
                 var result = await _wallWorker.SolveProjectAsync(request, progress, cancellation.Token, snapshot.ModelPath);
-                if (!IsCurrentWallPlanning(snapshot, cancellation)) return;
-                if (Editor.Revision != revision)
-                { Message = "草稿已变化，本次特殊段重规划未提交。"; return; }
-                var completed = await Task.Run(() => new FaceToWallMinimumSpanPlanning().Complete(snapshot.FaceToWall,
-                    planning, result, options, (finalPlanning, solution) =>
+                await publicationTask;
+                if (!IsCurrentWallPlanning(snapshot, cancellation) || Editor.Revision != revision) return;
+                try
                 {
-                    var candidate = _provider.CreateFaceToWallPreview(snapshot, finalPlanning.Request, solution, finalPlanning);
-                    return previous?.ReadbackBaseline?.RequiresCabinetSynchronization == true
-                        ? _provider.CompleteFaceToWallCabinetReplan(snapshot, previous, candidate) : candidate;
-                }, cancellation.Token), cancellation.Token);
-                if (!IsCurrentWallPlanning(snapshot, cancellation)) return;
-                if (Editor.Revision != revision)
-                { Message = "草稿已变化，本次特殊段最小长度规划未提交。"; return; }
-                planning = completed.Planning; request = planning.Request;
-                var candidates = completed.Candidates;
-                var solutions = candidates.Select(c => c.Solution).ToArray();
-                FaceToWallPreviewTrace.Info("面对墙Worker结果筛选", "返回记录=" + (result.RankedSolutions?.Count ?? 0) +
-                    "，通过铜排及安装校验的方案=" + solutions.Length + "；保留Worker原排序。");
-                var sample = candidates[0].Sample;
-                sample.WallPlanningState.RuntimeCandidates = solutions;
-                var committed = CommitWallReplanning(sample, revision, specialStartX.HasValue);
-                if (!committed.Success) { Message = committed.Message; return; }
-                _wallRequest = request; _wallPlanningInput = planning; _wallSolutions = solutions;
-                _wallBoundaryEdited = specialStartX.HasValue;
-                LoadWallSampleStatus(sample, 0);
-                WallSpecialStartText = (planning.SpecialStartX - snapshot.FaceToWall.Cabinet.Opening.X)
-                    .ToString("0.###", CultureInfo.CurrentCulture);
-                _wallCommittedSpecialStartText = WallSpecialStartText;
-                RaisePropertyChanged(nameof(HasUnsavedChanges));
+                    var completed = await Task.Run(() => Complete(result), cancellation.Token);
+                    Install(completed, false);
+                }
+                catch (InvalidOperationException) when (firstPublished)
+                {
+                    Message = "后台搜索完成，保留已通过完整校验并显示的铜排方案。";
+                }
             }
             catch (OperationCanceledException)
             {
@@ -337,17 +384,30 @@ namespace CKBusbarBridge.Prototype
             {
                 if (IsCurrentWallPlanning(snapshot, cancellation))
                 {
-                    FaceToWallPreviewTrace.Error("面对墙真实预览规划失败", error);
-                    Message = "面对墙预览未生成：" + error.Message;
+                    FaceToWallPreviewTrace.Error("面对墙预览规划失败", error);
+                    Message = firstPublished ? "后台搜索未完成，保留已显示方案：" + error.Message : "面对墙铜排尚未就绪：" + error.Message;
                     RefreshFields();
                 }
             }
             finally
             {
+                try { await publicationTask; }
+                catch (OperationCanceledException) { }
                 if (ReferenceEquals(_wallCancellation, cancellation))
                 { _wallCancellation = null; PlanningBusy = false; NotifyWallSolutions(); }
                 cancellation.Dispose();
             }
+        }
+        internal void CancelWallPlanningForParameterChange()
+        {
+            if (_wallCancellation != null) CancelWallPlanning();
+        }
+        internal void ReplanWallParameterDraft(BridgeUpstreamSnapshot snapshot)
+        {
+            CancelWallPlanning();
+            Upstream = snapshot;
+            Editor.Load(null);
+            StartWallPlanning(snapshot);
         }
         private bool IsCurrentWallPlanning(BridgeUpstreamSnapshot snapshot, CancellationTokenSource cancellation) =>
             !_wallDisposed && !cancellation.IsCancellationRequested && ReferenceEquals(Upstream, snapshot) &&

@@ -40,7 +40,7 @@ export function measureFixedStructureClearance(kernel,objects,results,required,p
     for(const object of objects)for(const mesh of results.get(object.id).meshes){
       const source=mesh.partSource??{},phase=object.phase??source.phase;
       const grounded=['base','raisedBase','frame','hanger'].includes(object.category)||
-        (object.cabinetBinding&&['cabinet','cabinet-trim'].includes(source.appearanceRole))||
+        (object.cabinetBinding&&['cabinet','cabinet-trim','support'].includes(source.appearanceRole))||
         source.previewMaterial==='bracket';
       const vertices=mesh.outlinePositions,indices=mesh.outlineTriangles;
       if(!vertices?.length||!indices?.length)throw new Error('绝缘净距检查缺少原始实体网格：'+object.name);

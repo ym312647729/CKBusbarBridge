@@ -86,7 +86,7 @@ export function appendFixedCabinetCopper(kernel,result,definition,settings){
     const evaluated=evaluateFreeCopper(kernel,{freeCopper:bar.freeCopper,parameters:{}},settings);
     result.solids.push(...evaluated.solids);
     for(const solid of evaluated.solids){
-      const source={...bar.source,phase:bar.phase,previewRole:'fixed-copper'};
+      const source={...bar.source,fixedCopperId:bar.id,phase:bar.phase,previewRole:'fixed-copper'};
       if(settings.captureLocalMeshes){
         // Factor the already verified cabinet installation; business interfaces remain in root coordinates.
         const inverse=inverseRigidMatrix(bar.previewTransform),local=solid.transform(inverse);

@@ -34,7 +34,11 @@ msbuild CKBusbarBridge.sln /restore /t:Build /p:RestorePackagesConfig=true /p:Co
 - 面对面和面对墙的普通基座：宽度取所属柜体宽度，深度取柜顶深度定位尺寸加 41.5 mm。侧对侧保留原 Base1、Base2 的不同尺寸映射与增高关系。
 - 柜体与基座底部安装孔不再显示，安装孔 L1、L2 输入移除；保留柜顶矩形通口、其半宽 L3，以及基座尺寸和定位参数。旧输入数据中的兼容字段不作为可编辑孔位公开。
 - 面对墙钢架的安装孔、腰孔及其阵列同样不显示；安装基准、铜排通口及钢架外形保持。原孔草图只作为折弯材料侧与安装位置的几何见证，不再生成孔壁。
+- 面对墙先显示柜体、基座和支架等固定组件，再启动中间铜排求解。第一个发布候选通过原有完整安装、制造和绝缘校验后立即预览，后台继续按 60000 ms 总时限搜索。修改参数、切换场景或关闭窗口会取消旧任务，旧修订不得覆盖当前预览。
 
+面对墙基座与柜顶通口沿用原适配器的 `BaseToCabinetEdgeDistance`，固定伸出排单独使用 `BusbarCenterToCabinetEdgeDistance`。两者独立定位；修改铜排中心不会带动基座。预览相序按实际绝缘子逻辑端位统一，安装板保留套管贯通口，套管嵌件与绝缘本体分别占据实体空间，角钢端部按安装位置修配。完整实体检查包含钢架和套管安装板，仍使用 125 mm 默认净距及原干涉阈值。
+
+独立速度验证工程为 Worker/CKBusbarBridge.Computation.Bench；它无需启动 SolidWorks。常规场景同时核对 343 个部件、零干涉和 125 mm 最小对地净距，并验证绝缘设置变化会触发重新检查。合并界面的离线检查源码在 tools/verification/UnifiedDesignProbe.cs。测试器附加 --stream-wall 命令可验证实际路径 Worker 的首次发布与一分钟持续搜索，不操作 SolidWorks。
 
 ## Visual Studio 调试
 

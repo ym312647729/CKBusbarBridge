@@ -26,6 +26,7 @@ export function deriveWallBushing(sourceTemplate,configurationName,model){
   if(!/^模板\/面对墙模板\(柜[前后]向墙\)\/柜体场景示意\/穿墙套管\.SLDPRT$/.test(sourceTemplate.source.path)||model.templatePath!==sourceTemplate.source.path||model.configuration!==configurationName||model.sourceSha256!==sourceTemplate.source.sha256)throw new DefinitionError('套管预览未对应原业务定义');
   const original=one(sourceTemplate.configurations.filter(configuration=>configuration.name===configurationName),'套管源配置'),template=structuredClone(sourceTemplate),configuration=template.configurations.find(configuration=>configuration.name===configurationName),dimensions=Object.fromEntries([...model.dimensions,...model.externalDimensions].map(dimension=>[dimension.dimension,dimension.valueMm])),topologies=[],evidence=[];
   delete configuration.validation;
+  configuration.previewInsulationOwner=one(original.features.filter(feature=>feature.name==='凸台-拉伸1'),'套管绝缘本体起始特征').id;
   for(const feature of configuration.features){
     for(const dimension of feature.dimensions??[])if(Object.hasOwn(dimensions,canonical(dimension)))dimension.value=dimensions[canonical(dimension)]/1000;
     if(['Extrusion','Boss'].includes(feature.type)){
@@ -60,6 +61,13 @@ export function deriveWallBushing(sourceTemplate,configurationName,model){
   }
   for(const equation of configuration.equations)if(equation.globalVariable){const name=/^\s*"([^"]+)"\s*=/.exec(equation.expression)?.[1];if(Object.hasOwn(model.globalVariables,name))equation.expression='"'+name+'" = '+model.globalVariables[name];}
   return {template,topologies,evidence,source:'captured-wall-bushing-profiles-holes-and-body-patterns',nativeModelValidationRequired:false};
+}
+
+export function wallBushingMountPassage(derived,model,placement){
+  const configuration=one(derived.template.configurations.filter(row=>row.name===model.configuration),'套管通口配置');
+  const caps=circularCaps(configuration,'凸台-拉伸2'),origin=transformPoint([0,0,0],placement);
+  return {point:transformPoint(caps.start.map(value=>value*1000),placement),
+    normal:transformPoint(caps.normal,placement).map((value,index)=>value-origin[index]),radius:caps.circle.geometry.radius*1000};
 }
 
 // Exact driven cut sketch, mirror datum and native body-pattern transforms.

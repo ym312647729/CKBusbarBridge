@@ -22,6 +22,11 @@ internal static class Program
         var workerRoot = Path.GetFullPath(args[0]);
         var planner = Path.GetFullPath(args[1]);
         var schema = JObject.Parse(File.ReadAllText(Path.Combine(workerRoot, "PreviewRuntime", "catalog", "original-cabinet-ui.json")));
+        if (args.Length > 3 && args[2] == "--wall-mesh")
+        {
+            await CheckWallMesh(workerRoot, schema, args[3], args.Length > 4 ? args[4] : "CabinetFrontToWall");
+            return;
+        }
         var parameters = new JObject();
         foreach (var value in ((JObject)schema["scenarios"].First(row => (string)row["key"] == "face-to-face")["defaults"]).Properties())
         {
@@ -150,5 +155,47 @@ internal static class Program
                 measurements.Where(row => (int)row["workers"] == workers).Select(row => (double)row["fullMs"]).OrderBy(value => value).ElementAt(1));
         File.WriteAllText(Path.Combine(Path.GetTempPath(), "ckbridge-parallel-benchmark.json"),
             measurements.ToString(Formatting.Indented), new UTF8Encoding(false));
+    }
+
+    private static async Task CheckWallMesh(string workerRoot, JObject schema, string bridgePath, string orientation)
+    {
+        var parameters = new JObject();
+        foreach (var value in ((JObject)schema["scenarios"].First(row => (string)row["key"] == "face-to-wall")["defaults"]).Properties())
+        {
+            var parts = value.Name.Split('.'); var owner = parameters;
+            foreach (var part in parts.Take(parts.Length - 1)) owner = owner[part] as JObject ?? (JObject)(owner[part] = new JObject());
+            owner[parts.Last()] = value.Value.DeepClone();
+        }
+        parameters["General"]["InsulationDistance"] = 125;
+        var request = new JObject { ["sessionId"] = "面对墙实体检查", ["revision"] = 1, ["scenario"] = "face-to-wall",
+            ["modelName"] = "面对墙实体检查", ["orientation"] = orientation, ["parameters"] = parameters,
+            ["bridge"] = JObject.Parse(File.ReadAllText(bridgePath)), ["checkClearance"] = true };
+        using (var calculator = new PreviewCalculator(workerRoot))
+        {
+            var result = await calculator.ComputeAsync(request);
+            Console.WriteLine("面对墙完整实体校验：" + result["clearance"].ToString(Formatting.None));
+            File.WriteAllText(Path.Combine(Path.GetTempPath(), "ckbridge-wall-mesh-result.json"), result.ToString(Formatting.None), new UTF8Encoding(false));
+            if ((bool?)result["clearance"]?["passed"] != true || (int?)result["clearance"]?["assembly"]?["count"] != 0)
+                throw new InvalidOperationException("面对墙完整实体未通过125 mm绝缘净距或干涉检查。");
+            if (orientation == "CabinetFrontToWall")
+            {
+                var changed = (JObject)request.DeepClone(); changed.Remove("bridge");
+                changed["parameters"]["Cabinet"]["FrontHole"]["BusbarCenterToCabinetEdgeDistance"] =
+                    (double)parameters["Cabinet"]["FrontHole"]["BusbarCenterToCabinetEdgeDistance"] + 20;
+                var shifted = (await calculator.ComputeAsync(changed))["upstream"];
+                var baseline = result["upstream"]["sides"][0];
+                if (!JToken.DeepEquals(baseline["opening"], shifted["sides"][0]["opening"]) ||
+                    JToken.DeepEquals(baseline["extensions"][0]["interfacePoint"], shifted["sides"][0]["extensions"][0]["interfacePoint"]))
+                    throw new InvalidOperationException("铜排中心调整错误地带动基座接口，或未移动铜排。");
+                changed["parameters"] = parameters.DeepClone();
+                changed["parameters"]["Cabinet"]["FrontHole"]["BaseToCabinetEdgeDistance"] =
+                    (double)parameters["Cabinet"]["FrontHole"]["BaseToCabinetEdgeDistance"] + 20;
+                var movedBase = (await calculator.ComputeAsync(changed))["upstream"];
+                if (JToken.DeepEquals(baseline["opening"], movedBase["sides"][0]["opening"]) ||
+                    !JToken.DeepEquals(baseline["extensions"][0]["interfacePoint"], movedBase["sides"][0]["extensions"][0]["interfacePoint"]))
+                    throw new InvalidOperationException("基座定位调整错误地带动铜排，或未移动基座接口。");
+                Console.WriteLine("柜前向墙基座定位与铜排中心独立联动核查通过。");
+            }
+        }
     }
 }

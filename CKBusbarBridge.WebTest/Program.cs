@@ -28,6 +28,11 @@ namespace CKBusbarBridge.WebTest
             AppDomain.CurrentDomain.AssemblyResolve += ResolveCalculationAssembly;
             try
             {
+                if ((args.Length == 2 || args.Length == 3) && args[0] == "--stream-wall")
+                    return WallStreamingProbe.Run(JObject.Parse(File.ReadAllText(args[1], Utf8)),
+                        args.Length == 3 ? args[2] : Path.Combine(OutputFolder, "CKBusbarBridge.dll"), Path.GetFileNameWithoutExtension(args[1]));
+                if (args.Length == 2 && args[0] == "--wall-prefix")
+                    return WallStreamingProbe.CheckPrefix(JObject.Parse(File.ReadAllText(args[1], Utf8)));
                 if (args.Length == 2 && args[0] == "--plan")
                 {
                     Console.WriteLine(Plan(JObject.Parse(File.ReadAllText(args[1], Utf8))).ToString(Formatting.None));

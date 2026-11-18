@@ -14,6 +14,8 @@ import {linearSketchDrive} from './linear-sketch-drive.mjs';
 import {circleSegmentsForTolerance} from './curve-quality.mjs';
 import {componentState,componentMassTotals} from './component-state.mjs';
 import {NativeBodyTracker} from './native-bodies.mjs';
+import {separateBushingInserts,cutBushingMountPassages} from './wall-bushing-physical-preview.mjs';
+import {fitWallWeldJoint} from './wall-structure-joints.mjs';
 import {planarMixedMesh,meshFaceLabels} from './planar-mesh.mjs';
 const metadataTypes=new Set(['RefPlane','RefAxis','CoordSys','OriginProfileFeature','DetailCabinet','AnnotationViewFeat','CosmeticThread','WeldmentFeature','SheetMetal','MateGroup','Reference','ReferencePattern','InContextFeatHolder','CompositeCurve','3DProfileFeature','ProfileFeature','LiveSectionFolder']);
 const neutralType=type=>metadataTypes.has(type)||type.endsWith('Folder');
@@ -159,6 +161,13 @@ export async function evaluateTemplate(kernel,template,configurationName,overrid
       shapeInputSignature:JSON.stringify([template.source.sha256,configurationName,overrides,result.parameters?.map(parameter=>[parameter.name,parameter.value])])}));}
     catch(error){result.solids.forEach(solid=>solid.delete());throw error;}
   }
+  if(settings.captureLocalMeshes&&result.solidSources){
+    try{for(const [index,source]of result.solidSources.entries())if(!source.localMesh){
+      const placement=source.transform??identityMatrix,local=result.solids[index].transform(inverseRigidMatrix(placement));
+      try{source.localMesh=solidToMesh(local);source.transform=[...placement];}
+      finally{local.delete();}
+    }}catch(error){result.solids.forEach(solid=>solid.delete());throw error;}
+  }
   return result;
 }
 async function evaluateTemplateCore(kernel,template,configurationName,overrides={},settings={},loadTemplate,ancestry=[]){
@@ -209,7 +218,12 @@ async function evaluateTemplateCore(kernel,template,configurationName,overrides=
       try{if(physicalScope||state.visible)for(const [bodyIndex,solid]of result.solids.entries()){const placement=swMatrix(component.transform);solids.push(solid.transform(placement));const childSource=result.solidSources?.[bodyIndex]??{path:childTemplate.source.path,configuration:component.configuration,sha256:childTemplate.source.sha256,bodyIndex,componentChain:[]};solidSources.push({...childSource,appearanceRole:childSource.partName?childSource.appearanceRole:component.previewRole??childSource.appearanceRole,transform:multiplyMatrix(placement,childSource.transform??identityMatrix),componentChain:[component.name,...childSource.componentChain]});}}
       finally{result.solids.forEach(solid=>solid.delete());}
     }}catch(error){solids.forEach(solid=>solid.delete());throw error;}
+    try{
+      fitWallWeldJoint(kernel,configuration,solids,solidSources);
+      cutBushingMountPassages(kernel,configuration,solids,solidSources,settings);
+    }catch(error){solids.forEach(solid=>solid.delete());throw error;}
     const mass=componentMassTotals(componentMass),nativeIncludeHidden=configuration.validation?.massPropertyEvidence?.nativeIncludeHidden;
+    if(configuration.previewBushingPassages||configuration.previewWeldJoint)mass.massComponentScopeKnown=false;
     return {solids,solidSources,parameterMs,parameters,evaluated,equationReferences,featureCount:configuration.features.length,complexFeatureCount,curveQuality,deferred,schematic,geometryTimings,...mass,massVolumeMm3:mass.massComponentScopeKnown&&typeof nativeIncludeHidden==='boolean'?mass.massVolumes[nativeIncludeHidden?'includingHidden':'visible']:null};
   }
   const approvedLouver=feature=>feature.type==='FormToolInstance'&&feature.representation?.mode==='schematic'&&feature.schematicDefinition?.kind==='raised-louver';
@@ -426,9 +440,14 @@ async function evaluateTemplateCore(kernel,template,configurationName,overrides=
     }
     if(!solid||solid.isEmpty())throw new DefinitionError('模板未产生有效实体');
     if(solid.status()!=='NoError')throw new DefinitionError('模板实体拓扑无效：'+solid.status());
-    const outputSolids=bodyTracker?bodyTracker.exportSolids():[solid],volume=outputSolids.reduce((sum,body)=>sum+body.volume(),0);
+    const outputSolids=bodyTracker?bodyTracker.exportSolids():[solid];
+    let separatedSources;
+    try{separatedSources=separateBushingInserts(kernel,configuration,bodyTracker,outputSolids);}
+    catch(error){if(bodyTracker)outputSolids.forEach(body=>body.delete());throw error;}
+    const solidSources=separatedSources?.map(source=>({path:template.source.path,configuration:configurationName,sha256:template.source.sha256,...source}));
+    const volume=outputSolids.reduce((sum,body)=>sum+body.volume(),0);
     if(bodyTracker){solid.delete();solid=null;}
-    return {solids:outputSolids,parameterMs,parameters,evaluated,equationReferences,featureCount:configuration.features.length,complexFeatureCount:configuration.features.filter(feature=>!suppressedInTree(feature,configuration)&&['Revolution','RevCut'].includes(feature.type)).length,curveQuality,featureTrace,geometryTimings,bodySelections:bodyTracker?.selections,deferred:[],schematic,massVolumes:{visible:volume,includingHidden:volume},massComponentScopeKnown:true};
+    return {solids:outputSolids,solidSources,parameterMs,parameters,evaluated,equationReferences,featureCount:configuration.features.length,complexFeatureCount:configuration.features.filter(feature=>!suppressedInTree(feature,configuration)&&['Revolution','RevCut'].includes(feature.type)).length,curveQuality,featureTrace,geometryTimings,bodySelections:bodyTracker?.selections,deferred:[],schematic,massVolumes:{visible:volume,includingHidden:volume},massComponentScopeKnown:true};
   }catch(error){solid?.delete();if(!error.source?.path)error.source={...error.source,path:template.source.path,configuration:configurationName};throw error;}
   finally{for(const operation of ownedHistory)operation.solid.delete();bodyTracker?.dispose();}
 }

@@ -21,6 +21,7 @@ import {attachedStraightFrameCasings,facingRegularFrameCasings} from './Core/reg
 const calculatorVersion=packageManifest.calculatorVersion+':'+packageManifest.packageSha256;
 const definitions=new Map(),shapeCache=new Map();let shapeBytes=0;
 const meshPackets=new WeakMap();
+const phaseResults=new WeakMap();
 const geometryIdentities=new WeakMap();let geometryIdentitySequence=0,clearanceCache;
 let roofCache;
 const maxShapeBytes=192*1024*1024;
@@ -81,6 +82,16 @@ function evaluate(object,settings,casing,hangerHeight){
   pendingShapes.set(canonical,pending);return pending;
 }
 function at(source,path){return path.split('.').reduce((object,key)=>object?.[key],source);}
+function withFixedCopperPhases(result,phases){
+  if(!phases)return result;
+  const signature=JSON.stringify(phases);
+  let cached=phaseResults.get(result);if(cached?.signature===signature)return cached.result;
+  const updated={...result,meshes:result.meshes.map(mesh=>{
+    const phase=phases[mesh.partSource?.fixedCopperId];
+    return phase?{...mesh,partSource:{...mesh.partSource,phase}}:mesh;
+  })};
+  phaseResults.set(result,{signature,result:updated});return updated;
+}
 function sceneReferenceId(sceneId,componentChain){return sceneId+':reference:'+JSON.stringify(componentChain);}
 function inputs(request){
   const record=createOriginalCabinetInput(request.scenario),definition=originalCabinetScenario(request.scenario);
@@ -148,6 +159,8 @@ async function prepare(request){
       results.set(object.id,await evaluate(object,{...project.settings,objectTriangleBudget:Math.min(project.settings.objectTriangleBudget,perObject)},casings.get(object.id),hangerHeights.get(object.id)));}
   }
   timings.geometryMs=performance.now()-geometryStarted;
+  if(upstream.fixedCopperPhases)for(const object of project.objects)
+    results.set(object.id,withFixedCopperPhases(results.get(object.id),upstream.fixedCopperPhases));
   const clearanceStarted=performance.now(),inspectBridge=!!request.bridge&&(request.checkClearance===true||project.frameDesign?.plans.length>0);
   const knownPhases=new Set(project.objects.flatMap(object=>results.get(object.id).meshes.map(mesh=>object.phase??mesh.partSource?.phase)));
   let clearance=null;
@@ -197,7 +210,7 @@ async function prepare(request){
       if(result.preview?.complexFeatureCount&&!outline){
         const candidate=await evaluate(object,{...project.settings,complexArcSegments:12,chordToleranceMm:project.settings.chordToleranceMm*4,
           objectTriangleBudget:Math.max(1,Math.floor(project.settings.objectTriangleBudget/4))},casings.get(object.id),hangerHeights.get(object.id));
-        if(candidate.preview.topologySignature===result.preview.topologySignature&&candidate.preview.triangleCount<result.preview.triangleCount)interaction=candidate;
+        if(candidate.preview.topologySignature===result.preview.topologySignature&&candidate.preview.triangleCount<result.preview.triangleCount)interaction=withFixedCopperPhases(candidate,upstream.fixedCopperPhases);
       }
       interactionInstances.push(...await meshInstances(object,interaction,pose,known,outline,false));
     }

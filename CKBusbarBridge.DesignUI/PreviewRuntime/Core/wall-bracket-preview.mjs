@@ -69,14 +69,23 @@ export async function deriveWallBracket(source,plan,readSource){
     if(visited.has(definition.source.path))return;
     visited.add(definition.source.path);
     for(const config of definition.configurations){
+      const jointMember=ending=>config.components.filter(component=>component.path?.endsWith('/'+ending+'.SLDPRT'));
+      const firstAngle=jointMember('8ZX.204.001'),secondAngle=jointMember('8ZX.204.002');
+      if(firstAngle.length===1&&secondAngle.length===1)
+        config.previewWeldJoint={targetComponentId:firstAngle[0].id,toolComponentId:secondAngle[0].id};
       if(!config.components.length)
-        for(const feature of config.features)if(['Cut','HoleWzd','LPattern','CirPattern'].includes(feature.type)){
-          feature.suppressed=true;feature.previewOmittedHole=true;
+        for(const feature of config.features){
+          const profiles=config.features.filter(row=>row.sketch&&feature.parents.includes(row.name));
+          const segments=profiles.flatMap(row=>row.sketch.segments.filter(segment=>!segment.construction));
+          // 圆孔及腰孔可移除；矩形端部切口用于角钢拼合，必须保留。
+          if(feature.type==='HoleWzd'||feature.type==='Cut'&&segments.some(segment=>segment.type===1)){
+            feature.suppressed=true;feature.previewOmittedHole=true;
+          }
         }
       let changed=true;
       while(changed){
         changed=false;
-        for(const feature of config.features.filter(row=>!row.previewOmittedHole&&row.type==='MirrorPattern')){
+        for(const feature of config.features.filter(row=>!row.previewOmittedHole&&['MirrorPattern','LPattern','CirPattern'].includes(row.type))){
           const seeds=feature.definition?.properties.PatternFeatureArray;
           if(seeds?.length&&seeds.every(seed=>config.features.some(row=>(row.id===seed.id||row.name===seed.feature)&&row.previewOmittedHole))){
             feature.suppressed=true;feature.previewOmittedHole=true;changed=true;
