@@ -82,10 +82,17 @@ namespace CKBusbarBridge.views
                 }
                 var label = path.EndsWith(".L3", StringComparison.Ordinal) ? "柜顶通口半宽(L3)" :
                     path.EndsWith(".FixedHoleSpacing", StringComparison.Ordinal) ? "基座深度定位尺寸" : (string)field["label"];
-                editor.ToolTip = label; editor.Tag = path; editor.Margin = new Thickness(0, 2, 2, 2);
+                string labelBindingPath = null;
+                if (label.StartsWith("{Binding ", StringComparison.Ordinal))
+                {
+                    labelBindingPath = label.Substring("{Binding ".Length).TrimEnd('}').Split(',')[0].Trim();
+                    label = string.Empty;
+                }
+                var labelPrefix = string.Empty;
+                editor.Tag = path; editor.Margin = new Thickness(0, 2, 2, 2);
                 if (path.Contains(".FrontHole.") || path.Contains(".BackHole."))
                 {
-                    label = (path.Contains(".FrontHole.") ? "前 · " : "后 · ") + label;
+                    labelPrefix = path.Contains(".FrontHole.") ? "前 · " : "后 · ";
                     if (!path.EndsWith(".IsEnabled", StringComparison.Ordinal))
                     {
                         var hole = path.Substring(0, path.IndexOf(path.Contains(".FrontHole.") ? ".FrontHole." : ".BackHole.", StringComparison.Ordinal));
@@ -93,7 +100,12 @@ namespace CKBusbarBridge.views
                         editor.SetBinding(UIElement.IsEnabledProperty, new Binding("Parameters." + hole) { Source = page.DataContext });
                     }
                 }
-                rows.Add(new ParameterRow(label, editor, path));
+                var parameterRow = new ParameterRow(labelPrefix + label, editor, path);
+                if (labelBindingPath != null)
+                    BindingOperations.SetBinding(parameterRow, ParameterRow.NameProperty,
+                        new Binding(labelBindingPath) { Source = page.DataContext, Mode = BindingMode.OneWay, StringFormat = labelPrefix + "{0}" });
+                editor.SetBinding(FrameworkElement.ToolTipProperty, new Binding("Name") { Source = parameterRow });
+                rows.Add(parameterRow);
                 if (path.EndsWith(".BaseHeight", StringComparison.Ordinal) && !path.Contains(".Base1.") && !path.Contains(".Base2."))
                 {
                     var cabinet = components[0];
@@ -133,12 +145,14 @@ namespace CKBusbarBridge.views
             root.Children.Add(grid); page.Content = root;
             groups.SelectedIndex = 0;
         }
-        private sealed class ParameterRow
+        private sealed class ParameterRow : DependencyObject
         {
-            public string Name { get; }
+            public static readonly DependencyProperty NameProperty = DependencyProperty.Register(
+                nameof(Name), typeof(string), typeof(ParameterRow), new PropertyMetadata(string.Empty));
+            public string Name => (string)GetValue(NameProperty);
             public FrameworkElement Editor { get; }
             public string Path { get; }
-            internal ParameterRow(string name, FrameworkElement editor, string path = null) { Name = name; Editor = editor; Path = path; }
+            internal ParameterRow(string name, FrameworkElement editor, string path = null) { SetValue(NameProperty, name); Editor = editor; Path = path; }
         }
         private sealed class BaseDepthConverter : IValueConverter
         {
