@@ -46,6 +46,7 @@ namespace CKBusbarBridge.views
             _allowUserClose = allowUserClose;
             Owner = ownerWindow ?? throw new ArgumentNullException(nameof(ownerWindow));
             InitializeComponent();
+            CKBusbarBridgePreview.SystemWindowAppearance.Apply(this);
             PrototypeCloseButton.Visibility = allowUserClose ? Visibility.Visible : Visibility.Collapsed;
             if (allowUserClose) Title = "母线桥设计 · 只读三维预览";
         }

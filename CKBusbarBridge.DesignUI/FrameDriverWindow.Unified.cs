@@ -14,22 +14,20 @@ namespace CKBusbarBridge.views
             var bridge = (FrameworkElement)Content;
             Content = null;
             var layout = new Grid();
-            layout.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-            layout.RowDefinitions.Add(new RowDefinition());
             var left = new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star), MinWidth = 270 };
             layout.ColumnDefinitions.Add(left);
             layout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(6) });
             layout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star), MinWidth = 430 });
-            var toolbar = new DockPanel { Margin = new Thickness(10, 6, 10, 6) };
-            Grid.SetColumnSpan(toolbar, 3); layout.Children.Add(toolbar);
-            var toggle = new RDButton { Content = "折叠柜体设计", HorizontalAlignment = HorizontalAlignment.Left };
-            toolbar.Children.Add(toggle);
+            var toggle = new RDButton { Content = "折叠柜体设计", MinHeight = 26,
+                Padding = new Thickness(8, 2, 8, 2), Margin = new Thickness(0), VerticalAlignment = VerticalAlignment.Center };
+            CabinetPanelToggleHost.Content = toggle;
+            CabinetPanelToggleHost.Visibility = Visibility.Visible;
             var host = new ContentControl();
-            Grid.SetRow(host, 1); layout.Children.Add(host);
+            layout.Children.Add(host);
             var splitter = new GridSplitter { Width = 6, HorizontalAlignment = HorizontalAlignment.Stretch,
                 VerticalAlignment = VerticalAlignment.Stretch };
-            Grid.SetColumn(splitter, 1); Grid.SetRow(splitter, 1); layout.Children.Add(splitter);
-            Grid.SetColumn(bridge, 2); Grid.SetRow(bridge, 1); layout.Children.Add(bridge);
+            Grid.SetColumn(splitter, 1); layout.Children.Add(splitter);
+            Grid.SetColumn(bridge, 2); layout.Children.Add(bridge);
             var expanded = true; var previous = left.Width;
             toggle.Click += (sender, args) =>
             {

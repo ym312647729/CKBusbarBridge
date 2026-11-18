@@ -194,13 +194,16 @@
  </rd:RDWindow.Resources>
  <Grid IsEnabled="{Binding IsEditingEnabled}" UseLayoutRounding="True" TextElement.Foreground="#1F2937">
  <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
- <Border Background="#EDF4FC" BorderBrush="{StaticResource BridgeToolbarBorderBrush}" BorderThickness="0,1,0,1" Padding="18,6">
-  <StackPanel Orientation="Horizontal">
-   <TextBlock VerticalAlignment="Center" FontSize="13">
+ <Border Background="#EDF4FC" BorderBrush="{StaticResource BridgeToolbarBorderBrush}" BorderThickness="0,1,0,1" Padding="0,4,10,4">
+  <DockPanel>
+   <ContentControl x:Name="CabinetPanelToggleHost" DockPanel.Dock="Left" VerticalAlignment="Center" Visibility="Collapsed"/>
+  <Grid Margin="10,0,0,0">
+   <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+   <TextBlock VerticalAlignment="Center" FontSize="13" TextWrapping="Wrap">
     <Run Text="{Binding SceneAndSpanSummary, Mode=OneWay}"/>
     <Run Text="&#160;&#160;&#160;搭接长度："/><Run Text="{Binding DisplayOverlapLengthMm, Mode=OneWay, StringFormat=F1, TargetNullValue=--}"/><Run Text=" mm"/>
    </TextBlock>
-   <Border Width="16" Height="16" Margin="6,0,0,0" VerticalAlignment="Center" CornerRadius="8"
+   <Border Grid.Column="1" Width="16" Height="16" Margin="6,0,0,0" VerticalAlignment="Center" CornerRadius="8" HorizontalAlignment="Left"
            BorderBrush="{StaticResource BridgeMutedBrush}" BorderThickness="1" Background="Transparent" Cursor="Help"
            AutomationProperties.Name="母排规划说明" ToolTipService.InitialShowDelay="200" ToolTipService.ShowDuration="60000">
     <Border.ToolTip><ToolTip Placement="Bottom" MaxWidth="560"
@@ -209,7 +212,8 @@
     </ToolTip></Border.ToolTip>
     <TextBlock Text="?" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10" Foreground="{StaticResource BridgeMutedBrush}"/>
    </Border>
-  </StackPanel>
+  </Grid>
+  </DockPanel>
  </Border>
  <Border x:Name="DraftViewportToolbar" Visibility="Collapsed" Grid.Row="1" Margin="10,6,10,0" Style="{StaticResource BridgeCardStyle}"
          IsEnabled="{Binding IsEditingEnabled}">

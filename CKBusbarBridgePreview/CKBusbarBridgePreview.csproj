@@ -104,6 +104,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="UiFeedback.cs" />
+    <Compile Include="SystemWindowAppearance.cs" />
     <Compile Include="FeedbackRuntime.cs" />
     <Compile Include="PresentationDispatcherThread.cs" />
     <Compile Include="Arc3d.cs" />

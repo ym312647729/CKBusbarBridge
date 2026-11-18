@@ -1,7 +1,7 @@
 {
   "schema": "dq-preview-runtime-manifest/1",
   "calculatorVersion": "dq-sw-mesh/1",
-  "packageSha256": "8516a65f915ea2ab460800f1656af644ed79e6a280332ad5ce50ac932cace259",
+  "packageSha256": "3a4ddbf340f9516da05628bbed113d048d0030e6dd5cefe1f56c3d2fd416ec7b",
   "reference": {
     "project": "CKBusbarBridgeVirtualDesigner",
     "commit": "511d64b1248e1c26bf27430e9016fecdc5e9ce5f",
@@ -1823,7 +1823,7 @@
     },
     {
       "path": "CKBusbarBridge.DesignUI/FrameDriverWindow.Unified.cs",
-      "sha256": "a87a4384213e36e40860bc9591a0fdec67b11664c5792882bd06e3df66652d92"
+      "sha256": "2d615d1be591ca47a21c202cb59b29c7d969cede3b6ef89cc1cd539188632398"
     },
     {
       "path": "CKBusbarBridge.DesignUI/Preview/BridgeBusinessDimensionEditor.cs",
@@ -1955,7 +1955,7 @@
     },
     {
       "path": "CKBusbarBridge.DesignUI/RightSidePanelLayout.cs",
-      "sha256": "703b5aa340ade116659c7749354366f74273be9d8eebfd25edd27267f7502e48"
+      "sha256": "7f17f598f417926650e60af4d6dd0d3c6d1e7d4dccb54da8532425a838890d1a"
     },
     {
       "path": "CKBusbarBridge.DesignUI/SideToSideSchemeRules.cs",
@@ -2351,7 +2351,7 @@
     },
     {
       "path": "CKBusbarBridge/views/BusbarWebPreviewWindow.xaml.cs",
-      "sha256": "e82db5cc3ccd685587e97b8260e67256d12152254915805932f247bb0f1a4c7d"
+      "sha256": "eb5a856853141a8d506d11154456702a6308fdbe177f048159e84037cd3bbef3"
     },
     {
       "path": "CKBusbarBridge/views/FrameDriverWindow.xaml.cs",
@@ -2584,6 +2584,10 @@
     {
       "path": "CKBusbarBridgePreview/SideToSideSecondTypeFirstSegmentPlanner.cs",
       "sha256": "9cfc55fb55b86a63b053547490456844ed5c73b5277877954ea9ade4e114ce52"
+    },
+    {
+      "path": "CKBusbarBridgePreview/SystemWindowAppearance.cs",
+      "sha256": "da6527eebd80aca88133cd6d7d7633134852e3c26e7dd2c1fe46b3446d9ecad2"
     },
     {
       "path": "CKBusbarBridgePreview/Tests.cs",

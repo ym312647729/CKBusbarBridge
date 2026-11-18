@@ -12,6 +12,7 @@ namespace CKBusbarBridge.views
         public static void Apply(Window panelWindow, double? preferredHeight = null, bool halfWidth = false)
         {
             if (panelWindow == null) throw new ArgumentNullException(nameof(panelWindow));
+            CKBusbarBridgePreview.SystemWindowAppearance.Apply(panelWindow);
             var screenWorkArea = SystemParameters.WorkArea;
             var panelWidth = Math.Min(screenWorkArea.Width - EdgeSpacing * 2d,
                 Math.Max(320d, screenWorkArea.Width / (halfWidth ? 2d : 4d)));
