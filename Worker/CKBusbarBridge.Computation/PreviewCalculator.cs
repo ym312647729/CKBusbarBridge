@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Concurrent;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
@@ -149,10 +150,21 @@ namespace CKBusbarBridge.Computation
         }
         private void StopProcess()
         {
-            var owned = _process; _process = null;
-            var writer = _commandWriter; _commandWriter = null;
+            var owned = Interlocked.Exchange(ref _process, null);
             if (owned == null) return;
-            try { writer?.Dispose(); owned.StandardInput.Close(); if (!owned.HasExited) owned.Kill(); }
+            var writer = Interlocked.Exchange(ref _commandWriter, null);
+            try
+            {
+                try { writer?.Dispose(); owned.StandardInput.Close(); }
+                catch (InvalidOperationException) { }
+                catch (IOException) { }
+                if (!owned.HasExited)
+                {
+                    try { owned.Kill(); }
+                    // EOF 已触发正常退出时，Windows 可能在终止窗口返回拒绝访问；仅确认已退出后接受。
+                    catch (Win32Exception error) when (error.NativeErrorCode == 5 && owned.WaitForExit(100)) { }
+                }
+            }
             catch (InvalidOperationException) { }
             finally { owned.Dispose(); }
         }

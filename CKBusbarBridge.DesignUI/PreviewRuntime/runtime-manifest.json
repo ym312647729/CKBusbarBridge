@@ -1,7 +1,7 @@
 {
   "schema": "dq-preview-runtime-manifest/1",
   "calculatorVersion": "dq-sw-mesh/1",
-  "packageSha256": "d8740ffc224c6343fc02795997ced7ede8e07f7d4714d5a7229faece0d8b056a",
+  "packageSha256": "8ce4164a6dda8ae726862dd275c6a6850b5d897a64192bab92ecc236da677797",
   "reference": {
     "project": "CKBusbarBridgeVirtualDesigner",
     "commit": "511d64b1248e1c26bf27430e9016fecdc5e9ce5f",
@@ -3011,7 +3011,7 @@
     },
     {
       "path": "Worker/CKBusbarBridge.Computation/PreviewCalculator.cs",
-      "sha256": "eaa1d5b6ccd0f5c3f3c1e4d2f98d2f3004963c79dcdf2afe0994878cd53c975c"
+      "sha256": "d2db5293850d6983e03b83ecc6353e8b339dad0febf654c454c8653e783a1639"
     },
     {
       "path": "Worker/CKBusbarBridge.Computation/WallConductorCalculator.cs",
