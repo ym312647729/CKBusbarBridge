@@ -1,7 +1,7 @@
 {
   "schema": "dq-preview-runtime-manifest/1",
   "calculatorVersion": "dq-sw-mesh/1",
-  "packageSha256": "d0b72f89f17f8f5feada8cd9f078110c37daa85fe75f93cb4658b5d4cae41e82",
+  "packageSha256": "4626ed44ef6597ae788827b3cdc79ad803b54e5d2e8bdf7738b0d8bd0121cc41",
   "reference": {
     "project": "CKBusbarBridgeVirtualDesigner",
     "commit": "511d64b1248e1c26bf27430e9016fecdc5e9ce5f",
@@ -485,7 +485,7 @@
     },
     {
       "path": "session-worker.mjs",
-      "sha256": "ef82e11484edf8576b73eb529b5f803fb15b42bd131dceb1a791184d324477e2"
+      "sha256": "46b6be753a7be1091cd505b92d329d70b010aa4272fa8b4518deb022a457a74d"
     },
     {
       "path": "vendor/earcut/earcut.mjs",

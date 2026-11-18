@@ -73,7 +73,8 @@ function evaluate(object,settings,casing,hangerHeight){
   if(pendingShapes.has(canonical))return pendingShapes.get(canonical);
   const pending=geometryJob({revision:0,object,settings,signature:canonical,purpose:'native-sw',casing,hangerHeight}).then(result=>{
       const bytes=result.meshes.reduce((sum,mesh)=>sum+mesh.positions.byteLength+mesh.indices.byteLength+(mesh.outlinePositions?.byteLength??0)+(mesh.outlineTriangles?.byteLength??0)+mesh.patches.quads.byteLength+mesh.patches.triangles.byteLength,0);
-      if(cached){shapeCache.delete(key);shapeBytes-=cached.bytes;}
+      const replaced=shapeCache.get(key);
+      if(replaced){shapeCache.delete(key);shapeBytes-=replaced.bytes;}
       if(bytes<=maxShapeBytes){while(shapeBytes+bytes>maxShapeBytes&&shapeCache.size){const oldest=shapeCache.keys().next().value;shapeBytes-=shapeCache.get(oldest).bytes;shapeCache.delete(oldest);}shapeCache.set(key,{canonical,result,bytes});shapeBytes+=bytes;}
       return result;
   }).finally(()=>pendingShapes.delete(canonical));
