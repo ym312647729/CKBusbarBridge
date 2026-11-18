@@ -54,7 +54,8 @@ namespace CKBusbarBridge.DesignPreview
         internal bool IsDisposed { get; private set; }
         internal IntPtr WindowHandle => _messages.Handle;
         private bool _staleFrame;
-        internal bool IsStale { get => _staleFrame || _viewModel?.PlanningBusy == true || _viewModel?.NativePreviewBusy == true || _viewModel?.IsDraftDocumentActive == false;
+        private bool IsFrameStale => _staleFrame || _viewModel?.IsDraftDocumentActive == false;
+        internal bool IsStale { get => IsFrameStale || _viewModel?.PlanningBusy == true || _viewModel?.NativePreviewBusy == true;
             set { _staleFrame = value; if (value) ResetDimensionHover(); } }
         internal bool IsPreviewOnly { get; set; }
         internal BridgeMeshFrame DisplayFrame => _frame;
@@ -210,7 +211,8 @@ namespace CKBusbarBridge.DesignPreview
         {
             if (item.AppearanceRole == "cabinet") { Gl.glColor4f(1f, 1f, 1f, 1f); return; }
             if (BridgeViewportAppearance.IsEnvironment(item.AppearanceRole)) { Gl.glColor4f(.8f, .8f, .8f, .5f); return; }
-            if (IsStale) Gl.glColor4f(.48f, .48f, .48f, alpha);
+            // 已发布的有效方案在后台继续搜索时保留相序色；忙碌状态仍由 IsStale 禁止编辑。
+            if (IsFrameStale) Gl.glColor4f(.48f, .48f, .48f, alpha);
             else if (IsSelected(item)) Gl.glColor4f(1f, .66f, .18f, alpha);
             else if (item.Phase == "A") Gl.glColor4f(.95f, .78f, .12f, alpha);
             else if (item.Phase == "B") Gl.glColor4f(.19f, .65f, .27f, alpha);
