@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using CKBusbarBridge.Computation;
 using Newtonsoft.Json.Linq;
@@ -27,12 +28,12 @@ namespace CKBusbarBridge.Prototype
         {
             _calculator = new PreviewCalculator(WorkerDirectory);
         }
-        internal async Task<JObject> Compute(JObject request)
+        internal async Task<JObject> Compute(JObject request, CancellationToken cancellationToken = default)
         {
             request["knownShapes"] = JObject.FromObject(_shapes.ToDictionary(pair => pair.Key, pair => pair.Value.Signature));
             // 视口使用明确的实例身份、外观和源路径，原始逐面来源仍留在计算与检查侧。
             request["includePartSources"] = false;
-            var response = await _calculator.ComputeAsync(request).ConfigureAwait(false);
+            var response = await _calculator.ComputeAsync(request, cancellationToken).ConfigureAwait(false);
             if ((string)response["calculatorVersion"] != PackageVersion) throw new InvalidOperationException("计算结果与 Worker 版本不匹配。");
             return response;
         }

@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Threading;
 using CKBusbarBridge.Prototype;
@@ -227,6 +228,8 @@ namespace CKBusbarBridge.Drivers
         private BridgeParameterSnapshotBinding _parameterBinding;
         private object _parameters;
         private bool _computing, _queued, _disposed, _suspended, _installing, _detached, _drawFailed;
+        private bool _previewClosed = true;
+        private CancellationTokenSource _previewCancellation = new CancellationTokenSource();
         private bool _parametersDirty;
         private string _lastInspectionWarning;
         private bool _recommendRequested;
@@ -261,7 +264,7 @@ namespace CKBusbarBridge.Drivers
         internal event Action Closed;
         internal event EventHandler ParametersChanged;
         public event EventHandler Invalidated;
-        public bool Enabled => !_disposed && !_suspended;
+        public bool Enabled => !_disposed && !_suspended && !_previewClosed;
         public bool IsBound => !_disposed;
         internal bool Busy => _computing || _queued || !Session.IsReady;
         internal string Orientation => _orientation;
@@ -516,12 +519,14 @@ namespace CKBusbarBridge.Drivers
         }
         private void SessionChanged(object sender, EventArgs args)
         {
+            if (_previewClosed) return;
             _viewport.IsStale = !Session.IsReady;
             if (_editor != null) _editor.NativePreviewBusy = Session.Failure == null;
             if (!_detached) _viewport.RequestRedraw();
         }
         internal Task EnsureReady(bool recommend = false)
         {
+            if (_previewClosed) return Task.FromCanceled(new CancellationToken(true));
             if (recommend) { _recommendRequested = true; _parametersDirty = true; Session.Invalidate(); }
             if (Session.IsReady) return Task.CompletedTask;
             if (_disposed || Session.RecoveryBlocked) return Task.FromException(new InvalidOperationException(Session.Failure ?? "参数草稿已关闭。"));
@@ -541,8 +546,9 @@ namespace CKBusbarBridge.Drivers
         internal async void Recompute()
         {
             _dispatcher.VerifyAccess();
-            if (_disposed || Session.Generating || Session.RecoveryBlocked) return;
+            if (_disposed || _previewClosed || Session.Generating || Session.RecoveryBlocked) return;
             if (_computing) { _queued = true; return; }
+            var previewCancellation = _previewCancellation.Token;
             _computing = true; var requestedRevision = Session.Revision; var requestedId = Session.Id;
             BridgeMeshFrame cabinetOnlyFrame = null;
             try
@@ -551,7 +557,7 @@ namespace CKBusbarBridge.Drivers
                 {
                     var calculation = await _dispatcher.InvokeAsync(() =>
                     {
-                        if (_disposed) return null;
+                        if (_disposed || _previewClosed || previewCancellation.IsCancellationRequested) return null;
                         if ((((AssemblyDoc)Document).GetComponents(false) as object[] ?? Array.Empty<object>()).Length != 0)
                             throw new InvalidOperationException("参数预览总装中出现真实组件，请移除后再继续草稿计算。");
                         _queued = false; var revision = Session.Revision; var id = Session.Id;
@@ -563,13 +569,14 @@ namespace CKBusbarBridge.Drivers
                                 ["chordToleranceMm"] = _viewport.Appearance.ChordToleranceMm, ["objectTriangleBudget"] = _viewport.Appearance.ObjectTriangleBudget,
                                 ["sceneTriangleBudget"] = _viewport.Appearance.SceneTriangleBudget, ["targetFps"] = _viewport.Appearance.TargetFramesPerSecond,
                                 ["interactionFrameBudgetMs"] = _viewport.Appearance.InteractionFrameBudgetMs } };
-                        return _runtime.Compute(request);
+                        return _runtime.Compute(request, previewCancellation);
                     }).Task.ConfigureAwait(false);
                     if (calculation == null) break;
                     var response = await calculation.ConfigureAwait(false);
                     var repeat = await _dispatcher.InvokeAsync(() =>
                     {
                         var id = requestedId; var revision = requestedRevision;
+                        if (_previewClosed || previewCancellation.IsCancellationRequested) return false;
                         if (_disposed || id != Session.Id || revision != Session.Revision) { _queued = !_disposed; return _queued && !_disposed; }
                         var hangerRoof = response["upstream"]?["hangerRoof"]?.DeepClone();
                         response["upstream"] = SinglePrecision.Copy((JObject)response["upstream"]);
@@ -637,7 +644,7 @@ namespace CKBusbarBridge.Drivers
                 if (_dispatcher.HasShutdownStarted) return;
                 await _dispatcher.InvokeAsync(() =>
                 {
-                    if (_disposed) return;
+                    if (_disposed || _previewClosed || previewCancellation.IsCancellationRequested) return;
                     if (requestedId != Session.Id || requestedRevision != Session.Revision) { _queued = true; return; }
                     // A/B base heights can be valid locally even when their new
                     // openings cannot share a horizontal bridge. Publish the
@@ -661,7 +668,7 @@ namespace CKBusbarBridge.Drivers
                 if (!_dispatcher.HasShutdownStarted) await _dispatcher.InvokeAsync(() =>
                 {
                     _computing = false;
-                    if (_queued && !_disposed) { _timer.Stop(); _timer.Start(); }
+                    if (_queued && !_disposed && !_previewClosed) { _timer.Stop(); _timer.Start(); }
                     if (_editor != null && !_timer.IsEnabled) _editor.NativePreviewBusy = false;
                     if (!_queued && !_timer.IsEnabled)
                     {
@@ -679,6 +686,7 @@ namespace CKBusbarBridge.Drivers
             _previousUpstream = Session.Upstream; editor.PlanChanged += DraftChanged; editor.ViewChanged += SelectionChanged;
             _viewport.BindEditor(editor);
             editor.FitRequested += FitAllRequested; editor.FitSelectionRequested += FitSelectionRequested;
+            ResumeDesignPreview();
             RefreshDimensions();
         }
         internal void Detach(BusbarBridgeDesignWindowVM editor)
@@ -691,6 +699,37 @@ namespace CKBusbarBridge.Drivers
             _viewport.BindEditor(null);
             editor.FitRequested -= FitAllRequested; editor.FitSelectionRequested -= FitSelectionRequested;
             ClearBridgeSelection();
+            SuspendUnusedDesignPreview();
+        }
+        private void ResumeDesignPreview()
+        {
+            _dispatcher.VerifyAccess();
+            if (_disposed || _detached || !_previewClosed || Session.Generating || Session.RecoveryBlocked) return;
+            _previewCancellation.Dispose();
+            _previewCancellation = new CancellationTokenSource();
+            _previewClosed = false;
+            _viewFitted = false; _lastFitBounds = null;
+            _parametersDirty = true;
+            // 保留参数和人工方案；新窗口必须计算新修订，不能恢复已关闭窗口的旧画面。
+            Session.Invalidate();
+            _timer.Stop(); _timer.Start();
+        }
+        private void SuspendUnusedDesignPreview()
+        {
+            _dispatcher.VerifyAccess();
+            if (_disposed || _previewClosed || _editor != null || _cabinetDesignWindows > 0) return;
+            _previewClosed = true;
+            _timer.Stop(); _queued = false; ++_candidateVersion;
+            _previewCancellation.Cancel();
+            foreach (var waiter in _readyWaiters) waiter.TrySetCanceled();
+            _readyWaiters.Clear();
+            _dimensionEditor.Dispose();
+            _cabinetInputOwner = null; _cabinetInputProperty = null;
+            _cabinetDimensions = Array.Empty<BridgePreviewDimension>();
+            _viewport.HighlightCabinetParameter(null);
+            _viewport.IsPreviewOnly = false;
+            _viewport.Clear();
+            if (!_detached) Document.GraphicsRedraw2();
         }
         private void UpdateEditor(BridgeUpstreamSnapshot upstream, JObject logicalUpstream)
         {
@@ -735,7 +774,7 @@ namespace CKBusbarBridge.Drivers
         }
         private void SelectionChanged(object sender, EventArgs args)
         {
-            if (_disposed || _detached) return;
+            if (_disposed || _detached || _previewClosed) return;
             if (_restoringSelection) return;
             if (_editor?.Editor.CurrentSample != null && _selectionState != null)
             {
@@ -768,7 +807,7 @@ namespace CKBusbarBridge.Drivers
         }
         private void EditDimensionCore(BridgeDimensionEditRequest request)
         {
-            if (_disposed || _detached || !Session.IsReady || request.Dimension.IsReadOnly) return;
+            if (_disposed || _detached || _previewClosed || !Session.IsReady || request.Dimension.IsReadOnly) return;
             if (request.Dimension.ParameterPath != null)
             {
                 if (request.Dimension.Revision != Session.ReadyRevision || _editor?.HasPendingInput == true) return;
@@ -913,8 +952,8 @@ namespace CKBusbarBridge.Drivers
         internal void ClearBridgeSelection() { if (_detached || _disposed) return; _viewport.Dimensions(VisibleCabinetDimensions()); Document.GraphicsRedraw2(); }
         // Cabinet design shows every cabinet/base dimension; bridge design shows them only for the selected cabinet or base.
         private int _cabinetDesignWindows;
-        internal void CabinetDesignOpened() { _cabinetDesignWindows++; RefreshDimensions(); }
-        internal void CabinetDesignClosed() { if (_cabinetDesignWindows > 0) _cabinetDesignWindows--; RefreshDimensions(); }
+        internal void CabinetDesignOpened() { _cabinetDesignWindows++; ResumeDesignPreview(); RefreshDimensions(); }
+        internal void CabinetDesignClosed() { if (_cabinetDesignWindows > 0) _cabinetDesignWindows--; SuspendUnusedDesignPreview(); RefreshDimensions(); }
         private object _cabinetInputOwner;
         private string _cabinetInputProperty;
         internal void HighlightCabinetInput(object owner, string property)
@@ -937,7 +976,7 @@ namespace CKBusbarBridge.Drivers
 
         public void Refresh(BridgeDesignSample sample, IReadOnlyList<BridgeDesignObject> objects, long revision, Func<bool> isCurrent, bool activate)
         {
-            if (_detached) return;
+            if (_disposed || _detached || _previewClosed) return;
             if (!Session.IsReady || !isCurrent()) return;
             _suspended = false; _viewport.Install(Session.Frame); SelectionChanged(this, EventArgs.Empty); Document.GraphicsRedraw2();
             if (activate) Fit(Session.Frame);
@@ -1036,6 +1075,8 @@ namespace CKBusbarBridge.Drivers
         internal async Task PreviewScheme(BridgeDesignSample sample)
         {
             _dispatcher.VerifyAccess();
+            if (_disposed || _detached || _previewClosed) throw new OperationCanceledException("设计窗口已关闭。");
+            var previewCancellation = _previewCancellation.Token;
             if (!Session.IsReady || _editor == null || _editor.HasPendingInput) throw new InvalidOperationException("请等待草稿计算并提交输入后选择方案。");
             var version = ++_candidateVersion; var revision = Session.Revision; var editor = new BusbarBridgeDraftEditor(); editor.Load(sample);
             _viewport.IsPreviewOnly = true; _viewport.IsStale = true; _viewport.Dimensions(Array.Empty<BridgePreviewDimension>()); _viewport.RequestRedraw();
@@ -1049,10 +1090,10 @@ namespace CKBusbarBridge.Drivers
                         ["chordToleranceMm"] = _viewport.Appearance.ChordToleranceMm, ["objectTriangleBudget"] = _viewport.Appearance.ObjectTriangleBudget,
                         ["sceneTriangleBudget"] = _viewport.Appearance.SceneTriangleBudget, ["targetFps"] = _viewport.Appearance.TargetFramesPerSecond,
                         ["interactionFrameBudgetMs"] = _viewport.Appearance.InteractionFrameBudgetMs } };
-                var response = await _runtime.Compute(request).ConfigureAwait(false);
+                var response = await _runtime.Compute(request, previewCancellation).ConfigureAwait(false);
                 await _dispatcher.InvokeAsync(() =>
                 {
-                    if (_disposed || version != _candidateVersion || revision != Session.Revision) return;
+                    if (_disposed || _previewClosed || previewCancellation.IsCancellationRequested || version != _candidateVersion || revision != Session.Revision) return;
                     _viewport.Install(_runtime.CreateFrame(Session.Id, revision, response)); _viewport.IsStale = false; Fit(_viewport.DisplayFrame); _viewport.RequestRedraw();
                 }).Task.ConfigureAwait(false);
             }
@@ -1068,7 +1109,7 @@ namespace CKBusbarBridge.Drivers
         internal void RestorePreview()
         {
             ++_candidateVersion;
-            if (_disposed || _detached || Session.RecoveryBlocked) return;
+            if (_disposed || _detached || _previewClosed || Session.RecoveryBlocked) return;
             _suspended = false;
             _viewport.IsPreviewOnly = false; _viewport.IsStale = !Session.IsReady;
             if (Session.Frame != null) _viewport.Install(Session.Frame);
@@ -1078,7 +1119,7 @@ namespace CKBusbarBridge.Drivers
         private void FitSelectionRequested(object sender, EventArgs args) => ShowView(BridgeDraftView.Selected);
         internal void ShowView(BridgeDraftView view)
         {
-            if (_disposed || _detached || Session.Frame == null) return;
+            if (_disposed || _detached || _previewClosed || Session.Frame == null) return;
             if (view == BridgeDraftView.Top) Document.ShowNamedView2("", (int)swStandardViews_e.swTopView);
             else if (view == BridgeDraftView.Front) Document.ShowNamedView2("", (int)swStandardViews_e.swFrontView);
             else if (view == BridgeDraftView.Isometric) Document.ShowNamedView2("", (int)swStandardViews_e.swIsometricView);
@@ -1119,6 +1160,7 @@ namespace CKBusbarBridge.Drivers
             if (_disposed) return;
             if (Session.Generating) throw new InvalidOperationException("正式生成结束前不能释放草稿会话。");
             _disposed = true; _timer.Stop(); _timer.Tick -= TimerTick;
+            _previewCancellation.Cancel(); _previewCancellation.Dispose();
             foreach (var waiter in _readyWaiters) waiter.TrySetCanceled();
             _readyWaiters.Clear();
             _dimensionEditor.Dispose();
