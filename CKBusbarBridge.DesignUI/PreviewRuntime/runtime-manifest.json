@@ -1,7 +1,7 @@
 {
   "schema": "dq-preview-runtime-manifest/1",
   "calculatorVersion": "dq-sw-mesh/1",
-  "packageSha256": "745932007e583c812b311a1b4c3346bbb57fad76ba11f593d8d09dc4c46db213",
+  "packageSha256": "aa9e277a75e8dad6822aaf07f62f22852da3c9a60c991f730374d74c544733e3",
   "reference": {
     "project": "CKBusbarBridgeVirtualDesigner",
     "commit": "511d64b1248e1c26bf27430e9016fecdc5e9ce5f",
@@ -289,7 +289,7 @@
     },
     {
       "path": "Core/original-copper.mjs",
-      "sha256": "806b59e58b77c7fb53f6c74c30a83c7cb3fbd8a3dae1f32742c8f827c7608596"
+      "sha256": "a338fa9cc2e5c8b23f6dd02cf743e56ca03113dd7aadb0c6bcf98d1352e36b9b"
     },
     {
       "path": "Core/original-design-upstream.mjs",

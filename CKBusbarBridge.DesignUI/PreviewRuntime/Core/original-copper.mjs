@@ -214,22 +214,42 @@ export function evaluateCopperObject(kernel,object,settings={}){
     validateOriginalCopperObject(object);return evaluateOriginalVerticalCopper(kernel,object,settings);
   }
   if(object.kind==='original-copper'){
-    validateOriginalCopperObject(object);const started=performance.now(),solids=[],solidSources=[];
+    validateOriginalCopperObject(object);const started=performance.now(),sections=[];let combined;
     try{
       // Mathematical port of original BridgeCopperClearance.CreateFixedInterfacePreviewSolids.
       // The source preview uses each path segment's projected section, including
       // mixed/vertical/milled bars. Only these live solids are generated here.
-      for(const frame of originalCopperSectionFrames(object.originalCopper)){
+      const frames=originalCopperSectionFrames(object.originalCopper);
+      for(const frame of frames){
         const cube=kernel.Manifold.cube([frame.length,object.originalCopper.busBarWidth,object.originalCopper.busBarThickness],true);
         const transform=[...frame.direction,0,...frame.width,0,...frame.thickness,0,...frame.center,1];
         try{
-          solids.push(cube.transform(transform));
-          if(settings.captureLocalMeshes)solidSources.push({path:'original-copper-section',transform,localMesh:solidToMesh(cube),
-            shapeInputSignature:JSON.stringify([frame.length,object.originalCopper.busBarWidth,object.originalCopper.busBarThickness])});
+          sections.push(cube.transform(transform));
         }finally{cube.delete();}
       }
-      return {solids,solidSources,parameters:[],parameterMs:0,geometryTimings:{otherFeatureMs:performance.now()-started,cutFeatureMs:0},preview:{complexFeatureCount:0,canSimplify:false,coarsened:false},derivedGeometry:{kind:'original-mixed-copper',source:'BridgeCopperClearance.CreateFixedInterfacePreviewSolids',drawingDevelopedLengthMm:originalCopperDevelopedLength(object.originalCopper),bends:object.originalCopper.pointList.slice(1,-1).map((_,index)=>({pathPointIndex:index+1,kind:object.originalCopper.previewBendPointKinds?.[index+1]??0})),holes:0}};
-    }catch(error){solids.forEach(solid=>solid.delete());throw error;}
+      // 这些截面是同一根实体铜排的构造分段，相邻段在折点处共同组成材料。
+      // 非相邻段仍严格检查自身相交；合并后再让装配检查比较不同物理零件。
+      for(let first=0;first<sections.length;first++)for(let second=first+2;second<sections.length;second++){
+        const common=sections[first].intersect(sections[second]);
+        try{
+          if(common.status()!=='NoError')throw new DefinitionError('混合工艺铜排自身相交检查失败');
+          if(common.isEmpty())continue;
+          const bounds=common.boundingBox(),volume=common.volume();
+          if(!Number.isFinite(volume))throw new DefinitionError('混合工艺铜排自身相交体积无效');
+          if(bounds.min.every((value,axis)=>bounds.max[axis]-value>.001)&&Math.abs(volume)>common.surfaceArea()*common.tolerance())
+            throw new DefinitionError('铜排非相邻路径段自身相交，请重新规划：'+object.name);
+        }finally{common.delete();}
+      }
+      combined=kernel.Manifold.union(sections);
+      if(combined.status()!=='NoError'||combined.isEmpty())throw new DefinitionError('混合工艺铜排分段不能形成有效实体');
+      // 网格留在零件局部附近，绝对安装平移单独保留双精度，避免大坐标写入Float32损伤临界净距。
+      const origin=frames[0].center,local=combined.translate(origin.map(value=>-value));let localMesh;
+      try{localMesh=solidToMesh(local);}finally{local.delete();}
+      const solidSources=[{path:'original-copper-body',bodyIndex:0,componentChain:[],localMesh,
+        transform:[1,0,0,0,0,1,0,0,0,0,1,0,...origin,1],shapeInputSignature:JSON.stringify(object.originalCopper)}];
+      const solid=combined;combined=null;
+      return {solids:[solid],solidSources,parameters:[],parameterMs:0,geometryTimings:{otherFeatureMs:performance.now()-started,cutFeatureMs:0},preview:{complexFeatureCount:0,canSimplify:false,coarsened:false},derivedGeometry:{kind:'original-mixed-copper',source:'BridgeCopperClearance.CreateFixedInterfacePreviewSolids',drawingDevelopedLengthMm:originalCopperDevelopedLength(object.originalCopper),bends:object.originalCopper.pointList.slice(1,-1).map((_,index)=>({pathPointIndex:index+1,kind:object.originalCopper.previewBendPointKinds?.[index+1]??0})),holes:0}};
+    }finally{combined?.delete();sections.forEach(solid=>solid.delete());}
   }
   if(!object.originalCopper)return evaluateFreeCopper(kernel,object,settings);
   validateOriginalCopperObject(object);return evaluateOriginalCopper(kernel,object.originalCopper,settings,object.freeCopper.holes??[]);
